@@ -44,7 +44,7 @@ MergeCategoryDialog::MergeCategoryDialog()
 
 MergeCategoryDialog::~MergeCategoryDialog()
 {
-    InfotableModel::instance().setSize("RELOCATECATEG_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("RELOCATECATEG_DIALOG_SIZE", GetSize());
 }
 
 MergeCategoryDialog::MergeCategoryDialog(wxWindow* parent
@@ -94,7 +94,7 @@ void MergeCategoryDialog::CreateControls()
 
     cbSourceCategory_ = new mmComboBoxCategory(this, wxID_LAST);
     cbSourceCategory_->SetMinSize(wxSize(200, -1));
-    CategoryModel::Data* category = CategoryModel::instance().get(m_sourceCatID);
+    CategoryModel::Data* category = CategoryModel::instance().cache_id(m_sourceCatID);
     if (category)
         cbSourceCategory_->SetValue(CategoryModel::full_name(m_sourceCatID));
 
@@ -214,7 +214,7 @@ void MergeCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         {
             if (m_sourceSubCatID == -1)
             {
-                if (CategoryModel::sub_category(CategoryModel::instance().get(m_sourceCatID)).empty())
+                if (CategoryModel::sub_category(CategoryModel::instance().cache_id(m_sourceCatID)).empty())
                     CategoryModel::instance().remove(m_sourceCatID);
             }
 

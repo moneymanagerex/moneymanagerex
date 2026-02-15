@@ -22,7 +22,7 @@
 #include "AttachmentModel.h"
 
 AttachmentModel::AttachmentModel()
-: Model<DB_Table_ATTACHMENT_V1>()
+: Model<AttachmentTable>()
 {
 }
 
@@ -37,9 +37,9 @@ AttachmentModel::~AttachmentModel()
 AttachmentModel& AttachmentModel::instance(wxSQLite3Database* db)
 {
     AttachmentModel& ins = Singleton<AttachmentModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -54,8 +54,7 @@ AttachmentModel& AttachmentModel::instance()
 const AttachmentModel::Data_Set AttachmentModel::FilterAttachments(const wxString& RefType, const int64 RefId)
 {
     Data_Set attachments;
-    for (auto &attachment : this->all(COL_DESCRIPTION))
-    {
+    for (const Data& attachment : get_all(COL_DESCRIPTION)) {
         if (attachment.REFTYPE.Lower().Matches(RefType.Lower().Append("*")) && attachment.REFID == RefId)
             attachments.push_back(attachment);
     }
@@ -65,7 +64,7 @@ const AttachmentModel::Data_Set AttachmentModel::FilterAttachments(const wxStrin
 /** Return the number of attachments linked to a specific object */
 int AttachmentModel::NrAttachments(const wxString& RefType, const int64 RefId)
 {
-    return AttachmentModel::instance().find(AttachmentModel::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), AttachmentModel::REFID(RefId)).size();
+    return AttachmentModel::instance().find(AttachmentModel::AttachmentTable::REFTYPE(RefType), AttachmentModel::REFID(RefId)).size();
 }
 
 /** Return the last attachment number linked to a specific object */
@@ -86,10 +85,10 @@ int AttachmentModel::LastAttachmentNumber(const wxString& RefType, const int64 R
 }
 
 /** Return a dataset with attachments linked to a specific type*/
-std::map<int64, AttachmentModel::Data_Set> AttachmentModel::get_all(const wxString& reftype)
+std::map<int64, AttachmentModel::Data_Set> AttachmentModel::get_reftype(const wxString& reftype)
 {
     std::map<int64, AttachmentModel::Data_Set> data;
-    for (const auto & attachment : this->find(AttachmentModel::DB_Table_ATTACHMENT_V1::REFTYPE(reftype)))
+    for (const auto & attachment : this->find(AttachmentModel::AttachmentTable::REFTYPE(reftype)))
     {
         data[attachment.REFID].push_back(attachment);
     }
@@ -102,7 +101,7 @@ wxArrayString AttachmentModel::allDescriptions()
 {
     wxArrayString descriptions;
     wxString PreviousDescription;
-    for (const auto &attachment : this->all(COL_DESCRIPTION))
+    for (const auto &attachment : this->get_all(COL_DESCRIPTION))
     {
         if (attachment.DESCRIPTION != PreviousDescription)
         {

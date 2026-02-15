@@ -39,7 +39,7 @@
 
 #include "model/CategoryModel.h"
 #include "model/FieldValueModel.h"
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/PayeeModel.h"
 #include "model/PreferencesModel.h"
 #include "model/SettingModel.h"
@@ -233,7 +233,7 @@ void mmUnivCSVDialog::CreateControls()
     preset_flex_sizer->Add(preset_label, g_flagsH);
 
     Document account_default_presets;
-    if (!account_default_presets.Parse(InfotableModel::instance().getString((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), "{}").utf8_str()).HasParseError())
+    if (!account_default_presets.Parse(InfoModel::instance().getString((IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"), "{}").utf8_str()).HasParseError())
     {
         for (const auto& member : account_default_presets.GetObject()) {
             m_acct_default_preset[std::stoll(member.name.GetString())] = member.value.GetString();
@@ -244,8 +244,10 @@ void mmUnivCSVDialog::CreateControls()
     wxString prefix = GetSettingsPrfix();
     prefix.Replace("%d", "");
     wxString init_preset_name;
-    for (const auto& setting : SettingModel::instance().find(SettingModel::SETTINGNAME(prefix + "0", GREATER_OR_EQUAL), SettingModel::SETTINGNAME(prefix + "A", LESS)))
-    {
+    for (const auto& setting : SettingModel::instance().find(
+        SettingModel::SETTINGNAME(OP_GE, prefix + "0"),
+        SettingModel::SETTINGNAME(OP_LT, prefix + "A")
+    )) {
         Document json_doc;
         if (json_doc.Parse(setting.SETTINGVALUE.utf8_str()).HasParseError()) {
             continue;
@@ -301,7 +303,7 @@ void mmUnivCSVDialog::CreateControls()
     FieldModel::Data_Set fields = FieldModel::instance().find(FieldModel::REFTYPE(TransactionModel::refTypeName));
     if (!fields.empty())
     {
-        std::sort(fields.begin(), fields.end(), SorterByDESCRIPTION());
+        std::sort(fields.begin(), fields.end(), FieldTable::SorterByDESCRIPTION());
         int customField = 1;    // Start of custom fields numbering
         for (const FieldModel::Data& entry : fields)
         {
@@ -673,7 +675,7 @@ void mmUnivCSVDialog::CreateControls()
         wxString acct_name = m_choice_account_->GetStringSelection();
         m_checkbox_preset_default->SetLabelText(wxString::Format(_t("Load this Preset when Account is:\n%s"), acct_name));
         *log_field_ << _t("Currency:") << " " <<
-            wxGetTranslation(AccountModel::currency(AccountModel::instance().get(acct_name))->CURRENCYNAME) << "\n";
+            wxGetTranslation(AccountModel::currency(AccountModel::instance().cache_key(acct_name))->CURRENCYNAME) << "\n";
         if (!init_preset_name.IsEmpty())
             *log_field_ << wxString::Format(_t("Preset '%1$s' loaded because Account '%2$s' selected"), init_preset_name, acct_name) << "\n";
     }
@@ -699,7 +701,7 @@ void mmUnivCSVDialog::initDateMask()
 void mmUnivCSVDialog::initDelimiter()
 {
     if (delimit_.empty()) {
-        delimit_ = InfotableModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
+        delimit_ = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
     }
     m_textDelimiter->ChangeValue(delimit_ == "\t" ? "\\t" : delimit_);
 
@@ -777,7 +779,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
         m_choice_preset_name->SetSelection(-1);
         if (m_account_id > 0)
         {
-            const AccountModel::Data* account = AccountModel::instance().get(m_account_id);
+            const AccountModel::Data* account = AccountModel::instance().cache_id(m_account_id);
             if (account)
                 m_choice_account_->SetStringSelection(account->ACCOUNTNAME);
         }
@@ -823,7 +825,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     wxString an;
     if (m_account_id > -1)
     {
-        const AccountModel::Data* account = AccountModel::instance().get(m_account_id);
+        const AccountModel::Data* account = AccountModel::instance().cache_id(m_account_id);
         if (account)
             an = account->ACCOUNTNAME;
         else
@@ -855,7 +857,7 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
     {
         Value& v_delimiter = GetValueByPointerWithDefault(json_doc, "/DELIMITER", "");
         const wxString& de = wxString::FromUTF8(v_delimiter.IsString() ? v_delimiter.GetString() : "");
-        const wxString& def_delimiter = InfotableModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
+        const wxString& def_delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
         delimit_ = (de.empty() ? def_delimiter : de);
         initDelimiter();
     }
@@ -1324,7 +1326,7 @@ void mmUnivCSVDialog::saveAccountPresets()
     }
     json_writer.EndObject();
 
-    InfotableModel::instance().setString(
+    InfoModel::instance().setString(
         (IsCSV() ? "CSV_ACCOUNT_PRESETS" : "XML_ACCOUNT_PRESETS"),
         wxString::FromUTF8(json_buffer.GetString())
     );
@@ -1345,10 +1347,10 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder, wxString& message)
         for (auto& cfdata : holder.customFieldData)
             is_valid &= validateCustomFieldData(cfdata.first, cfdata.second, message);
 
-    PayeeModel::Data* payee = PayeeModel::instance().get(holder.PayeeID);
+    PayeeModel::Data* payee = PayeeModel::instance().cache_id(holder.PayeeID);
     if (!payee)
     {
-        PayeeModel::Data* u = PayeeModel::instance().get(_t("Unknown"));
+        PayeeModel::Data* u = PayeeModel::instance().cache_key(_t("Unknown"));
         if (!u) {
             PayeeModel::Data *p = PayeeModel::instance().create();
             p->PAYEENAME = _t("Unknown");
@@ -1371,7 +1373,7 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder, wxString& message)
 
     if (holder.CategoryID == -1) //The category name is missing in SCV file and not assigned for the payee
     {
-        CategoryModel::Data* categ = CategoryModel::instance().get(_t("Unknown"), int64(-1));
+        CategoryModel::Data* categ = CategoryModel::instance().cache_key(_t("Unknown"), int64(-1));
         if (categ) {
             holder.CategoryID = categ->CATEGID;
         }
@@ -1405,7 +1407,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     bool is_canceled = false;
     long nImportedLines = 0;
     const wxString acctName = m_choice_account_->GetStringSelection();
-    AccountModel::Data* account = AccountModel::instance().get(acctName);
+    AccountModel::Data* account = AccountModel::instance().cache_key(acctName);
 
     if (!account){
         return mmErrorDialogs::InvalidAccount(m_choice_account_);
@@ -1507,8 +1509,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         }
 
         wxString trxDate = holder.Date.FormatISOCombined();
-        AccountModel::Data* account2 = AccountModel::instance().get(accountID_);
-        const AccountModel::Data* toAccount = AccountModel::instance().get(holder.ToAccountID);
+        AccountModel::Data* account2 = AccountModel::instance().cache_id(accountID_);
+        const AccountModel::Data* toAccount = AccountModel::instance().cache_id(holder.ToAccountID);
         if ((trxDate < account2->INITIALDATE) ||
             (toAccount && (trxDate < toAccount->INITIALDATE)))
         {
@@ -1673,13 +1675,13 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     }
 
     const wxString& acctName = m_choice_account_->GetStringSelection();
-    AccountModel::Data* from_account = AccountModel::instance().get(acctName);
+    AccountModel::Data* from_account = AccountModel::instance().cache_key(acctName);
 
     if (!from_account)
         return mmErrorDialogs::ToolTip4Object(m_choice_account_, _t("Invalid Account"), _t("Error"));
 
-    const auto split = TransactionSplitModel::instance().get_all();
-    const auto tags = TagLinkModel::instance().get_all(TransactionModel::refTypeName);
+    const auto split = TransactionSplitModel::instance().get_all_id();
+    const auto tags = TagLinkModel::instance().get_all_id(TransactionModel::refTypeName);
     int64 fromAccountID = from_account->ACCOUNTID;
 
     long numRecords = 0;
@@ -1705,7 +1707,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         // Write transactions to file.
         TransactionModel::Data_Set txns = TransactionModel::instance().find_or(TransactionModel::ACCOUNTID(fromAccountID), TransactionModel::TOACCOUNTID(fromAccountID));
         std::sort(txns.begin(), txns.end());
-        std::stable_sort(txns.begin(), txns.end(), SorterByTRANSDATE());
+        std::stable_sort(txns.begin(), txns.end(), TransactionTable::SorterByTRANSDATE());
 
         for (const auto& pBankTransaction : txns)
         {
@@ -1733,7 +1735,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                 {
                     pTxFile->AddNewLine();
 
-                    CategoryModel::Data* category = CategoryModel::instance().get(splt.CATEGID);
+                    CategoryModel::Data* category = CategoryModel::instance().cache_id(splt.CATEGID);
 
                     double amt = splt.SPLITTRANSAMOUNT;
                     if (TransactionModel::type_id(pBankTransaction) == TransactionModel::TYPE_ID_WITHDRAWAL
@@ -1760,7 +1762,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             itemType = ITransactionsFile::TYPE_NUMBER;
                             break;
                         case UNIV_CSV_ACCOUNT:
-                            entry = tran.get_account_name(fromAccountID);
+                            entry = tran.cache_id_name(fromAccountID);
                             break;
                         case UNIV_CSV_CURRENCY:
                             entry = tran.get_currency_code(fromAccountID);
@@ -1781,7 +1783,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                         case UNIV_CSV_TAGS:
                         {
                             wxString splitTags;
-                            for (const auto& tag : TagLinkModel::instance().get(TransactionSplitModel::refTypeName, splt.SPLITTRANSID))
+                            for (const auto& tag : TagLinkModel::instance().cache_ref(TransactionSplitModel::refTypeName, splt.SPLITTRANSID))
                                 splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                             entry = tran.TAGNAMES;
                             if (!splitTags.IsEmpty())
@@ -1817,11 +1819,11 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             if (it.first > UNIV_CSV_LAST) // Custom Fields
                             {
                                 // Get field content
-                                FieldValueModel::Data* data = FieldValueModel::instance().get(CSVFieldName_[it.first].second, pBankTransaction.TRANSID);
+                                FieldValueModel::Data* data = FieldValueModel::instance().cache_key(CSVFieldName_[it.first].second, pBankTransaction.TRANSID);
                                 if (data)
                                 {
                                     // format date fields
-                                    if (FieldModel::type_id(FieldModel::instance().get(data->FIELDID)) == FieldModel::TYPE_ID_DATE)
+                                    if (FieldModel::type_id(FieldModel::instance().cache_id(data->FIELDID)) == FieldModel::TYPE_ID_DATE)
                                         entry = mmGetDateTimeForDisplay(data->CONTENT, date_format_);
                                     else
                                         entry = data->CONTENT;
@@ -1841,7 +1843,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
     {
         StockModel::Data_Set txns = StockModel::instance().find(StockModel::HELDAT(fromAccountID));
         std::sort(txns.begin(), txns.end());
-        std::stable_sort(txns.begin(), txns.end(), SorterBySTOCKID());
+        std::stable_sort(txns.begin(), txns.end(), StockTable::SorterBySTOCKID());
 
         for (const auto& pStockTrancsaction : txns)
         {
@@ -1899,7 +1901,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                         entry = StockModel::HELDAT(fromAccountID).name();
                         break;
                     case UNIV_CSV_CURRENCY:
-                        entry = AccountModel::currency(AccountModel::instance().get(fromAccountID))->CURRENCY_SYMBOL;
+                        entry = AccountModel::currency(AccountModel::instance().cache_id(fromAccountID))->CURRENCY_SYMBOL;
                         break;
                     default:
                         break;
@@ -2074,12 +2076,12 @@ void mmUnivCSVDialog::update_preview()
     else // exporter preview
     {
         const wxString acctName = m_choice_account_->GetStringSelection();
-        AccountModel::Data* from_account = AccountModel::instance().get(acctName);
+        AccountModel::Data* from_account = AccountModel::instance().cache_key(acctName);
 
         if (from_account)
         {
-            const auto split = TransactionSplitModel::instance().get_all();
-            const auto tags = TagLinkModel::instance().get_all(TransactionModel::refTypeName);
+            const auto split = TransactionSplitModel::instance().get_all_id();
+            const auto tags = TagLinkModel::instance().get_all_id(TransactionModel::refTypeName);
             int64 fromAccountID = from_account->ACCOUNTID;
             size_t count = 0;
             int row = 0;
@@ -2093,7 +2095,7 @@ void mmUnivCSVDialog::update_preview()
                 TransactionModel::Data_Set txns =
         TransactionModel::instance().find_or(TransactionModel::ACCOUNTID(fromAccountID), TransactionModel::TOACCOUNTID(fromAccountID));
                 std::sort(txns.begin(), txns.end());
-                std::stable_sort(txns.begin(), txns.end(), SorterByTRANSDATE());
+                std::stable_sort(txns.begin(), txns.end(), TransactionTable::SorterByTRANSDATE());
                 for (const auto& pBankTransaction : txns)
                 {
                     if (TransactionModel::status_id(pBankTransaction) == TransactionModel::STATUS_ID_VOID || !pBankTransaction.DELETEDTIME.IsEmpty())
@@ -2125,7 +2127,7 @@ void mmUnivCSVDialog::update_preview()
                             buf.Printf("%d", row + 1);
                             m_list_ctrl_->SetItem(itemIndex, col, buf);
                             m_list_ctrl_->SetItemData(itemIndex, row);
-                            CategoryModel::Data* category = CategoryModel::instance().get(splt.CATEGID);
+                            CategoryModel::Data* category = CategoryModel::instance().cache_id(splt.CATEGID);
 
                             CurrencyModel::Data* currency = AccountModel::currency(from_account);
 
@@ -2153,7 +2155,7 @@ void mmUnivCSVDialog::update_preview()
                                     text << inQuotes(tran.real_payee_name(fromAccountID), delimit);
                                     break;
                                 case UNIV_CSV_ACCOUNT:
-                                    text << inQuotes(tran.get_account_name(fromAccountID), delimit);
+                                    text << inQuotes(tran.cache_id_name(fromAccountID), delimit);
                                     break;
                                 case UNIV_CSV_CURRENCY:
                                     text << inQuotes(tran.get_currency_code(fromAccountID), delimit);
@@ -2180,7 +2182,7 @@ void mmUnivCSVDialog::update_preview()
                                 {
                                     wxString splitTags;
                                     for (const auto& tag :
-                                         TagLinkModel::instance().get(TransactionSplitModel::refTypeName, splt.SPLITTRANSID))
+                                         TagLinkModel::instance().cache_ref(TransactionSplitModel::refTypeName, splt.SPLITTRANSID))
                                         splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                                     text << inQuotes(tran.TAGNAMES + (tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags, delimit);
                                     break;
@@ -2206,11 +2208,11 @@ void mmUnivCSVDialog::update_preview()
                                 default:
                                     if (it > UNIV_CSV_LAST) // Custom Fields
                                     {
-                                        FieldValueModel::Data* data = FieldValueModel::instance().get(CSVFieldName_[it].second, pBankTransaction.TRANSID);
+                                        FieldValueModel::Data* data = FieldValueModel::instance().cache_key(CSVFieldName_[it].second, pBankTransaction.TRANSID);
                                         if (data)
                                         {
                                             // Format date fields
-                                            if (FieldModel::type_id(FieldModel::instance().get(data->FIELDID)) == FieldModel::TYPE_ID_DATE)
+                                            if (FieldModel::type_id(FieldModel::instance().cache_id(data->FIELDID)) == FieldModel::TYPE_ID_DATE)
                                                 text << inQuotes(mmGetDateTimeForDisplay(data->CONTENT, date_format_), delimit);
                                             else
                                                 text << inQuotes(data->CONTENT, delimit);
@@ -2246,7 +2248,7 @@ void mmUnivCSVDialog::update_preview()
             {
                 StockModel::Data_Set txns = StockModel::instance().find(StockModel::HELDAT(fromAccountID));
                 std::sort(txns.begin(), txns.end());
-                std::stable_sort(txns.begin(), txns.end(), SorterBySTOCKID());
+                std::stable_sort(txns.begin(), txns.end(), StockTable::SorterBySTOCKID());
 
                 for (const auto& pStockTrancsaction : txns)
                 {
@@ -2317,10 +2319,10 @@ void mmUnivCSVDialog::update_preview()
                                 text << inQuotes(commission, delimit);
                                 break;
                             case UNIV_CSV_ACCOUNT:
-                                text << inQuotes(DB_Table_STOCK_V1::HELDAT::name(), delimit);
+                                text << inQuotes(StockTable::HELDAT::name(), delimit);
                                 break;
                             case UNIV_CSV_CURRENCY:
-                                text << inQuotes(AccountModel::currency(AccountModel::instance().get(fromAccountID))->CURRENCY_SYMBOL, delimit);
+                                text << inQuotes(AccountModel::currency(AccountModel::instance().cache_id(fromAccountID))->CURRENCY_SYMBOL, delimit);
                                 break;
                             default:
                                 break;
@@ -2633,7 +2635,9 @@ void mmUnivCSVDialog::compilePayeeRegEx() {
     if (payeeMatchCheckBox_->IsChecked() && !payeeRegExInitialized_) {
         payeeMatchPatterns_.clear();
         // only look at payees that have a match pattern set
-        PayeeModel::Data_Set payees = PayeeModel::instance().find(PayeeModel::PATTERN(wxEmptyString, NOT_EQUAL));
+        PayeeModel::Data_Set payees = PayeeModel::instance().find(
+            PayeeModel::PATTERN(OP_NE, wxEmptyString)
+        );
         for (const auto& payee : payees) {
             Document json_doc;
             if (json_doc.Parse(payee.PATTERN.utf8_str()).HasParseError()) {
@@ -2686,7 +2690,7 @@ void mmUnivCSVDialog::validatePayees() {
             }
         }
         if (!payee_found) {
-            PayeeModel::Data* payee = PayeeModel::instance().get(payee_name);
+            PayeeModel::Data* payee = PayeeModel::instance().cache_key(payee_name);
             if (payee) {
                 m_CSVpayeeNames[payee_name] = std::make_tuple(payee->PAYEEID, payee->PAYEENAME, "");
             }
@@ -2705,7 +2709,7 @@ void mmUnivCSVDialog::validateCategories() {
         CategoryModel::Data* category = nullptr;
         while (categs.HasMoreTokens()) {
             wxString categname = categs.GetNextToken();
-            category = CategoryModel::instance().get(categname, parentID);
+            category = CategoryModel::instance().cache_key(categname, parentID);
             if (!category)
             {
                 break;
@@ -2782,7 +2786,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             while (tokenizer.HasMoreTokens())
             {
                 wxString categname = tokenizer.GetNextToken().Trim().Trim(false);
-                category = CategoryModel::instance().get(categname, parentID);
+                category = CategoryModel::instance().cache_key(categname, parentID);
                 if (!category)
                 {
                     category = CategoryModel::instance().create();
@@ -2833,7 +2837,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         {
             wxString tagname = tokenizer.GetNextToken();
             // check for an existing tag
-            TagModel::Data* tag = TagModel::instance().get(tagname);
+            TagModel::Data* tag = TagModel::instance().cache_key(tagname);
             if (!tag)
             {
                 // create a new tag if we didn't find one
@@ -2972,7 +2976,7 @@ void mmUnivCSVDialog::OnChoiceChanged(wxCommandEvent& event)
     else if (i == wxID_ACCOUNT)
     {
         wxString acctName = m_choice_account_->GetStringSelection();
-        AccountModel::Data* account = AccountModel::instance().get(acctName);
+        AccountModel::Data* account = AccountModel::instance().cache_key(acctName);
         m_account_id = account->ACCOUNTID;
         CurrencyModel::Data* currency = AccountModel::currency(account);
         *log_field_ << _t("Currency:") << " " << wxGetTranslation(currency->CURRENCYNAME) << "\n";
@@ -3119,7 +3123,7 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
 
     if (!value.IsEmpty())
     {
-        const FieldModel::Data* data = FieldModel::instance().get(fieldId);
+        const FieldModel::Data* data = FieldModel::instance().cache_id(fieldId);
         wxString type_string = FieldModel::type_name(FieldModel::type_id(data));
         switch (FieldModel::type_id(data))
         {

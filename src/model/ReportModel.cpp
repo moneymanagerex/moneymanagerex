@@ -49,7 +49,7 @@ public:
     }
 };
 
-ReportModel::ReportModel(): Model<DB_Table_REPORT_V1>()
+ReportModel::ReportModel(): Model<ReportTable>()
 {
 }
 
@@ -70,9 +70,9 @@ ReportModel& ReportModel::instance()
 ReportModel& ReportModel::instance(wxSQLite3Database* db)
 {
     ReportModel& ins = Singleton<ReportModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -112,7 +112,7 @@ bool ReportModel::get_objects_from_sql(const wxString& query, PrettyWriter<Strin
     wxSQLite3Statement stmt;
     try
     {
-        stmt = this->db_->PrepareStatement(query);
+        stmt = this->m_db->PrepareStatement(query);
         if (!stmt.IsReadOnly())
         {
             json_writer.Key("msg");
@@ -179,7 +179,7 @@ wxArrayString ReportModel::allGroupNames()
 {
     wxArrayString groups;
     wxString PreviousGroup;
-    for (const auto &report : this->all(COL_GROUPNAME))
+    for (const auto &report : this->get_all(COL_GROUPNAME))
     {
         if (report.GROUPNAME != PreviousGroup)
         {
@@ -253,7 +253,7 @@ int ReportModel::get_html(const Data* r, wxString& out)
     {
         PrepareSQL(sql, rep_params);
 
-        wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
+        wxSQLite3Statement stmt = this->m_db->PrepareStatement(sql);
         if (!stmt.IsReadOnly())
         {
             out = wxString::Format(_t("The SQL script:\n%s\nwill modify database! Aborted!"), r->SQLCONTENT);
@@ -420,12 +420,14 @@ int ReportModel::get_html(const Data* r, wxString& out)
     return 0;
 }
 
-ReportModel::Data* ReportModel::get(const wxString& name)
+ReportModel::Data* ReportModel::cache_key(const wxString& name)
 {
-    Data* report = this->get_one(REPORTNAME(name));
-    if (report) return report;
+    Data* report = this->search_cache(REPORTNAME(name));
+    if (report)
+        return report;
 
     Data_Set items = this->find(REPORTNAME(name));
-    if (!items.empty()) report = this->get(items[0].id(), this->db_);
+    if (!items.empty())
+        report = this->cache_id(items[0].id());
     return report;
 }

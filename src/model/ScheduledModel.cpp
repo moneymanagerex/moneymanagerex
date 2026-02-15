@@ -30,7 +30,7 @@
 #include "dialog/AttachmentDialog.h"
 
 ScheduledModel::ScheduledModel()
-    : Model<DB_Table_BILLSDEPOSITS_V1>()
+    : Model<ScheduledTable>()
     , m_autoExecute (REPEAT_AUTO_NONE)
     , m_requireExecution (false)
     , m_allowExecution (false)
@@ -54,9 +54,9 @@ ScheduledModel& ScheduledModel::instance()
 ScheduledModel& ScheduledModel::instance(wxSQLite3Database* db)
 {
     ScheduledModel& ins = Singleton<ScheduledModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -103,21 +103,21 @@ TransactionModel::STATUS_ID ScheduledModel::status_id(const Data& r)
 */
 bool ScheduledModel::remove(int64 id)
 {
-    for (auto &item : ScheduledModel::split(get(id)))
+    for (auto &item : ScheduledModel::split(cache_id(id)))
         ScheduledSplitModel::instance().remove(item.SPLITTRANSID);
     // Delete tags for the scheduled transaction
     TagLinkModel::instance().DeleteAllTags(this->refTypeName, id);
-    return this->remove(id, db_);
+    return this->remove(id);
 }
 
-DB_Table_BILLSDEPOSITS_V1::STATUS ScheduledModel::STATUS(TransactionModel::STATUS_ID status, OP op)
+ScheduledTable::STATUS ScheduledModel::STATUS(OP op, TransactionModel::STATUS_ID status)
 {
-    return DB_Table_BILLSDEPOSITS_V1::STATUS(TransactionModel::status_key(status), op);
+    return ScheduledTable::STATUS(op, TransactionModel::status_key(status));
 }
 
-DB_Table_BILLSDEPOSITS_V1::TRANSCODE ScheduledModel::TRANSCODE(TransactionModel::TYPE_ID type, OP op)
+ScheduledTable::TRANSCODE ScheduledModel::TRANSCODE(OP op, TransactionModel::TYPE_ID type)
 {
-    return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(TransactionModel::type_name(type), op);
+    return ScheduledTable::TRANSCODE(op, TransactionModel::type_name(type));
 }
 
 const ScheduledSplitModel::Data_Set ScheduledModel::split(const Data* r)
@@ -190,7 +190,7 @@ bool ScheduledModel::AllowTransaction(const Data& r)
         return true;
 
     const int64 acct_id = r.ACCOUNTID;
-    AccountModel::Data* account = AccountModel::instance().get(acct_id);
+    AccountModel::Data* account = AccountModel::instance().cache_id(acct_id);
 
     if (account->MINIMUMBALANCE == 0 && account->CREDITLIMIT == 0)
         return true;
@@ -233,7 +233,7 @@ bool ScheduledModel::AllowTransaction(const Data& r)
 
 void ScheduledModel::completeBDInSeries(int64 bdID)
 {
-    Data* bill = get(bdID);
+    Data* bill = cache_id(bdID);
     if (!bill) return;
 
     int repeats = bill->REPEATS.GetValue() % BD_REPEATS_MULTIPLEX_BASE; // DeMultiplex the Auto Executable fields.
@@ -375,7 +375,7 @@ ScheduledModel::Full_Data::Full_Data(const Data& r) :
     if (!m_tags.empty()) {
         wxArrayString tagnames;
         for (const auto& entry : m_tags)
-            tagnames.Add(TagModel::instance().get(entry.TAGID)->TAGNAME);
+            tagnames.Add(TagModel::instance().cache_id(entry.TAGID)->TAGNAME);
         // Sort TAGNAMES
         tagnames.Sort();
         for (const auto& name : tagnames)
@@ -390,7 +390,7 @@ ScheduledModel::Full_Data::Full_Data(const Data& r) :
                 + CategoryModel::full_name(entry.CATEGID);
 
             wxString splitTags;
-            for (const auto& tag : TagLinkModel::instance().get(ScheduledSplitModel::refTypeName, entry.SPLITTRANSID))
+            for (const auto& tag : TagLinkModel::instance().cache_ref(ScheduledSplitModel::refTypeName, entry.SPLITTRANSID))
                 splitTags.Append(tag.first + " ");
             if (!splitTags.IsEmpty())
                 TAGNAMES.Append((TAGNAMES.IsEmpty() ? "" : ", ") + splitTags.Trim());
@@ -399,12 +399,12 @@ ScheduledModel::Full_Data::Full_Data(const Data& r) :
     else
         CATEGNAME = CategoryModel::full_name(r.CATEGID);
 
-    ACCOUNTNAME = AccountModel::get_account_name(r.ACCOUNTID);
+    ACCOUNTNAME = AccountModel::cache_id_name(r.ACCOUNTID);
 
     PAYEENAME = PayeeModel::get_payee_name(r.PAYEEID);
     if (ScheduledModel::type_id(r) == TransactionModel::TYPE_ID_TRANSFER)
     {
-        PAYEENAME = AccountModel::get_account_name(r.TOACCOUNTID);
+        PAYEENAME = AccountModel::cache_id_name(r.TOACCOUNTID);
     }
 
 }

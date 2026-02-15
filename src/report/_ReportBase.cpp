@@ -91,8 +91,8 @@ void ReportBase::setAccounts(int selection, const wxString& type_name)
     case 1: // Select Accounts
     {
         wxArrayString accounts;
-        auto a = AccountModel::instance().all();
-        std::stable_sort(a.begin(), a.end(), SorterByACCOUNTNAME());
+        auto a = AccountModel::instance().get_all();
+        std::stable_sort(a.begin(), a.end(), AccountTable::SorterByACCOUNTNAME());
         for (const auto& item : a) {
             if (m_only_active && item.STATUS != AccountModel::STATUS_NAME_OPEN)
                 continue;
@@ -129,7 +129,7 @@ void ReportBase::setAccounts(int selection, const wxString& type_name)
         wxArrayString* accountSelections = new wxArrayString();
         auto accounts = AccountModel::instance().find(
             AccountModel::ACCOUNTTYPE(type_name),
-            AccountModel::STATUS(AccountModel::STATUS_ID_CLOSED, NOT_EQUAL)
+            AccountModel::STATUS(OP_NE, AccountModel::STATUS_ID_CLOSED)
         );
         for (const auto &i : accounts) {
             accountSelections->Add(i.ACCOUNTNAME);
@@ -209,7 +209,7 @@ void ReportBase::saveReportSettings()
     if (isActive) {
         const wxString& rj_key = wxString::Format("REPORT_%d", report_id);
         const wxString& rj_value = wxString::FromUTF8(json_buffer.GetString());
-        InfotableModel::instance().setString(rj_key, rj_value);
+        InfoModel::instance().setString(rj_key, rj_value);
         m_settings = rj_value;
     }
 }
@@ -340,9 +340,9 @@ mm_html_template::mm_html_template(const wxString& arg_template): html_template(
 void mm_html_template::load_context()
 {
     (*this)(L"TODAY") = wxDate::Now().FormatISODate();
-    for (const auto &r: InfotableModel::instance().all())
+    for (const auto &r: InfoModel::instance().get_all())
         (*this)(r.INFONAME.ToStdWstring()) = r.INFOVALUE;
-    (*this)(L"INFOTABLE") = InfotableModel::to_loop_t();
+    (*this)(L"INFOTABLE") = InfoModel::to_loop_t();
 
     const CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
     if (currency) currency->to_template(*this);

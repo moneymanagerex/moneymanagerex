@@ -63,12 +63,12 @@ public:
     void setSelection(int &id)
     {
         if (m_payee) {
-            for (const auto &payee : PayeeModel::instance().all(PayeeModel::COL_PAYEENAME))
+            for (const auto &payee : PayeeModel::instance().get_all(PayeeModel::COL_PAYEENAME))
                 if (payee.PAYEEID == id) this->ChangeValue(payee.PAYEENAME);
         }
         else
         {
-            for (const auto &acc : AccountModel::instance().all(AccountModel::COL_ACCOUNTNAME))
+            for (const auto &acc : AccountModel::instance().get_all(AccountModel::COL_ACCOUNTNAME))
                 if (acc.ACCOUNTID == id) this->ChangeValue(acc.ACCOUNTNAME);
         }
     }
@@ -77,7 +77,7 @@ public:
     {
         int64 id = -1;
         if (m_payee) {
-            PayeeModel::Data * p = PayeeModel::instance().get(this->GetValue());
+            PayeeModel::Data * p = PayeeModel::instance().cache_key(this->GetValue());
             if (p) {
                 id = p->PAYEEID;
             }
@@ -90,7 +90,7 @@ public:
             }
         }
         else {
-            AccountModel::Data* a = AccountModel::instance().get(this->GetValue());
+            AccountModel::Data* a = AccountModel::instance().cache_key(this->GetValue());
             if (a) id = a->ACCOUNTID;
             else {
                 //TODO:

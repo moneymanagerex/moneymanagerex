@@ -48,7 +48,7 @@ double FlowReport::trueAmount(const TransactionModel::Data& trx)
     bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(), trx.TOACCOUNTID) != m_account_id.end();
     if (!(isAccountFound && isToAccountFound))
     {
-        const double convRate = CurrencyHistoryModel::getDayRate(AccountModel::instance().get(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
+        const double convRate = CurrencyHistoryModel::getDayRate(AccountModel::instance().cache_id(trx.ACCOUNTID)->CURRENCYID, trx.TRANSDATE);
         switch (TransactionModel::type_id(trx.TRANSCODE)) {
         case TransactionModel::TYPE_ID_WITHDRAWAL:
             amount = -trx.TRANSAMOUNT * convRate;
@@ -61,7 +61,7 @@ double FlowReport::trueAmount(const TransactionModel::Data& trx)
                 amount = -trx.TRANSAMOUNT * convRate;
             else
             {
-                const double toConvRate = CurrencyHistoryModel::getDayRate(AccountModel::instance().get(trx.TOACCOUNTID)->CURRENCYID, trx.TRANSDATE);
+                const double toConvRate = CurrencyHistoryModel::getDayRate(AccountModel::instance().cache_id(trx.TOACCOUNTID)->CURRENCYID, trx.TRANSDATE);
                 amount = +trx.TOTRANSAMOUNT * toConvRate;
             }
         }
@@ -81,8 +81,8 @@ void FlowReport::getTransactions()
 
     // Get initial Balance as of today
     for (const auto& account : AccountModel::instance().find(
-        AccountModel::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr(), NOT_EQUAL),
-        AccountModel::STATUS(AccountModel::STATUS_ID_CLOSED, NOT_EQUAL)
+        AccountModel::ACCOUNTTYPE(OP_NE, NavigatorTypes::instance().getInvestmentAccountStr()),
+        AccountModel::STATUS(OP_NE, AccountModel::STATUS_ID_CLOSED)
     )) {
         if (m_account_a &&
             std::find(m_account_a->begin(), m_account_a->end(), account.ACCOUNTNAME) ==
@@ -107,9 +107,9 @@ void FlowReport::getTransactions()
 
     // Now gather all transations posted after today
     TransactionModel::Data_Set transactions = TransactionModel::instance().find(
-        TransactionModel::TRANSDATE(endOfToday, GREATER),
-        TransactionModel::TRANSDATE(endDate, LESS),
-        TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
+        TransactionModel::TRANSDATE(OP_GT, endOfToday),
+        TransactionModel::TRANSDATE(OP_LT, endDate),
+        TransactionModel::STATUS(OP_NE, TransactionModel::STATUS_ID_VOID)
     );
     for (auto& trx : transactions) {
         if (!trx.DELETEDTIME.IsEmpty()) continue;
@@ -118,7 +118,7 @@ void FlowReport::getTransactions()
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
         if (TransactionModel::is_split(trx)) {
-            TransactionModel::Data *transaction = TransactionModel::instance().get(trx.TRANSID);
+            TransactionModel::Data *transaction = TransactionModel::instance().cache_id(trx.TRANSID);
             for (const auto& split_item : TransactionModel::split(transaction)) {
                 trx.CATEGID = split_item.CATEGID;
                 trx.TRANSAMOUNT = split_item.SPLITTRANSAMOUNT;
@@ -134,7 +134,7 @@ void FlowReport::getTransactions()
 
     // Now we gather the recurring transaction list
     for (const auto& entry : ScheduledModel::instance().find(
-        ScheduledModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
+        ScheduledModel::STATUS(OP_NE, TransactionModel::STATUS_ID_VOID)
     )) {
         wxDateTime nextOccurDate = ScheduledModel::NEXTOCCURRENCEDATE(entry);
         if (nextOccurDate > endDate) continue;
@@ -441,9 +441,9 @@ wxString mmReportCashFlowTransactions::getHTMLText()
         else
             hb.startAltTableRow();
         hb.addTableCellDate(trx.TRANSDATE);
-        hb.addTableCell(AccountModel::get_account_name(trx.ACCOUNTID));
+        hb.addTableCell(AccountModel::cache_id_name(trx.ACCOUNTID));
         hb.addTableCell((trx.TOACCOUNTID == -1) ? PayeeModel::get_payee_name(trx.PAYEEID)
-            : "> " + AccountModel::get_account_name(trx.TOACCOUNTID));
+            : "> " + AccountModel::cache_id_name(trx.TOACCOUNTID));
         hb.addTableCell(CategoryModel::full_name(trx.CATEGID));
         double amount = trx.TRANSAMOUNT;
         hb.addMoneyCell(amount);

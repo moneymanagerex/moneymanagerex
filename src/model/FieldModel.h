@@ -20,13 +20,13 @@
 
 #include "base/defs.h"
 #include "util/_choices.h"
-#include "_Model.h"
-#include "db/DB_Table_Customfield_V1.h"
+#include "_ModelBase.h"
+#include "table/FieldTable.h"
 
-class FieldModel : public Model<DB_Table_CUSTOMFIELD_V1>
+class FieldModel : public Model<FieldTable>
 {
 public:
-    using Model<DB_Table_CUSTOMFIELD_V1>::get;
+    using Model<FieldTable>::cache_id;
 
     enum TYPE_ID
     {
@@ -76,7 +76,7 @@ public:
     static bool getAutocomplete(const wxString& properties);
     static const wxString getDefault(const wxString& properties);
     static const wxArrayString getChoices(const wxString& properties);
-    static const wxArrayString getUDFCList(DB_Table_CUSTOMFIELD_V1::Data* r);
+    static const wxArrayString getUDFCList(FieldTable::Data* r);
     static const wxString getUDFC(const wxString& properties);
     static const wxString getUDFCName(const wxString& ref_type, const wxString& name);
     static TYPE_ID getUDFCType(const wxString& ref_type, const wxString& name);

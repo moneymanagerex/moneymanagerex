@@ -41,13 +41,13 @@ mmNavigatorDialog::mmNavigatorDialog()
 
 mmNavigatorDialog::~mmNavigatorDialog()
 {
-    InfotableModel::instance().setSize(DIALOG_SIZE, GetSize());
+    InfoModel::instance().setSize(DIALOG_SIZE, GetSize());
 }
 
 mmNavigatorDialog::mmNavigatorDialog(wxWindow* parent):genericTreeListDialog(parent, _t("Navigator and account type configuration"))
 {
     init();  // must be called first!!
-    SetSize(InfotableModel::instance().getSize(DIALOG_SIZE));
+    SetSize(InfoModel::instance().getSize(DIALOG_SIZE));
     m_treeList->Bind(wxEVT_TREELIST_ITEM_CHECKED, &mmNavigatorDialog::OnTreeItemChecked, this);
 }
 

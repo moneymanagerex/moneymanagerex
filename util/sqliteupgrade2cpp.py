@@ -43,8 +43,7 @@ StrHeader = '''//===============================================================
 '''% (datetime.date.today().year, os.path.basename(__file__), str(datetime.datetime.now()))
 
 StrHeader += '''
-#ifndef DB_UPGRADE_H_
-#define DB_UPGRADE_H_
+#pragma once
 
 #include <vector>
 #include <wx/string.h>
@@ -75,9 +74,8 @@ const int dbLatestVersion = %i;
 '''% (LatestVersion)
 
 strEnd = '''
-#endif // DB_UPGRADE_H_
 '''
 
-fp = open('DB_Upgrade.h', 'w')
+fp = open('_TableUpgrade.h', 'w')
 fp.write(StrHeader + StrLatestVersion + StrUpgradeQuery + strEnd)
 fp.close

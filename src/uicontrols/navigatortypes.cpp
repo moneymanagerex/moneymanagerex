@@ -146,7 +146,7 @@ NavigatorTypesInfo* NavigatorTypes::getNextActiveEntry(NavigatorTypesInfo* previ
 void NavigatorTypes::SaveSequenceAndState()
 {
     wxString key = "NAVIGATOR_SETTINGS";
-    Document j_doc = InfotableModel::instance().getJdoc(key, "{}");
+    Document j_doc = InfoModel::instance().getJdoc(key, "{}");
     j_doc.SetObject();
     rapidjson::Value array(rapidjson::kArrayType);
 
@@ -167,7 +167,7 @@ void NavigatorTypes::SaveSequenceAndState()
     }
     j_doc.AddMember("data", array, j_doc.GetAllocator());
 
-    InfotableModel::instance().setJdoc(key, j_doc);
+    InfoModel::instance().setJdoc(key, j_doc);
 
     sortEntriesBySeq();
 }
@@ -212,7 +212,7 @@ NavigatorTypesInfo* NavigatorTypes::FindOrCreateEntry(int searchId)
 void NavigatorTypes::LoadFromDB(bool keepnames)
 {
     wxString key = "NAVIGATOR_SETTINGS";
-    Document doc = InfotableModel::instance().getJdoc(key, "{}");
+    Document doc = InfoModel::instance().getJdoc(key, "{}");
     if (!doc.HasMember("data") || !doc["data"].IsArray()) {
         return;
     }

@@ -25,10 +25,10 @@
 #include "util/_choices.h"
 #include "util/mmDateRange.h"
 
-#include "db/DB_Table_Budgettable_V1.h"
-#include "_Model.h"
+#include "table/BudgetTable.h"
+#include "_ModelBase.h"
 
-class BudgetModel : public Model<DB_Table_BUDGETTABLE_V1>
+class BudgetModel : public Model<BudgetTable>
 {
 public:
     BudgetModel();
@@ -73,7 +73,7 @@ public:
     static PERIOD_ID period_id(const Data* r);
     static PERIOD_ID period_id(const Data& r);
 
-    static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ID period, OP op = EQUAL);
+    static BudgetTable::PERIOD PERIOD(OP op, PERIOD_ID period);
 
     static void getBudgetEntry(int64 budgetYearID,
         std::map<int64, PERIOD_ID> &budgetPeriod,

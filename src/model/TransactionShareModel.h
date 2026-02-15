@@ -20,11 +20,11 @@
 #pragma once
 
 #include "base/defs.h"
-#include "db/DB_Table_Shareinfo_V1.h"
-#include "_Model.h"
+#include "table/TransactionShareTable.h"
+#include "_ModelBase.h"
 #include "TransactionSplitModel.h"
 
-class TransactionShareModel : public Model<DB_Table_SHAREINFO_V1>
+class TransactionShareModel : public Model<TransactionShareTable>
 {
 public:
     TransactionShareModel();

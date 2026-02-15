@@ -35,14 +35,14 @@ mmToolbarDialog::mmToolbarDialog()
 
 mmToolbarDialog::~mmToolbarDialog()
 {
-    InfotableModel::instance().setSize(DIALOG_SIZE, GetSize());
+    InfoModel::instance().setSize(DIALOG_SIZE, GetSize());
 }
 
 mmToolbarDialog::mmToolbarDialog(wxWindow* parent):genericTreeListDialog(parent, _t("Toolbar configuration"))
 {
     m_delete = nullptr;
     init(wxTL_3STATE | wxTL_SINGLE | wxTL_NO_HEADER);
-    SetSize(InfotableModel::instance().getSize(DIALOG_SIZE));
+    SetSize(InfoModel::instance().getSize(DIALOG_SIZE));
 }
 
 void mmToolbarDialog::createColumns() {

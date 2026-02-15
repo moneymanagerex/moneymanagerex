@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/AttachmentModel.h"
 #include "model/CategoryModel.h"
 #include "model/FieldValueModel.h"
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/PreferencesModel.h"
 
 #include "qif_export.h"
@@ -83,7 +83,7 @@ void mmQIFExportDialog::fillControls()
     accounts_id_.clear();
 
     AccountModel::Data_Set all_accounts = AccountModel::instance().find(
-            AccountModel::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr(), NOT_EQUAL)
+        AccountModel::ACCOUNTTYPE(OP_NE, NavigatorTypes::instance().getInvestmentAccountStr())
     );
 
     for (const auto& a : all_accounts)
@@ -264,7 +264,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
     int i = 0;
     wxArrayInt s;
     AccountModel::Data_Set all_accounts = AccountModel::instance().find(
-        AccountModel::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr(), NOT_EQUAL)
+        AccountModel::ACCOUNTTYPE(OP_NE, NavigatorTypes::instance().getInvestmentAccountStr())
     );
 
     for (const auto& a : all_accounts)
@@ -286,7 +286,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
         {
             int index = entry;
             const wxString accounts_name = m_accounts_name[index];
-            const auto account = AccountModel::instance().get(accounts_name);
+            const auto account = AccountModel::instance().cache_key(accounts_name);
             if (account) selected_accounts_id_.push_back(account->ACCOUNTID);
             baloon += accounts_name + "\n";
         }
@@ -300,7 +300,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
     else if (selected_accounts_id_.size() == 1)
     {
         int64 account_id = accounts_id_[selected_items[0]];
-        const AccountModel::Data* account = AccountModel::instance().get(account_id);
+        const AccountModel::Data* account = AccountModel::instance().cache_id(account_id);
         if (account) bSelectedAccounts_->SetLabelText(account->ACCOUNTNAME);
     }
     else if (selected_accounts_id_.size() > 1)
@@ -353,7 +353,7 @@ void mmQIFExportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     bool bCorrect = false;
     wxString sErrorMsg = "";
-    if (AccountModel::instance().all().empty() && accountsCheckBox_->IsChecked())
+    if (AccountModel::instance().get_all().empty() && accountsCheckBox_->IsChecked())
         sErrorMsg =_t("No Account available for export");
     else if (selected_accounts_id_.size() < 1 && accountsCheckBox_->IsChecked())
         sErrorMsg =_t("No Accounts selected for export");
@@ -436,7 +436,7 @@ void mmQIFExportDialog::mmExportQIF()
     bool exp_categ = cCategs_->IsChecked();
     bool exp_transactions = (accountsCheckBox_->IsChecked() && selected_accounts_id_.size() > 0);
 
-    const wxString delimiter = InfotableModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
+    const wxString delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
     wxString sErrorMsg;
     size_t numRecords = 0, numCategories = 0;
@@ -453,14 +453,14 @@ void mmQIFExportDialog::mmExportQIF()
     if (m_type == QIF && exp_categ)
     {
         buffer << mmExportTransaction::getCategoriesQIF();
-        numCategories = CategoryModel::instance().all().size();
+        numCategories = CategoryModel::instance().get_all().size();
         sErrorMsg << _t("Categories exported") << "\n";
     }
     else if (m_type == JSON)
     {
         if (exp_categ) {
             mmExportTransaction::getCategoriesJSON(json_writer);
-            numCategories = CategoryModel::instance().all().size();
+            numCategories = CategoryModel::instance().get_all().size();
         }
         else {
             mmExportTransaction::getUsedCategoriesJSON(json_writer);
@@ -475,7 +475,7 @@ void mmQIFExportDialog::mmExportQIF()
     wxArrayInt64 allCustomFields4Export;
     wxArrayInt64 allTags4Export;
     const auto transactions = TransactionModel::instance().find(
-        TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL));
+        TransactionModel::STATUS(OP_NE, TransactionModel::STATUS_ID_VOID));
 
     if (exp_transactions && !transactions.empty())
     {
@@ -488,8 +488,8 @@ void mmQIFExportDialog::mmExportQIF()
         wxProgressDialog progressDlg(_tu("Please wait…"), _t("Exporting")
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
-        const auto splits = TransactionSplitModel::instance().get_all();
-        const auto tags = TagLinkModel::instance().get_all(TransactionModel::refTypeName);
+        const auto splits = TransactionSplitModel::instance().get_all_id();
+        const auto tags = TagLinkModel::instance().get_all_id(TransactionModel::refTypeName);
 
         const wxString begin_date = fromDateCtrl_->GetValue().FormatISODate();
         const wxString end_date = toDateCtrl_->GetValue().FormatISODate();
@@ -552,7 +552,7 @@ void mmQIFExportDialog::mmExportQIF()
                 // store tags from the splits
                 for (const auto& split : full_tran.m_splits)
                 {
-                    for (const auto& taglink : TagLinkModel::instance().get(TransactionSplitModel::refTypeName, split.SPLITTRANSID))
+                    for (const auto& taglink : TagLinkModel::instance().cache_ref(TransactionSplitModel::refTypeName, split.SPLITTRANSID))
                     {
                         if (std::find(allTags4Export.begin(), allTags4Export.end(), taglink.second) == allTags4Export.end())
                             allTags4Export.push_back(taglink.second);

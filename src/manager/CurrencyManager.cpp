@@ -77,7 +77,7 @@ CurrencyManager::CurrencyManager(wxWindow* parent, const CurrencyModel::Data * c
     }
 
     // Check if locale will be used in preference
-    const wxString locale = InfotableModel::instance().getString("LOCALE", "");
+    const wxString locale = InfoModel::instance().getString("LOCALE", "");
     m_locale_used = false;
     if (!locale.empty())
     {
@@ -116,7 +116,9 @@ bool CurrencyManager::Create(wxWindow* parent, wxWindowID id
         if (select_currency_name.ShowModal() == wxID_OK)
         {
             const wxString currencyname = select_currency_name.GetStringSelection();
-            m_currency = CurrencyModel::instance().get_one(CurrencyModel::CURRENCYNAME(currencyname));
+            m_currency = CurrencyModel::instance().search_cache(
+                CurrencyModel::CURRENCYNAME(currencyname)
+            );
         }
     }
 

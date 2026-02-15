@@ -106,32 +106,60 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     util/mmTreeItemData.h
     util/mmCalcValidator.h
 
-    db/DB_Table.h
-    db/DB_Table_Accountlist_V1.h
-    db/DB_Table_Assets_V1.h
-    db/DB_Table_Attachment_V1.h
-    db/DB_Table_Billsdeposits_V1.h
-    db/DB_Table_Budgetsplittransactions_V1.h
-    db/DB_Table_Budgettable_V1.h
-    db/DB_Table_Budgetyear_V1.h
-    db/DB_Table_Category_V1.h
-    db/DB_Table_Checkingaccount_V1.h
-    db/DB_Table_Currencyformats_V1.h
-    db/DB_Table_Currencyhistory_V1.h
-    db/DB_Table_Customfield_V1.h
-    db/DB_Table_Customfielddata_V1.h
-    db/DB_Table_Infotable_V1.h
-    db/DB_Table_Payee_V1.h
-    db/DB_Table_Report_V1.h
-    db/DB_Table_Setting_V1.h
-    db/DB_Table_Shareinfo_V1.h
-    db/DB_Table_Splittransactions_V1.h
-    db/DB_Table_Stock_V1.h
-    db/DB_Table_Stockhistory_V1.h
-    db/DB_Table_Tag_V1.h
-    db/DB_Table_Taglink_V1.h
-    db/DB_Table_Translink_V1.h
-    db/DB_Table_Usage_V1.h
+    table/AccountTable.cpp
+    table/AccountTable.h
+    table/AssetTable.cpp
+    table/AssetTable.h
+    table/AttachmentTable.cpp
+    table/AttachmentTable.h
+    table/BudgetPeriodTable.cpp
+    table/BudgetPeriodTable.h
+    table/BudgetTable.cpp
+    table/BudgetTable.h
+    table/CategoryTable.cpp
+    table/CategoryTable.h
+    table/CurrencyHistoryTable.cpp
+    table/CurrencyHistoryTable.h
+    table/CurrencyTable.cpp
+    table/CurrencyTable.h
+    table/FieldTable.cpp
+    table/FieldTable.h
+    table/FieldValueTable.cpp
+    table/FieldValueTable.h
+    table/InfoTable.cpp
+    table/InfoTable.h
+    table/PayeeTable.cpp
+    table/PayeeTable.h
+    table/ReportTable.cpp
+    table/ReportTable.h
+    table/ScheduledSplitTable.cpp
+    table/ScheduledSplitTable.h
+    table/ScheduledTable.cpp
+    table/ScheduledTable.h
+    table/SettingTable.cpp
+    table/SettingTable.h
+    table/StockHistoryTable.cpp
+    table/StockHistoryTable.h
+    table/StockTable.cpp
+    table/StockTable.h
+    table/TagLinkTable.cpp
+    table/TagLinkTable.h
+    table/TagTable.cpp
+    table/TagTable.h
+    table/TransactionLinkTable.cpp
+    table/TransactionLinkTable.h
+    table/TransactionShareTable.cpp
+    table/TransactionShareTable.h
+    table/TransactionSplitTable.cpp
+    table/TransactionSplitTable.h
+    table/TransactionTable.cpp
+    table/TransactionTable.h
+    table/UsageTable.cpp
+    table/UsageTable.h
+    table/_TableBase.cpp
+    table/_TableBase.h
+    table/_TableUpgrade.h
+
     db/dbcheck.cpp
     db/dbcheck.h
     db/dbupgrade.cpp
@@ -159,8 +187,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/FieldModel.h
     model/FieldValueModel.cpp
     model/FieldValueModel.h
-    model/InfotableModel.cpp
-    model/InfotableModel.h
+    model/InfoModel.cpp
+    model/InfoModel.h
     model/Journal.cpp
     model/Journal.h
     model/PayeeModel.cpp
@@ -195,8 +223,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/TransactionSplitModel.h
     model/UsageModel.cpp
     model/UsageModel.h
-    model/_Model.cpp
-    model/_Model.h
+    model/_ModelBase.cpp
+    model/_ModelBase.h
     model/_all.h
 
     panel/AssetPanel.cpp

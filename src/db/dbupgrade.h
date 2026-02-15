@@ -19,8 +19,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include "base/defs.h"
-#include "DB_Table.h"
-#include "DB_Upgrade.h"
+#include "table/_TableBase.h"
+#include "table/_TableUpgrade.h"
 
 class dbUpgrade
 {

@@ -179,7 +179,7 @@ void ReportPanel::loadFilterSettings() {
     wxString key = m_use_account_specific_filter
         ? wxString::Format("REPORT_FILTER_DEDICATED_%d", m_rb->getReportId())
         : "REPORT_FILTER_ALL";
-    Document j_doc = InfotableModel::instance().getJdoc(key, "{}");
+    Document j_doc = InfoModel::instance().getJdoc(key, "{}");
 
     int fid = 0;
     if (JSON_GetIntValue(j_doc, "FILTER_ID", fid)) {
@@ -237,17 +237,17 @@ void ReportPanel::saveFilterSettings() {
     wxString key = m_use_account_specific_filter
         ? wxString::Format("REPORT_FILTER_DEDICATED_%d", m_rb->getReportId())
         : "REPORT_FILTER_ALL";
-    Document j_doc = InfotableModel::instance().getJdoc(key, "{}");
-    InfotableModel::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
-    InfotableModel::saveFilterString(j_doc, "FILTER_NAME",
+    Document j_doc = InfoModel::instance().getJdoc(key, "{}");
+    InfoModel::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
+    InfoModel::saveFilterString(j_doc, "FILTER_NAME",
         JournalPanel::getFilterName(m_filter_id)
     );
 
     if (m_filter_id == JournalPanel::FILTER_ID_DATE_RANGE) {
         if (!m_date_range.rangeName().IsEmpty()) {
-            InfotableModel::saveFilterString(j_doc, "FILTER_DATE", m_date_range.rangeName());
-            InfotableModel::saveFilterString(j_doc, "FILTER_DATE_BEGIN", "");
-            InfotableModel::saveFilterString(j_doc, "FILTER_DATE_END", "");
+            InfoModel::saveFilterString(j_doc, "FILTER_DATE", m_date_range.rangeName());
+            InfoModel::saveFilterString(j_doc, "FILTER_DATE_BEGIN", "");
+            InfoModel::saveFilterString(j_doc, "FILTER_DATE_END", "");
         }
         else {
             wxLogError("ReportPanel::saveFilterSettings(): m_date_range.rangeName() is empty");
@@ -255,7 +255,7 @@ void ReportPanel::saveFilterSettings() {
     }
     else if (m_filter_id == JournalPanel::FILTER_ID_DATE_PICKER) {
         if (w_start_date_picker) {
-            InfotableModel::saveFilterString(j_doc, "FILTER_DATE_BEGIN",
+            InfoModel::saveFilterString(j_doc, "FILTER_DATE_BEGIN",
                 mmDateDayN(w_start_date_picker->GetValue()).isoDateN()
             );
         }
@@ -263,17 +263,17 @@ void ReportPanel::saveFilterSettings() {
             wxLogError("ReportPanel::saveFilterSettings(): w_start_date_picker is null");
         }
         if (w_end_date_picker) {
-            InfotableModel::saveFilterString(j_doc, "FILTER_DATE_END",
+            InfoModel::saveFilterString(j_doc, "FILTER_DATE_END",
                 mmDateDayN(w_end_date_picker->GetValue()).isoDateN()
             );
         }
         else {
             wxLogError("ReportPanel::saveFilterSettings(): w_end_date_picker is null");
         }
-        InfotableModel::saveFilterString(j_doc, "FILTER_DATE", "");
+        InfoModel::saveFilterString(j_doc, "FILTER_DATE", "");
     }
 
-    InfotableModel::instance().setJdoc(key, j_doc);
+    InfoModel::instance().setJdoc(key, j_doc);
 }
 
 void ReportPanel::updateFilter()
@@ -460,7 +460,7 @@ void ReportPanel::CreateControls()
 
             int64 sel_id = m_rb->getDateSelection();
             wxString sel_name;
-            for (const auto& e : BudgetPeriodModel::instance().all(
+            for (const auto& e : BudgetPeriodModel::instance().get_all(
                 BudgetPeriodModel::COL_BUDGETYEARNAME
             )) {
                 const wxString& name = e.BUDGETYEARNAME;
@@ -596,7 +596,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
             // include all sub categories
             if (-2 == subCatID) {
                 for (const auto& subCategory :
-                    CategoryModel::sub_tree(CategoryModel::instance().get(catID))
+                    CategoryModel::sub_tree(CategoryModel::instance().cache_id(catID))
                 ) {
                     cats.push_back(subCategory.CATEGID);
                 }
@@ -618,9 +618,9 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
     else if (uri.StartsWith("trxid:", &sData)) {
         long long transID = -1;
         if (sData.ToLongLong(&transID)) {
-            const TransactionModel::Data* transaction = TransactionModel::instance().get(transID);
+            const TransactionModel::Data* transaction = TransactionModel::instance().cache_id(transID);
             if (transaction && transaction->TRANSID > -1) {
-                const AccountModel::Data* account = AccountModel::instance().get(transaction->ACCOUNTID);
+                const AccountModel::Data* account = AccountModel::instance().cache_id(transaction->ACCOUNTID);
                 if (account) {
                     w_frame->selectNavTreeItem(account->ACCOUNTNAME);
                     w_frame->setGotoAccountID(transaction->ACCOUNTID, { transID, 0 });
@@ -633,7 +633,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
     else if (uri.StartsWith("trx:", &sData)) {
         long long transId = -1;
         if (sData.ToLongLong(&transId)) {
-            TransactionModel::Data* transaction = TransactionModel::instance().get(transId);
+            TransactionModel::Data* transaction = TransactionModel::instance().cache_id(transId);
             if (transaction && transaction->TRANSID > -1) {
                 if (TransactionModel::foreignTransaction(*transaction)) {
                     TransactionLinkModel::Data translink = TransactionLinkModel::TranslinkRecord(transId);

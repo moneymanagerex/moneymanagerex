@@ -134,7 +134,7 @@ void BudgetPanel::OnViewPopupSelected(wxCommandEvent& event)
         wxASSERT(false);
     }
 
-    InfotableModel::instance().setString("BUDGET_FILTER", currentView_);
+    InfoModel::instance().setString("BUDGET_FILTER", currentView_);
 
     RefreshList();
 }
@@ -330,7 +330,7 @@ bool BudgetPanel::DisplayEntryAllowed(int64 categoryID, int64 subcategoryID)
 
     if (categoryID > 0) {
         displayDetails_[categoryID].second = result;
-        for (const auto& subcat : CategoryModel::sub_tree(CategoryModel::instance().get(categoryID))) {
+        for (const auto& subcat : CategoryModel::sub_tree(CategoryModel::instance().cache_id(categoryID))) {
             result = result || DisplayEntryAllowed(subcat.CATEGID, -1);
         }
     }
@@ -357,7 +357,7 @@ void BudgetPanel::initVirtualListControl()
         evaluateTransfer = true;
     }
 
-    currentView_ = InfotableModel::instance().getString("BUDGET_FILTER", VIEW_ALL);
+    currentView_ = InfoModel::instance().getString("BUDGET_FILTER", VIEW_ALL);
     const wxString budgetYearStr = BudgetPeriodModel::instance().Get(budgetYearID_);
     long year = 0;
     budgetYearStr.ToLong(&year);
@@ -395,7 +395,7 @@ void BudgetPanel::initVirtualListControl()
 
     //start with only the root categories
     CategoryModel::Data_Set categories = CategoryModel::instance().find(CategoryModel::PARENTID(-1));
-    std::stable_sort(categories.begin(), categories.end(), SorterByCATEGNAME());
+    std::stable_sort(categories.begin(), categories.end(), CategoryTable::SorterByCATEGNAME());
     for (const auto& category : categories)
     {
         displayDetails_[category.CATEGID].first = 0;
@@ -564,8 +564,9 @@ wxString BudgetPanel::getItem(long item, int col_id)
     case BudgetList::LIST_ID_ICON:
         return " ";
     case BudgetList::LIST_ID_CATEGORY: {
-        CategoryModel::Data* category = CategoryModel::instance().get(budget_[item].first > 0
-            ? budget_[item].first : budget_[item].second);
+        CategoryModel::Data* category = CategoryModel::instance().cache_id(
+            budget_[item].first > 0 ? budget_[item].first : budget_[item].second
+        );
         if (category) {
             wxString name = category->CATEGNAME;
             for (int64 i = displayDetails_[category->CATEGID].first; i > 0; i--) {

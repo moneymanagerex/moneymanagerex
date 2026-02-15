@@ -26,7 +26,7 @@
 #include "util/_util.h"
 #include "util/_simple.h"
 
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/AssetModel.h"
 #include "model/StockModel.h"
 #include "model/PayeeModel.h"
@@ -101,7 +101,7 @@ void AttachmentDialog::Create(wxWindow* parent, const wxString& name)
             RefName = AssetModel::get_asset_name(m_RefId);
             break;
         case AttachmentModel::REFTYPE_ID_BANKACCOUNT:
-            RefName = AccountModel::get_account_name(m_RefId);
+            RefName = AccountModel::cache_id_name(m_RefId);
             break;
         case AttachmentModel::REFTYPE_ID_PAYEE:
             RefName = PayeeModel::get_payee_name(m_RefId);
@@ -234,7 +234,7 @@ void AttachmentDialog::AddAttachment(wxString FilePath)
 
 void AttachmentDialog::OpenAttachment()
 {
-    AttachmentModel::Data *attachments = AttachmentModel::instance().get(m_attachment_id);
+    AttachmentModel::Data *attachments = AttachmentModel::instance().cache_id(m_attachment_id);
     wxString attachmentFilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
         + attachments->REFTYPE + m_PathSep + attachments->FILENAME;
 
@@ -243,7 +243,7 @@ void AttachmentDialog::OpenAttachment()
 
 void AttachmentDialog::EditAttachment()
 {
-    AttachmentModel::Data *attachment = AttachmentModel::instance().get(m_attachment_id);
+    AttachmentModel::Data *attachment = AttachmentModel::instance().cache_id(m_attachment_id);
     if (attachment)
     {
         mmDialogComboBoxAutocomplete dlg(this, _t("Enter a new description for the attachment:"),
@@ -270,7 +270,7 @@ void AttachmentDialog::EditAttachment()
 
 void AttachmentDialog::DeleteAttachment()
 {
-    AttachmentModel::Data *attachment = AttachmentModel::instance().get(m_attachment_id);
+    AttachmentModel::Data *attachment = AttachmentModel::instance().cache_id(m_attachment_id);
     if (attachment)
     {
         int DeleteResponse = wxMessageBox(
@@ -317,7 +317,7 @@ void AttachmentDialog::OnListItemSelected(wxDataViewEvent& event)
 
 void AttachmentDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
 {
-    AttachmentModel::Data *attachment = AttachmentModel::instance().get(m_attachment_id);
+    AttachmentModel::Data *attachment = AttachmentModel::instance().cache_id(m_attachment_id);
     const wxString attachmentFilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
         + attachment->REFTYPE + m_PathSep + attachment->FILENAME;
 
@@ -347,7 +347,7 @@ void AttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
     evt.SetEventObject( this );
 
-    AttachmentModel::Data* attachment = AttachmentModel::instance().get(m_attachment_id);
+    AttachmentModel::Data* attachment = AttachmentModel::instance().cache_id(m_attachment_id);
 
     wxMenu* mainMenu = new wxMenu;
     if (attachment) mainMenu->SetTitle(attachment->DESCRIPTION);
@@ -393,7 +393,7 @@ wxString mmAttachmentManage::m_PathSep = wxFileName::GetPathSeparator();
 
 const wxString mmAttachmentManage::InfotablePathSetting()
 {
-    return InfotableModel::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+    return InfoModel::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
 }
 
 const wxString mmAttachmentManage::GetAttachmentNoteSign()
@@ -470,7 +470,7 @@ bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxSt
     }
     else if (wxCopyFile(FileToImport, ImportedFile))
     {
-        if (InfotableModel::instance().getBool("ATTACHMENTSDELETE", false))
+        if (InfoModel::instance().getBool("ATTACHMENTSDELETE", false))
             wxRemoveFile(FileToImport);
     }
     else
@@ -483,7 +483,7 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
 {
     if (wxFileExists(FileToDelete))
     {
-        if (InfotableModel::instance().getBool("ATTACHMENTSTRASH", false))
+        if (InfoModel::instance().getBool("ATTACHMENTSTRASH", false))
         {
             const wxString DeletedAttachmentFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + m_PathSep + "Deleted";
 
@@ -553,7 +553,7 @@ bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int64 Ref
 
 bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int64 OldRefId, const wxString& NewRefType, int64 NewRefId)
 {
-    auto attachments = AttachmentModel::instance().find(AttachmentModel::DB_Table_ATTACHMENT_V1::REFTYPE(OldRefType), AttachmentModel::REFID(OldRefId));
+    auto attachments = AttachmentModel::instance().find(AttachmentModel::AttachmentTable::REFTYPE(OldRefType), AttachmentModel::REFID(OldRefId));
 
     if (attachments.size() == 0)
         return false;
@@ -582,7 +582,7 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& OldRefType, int6
 
 bool mmAttachmentManage::CloneAllAttachments(const wxString& RefType, int64 OldRefId, int64 NewRefId)
 {
-    auto attachments = AttachmentModel::instance().find(AttachmentModel::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), AttachmentModel::REFID(OldRefId));
+    auto attachments = AttachmentModel::instance().find(AttachmentModel::AttachmentTable::REFTYPE(RefType), AttachmentModel::REFID(OldRefId));
     const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + RefType + m_PathSep;
 
     for (auto &entry : attachments)

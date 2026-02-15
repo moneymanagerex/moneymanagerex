@@ -33,7 +33,7 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include "report/_ReportBase.h"
 
 UsageModel::UsageModel()
-    : Model<DB_Table_USAGE_V1>()
+    : Model<UsageTable>()
 {
 }
 
@@ -48,9 +48,9 @@ UsageModel::~UsageModel()
 UsageModel& UsageModel::instance(wxSQLite3Database* db)
 {
     UsageModel& ins = Singleton<UsageModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
     ins.m_start = wxDateTime::UNow();
 
     return ins;

@@ -63,12 +63,12 @@ void PayeeReport::loadData()
 {
     m_id_data.clear();
 
-    const auto all_splits = TransactionSplitModel::instance().get_all();
+    const auto all_splits = TransactionSplitModel::instance().get_all_id();
     const auto &trx_a = TransactionModel::instance().find(
-        TransactionModel::TRANSDATE(m_date_range2.rangeStart().value(), GREATER_OR_EQUAL),
-        TransactionModel::TRANSDATE(m_date_range2.rangeEnd().value(), LESS_OR_EQUAL),
-        TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
-        TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
+        TransactionModel::TRANSDATE(OP_GE, m_date_range2.rangeStart().value()),
+        TransactionModel::TRANSDATE(OP_LE, m_date_range2.rangeEnd().value()),
+        TransactionModel::DELETEDTIME(OP_EQ, wxEmptyString),
+        TransactionModel::STATUS(OP_NE, TransactionModel::STATUS_ID_VOID)
     );
     for (const auto& trx: trx_a) {
         // Do not include asset or stock transfers
@@ -86,7 +86,7 @@ void PayeeReport::loadData()
         auto [it, new_payee] = m_id_data.try_emplace(trx.PAYEEID, Data{});
         Data& data = it->second;
         if (new_payee) {
-            PayeeModel::Data* payee = PayeeModel::instance().get(payee_id);
+            PayeeModel::Data* payee = PayeeModel::instance().cache_id(payee_id);
             data.payee_name = payee ? payee->PAYEENAME : "";
             data.flow_pos = 0.0;
             data.flow_neg = 0.0;
@@ -96,7 +96,7 @@ void PayeeReport::loadData()
         // NOTE: call to getDayRate() in every transaction is slow
         // if "Use historical currency" is enabled in settings
         const double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get(trx.ACCOUNTID)->CURRENCYID,
+            AccountModel::instance().cache_id(trx.ACCOUNTID)->CURRENCYID,
             trx.TRANSDATE
         );
 

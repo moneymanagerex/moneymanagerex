@@ -46,7 +46,7 @@ DashboardPreferences::DashboardPreferences()
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmAllTime()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLast365Days()));
     // mmLastNDays must be last entry in the list
-    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(InfotableModel::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14))));
+    m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmLastNDays(InfoModel::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14))));
 
     int sel_id = PreferencesModel::instance().getHomePageIncExpRange();
     if (sel_id >= static_cast<int>(m_all_date_ranges.size()))
@@ -103,7 +103,7 @@ void DashboardPreferences::Create()
     m_inc_vs_exp_date_range = m_all_date_ranges[sel_id];
     nDays_ = new wxSpinCtrl(totalsStaticBox, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS,
         1, (wxDate::Today() - wxDateTime(1, wxDate::Month::Jan, 1900)).GetDays(),
-        InfotableModel::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14));
+        InfoModel::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14));
     nDays_->Bind(wxEVT_SPINCTRL, [this](wxSpinEvent& event) {
         dynamic_cast<mmLastNDays*>(m_all_date_ranges.back().get())->SetRange(nDays_->GetValue());
         event.Skip();
@@ -135,7 +135,7 @@ bool DashboardPreferences::SaveSettings()
     int sel_id = m_incExpChoice->GetSelection();
     PreferencesModel::instance().setHomePageIncExpRange(sel_id);
     if (sel_id == static_cast<int>(m_all_date_ranges.size() - 1))
-        InfotableModel::instance().setInt("HOMEPAGE_INCEXP_DAYS", nDays_->GetValue());
+        InfoModel::instance().setInt("HOMEPAGE_INCEXP_DAYS", nDays_->GetValue());
     PreferencesModel::instance().setIgnoreFutureTransactionsHomePage(m_ignore_future_transactions_home->GetValue());
     return true;
 }

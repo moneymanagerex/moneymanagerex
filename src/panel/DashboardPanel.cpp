@@ -136,10 +136,10 @@ void DashboardPanel::insertDataIntoTemplate()
 
     // Get curreny details to pass to report for Apexcharts
     int64 baseCurrencyID = PreferencesModel::instance().getBaseCurrencyID();
-    CurrencyModel::Data* baseCurrency = CurrencyModel::instance().get(baseCurrencyID);
+    CurrencyModel::Data* baseCurrency = CurrencyModel::instance().cache_id(baseCurrencyID);
 
     // Get locale to pass to reports for Apexcharts
-    wxString locale = InfotableModel::instance().getString("LOCALE", "en-US"); // Stay blank of not set, currency override handled in Apexcharts call.
+    wxString locale = InfoModel::instance().getString("LOCALE", "en-US"); // Stay blank of not set, currency override handled in Apexcharts call.
     if (locale == "") {
         locale = "en-US";
     }
@@ -233,7 +233,7 @@ void DashboardPanel::insertDataIntoTemplate()
 
 const wxString DashboardPanel::getToggles()
 {
-    const wxString json = InfotableModel::instance().getString("HOME_PAGE_STATUS", "{}");
+    const wxString json = InfoModel::instance().getString("HOME_PAGE_STATUS", "{}");
     return json;
 }
 
@@ -303,7 +303,7 @@ void DashboardPanel::OnLinkClicked(wxWebViewEvent& event)
 
     //Convert the JSON string from database to a json object
     const wxString key = "HOME_PAGE_STATUS";
-    wxString j_str = InfotableModel::instance().getString(key, "{}");
+    wxString j_str = InfoModel::instance().getString(key, "{}");
     Document j_doc;
     if (j_doc.Parse(j_str.c_str()).HasParseError())
         return;
@@ -328,6 +328,6 @@ void DashboardPanel::OnLinkClicked(wxWebViewEvent& event)
     }
 
     wxLogDebug("New %s:\n%s", key, JSON_PrettyFormated(j_doc));
-    InfotableModel::instance().setJdoc(key, j_doc);
+    InfoModel::instance().setJdoc(key, j_doc);
     wxLogDebug("}}}");
 }

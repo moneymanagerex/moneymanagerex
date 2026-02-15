@@ -399,7 +399,7 @@ void mmComboBox::OnKeyPressed(wxKeyEvent& event)
     else if (event.GetId() == mmID_CATEGORY && event.GetUnicodeKey() == ':')
     {
         this->SetEvtHandlerEnabled(false);
-        ChangeValue(text.Trim().Append(InfotableModel::instance().getString("CATEG_DELIMITER", ":")));
+        ChangeValue(text.Trim().Append(InfoModel::instance().getString("CATEG_DELIMITER", ":")));
         SetInsertionPointEnd();
         this->SetEvtHandlerEnabled(true);
     }
@@ -436,7 +436,7 @@ void mmComboBoxAccount::init()
 {
     all_elements_ = AccountModel::instance().all_accounts(excludeClosed_);
     if (accountID_ > -1)
-        all_elements_[AccountModel::get_account_name(accountID_)] = accountID_;
+        all_elements_[AccountModel::cache_id_name(accountID_)] = accountID_;
 }
 
 // accountID = always include this account even if it would have been excluded as closed
@@ -1537,7 +1537,7 @@ void mmTagTextCtrl::init()
     // Initialize the tag map and dropdown checkboxes
     tag_map_.clear();
     tagCheckListBox_->Clear();
-    for (const auto& tag : TagModel::instance().all(DB_Table_TAG_V1::COL_TAGNAME))
+    for (const auto& tag : TagModel::instance().get_all(TagTable::COL_TAGNAME))
     {
         tag_map_[tag.TAGNAME] = tag.TAGID;
         tagCheckListBox_->Append(tag.TAGNAME);

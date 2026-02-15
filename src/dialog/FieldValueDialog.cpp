@@ -49,8 +49,8 @@ FieldValueDialog::FieldValueDialog(wxDialog* dialog, const wxString& ref_type, i
     , m_ref_id(ref_id)
 {
     m_dialog = dialog;
-    m_fields = FieldModel::instance().find(FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
-    std::sort(m_fields.begin(), m_fields.end(), SorterByDESCRIPTION());
+    m_fields = FieldModel::instance().find(FieldModel::FieldTable::REFTYPE(m_ref_type));
+    std::sort(m_fields.begin(), m_fields.end(), FieldTable::SorterByDESCRIPTION());
     m_data_changed.clear();
 }
 
@@ -81,7 +81,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
     for (const auto &field : m_fields)
     {
         bool nonDefaultData = true;
-        FieldValueModel::Data* fieldData = FieldValueModel::instance().get(field.FIELDID, m_ref_id);
+        FieldValueModel::Data* fieldData = FieldValueModel::instance().cache_key(field.FIELDID, m_ref_id);
         if (!fieldData)
         {
             fieldData = FieldValueModel::instance().create();
@@ -271,7 +271,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
     scrolled_window->FitInside();
     scrolled_window->SetScrollRate(6, 6);
     box_sizer_right->Add(scrolled_window, g_flagsExpand);
-    TransactionModel::Data* refTxn = TransactionModel::instance().get(m_ref_id);
+    TransactionModel::Data* refTxn = TransactionModel::instance().cache_id(m_ref_id);
     if (refTxn && !refTxn->DELETEDTIME.IsEmpty()) scrolled_window->Disable();
     m_static_box->Hide();
     mmThemeAutoColour(scrolled_window);
@@ -337,7 +337,7 @@ std::map<int64, wxString> FieldValueDialog::GetActiveCustomFields() const
     for (const auto& entry : m_data_changed)
     {
         int id = (entry.first - GetBaseID()) / FIELDMULTIPLIER;
-        FieldModel::Data *item = FieldModel::instance().get(m_fields[id].FIELDID);
+        FieldModel::Data *item = FieldModel::instance().cache_id(m_fields[id].FIELDID);
         if (item) {
             values[item->FIELDID] = entry.second;
         }
@@ -479,7 +479,7 @@ bool FieldValueDialog::SaveCustomValues(int64 ref_id)
         wxWindowID controlID = GetBaseID() + field_index++ * FIELDMULTIPLIER;
         const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
-        FieldValueModel::Data* fieldData = FieldValueModel::instance().get(field.FIELDID, ref_id);
+        FieldValueModel::Data* fieldData = FieldValueModel::instance().cache_key(field.FIELDID, ref_id);
         FieldValueModel::Data oldData;
         if(fieldData) oldData = *fieldData;
         if (!data.empty())
@@ -534,7 +534,7 @@ void FieldValueDialog::UpdateCustomValues(int64 ref_id)
         if (is_changed)
         {
             const auto& data = GetWidgetData(controlID);
-            FieldValueModel::Data* fieldData = FieldValueModel::instance().get(field.FIELDID, ref_id);
+            FieldValueModel::Data* fieldData = FieldValueModel::instance().cache_key(field.FIELDID, ref_id);
             FieldValueModel::Data oldData;
             if (fieldData) oldData = *fieldData;
             if (!data.empty())
@@ -632,7 +632,7 @@ void FieldValueDialog::OnRadioButtonChanged(wxCommandEvent& event)
 
 int FieldValueDialog::GetWidgetType(wxWindowID controlID) const
 {
-    FieldModel::Data_Set fields = FieldModel::instance().find(FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(m_ref_type));
+    FieldModel::Data_Set fields = FieldModel::instance().find(FieldModel::FieldTable::REFTYPE(m_ref_type));
     int control_id = (controlID - GetBaseID()) / FIELDMULTIPLIER;
     for (const auto& entry : fields)
     {

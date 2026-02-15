@@ -22,7 +22,7 @@
 #include "TagModel.h"
 
 TagLinkModel::TagLinkModel()
-: Model<DB_Table_TAGLINK_V1>()
+: Model<TagLinkTable>()
 {
 }
 
@@ -36,9 +36,9 @@ TagLinkModel::~TagLinkModel()
 TagLinkModel& TagLinkModel::instance(wxSQLite3Database* db)
 {
     TagLinkModel& ins = Singleton<TagLinkModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
     ins.preload();
 
     return ins;
@@ -50,21 +50,23 @@ TagLinkModel& TagLinkModel::instance()
     return Singleton<TagLinkModel>::instance();
 }
 
-TagLinkModel::Data* TagLinkModel::get(const wxString& refType, int64 refId, int64 tagId)
+TagLinkModel::Data* TagLinkModel::cache_key(const wxString& refType, int64 refId, int64 tagId)
 {
-    Data* link = this->get_one(REFTYPE(refType), REFID(refId), TAGID(tagId));
-    if (link) return link;
+    Data* link = this->search_cache(REFTYPE(refType), REFID(refId), TAGID(tagId));
+    if (link)
+        return link;
 
     Data_Set items = this->find(REFTYPE(refType), REFID(refId), TAGID(tagId));
-    if (!items.empty()) link = this->get(items[0].TAGLINKID, this->db_);
+    if (!items.empty())
+        link = this->cache_id(items[0].TAGLINKID);
     return link;
 }
 
-std::map<wxString, int64> TagLinkModel::get(const wxString& refType, int64 refId)
+std::map<wxString, int64> TagLinkModel::cache_ref(const wxString& refType, int64 refId)
 {
     std::map<wxString, int64> tags;
     for (const auto& link : instance().find(REFTYPE(refType), REFID(refId)))
-        tags[TagModel::instance().get(link.TAGID)->TAGNAME] = link.TAGID;
+        tags[TagModel::instance().cache_id(link.TAGID)->TAGNAME] = link.TAGID;
 
     return tags;
 }
@@ -125,7 +127,7 @@ int TagLinkModel::update(const Data_Set& rows, const wxString& refType, int64 re
         if (refType == TransactionModel::refTypeName)
             TransactionModel::instance().updateTimestamp(refId);
         else if (refType == TransactionSplitModel::refTypeName)
-            TransactionModel::instance().updateTimestamp(TransactionSplitModel::instance().get(refId)->TRANSID);
+            TransactionModel::instance().updateTimestamp(TransactionSplitModel::instance().cache_id(refId)->TRANSID);
     }
 
     TagLinkModel::instance().ReleaseSavepoint();
@@ -133,13 +135,12 @@ int TagLinkModel::update(const Data_Set& rows, const wxString& refType, int64 re
     return rows.size();
 }
 
-std::map<int64, TagLinkModel::Data_Set> TagLinkModel::get_all(const wxString& refType)
+std::map<int64, TagLinkModel::Data_Set> TagLinkModel::get_all_id(const wxString& refType)
 {
     Data_Set taglinks = instance().find(REFTYPE(refType));
 
     std::map<int64, Data_Set> data;
-    for (const auto& taglink : taglinks)
-    {
+    for (const auto& taglink : taglinks) {
         data[taglink.REFID].push_back(taglink);
     }
     return data;

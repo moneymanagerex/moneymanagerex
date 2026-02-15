@@ -45,19 +45,19 @@ wxString ForecastReport::getHTMLText()
     
     if (m_date_range && m_date_range->is_with_date()) {
         all_trans = TransactionModel::instance().find(
-            TransactionModel::TRANSDATE(mmDateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
-            TransactionModel::TRANSDATE(mmDateDay(m_date_range->end_date()), LESS_OR_EQUAL)
+            TransactionModel::TRANSDATE(OP_GE, mmDateDay(m_date_range->start_date())),
+            TransactionModel::TRANSDATE(OP_LE, mmDateDay(m_date_range->end_date()))
         );
     }
     else {
-        all_trans = TransactionModel::instance().all();
+        all_trans = TransactionModel::instance().get_all();
     }
 
     for (const auto & trx : all_trans) {
         if (TransactionModel::type_id(trx) == TransactionModel::TYPE_ID_TRANSFER || TransactionModel::foreignTransactionAsTransfer(trx))
             continue;
         const double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get(trx.ACCOUNTID)->CURRENCYID,
+            AccountModel::instance().cache_id(trx.ACCOUNTID)->CURRENCYID,
             trx.TRANSDATE
         );
         amount_by_day[trx.TRANSDATE].first += TransactionModel::account_outflow(trx, trx.ACCOUNTID) * convRate;

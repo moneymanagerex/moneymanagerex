@@ -48,7 +48,7 @@ MergeTagDialog::MergeTagDialog( )
 
 MergeTagDialog::~MergeTagDialog()
 {
-    InfotableModel::instance().setSize("RELOCATETAG_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("RELOCATETAG_DIALOG_SIZE", GetSize());
 }
 
 MergeTagDialog::MergeTagDialog(wxWindow* parent, int64 source_tag_id)
@@ -93,7 +93,7 @@ void MergeTagDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
     choices_.Clear();
-    for (const auto& tag : TagModel::instance().all())
+    for (const auto& tag : TagModel::instance().get_all())
         choices_.Add(tag.TAGNAME);
     cbSourceTag_ = new wxComboBox(this, wxID_REPLACE, "", wxDefaultPosition, wxDefaultSize, choices_);
     cbSourceTag_->SetMinSize(wxSize(200, -1));
@@ -187,8 +187,8 @@ void MergeTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void MergeTagDialog::IsOkOk()
 {
     bool e = true;
-    TagModel::Data* source = TagModel::instance().get(cbSourceTag_->GetValue());
-    TagModel::Data* dest = TagModel::instance().get(cbDestTag_->GetValue());
+    TagModel::Data* source = TagModel::instance().cache_key(cbSourceTag_->GetValue());
+    TagModel::Data* dest = TagModel::instance().cache_key(cbDestTag_->GetValue());
     if (dest) destTagID_ = dest->TAGID;
     if (source) sourceTagID_ = source->TAGID;
     int trxs_size = (sourceTagID_ < 0) ? 0 : TagLinkModel::instance().find(

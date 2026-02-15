@@ -68,7 +68,7 @@ const wxString TransactionModel::STATUS_NAME_VOID       = status_name(STATUS_ID_
 const wxString TransactionModel::STATUS_NAME_FOLLOWUP   = status_name(STATUS_ID_FOLLOWUP);
 const wxString TransactionModel::STATUS_NAME_DUPLICATE  = status_name(STATUS_ID_DUPLICATE);
 
-TransactionModel::TransactionModel() : Model<DB_Table_CHECKINGACCOUNT_V1>()
+TransactionModel::TransactionModel() : Model<TransactionTable>()
 {
 }
 
@@ -83,9 +83,9 @@ TransactionModel::~TransactionModel()
 TransactionModel& TransactionModel::instance(wxSQLite3Database* db)
 {
     TransactionModel& ins = Singleton<TransactionModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -102,7 +102,7 @@ bool TransactionModel::remove(int64 id)
     //TransactionSplitModel::instance().remove(TransactionSplitModel::instance().find(TransactionSplitModel::TRANSID(id)));
     for (const auto& r : TransactionSplitModel::instance().find(TransactionSplitModel::TRANSID(id)))
         TransactionSplitModel::instance().remove(r.SPLITTRANSID);
-    if(foreignTransaction(*instance().get(id))) TransactionLinkModel::RemoveTranslinkEntry(id);
+    if(foreignTransaction(*instance().cache_id(id))) TransactionLinkModel::RemoveTranslinkEntry(id);
 
     const wxString& RefType = TransactionModel::refTypeName;
     // remove all attachments
@@ -110,15 +110,15 @@ bool TransactionModel::remove(int64 id)
     // remove all custom fields for the transaction
     FieldValueModel::DeleteAllData(RefType, id);
     TagLinkModel::instance().DeleteAllTags(RefType, id);
-    return this->remove(id, db_);
+    return this->remove(id);
 }
 
 int64 TransactionModel::save(Data* r)
 {
-    wxSharedPtr<Data> oldData(instance().get_record(r->TRANSID));
+    wxSharedPtr<Data> oldData(instance().get_id(r->TRANSID));
     if (!oldData || (!oldData->equals(r) && oldData->DELETEDTIME.IsEmpty() && r->DELETEDTIME.IsEmpty()))
         r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
-    this->save(r, db_);
+    this->save(r);
     return r->TRANSID;
 }
 
@@ -152,10 +152,10 @@ int TransactionModel::save(std::vector<Data*>& rows)
 
 const TransactionModel::Data_Set TransactionModel::allByDateTimeId()
 {
-    auto trans = TransactionModel::instance().all();
+    auto trans = TransactionModel::instance().get_all();
     std::sort(trans.begin(), trans.end());
     if (PreferencesModel::instance().UseTransDateTime())
-        std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+        std::stable_sort(trans.begin(), trans.end(), TransactionTable::SorterByTRANSDATE());
     else
         std::stable_sort(trans.begin(), trans.end(), TransactionModel::SorterByTRANSDATE_DATE());
     return trans;
@@ -171,46 +171,46 @@ const TransactionSplitModel::Data_Set TransactionModel::split(const Data& r)
     return TransactionSplitModel::instance().find(TransactionSplitModel::TRANSID(r.TRANSID));
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TransactionModel::TRANSDATE(const wxString& date_iso_str, OP op)
+TransactionTable::TRANSDATE TransactionModel::TRANSDATE(OP op, const wxString& date_iso_str)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_iso_str, op);
+    return TransactionTable::TRANSDATE(op, date_iso_str);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TransactionModel::TRANSDATE(const mmDateDay& date, OP op)
+TransactionTable::TRANSDATE TransactionModel::TRANSDATE(OP op, const mmDateDay& date)
 {
-    // EQUAL and NOT_EQUAL should not be used for date comparisons.
+    // OP_EQ and OP_NE should not be used for date comparisons.
     // if needed, create an equivalent AND/OR combination of two other operators.
     wxString bound =
-        (op == GREATER_OR_EQUAL || op == LESS) ? date.isoStart()
-        : (op == LESS_OR_EQUAL || op == GREATER) ? date.isoEnd()
+        (op == OP_GE || op == OP_LT) ? date.isoStart()
+        : (op == OP_LE || op == OP_GT) ? date.isoEnd()
         : date.isoDate();
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(bound, op);
+    return TransactionTable::TRANSDATE(op, bound);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TransactionModel::TRANSDATE(const wxDateTime& date, OP op)
+TransactionTable::TRANSDATE TransactionModel::TRANSDATE(OP op, const wxDateTime& date)
 {
     // the boundary has granularity of a day
-    return TRANSDATE(mmDateDay(date), op);
+    return TRANSDATE(op, mmDateDay(date));
 }
 
-DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME TransactionModel::DELETEDTIME(const wxString& date, OP op)
+TransactionTable::DELETEDTIME TransactionModel::DELETEDTIME(OP op, const wxString& date)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME(date, op);
+    return TransactionTable::DELETEDTIME(op, date);
 }
 
-DB_Table_CHECKINGACCOUNT_V1::STATUS TransactionModel::STATUS(STATUS_ID status, OP op)
+TransactionTable::STATUS TransactionModel::STATUS(OP op, STATUS_ID status)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::STATUS(status_key(status), op);
+    return TransactionTable::STATUS(op, status_key(status));
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TransactionModel::TRANSCODE(TYPE_ID type, OP op)
+TransactionTable::TRANSCODE TransactionModel::TRANSCODE(OP op, TYPE_ID type)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(type_name(type), op);
+    return TransactionTable::TRANSCODE(op, type_name(type));
 }
 
-DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER TransactionModel::TRANSACTIONNUMBER(const wxString& num, OP op)
+TransactionTable::TRANSACTIONNUMBER TransactionModel::TRANSACTIONNUMBER(OP op, const wxString& num)
 {
-    return DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER(num, op);
+    return TransactionTable::TRANSACTIONNUMBER(op, num);
 }
 
 wxDateTime TransactionModel::getTransDateTime(const Data* r)
@@ -281,7 +281,7 @@ double TransactionModel::account_recflow(const Data& r, int64 account_id)
 bool TransactionModel::is_locked(const Data* r)
 {
     bool val = false;
-    AccountModel::Data* acc = AccountModel::instance().get(r->ACCOUNTID);
+    AccountModel::Data* acc = AccountModel::instance().cache_id(r->ACCOUNTID);
 
     if (AccountModel::BoolOf(acc->STATEMENTLOCKED))
     {
@@ -331,7 +331,7 @@ bool TransactionModel::is_split(const Data& r)
 }
 
 TransactionModel::Full_Data::Full_Data() :
-    Data(0), TAGNAMES(""),
+    Data(), TAGNAMES(""),
     ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
     SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
 {
@@ -369,10 +369,10 @@ TransactionModel::Full_Data::Full_Data(
 void TransactionModel::Full_Data::fill_data()
 {
     displayID = wxString::Format("%lld", TRANSID);
-    ACCOUNTNAME = AccountModel::get_account_name(ACCOUNTID);
+    ACCOUNTNAME = AccountModel::cache_id_name(ACCOUNTID);
 
     if (TransactionModel::type_id(TRANSCODE) == TransactionModel::TYPE_ID_TRANSFER) {
-        TOACCOUNTNAME = AccountModel::get_account_name(TOACCOUNTID);
+        TOACCOUNTNAME = AccountModel::cache_id_name(TOACCOUNTID);
         PAYEENAME = TOACCOUNTNAME;
     }
     else {
@@ -391,7 +391,7 @@ void TransactionModel::Full_Data::fill_data()
     if (!m_tags.empty()) {
         wxArrayString tagnames;
         for (const auto& entry : m_tags)
-            tagnames.Add(TagModel::instance().get(entry.TAGID)->TAGNAME);
+            tagnames.Add(TagModel::instance().cache_id(entry.TAGID)->TAGNAME);
         // Sort TAGNAMES
         tagnames.Sort(CaseInsensitiveCmp);
         for (const auto& name : tagnames)
@@ -436,14 +436,14 @@ const wxString TransactionModel::Full_Data::get_currency_code(int64 account_id) 
         else
             account_id = this->TOACCOUNTID;
     }
-    AccountModel::Data* acc = AccountModel::instance().get(account_id);
+    AccountModel::Data* acc = AccountModel::instance().cache_id(account_id);
     int64 currency_id = acc ? acc->CURRENCYID: -1;
-    CurrencyModel::Data* curr = CurrencyModel::instance().get(currency_id);
+    CurrencyModel::Data* curr = CurrencyModel::instance().cache_id(currency_id);
 
     return curr ? curr->CURRENCY_SYMBOL : "";
 }
 
-const wxString TransactionModel::Full_Data::get_account_name(int64 account_id) const
+const wxString TransactionModel::Full_Data::cache_id_name(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
     {
@@ -451,7 +451,7 @@ const wxString TransactionModel::Full_Data::get_account_name(int64 account_id) c
             return this->ACCOUNTNAME;
         }
         else {
-            AccountModel::Data* acc = AccountModel::instance().get(TOACCOUNTID);
+            AccountModel::Data* acc = AccountModel::instance().cache_id(TOACCOUNTID);
             return acc ? acc->ACCOUNTNAME : "";
         }
     }
@@ -495,8 +495,10 @@ void TransactionModel::getFrequentUsedNotes(std::vector<wxString> &frequentNotes
     frequentNotes.clear();
     size_t max = 20;
 
-    const auto notes = instance().find(NOTES("", NOT_EQUAL)
-        , accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(-1, NOT_EQUAL));
+    const auto notes = instance().find(
+        NOTES(OP_NE, ""),
+        accountID > 0 ? ACCOUNTID(accountID) : ACCOUNTID(OP_NE, -1)
+    );
 
     // Count frequency
     std::map <wxString, std::pair<int, wxString> > counterMap;
@@ -671,9 +673,9 @@ bool TransactionModel::foreignTransactionAsTransfer(const Data& data)
 
 void TransactionModel::updateTimestamp(int64 id)
 {
-    Data* r = instance().get(id);
+    Data* r = instance().cache_id(id);
     if (r && r->TRANSID == id) {
         r->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
-        this->save(r, db_);
+        this->save(r);
     }
 }

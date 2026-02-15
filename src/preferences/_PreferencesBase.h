@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "base/constants.h"
 #include "util/_simple.h"
 
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/SettingModel.h"
 
 class PreferencesBase : public wxPanel

@@ -20,7 +20,7 @@
 #include "base/defs.h"
 #include <wx/intl.h>
 
-#include "db/DB_Table_Budgettable_V1.h"
+#include "table/BudgetTable.h"
 
 #include "BudgetModel.h"
 #include "BudgetPeriodModel.h"
@@ -40,7 +40,7 @@ ChoicesName BudgetModel::PERIOD_CHOICES = ChoicesName({
 });
 
 BudgetModel::BudgetModel()
-    : Model<DB_Table_BUDGETTABLE_V1>()
+    : Model<BudgetTable>()
 {
 }
 
@@ -55,9 +55,9 @@ BudgetModel::~BudgetModel()
 BudgetModel& BudgetModel::instance(wxSQLite3Database* db)
 {
     BudgetModel& ins = Singleton<BudgetModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -68,9 +68,9 @@ BudgetModel& BudgetModel::instance()
     return Singleton<BudgetModel>::instance();
 }
 
-DB_Table_BUDGETTABLE_V1::PERIOD BudgetModel::PERIOD(PERIOD_ID period, OP op)
+BudgetTable::PERIOD BudgetModel::PERIOD(OP op, PERIOD_ID period)
 {
-    return DB_Table_BUDGETTABLE_V1::PERIOD(period_name(period), op);
+    return BudgetTable::PERIOD(op, period_name(period));
 }
 
 void BudgetModel::getBudgetEntry(int64 budgetYearID
@@ -80,7 +80,7 @@ void BudgetModel::getBudgetEntry(int64 budgetYearID
 {
     //Set std::map with zerros
     double value = 0;
-    for (const auto& category : CategoryModel::instance().all())
+    for (const auto& category : CategoryModel::instance().get_all())
     {
         budgetPeriod[category.CATEGID] = PERIOD_ID_NONE;
         budgetAmt[category.CATEGID] = value;
@@ -105,7 +105,7 @@ void BudgetModel::getBudgetStats(
     double value = 0;
     const wxDateTime start_date(date_range->start_date());
 
-    for (const auto& category : CategoryModel::instance().all())
+    for (const auto& category : CategoryModel::instance().get_all())
     {
         for (int month = 0; month < 12; month++) {
             budgetStats[category.CATEGID][month] = value;
@@ -181,7 +181,7 @@ void BudgetModel::getBudgetStats(
     if (!groupByMonth)
     {
         std::map<int64, std::map<int,double> > yearlyBudgetStats;
-        for (const auto& category : CategoryModel::instance().all()) {
+        for (const auto& category : CategoryModel::instance().get_all()) {
             yearlyBudgetStats[category.CATEGID][0] = 0.0;
         }
 
@@ -198,8 +198,8 @@ void BudgetModel::copyBudgetYear(int64 newYearID, int64 baseYearID)
     std::map<int64, double> yearDeduction;
     int budgetedMonths = 0;
     bool optionDeductMonthly = PreferencesModel::instance().getBudgetDeductMonthly();
-    const wxString baseBudgetYearName = BudgetPeriodModel::instance().get(baseYearID)->BUDGETYEARNAME;
-    const wxString newBudgetYearName = BudgetPeriodModel::instance().get(newYearID)->BUDGETYEARNAME;
+    const wxString baseBudgetYearName = BudgetPeriodModel::instance().cache_id(baseYearID)->BUDGETYEARNAME;
+    const wxString newBudgetYearName = BudgetPeriodModel::instance().cache_id(newYearID)->BUDGETYEARNAME;
 
     // Only deduct monthly amounts if a monthly budget is being created based on a yearly budget
     optionDeductMonthly &= (baseBudgetYearName.length() == 4 && newBudgetYearName.length() > 4);

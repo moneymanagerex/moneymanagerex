@@ -22,7 +22,7 @@
 #include "TagLinkModel.h"
 
 ScheduledSplitModel::ScheduledSplitModel()
-: Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>()
+: Model<ScheduledSplitTable>()
 {
 }
 
@@ -37,9 +37,9 @@ ScheduledSplitModel::~ScheduledSplitModel()
 ScheduledSplitModel& ScheduledSplitModel::instance(wxSQLite3Database* db)
 {
     ScheduledSplitModel& ins = Singleton<ScheduledSplitModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -62,13 +62,13 @@ bool ScheduledSplitModel::remove(int64 id)
 {
     // Delete all tags for the split before removing it
     TagLinkModel::instance().DeleteAllTags(ScheduledSplitModel::refTypeName, id);
-    return this->remove(id, db_);
+    return this->remove(id);
 }
 
-std::map<int64, ScheduledSplitModel::Data_Set> ScheduledSplitModel::get_all()
+std::map<int64, ScheduledSplitModel::Data_Set> ScheduledSplitModel::get_all_id()
 {
     std::map<int64, ScheduledSplitModel::Data_Set> data;
-    for (const auto & split : instance().all())
+    for (const auto & split : instance().get_all())
     {
         data[split.TRANSID].push_back(split);
     }

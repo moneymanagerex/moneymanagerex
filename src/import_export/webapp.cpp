@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/AccountModel.h"
 #include "model/AttachmentModel.h"
 #include "model/CategoryModel.h"
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 
 #include "dialog/AttachmentDialog.h"
 #include "dialog/TransactionDialog.h"
@@ -37,13 +37,13 @@ const wxString WebAppParam::ApiExpectedVersion = "1.0.1";
 //Internal constants
 const wxString mmWebApp::getUrl()
 {
-    wxString Url = InfotableModel::instance().getString("WEBAPPURL", "");
+    wxString Url = InfoModel::instance().getString("WEBAPPURL", "");
     return Url;
 }
 
 const wxString mmWebApp::getGuid()
 {
-    return InfotableModel::instance().getString("WEBAPPGUID", "");
+    return InfoModel::instance().getString("WEBAPPGUID", "");
 }
 
 //Parameters used in services.php
@@ -94,8 +94,8 @@ bool mmWebApp::returnResult(int& ErrorCode, wxString& outputMessage)
 //Check if WebApp is enabled
 bool mmWebApp::WebApp_CheckEnabled()
 {
-    if (InfotableModel::instance().getString("WEBAPPURL", "") != wxEmptyString
-        && InfotableModel::instance().getString("WEBAPPGUID", "") != wxEmptyString)
+    if (InfoModel::instance().getString("WEBAPPURL", "") != wxEmptyString
+        && InfoModel::instance().getString("WEBAPPGUID", "") != wxEmptyString)
         return true;
     else
         return false;
@@ -179,7 +179,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 
     json_writer.StartArray();
 
-    for (const auto &account : AccountModel::instance().all(AccountModel::COL_ACCOUNTNAME))
+    for (const auto &account : AccountModel::instance().get_all(AccountModel::COL_ACCOUNTNAME))
     {
         if (AccountModel::type_id(account) != NavigatorTypes::TYPE_ID_INVESTMENT && AccountModel::status_id(account) != AccountModel::STATUS_ID_CLOSED)
         {
@@ -224,9 +224,9 @@ bool mmWebApp::WebApp_UpdatePayee()
     json_writer.StartArray();
 
     wxString def_category_name, def_subcategory_name;
-    for (const auto &payee : PayeeModel::instance().all(PayeeModel::COL_PAYEENAME))
+    for (const auto &payee : PayeeModel::instance().get_all(PayeeModel::COL_PAYEENAME))
     {
-        const CategoryModel::Data* def_category = CategoryModel::instance().get(payee.CATEGID);
+        const CategoryModel::Data* def_category = CategoryModel::instance().cache_id(payee.CATEGID);
         if (def_category != nullptr)
         {
             if (def_category->PARENTID == -1)
@@ -236,7 +236,7 @@ bool mmWebApp::WebApp_UpdatePayee()
             }
             else
             {
-                CategoryModel::Data* parent_category = CategoryModel::instance().get(def_category->PARENTID);
+                CategoryModel::Data* parent_category = CategoryModel::instance().cache_id(def_category->PARENTID);
                 if (parent_category != nullptr && parent_category->PARENTID == -1) {
                     def_category_name = parent_category->CATEGNAME;
                     def_subcategory_name = def_category->CATEGNAME;
@@ -468,7 +468,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     wxString TrStatus;
 
     //Search Account
-    const AccountModel::Data* Account = AccountModel::instance().get(WebAppTrans.Account);
+    const AccountModel::Data* Account = AccountModel::instance().cache_key(WebAppTrans.Account);
     wxString accountName, accountInitialDate;
     if (Account != nullptr)
     {
@@ -482,7 +482,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         TrStatus = TransactionModel::STATUS_KEY_FOLLOWUP;
 
         //Search first bank account
-        for (const auto &FirstAccount : AccountModel::instance().all(AccountModel::COL_ACCOUNTNAME))
+        for (const auto &FirstAccount : AccountModel::instance().get_all(AccountModel::COL_ACCOUNTNAME))
         {
             if (AccountModel::type_id(FirstAccount) != NavigatorTypes::TYPE_ID_INVESTMENT && AccountModel::type_id(FirstAccount) != NavigatorTypes::TYPE_ID_TERM)
             {
@@ -505,13 +505,13 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     AccountModel::Data* ToAccount = nullptr;
     if (WebAppTrans.ToAccount != "None")
     {
-        ToAccount = AccountModel::instance().get(WebAppTrans.ToAccount);
+        ToAccount = AccountModel::instance().cache_key(WebAppTrans.ToAccount);
         if (ToAccount != nullptr)
             ToAccountID = ToAccount->ACCOUNTID;
     }
 
     //Search or insert Category
-    const CategoryModel::Data* Category = CategoryModel::instance().get(WebAppTrans.Category, int64(-1));
+    const CategoryModel::Data* Category = CategoryModel::instance().cache_key(WebAppTrans.Category, int64(-1));
     if (Category != nullptr)
         CategoryID = Category->CATEGID;
     else
@@ -526,7 +526,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     //Search or insert SubCategory
     if (!WebAppTrans.SubCategory.IsEmpty())
     {
-        const CategoryModel::Data* SubCategory = CategoryModel::instance().get(WebAppTrans.SubCategory, CategoryID);
+        const CategoryModel::Data* SubCategory = CategoryModel::instance().cache_key(WebAppTrans.SubCategory, CategoryID);
         if (SubCategory != nullptr)
             CategoryID = SubCategory->CATEGID;
         else if (CategoryID != -1)
@@ -540,7 +540,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     }
 
     //Search or insert Payee
-    const PayeeModel::Data* Payee = PayeeModel::instance().get(WebAppTrans.Payee);
+    const PayeeModel::Data* Payee = PayeeModel::instance().cache_key(WebAppTrans.Payee);
     if (Payee != nullptr)
     {
         PayeeID = Payee->PAYEEID;

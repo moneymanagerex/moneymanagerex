@@ -19,13 +19,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include "base/defs.h"
-#include "_Model.h"
-#include "db/DB_Table_Stockhistory_V1.h"
+#include "_ModelBase.h"
+#include "table/StockHistoryTable.h"
 
-class StockHistoryModel : public Model<DB_Table_STOCKHISTORY_V1>
+class StockHistoryModel : public Model<StockHistoryTable>
 {
 public:
-    using Model<DB_Table_STOCKHISTORY_V1>::get;
+    using Model<StockHistoryTable>::cache_id;
     enum UPDTYPE { ONLINE = 1, MANUAL };
 
 public:
@@ -48,10 +48,10 @@ public:
     static StockHistoryModel& instance();
 
 public:
-    Data* get(const wxString& symbol, const wxDate& date);
+    Data* cache_key(const wxString& symbol, const wxDate& date);
     static wxDate DATE(const Data& hist);
 
-    static DB_Table_STOCKHISTORY_V1::DATE DATE(const wxDate& date, OP op = EQUAL);
+    static StockHistoryTable::DATE DATE(OP op, const wxDate& date);
     /**
     Adds or updates an element in stock history
     */

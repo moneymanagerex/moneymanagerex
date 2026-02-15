@@ -29,7 +29,7 @@
 #include "util/mmCalcValidator.h"
 
 #include "model/CurrencyModel.h"
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/PreferencesModel.h"
 #include "model/StockModel.h"
 
@@ -73,7 +73,7 @@ AccountDialog::AccountDialog(AccountModel::Data* account, wxWindow* parent)
 {
     m_images = navtree_images_list();
     m_currencyID = m_account->CURRENCYID;
-    [[maybe_unused]] CurrencyModel::Data* currency = CurrencyModel::instance().get(m_currencyID);
+    [[maybe_unused]] CurrencyModel::Data* currency = CurrencyModel::instance().cache_id(m_currencyID);
     wxASSERT(currency);
 
     this->SetFont(parent->GetFont());
@@ -388,7 +388,7 @@ void AccountDialog::OnCurrency(wxCommandEvent& /*event*/)
 {
     if (CurrencyChoiceDialog::Execute(this, m_currencyID))
     {
-        CurrencyModel::Data* currency = CurrencyModel::instance().get(m_currencyID);
+        CurrencyModel::Data* currency = CurrencyModel::instance().cache_id(m_currencyID);
         wxButton* bn = static_cast<wxButton*>(FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY));
         bn->SetLabelText(currency->CURRENCYNAME);
 
@@ -449,7 +449,7 @@ void AccountDialog::OnCustonImage(wxCommandEvent& event)
     int selectedImage = (event.GetId() - wxID_HIGHEST) - img::LAST_NAVTREE_PNG + 1;
     int image_id = PreferencesModel::instance().AccountImageId(this->m_account->ACCOUNTID, true);
 
-    InfotableModel::instance().setInt(
+    InfoModel::instance().setInt(
         wxString::Format("ACC_IMAGE_ID_%lld", this->m_account->ACCOUNTID),
         selectedImage
     );
@@ -499,7 +499,7 @@ void AccountDialog::OnOk(wxCommandEvent& /*event*/)
             return mmErrorDialogs::MessageInvalid(this, _t("Account Name "));
     }
 
-    CurrencyModel::Data* currency = CurrencyModel::instance().get(m_currencyID);
+    CurrencyModel::Data* currency = CurrencyModel::instance().cache_id(m_currencyID);
     if (!currency)
         return mmErrorDialogs::MessageInvalid(this, _t("Currency"));
 
@@ -519,22 +519,32 @@ void AccountDialog::OnOk(wxCommandEvent& /*event*/)
 
     if (this->m_account)
     {
-        const TransactionModel::Data_Set all_trans_check1 = TransactionModel::instance().find(DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(openingDate, LESS)
-                                                                            ,DB_Table_CHECKINGACCOUNT_V1::ACCOUNTID(m_account->ACCOUNTID, EQUAL));
-        const TransactionModel::Data_Set all_trans_check2 = TransactionModel::instance().find(DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(openingDate, LESS)
-                                                                            ,DB_Table_CHECKINGACCOUNT_V1::TOACCOUNTID(m_account->ACCOUNTID, EQUAL));
+        const TransactionModel::Data_Set all_trans_check1 = TransactionModel::instance().find(
+            TransactionTable::TRANSDATE(OP_LT, openingDate),
+            TransactionTable::ACCOUNTID(OP_EQ, m_account->ACCOUNTID)
+        );
+        const TransactionModel::Data_Set all_trans_check2 = TransactionModel::instance().find(
+            TransactionTable::TRANSDATE(OP_LT, openingDate),
+            TransactionTable::TOACCOUNTID(OP_EQ, m_account->ACCOUNTID)
+        );
         if (!all_trans_check1.empty() || !all_trans_check2.empty())
             return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _t("Transactions for this account already exist before this date"), _t("Invalid Date"));
 
-        const StockModel::Data_Set all_trans_stock = StockModel::instance().find(DB_Table_STOCK_V1::PURCHASEDATE(openingDate, LESS)
-                                                   ,DB_Table_STOCK_V1::HELDAT(m_account->ACCOUNTID, EQUAL));
+        const StockModel::Data_Set all_trans_stock = StockModel::instance().find(
+            StockTable::PURCHASEDATE(OP_LT, openingDate),
+            StockTable::HELDAT(OP_EQ, m_account->ACCOUNTID)
+        );
         if (!all_trans_stock.empty())
             return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _t("Stock purchases for this account already exist before this date"), _t("Invalid Date"));
 
-        const ScheduledModel::Data_Set all_trans_bd1 = ScheduledModel::instance().find(DB_Table_BILLSDEPOSITS_V1::TRANSDATE(openingDate, LESS)
-                                                   ,DB_Table_BILLSDEPOSITS_V1::ACCOUNTID(m_account->ACCOUNTID, EQUAL));
-        const ScheduledModel::Data_Set all_trans_bd2 = ScheduledModel::instance().find(DB_Table_BILLSDEPOSITS_V1::TRANSDATE(openingDate, LESS)
-                                                   ,DB_Table_BILLSDEPOSITS_V1::TOACCOUNTID(m_account->ACCOUNTID, EQUAL));
+        const ScheduledModel::Data_Set all_trans_bd1 = ScheduledModel::instance().find(
+            ScheduledTable::TRANSDATE(OP_LT, openingDate),
+            ScheduledTable::ACCOUNTID(OP_EQ, m_account->ACCOUNTID)
+        );
+        const ScheduledModel::Data_Set all_trans_bd2 = ScheduledModel::instance().find(
+            ScheduledTable::TRANSDATE(OP_LT, openingDate),
+            ScheduledTable::TOACCOUNTID(OP_EQ, m_account->ACCOUNTID)
+        );
         if (!all_trans_bd1.empty() || !all_trans_bd2.empty())
             return mmErrorDialogs::ToolTip4Object(m_initdate_ctrl, _t("Scheduled transactions for this account are scheduled before this date."), _t("Invalid Date"));
     } else

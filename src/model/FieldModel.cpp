@@ -35,7 +35,7 @@ ChoicesName FieldModel::TYPE_CHOICES = ChoicesName({
 });
 
 FieldModel::FieldModel()
-    : Model<DB_Table_CUSTOMFIELD_V1>()
+    : Model<FieldTable>()
 {
 }
 
@@ -50,9 +50,9 @@ FieldModel::~FieldModel()
 FieldModel& FieldModel::instance(wxSQLite3Database* db)
 {
     FieldModel& ins = Singleton<FieldModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -68,7 +68,7 @@ FieldModel& FieldModel::instance()
 //{
 //    Data_Set fields;
 //    wxString reftype_str = ModelBase::reftype_name(RefType);
-//    for (const auto & field : this->find(FieldModel::DB_Table_CUSTOMFIELD::REFTYPE(RefType)))
+//    for (const auto & field : this->find(FieldTable::REFTYPE(RefType)))
 //    {
 //        fields.push_back(field);
 //    }
@@ -82,7 +82,7 @@ bool FieldModel::Delete(const int64& FieldID)
     for (const auto& r : FieldValueModel::instance().find(FieldValueModel::FIELDID(FieldID)))
         FieldValueModel::instance().remove(r.id());
     this->ReleaseSavepoint();
-    return this->remove(FieldID, db_);
+    return this->remove(FieldID);
 }
 
 const wxString FieldModel::getTooltip(const wxString& properties)
@@ -276,10 +276,10 @@ const wxArrayString FieldModel::UDFC_FIELDS()
     return choices;
 }
 
-const wxArrayString FieldModel::getUDFCList(DB_Table_CUSTOMFIELD_V1::Data* r)
+const wxArrayString FieldModel::getUDFCList(FieldTable::Data* r)
 {
     const wxString& ref_type = TransactionModel::refTypeName;
-    const auto& a = FieldModel::instance().find(FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(ref_type));
+    const auto& a = FieldModel::instance().find(FieldModel::FieldTable::REFTYPE(ref_type));
 
     wxArrayString choices = UDFC_FIELDS();
 

@@ -20,8 +20,8 @@
 #pragma once
 
 #include "base/defs.h"
-#include "db/DB_Table_Billsdeposits_V1.h"
-#include "_Model.h"
+#include "table/ScheduledTable.h"
+#include "_ModelBase.h"
 #include "TransactionModel.h"
 #include "TransactionSplitModel.h"
 #include "ScheduledSplitModel.h"
@@ -29,10 +29,10 @@
 
 const int BD_REPEATS_MULTIPLEX_BASE = 100;
 
-class ScheduledModel : public Model<DB_Table_BILLSDEPOSITS_V1>
+class ScheduledModel : public Model<ScheduledTable>
 {
 public:
-    using Model<DB_Table_BILLSDEPOSITS_V1>::remove;
+    using Model<ScheduledTable>::remove;
     typedef ScheduledSplitModel::Data_Set Split_Data_Set;
 
 public:
@@ -98,23 +98,47 @@ public:
 
     struct Full_Data : public Data
     {
-        Full_Data();
-        explicit Full_Data(const Data& r);
         wxString ACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
         ScheduledSplitModel::Data_Set m_bill_splits;
         TagLinkModel::Data_Set m_tags;
-        wxString real_payee_name() const;
         wxString TAGNAMES;
+
+        Full_Data();
+        explicit Full_Data(const Data& r);
+
+        wxString real_payee_name() const;
+    };
+    typedef std::vector<Full_Data> Full_Data_Set;
+
+    struct SorterByACCOUNTNAME
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return std::wcscoll(x.ACCOUNTNAME.Lower().wc_str(), y.ACCOUNTNAME.Lower().wc_str()) < 0;
+        }
     };
 
-    typedef std::vector<Full_Data> Full_Data_Set;
+    struct SorterByPAYEENAME
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return std::wcscoll(x.PAYEENAME.Lower().wc_str(), y.PAYEENAME.Lower().wc_str()) < 0;
+        }
+    };
+
+    struct SorterByCATEGNAME
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return std::wcscoll(x.CATEGNAME.Lower().wc_str(), y.CATEGNAME.Lower().wc_str()) < 0;
+        }
+    };
 
     struct SorterByWITHDRAWAL
     {
-        template<class DATA>
-        bool operator()(const DATA& x, const DATA& y)
+        bool operator()(const Full_Data& x, const Full_Data& y)
         {
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
@@ -133,10 +157,10 @@ public:
             return x_accountid != -1 && (y_accountid == -1 || x_transamount < y_transamount);
         }
     };
+
     struct SorterByDEPOSIT
     {
-        template<class DATA>
-        bool operator()(const DATA& x, const DATA& y)
+        bool operator()(const Full_Data& x, const Full_Data& y)
         {
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
@@ -206,8 +230,8 @@ public:
     */
     bool remove(int64 id);
 
-    static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(TransactionModel::STATUS_ID status, OP op = EQUAL);
-    static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(TransactionModel::TYPE_ID type, OP op = EQUAL);
+    static ScheduledTable::STATUS STATUS(OP op, TransactionModel::STATUS_ID status);
+    static ScheduledTable::TRANSCODE TRANSCODE(OP op, TransactionModel::TYPE_ID type);
 
     static const ScheduledSplitModel::Data_Set split(const Data* r);
     static const ScheduledSplitModel::Data_Set split(const Data& r);

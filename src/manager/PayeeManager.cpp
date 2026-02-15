@@ -65,7 +65,7 @@ m_payee(payee)
 
 PayeeManager::~PayeeManager()
 {
-    InfotableModel::instance().setSize("EDITPAYEE_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("EDITPAYEE_DIALOG_SIZE", GetSize());
     m_patternTable->GetGridWindow()->Unbind(wxEVT_SIZE, &PayeeManager::OnPatternTableSize, this);
 }
 
@@ -438,7 +438,7 @@ wxEND_EVENT_TABLE()
 
 mmPayeeDialog::~mmPayeeDialog()
 {
-    InfotableModel::instance().setSize("PAYEES_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("PAYEES_DIALOG_SIZE", GetSize());
 }
 
 mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name, const wxString& payee_selected) :
@@ -527,12 +527,12 @@ void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
     SetIcon(mmex::getProgramIcon());
 
     // Calculate payee usage
-    for (const auto& txn : TransactionModel::instance().all()) {
+    for (const auto& txn : TransactionModel::instance().get_all()) {
         if (txn.DELETEDTIME.IsEmpty()) {
             m_payeeUsage[txn.PAYEEID]++;
         }
     }
-    for (const auto &bills : ScheduledModel::instance().all()) {
+    for (const auto &bills : ScheduledModel::instance().get_all()) {
         m_payeeUsage[bills.PAYEEID]++;
     }
     fillControls();
@@ -605,7 +605,7 @@ void mmPayeeDialog::fillControls()
         switch (m_sort)
         {
             case PAYEE_HIDDEN:
-                std::stable_sort(payees.begin(), payees.end(), SorterByACTIVE());
+                std::stable_sort(payees.begin(), payees.end(), PayeeTable::SorterByACTIVE());
                 break;
             case PAYEE_CATEGORY:
                 std::stable_sort(payees.begin(), payees.end(), [] (PayeeModel::Data x, PayeeModel::Data y)
@@ -618,19 +618,19 @@ void mmPayeeDialog::fillControls()
                 });
                 break;
             case PAYEE_NUMBER:
-                std::stable_sort(payees.begin(), payees.end(), SorterByNUMBER());
+                std::stable_sort(payees.begin(), payees.end(), PayeeTable::SorterByNUMBER());
                 break;
             case PAYEE_WEBSITE:
-                std::stable_sort(payees.begin(), payees.end(), SorterByWEBSITE());
+                std::stable_sort(payees.begin(), payees.end(), PayeeTable::SorterByWEBSITE());
                 break;
             case PAYEE_NOTES:
-                std::stable_sort(payees.begin(), payees.end(), SorterByNOTES());
+                std::stable_sort(payees.begin(), payees.end(), PayeeTable::SorterByNOTES());
                 break;
             case PAYEE_PATTERN:
-                std::stable_sort(payees.begin(), payees.end(), SorterByPATTERN());
+                std::stable_sort(payees.begin(), payees.end(), PayeeTable::SorterByPATTERN());
                 break;
             default:
-                std::stable_sort(payees.begin(), payees.end(), SorterByPAYEENAME());
+                std::stable_sort(payees.begin(), payees.end(), PayeeTable::SorterByPAYEENAME());
                 break;
         }
         if (m_sortReverse)
@@ -725,7 +725,7 @@ void mmPayeeDialog::EditPayee()
     long sel = payeeListBox_->GetFocusedItem();
     if (sel > -1) {
         RowData* rdata = reinterpret_cast<RowData*>(payeeListBox_->GetItemData(sel));
-        PayeeModel::Data *payee = PayeeModel::instance().get(rdata->payeeId);
+        PayeeModel::Data *payee = PayeeModel::instance().cache_id(rdata->payeeId);
         PayeeManager dlg(this, payee);
         if (dlg.ShowModal() == wxID_OK) {
             rdata->active = payee->ACTIVE == 1;
@@ -744,7 +744,7 @@ void mmPayeeDialog::DeletePayee()
 {
     FindSelectedPayees();
     for(RowData* rdata : m_selectedItems) {
-        const PayeeModel::Data *payee = PayeeModel::instance().get(rdata->payeeId);
+        const PayeeModel::Data *payee = PayeeModel::instance().cache_id(rdata->payeeId);
         if (PayeeModel::instance().is_used(rdata->payeeId)) {
             wxString deletePayeeErrMsg = _t("Payee in use.");
             deletePayeeErrMsg
@@ -800,11 +800,11 @@ void mmPayeeDialog::DefineDefaultCategory()
     FindSelectedPayees();
     int nb = size(m_selectedItems);
     if (nb > 0) {
-        PayeeModel::Data *payee = PayeeModel::instance().get(m_selectedItems.front()->payeeId);
+        PayeeModel::Data *payee = PayeeModel::instance().cache_id(m_selectedItems.front()->payeeId);
         CategoryManager dlg(this, true, nb == 1 ? payee->CATEGID : -1);
         if (dlg.ShowModal() == wxID_OK) {
             for(RowData* rdata : m_selectedItems) {
-                payee = PayeeModel::instance().get(rdata->payeeId);
+                payee = PayeeModel::instance().cache_id(rdata->payeeId);
                 payee->CATEGID = dlg.getCategId();
                 PayeeModel::instance().save(payee);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
@@ -823,7 +823,7 @@ void mmPayeeDialog::RemoveDefaultCategory()
     PayeeModel::Data *payee;
     FindSelectedPayees();
     for(RowData* rdata : m_selectedItems) {
-        payee = PayeeModel::instance().get(rdata->payeeId);
+        payee = PayeeModel::instance().cache_id(rdata->payeeId);
         payee->CATEGID = -1;
         PayeeModel::instance().save(payee);
         mmWebApp::MMEX_WebApp_UpdatePayee();
@@ -915,7 +915,7 @@ void mmPayeeDialog::ToggleHide(long idx, bool state) {
     RowData* rdata = reinterpret_cast<RowData*>(payeeListBox_->GetItemData(idx));
     if (rdata->payeeId > -1) {
         rdata->active = state;
-        PayeeModel::Data *payee = PayeeModel::instance().get(rdata->payeeId);
+        PayeeModel::Data *payee = PayeeModel::instance().cache_id(rdata->payeeId);
         payee->ACTIVE = state ? 1 : 0;
         PayeeModel::instance().save(payee);
         payeeListBox_->SetItemTextColour(idx, state ? m_normalColor : m_hiddenColor);

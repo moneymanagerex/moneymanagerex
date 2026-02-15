@@ -36,7 +36,7 @@ public:
 
     virtual void refreshData();
     double AppendData(const std::vector<data_holder>& data, std::map<int64, std::map<int, double>>& categoryStats,
-        const DB_Table_CATEGORY_V1::Data* category, int64 groupID, int level);
+        const CategoryTable::Data* category, int64 groupID, int level);
     virtual wxString getHTMLText();
 
 protected:

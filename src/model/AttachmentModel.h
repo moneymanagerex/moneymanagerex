@@ -20,13 +20,13 @@
 
 #include "base/defs.h"
 #include "util/_choices.h"
-#include "db/DB_Table_Attachment_V1.h"
-#include "_Model.h"
+#include "table/AttachmentTable.h"
+#include "_ModelBase.h"
 
-class AttachmentModel : public Model<DB_Table_ATTACHMENT_V1>
+class AttachmentModel : public Model<AttachmentTable>
 {
 public:
-    using Model<DB_Table_ATTACHMENT_V1>::get;
+    using Model<AttachmentTable>::cache_id;
 
 public:
     AttachmentModel();
@@ -58,7 +58,7 @@ public:
     static int LastAttachmentNumber(const wxString& RefType, const int64 RefId);
 
     /** Return a dataset with attachments linked to a specific type*/
-    std::map<int64, Data_Set> get_all(const wxString& reftype);
+    std::map<int64, Data_Set> get_reftype(const wxString& reftype);
 
     /** Return all attachments descriptions*/
     wxArrayString allDescriptions();

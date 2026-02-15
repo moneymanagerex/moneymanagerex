@@ -22,7 +22,7 @@
 #include "TransactionModel.h"
 
 TagModel::TagModel()
-: Model<DB_Table_TAG_V1>()
+: Model<TagTable>()
 {
 }
 
@@ -36,9 +36,9 @@ TagModel::~TagModel()
 TagModel& TagModel::instance(wxSQLite3Database* db)
 {
     TagModel& ins = Singleton<TagModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -49,13 +49,15 @@ TagModel& TagModel::instance()
     return Singleton<TagModel>::instance();
 }
 
-TagModel::Data* TagModel::get(const wxString& name)
+TagModel::Data* TagModel::cache_key(const wxString& name)
 {
-    Data* tag = this->get_one(TAGNAME(name));
-    if (tag) return tag;
+    Data* tag = this->search_cache(TAGNAME(name));
+    if (tag)
+        return tag;
 
     Data_Set items = this->find(TAGNAME(name));
-    if (!items.empty()) tag = this->get(items[0].TAGID, this->db_);
+    if (!items.empty())
+        tag = this->cache_id(items[0].TAGID);
     return tag;
 }
 
@@ -70,16 +72,16 @@ int TagModel::is_used(int64 id)
     {
         if (link.REFTYPE == TransactionModel::refTypeName)
         {
-            TransactionModel::Data* t = TransactionModel::instance().get(link.REFID);
+            TransactionModel::Data* t = TransactionModel::instance().cache_id(link.REFID);
             if (t && t->DELETEDTIME.IsEmpty())
                 return 1;
         }
         else if (link.REFTYPE == TransactionSplitModel::refTypeName)
         {
-            TransactionSplitModel::Data* s = TransactionSplitModel::instance().get(link.REFID);
+            TransactionSplitModel::Data* s = TransactionSplitModel::instance().cache_id(link.REFID);
             if (s)
             {
-                TransactionModel::Data* t = TransactionModel::instance().get(s->TRANSID);
+                TransactionModel::Data* t = TransactionModel::instance().cache_id(s->TRANSID);
                 if (t && t->DELETEDTIME.IsEmpty())
                     return 1;
             }

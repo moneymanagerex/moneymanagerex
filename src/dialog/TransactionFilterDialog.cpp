@@ -101,7 +101,7 @@ TransactionFilterDialog::~TransactionFilterDialog()
 {
     wxLogDebug("~TransactionFilterDialog");
     if (isReportMode_)
-        InfotableModel::instance().setSize("TRANSACTION_FILTER_SIZE", GetSize());
+        InfoModel::instance().setSize("TRANSACTION_FILTER_SIZE", GetSize());
 }
 
 TransactionFilterDialog::TransactionFilterDialog(wxWindow* parent, int64 accountID, bool isReport, wxString selected)
@@ -156,7 +156,8 @@ void TransactionFilterDialog::mmDoInitVariables()
 
     m_accounts_name.clear();
     const auto accounts = AccountModel::instance().find(
-        AccountModel::ACCOUNTTYPE(NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_INVESTMENT), NOT_EQUAL));
+        AccountModel::ACCOUNTTYPE(OP_NE, NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_INVESTMENT))
+    );
     for (const auto& acc : accounts)
     {
         m_accounts_name.push_back(acc.ACCOUNTNAME);
@@ -288,7 +289,7 @@ void TransactionFilterDialog::mmDoDataToControls(const wxString& json)
     Value& j_category = GetValueByPointerWithDefault(j_doc, "/CATEGORY", "");
     wxString s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
 
-    const wxString& delimiter = InfotableModel::instance().getString("CATEG_DELIMITER", ":");
+    const wxString& delimiter = InfoModel::instance().getString("CATEG_DELIMITER", ":");
     if (delimiter != ":" && s_category.Contains(":"))
     {
         for (const auto& category : CategoryModel::all_categories())
@@ -389,7 +390,7 @@ void TransactionFilterDialog::mmDoDataToControls(const wxString& json)
             if (j_tags[i].IsInt64())
             {
                 // Retrieve TAGNAME from TAGID
-                TagModel::Data* tag = TagModel::instance().get(int64(j_tags[i].GetInt64()));
+                TagModel::Data* tag = TagModel::instance().cache_id(int64(j_tags[i].GetInt64()));
                 if (tag)
                 {
                     s_tag.Append(tag->TAGNAME + " ");
@@ -439,7 +440,7 @@ void TransactionFilterDialog::mmDoDataToControls(const wxString& json)
     bool is_custom_found = false;
     const wxString RefType = TransactionModel::refTypeName;
     int field_index = 0;
-    for (const auto& i : FieldModel::instance().find(FieldModel::DB_Table_CUSTOMFIELD_V1::REFTYPE(RefType)))
+    for (const auto& i : FieldModel::instance().find(FieldModel::FieldTable::REFTYPE(RefType)))
     {
         const auto entry = wxString::Format("CUSTOM%lld", i.FIELDID);
         if (j_doc.HasMember(entry.c_str()))
@@ -528,8 +529,8 @@ void TransactionFilterDialog::mmDoInitSettingNameChoice(wxString sel) const
         // Add a blank setting at the beginning. This clears all selections if the user chooses it.
         m_setting_name->Append("", new wxStringClientData("{}"));
         // Add the 'Last Used' setting which was the last setting used that wasn't saved
-        m_setting_name->Append(_t("Last Unsaved Filter"), new wxStringClientData(InfotableModel::instance().getString(m_filter_key + "_LAST_USED", "")));
-        wxArrayString filter_settings = InfotableModel::instance().getArrayString(m_filter_key, true);
+        m_setting_name->Append(_t("Last Unsaved Filter"), new wxStringClientData(InfoModel::instance().getString(m_filter_key + "_LAST_USED", "")));
+        wxArrayString filter_settings = InfoModel::instance().getArrayString(m_filter_key, true);
         for (const auto& data : filter_settings)
         {
             Document j_doc;
@@ -545,7 +546,7 @@ void TransactionFilterDialog::mmDoInitSettingNameChoice(wxString sel) const
     }
     else
     {
-        AccountModel::Data* acc = AccountModel::instance().get(accountID_);
+        AccountModel::Data* acc = AccountModel::instance().cache_id(accountID_);
         wxString account_name = acc ? acc->ACCOUNTNAME : "";
         m_setting_name->Append(account_name, new wxStringClientData(account_name));
         sel = "";
@@ -1024,7 +1025,7 @@ bool TransactionFilterDialog::mmIsValuesCorrect() const
         if (pattern.IsValid())
         {
             pattern.Compile("^(" + value + ")$", wxRE_ICASE | wxRE_ADVANCED);
-            PayeeModel::Data_Set payees = PayeeModel::instance().all();
+            PayeeModel::Data_Set payees = PayeeModel::instance().get_all();
             for (const auto& payee : payees)
             {
                 if (pattern.Matches(payee.PAYEENAME))
@@ -1359,9 +1360,9 @@ void TransactionFilterDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
             return;
         }
 
-        int sel_json = InfotableModel::instance().findArrayItem(m_filter_key, mmGetLabelString());
+        int sel_json = InfoModel::instance().findArrayItem(m_filter_key, mmGetLabelString());
         if (sel_json != wxNOT_FOUND)
-            InfotableModel::instance().eraseArrayItem(m_filter_key, sel_json);
+            InfoModel::instance().eraseArrayItem(m_filter_key, sel_json);
 
         m_setting_name->Delete(sel--);
         m_settings_json.clear();
@@ -1375,7 +1376,7 @@ void TransactionFilterDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 
 bool TransactionFilterDialog::mmIsPayeeMatches(int64 payeeID)
 {
-    const PayeeModel::Data* payee = PayeeModel::instance().get(payeeID);
+    const PayeeModel::Data* payee = PayeeModel::instance().cache_id(payeeID);
     if (payee)
     {
         const wxString value = cbPayee_->mmGetPattern();
@@ -1415,17 +1416,21 @@ bool TransactionFilterDialog::mmIsCategoryMatches(int64 categid)
 
 bool TransactionFilterDialog::mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags)
 {
-    std::map<wxString, int64> tagnames = TagLinkModel::instance().get(refType, refId);
+    std::map<wxString, int64> tagnames = TagLinkModel::instance().cache_ref(refType, refId);
 
     // If we have a split, merge the transaciton tags so that an AND condition captures cases
     // where one tag is on the base txn and the other is on the split
     std::map<wxString, int64> txnTagnames;
     if (refType == TransactionSplitModel::refTypeName)
-        txnTagnames = TagLinkModel::instance().get(TransactionModel::refTypeName,
-                                                    TransactionSplitModel::instance().get(refId)->TRANSID);
+        txnTagnames = TagLinkModel::instance().cache_ref(
+            TransactionModel::refTypeName,
+            TransactionSplitModel::instance().cache_id(refId)->TRANSID
+        );
     else if (refType == ScheduledSplitModel::refTypeName)
-        txnTagnames = TagLinkModel::instance().get(ScheduledModel::refTypeName,
-                                                    ScheduledSplitModel::instance().get(refId)->TRANSID);
+        txnTagnames = TagLinkModel::instance().cache_ref(
+            ScheduledModel::refTypeName,
+            ScheduledSplitModel::instance().cache_id(refId)->TRANSID
+        );
 
     if (mergeSplitTags)
     {
@@ -1435,20 +1440,26 @@ bool TransactionFilterDialog::mmIsTagMatches(const wxString& refType, int64 refI
         if (refType == TransactionModel::refTypeName)
         {
             // Loop through checking splits and merge tags for each SPLITTRANSID
-            for (const auto& split : TransactionSplitModel::instance().find(TransactionSplitModel::TRANSID(refId)))
-            {
+            for (const auto& split : TransactionSplitModel::instance().find(
+                TransactionSplitModel::TRANSID(refId)
+            )) {
                 std::map<wxString, int64> splitTagnames =
-                    TagLinkModel::instance().get(TransactionSplitModel::refTypeName, split.SPLITTRANSID);
+                    TagLinkModel::instance().cache_ref(
+                        TransactionSplitModel::refTypeName, split.SPLITTRANSID
+                    );
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
         else if (refType == ScheduledModel::refTypeName)
         {
             // Loop through scheduled txn splits and merge tags for each SPLITTRANSID
-            for (const auto& split : ScheduledSplitModel::instance().find(ScheduledSplitModel::TRANSID(refId)))
-            {
+            for (const auto& split : ScheduledSplitModel::instance().find(
+                ScheduledSplitModel::TRANSID(refId)
+            )) {
                 std::map<wxString, int64> splitTagnames =
-                    TagLinkModel::instance().get(ScheduledSplitModel::refTypeName, split.SPLITTRANSID);
+                    TagLinkModel::instance().cache_ref(
+                        ScheduledSplitModel::refTypeName, split.SPLITTRANSID
+                    );
                 txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
@@ -1650,7 +1661,7 @@ const wxString TransactionFilterDialog::mmGetDescriptionToolTip() const
                 {
                     if (wxGetTranslation("Tags").IsSameAs(wxString::FromUTF8(itr->name.GetString())))
                     {
-                        value += (value.empty() ? "" : " ") + TagModel::instance().get(int64(valArray[i].GetInt64()))->TAGNAME;
+                        value += (value.empty() ? "" : " ") + TagModel::instance().cache_id(int64(valArray[i].GetInt64()))->TAGNAME;
                         // don't add a newline between tag operators
                         if (valArray.Size() > 1 && i < valArray.Size() - 2 && valArray[i + 1].GetType() == kStringType)
                             continue;
@@ -1754,7 +1765,7 @@ void TransactionFilterDialog::mmGetDescription(mmHTMLBuilder& hb)
                     // wxLogDebug("%s", wxString::FromUTF8(itr->name.GetString()));
                     if (wxGetTranslation("Tags").IsSameAs(name))
                     {
-                        temp += (temp.empty() ? "" : (appendOperator ? " & " : " ")) + TagModel::instance().get(int64(a.GetInt64()))->TAGNAME;
+                        temp += (temp.empty() ? "" : (appendOperator ? " & " : " ")) + TagModel::instance().cache_id(int64(a.GetInt64()))->TAGNAME;
                         appendOperator = true;
                     }
                     else if (wxGetTranslation("Hide Columns").IsSameAs(name) &&
@@ -1827,7 +1838,7 @@ const wxString TransactionFilterDialog::mmGetJsonSettings(bool i18n) const
         json_writer.StartArray();
         for (const auto& acc : m_selected_accounts_id)
         {
-            AccountModel::Data* a = AccountModel::instance().get(acc);
+            AccountModel::Data* a = AccountModel::instance().cache_id(acc);
             json_writer.String(a->ACCOUNTNAME.utf8_str());
         }
         json_writer.EndArray();
@@ -1967,7 +1978,7 @@ const wxString TransactionFilterDialog::mmGetJsonSettings(bool i18n) const
             if (tag == "&" || tag == "|")
                 json_writer.String(tag.utf8_str());
             else
-                json_writer.Int64(TagModel::instance().get(tag)->TAGID.GetValue());
+                json_writer.Int64(TagModel::instance().cache_key(tag)->TAGID.GetValue());
         }
 
         json_writer.EndArray();
@@ -1996,7 +2007,7 @@ const wxString TransactionFilterDialog::mmGetJsonSettings(bool i18n) const
         {
             if (!i.second.empty())
             {
-                const auto field = FieldModel::instance().get(i.first);
+                const auto field = FieldModel::instance().cache_id(i.first);
                 json_writer.Key(wxString::Format("CUSTOM%lld", field->FIELDID).utf8_str());
                 json_writer.String(i.second.utf8_str());
             }
@@ -2064,7 +2075,7 @@ void TransactionFilterDialog::OnCategoryChange(wxEvent& event)
                 {
                     m_selected_categories_id.push_back(category.second);
                     if (mmIsCategorySubCatChecked())
-                        for (const auto& subcat : CategoryModel::instance().sub_tree(CategoryModel::instance().get(category.second)))
+                        for (const auto& subcat : CategoryModel::instance().sub_tree(CategoryModel::instance().cache_id(category.second)))
                             m_selected_categories_id.push_back(subcat.CATEGID);
                 }
     }
@@ -2169,14 +2180,14 @@ void TransactionFilterDialog::OnSettingsSelected(wxCommandEvent& event)
 void TransactionFilterDialog::mmDoUpdateSettings()
 {
     if (isMultiAccount_ && m_setting_name->GetSelection() != wxNOT_FOUND) {
-        int i = InfotableModel::instance().findArrayItem(m_filter_key, mmGetLabelString());
+        int i = InfoModel::instance().findArrayItem(m_filter_key, mmGetLabelString());
         if (i != wxNOT_FOUND) {
             m_settings_json = mmGetJsonSettings();
-            InfotableModel::instance().updateArrayItem(m_filter_key, i, m_settings_json);
+            InfoModel::instance().updateArrayItem(m_filter_key, i, m_settings_json);
         }
     }
     if (!isReportMode_) {
-        InfotableModel::instance().setString(
+        InfoModel::instance().setString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", accountID_),
             mmGetJsonSettings()
         );
@@ -2206,7 +2217,7 @@ void TransactionFilterDialog::mmDoSaveSettings(bool is_user_request)
             m_setting_name->Append(user_label);
             m_setting_name->SetStringSelection(user_label);
             m_settings_json = mmGetJsonSettings();
-            InfotableModel::instance().prependArrayItem(m_filter_key, m_settings_json, -1);
+            InfoModel::instance().prependArrayItem(m_filter_key, m_settings_json, -1);
         }
         else if (label == user_label)
         {
@@ -2236,9 +2247,9 @@ void TransactionFilterDialog::mmDoSaveSettings(bool is_user_request)
         }
         else
         {
-            const auto& filter_settings = InfotableModel::instance().getArrayString(m_filter_key);
+            const auto& filter_settings = InfoModel::instance().getArrayString(m_filter_key);
             const auto& l = mmGetLabelString();
-            int sel_json = InfotableModel::instance().findArrayItem(m_filter_key, l);
+            int sel_json = InfoModel::instance().findArrayItem(m_filter_key, l);
             const auto& json = sel_json != wxNOT_FOUND ? filter_settings[sel_json] : "";
             m_settings_json = mmGetJsonSettings();
             if (isMultiAccount_ && json != m_settings_json && !label.empty())
@@ -2272,7 +2283,7 @@ void TransactionFilterDialog::mmDoSaveSettings(bool is_user_request)
             StringBuffer buffer;
             Writer<StringBuffer> writer(buffer);
             j_doc.Accept(writer);
-            InfotableModel::instance().setString(
+            InfoModel::instance().setString(
                 m_filter_key + "_LAST_USED",
                 wxString::FromUTF8(buffer.GetString())
             );
@@ -2280,7 +2291,7 @@ void TransactionFilterDialog::mmDoSaveSettings(bool is_user_request)
             mmDoInitSettingNameChoice();
         }
     }
-    InfotableModel::instance().setString("TRANSACTIONS_FILTER_LAST_USED", m_settings_json);
+    InfoModel::instance().setString("TRANSACTIONS_FILTER_LAST_USED", m_settings_json);
 }
 
 void TransactionFilterDialog::OnSaveSettings(wxCommandEvent& WXUNUSED(event))
@@ -2300,7 +2311,7 @@ void TransactionFilterDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
 
     for (const auto& acc : m_selected_accounts_id)
     {
-        AccountModel::Data* a = AccountModel::instance().get(acc);
+        AccountModel::Data* a = AccountModel::instance().cache_id(acc);
         if (a && m_accounts_name.Index(a->ACCOUNTNAME) != wxNOT_FOUND)
             selected_items.Add(m_accounts_name.Index(a->ACCOUNTNAME));
     }
@@ -2316,7 +2327,7 @@ void TransactionFilterDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
         {
             int index = entry;
             const wxString accounts_name = m_accounts_name[index];
-            const auto account = AccountModel::instance().get(accounts_name);
+            const auto account = AccountModel::instance().cache_key(accounts_name);
             if (account)
                 m_selected_accounts_id.push_back(account->ACCOUNTID);
             baloon += accounts_name + "\n";
@@ -2331,7 +2342,7 @@ void TransactionFilterDialog::OnAccountsButton(wxCommandEvent& WXUNUSED(event))
     }
     else if (m_selected_accounts_id.size() == 1)
     {
-        const AccountModel::Data* account = AccountModel::instance().get(*m_selected_accounts_id.begin());
+        const AccountModel::Data* account = AccountModel::instance().cache_id(*m_selected_accounts_id.begin());
         if (account)
             bSelectedAccounts_->SetLabelText(account->ACCOUNTNAME);
     }
@@ -2411,7 +2422,7 @@ void TransactionFilterDialog::OnComboKey(wxKeyEvent& event)
                 if (dlg.getRefreshRequested())
                     cbPayee_->mmDoReInitialize();
                 int64 payee_id = dlg.getPayeeId();
-                PayeeModel::Data* payee = PayeeModel::instance().get(payee_id);
+                PayeeModel::Data* payee = PayeeModel::instance().cache_id(payee_id);
                 if (payee)
                 {
                     cbPayee_->ChangeValue(payee->PAYEENAME);

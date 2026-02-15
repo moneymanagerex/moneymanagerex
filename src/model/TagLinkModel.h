@@ -19,16 +19,16 @@
 #pragma once
 
 #include "base/defs.h"
-#include "db/DB_Table_Taglink_V1.h"
-#include "_Model.h"
+#include "table/TagLinkTable.h"
+#include "_ModelBase.h"
 
-class TagLinkModel : public Model<DB_Table_TAGLINK_V1>
+class TagLinkModel : public Model<TagLinkTable>
 {
 public:
     TagLinkModel();
     ~TagLinkModel();
 
-    using Model<DB_Table_TAGLINK_V1>::get;
+    using Model<TagLinkTable>::cache_id;
 
 public:
     /**
@@ -49,18 +49,18 @@ public:
     * Return the Data record pointer for the given payee name
     * Returns 0 when payee not found.
     */
-    Data* get(const wxString& refType, int64 refId, int64 tagId);
-
-    /**
-    * Return a map of all tags
-    */
-    std::map<int64, TagLinkModel::Data_Set> get_all(const wxString& refType);
+    Data* cache_key(const wxString& refType, int64 refId, int64 tagId);
 
     /**
     * Return a map of all tags for the specified transaction
     * Mostly useful to return a sorted list of tagnames associated with a transaction
     */
-    std::map<wxString, int64> get(const wxString& refType, int64 refId);
+    std::map<wxString, int64> cache_ref(const wxString& refType, int64 refId);
+
+    /**
+    * Return a map of all tags
+    */
+    std::map<int64, TagLinkModel::Data_Set> get_all_id(const wxString& refType);
 
     /* Delete all tags for a REFTYPE + REFID */
     void DeleteAllTags(const wxString& refType, int64 refID);

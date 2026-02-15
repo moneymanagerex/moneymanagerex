@@ -106,7 +106,7 @@ JournalPanel::JournalPanel(
 {
     if (isAccount()) {
         m_account_id = m_checking_id;
-        m_account = AccountModel::instance().get(m_account_id);
+        m_account = AccountModel::instance().cache_id(m_account_id);
         m_currency = AccountModel::currency(m_account);
     }
     else if (isGroup()) {
@@ -159,7 +159,7 @@ void JournalPanel::loadAccount(int64 account_id)
     m_checking_id = account_id;
     m_account_id = account_id;
     m_group_ids = {};
-    m_account = AccountModel::instance().get(m_account_id);
+    m_account = AccountModel::instance().cache_id(m_account_id);
     m_currency = AccountModel::currency(m_account);
     m_use_account_specific_filter = PreferencesModel::instance().getUsePerAccountFilter();
 
@@ -517,7 +517,7 @@ void JournalPanel::loadFilterSettings()
     Document j_doc;
     m_scheduled_selected = false;
 
-    j_doc = InfotableModel::instance().getJdoc(m_use_account_specific_filter ? wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_checking_id) : "CHECK_FILTER_ALL", "{}");
+    j_doc = InfoModel::instance().getJdoc(m_use_account_specific_filter ? wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_checking_id) : "CHECK_FILTER_ALL", "{}");
     int fid = 0;
 
     if (JSON_GetIntValue(j_doc, "FILTER_ID", fid)) {
@@ -573,7 +573,7 @@ void JournalPanel::loadFilterSettings()
         JSON_GetBoolValue(j_doc, "SCHEDULED", m_scheduled_selected);
     }
 
-    wxString j_str = InfotableModel::instance().getString(
+    wxString j_str = InfoModel::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),"{}");
     m_trans_filter_dlg.reset(new TransactionFilterDialog(this, m_account_id, false, j_str));
     m_filter_advanced = m_trans_filter_dlg->mmIsSomethingChecked() ? true : false;
@@ -594,19 +594,19 @@ void  JournalPanel::updateScheduledEnable()
 void JournalPanel::saveFilterSettings()
 {
     wxString key = m_use_account_specific_filter ? wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_checking_id) : "CHECK_FILTER_ALL";
-    Document j_doc = InfotableModel::instance().getJdoc(key, "{}");
-    InfotableModel::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
-    InfotableModel::saveFilterString(j_doc, "FILTER_NAME", FILTER_NAME[m_filter_id].second);
-    InfotableModel::saveFilterString(j_doc, "FILTER_DATE", m_current_date_range.getRange().getName());
-    InfotableModel::saveFilterString(j_doc, "FILTER_DATE_BEGIN", fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue().FormatISODate() : "");
-    InfotableModel::saveFilterString(j_doc, "FILTER_DATE_END", toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue().FormatISODate() : "");
+    Document j_doc = InfoModel::instance().getJdoc(key, "{}");
+    InfoModel::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
+    InfoModel::saveFilterString(j_doc, "FILTER_NAME", FILTER_NAME[m_filter_id].second);
+    InfoModel::saveFilterString(j_doc, "FILTER_DATE", m_current_date_range.getRange().getName());
+    InfoModel::saveFilterString(j_doc, "FILTER_DATE_BEGIN", fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue().FormatISODate() : "");
+    InfoModel::saveFilterString(j_doc, "FILTER_DATE_END", toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue().FormatISODate() : "");
     if (!isDeletedTrans()) {
-        InfotableModel::saveFilterBool(j_doc, "SCHEDULED", m_scheduled_selected);
+        InfoModel::saveFilterBool(j_doc, "SCHEDULED", m_scheduled_selected);
     }
-    InfotableModel::instance().setJdoc(key, j_doc);
+    InfoModel::instance().setJdoc(key, j_doc);
 
     key = wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id);
-    InfotableModel::instance().setString(key, m_filter_advanced ? m_trans_filter_dlg->mmGetJsonSettings() : "{}");
+    InfoModel::instance().setString(key, m_filter_advanced ? m_trans_filter_dlg->mmGetJsonSettings() : "{}");
 }
 
 //----------------------------------------------------------------------------
@@ -645,7 +645,7 @@ void JournalPanel::filterList()
         );
     }
 
-    auto tranFieldData = FieldValueModel::instance().get_all(TransactionModel::refTypeName);
+    auto tranFieldData = FieldValueModel::instance().get_all_id(TransactionModel::refTypeName);
 
     bool ignore_future = PreferencesModel::instance().getIgnoreFutureTransactions();
     const wxString today_date = PreferencesModel::instance().UseTransDateTime() ?
@@ -655,9 +655,9 @@ void JournalPanel::filterList()
     const auto trans = m_account ?
         AccountModel::transactionsByDateTimeId(m_account) :
         TransactionModel::instance().allByDateTimeId();
-    const auto trans_splits = TransactionSplitModel::instance().get_all();
-    const auto trans_tags = TagLinkModel::instance().get_all(tranRefType);
-    const auto trans_attachments = AttachmentModel::instance().get_all(TransactionModel::refTypeName);
+    const auto trans_splits = TransactionSplitModel::instance().get_all_id();
+    const auto trans_tags = TagLinkModel::instance().get_all_id(tranRefType);
+    const auto trans_attachments = AttachmentModel::instance().get_reftype(TransactionModel::refTypeName);
 
     wxString date_start_str, date_end_str;
     wxDateTime date_end = wxDateTime::Now() + wxTimeSpan::Days(30);
@@ -692,12 +692,12 @@ void JournalPanel::filterList()
     > bills_index_t;
     std::vector<bills_index_t> bills_index;
     if (m_scheduled_enable && m_scheduled_selected) {
-        bills_splits = ScheduledSplitModel::instance().get_all();
-        bills_tags = TagLinkModel::instance().get_all(billRefType);
-        bills_attachments = AttachmentModel::instance().get_all(ScheduledModel::refTypeName);
+        bills_splits = ScheduledSplitModel::instance().get_all_id();
+        bills_tags = TagLinkModel::instance().get_all_id(billRefType);
+        bills_attachments = AttachmentModel::instance().get_reftype(ScheduledModel::refTypeName);
         bills = m_account ?
             AccountModel::billsdeposits(m_account) :
-            ScheduledModel::instance().all();
+            ScheduledModel::instance().get_all();
         for (unsigned int i = 0; i < bills.size(); ++i) {
             int limit = 1000;  // this is enough for daily repetitions for one year
             auto dates = ScheduledModel::unroll(bills[i], date_end_str, limit);
@@ -884,7 +884,7 @@ void JournalPanel::filterList()
             full_tran.NOTES.Append((tran->NOTES.IsEmpty() ? "" : " ") + split.NOTES);
             wxString tagnames;
             const wxString reftype = (repeat_num == 0) ? tranSplitRefType : billSplitRefType;
-            for (const auto& tag : TagLinkModel::instance().get(reftype, split.SPLITTRANSID))
+            for (const auto& tag : TagLinkModel::instance().cache_ref(reftype, split.SPLITTRANSID))
                 tagnames.Append(tag.first + " ");
             if (!tagnames.IsEmpty())
                 full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
@@ -996,7 +996,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
             while (true) {
                 item = m_lc->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
                 if (item == -1) break;
-                CurrencyModel::Data* curr = AccountModel::currency(AccountModel::instance().get(m_lc->m_trans[item].ACCOUNTID));
+                CurrencyModel::Data* curr = AccountModel::currency(AccountModel::instance().cache_id(m_lc->m_trans[item].ACCOUNTID));
                 if ((m_account_id < 0) && TransactionModel::is_transfer(m_lc->m_trans[item].TRANSCODE)) continue;
                 double convrate = (curr != m_currency) ? CurrencyHistoryModel::getDayRate(curr->CURRENCYID, m_lc->m_trans[item].TRANSDATE) : 1.0;
                 flow += convrate * TransactionModel::account_flow(m_lc->m_trans[item], (m_account_id < 0) ? m_lc->m_trans[item].ACCOUNTID : m_account_id);
@@ -1191,7 +1191,7 @@ void JournalPanel::datePickProceed() {
 
 void JournalPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
 {
-        wxString j_str = InfotableModel::instance().getString(
+        wxString j_str = InfoModel::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
             "{}"
         );
@@ -1411,8 +1411,8 @@ void JournalPanel::setSelectedTransaction(Journal::IdRepeat journal_id)
 void JournalPanel::displaySplitCategories(Journal::IdB journal_id)
 {
     Journal::Data journal = !journal_id.second ?
-        Journal::Data(*TransactionModel::instance().get(journal_id.first)) :
-        Journal::Data(*ScheduledModel::instance().get(journal_id.first));
+        Journal::Data(*TransactionModel::instance().cache_id(journal_id.first)) :
+        Journal::Data(*ScheduledModel::instance().cache_id(journal_id.first));
     std::vector<Split> splits;
     for (const auto& split : Journal::split(journal)) {
         Split s;

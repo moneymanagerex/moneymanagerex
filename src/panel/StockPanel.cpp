@@ -63,10 +63,10 @@ bool StockPanel::Create(wxWindow *parent
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
-    strLastUpdate_ = InfotableModel::instance().getString("STOCKS_LAST_REFRESH_DATETIME", "");
+    strLastUpdate_ = InfoModel::instance().getString("STOCKS_LAST_REFRESH_DATETIME", "");
     this->windowsFreezeThaw();
 
-    AccountModel::Data *account = AccountModel::instance().get(m_account_id);
+    AccountModel::Data *account = AccountModel::instance().cache_id(m_account_id);
     if (account)
         m_currency = AccountModel::currency(account);
     else
@@ -225,7 +225,7 @@ void StockPanel::ViewStockTransactions(int selectedIndex)
 
     wxDialog dlg(this, wxID_ANY,
                  _t("View Stock Transactions") + ": "
-                 + (m_account_id > -1 ? (AccountModel::get_account_name(stock->HELDAT) + " - ") : "")
+                 + (m_account_id > -1 ? (AccountModel::cache_id_name(stock->HELDAT) + " - ") : "")
                  + stock->SYMBOL,
                  wxDefaultPosition, wxSize(800, 400),
                  wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
@@ -287,12 +287,12 @@ void StockPanel::LoadStockTransactions(wxListCtrl* listCtrl, wxString symbol, in
     }
 
     for (const auto& trans : stock_list) {
-        auto* checking_entry = TransactionModel::instance().get(trans.CHECKINGACCOUNTID);
+        auto* checking_entry = TransactionModel::instance().cache_id(trans.CHECKINGACCOUNTID);
         if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) {
             checking_list.push_back(*checking_entry);
         }
     }
-    std::stable_sort(checking_list.begin(), checking_list.end(), SorterByTRANSDATE());
+    std::stable_sort(checking_list.begin(), checking_list.end(), TransactionTable::SorterByTRANSDATE());
 
     int row = 0;
     for (const auto& stock_trans : checking_list)
@@ -327,7 +327,7 @@ void StockPanel::BindListEvents(wxListCtrl* listCtrl)
 {
     listCtrl->Bind(wxEVT_LIST_ITEM_ACTIVATED, [listCtrl, this](wxListEvent& event) {
         long index = event.GetIndex();
-        auto* txn = TransactionModel::instance().get(event.GetData());
+        auto* txn = TransactionModel::instance().cache_id(event.GetData());
         if (!txn) return;
 
         auto link = TransactionLinkModel::TranslinkRecord(txn->TRANSID);
@@ -342,8 +342,8 @@ void StockPanel::BindListEvents(wxListCtrl* listCtrl)
 
         // Re-sort the list
         listCtrl->SortItems([](wxIntPtr item1, wxIntPtr item2, wxIntPtr) -> int {
-            auto date1 = TransactionModel::getTransDateTime(TransactionModel::instance().get(item1));
-            auto date2 = TransactionModel::getTransDateTime(TransactionModel::instance().get(item2));
+            auto date1 = TransactionModel::getTransDateTime(TransactionModel::instance().cache_id(item1));
+            auto date2 = TransactionModel::getTransDateTime(TransactionModel::instance().cache_id(item2));
             return date1.IsEarlierThan(date2) ? -1 : (date1.IsLaterThan(date2) ? 1 : 0);
         }, 0);
     });
@@ -389,7 +389,7 @@ wxString StockPanel::GetPanelTitle(const AccountModel::Data& account) const
 
 wxString StockPanel::BuildPage() const
 {
-    const AccountModel::Data* account = AccountModel::instance().get(m_account_id);
+    const AccountModel::Data* account = AccountModel::instance().cache_id(m_account_id);
     return m_lc->BuildPage((account ? GetPanelTitle(*account) : ""));
 }
 
@@ -416,7 +416,7 @@ void StockPanel::updateHeader()
     wxString lbl;
 
     if (m_account_id > -1) {
-        const AccountModel::Data* account = AccountModel::instance().get(m_account_id);
+        const AccountModel::Data* account = AccountModel::instance().cache_id(m_account_id);
         if (account) {
             header_text_->SetLabelText(GetPanelTitle(*account));
             cashBalance = AccountModel::balance(account);
@@ -512,7 +512,7 @@ bool StockPanel::onlineQuoteRefresh(wxString& msg)
     }
 
     std::map<wxString, double> symbols;
-    StockModel::Data_Set stock_list = StockModel::instance().all();
+    StockModel::Data_Set stock_list = StockModel::instance().get_all();
     for (const auto &stock : stock_list)
     {
         const wxString symbol = stock.SYMBOL.Upper();
@@ -567,7 +567,7 @@ bool StockPanel::onlineQuoteRefresh(wxString& msg)
 
     strLastUpdate_.Printf(_t("%1$s on %2$s"), LastRefreshDT_.FormatTime()
         , mmGetDateTimeForDisplay(LastRefreshDT_.FormatISODate()));
-    InfotableModel::instance().setString("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
+    InfoModel::instance().setString("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 
     return true;
 }
@@ -683,7 +683,7 @@ void StockPanel::DisplayAccountDetails(int64 accountID)
     m_account_id = accountID;
 
     if (m_account_id > -1){
-        AccountModel::Data* account = AccountModel::instance().get(m_account_id);
+        AccountModel::Data* account = AccountModel::instance().cache_id(m_account_id);
         m_currency = AccountModel::currency(account);
     }
 

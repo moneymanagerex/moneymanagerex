@@ -21,10 +21,10 @@
 #pragma once
 
 #include "base/defs.h"
-#include "_Model.h"
-#include "db/DB_Table_Setting_V1.h"
+#include "_ModelBase.h"
+#include "table/SettingTable.h"
 
-class SettingModel : public Model<DB_Table_SETTING_V1>
+class SettingModel : public Model<SettingTable>
 {
 public:
     SettingModel();
@@ -42,15 +42,15 @@ public:
     static SettingModel& instance();
     void Savepoint()
     {
-        this->db_->Savepoint("MMEX_Setting");
+        this->m_db->Savepoint("MMEX_Setting");
     }
     void ReleaseSavepoint()
     {
-        this->db_->ReleaseSavepoint("MMEX_Setting");
+        this->m_db->ReleaseSavepoint("MMEX_Setting");
     }
     void Rollback()
     {
-        this->db_->Rollback("MMEX_Setting");
+        this->m_db->Rollback("MMEX_Setting");
     }
 
 public:

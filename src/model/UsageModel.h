@@ -19,12 +19,12 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #pragma once
 
 #include "base/defs.h"
-#include "db/DB_Table_Usage_V1.h"
-#include "_Model.h"
+#include "table/UsageTable.h"
+#include "_ModelBase.h"
 
 class ReportBase;
 
-class UsageModel : public Model<DB_Table_USAGE_V1>
+class UsageModel : public Model<UsageTable>
 {
 public:
     UsageModel();

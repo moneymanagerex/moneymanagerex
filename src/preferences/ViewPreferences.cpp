@@ -98,7 +98,7 @@ void ViewPreferences::Create()
     viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, _t("Category Delimiter")), g_flagsH);
 
     m_categ_delimiter_list = new wxComboBox(viewBox, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, {":", ": ", " : ", "-"});
-    m_categ_delimiter_list->SetValue(InfotableModel::instance().getString("CATEG_DELIMITER",":"));
+    m_categ_delimiter_list->SetValue(InfoModel::instance().getString("CATEG_DELIMITER",":"));
     viewChoiceSizer->Add(m_categ_delimiter_list, g_flagsH);
 
     // Toolbar Appearance
@@ -311,7 +311,7 @@ bool ViewPreferences::SaveSettings()
 {
     auto delimiter = m_categ_delimiter_list->GetValue();
     if (delimiter.empty()) delimiter = ":";
-    InfotableModel::instance().setString("CATEG_DELIMITER", delimiter);
+    InfoModel::instance().setString("CATEG_DELIMITER", delimiter);
 
     wxString accVisible = VIEW_ACCOUNTS_ALL_STR;
     wxStringClientData* visible_acc_obj = static_cast<wxStringClientData*>(m_choice_visible->GetClientObject(m_choice_visible->GetSelection()));

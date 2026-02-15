@@ -176,7 +176,7 @@ void Journal::getEmptyData(Journal::Data &data, int64 accountID)
 bool Journal::getJournalData(Journal::Data &data, Journal::IdB journal_id)
 {
     if (!journal_id.second) {
-        TransactionModel::Data *tran = TransactionModel::instance().get(journal_id.first);
+        TransactionModel::Data *tran = TransactionModel::instance().cache_id(journal_id.first);
         if (!tran)
             return false;
         data.m_repeat_num = 0;
@@ -199,7 +199,7 @@ bool Journal::getJournalData(Journal::Data &data, Journal::IdB journal_id)
         data.COLOR             = tran->COLOR;
     }
     else {
-        ScheduledModel::Data *bill = ScheduledModel::instance().get(journal_id.first);
+        ScheduledModel::Data *bill = ScheduledModel::instance().cache_id(journal_id.first);
         if (!bill)
             return false;
         data.m_repeat_num = 1;

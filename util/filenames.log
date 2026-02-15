@@ -31,10 +31,10 @@ under src/ in increasing chronological order.
   util                               -> util/_util
   validators                         -> util/mmCalcValidator
 
-+ PR #8143 (2026-02-12), PR #8147 (2026-02-13)
++ PR #8143 (2026-02-12), PR #8147 (2026-02-13), PR ?
   filtertrans                        -> model/TransactionFilter
   journal                            -> model/Journal
-  model/Model                        -> model/_Model
+  model/Model                        -> model/_ModelBase
   model/Model_Account                -> model/AccountModel
   model/Model_Asset                  -> model/AssetModel
   model/Model_Attachment             -> model/AttachmentModel
@@ -48,7 +48,7 @@ under src/ in increasing chronological order.
   model/Model_CurrencyHistory        -> model/CurrencyHistoryModel
   model/Model_CustomField            -> model/FieldModel
   model/Model_CustomFieldData        -> model/FieldValueModel
-  model/Model_Infotable              -> model/InfotableModel
+  model/Model_Infotable              -> model/InfoModel
   model/Model_Payee                  -> model/PayeeModel
   model/Model_Report                 -> model/ReportModel
   model/Model_Setting                -> model/SettingModel

@@ -122,8 +122,8 @@ void AssetList::OnMouseRightClick(wxMouseEvent& event)
     }
     else
     {
-        auto asset_account = AccountModel::instance().get(m_panel->m_assets[m_selected_row].ASSETNAME);  // ASSETNAME <=> ACCOUNTNAME
-        if (!asset_account) asset_account = AccountModel::instance().get(m_panel->m_assets[m_selected_row].ASSETTYPE);  // ASSETTYPE <=> ACCOUNTNAME
+        auto asset_account = AccountModel::instance().cache_key(m_panel->m_assets[m_selected_row].ASSETNAME);  // ASSETNAME <=> ACCOUNTNAME
+        if (!asset_account) asset_account = AccountModel::instance().cache_key(m_panel->m_assets[m_selected_row].ASSETTYPE);  // ASSETTYPE <=> ACCOUNTNAME
         menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, asset_account);
         menu.Enable(MENU_TREEPOPUP_VIEWTRANS, asset_account);
     }
@@ -522,17 +522,17 @@ void AssetPanel::CreateControls()
 void AssetPanel::sortList()
 {
     std::sort(this->m_assets.begin(), this->m_assets.end());
-    std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterBySTARTDATE());
+    std::stable_sort(this->m_assets.begin(), this->m_assets.end(), AssetTable::SorterBySTARTDATE());
     switch (this->m_lc->getSortColId())
     {
     case AssetList::LIST_ID_ID:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETID());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), AssetTable::SorterByASSETID());
         break;
     case AssetList::LIST_ID_NAME:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETNAME());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), AssetTable::SorterByASSETNAME());
         break;
     case AssetList::LIST_ID_TYPE:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETTYPE());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), AssetTable::SorterByASSETTYPE());
         break;
     case AssetList::LIST_ID_VALUE_INITIAL:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
@@ -551,7 +551,7 @@ void AssetPanel::sortList()
     case AssetList::LIST_ID_DATE:
         break;
     case AssetList::LIST_ID_NOTES:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByNOTES());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), AssetTable::SorterByNOTES());
     default:
         break;
     }
@@ -565,9 +565,11 @@ int AssetPanel::initVirtualListControl(int64 id)
     m_lc->DeleteAllItems();
 
     if (this->m_filter_type == AssetModel::TYPE_ID(-1)) // ALL
-        this->m_assets = AssetModel::instance().all();
+        this->m_assets = AssetModel::instance().get_all();
     else
-        this->m_assets = AssetModel::instance().find(AssetModel::ASSETTYPE(m_filter_type));
+        this->m_assets = AssetModel::instance().find(
+            AssetModel::ASSETTYPE(OP_EQ, m_filter_type)
+        );
     this->sortList();
 
     m_lc->SetItemCount(this->m_assets.size());
@@ -775,8 +777,8 @@ void AssetPanel::AddAssetTrans(const int selected_index)
 {
     AssetModel::Data* asset = &m_assets[selected_index];
     AssetDialog asset_dialog(this, asset, true);
-    AccountModel::Data* account = AccountModel::instance().get(asset->ASSETNAME);
-    AccountModel::Data* account2 = AccountModel::instance().get(asset->ASSETTYPE);
+    AccountModel::Data* account = AccountModel::instance().cache_key(asset->ASSETNAME);
+    AccountModel::Data* account2 = AccountModel::instance().cache_key(asset->ASSETTYPE);
     if (account || account2)
     {
         asset_dialog.SetTransactionAccountName(account ? asset->ASSETNAME : asset->ASSETTYPE);
@@ -859,7 +861,7 @@ void AssetPanel::LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId)
     int row = 0;
     for (const auto& assetEntry : assetList)
     {
-        auto* assetTrans = TransactionModel::instance().get(assetEntry.CHECKINGACCOUNTID);
+        auto* assetTrans = TransactionModel::instance().cache_id(assetEntry.CHECKINGACCOUNTID);
         if (!assetTrans) continue;
 
         long index = listCtrl->InsertItem(row++, "");
@@ -870,7 +872,7 @@ void AssetPanel::LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId)
 
 void AssetPanel::FillAssetListRow(wxListCtrl* listCtrl, long index, const TransactionModel::Data& txn)
 {
-    listCtrl->SetItem(index, 0, AccountModel::get_account_name(txn.ACCOUNTID));
+    listCtrl->SetItem(index, 0, AccountModel::cache_id_name(txn.ACCOUNTID));
     listCtrl->SetItem(index, 1, mmGetDateTimeForDisplay(txn.TRANSDATE));
     listCtrl->SetItem(index, 2, TransactionModel::trade_type_name(TransactionModel::type_id(txn.TRANSCODE)));
     listCtrl->SetItem(index, 3, CurrencyModel::toString(txn.TRANSAMOUNT));
@@ -881,7 +883,7 @@ void AssetPanel::BindAssetListEvents(wxListCtrl* listCtrl)
 {
     listCtrl->Bind(wxEVT_LIST_ITEM_ACTIVATED, [listCtrl, this](wxListEvent& event) {
         long index = event.GetIndex();
-        auto* txn = TransactionModel::instance().get(event.GetData());
+        auto* txn = TransactionModel::instance().cache_id(event.GetData());
         if (!txn) return;
 
         auto link = TransactionLinkModel::TranslinkRecord(txn->TRANSID);
@@ -891,8 +893,8 @@ void AssetPanel::BindAssetListEvents(wxListCtrl* listCtrl)
         this->FillAssetListRow(listCtrl, index, *txn);
 
         listCtrl->SortItems([](wxIntPtr item1, wxIntPtr item2, wxIntPtr) -> int {
-            auto date1 = TransactionModel::getTransDateTime(TransactionModel::instance().get(item1));
-            auto date2 = TransactionModel::getTransDateTime(TransactionModel::instance().get(item2));
+            auto date1 = TransactionModel::getTransDateTime(TransactionModel::instance().cache_id(item1));
+            auto date2 = TransactionModel::getTransDateTime(TransactionModel::instance().cache_id(item2));
             return date1.IsEarlierThan(date2) ? -1 : (date1.IsLaterThan(date2) ? 1 : 0);
         }, 0);
     });
@@ -933,7 +935,7 @@ void AssetPanel::CopySelectedRowsToClipboard(wxListCtrl* listCtrl)
 void AssetPanel::GotoAssetAccount(const int selected_index)
 {
     AssetModel::Data* asset = &m_assets[selected_index];
-    const AccountModel::Data* account = AccountModel::instance().get(asset->ASSETNAME);
+    const AccountModel::Data* account = AccountModel::instance().cache_key(asset->ASSETNAME);
     if (account)
     {
         SetAccountParameters(account);
@@ -943,10 +945,10 @@ void AssetPanel::GotoAssetAccount(const int selected_index)
         TransactionLinkModel::Data_Set asset_list = TransactionLinkModel::TranslinkList<AssetModel>(asset->ASSETID);
         for (const auto &asset_entry : asset_list)
         {
-            TransactionModel::Data* asset_trans = TransactionModel::instance().get(asset_entry.CHECKINGACCOUNTID);
+            TransactionModel::Data* asset_trans = TransactionModel::instance().cache_id(asset_entry.CHECKINGACCOUNTID);
             if (asset_trans)
             {
-                account = AccountModel::instance().get(asset_trans->ACCOUNTID);
+                account = AccountModel::instance().cache_id(asset_trans->ACCOUNTID);
                 SetAccountParameters(account);
             }
         }

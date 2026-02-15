@@ -166,7 +166,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
                 bool budgetDeductMonthly = PreferencesModel::instance().getBudgetDeductMonthly();
                 // pull categories from DB and store
-                for (CategoryModel::Data category : CategoryModel::instance().all(CategoryModel::COL_CATEGNAME, false)) {
+                for (CategoryModel::Data category : CategoryModel::instance().get_all(CategoryModel::COL_CATEGNAME, false)) {
                     categ_children[category.PARENTID].push_back(category);
                 }
 

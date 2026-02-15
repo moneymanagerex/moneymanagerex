@@ -132,7 +132,7 @@ void ThemeManager::addThemes(const wxString& themeDir, bool isSystem)
 
 ThemeManager::~ThemeManager()
 {
-    InfotableModel::instance().setSize("THEMES_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("THEMES_DIALOG_SIZE", GetSize());
 }
 
 ThemeManager::ThemeManager(wxWindow *parent, const wxString &name)

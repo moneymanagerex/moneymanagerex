@@ -24,20 +24,20 @@
 #include "util/_choices.h"
 #include "util/mmDateDay.h"
 
-#include "db/DB_Table_Accountlist_V1.h"
+#include "table/AccountTable.h"
 
-#include "_Model.h"
+#include "_ModelBase.h"
 #include "CurrencyModel.h"
 #include "TransactionModel.h"
 #include "ScheduledModel.h"
 
 #include "uicontrols/navigatortypes.h"  // remove later
 
-class AccountModel : public Model<DB_Table_ACCOUNTLIST_V1>
+class AccountModel : public Model<AccountTable>
 {
 public:
-    using Model<DB_Table_ACCOUNTLIST_V1>::remove;
-    using Model<DB_Table_ACCOUNTLIST_V1>::get;
+    using Model<AccountTable>::remove;
+    using Model<AccountTable>::cache_id;
 
     enum STATUS_ID
     {
@@ -72,12 +72,12 @@ public:
 
 public:
     /** Return the Data record for the given account name */
-    Data* get(const wxString& name);
+    Data* cache_key(const wxString& name);
 
     /** Return the Data record for the given account num */
-    Data* getByAccNum(const wxString& num);
+    Data* cache_num(const wxString& num);
 
-    static wxString get_account_name(int64 account_id);
+    static wxString cache_id_name(int64 account_id);
 
     /** Remove the Data record from memory and the database. */
     bool remove(int64 id);
@@ -112,7 +112,7 @@ public:
     static int status_id(const wxString& name, int default_id = STATUS_ID_CLOSED);
     static STATUS_ID status_id(const Data* account);
     static STATUS_ID status_id(const Data& account);
-    static DB_Table_ACCOUNTLIST_V1::STATUS STATUS(STATUS_ID status, OP op = EQUAL);
+    static AccountTable::STATUS STATUS(OP op, STATUS_ID status);
 
     static bool FAVORITEACCT(const Data* r);
     static bool FAVORITEACCT(const Data& r);

@@ -21,14 +21,14 @@
 #pragma once
 
 #include "base/defs.h"
-#include "_Model.h"
-#include "db/DB_Table_Payee_V1.h"
+#include "_ModelBase.h"
+#include "table/PayeeTable.h"
 
-class PayeeModel : public Model<DB_Table_PAYEE_V1>
+class PayeeModel : public Model<PayeeTable>
 {
 public:
-    using Model<DB_Table_PAYEE_V1>::remove;
-    using Model<DB_Table_PAYEE_V1>::get;
+    using Model<PayeeTable>::remove;
+    using Model<PayeeTable>::cache_id;
 
 public:
     PayeeModel();
@@ -56,7 +56,7 @@ public:
     * Return the Data record pointer for the given payee name
     * Returns 0 when payee not found.
     */
-    Data* get(const wxString& name);
+    Data* cache_key(const wxString& name);
     static wxString get_payee_name(int64 payee_id);
 
     bool remove(int64 id);

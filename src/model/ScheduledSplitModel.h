@@ -19,10 +19,10 @@
 #pragma once
 
 #include "base/defs.h"
-#include "_Model.h"
-#include "db/DB_Table_Budgetsplittransactions_V1.h"
+#include "_ModelBase.h"
+#include "table/ScheduledSplitTable.h"
 
-class ScheduledSplitModel : public Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>
+class ScheduledSplitModel : public Model<ScheduledSplitTable>
 {
 public:
     ScheduledSplitModel();
@@ -43,11 +43,11 @@ public:
     */
     static ScheduledSplitModel& instance();
 
-    using Model<DB_Table_BUDGETSPLITTRANSACTIONS_V1>::remove;
+    using Model<ScheduledSplitTable>::remove;
 
 public:
     double get_total(const Data_Set& rows);
-    std::map<int64, Data_Set> get_all();
+    std::map<int64, Data_Set> get_all_id();
     int update(Data_Set& rows, int64 transactionID);
     bool remove(int64 id);
 

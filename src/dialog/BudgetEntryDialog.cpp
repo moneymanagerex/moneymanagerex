@@ -101,7 +101,7 @@ void BudgetEntryDialog::CreateControls()
     wxFlexGridSizer* itemGridSizer2 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel7->SetSizer(itemGridSizer2);
     
-    const CategoryModel::Data* category = CategoryModel::instance().get(budgetEntry_->CATEGID);
+    const CategoryModel::Data* category = CategoryModel::instance().cache_id(budgetEntry_->CATEGID);
     wxASSERT(category);
     
     wxStaticText* itemTextEstCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catEstimateAmountStr_);

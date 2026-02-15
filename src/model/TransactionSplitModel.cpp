@@ -22,7 +22,7 @@
 #include "TransactionModel.h"
 
 TransactionSplitModel::TransactionSplitModel()
-    : Model<DB_Table_SPLITTRANSACTIONS_V1>()
+    : Model<TransactionSplitTable>()
 {
 }
 
@@ -37,9 +37,9 @@ TransactionSplitModel::~TransactionSplitModel()
 TransactionSplitModel& TransactionSplitModel::instance(wxSQLite3Database* db)
 {
     TransactionSplitModel& ins = Singleton<TransactionSplitModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -54,7 +54,7 @@ bool TransactionSplitModel::remove(int64 id)
 {
     // Delete all tags for the split before removing it
     TagLinkModel::instance().DeleteAllTags(TransactionSplitModel::refTypeName, id);
-    return this->remove(id, db_);
+    return this->remove(id);
 }
 
 double TransactionSplitModel::get_total(const Data_Set& rows)
@@ -70,11 +70,10 @@ double TransactionSplitModel::get_total(const std::vector<Split>& rows)
     return total;
 }
 
-std::map<int64, TransactionSplitModel::Data_Set> TransactionSplitModel::get_all()
+std::map<int64, TransactionSplitModel::Data_Set> TransactionSplitModel::get_all_id()
 {
     std::map<int64, TransactionSplitModel::Data_Set> data;
-    for (const auto &split : instance().all())
-    {
+    for (const auto &split : instance().get_all()) {
         data[split.TRANSID].push_back(split);
     }
     return data;

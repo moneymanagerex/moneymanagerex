@@ -23,14 +23,14 @@
 
 #include "base/defs.h"
 #include "util/_choices.h"
-#include "db/DB_Table_Currencyformats_V1.h"
-#include "_Model.h"
-#include "InfotableModel.h" // detect base currency setting BASECURRENCYID
+#include "table/CurrencyTable.h"
+#include "_ModelBase.h"
+#include "InfoModel.h" // detect base currency setting BASECURRENCYID
 
-class CurrencyModel : public Model<DB_Table_CURRENCYFORMATS_V1>
+class CurrencyModel : public Model<CurrencyTable>
 {
 public:
-    using Model<DB_Table_CURRENCYFORMATS_V1>::remove;
+    using Model<CurrencyTable>::remove;
     CurrencyModel();
     ~CurrencyModel();
 
@@ -68,7 +68,7 @@ public:
     static TYPE_ID type_id(const Data* r);
     static TYPE_ID type_id(const Data& r);
 
-    static DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE CURRENCY_TYPE(TYPE_ID currencytype, OP op = EQUAL);
+    static CurrencyTable::CURRENCY_TYPE CURRENCY_TYPE(OP op, TYPE_ID currencytype);
     const wxArrayString all_currency_names();
     const std::map<wxString, int64>  all_currency();
     const wxArrayString all_currency_symbols();
