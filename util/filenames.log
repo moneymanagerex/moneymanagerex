@@ -31,7 +31,7 @@ under src/ in increasing chronological order.
   util                               -> util/_util
   validators                         -> util/mmCalcValidator
 
-+ PR #8143 (2026-02-12), PR #8147 (2026-02-13), PR ?
++ PR #8143 (2026-02-12), PR #8147 (2026-02-13), PR #8163 (2026-02-15)
   filtertrans                        -> model/TransactionFilter
   journal                            -> model/Journal
   model/Model                        -> model/_ModelBase
