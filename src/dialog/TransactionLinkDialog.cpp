@@ -151,7 +151,7 @@ bool TransactionLinkDialog::Create(wxWindow* parent
     CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
     if (m_account_id > 0)
     {
-        currency = AccountModel::currency(AccountModel::instance().get(m_account_id));
+        currency = AccountModel::currency(AccountModel::instance().cache_id(m_account_id));
     }
     m_trans_currency = new wxButton(this, ID_TRANS_CURRENCY_BUTTON, currency->CURRENCY_SYMBOL
         , wxDefaultPosition, std_half_size);
@@ -247,12 +247,12 @@ void TransactionLinkDialog::DataToControls()
 
     m_transaction_id = m_checking_entry->TRANSID;
     m_account_id = m_checking_entry->ACCOUNTID;
-    m_account->SetLabelText(AccountModel::get_account_name(m_account_id));
+    m_account->SetLabelText(AccountModel::cache_id_name(m_account_id));
     m_type_selector->SetSelection(TransactionModel::type_id(m_checking_entry->TRANSCODE));
 
     if (m_account_id > 0)
     {
-        CurrencyModel::Data* currency = AccountModel::currency(AccountModel::instance().get(m_account_id));
+        CurrencyModel::Data* currency = AccountModel::currency(AccountModel::instance().cache_id(m_account_id));
         m_trans_currency->SetLabelText(currency->CURRENCY_SYMBOL);
         m_entered_amount->SetCurrency(currency);
     }
@@ -316,12 +316,15 @@ void TransactionLinkDialog::SetLastPayeeAndCategory(const int64 account_id)
 {
     if (PreferencesModel::instance().getTransPayeeNone() == PreferencesModel::LASTUSED)
     {
-        TransactionModel::Data_Set trans_list = TransactionModel::instance().find(TransactionModel::ACCOUNTID(account_id), TransactionModel::TRANSCODE(TransactionModel::TYPE_ID_TRANSFER, NOT_EQUAL));
+        TransactionModel::Data_Set trans_list = TransactionModel::instance().find(
+            TransactionModel::ACCOUNTID(account_id),
+            TransactionModel::TRANSCODE(OP_NE, TransactionModel::TYPE_ID_TRANSFER)
+        );
         if (!trans_list.empty())
         {
             int last_trans_pos = trans_list.size() - 1;
 
-            PayeeModel::Data* last_payee = PayeeModel::instance().get(trans_list.at(last_trans_pos).PAYEEID);
+            PayeeModel::Data* last_payee = PayeeModel::instance().cache_id(trans_list.at(last_trans_pos).PAYEEID);
             if (last_payee)
             {
                 m_payee->SetLabelText(last_payee->PAYEENAME);
@@ -357,7 +360,7 @@ void TransactionLinkDialog::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
     if (dlg.ShowModal() == wxID_OK)
     {
         m_payee_id = dlg.getPayeeId();
-        PayeeModel::Data* payee = PayeeModel::instance().get(m_payee_id);
+        PayeeModel::Data* payee = PayeeModel::instance().cache_id(m_payee_id);
         if (payee)
         {
             m_payee->SetLabelText(payee->PAYEENAME);
@@ -462,7 +465,7 @@ void TransactionLinkDialog::SetTransactionStatus(const int trans_status_enum)
 void TransactionLinkDialog::SetTransactionPayee(const int64 payeeid)
 {
     m_payee_id = payeeid;
-    PayeeModel::Data* payee = PayeeModel::instance().get(m_payee_id);
+    PayeeModel::Data* payee = PayeeModel::instance().cache_id(m_payee_id);
     if (payee)
         m_payee->SetLabelText(payee->PAYEENAME);
 }
@@ -475,13 +478,13 @@ void TransactionLinkDialog::SetTransactionCategory(const int64 categid)
 
 void TransactionLinkDialog::SetTransactionAccount(const wxString& trans_account)
 {
-    AccountModel::Data* account = AccountModel::instance().get(trans_account);
+    AccountModel::Data* account = AccountModel::instance().cache_key(trans_account);
     if (account)
     {
         m_account->SetLabelText(account->ACCOUNTNAME);
         m_account_id = account->ACCOUNTID;
         SetLastPayeeAndCategory(m_account_id);
-        CurrencyModel::Data* currency = CurrencyModel::instance().get(account->CURRENCYID);
+        CurrencyModel::Data* currency = CurrencyModel::instance().cache_id(account->CURRENCYID);
         m_entered_amount->SetCurrency(currency);
         m_trans_currency->SetLabelText(currency->CURRENCY_SYMBOL);
     }
@@ -508,7 +511,7 @@ int64 TransactionLinkDialog::SaveChecking()
     double initial_amount = 0;
     m_entered_amount->checkValue(initial_amount);
 
-    const AccountModel::Data* account = AccountModel::instance().get(m_account_id);
+    const AccountModel::Data* account = AccountModel::instance().cache_id(m_account_id);
     wxDateTime trxDate = m_date_selector->GetValue();
     if (trxDate.FormatISODate() < account->INITIALDATE)
     {

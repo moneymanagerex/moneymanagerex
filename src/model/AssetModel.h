@@ -21,11 +21,11 @@
 
 #include "base/defs.h"
 #include "util/_choices.h"
-#include "db/DB_Table_Assets_V1.h"
-#include "_Model.h"
+#include "table/AssetTable.h"
+#include "_ModelBase.h"
 #include "CurrencyModel.h"
 
-class AssetModel : public Model<DB_Table_ASSETS_V1>
+class AssetModel : public Model<AssetTable>
 {
 public:
     enum TYPE_ID
@@ -83,8 +83,8 @@ public:
     static AssetModel& instance();
 
 public:
-    static DB_Table_ASSETS_V1::ASSETTYPE ASSETTYPE(TYPE_ID type, OP op = EQUAL);
-    static DB_Table_ASSETS_V1::STARTDATE STARTDATE(const wxDate& date, OP op = EQUAL);
+    static AssetTable::ASSETTYPE ASSETTYPE(OP op, TYPE_ID type);
+    static AssetTable::STARTDATE STARTDATE(OP op, const wxDate& date);
     
 public:
     static wxString get_asset_name(int64 asset_id);

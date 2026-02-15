@@ -103,14 +103,14 @@ ScheduledDialog::~ScheduledDialog()
     wxSize size = GetSize();
     if (m_custom_fields->IsCustomPanelShown())
         size = wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight());
-    InfotableModel::instance().setSize("RECURRINGTRANS_DIALOG_SIZE", size);
+    InfoModel::instance().setSize("RECURRINGTRANS_DIALOG_SIZE", size);
 }
 
 ScheduledDialog::ScheduledDialog(wxWindow* parent, int64 bdID, bool duplicate, bool enterOccur)
     : m_dup_bill(duplicate)
     , m_enter_occur(enterOccur)
 {
-    const ScheduledModel::Data* bill = ScheduledModel::instance().get(bdID);
+    const ScheduledModel::Data* bill = ScheduledModel::instance().cache_id(bdID);
     m_new_bill = bill ? false : true;
 
     if (!m_new_bill)
@@ -151,7 +151,7 @@ ScheduledDialog::ScheduledDialog(wxWindow* parent, int64 bdID, bool duplicate, b
         }
 
         // If duplicate then we may need to copy the attachments
-        if (m_dup_bill && InfotableModel::instance().getBool("ATTACHMENTSDUPLICATE", false))
+        if (m_dup_bill && InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false))
         {
             const wxString& RefType = ScheduledModel::refTypeName;
             mmAttachmentManage::CloneAllAttachments(RefType, bdID, 0);
@@ -214,7 +214,7 @@ void ScheduledDialog::dataToControls()
     setRepeatType(ScheduledModel::REPEAT_MONTHLY);
 
     for (int i = 0; i < TransactionModel::TYPE_ID_size; ++i) {
-        if (i == TransactionModel::TYPE_ID_TRANSFER && AccountModel::instance().all().size() < 2)
+        if (i == TransactionModel::TYPE_ID_TRANSFER && AccountModel::instance().get_all().size() < 2)
             break;
         wxString type = TransactionModel::type_name(i);
         m_choice_transaction_type->Append(wxGetTranslation(type), new wxStringClientData(type));
@@ -278,7 +278,7 @@ void ScheduledDialog::dataToControls()
     m_choice_transaction_type->SetSelection(TransactionModel::type_id(m_bill_data.TRANSCODE));
     updateControlsForTransType();
 
-    AccountModel::Data* account = AccountModel::instance().get(m_bill_data.ACCOUNTID);
+    AccountModel::Data* account = AccountModel::instance().cache_id(m_bill_data.ACCOUNTID);
     cbAccount_->ChangeValue(account ? account->ACCOUNTNAME : "");
 
     tagTextCtrl_->SetTags(m_bill_data.TAGS);
@@ -337,10 +337,10 @@ void ScheduledDialog::SetDialogHeader(const wxString& header)
 
 void ScheduledDialog::SetDialogParameters(int64 trx_id)
 {
-    const auto split = TransactionSplitModel::instance().get_all();
-    const auto tags = TagLinkModel::instance().get_all(ScheduledModel::refTypeName);
+    const auto split = TransactionSplitModel::instance().get_all_id();
+    const auto tags = TagLinkModel::instance().get_all_id(ScheduledModel::refTypeName);
     //const auto trx = TransactionModel::instance().find(TransactionModel::TRANSID(trx_id)).at(0);
-    const auto trx = TransactionModel::instance().get(trx_id);
+    const auto trx = TransactionModel::instance().cache_id(trx_id);
     TransactionModel::Full_Data t(*trx, split, tags);
     m_bill_data.ACCOUNTID = t.ACCOUNTID;
     cbAccount_->SetValue(t.ACCOUNTNAME);
@@ -714,7 +714,7 @@ void ScheduledDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 
 void ScheduledDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
 {
-    PayeeModel::Data* payee = PayeeModel::instance().get(cbPayee_->mmGetId());
+    PayeeModel::Data* payee = PayeeModel::instance().cache_id(cbPayee_->mmGetId());
     if (payee && m_new_bill)
     {
         // Only for new/duplicate transactions: if user want to autofill last category used for payee.
@@ -733,13 +733,13 @@ void ScheduledDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
 
 void ScheduledDialog::SetAmountCurrencies(int64 accountID, int64 toAccountID)
 {
-    AccountModel::Data* account = AccountModel::instance().get(accountID);
+    AccountModel::Data* account = AccountModel::instance().cache_id(accountID);
     if (account)
-        textAmount_->SetCurrency(CurrencyModel::instance().get(account->CURRENCYID));
+        textAmount_->SetCurrency(CurrencyModel::instance().cache_id(account->CURRENCYID));
 
-    account = AccountModel::instance().get(toAccountID);
+    account = AccountModel::instance().cache_id(toAccountID);
     if (account)
-        toTextAmount_->SetCurrency(CurrencyModel::instance().get(account->CURRENCYID));
+        toTextAmount_->SetCurrency(CurrencyModel::instance().cache_id(account->CURRENCYID));
 
 }
 
@@ -770,7 +770,7 @@ void ScheduledDialog::OnComboKey(wxKeyEvent& event)
                 if (dlg.getRefreshRequested())
                     cbPayee_->mmDoReInitialize();
                 int64 payee_id = dlg.getPayeeId();
-                PayeeModel::Data* payee = PayeeModel::instance().get(payee_id);
+                PayeeModel::Data* payee = PayeeModel::instance().cache_id(payee_id);
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                     cbPayee_->SelectAll();
@@ -910,7 +910,7 @@ void ScheduledDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         return mmErrorDialogs::InvalidAccount(cbAccount_, m_transfer, mmErrorDialogs::MESSAGE_DROPDOWN_BOX);
     }
     m_bill_data.ACCOUNTID = cbAccount_->mmGetId();
-    AccountModel::Data* acc = AccountModel::instance().get(m_bill_data.ACCOUNTID);
+    AccountModel::Data* acc = AccountModel::instance().cache_id(m_bill_data.ACCOUNTID);
 
     if (!textAmount_->checkValue(m_bill_data.TRANSAMOUNT)) return;
 
@@ -942,7 +942,7 @@ void ScheduledDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         if (payee_loc != wxNOT_FOUND)
             payee_name = cbPayee_->GetString(payee_loc);
 
-        PayeeModel::Data* payee = PayeeModel::instance().get(payee_name);
+        PayeeModel::Data* payee = PayeeModel::instance().cache_key(payee_name);
         if (!payee)
         {
             wxMessageDialog msgDlg( this
@@ -987,7 +987,7 @@ void ScheduledDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         {
             if (m_bill_data.TOACCOUNTID != -1)
             {
-                AccountModel::Data* to_account = AccountModel::instance().get(m_bill_data.TOACCOUNTID);
+                AccountModel::Data* to_account = AccountModel::instance().cache_id(m_bill_data.TOACCOUNTID);
 
                 CurrencyModel::Data* from_currency = AccountModel::currency(acc);
                 CurrencyModel::Data* to_currency = AccountModel::currency(to_account);
@@ -1043,8 +1043,8 @@ void ScheduledDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     else
         m_bill_data.COLOR = -1;
 
-    const AccountModel::Data* account = AccountModel::instance().get(m_bill_data.ACCOUNTID);
-    const AccountModel::Data* toAccount = AccountModel::instance().get(m_bill_data.TOACCOUNTID);
+    const AccountModel::Data* account = AccountModel::instance().cache_id(m_bill_data.ACCOUNTID);
+    const AccountModel::Data* toAccount = AccountModel::instance().cache_id(m_bill_data.TOACCOUNTID);
     if (m_bill_data.TRANSDATE < account->INITIALDATE)
         return mmErrorDialogs::ToolTip4Object(cbAccount_, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
 
@@ -1053,7 +1053,7 @@ void ScheduledDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (!m_enter_occur)
     {
-        ScheduledModel::Data* bill = ScheduledModel::instance().get(m_bill_data.BDID);
+        ScheduledModel::Data* bill = ScheduledModel::instance().cache_id(m_bill_data.BDID);
         if (m_new_bill || m_dup_bill) {
             bill = ScheduledModel::instance().create();
         }
@@ -1450,7 +1450,7 @@ void ScheduledDialog::setTooltips()
     if (!this->m_bill_data.local_splits.empty())
     {
         const CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
-        const AccountModel::Data* account = AccountModel::instance().get(m_bill_data.ACCOUNTID);
+        const AccountModel::Data* account = AccountModel::instance().cache_id(m_bill_data.ACCOUNTID);
         if (account) {
             currency = AccountModel::currency(account);
         }
@@ -1476,8 +1476,9 @@ void ScheduledDialog::setCategoryLabel()
         && PreferencesModel::instance().getTransCategoryTransferNone() == PreferencesModel::LASTUSED)
     {
         TransactionModel::Data_Set transactions = TransactionModel::instance().find(
-            TransactionModel::TRANSCODE(TransactionModel::TYPE_ID_TRANSFER, EQUAL)
-            , TransactionModel::TRANSDATE(mmDateDay::today(), LESS_OR_EQUAL));
+            TransactionModel::TRANSCODE(OP_EQ, TransactionModel::TYPE_ID_TRANSFER),
+            TransactionModel::TRANSDATE(OP_LE, mmDateDay::today())
+        );
 
         if (!transactions.empty())
         {
@@ -1525,7 +1526,7 @@ void ScheduledDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
 void ScheduledDialog::OnAccountUpdated(wxCommandEvent& WXUNUSED(event))
 {
     int64 acc_id = cbAccount_->mmGetId();
-    AccountModel::Data* account = AccountModel::instance().get(acc_id);
+    AccountModel::Data* account = AccountModel::instance().cache_id(acc_id);
     if (account)
     {
         SetAmountCurrencies(acc_id, -1);

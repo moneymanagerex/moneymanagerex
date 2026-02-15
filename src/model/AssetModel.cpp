@@ -48,7 +48,7 @@ ChoicesName AssetModel::CHANGEMODE_CHOICES = ChoicesName({
 });
 
 AssetModel::AssetModel()
-: Model<DB_Table_ASSETS_V1>()
+: Model<AssetTable>()
 {
 }
 
@@ -63,9 +63,9 @@ AssetModel::~AssetModel()
 AssetModel& AssetModel::instance(wxSQLite3Database* db)
 {
     AssetModel& ins = Singleton<AssetModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -78,7 +78,7 @@ AssetModel& AssetModel::instance()
 
 wxString AssetModel::get_asset_name(int64 asset_id)
 {
-    Data* asset = instance().get(asset_id);
+    Data* asset = instance().cache_id(asset_id);
     if (asset)
         return asset->ASSETNAME;
     else
@@ -88,21 +88,21 @@ wxString AssetModel::get_asset_name(int64 asset_id)
 double AssetModel::balance()
 {
     double balance = 0.0;
-    for (const auto& r: this->all())
+    for (const auto& r: this->get_all())
     {
         balance += value(r).second;
     }
     return balance;
 }
 
-DB_Table_ASSETS_V1::ASSETTYPE AssetModel::ASSETTYPE(TYPE_ID type, OP op)
+AssetTable::ASSETTYPE AssetModel::ASSETTYPE(OP op, TYPE_ID type)
 {
-    return DB_Table_ASSETS_V1::ASSETTYPE(type_name(type), op);
+    return AssetTable::ASSETTYPE(op, type_name(type));
 }
 
-DB_Table_ASSETS_V1::STARTDATE AssetModel::STARTDATE(const wxDate& date, OP op)
+AssetTable::STARTDATE AssetModel::STARTDATE(OP op, const wxDate& date)
 {
-    return DB_Table_ASSETS_V1::STARTDATE(date.FormatISODate(), op);
+    return AssetTable::STARTDATE(op, date.FormatISODate());
 }
 
 wxDate AssetModel::STARTDATE(const Data* r)
@@ -160,11 +160,11 @@ std::pair<double, double> AssetModel::valueAtDate(const Data* r, const wxDate& d
         TransactionModel::Data_Set trans;
         for (const auto& link : translink_records)
         {
-            const TransactionModel::Data* tran = TransactionModel::instance().get(link.CHECKINGACCOUNTID);
+            const TransactionModel::Data* tran = TransactionModel::instance().cache_id(link.CHECKINGACCOUNTID);
             if(tran && tran->DELETEDTIME.IsEmpty()) trans.push_back(*tran);
         }
 
-        std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+        std::stable_sort(trans.begin(), trans.end(), TransactionTable::SorterByTRANSDATE());
 
         wxDate last = date;
         for (const auto& tran: trans)
@@ -185,9 +185,9 @@ std::pair<double, double> AssetModel::valueAtDate(const Data* r, const wxDate& d
 
             double accflow = TransactionModel::account_flow(tran, tran.ACCOUNTID);
             double amount = -1 * accflow *
-                CurrencyHistoryModel::getDayRate(AccountModel::instance().get(tran.ACCOUNTID)->CURRENCYID, tranDate);
+                CurrencyHistoryModel::getDayRate(AccountModel::instance().cache_id(tran.ACCOUNTID)->CURRENCYID, tranDate);
             //double amount = -1 * TransactionModel::account_flow(tran, tran.ACCOUNTID) *
-            //    CurrencyHistoryModel::getDayRate(AccountModel::instance().get(tran.ACCOUNTID)->CURRENCYID, tranDate);
+            //    CurrencyHistoryModel::getDayRate(AccountModel::instance().cache_id(tran.ACCOUNTID)->CURRENCYID, tranDate);
 
             if (amount >= 0)
             {

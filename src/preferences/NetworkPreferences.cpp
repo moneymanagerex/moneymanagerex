@@ -75,14 +75,14 @@ void NetworkPreferences::Create()
     WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     WebAppStaticBoxSizerGrid->Add(new wxStaticText(WebAppStaticBox, wxID_STATIC, _t("URL")), g_flagsH);
-    wxString WebAppURL = InfotableModel::instance().getString("WEBAPPURL", "");
+    wxString WebAppURL = InfoModel::instance().getString("WEBAPPURL", "");
     wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(WebAppStaticBox, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         WebAppURL, wxDefaultPosition, wxSize(300, -1));
     mmToolTip(WebAppURLTextCtr, _t("Specify the Web App URL without final slash"));
     WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
 
     WebAppStaticBoxSizerGrid->Add(new wxStaticText(WebAppStaticBox, wxID_STATIC, _t("GUID")), g_flagsH);
-    wxString WebAppGUID = InfotableModel::instance().getString("WEBAPPGUID", "");
+    wxString WebAppGUID = InfoModel::instance().getString("WEBAPPGUID", "");
     wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(WebAppStaticBox, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
         WebAppGUID, wxDefaultPosition, wxSize(300, -1));
     mmToolTip(WebAppGUIDTextCtr, _t("Specify the Web App GUID"));
@@ -214,10 +214,10 @@ bool NetworkPreferences::SaveSettings()
     SettingModel::instance().setInt("PROXYPORT", m_proxy_port->GetValue());
 
     wxTextCtrl* WebAppURL = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL));
-    InfotableModel::instance().setString("WEBAPPURL", WebAppURL->GetValue().Trim(false).Trim());
+    InfoModel::instance().setString("WEBAPPURL", WebAppURL->GetValue().Trim(false).Trim());
 
     wxTextCtrl* WebAppGUID = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID));
-    InfotableModel::instance().setString("WEBAPPGUID", WebAppGUID->GetValue().Trim(false).Trim());
+    InfoModel::instance().setString("WEBAPPGUID", WebAppGUID->GetValue().Trim(false).Trim());
 
     PreferencesModel::instance().setSendUsageStats(m_send_data->GetValue());
     PreferencesModel::instance().setCheckNews(m_check_news->GetValue());

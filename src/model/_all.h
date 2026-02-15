@@ -28,7 +28,7 @@
 #include "CurrencyModel.h"
 #include "FieldModel.h"
 #include "FieldValueModel.h"
-#include "InfotableModel.h"
+#include "InfoModel.h"
 #include "PayeeModel.h"
 #include "ReportModel.h"
 #include "ScheduledModel.h"

@@ -79,7 +79,7 @@ void OtherPreferences::Create()
     //list.Add("https://www.marketwatch.com/investing/stock/%s");
     //list.Add("https://www.ifcmarkets.co.in/en/market-data/stocks-prices/%s");
 
-    wxString stockURL = InfotableModel::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
+    wxString stockURL = InfoModel::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
     wxComboBox* itemListOfURL = new wxComboBox(stockStaticBox, ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, ""
         , wxDefaultPosition, wxDefaultSize, list);
     itemListOfURL->SetValue(stockURL);
@@ -168,7 +168,7 @@ void OtherPreferences::Create()
     databaseStaticBoxSizer->Add(flex_sizer3);
 
     //CSV Import
-    const wxString delimiter = InfotableModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
+    const wxString delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
     wxStaticBox* csvStaticBox = new wxStaticBox(misc_panel, wxID_ANY, _t("CSV"));
     wxStaticBoxSizer* csvStaticBoxSizer = new wxStaticBoxSizer(csvStaticBox, wxVERTICAL);
@@ -223,13 +223,13 @@ void OtherPreferences::SaveStocksUrl()
     wxString stockURL = url->GetValue().Trim(false).Trim();
     if (!stockURL.IsEmpty())
     {
-        InfotableModel::instance().setString("STOCKURL", stockURL);
+        InfoModel::instance().setString("STOCKURL", stockURL);
     }
     else
     {
-        InfotableModel::Data_Set items = InfotableModel::instance().find(InfotableModel::INFONAME("STOCKURL"));
+        InfoModel::Data_Set items = InfoModel::instance().find(InfoModel::INFONAME("STOCKURL"));
         if (!items.empty())
-            InfotableModel::instance().remove(items[0].INFOID);
+            InfoModel::instance().remove(items[0].INFOID);
     }
 }
 
@@ -253,7 +253,7 @@ bool OtherPreferences::SaveSettings()
 
     wxTextCtrl* st = static_cast<wxTextCtrl*>(FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4));
     const wxString& delim = st->GetValue();
-    if (!delim.IsEmpty()) InfotableModel::instance().setString("DELIMITER", delim);
+    if (!delim.IsEmpty()) InfoModel::instance().setString("DELIMITER", delim);
 
     return true;
 }

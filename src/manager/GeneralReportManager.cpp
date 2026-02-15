@@ -36,7 +36,7 @@
 #include "util/_simple.h"
 #include "util/mmMiniEditor.h"
 
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/PreferencesModel.h"
 #include "model/ReportModel.h"
 
@@ -290,7 +290,7 @@ GeneralReportManager::GeneralReportManager(wxWindow* parent, wxSQLite3Database* 
 GeneralReportManager::~GeneralReportManager()
 {
     clearVFprintedFiles("grm");
-    InfotableModel::instance().setSize("GRM_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("GRM_DIALOG_SIZE", GetSize());
 }
 
 bool GeneralReportManager::Create(wxWindow* parent
@@ -330,9 +330,9 @@ void GeneralReportManager::fillControls()
     m_rootItem = m_treeCtrl->AddRoot(_t("Reports"));
     m_selectedItemID = m_rootItem;
     m_treeCtrl->SetItemBold(m_rootItem, true);
-    auto records = ReportModel::instance().all();
-    std::sort(records.begin(), records.end(), SorterByREPORTNAME());
-    std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
+    auto records = ReportModel::instance().get_all();
+    std::sort(records.begin(), records.end(), ReportTable::SorterByREPORTNAME());
+    std::stable_sort(records.begin(), records.end(), ReportTable::SorterByGROUPNAME());
     wxTreeItemId group;
     wxString group_name;
     for (const auto& record : records)
@@ -668,7 +668,7 @@ void GeneralReportManager::importReport()
     openZipFile(reportFileName, htt, sql, lua, txt);
 
     reportName = fn.FileName(reportFileName).GetName();
-    ReportModel::Data *report = ReportModel::instance().get(reportName);
+    ReportModel::Data *report = ReportModel::instance().cache_key(reportName);
 
     if (!report) report = ReportModel::instance().create();
     report->GROUPNAME = m_selectedGroup;
@@ -736,7 +736,7 @@ void GeneralReportManager::OnUpdateReport(wxCommandEvent& WXUNUSED(event))
     if (!iData) return;
 
     int64 id = iData->get_report_id();
-    ReportModel::Data * report = ReportModel::instance().get(id);
+    ReportModel::Data * report = ReportModel::instance().cache_id(id);
     if (report)
     {
         mmMiniEditor* templateText = static_cast<mmMiniEditor*>(FindWindow(ID_TEMPLATE));
@@ -775,7 +775,7 @@ void GeneralReportManager::OnRun(wxCommandEvent& WXUNUSED(event))
 
     int64 id = iData->get_report_id();
     m_selectedGroup = iData->get_group_name();
-    ReportModel::Data * report = ReportModel::instance().get(id);
+    ReportModel::Data * report = ReportModel::instance().cache_id(id);
     if (report)
     {
         CheckAndSaveChanges();
@@ -808,7 +808,7 @@ void GeneralReportManager::OnContextMenu(wxContextMenuEvent& event)
     m_treeCtrl->SelectItem(id);
     MyTreeItemData *iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(id));
     int64 report_id = iData ? iData->get_report_id() : -1;
-    ReportModel::Data *report = ReportModel::instance().get(report_id);
+    ReportModel::Data *report = ReportModel::instance().cache_id(report_id);
 
     wxMenu* samplesMenu = new wxMenu;
     samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _tu("Assets…"));
@@ -898,7 +898,7 @@ void GeneralReportManager::OnSelChanged(wxTreeEvent& event)
 
     int64 id = iData->get_report_id();
     m_selectedGroup = iData->get_group_name();
-    ReportModel::Data * report = ReportModel::instance().get(id);
+    ReportModel::Data * report = ReportModel::instance().cache_id(id);
     if (report)
     {
         m_selectedReportID = report->REPORTID;
@@ -945,7 +945,7 @@ void GeneralReportManager::OnSelChanged(wxTreeEvent& event)
 
 void GeneralReportManager::renameReport(int64 id)
 {
-    ReportModel::Data * report = ReportModel::instance().get(id);
+    ReportModel::Data * report = ReportModel::instance().cache_id(id);
     if (report) {
         wxString label = wxGetTextFromUser(_t("Enter the name for the report")
             , _t("General Report Manager"), report->REPORTNAME);
@@ -962,7 +962,7 @@ void GeneralReportManager::renameReport(int64 id)
 #ifdef MMEX_USE_REPORT_SYNC
 bool GeneralReportManager::syncReport(int64 id)
 {
-    ReportModel::Data * report = ReportModel::instance().get(id);
+    ReportModel::Data * report = ReportModel::instance().cache_id(id);
     if (report)
     {
         wxString msg = wxString() << _("Pull Report Title:")
@@ -981,7 +981,7 @@ bool GeneralReportManager::syncReport(int64 id)
 
 bool GeneralReportManager::deleteReport(int64 id)
 {
-    ReportModel::Data * report = ReportModel::instance().get(id);
+    ReportModel::Data * report = ReportModel::instance().cache_id(id);
     if (report)
     {
         wxString msg = wxString() << _t("Delete the Report Title:")
@@ -1002,7 +1002,7 @@ bool GeneralReportManager::deleteReport(int64 id)
 
 void GeneralReportManager::changeReportState(int64 id)
 {
-    ReportModel::Data* report = ReportModel::instance().get(id);
+    ReportModel::Data* report = ReportModel::instance().cache_id(id);
     if (report)
     {
         report->ACTIVE = (report->ACTIVE + 1) % 2;
@@ -1012,7 +1012,7 @@ void GeneralReportManager::changeReportState(int64 id)
 
 void GeneralReportManager::duplicateReport(int64 id)
 {
-    ReportModel::Data* report = ReportModel::instance().get(id);
+    ReportModel::Data* report = ReportModel::instance().cache_id(id);
     if (report) {
         wxString label = wxGetTextFromUser(_t("Enter the name for the report")
             , _t("General Report Manager"), report->REPORTNAME);
@@ -1034,7 +1034,7 @@ void GeneralReportManager::duplicateReport(int64 id)
 
 bool GeneralReportManager::changeReportGroup(int64 id, bool ungroup)
 {
-    ReportModel::Data * report = ReportModel::instance().get(id);
+    ReportModel::Data * report = ReportModel::instance().cache_id(id);
     if (report)
     {
         if (ungroup)
@@ -1199,7 +1199,7 @@ void GeneralReportManager::OnExportReport(wxCommandEvent& WXUNUSED(event))
     if (!iData) return;
 
     int64 id = iData->get_report_id();
-    ReportModel::Data * report = ReportModel::instance().get(id);
+    ReportModel::Data * report = ReportModel::instance().cache_id(id);
     if (report)
     {
         wxString file_name = report->REPORTNAME + ".grm";
@@ -1522,7 +1522,7 @@ void GeneralReportManager::DownloadAndStoreReport(const wxString& groupName, con
         return;
     }
 
-    ReportModel::Data *report = ReportModel::instance().get(reportName);
+    ReportModel::Data *report = ReportModel::instance().cache_key(reportName);
 
     if (!report) report = ReportModel::instance().create();
     report->GROUPNAME = groupName;

@@ -27,7 +27,7 @@
 #include "panel/JournalPanel.h"
 
 SettingModel::SettingModel()
-: Model<DB_Table_SETTING_V1>()
+: Model<SettingTable>()
 {
 }
 
@@ -40,9 +40,9 @@ SettingModel::~SettingModel()
 SettingModel& SettingModel::instance(wxSQLite3Database* db)
 {
     SettingModel& ins = Singleton<SettingModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
     ins.preload();
     return ins;
 }
@@ -63,12 +63,12 @@ bool SettingModel::contains(const wxString& key)
 void SettingModel::setRaw(const wxString& key, const wxString& newValue)
 {
     // search in cache
-    Data* setting = get_one(SETTINGNAME(key));
+    Data* setting = search_cache(SETTINGNAME(key));
     if (!setting) {
         // not found in cache; search in db
         Data_Set items = find(SETTINGNAME(key));
         if (!items.empty())
-            setting = get(items[0].SETTINGID, db_);
+            setting = cache_id(items[0].SETTINGID);
         if (!setting) {
             // not found; create
             setting = create();
@@ -76,12 +76,12 @@ void SettingModel::setRaw(const wxString& key, const wxString& newValue)
         }
     }
     setting->SETTINGVALUE = newValue;
-    setting->save(db_);
+    save(setting);
 }
 const wxString SettingModel::getRaw(const wxString& key, const wxString& defaultValue)
 {
     // search in cache
-    Data* setting = get_one(SETTINGNAME(key));
+    Data* setting = search_cache(SETTINGNAME(key));
     if (setting)
         return setting->SETTINGVALUE;
     // search in db
@@ -214,11 +214,11 @@ void SettingModel::prependArrayItem(const wxString& key, const wxString& value, 
 {
     if (value.IsEmpty())
         return;
-    Data* setting = get_one(SETTINGNAME(key));
+    Data* setting = search_cache(SETTINGNAME(key));
     if (!setting) { // not cached
         Data_Set items = find(SETTINGNAME(key));
         if (!items.empty())
-        setting = get(items[0].SETTINGID, db_);
+        setting = cache_id(items[0].SETTINGID);
         if (!setting) {
             setting = create();
             setting->SETTINGNAME = key;
@@ -253,7 +253,7 @@ void SettingModel::prependArrayItem(const wxString& key, const wxString& value, 
     json_writer.EndArray();
 
     setting->SETTINGVALUE = wxString::FromUTF8(json_buffer.GetString());
-    setting->save(db_);
+    save(setting);
 }
 
 //-------------------------------------------------------------------
@@ -306,22 +306,22 @@ void SettingModel::shrinkUsageTable()
     const wxString save_point = "SETTINGS_TRIM_USAGE";
     wxDate date(wxDate::Now());
     date.Subtract(wxDateSpan::Months(2));
-    db_->Savepoint(save_point);
+    m_db->Savepoint(save_point);
     try {
         wxString sql = wxString::Format("delete from USAGE_V1 where USAGEDATE < \"%s\";", date.FormatISODate());
-        db_->ExecuteUpdate(sql);
+        m_db->ExecuteUpdate(sql);
     }
     catch (const wxSQLite3Exception& /*e*/) {
-        db_->Rollback(save_point);
+        m_db->Rollback(save_point);
     }
-    db_->ReleaseSavepoint(save_point);
-    db_->Vacuum();
+    m_db->ReleaseSavepoint(save_point);
+    m_db->Vacuum();
 }
 
 row_t SettingModel::to_row_t()
 {
     row_t row;
-    for (const auto &r: instance().all())
+    for (const auto &r: instance().get_all())
         row(r.SETTINGNAME.ToStdWstring()) = r.SETTINGVALUE;
     return row;
 }

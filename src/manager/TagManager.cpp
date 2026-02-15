@@ -22,7 +22,7 @@
 #include "base/paths.h"
 #include "util/_util.h"
 
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/TagLinkModel.h"
 #include "model/TagModel.h"
 #include "model/TransactionModel.h"
@@ -49,7 +49,7 @@ TagManager::TagManager() : isSelection_(false)
 
 TagManager::~TagManager()
 {
-    InfotableModel::instance().setSize("TAG_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("TAG_DIALOG_SIZE", GetSize());
 }
 
 TagManager::TagManager(wxWindow* parent, bool isSelection, const wxArrayString& selectedTags) : isSelection_(isSelection), selectedTags_(selectedTags)
@@ -100,7 +100,7 @@ void TagManager::CreateControls()
     this->SetSizer(boxSizer);
 
     //--------------------------
-    for (const auto& tag : TagModel::instance().all(DB_Table_TAG_V1::COL_TAGNAME))
+    for (const auto& tag : TagModel::instance().get_all(TagTable::COL_TAGNAME))
         tagList_.Add(tag.TAGNAME);
 
     if (!isSelection_)
@@ -253,7 +253,7 @@ void TagManager::OnEdit(wxCommandEvent& WXUNUSED(event))
     if (text.IsEmpty() || old_name == text)
         return;
 
-    TagModel::Data* tag = TagModel::instance().get(text);
+    TagModel::Data* tag = TagModel::instance().cache_key(text);
     if (tag)
     {
         wxString errMsg = _t("A tag with this name already exists");
@@ -261,7 +261,7 @@ void TagManager::OnEdit(wxCommandEvent& WXUNUSED(event))
         return;
     }
 
-    tag = TagModel::instance().get(old_name);
+    tag = TagModel::instance().cache_key(old_name);
     tag->TAGNAME = text;
     TagModel::instance().save(tag);
     tagList_.Remove(old_name);
@@ -294,7 +294,7 @@ void TagManager::OnDelete(wxCommandEvent& WXUNUSED(event))
     TransactionSplitModel::instance().Savepoint();
     for (const auto& selection : stringSelections)
     {
-        TagModel::Data* tag = TagModel::instance().get(selection);
+        TagModel::Data* tag = TagModel::instance().cache_key(selection);
         int tag_used = TagModel::instance().is_used(tag->TAGID);
         if (tag_used == 1)
         {
@@ -315,7 +315,7 @@ void TagManager::OnDelete(wxCommandEvent& WXUNUSED(event))
                 if (link.REFTYPE == TransactionModel::refTypeName)
                     TransactionModel::instance().remove(link.REFID);
                 else if (link.REFTYPE == TransactionSplitModel::refTypeName)
-                    TransactionModel::instance().remove(TransactionSplitModel::instance().get(link.REFID)->TRANSID);
+                    TransactionModel::instance().remove(TransactionSplitModel::instance().cache_id(link.REFID)->TRANSID);
             TagModel::instance().remove(tag->TAGID);
             tagList_.Remove(selection);
             int index = selectedTags_.Index(selection);
@@ -369,7 +369,7 @@ void TagManager::OnListSelChanged(wxCommandEvent& WXUNUSED(event))
         bool is_used = false;
         for (const auto& selection : stringSelections)
         {
-            TagModel::Data* tag = TagModel::instance().get(selection);
+            TagModel::Data* tag = TagModel::instance().cache_key(selection);
             is_used |= TagModel::instance().is_used(tag->TAGID) == 1;
         }
         buttonDelete_->Enable(!is_used);

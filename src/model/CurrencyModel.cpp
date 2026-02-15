@@ -45,7 +45,7 @@ const wxString CurrencyModel::TYPE_NAME_FIAT   = type_name(TYPE_ID_FIAT);
 const wxString CurrencyModel::TYPE_NAME_CRYPTO = type_name(TYPE_ID_CRYPTO);
 
 CurrencyModel::CurrencyModel()
-    : Model<DB_Table_CURRENCYFORMATS_V1>()
+    : Model<CurrencyTable>()
 {
 }
 
@@ -60,8 +60,8 @@ CurrencyModel::~CurrencyModel()
 CurrencyModel& CurrencyModel::instance(wxSQLite3Database* db)
 {
     CurrencyModel& ins = Singleton<CurrencyModel>::instance();
-    ins.db_ = db;
-    ins.ensure(db);
+    ins.m_db = db;
+    ins.ensure_table();
     ins.destroy_cache();
     ins.preload();
     s_locale = wxEmptyString;
@@ -75,15 +75,15 @@ CurrencyModel& CurrencyModel::instance()
     return Singleton<CurrencyModel>::instance();
 }
 
-DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE CurrencyModel::CURRENCY_TYPE(TYPE_ID currencytype, OP op)
+CurrencyTable::CURRENCY_TYPE CurrencyModel::CURRENCY_TYPE(OP op, TYPE_ID currencytype)
 {
-    return DB_Table_CURRENCYFORMATS_V1::CURRENCY_TYPE(CurrencyModel::type_name(currencytype), op);
+    return CurrencyTable::CURRENCY_TYPE(op, CurrencyModel::type_name(currencytype));
 }
 
 const wxArrayString CurrencyModel::all_currency_names()
 {
     wxArrayString c;
-    for (const auto&i : all(COL_CURRENCYNAME))
+    for (const auto&i : get_all(COL_CURRENCYNAME))
         c.Add(i.CURRENCYNAME);
     return c;
 }
@@ -92,7 +92,7 @@ const wxArrayString CurrencyModel::all_currency_names()
 const std::map<wxString, int64> CurrencyModel::all_currency()
 {
     std::map<wxString, int64> currencies;
-    for (const auto& curr : this->all(COL_CURRENCYNAME))
+    for (const auto& curr : this->get_all(COL_CURRENCYNAME))
     {
         currencies[curr.CURRENCYNAME] = curr.CURRENCYID;
     }
@@ -102,7 +102,7 @@ const std::map<wxString, int64> CurrencyModel::all_currency()
 const wxArrayString CurrencyModel::all_currency_symbols()
 {
     wxArrayString c;
-    for (const auto&i : all(COL_CURRENCY_SYMBOL))
+    for (const auto&i : get_all(COL_CURRENCY_SYMBOL))
         c.Add(i.CURRENCY_SYMBOL);
     return c;
 }
@@ -111,7 +111,7 @@ const wxArrayString CurrencyModel::all_currency_symbols()
 CurrencyModel::Data* CurrencyModel::GetBaseCurrency()
 {
     int64 currency_id = PreferencesModel::instance().getBaseCurrencyID();
-    CurrencyModel::Data* currency = CurrencyModel::instance().get(currency_id);
+    CurrencyModel::Data* currency = CurrencyModel::instance().cache_id(currency_id);
     return currency;
 }
 
@@ -129,7 +129,7 @@ bool CurrencyModel::GetBaseCurrencySymbol(wxString& base_currency_symbol)
 void CurrencyModel::ResetBaseConversionRates()
 {
     CurrencyModel::instance().Savepoint();
-    for (auto currency : CurrencyModel::instance().all())
+    for (auto currency : CurrencyModel::instance().get_all())
     {
         currency.BASECONVRATE = 1;
         CurrencyModel::instance().save(&currency);
@@ -139,11 +139,11 @@ void CurrencyModel::ResetBaseConversionRates()
 
 CurrencyModel::Data* CurrencyModel::GetCurrencyRecord(const wxString& currency_symbol)
 {
-    CurrencyModel::Data* record = this->get_one(CURRENCY_SYMBOL(currency_symbol));
+    CurrencyModel::Data* record = this->search_cache(CURRENCY_SYMBOL(currency_symbol));
     if (record) return record;
 
     CurrencyModel::Data_Set items = CurrencyModel::instance().find(CURRENCY_SYMBOL(currency_symbol));
-    if (items.empty()) record = this->get(items[0].id(), this->db_);
+    if (items.empty()) record = this->cache_id(items[0].id());
 
     return record;
 }
@@ -186,7 +186,7 @@ bool CurrencyModel::remove(int64 id)
     for (const auto& r : CurrencyHistoryModel::instance().find(CurrencyHistoryModel::CURRENCYID(id)))
         CurrencyHistoryModel::instance().remove(r.id());
     this->ReleaseSavepoint();
-    return this->remove(id, db_);
+    return this->remove(id);
 }
 
 const wxString CurrencyModel::toCurrency(double value, const Data* currency, int precision)
@@ -214,7 +214,7 @@ const wxString CurrencyModel::toString(double value, const Data* currency, int p
     static wxString d; //default Locale Support Y/N
 
     if (s_locale.empty()) {
-        s_locale = InfotableModel::instance().getString("LOCALE", " ");
+        s_locale = InfoModel::instance().getString("LOCALE", " ");
         if (s_locale.empty()) {
             s_locale = " ";
         }
@@ -324,7 +324,7 @@ const wxString CurrencyModel::fromString2CLocale(const wxString &s, const Data* 
     wxRegEx pattern(R"([^0-9.,+-/*()])");
     pattern.ReplaceAll(&str, wxEmptyString);
 
-    auto locale = InfotableModel::instance().getString("LOCALE", "");
+    auto locale = InfoModel::instance().getString("LOCALE", "");
 
     if (locale.empty())
     {
@@ -375,7 +375,7 @@ int CurrencyModel::precision(const Data& r)
 
 int CurrencyModel::precision(int64 account_id)
 {
-    const AccountModel::Data* trans_account = AccountModel::instance().get(account_id);
+    const AccountModel::Data* trans_account = AccountModel::instance().cache_id(account_id);
     if (account_id > 0)
     {
         return precision(AccountModel::currency(trans_account));

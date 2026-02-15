@@ -130,7 +130,7 @@ wxString BalanceReport::getHTMLText()
 
     dateStart = wxDate::Today();
     // Calculate the report date
-    for (const auto& account: AccountModel::instance().all()) {
+    for (const auto& account: AccountModel::instance().get_all()) {
         const wxDate accountOpeningDate = parseDateTime(account.INITIALDATE);
         if (accountOpeningDate.IsEarlierThan(dateStart))
             dateStart = accountOpeningDate;
@@ -151,7 +151,7 @@ wxString BalanceReport::getHTMLText()
             histItem.stockHist = StockHistoryModel::instance().find(
                 StockHistoryModel::SYMBOL(stock.SYMBOL)
             );
-            std::stable_sort(histItem.stockHist.begin(), histItem.stockHist.end(), SorterByDATE());
+            std::stable_sort(histItem.stockHist.begin(), histItem.stockHist.end(), StockHistoryTable::SorterByDATE());
             std::reverse(histItem.stockHist.begin(), histItem.stockHist.end());
             m_stock_a.push_back(histItem);
         }
@@ -192,7 +192,7 @@ wxString BalanceReport::getHTMLText()
         int idx;
         std::vector<double> balancePerDay(acc_size +1);
         std::fill(balancePerDay.begin(), balancePerDay.end(), 0.0);
-        for (const auto& account : AccountModel::instance().all()) {
+        for (const auto& account : AccountModel::instance().get_all()) {
             idx = NavigatorTypes::instance().getAccountTypeIdx(account.ACCOUNTTYPE);
             if (idx == -1) {
                 idx = NavigatorTypes::instance().getAccountTypeIdx(NavigatorTypes::TYPE_ID_CHECKING);
@@ -208,7 +208,7 @@ wxString BalanceReport::getHTMLText()
 
         idx = NavigatorTypes::instance().getAccountTypeIdx(NavigatorTypes::TYPE_ID_ASSET);
         if (idx > -1) {
-            for (const auto& asset : AssetModel::instance().all()) {
+            for (const auto& asset : AssetModel::instance().get_all()) {
                 balancePerDay[idx] += AssetModel::instance().valueAtDate(&asset, end_date).second * getCurrencyDateRate(asset.CURRENCYID, end_date);
             }
         }

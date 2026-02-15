@@ -66,7 +66,7 @@ mmEditSplitOther::mmEditSplitOther(wxWindow *parent, CurrencyModel::Data* curren
 
 mmEditSplitOther::~mmEditSplitOther()
 {
-    InfotableModel::instance().setSize("EDITSPLITOTHER_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("EDITSPLITOTHER_DIALOG_SIZE", GetSize());
 }
 
 void mmEditSplitOther::CreateControls()
@@ -152,7 +152,7 @@ SplitDialog::SplitDialog( )
 
 SplitDialog::~SplitDialog()
 {
-    InfotableModel::instance().setSize("SPLITTRANSACTION_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("SPLITTRANSACTION_DIALOG_SIZE", GetSize());
 }
 
 SplitDialog::SplitDialog(wxWindow* parent
@@ -164,7 +164,7 @@ SplitDialog::SplitDialog(wxWindow* parent
     , row_num_(static_cast<int>(split.size()))
     , is_view_only_(is_view_only)
 {
-    AccountModel::Data* account = AccountModel::instance().get(accountID);
+    AccountModel::Data* account = AccountModel::instance().cache_id(accountID);
     m_currency = account ? AccountModel::currency(account) : CurrencyModel::GetBaseCurrency();
     m_splits = m_orig_splits;
     this->SetFont(parent->GetFont());

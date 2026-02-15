@@ -300,7 +300,7 @@ private:
     bool m_database_updated = false;
     wxLanguage m_language = wxLANGUAGE_UNKNOWN;
 
-    // stored in InfotableModel
+    // stored in InfoModel
     wxString m_locale_name;                             // LOCALE
     wxString m_date_format;                             // DATEFORMAT
     wxString m_user_name;                               // USERNAME

@@ -340,9 +340,9 @@ int ScheduledPanel::initVirtualListControl(int64 id)
     m_lc->DeleteAllItems();
 
     bills_.clear();
-    const auto split = ScheduledSplitModel::instance().get_all();
+    const auto split = ScheduledSplitModel::instance().get_all_id();
     for (const ScheduledModel::Data& data
-        : ScheduledModel::instance().all(ScheduledModel::COL_NEXTOCCURRENCEDATE))
+        : ScheduledModel::instance().get_all(ScheduledModel::COL_NEXTOCCURRENCEDATE))
     {
         if (transFilterActive_ && !transFilterDlg_->mmIsRecordMatches(data, split))
             continue;
@@ -477,9 +477,9 @@ wxString ScheduledPanel::getItem(long item, int col_id)
             }
             else
                 return value;
-            AccountModel::Data* account = AccountModel::instance().get(accountid);
+            AccountModel::Data* account = AccountModel::instance().cache_id(accountid);
             CurrencyModel::Data* currency = account ?
-                CurrencyModel::instance().get(account->CURRENCYID) : nullptr;
+                CurrencyModel::instance().cache_id(account->CURRENCYID) : nullptr;
             if (currency)
                 value = CurrencyModel::toCurrency(transamount, currency);
             if (!value.IsEmpty() && TransactionModel::status_id(bill.STATUS) == TransactionModel::STATUS_ID_VOID)
@@ -499,9 +499,9 @@ wxString ScheduledPanel::getItem(long item, int col_id)
             }
             else
                 return value;
-            AccountModel::Data* account = AccountModel::instance().get(accountid);
+            AccountModel::Data* account = AccountModel::instance().cache_id(accountid);
             CurrencyModel::Data* currency = account ?
-                CurrencyModel::instance().get(account->CURRENCYID) : nullptr;
+                CurrencyModel::instance().cache_id(account->CURRENCYID) : nullptr;
             if (currency)
                 value = CurrencyModel::toCurrency(transamount, currency);
             if (!value.IsEmpty() && TransactionModel::status_id(bill.STATUS) == TransactionModel::STATUS_ID_VOID)
@@ -796,25 +796,25 @@ void ScheduledPanel::sortList()
     switch (m_lc->getSortColId())
     {
     case ScheduledList::LIST_ID_ID:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByBDID());
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledTable::SorterByBDID());
         break;
     case ScheduledList::LIST_ID_PAYMENT_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledTable::SorterByTRANSDATE());
         break;
     case ScheduledList::LIST_ID_DUE_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByNEXTOCCURRENCEDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledTable::SorterByNEXTOCCURRENCEDATE());
         break;
     case ScheduledList::LIST_ID_ACCOUNT:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByACCOUNTNAME());
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledModel::SorterByACCOUNTNAME());
         break;
     case ScheduledList::LIST_ID_PAYEE:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByPAYEENAME());
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledModel::SorterByPAYEENAME());
         break;
     case ScheduledList::LIST_ID_STATUS:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterBySTATUS());
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledTable::SorterBySTATUS());
         break;
     case ScheduledList::LIST_ID_CATEGORY:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByCATEGNAME());
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledModel::SorterByCATEGNAME());
         break;
     case ScheduledList::LIST_ID_WITHDRAWAL:
         std::stable_sort(bills_.begin(), bills_.end(), ScheduledModel::SorterByWITHDRAWAL());
@@ -855,10 +855,10 @@ void ScheduledPanel::sortList()
         break;
     case ScheduledList::LIST_ID_REMAINING:
         // in almost all cases, sorting by remaining days is equivalent to sorting by TRANSDATE
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledTable::SorterByTRANSDATE());
         break;
     case ScheduledList::LIST_ID_NOTES:
-        std::stable_sort(bills_.begin(), bills_.end(), SorterByNOTES());
+        std::stable_sort(bills_.begin(), bills_.end(), ScheduledTable::SorterByNOTES());
         break;
     default:
         break;
@@ -945,7 +945,7 @@ void ScheduledList::OnSetUserColour(wxCommandEvent& event)
 
     ScheduledModel::instance().Savepoint();
 
-    ScheduledModel::Data* item = ScheduledModel::instance().get(id);
+    ScheduledModel::Data* item = ScheduledModel::instance().cache_id(id);
     if (item)
     {
         item->COLOR = user_color_id;

@@ -26,7 +26,7 @@
 
 #include "model/AttachmentModel.h"
 #include "model/FieldValueModel.h"
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/PayeeModel.h"
 #include "model/SettingModel.h"
 #include "model/PreferencesModel.h"
@@ -73,7 +73,7 @@ int mmCategDialogTreeCtrl::OnCompareItems(const wxTreeItemId& item1, const wxTre
 
 CategoryManager::~CategoryManager()
 {
-    InfotableModel::instance().setSize("CATEGORIES_DIALOG_SIZE", GetSize());
+    InfoModel::instance().setSize("CATEGORIES_DIALOG_SIZE", GetSize());
 }
 
 CategoryManager::CategoryManager()
@@ -202,7 +202,7 @@ void CategoryManager::fillControls()
     const wxString match = m_maskStr + "*";
     wxTreeItemId maincat = root_;
     m_categ_children.clear();
-    for (CategoryModel::Data cat : CategoryModel::instance().all(CategoryModel::COL_CATEGNAME)) {
+    for (CategoryModel::Data cat : CategoryModel::instance().get_all(CategoryModel::COL_CATEGNAME)) {
         m_categ_children[cat.PARENTID].push_back(cat);
     }
 
@@ -428,7 +428,7 @@ void CategoryManager::OnEndDrag(wxTreeEvent& event)
 
     if (categID == -1 || categID == m_dragSourceCATEGID) return;
 
-    CategoryModel::Data* sourceCat = CategoryModel::instance().get(m_dragSourceCATEGID);
+    CategoryModel::Data* sourceCat = CategoryModel::instance().cache_id(m_dragSourceCATEGID);
 
     if (categID == sourceCat->PARENTID) return;
 
@@ -497,12 +497,12 @@ void CategoryManager::mmDoDeleteSelectedCategory()
         return showCategDialogDeleteError();
     else {
         deletedTrans = TransactionModel::instance().find(TransactionModel::CATEGID(m_categ_id));
-        for (const auto& subcat : CategoryModel::sub_tree(CategoryModel::instance().get(m_categ_id))) {
+        for (const auto& subcat : CategoryModel::sub_tree(CategoryModel::instance().cache_id(m_categ_id))) {
             TransactionModel::Data_Set trans = TransactionModel::instance().find(TransactionModel::CATEGID(subcat.CATEGID));
             deletedTrans.insert(deletedTrans.end(), trans.begin(), trans.end());
         }
         splits = TransactionSplitModel::instance().find(TransactionSplitModel::CATEGID(m_categ_id));
-        for (const auto& subcat : CategoryModel::sub_tree(CategoryModel::instance().get(m_categ_id))) {
+        for (const auto& subcat : CategoryModel::sub_tree(CategoryModel::instance().cache_id(m_categ_id))) {
             TransactionSplitModel::Data_Set trans = TransactionSplitModel::instance().find(TransactionSplitModel::CATEGID(subcat.CATEGID));
             splits.insert(splits.end(), trans.begin(), trans.end());
         }
@@ -538,7 +538,7 @@ void CategoryManager::mmDoDeleteSelectedCategory()
             FieldValueModel::instance().ReleaseSavepoint();
         }
 
-        for (auto& subcat : CategoryModel::sub_tree(CategoryModel::instance().get(m_categ_id)))
+        for (auto& subcat : CategoryModel::sub_tree(CategoryModel::instance().cache_id(m_categ_id)))
             CategoryModel::instance().remove(subcat.CATEGID);
 
         CategoryModel::instance().remove(m_categ_id);
@@ -664,7 +664,7 @@ wxTreeItemId CategoryManager::getTreeItemFor(const wxTreeItemId& itemID, const w
 
 void CategoryManager::setTreeSelection(int64 category_id)
 {
-    CategoryModel::Data* category = CategoryModel::instance().get(category_id);
+    CategoryModel::Data* category = CategoryModel::instance().cache_id(category_id);
     if (category)
     {
         setTreeSelection(category->CATEGNAME, category->PARENTID);
@@ -739,7 +739,7 @@ void CategoryManager::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
 
-    auto cat = CategoryModel::instance().get(m_categ_id);
+    auto cat = CategoryModel::instance().cache_id(m_categ_id);
     switch (id)
     {
         case MENU_ITEM_EDIT:
@@ -793,7 +793,7 @@ void CategoryManager::OnClearSettings(wxCommandEvent& /*event*/)
             , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        auto categList = CategoryModel::instance().all();
+        auto categList = CategoryModel::instance().get_all();
         CategoryModel::instance().Savepoint();
         for (auto &catItem : categList)
         {

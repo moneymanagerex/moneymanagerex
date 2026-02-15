@@ -117,7 +117,7 @@ private:
 
 void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 {
-    wxArrayString hidden_reports = InfotableModel::instance().getArrayString("HIDDEN_REPORTS");
+    wxArrayString hidden_reports = InfoModel::instance().getArrayString("HIDDEN_REPORTS");
 
     if (hidden_reports.Index("Cash Flow") == wxNOT_FOUND)
     {
@@ -215,7 +215,7 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
     //////////////////////////////////////////////////////////////////
 
-    size_t i = BudgetPeriodModel::instance().all().size();
+    size_t i = BudgetPeriodModel::instance().get_all().size();
     if (i > 0)
     {
         if (hidden_reports.Index("Budgets") == wxNOT_FOUND)
@@ -231,9 +231,9 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
         }
     }
 
-    ///////////////////////////////////////////////////////////////////
-
-    AccountModel::Data_Set investments_account = AccountModel::instance().find(AccountModel::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr(), EQUAL));
+    AccountModel::Data_Set investments_account = AccountModel::instance().find(
+        AccountModel::ACCOUNTTYPE(OP_EQ, NavigatorTypes::instance().getInvestmentAccountStr())
+    );
     if (!investments_account.empty())
     {
         if (hidden_reports.Index("Stocks Report") == wxNOT_FOUND)
@@ -251,10 +251,10 @@ void mmGUIFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 void mmGUIFrame::DoUpdateGRMNavigation(wxTreeItemId& parent_item)
 {
     /*GRM Reports*/
-    auto records = ReportModel::instance().find(ReportModel::ACTIVE(1, EQUAL));
+    auto records = ReportModel::instance().find(ReportModel::ACTIVE(OP_EQ, 1));
     //Sort by group name and report name
-    std::sort(records.begin(), records.end(), SorterByREPORTNAME());
-    std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
+    std::sort(records.begin(), records.end(), ReportTable::SorterByREPORTNAME());
+    std::stable_sort(records.begin(), records.end(), ReportTable::SorterByGROUPNAME());
 
     wxTreeItemId group;
     wxString group_name;
@@ -268,7 +268,7 @@ void mmGUIFrame::DoUpdateGRMNavigation(wxTreeItemId& parent_item)
             m_nav_tree_ctrl->SetItemData(group, new mmTreeItemData(new mmGeneralGroupReport(record.GROUPNAME), record.GROUPNAME));
             group_name = record.GROUPNAME;
         }
-        ReportModel::Data* r = ReportModel::instance().get(record.REPORTID);
+        ReportModel::Data* r = ReportModel::instance().cache_id(record.REPORTID);
         wxTreeItemId item = m_nav_tree_ctrl->AppendItem(no_group ? parent_item : group, wxGetTranslation(record.REPORTNAME), img::CUSTOMSQL_PNG, img::CUSTOMSQL_PNG);
         m_nav_tree_ctrl->SetItemData(item, new mmTreeItemData(new mmGeneralReport(r), r->REPORTNAME));
     }
@@ -278,7 +278,7 @@ void mmGUIFrame::DoUpdateGRMNavigation(wxTreeItemId& parent_item)
 void mmGUIFrame::DoUpdateFilterNavigation(wxTreeItemId& parent_item)
 {
 
-    wxArrayString filter_settings = InfotableModel::instance().getArrayString("TRANSACTIONS_FILTER", true);
+    wxArrayString filter_settings = InfoModel::instance().getArrayString("TRANSACTIONS_FILTER", true);
     for (const auto& data : filter_settings)
     {
         Document j_doc;
@@ -310,7 +310,7 @@ void mmGUIFrame::mmDoHideReportsDialog()
         "Stocks Report",
     };
 
-    wxArrayString stored_items = InfotableModel::instance().getArrayString("HIDDEN_REPORTS");
+    wxArrayString stored_items = InfoModel::instance().getArrayString("HIDDEN_REPORTS");
     wxArrayInt hidden_reports;
     wxArrayString reports_name;
     wxArrayString reports_name_i10n;
@@ -328,12 +328,12 @@ void mmGUIFrame::mmDoHideReportsDialog()
 
     if (reports.ShowModal() == wxID_OK)
     {
-        InfotableModel::instance().setString("HIDDEN_REPORTS", "[]");
+        InfoModel::instance().setString("HIDDEN_REPORTS", "[]");
         const auto sel = reports.GetSelections();
         for (const auto& i : sel)
         {
             const auto& report_name = reports_name[i];
-            InfotableModel::instance().prependArrayItem("HIDDEN_REPORTS", report_name, -1);
+            InfoModel::instance().prependArrayItem("HIDDEN_REPORTS", report_name, -1);
         }
     }
     DoRecreateNavTreeControl();

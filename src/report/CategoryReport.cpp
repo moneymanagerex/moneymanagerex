@@ -43,12 +43,12 @@ CategoryReport::~CategoryReport()
 {
 }
 
-double CategoryReport::AppendData([[maybe_unused]] const std::vector<CategoryReport::data_holder> &data, std::map<int64, std::map<int, double>> &categoryStats, const DB_Table_CATEGORY_V1::Data* category, int64 groupID, int level) {
+double CategoryReport::AppendData([[maybe_unused]] const std::vector<CategoryReport::data_holder> &data, std::map<int64, std::map<int, double>> &categoryStats, const CategoryTable::Data* category, int64 groupID, int level) {
     double amt = categoryStats[category->CATEGID][0];
     if (type_ == COME && amt < 0.0) amt = 0;
     if (type_ == GOES && amt > 0.0) amt = 0;
     CategoryModel::Data_Set subcategories = CategoryModel::sub_category(category);
-    std::stable_sort(subcategories.begin(), subcategories.end(), SorterByCATEGNAME());
+    std::stable_sort(subcategories.begin(), subcategories.end(), CategoryTable::SorterByCATEGNAME());
     std::reverse(subcategories.begin(), subcategories.end());
     double subamount = 0;
     for (const auto& subcategory : subcategories) {
@@ -75,7 +75,7 @@ void  CategoryReport::refreshData()
     data_holder line;
     int groupID = 0;
     CategoryModel::Data_Set categories = CategoryModel::instance().find(CategoryModel::PARENTID(-1));
-    std::stable_sort(categories.begin(), categories.end(), SorterByCATEGNAME());
+    std::stable_sort(categories.begin(), categories.end(), CategoryTable::SorterByCATEGNAME());
     std::reverse(categories.begin(), categories.end());
     for (const auto& category : categories)
     {
@@ -84,7 +84,7 @@ void  CategoryReport::refreshData()
         if (type_ == GOES && amt > 0.0) amt = 0;
 
         auto subcategories = CategoryModel::sub_category(category);
-        std::stable_sort(subcategories.begin(), subcategories.end(), SorterByCATEGNAME());
+        std::stable_sort(subcategories.begin(), subcategories.end(), CategoryTable::SorterByCATEGNAME());
         std::reverse(subcategories.begin(), subcategories.end());
         double subamount = 0;
         for (const auto& sub_category : subcategories)

@@ -19,13 +19,13 @@
 #pragma once
 
 #include "base/defs.h"
-#include "_Model.h"
-#include "db/DB_Table_Budgetyear_V1.h"
+#include "_ModelBase.h"
+#include "table/BudgetPeriodTable.h"
 
-class BudgetPeriodModel : public Model<DB_Table_BUDGETYEAR_V1>
+class BudgetPeriodModel : public Model<BudgetPeriodTable>
 {
 public:
-    using Model<DB_Table_BUDGETYEAR_V1>::remove;
+    using Model<BudgetPeriodTable>::remove;
 
 public:
     BudgetPeriodModel();

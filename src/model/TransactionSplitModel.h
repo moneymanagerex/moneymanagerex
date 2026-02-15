@@ -20,8 +20,8 @@
 #pragma once
 
 #include "base/defs.h"
-#include "db/DB_Table_Splittransactions_V1.h"
-#include "_Model.h"
+#include "table/TransactionSplitTable.h"
+#include "_ModelBase.h"
 #include "CurrencyModel.h"
 
 struct Split
@@ -32,7 +32,7 @@ struct Split
     wxString NOTES;
 };
 
-class TransactionSplitModel : public Model<DB_Table_SPLITTRANSACTIONS_V1>
+class TransactionSplitModel : public Model<TransactionSplitTable>
 {
 public:
     TransactionSplitModel();
@@ -53,13 +53,13 @@ public:
     */
     static TransactionSplitModel& instance();
 
-    using Model<DB_Table_SPLITTRANSACTIONS_V1>::remove;
+    using Model<TransactionSplitTable>::remove;
 
 public:
     static double get_total(const Data_Set& rows);
     static double get_total(const std::vector<Split>& local_splits);
     static const wxString get_tooltip(const std::vector<Split>& local_splits, const CurrencyModel::Data* currency);
-    std::map<int64, TransactionSplitModel::Data_Set> get_all();
+    std::map<int64, TransactionSplitModel::Data_Set> get_all_id();
     int update(Data_Set& rows, int64 transactionID);
     int update(const std::vector<Split>& rows, int64 transactionID);
     bool remove(int64 id);

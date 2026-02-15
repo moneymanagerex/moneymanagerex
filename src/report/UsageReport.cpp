@@ -42,14 +42,14 @@ wxString UsageReport::getHTMLText()
 
     if (m_date_range && m_date_range->is_with_date()) {
         all_usage = UsageModel::instance().find(
-            UsageModel::USAGEDATE(m_date_range->start_date().FormatISODate(), GREATER_OR_EQUAL),
-            UsageModel::USAGEDATE(m_date_range->end_date().FormatISOCombined(), LESS_OR_EQUAL)
+            UsageModel::USAGEDATE(OP_GE, m_date_range->start_date().FormatISODate()),
+            UsageModel::USAGEDATE(OP_LE, m_date_range->end_date().FormatISOCombined())
         );
         _start_date = m_date_range->start_date();
         _end_date = m_date_range->end_date();
     }
     else {
-        all_usage = UsageModel::instance().all();
+        all_usage = UsageModel::instance().get_all();
         wxASSERT(_start_date.ParseISODate(all_usage.front().USAGEDATE));
         wxASSERT(_end_date.ParseISODate(all_usage.back().USAGEDATE));
     }

@@ -48,7 +48,7 @@
 
 #include "model/CurrencyHistoryModel.h"
 #include "model/CurrencyModel.h"
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/PreferencesModel.h"
 #include "model/SettingModel.h"
 
@@ -255,13 +255,13 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
 
 void mmLoadColorsFromDatabase(const bool def)
     {
-    mmColors::userDefColor1 = def ? wxColour(246, 144, 144) : InfotableModel::instance().getColour("USER_COLOR1", wxColour(246, 144, 144));
-    mmColors::userDefColor2 = def ? wxColour(229, 196, 146) : InfotableModel::instance().getColour("USER_COLOR2", wxColour(229, 196, 146));
-    mmColors::userDefColor3 = def ? wxColour(245, 237, 149) : InfotableModel::instance().getColour("USER_COLOR3", wxColour(245, 237, 149));
-    mmColors::userDefColor4 = def ? wxColour(186, 226, 185) : InfotableModel::instance().getColour("USER_COLOR4", wxColour(186, 226, 185));
-    mmColors::userDefColor5 = def ? wxColour(135, 190, 219) : InfotableModel::instance().getColour("USER_COLOR5", wxColour(135, 190, 219));
-    mmColors::userDefColor6 = def ? wxColour(172, 167, 239) : InfotableModel::instance().getColour("USER_COLOR6", wxColour(172, 167, 239));
-    mmColors::userDefColor7 = def ? wxColour(212, 138, 215) : InfotableModel::instance().getColour("USER_COLOR7", wxColour(212, 138, 215));
+    mmColors::userDefColor1 = def ? wxColour(246, 144, 144) : InfoModel::instance().getColour("USER_COLOR1", wxColour(246, 144, 144));
+    mmColors::userDefColor2 = def ? wxColour(229, 196, 146) : InfoModel::instance().getColour("USER_COLOR2", wxColour(229, 196, 146));
+    mmColors::userDefColor3 = def ? wxColour(245, 237, 149) : InfoModel::instance().getColour("USER_COLOR3", wxColour(245, 237, 149));
+    mmColors::userDefColor4 = def ? wxColour(186, 226, 185) : InfoModel::instance().getColour("USER_COLOR4", wxColour(186, 226, 185));
+    mmColors::userDefColor5 = def ? wxColour(135, 190, 219) : InfoModel::instance().getColour("USER_COLOR5", wxColour(135, 190, 219));
+    mmColors::userDefColor6 = def ? wxColour(172, 167, 239) : InfoModel::instance().getColour("USER_COLOR6", wxColour(172, 167, 239));
+    mmColors::userDefColor7 = def ? wxColour(212, 138, 215) : InfoModel::instance().getColour("USER_COLOR7", wxColour(212, 138, 215));
 }
 
 wxColour mmColors::userDefColor1;
@@ -824,7 +824,9 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
     const wxDateTime today = wxDateTime::Today();
     const wxString today_str = today.FormatISODate();
 
-    auto currencies = CurrencyModel::instance().find(CurrencyModel::CURRENCY_SYMBOL(base_currency_symbol, NOT_EQUAL));
+    auto currencies = CurrencyModel::instance().find(
+        CurrencyModel::CURRENCY_SYMBOL(OP_NE, base_currency_symbol)
+    );
     for (const auto& currency : currencies)
     {
         if (curr_id > 0 && currency.CURRENCYID != curr_id)
@@ -1783,7 +1785,7 @@ mmSeparator::~mmSeparator()
 
 mmSeparator::mmSeparator()
 {
-    const auto& def_delim = InfotableModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
+    const auto& def_delim = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
     m_separators[";"] = 0;
     m_separators[","] = 0;
     m_separators["\t"] = 0;
@@ -1950,53 +1952,53 @@ void mmSetSize(wxWindow* w)
     wxSize my_size;
 
     if (name == "Split Transaction Dialog") {
-        my_size = InfotableModel::instance().getSize("SPLITTRANSACTION_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("SPLITTRANSACTION_DIALOG_SIZE");
         my_size.SetHeight(w->GetSize().GetHeight());  // Do not touch the height
     }
     else if (name == "Organize Categories") {
-        my_size = InfotableModel::instance().getSize("CATEGORIES_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("CATEGORIES_DIALOG_SIZE");
     }
     else if (name == "mmPayeeDialog") {
-        my_size = InfotableModel::instance().getSize("PAYEES_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("PAYEES_DIALOG_SIZE");
     }
     else if (name == "Organize Currencies") {
-        my_size = InfotableModel::instance().getSize("CURRENCY_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("CURRENCY_DIALOG_SIZE");
     }
     else if (name == "Column Order Dialog") {
-        my_size = InfotableModel::instance().getSize("COLUMNORDER_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("COLUMNORDER_DIALOG_SIZE");
     }
     else if (name == "Themes Dialog") {
-        my_size = InfotableModel::instance().getSize("THEMES_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("THEMES_DIALOG_SIZE");
     }
     else if (name == "General Reports Manager") {
-        my_size = InfotableModel::instance().getSize("GRM_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("GRM_DIALOG_SIZE");
     }
     else if (name == "PayeeManager") {
-        my_size = InfotableModel::instance().getSize("EDITPAYEE_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("EDITPAYEE_DIALOG_SIZE");
     }
     else if (name == "mmEditSplitOther") {
-        my_size = InfotableModel::instance().getSize("EDITSPLITOTHER_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("EDITSPLITOTHER_DIALOG_SIZE");
     }
     else if (name == "Transactions Dialog") {
-        my_size = InfotableModel::instance().getSize("TRANSACTION_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("TRANSACTION_DIALOG_SIZE");
     }
     else if (name == "Merge categories") {
-        my_size = InfotableModel::instance().getSize("RELOCATECATEG_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("RELOCATECATEG_DIALOG_SIZE");
     }
     else if (name == "Merge payees") {
-        my_size = InfotableModel::instance().getSize("RELOCATEPAYEE_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("RELOCATEPAYEE_DIALOG_SIZE");
     }
     else if (name == "Scheduled Transaction Dialog") {
-        my_size = InfotableModel::instance().getSize("RECURRINGTRANS_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("RECURRINGTRANS_DIALOG_SIZE");
     }
     else if (name == "Transaction Filter") {
-        my_size = InfotableModel::instance().getSize("TRANSACTION_FILTER_SIZE");
+        my_size = InfoModel::instance().getSize("TRANSACTION_FILTER_SIZE");
     }
     else if (name == "Organize Tags") {
-        my_size = InfotableModel::instance().getSize("TAG_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("TAG_DIALOG_SIZE");
     }
     else if (name == "Merge tags") {
-        my_size = InfotableModel::instance().getSize("RELOCATETAG_DIALOG_SIZE");
+        my_size = InfoModel::instance().getSize("RELOCATETAG_DIALOG_SIZE");
     }
 
     wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));

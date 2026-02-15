@@ -51,7 +51,7 @@ void TransactionsReport::displayTotals(const std::map<int64, double>& total, std
     double grand_total = 0;
     for (const auto& [curr_id, curr_total]: total)
     {
-        const auto curr = CurrencyModel::instance().get(curr_id);
+        const auto curr = CurrencyModel::instance().cache_id(curr_id);
         const bool isBaseCurr = (curr->CURRENCY_SYMBOL == CurrencyModel::GetBaseCurrency()->CURRENCY_SYMBOL);
         grand_total += total_in_base_curr[curr_id];
         if (total.size() > 1 || !isBaseCurr)
@@ -92,7 +92,7 @@ wxString TransactionsReport::getHTMLText()
         accounts_label.clear();
         allAccounts = false;
         for (const auto& acc : selected_accounts) {
-            AccountModel::Data* a = AccountModel::instance().get(acc);
+            AccountModel::Data* a = AccountModel::instance().cache_id(acc);
             accounts_label += (accounts_label.empty() ? "" : ", ") + a->ACCOUNTNAME;
         }
     }
@@ -278,7 +278,7 @@ table {
         bool is_time_used = PreferencesModel::instance().UseTransDateTime();
         const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
 
-        auto custom_fields_data = FieldValueModel::instance().get_all(TransactionModel::refTypeName);
+        auto custom_fields_data = FieldValueModel::instance().get_all_id(TransactionModel::refTypeName);
         while (noOfTrans--)
         {
             hb.startTableRow();
@@ -325,7 +325,7 @@ table {
                 }
 
                 AccountModel::Data* acc;
-                acc = AccountModel::instance().get(transaction.ACCOUNTID);
+                acc = AccountModel::instance().cache_id(transaction.ACCOUNTID);
 
                 if (acc)
                 {
@@ -562,11 +562,11 @@ table {
 void TransactionsReport::Run(wxSharedPtr<TransactionFilterDialog>& dlg)
 {
     trans_.clear();
-    const auto splits = TransactionSplitModel::instance().get_all();
-    const auto tags = TagLinkModel::instance().get_all(TransactionModel::refTypeName);
+    const auto splits = TransactionSplitModel::instance().get_all_id();
+    const auto tags = TagLinkModel::instance().get_all_id(TransactionModel::refTypeName);
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
     const wxString splitRefType = TransactionSplitModel::refTypeName;
-    for (const auto& tran : TransactionModel::instance().all())
+    for (const auto& tran : TransactionModel::instance().get_all())
     {
         TransactionModel::Full_Data full_tran(tran, splits, tags);
 
@@ -597,7 +597,7 @@ void TransactionsReport::Run(wxSharedPtr<TransactionFilterDialog>& dlg)
                     full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + split.NOTES);
 
                     wxString tagnames;
-                    for (const auto& [tag_name, _] : TagLinkModel::instance().get(splitRefType, split.SPLITTRANSID))
+                    for (const auto& [tag_name, _] : TagLinkModel::instance().cache_ref(splitRefType, split.SPLITTRANSID))
                         tagnames.Append(tag_name + " ");
                     if (!tagnames.IsEmpty())
                         full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
@@ -611,29 +611,29 @@ void TransactionsReport::Run(wxSharedPtr<TransactionFilterDialog>& dlg)
         else if (dlg.get()->mmIsRecordMatches<TransactionModel>(tran)) trans_.push_back(full_tran);
     }
 
-    std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
+    std::stable_sort(trans_.begin(), trans_.end(), TransactionTable::SorterByTRANSDATE());
     switch (dlg.get()->mmGetGroupBy())
     {
     case TransactionFilterDialog::GROUPBY_ACCOUNT:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByACCOUNTNAME());
+        std::stable_sort(trans_.begin(), trans_.end(), TransactionModel::SorterByACCOUNTNAME());
         break;
     case TransactionFilterDialog::GROUPBY_PAYEE:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByPAYEENAME());
+        std::stable_sort(trans_.begin(), trans_.end(), TransactionModel::SorterByPAYEENAME());
         break;
     case TransactionFilterDialog::GROUPBY_CATEGORY:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByCATEGNAME());
+        std::stable_sort(trans_.begin(), trans_.end(), TransactionModel::SorterByCATEGNAME());
         break;
     case TransactionFilterDialog::GROUPBY_TYPE:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSCODE());
+        std::stable_sort(trans_.begin(), trans_.end(), TransactionTable::SorterByTRANSCODE());
         break;
     case TransactionFilterDialog::GROUPBY_DAY:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
+        std::stable_sort(trans_.begin(), trans_.end(), TransactionTable::SorterByTRANSDATE());
         break;
     case TransactionFilterDialog::GROUPBY_MONTH:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
+        std::stable_sort(trans_.begin(), trans_.end(), TransactionTable::SorterByTRANSDATE());
         break;
     case TransactionFilterDialog::GROUPBY_YEAR:
-        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
+        std::stable_sort(trans_.begin(), trans_.end(), TransactionTable::SorterByTRANSDATE());
         break;
     }
 }

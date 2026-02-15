@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "constants.h"
 #include "build.h"
-#include "db/DB_Upgrade.h"
+#include "table/_TableUpgrade.h"
 
 /*************************************************************************
  MMEX_VERSION

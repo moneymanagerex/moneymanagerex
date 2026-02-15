@@ -81,7 +81,7 @@ void GeneralPreferences::Create()
 
     headerStaticBoxSizer->Add(new wxStaticText(headerStaticBox, wxID_STATIC, _t("User Name")), g_flagsH);
 
-    wxString userName = InfotableModel::instance().getString("USERNAME", "");
+    wxString userName = InfoModel::instance().getString("USERNAME", "");
     wxTextCtrl* userNameTextCtr = new wxTextCtrl(headerStaticBox, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME, userName);
     userNameTextCtr->SetMinSize(wxSize(200, -1));
     mmToolTip(userNameTextCtr, _t("The User Name is used as a title for the database."));
@@ -132,7 +132,7 @@ void GeneralPreferences::Create()
     m_currencyStaticBoxSizer->Add(currencyBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
     currencyBaseSizer->Add(new wxStaticText(currencyStaticBox, wxID_STATIC, _t("Base Currency")), g_flagsH);
 
-    CurrencyModel::Data* currency = CurrencyModel::instance().get(PreferencesModel::instance().getBaseCurrencyID());
+    CurrencyModel::Data* currency = CurrencyModel::instance().cache_id(PreferencesModel::instance().getBaseCurrencyID());
     wxString currName = currency ? currency->CURRENCYNAME : _t("Set Currency");
     m_currency_id = currency ? currency->CURRENCYID : -1;
     baseCurrencyComboBox_ = new mmComboBoxCurrency(currencyStaticBox, ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
@@ -144,7 +144,7 @@ void GeneralPreferences::Create()
     m_currencyStaticBoxSizer->AddSpacer(10);
 
     { // Locale
-        const wxString locale = InfotableModel::instance().getString("LOCALE", "");
+        const wxString locale = InfoModel::instance().getString("LOCALE", "");
 
         wxBoxSizer* localeBaseSizer = new wxBoxSizer(wxHORIZONTAL);
         m_currencyStaticBoxSizer->Add(localeBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
@@ -188,7 +188,7 @@ void GeneralPreferences::Create()
     financialYearStaticBoxSizer->Add(financialYearStaticBoxSizerGrid);
 
     financialYearStaticBoxSizerGrid->Add(new wxStaticText(financialYearStaticBox, wxID_STATIC, _t("First Day")), g_flagsH);
-    int day = InfotableModel::instance().getInt("FINANCIAL_YEAR_START_DAY", 1);
+    int day = InfoModel::instance().getInt("FINANCIAL_YEAR_START_DAY", 1);
 
     wxSpinCtrl *textFPSDay = new wxSpinCtrl(financialYearStaticBox, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31, day);
@@ -207,7 +207,7 @@ void GeneralPreferences::Create()
         , wxDefaultPosition, wxSize(100, -1), financialMonthsSelection);
     financialYearStaticBoxSizerGrid->Add(m_month_selection, g_flagsH);
 
-    int monthItem = InfotableModel::instance().getInt("FINANCIAL_YEAR_START_MONTH", 7);
+    int monthItem = InfoModel::instance().getInt("FINANCIAL_YEAR_START_MONTH", 7);
     m_month_selection->SetSelection(monthItem - 1);
     mmToolTip(m_month_selection, _t("Specify month for start of financial year"));
 

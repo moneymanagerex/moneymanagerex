@@ -39,26 +39,25 @@ bool dbCheck::checkAccounts()
     bool result = true;
 
     // Transactions
-    const auto &transactions = TransactionModel::instance().all();
+    const auto &transactions = TransactionModel::instance().get_all();
     for (const auto& trx : transactions)
-        if (!AccountModel::instance().get(trx.ACCOUNTID) || (TransactionModel::type_id(trx) == TransactionModel::TYPE_ID_TRANSFER && !AccountModel::instance().get(trx.TOACCOUNTID)))
+        if (!AccountModel::instance().cache_id(trx.ACCOUNTID) || (TransactionModel::type_id(trx) == TransactionModel::TYPE_ID_TRANSFER && !AccountModel::instance().cache_id(trx.TOACCOUNTID)))
         {
             result = false;
         }
 
     // BillsDeposits
-    const auto &bills = ScheduledModel::instance().all();
+    const auto &bills = ScheduledModel::instance().get_all();
     for (const auto& bill : bills)
-        if (!AccountModel::instance().get(bill.ACCOUNTID) || (ScheduledModel::type_id(bill) == TransactionModel::TYPE_ID_TRANSFER && !AccountModel::instance().get(bill.TOACCOUNTID)))
+        if (!AccountModel::instance().cache_id(bill.ACCOUNTID) || (ScheduledModel::type_id(bill) == TransactionModel::TYPE_ID_TRANSFER && !AccountModel::instance().cache_id(bill.TOACCOUNTID)))
         {
             result = false;
         }
 
     // Stocks
-    const auto &stocks = StockModel::instance().all();
+    const auto &stocks = StockModel::instance().get_all();
     for (const auto& stock : stocks)
-        if (!AccountModel::instance().get(stock.HELDAT) || (AccountModel::type_id(AccountModel::instance().get(stock.HELDAT)) != NavigatorTypes::TYPE_ID_INVESTMENT))
-        {
+        if (!AccountModel::instance().cache_id(stock.HELDAT) || (AccountModel::type_id(AccountModel::instance().cache_id(stock.HELDAT)) != NavigatorTypes::TYPE_ID_INVESTMENT)) {
             result = false;
         }
 

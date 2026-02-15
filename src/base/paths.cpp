@@ -28,7 +28,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../resources/mmexico.xpm"
 
 #include "model/SettingModel.h"
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 
 namespace
 {
@@ -264,7 +264,7 @@ const wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
 
     if (AttachmentsFolder.Last() != sep)
         AttachmentsFolder.Append(sep);
-    if (InfotableModel::instance().getBool("ATTACHMENTSSUBFOLDER", true))
+    if (InfoModel::instance().getBool("ATTACHMENTSSUBFOLDER", true))
         AttachmentsFolder += wxString::Format("MMEX_%s_Attachments%s", wxFileName::FileName(LastDBPath).GetName(), sep);
 
     return AttachmentsFolder;

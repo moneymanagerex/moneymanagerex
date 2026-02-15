@@ -68,7 +68,7 @@ bool BudgetYearDialog::Create(wxWindow* parent, wxWindowID id,
 void BudgetYearDialog::fillControls()
 {
     int index = 0;
-    for (const auto& e: BudgetPeriodModel::instance().all(BudgetPeriodModel::COL_BUDGETYEARNAME))
+    for (const auto& e: BudgetPeriodModel::instance().get_all(BudgetPeriodModel::COL_BUDGETYEARNAME))
     {
         const wxString& payeeString = e.BUDGETYEARNAME;
         int64 budgetYearID = e.BUDGETYEARID;

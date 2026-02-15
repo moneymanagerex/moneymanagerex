@@ -20,14 +20,14 @@
 #pragma once
 
 #include "base/defs.h"
-#include "db/DB_Table_Stock_V1.h"
-#include "_Model.h"
+#include "table/StockTable.h"
+#include "_ModelBase.h"
 #include "AccountModel.h"
 
-class StockModel : public Model<DB_Table_STOCK_V1>
+class StockModel : public Model<StockTable>
 {
 public:
-    using Model<DB_Table_STOCK_V1>::remove;
+    using Model<StockTable>::remove;
     StockModel();
     ~StockModel();
 
@@ -83,7 +83,7 @@ public:
     /**
     Returns the last price date of a given stock
     */
-    wxString lastPriceDate(const Self::Data* entity);
+    wxString lastPriceDate(const Data* entity);
 
     /**
     Returns the total stock balance at a given date

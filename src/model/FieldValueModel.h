@@ -19,13 +19,13 @@
 #pragma once
 
 #include "base/defs.h"
-#include "_Model.h"
-#include "db/DB_Table_Customfielddata_V1.h"
+#include "_ModelBase.h"
+#include "table/FieldValueTable.h"
 
-class FieldValueModel : public Model<DB_Table_CUSTOMFIELDDATA_V1>
+class FieldValueModel : public Model<FieldValueTable>
 {
 public:
-    using Model<DB_Table_CUSTOMFIELDDATA_V1>::get;
+    using Model<FieldValueTable>::cache_id;
 
 public:
     FieldValueModel();
@@ -47,8 +47,8 @@ public:
     static FieldValueModel& instance();
 
 public:
-    std::map<int64, Data_Set> get_all(const wxString& reftype);
-    Data* get(int64 FieldID, int64 RefID);
+    std::map<int64, Data_Set> get_all_id(const wxString& reftype);
+    Data* cache_key(int64 FieldID, int64 RefID);
     wxArrayString allValue(const int64 FieldID);
     static bool DeleteAllData(const wxString& RefType, int64 RefID);
 };

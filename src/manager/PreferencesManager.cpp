@@ -174,7 +174,7 @@ bool PreferencesManager::SaveNewSystemSettings()
 {
     bool bResult = true;
 
-    InfotableModel::instance().Savepoint();
+    InfoModel::instance().Savepoint();
     SettingModel::instance().Savepoint();
 
     for (const auto notebook_panel : m_panel_list)
@@ -184,7 +184,7 @@ bool PreferencesManager::SaveNewSystemSettings()
     }
 
     SettingModel::instance().ReleaseSavepoint();
-    InfotableModel::instance().ReleaseSavepoint();
+    InfoModel::instance().ReleaseSavepoint();
 
     return bResult;
 }
@@ -213,7 +213,7 @@ void PreferencesManager::OnPageChange(wxBookCtrlEvent& event)
 
 void PreferencesManager::OnApply(wxCommandEvent& /*event*/)
 {
-    InfotableModel::instance().Savepoint();
+    InfoModel::instance().Savepoint();
     SettingModel::instance().Savepoint();
 
     int selected_page = m_listbook->GetSelection();
@@ -224,5 +224,5 @@ void PreferencesManager::OnApply(wxCommandEvent& /*event*/)
     }
 
     SettingModel::instance().ReleaseSavepoint();
-    InfotableModel::instance().ReleaseSavepoint();
+    InfoModel::instance().ReleaseSavepoint();
 }

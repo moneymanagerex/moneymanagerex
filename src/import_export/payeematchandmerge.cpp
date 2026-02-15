@@ -62,7 +62,7 @@ bool PayeeMatchAndMerge::MatchPayee(const wxString& payeeName, PayeeMatchMode mo
 
 void PayeeMatchAndMerge::ExactMatch(const wxString& payeeName, std::vector<PayeeMatchResult>& results)
 {
-    PayeeModel::Data_Set payees = PayeeModel::instance().all(PayeeModel::COL_PAYEENAME);
+    PayeeModel::Data_Set payees = PayeeModel::instance().get_all(PayeeModel::COL_PAYEENAME);
     wxLogDebug("ExactMatch: Checking payeeName='%s' against %zu payees", payeeName, payees.size());
     for (const auto& payee : payees)
     {
@@ -88,7 +88,7 @@ void PayeeMatchAndMerge::ExactMatch(const wxString& payeeName, std::vector<Payee
 
 void PayeeMatchAndMerge::RegexMatch(const wxString& payeeName, std::vector<PayeeMatchResult>& results)
 {
-    PayeeModel::Data_Set payees = PayeeModel::instance().all();
+    PayeeModel::Data_Set payees = PayeeModel::instance().get_all();
     for (const auto& payee : payees)
     {
         if (payee.PATTERN.IsEmpty())
@@ -119,7 +119,7 @@ void PayeeMatchAndMerge::RegexMatch(const wxString& payeeName, std::vector<Payee
 
 void PayeeMatchAndMerge::FuzzyMatch(const wxString& payeeName, std::vector<PayeeMatchResult>& results)
 {
-    PayeeModel::Data_Set payees = PayeeModel::instance().all(PayeeModel::COL_PAYEENAME);
+    PayeeModel::Data_Set payees = PayeeModel::instance().get_all(PayeeModel::COL_PAYEENAME);
     for (const auto& payee : payees)
     {
         int distance = CalculateLevenshteinDistance(payeeName, payee.PAYEENAME);

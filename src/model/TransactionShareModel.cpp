@@ -21,7 +21,7 @@
 #include "TransactionShareModel.h"
 
 TransactionShareModel::TransactionShareModel()
-: Model<DB_Table_SHAREINFO_V1>()
+: Model<TransactionShareTable>()
 {
 }
 
@@ -36,9 +36,9 @@ TransactionShareModel::~TransactionShareModel()
 TransactionShareModel& TransactionShareModel::instance(wxSQLite3Database* db)
 {
     TransactionShareModel& ins = Singleton<TransactionShareModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -64,7 +64,7 @@ TransactionShareModel::Data* TransactionShareModel::ShareEntry(const int64 check
     Data_Set list = TransactionShareModel::ShareList(checking_id);
     if (!list.empty())
     {
-        return TransactionShareModel::instance().get(list.at(0).SHAREINFOID);
+        return TransactionShareModel::instance().cache_id(list.at(0).SHAREINFOID);
     }
     return nullptr;
 }

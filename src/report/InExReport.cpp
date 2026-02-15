@@ -45,16 +45,16 @@ wxString InExReport::getHTMLText()
     // Grab the data
     std::pair<double, double> income_expenses_pair;
     for (const auto& transaction : TransactionModel::instance().find(
-        TransactionModel::TRANSDATE(mmDateDay(m_date_range->start_date()), GREATER_OR_EQUAL),
-        TransactionModel::TRANSDATE(mmDateDay(m_date_range->end_date()), LESS_OR_EQUAL),
-        TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
-        TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
+        TransactionModel::TRANSDATE(OP_GE, mmDateDay(m_date_range->start_date())),
+        TransactionModel::TRANSDATE(OP_LE, mmDateDay(m_date_range->end_date())),
+        TransactionModel::DELETEDTIME(OP_EQ, wxEmptyString),
+        TransactionModel::STATUS(OP_NE, TransactionModel::STATUS_ID_VOID)
     )) {
         // Do not include asset or stock transfers
         if (TransactionModel::foreignTransactionAsTransfer(transaction))
             continue;
 
-        AccountModel::Data *account = AccountModel::instance().get(transaction.ACCOUNTID);
+        AccountModel::Data *account = AccountModel::instance().cache_id(transaction.ACCOUNTID);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->ACCOUNTNAME))
                 continue;
@@ -149,16 +149,16 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     // TODO: init all the map values with 0.0
     for (const auto& transaction : TransactionModel::instance().find(
-        TransactionModel::TRANSDATE(mmDateDay(start_date), GREATER_OR_EQUAL),
-        TransactionModel::TRANSDATE(mmDateDay(m_date_range->end_date()), LESS_OR_EQUAL),
-        TransactionModel::DELETEDTIME(wxEmptyString, EQUAL),
-        TransactionModel::STATUS(TransactionModel::STATUS_ID_VOID, NOT_EQUAL)
+        TransactionModel::TRANSDATE(OP_GE, mmDateDay(start_date)),
+        TransactionModel::TRANSDATE(OP_LE, mmDateDay(m_date_range->end_date())),
+        TransactionModel::DELETEDTIME(OP_EQ, wxEmptyString),
+        TransactionModel::STATUS(OP_NE, TransactionModel::STATUS_ID_VOID)
     )) {
         // Do not include asset or stock transfers
         if (TransactionModel::foreignTransactionAsTransfer(transaction))
             continue;
 
-        AccountModel::Data *account = AccountModel::instance().get(transaction.ACCOUNTID);
+        AccountModel::Data *account = AccountModel::instance().cache_id(transaction.ACCOUNTID);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->ACCOUNTNAME))
                 continue;

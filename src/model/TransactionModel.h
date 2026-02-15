@@ -22,8 +22,8 @@
 #include "util/_choices.h"
 #include "util/mmDateDay.h"
 
-#include "db/DB_Table_Checkingaccount_V1.h"
-#include "_Model.h"
+#include "table/TransactionTable.h"
+#include "_ModelBase.h"
 #include "TransactionSplitModel.h"
 #include "FieldModel.h"
 #include "TagLinkModel.h"
@@ -31,11 +31,11 @@
 
 const wxString mmGetTimeForDisplay(const wxString& datetime_iso);
 
-class TransactionModel : public Model<DB_Table_CHECKINGACCOUNT_V1>
+class TransactionModel : public Model<TransactionTable>
 {
 public:
-    using Model<DB_Table_CHECKINGACCOUNT_V1>::remove;
-    using Model<DB_Table_CHECKINGACCOUNT_V1>::save;
+    using Model<TransactionTable>::remove;
+    using Model<TransactionTable>::save;
     typedef TransactionSplitModel::Data_Set Split_Data_Set;
     typedef TagLinkModel::Data_Set Taglink_Data_Set;
 
@@ -78,25 +78,6 @@ private:
 public:
     struct Full_Data: public Data
     {
-        Full_Data();
-        explicit Full_Data(const Data& r);
-        Full_Data(const Data& r,
-            const std::map<int64 /* TRANSID */, TransactionSplitModel::Data_Set> & splits,
-            const std::map<int64 /* TRANSID */, TagLinkModel::Data_Set> & tags
-        );
-        ~Full_Data();
-        void fill_data();
-        wxString real_payee_name(int64 account_id) const;
-        const wxString get_currency_code(int64 account_id) const;
-        const wxString get_account_name(int64 account_id) const;
-        bool has_split() const;
-        bool has_tags() const;
-        bool has_attachment() const;
-        bool is_foreign() const;
-        bool is_foreign_transfer() const;
-        wxString info() const;
-        const wxString to_json();
-
         // filled-in by constructor
         wxString displayID;
         wxString ACCOUNTNAME, TOACCOUNTNAME;
@@ -125,66 +106,117 @@ public:
         };
         wxString UDFC_content[5];
         double UDFC_value[5] = {0, 0, 0, 0, 0};
+
+        Full_Data();
+        explicit Full_Data(const Data& r);
+        Full_Data(const Data& r,
+            const std::map<int64 /* TRANSID */, TransactionSplitModel::Data_Set> & splits,
+            const std::map<int64 /* TRANSID */, TagLinkModel::Data_Set> & tags
+        );
+        ~Full_Data();
+
+        void fill_data();
+        wxString real_payee_name(int64 account_id) const;
+        const wxString get_currency_code(int64 account_id) const;
+        const wxString cache_id_name(int64 account_id) const;
+        bool has_split() const;
+        bool has_tags() const;
+        bool has_attachment() const;
+        bool is_foreign() const;
+        bool is_foreign_transfer() const;
+        wxString info() const;
+        const wxString to_json();
     };
 
     typedef std::vector<Full_Data> Full_Data_Set;
 
-    struct SorterByBALANCE
-    {
-        template<class DATA>
-        bool operator()(const DATA& x, const DATA& y)
-        {
-            return x.ACCOUNT_BALANCE < y.ACCOUNT_BALANCE;
-        }
-    };
-    struct SorterByDEPOSIT
-    {
-        template<class DATA>
-        bool operator()(const DATA& x, const DATA& y)
-        {
-            return x.ACCOUNTID_D != -1 && (y.ACCOUNTID_D == -1 || x.TRANSAMOUNT_D < y.TRANSAMOUNT_D);
-        }
-    };
-    struct SorterByWITHDRAWAL
-    {
-        template<class DATA>
-        bool operator()(const DATA& x, const DATA& y)
-        {
-            return x.ACCOUNTID_W != -1 && (y.ACCOUNTID_W == -1 || x.TRANSAMOUNT_W < y.TRANSAMOUNT_W);
-        }
-    };
     struct SorterByNUMBER
     {
-        template<class DATA>
-        bool operator()(const DATA& x, const DATA& y)
+        bool operator()(const Full_Data& x, const Full_Data& y)
         {
             return x.TRANSACTIONNUMBER.IsNumber() && y.TRANSACTIONNUMBER.IsNumber()
                 ? (wxAtoi(x.TRANSACTIONNUMBER) < wxAtoi(y.TRANSACTIONNUMBER))
                 : x.TRANSACTIONNUMBER < y.TRANSACTIONNUMBER;
         }
     };
-    struct SorterByTAGNAMES
-    {
-        template<class DATA>
-        bool operator()(const DATA& x, const DATA& y)
-        {
-            return x.TAGNAMES < y.TAGNAMES;
-        }
-    };
+
     struct SorterByTRANSDATE_DATE
     {
-        template <class DATA>
-        bool operator()(const DATA& x, const DATA& y)
+        bool operator()(const Data& x, const Data& y)
         {
             return x.TRANSDATE.Left(10) < y.TRANSDATE.Left(10);
         }
     };
+
     struct SorterByTRANSDATE_TIME
     {
-        template <class DATA>
-        bool operator()(const DATA& x, const DATA& y)
+        bool operator()(const Data& x, const Data& y)
         {
             return mmGetTimeForDisplay(x.TRANSDATE) < mmGetTimeForDisplay(y.TRANSDATE);
+        }
+    };
+
+    struct SorterByACCOUNTNAME
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return std::wcscoll(x.ACCOUNTNAME.Lower().wc_str(), y.ACCOUNTNAME.Lower().wc_str()) < 0;
+        }
+    };
+
+    struct SorterByTOACCOUNTNAME
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return std::wcscoll(x.TOACCOUNTNAME.Lower().wc_str(), y.TOACCOUNTNAME.Lower().wc_str()) < 0;
+        }
+    };
+
+    struct SorterByPAYEENAME
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return std::wcscoll(x.PAYEENAME.Lower().wc_str(), y.PAYEENAME.Lower().wc_str()) < 0;
+        }
+    };
+
+    struct SorterByCATEGNAME
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return std::wcscoll(x.CATEGNAME.Lower().wc_str(), y.CATEGNAME.Lower().wc_str()) < 0;
+        }
+    };
+
+    struct SorterByTAGNAMES
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return x.TAGNAMES < y.TAGNAMES;
+        }
+    };
+
+    struct SorterByBALANCE
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return x.ACCOUNT_BALANCE < y.ACCOUNT_BALANCE;
+        }
+    };
+
+    struct SorterByDEPOSIT
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return x.ACCOUNTID_D != -1 && (y.ACCOUNTID_D == -1 || x.TRANSAMOUNT_D < y.TRANSAMOUNT_D);
+        }
+    };
+
+    struct SorterByWITHDRAWAL
+    {
+        bool operator()(const Full_Data& x, const Full_Data& y)
+        {
+            return x.ACCOUNTID_W != -1 && (y.ACCOUNTID_W == -1 || x.TRANSAMOUNT_W < y.TRANSAMOUNT_W);
         }
     };
 
@@ -219,13 +251,13 @@ public:
     static const Split_Data_Set split(const Data& r);
 
 public:
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxString& date_iso_str, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const mmDateDay& date, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDateTime& date, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::DELETEDTIME DELETEDTIME(const wxString& date, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ID status, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TRANSCODE(TYPE_ID type, OP op = EQUAL);
-    static DB_Table_CHECKINGACCOUNT_V1::TRANSACTIONNUMBER TRANSACTIONNUMBER(const wxString& num, OP op = EQUAL);
+    static TransactionTable::TRANSDATE TRANSDATE(OP op, const wxString& date_iso_str);
+    static TransactionTable::TRANSDATE TRANSDATE(OP op, const mmDateDay& date);
+    static TransactionTable::TRANSDATE TRANSDATE(OP op, const wxDateTime& date);
+    static TransactionTable::DELETEDTIME DELETEDTIME(OP op, const wxString& date);
+    static TransactionTable::STATUS STATUS(OP op, STATUS_ID status);
+    static TransactionTable::TRANSCODE TRANSCODE(OP op, TYPE_ID type);
+    static TransactionTable::TRANSACTIONNUMBER TRANSACTIONNUMBER(OP op, const wxString& num);
 
 public:
     static const wxString type_name(int id);

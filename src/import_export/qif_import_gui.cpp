@@ -69,7 +69,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int64 account_id, const w
 {
     decimal_ = CurrencyModel::GetBaseCurrency()->DECIMAL_POINT;
     payeeIsNotes_ = false;
-    const auto& acc = AccountModel::instance().get(account_id);
+    const auto& acc = AccountModel::instance().cache_id(account_id);
     if (acc)
         m_accountNameStr = acc->ACCOUNTNAME;
 
@@ -77,12 +77,12 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent, int64 account_id, const w
     Create(parent);
     mmThemeAutoColour(this);
     SetMinSize(wxSize(500, 300));
-    SetSize(InfotableModel::instance().getSize(DIALOG_SIZE));
+    SetSize(InfoModel::instance().getSize(DIALOG_SIZE));
 }
 
 mmQIFImportDialog::~mmQIFImportDialog()
 {
-    InfotableModel::instance().setSize(DIALOG_SIZE, GetSize());
+    InfoModel::instance().setSize(DIALOG_SIZE, GetSize());
 }
 
 wxString mmQIFImportDialog::OnGetItemText(long item, long column) const
@@ -446,7 +446,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     m_payee_names.clear();
     m_payee_names.Add(_t("Unknown"));
     m_duplicateTransactions.clear();  // Clear the list of matched transactions
-    wxString catDelimiter = InfotableModel::instance().getString("CATEG_DELIMITER", ":");
+    wxString catDelimiter = InfoModel::instance().getString("CATEG_DELIMITER", ":");
 
     wxFileInputStream input(m_FileNameStr);
     wxTextInputStream* text;
@@ -467,7 +467,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
     wxString accName = "";
     if (accountCheckBox_->IsChecked()) {
         accName = accountDropDown_->GetStringSelection();
-        AccountModel::Data* acc = AccountModel::instance().get(accName);
+        AccountModel::Data* acc = AccountModel::instance().cache_key(accName);
         if (acc) {
             m_accountNameStr = acc->ACCOUNTNAME;
         }
@@ -727,7 +727,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         for (const auto& trx : vQIF_trxs_)
         {
             wxVector<wxVariant> data;
-            AccountModel::Data* account = AccountModel::instance().getByAccNum(trx.at(AccountName));
+            AccountModel::Data* account = AccountModel::instance().cache_num(trx.at(AccountName));
             data.push_back(wxVariant(wxString::Format("%i", num + 1)));
             data.push_back(
                 wxVariant(
@@ -805,8 +805,8 @@ void mmQIFImportDialog::refreshTabs(int tabs)
             currencySymbol = currencySymbol.SubString(1, currencySymbol.length() - 2);
 
             AccountModel::Data* account = (accountNumberCheckBox_->IsChecked())
-                ? AccountModel::instance().getByAccNum(acc.first)
-                : AccountModel::instance().get(acc.first);
+                ? AccountModel::instance().cache_num(acc.first)
+                : AccountModel::instance().cache_key(acc.first);
 
             wxString status;
             const wxString type = acc.second.find(AccountType) != acc.second.end()
@@ -814,7 +814,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
 
             if (account)
             {
-                CurrencyModel::Data *curr = CurrencyModel::instance().get(account->CURRENCYID);
+                CurrencyModel::Data *curr = CurrencyModel::instance().cache_id(account->CURRENCYID);
                 if (curr && curr->CURRENCY_SYMBOL == currencySymbol)
                     status = _t("OK");
                 else
@@ -1027,7 +1027,9 @@ void mmQIFImportDialog::compilePayeeRegEx() {
     if (payeeMatchCheckBox_->IsChecked() && !payeeRegExInitialized_)
     {
         // only look at payees that have a match pattern set
-        PayeeModel::Data_Set payees = PayeeModel::instance().find(PayeeModel::PATTERN(wxEmptyString, NOT_EQUAL));
+        PayeeModel::Data_Set payees = PayeeModel::instance().find(
+            PayeeModel::PATTERN(OP_NE, wxEmptyString)
+        );
         for (const auto& payee : payees)
         {
             Document json_doc;
@@ -1083,7 +1085,7 @@ void mmQIFImportDialog::validatePayees() {
             }
         }
         if (!payee_found) {
-            PayeeModel::Data* payee = PayeeModel::instance().get(payee_name);
+            PayeeModel::Data* payee = PayeeModel::instance().cache_key(payee_name);
             if (payee) {
                 m_QIFpayeeNames[payee_name] = std::make_tuple(payee->PAYEEID, payee->PAYEENAME, "");
             }
@@ -1160,8 +1162,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 if (dateToCheckBox_->IsChecked() && strDate > end_date)
                     continue;
 
-                AccountModel::Data* account = AccountModel::instance().get(trx->ACCOUNTID);
-                AccountModel::Data* toAccount = AccountModel::instance().get(trx->TOACCOUNTID);
+                AccountModel::Data* account = AccountModel::instance().cache_id(trx->ACCOUNTID);
+                AccountModel::Data* toAccount = AccountModel::instance().cache_id(trx->TOACCOUNTID);
 
                 if ((trx->TRANSDATE < account->STATEMENTDATE && account->STATEMENTLOCKED.GetValue()) ||
                     (toAccount && (trx->TRANSDATE < toAccount->STATEMENTDATE && toAccount->STATEMENTLOCKED.GetValue())))
@@ -1186,7 +1188,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                         wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
                         // make tag names single-word
                         tagname.Replace(" ", "_");
-                        TagModel::Data* tag = TagModel::instance().get(tagname);
+                        TagModel::Data* tag = TagModel::instance().cache_key(tagname);
                         if (!tag)
                         {
                             tag = TagModel::instance().create();
@@ -1248,13 +1250,13 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             wxDate dt;
             dt.ParseISODate(trx->TRANSDATE);
             const auto data = TransactionModel::instance().find(
-                TransactionModel::TRANSDATE(dt)
-                , TransactionModel::ACCOUNTID(trx->ACCOUNTID)
-                , TransactionModel::TOACCOUNTID(trx->TOACCOUNTID)
-                , TransactionModel::NOTES(trx->NOTES)
-                , TransactionModel::TRANSACTIONNUMBER(trx->TRANSACTIONNUMBER)
-                , TransactionModel::TRANSCODE(TransactionModel::TYPE_ID_TRANSFER)
-                , TransactionModel::TRANSAMOUNT(trx->TRANSAMOUNT)
+                TransactionModel::TRANSDATE(OP_EQ, dt),
+                TransactionModel::ACCOUNTID(OP_EQ, trx->ACCOUNTID),
+                TransactionModel::TOACCOUNTID(OP_EQ, trx->TOACCOUNTID),
+                TransactionModel::NOTES(OP_EQ, trx->NOTES),
+                TransactionModel::TRANSACTIONNUMBER(OP_EQ, trx->TRANSACTIONNUMBER),
+                TransactionModel::TRANSCODE(OP_EQ, TransactionModel::TYPE_ID_TRANSFER),
+                TransactionModel::TRANSAMOUNT(OP_EQ, trx->TRANSAMOUNT)
             );
             if (data.size() > 0)
                 trx->STATUS = TransactionModel::STATUS_KEY_DUPLICATE;
@@ -1555,7 +1557,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
                     wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
                     // make tag names single-word
                     tagname.Replace(" ", "_");
-                    TagModel::Data* tag = TagModel::instance().get(tagname);
+                    TagModel::Data* tag = TagModel::instance().cache_key(tagname);
                     if (!tag)
                     {
                         tag = TagModel::instance().create();
@@ -1583,7 +1585,7 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
         wxString categStr = (t.find(Category) != t.end() ? t.at(Category).BeforeFirst('/') : "");
         if (categStr.empty())
         {
-            PayeeModel::Data* payee = PayeeModel::instance().get(trx->PAYEEID);
+            PayeeModel::Data* payee = PayeeModel::instance().cache_id(trx->PAYEEID);
             if (payee)
             {
                 trx->CATEGID = payee->CATEGID;
@@ -1614,8 +1616,9 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
             if (!trx->TRANSACTIONNUMBER.empty())
             {
                 const auto existing_transactions = TransactionModel::instance().find(
-                    TransactionModel::TRANSACTIONNUMBER(trx->TRANSACTIONNUMBER),
-                    TransactionModel::DELETEDTIME(wxEmptyString, EQUAL));
+                    TransactionModel::TRANSACTIONNUMBER(OP_EQ, trx->TRANSACTIONNUMBER),
+                    TransactionModel::DELETEDTIME(OP_EQ, wxEmptyString)
+                );
 
                 isDuplicate = !existing_transactions.empty();
             }
@@ -1646,9 +1649,10 @@ bool mmQIFImportDialog::completeTransaction(/*in*/ const std::unordered_map <int
 
             const auto potential_matches = TransactionModel::instance().find(
                 TransactionModel::TRANSAMOUNT(trx->TRANSAMOUNT),
-                TransactionModel::TRANSDATE(startDateStr, GREATER_OR_EQUAL),
-                TransactionModel::TRANSDATE(endDateStr, LESS_OR_EQUAL),
-                TransactionModel::DELETEDTIME(wxEmptyString, EQUAL));
+                TransactionModel::TRANSDATE(OP_GE, startDateStr),
+                TransactionModel::TRANSDATE(OP_LE, endDateStr),
+                TransactionModel::DELETEDTIME(OP_EQ, wxEmptyString)
+            );
 
             for (const auto& existingTrx : potential_matches)
             {
@@ -1695,8 +1699,8 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
     {
         int64 accountID = -1;
         AccountModel::Data* acc = (accountNumberCheckBox_->IsChecked())
-            ? AccountModel::instance().getByAccNum(item.first)
-            : AccountModel::instance().get(item.first);
+            ? AccountModel::instance().cache_num(item.first)
+            : AccountModel::instance().cache_key(item.first);
 
         if (!acc)
         {
@@ -1714,7 +1718,7 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
 
             account->CURRENCYID = CurrencyModel::GetBaseCurrency()->CURRENCYID;
             const wxString c = (item.second.find(Description) == item.second.end() ? "" : item.second.at(Description));
-            for (const auto& curr : CurrencyModel::instance().all())
+            for (const auto& curr : CurrencyModel::instance().get_all())
             {
                 if (wxString::Format("[%s]", curr.CURRENCY_SYMBOL) == c) {
                     account->CURRENCYID = curr.CURRENCYID;
@@ -1732,7 +1736,7 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
         m_QIFaccountsID[item.first] = accountID;
     }
 
-    AccountModel::Data* acc = AccountModel::instance().get(m_accountNameStr);
+    AccountModel::Data* acc = AccountModel::instance().cache_key(m_accountNameStr);
     if (acc) {
         m_QIFaccountsID[m_accountNameStr] = acc->ACCOUNTID;
     }
@@ -1773,7 +1777,7 @@ void mmQIFImportDialog::getOrCreateCategories()
         int64 parentID = -1;
         while(token.HasMoreTokens()){
             categStr = token.GetNextToken().Trim(false).Trim();
-            CategoryModel::Data* c = CategoryModel::instance().get(categStr, parentID);
+            CategoryModel::Data* c = CategoryModel::instance().cache_key(categStr, parentID);
             if (temp.Index(categStr + wxString::Format(":%lld", parentID)) == wxNOT_FOUND) {
 
                 if (!c)
@@ -1796,7 +1800,7 @@ void mmQIFImportDialog::getOrCreateCategories()
 int64 mmQIFImportDialog::get_last_imported_acc()
 {
     int64 accID = -1;
-    AccountModel::Data* acc = AccountModel::instance().get(m_accountNameStr);
+    AccountModel::Data* acc = AccountModel::instance().cache_key(m_accountNameStr);
     if (acc)
         accID = acc->ACCOUNTID;
     return accID;

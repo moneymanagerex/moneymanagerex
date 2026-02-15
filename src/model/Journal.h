@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include "_Model.h"
+#include "_ModelBase.h"
 #include "TransactionModel.h"
 #include "ScheduledModel.h"
 #include "TransactionSplitModel.h"
@@ -44,19 +44,22 @@ public:
 
     struct Data: public TransactionModel::Data
     {
+        int64 m_bdid;
+        int m_repeat_num;
+
         Data();
         explicit Data(const TransactionModel::Data& t);
         explicit Data(const ScheduledModel::Data& r);
         Data(const ScheduledModel::Data& r, wxString date, int repeat_num);
         ~Data();
-
-        int64 m_bdid;
-        int m_repeat_num;
     };
     typedef std::vector<Data> Data_Set;
 
     struct Full_Data: public TransactionModel::Full_Data
     {
+        int64 m_bdid;
+        int m_repeat_num;
+
         explicit Full_Data(const TransactionModel::Data& t);
         Full_Data(const TransactionModel::Data& t,
             const std::map<int64 /* TRANSID */, Split_Data_Set>& splits,
@@ -69,9 +72,6 @@ public:
             const std::map<int64 /* BDID */, Taglink_Data_Set>& tags
         );
         ~Full_Data();
-
-        int64 m_bdid;
-        int m_repeat_num;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 
@@ -88,10 +88,9 @@ public:
 
     struct SorterByJOURNALSN
     { 
-        template<class DATA>
-        bool operator()(const DATA& x, const DATA& y)
+        bool operator()(const Full_Data& x, const Full_Data& y)
         {
-            return (x.SN < y.SN);
+            return x.SN < y.SN;
         }
     };
 

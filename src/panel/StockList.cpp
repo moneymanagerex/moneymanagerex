@@ -291,7 +291,7 @@ void StockList::OnNewStocks(wxCommandEvent& /*event*/)
 {
     StockDialog dlg(this, nullptr, m_stock_panel->m_account_id);
     dlg.ShowModal();
-    if (StockModel::instance().get(dlg.m_stock_id))
+    if (StockModel::instance().cache_id(dlg.m_stock_id))
     {
         doRefreshItems(dlg.m_stock_id);
         m_stock_panel->m_frame->RefreshNavigationTree();
@@ -324,7 +324,7 @@ void StockList::OnMoveStocks(wxCommandEvent& /*event*/)
         AccountModel::ACCOUNTTYPE(NavigatorTypes::instance().getInvestmentAccountStr()));
     if (accounts.empty()) return;
 
-    const AccountModel::Data* from_account = AccountModel::instance().get(m_stock_panel->m_account_id);
+    const AccountModel::Data* from_account = AccountModel::instance().cache_id(m_stock_panel->m_account_id);
     wxString headerMsg = wxString::Format(_t("Moving Transaction from %s to"), from_account->ACCOUNTNAME);
     mmSingleChoiceDialog scd(this, _t("Select the destination Account "), headerMsg , accounts);
 
@@ -333,13 +333,13 @@ void StockList::OnMoveStocks(wxCommandEvent& /*event*/)
     if (error_code == wxID_OK)
     {
         wxString acctName = scd.GetStringSelection();
-        const AccountModel::Data* to_account = AccountModel::instance().get(acctName);
+        const AccountModel::Data* to_account = AccountModel::instance().cache_key(acctName);
         toAccountID = to_account->ACCOUNTID;
     }
 
     if ( toAccountID != -1 )
     {
-        StockModel::Data* stock = StockModel::instance().get(m_stocks[m_selected_row].STOCKID);
+        StockModel::Data* stock = StockModel::instance().cache_id(m_stocks[m_selected_row].STOCKID);
         stock->HELDAT = toAccountID;
         StockModel::instance().save(stock);
 
@@ -379,7 +379,7 @@ void StockList::OnStockWebPage(wxCommandEvent& /*event*/)
 
     if (!stockSymbol.IsEmpty())
     {
-        const wxString& stockURL = InfotableModel::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
+        const wxString& stockURL = InfoModel::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
         const wxString& httpString = wxString::Format(stockURL, stockSymbol);
         wxLaunchDefaultBrowser(httpString);
     }
@@ -468,14 +468,14 @@ int StockList::initVirtualListControl(int64 trx_id)
     // TODO
     if (m_stock_panel->m_account_id > -1 ) {
         m_stocks = StockModel::instance().find(
-                        StockModel::HELDAT(m_stock_panel->m_account_id),
-                        StockModel::NUMSHARES(0.0, m_stock_panel->getFilter() ? GREATER : GREATER_OR_EQUAL)
-                );
+            StockModel::HELDAT(m_stock_panel->m_account_id),
+            StockModel::NUMSHARES(m_stock_panel->getFilter() ? OP_GT : OP_GE, 0.0)
+        );
     }
     else { // create summary
         m_stocks = StockModel::instance().find(
-                        StockModel::NUMSHARES(0.0, m_stock_panel->getFilter() ? GREATER : GREATER_OR_EQUAL)
-                );
+            StockModel::NUMSHARES(m_stock_panel->getFilter() ? OP_GT : OP_GE, 0.0)
+        );
         if (!m_stocks.empty())
             createSummary();
     }
@@ -507,22 +507,22 @@ void StockList::sortList()
     switch (getSortColId())
     {
     case StockList::LIST_ID_ID:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKID());
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterBySTOCKID());
         break;
     case StockList::LIST_ID_DATE:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEDATE());
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterByPURCHASEDATE());
         break;
     case StockList::LIST_ID_NAME:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKNAME());
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterBySTOCKNAME());
         break;
     case StockList::LIST_ID_SYMBOL:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterBySYMBOL());
         break;
     case StockList::LIST_ID_NUMBER:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNUMSHARES());
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterByNUMSHARES());
         break;
     case StockList::LIST_ID_PRICE:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEPRICE());
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterByPURCHASEPRICE());
         break;
     case StockList::LIST_ID_VALUE:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
@@ -546,7 +546,7 @@ void StockList::sortList()
             });
         break;
     case StockList::LIST_ID_CURRENT:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCURRENTPRICE());
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterByCURRENTPRICE());
         break;
     case StockList::LIST_ID_CURRVALUE:
         std::stable_sort(m_stocks.begin(), m_stocks.end()
@@ -561,10 +561,10 @@ void StockList::sortList()
         //TODO
         break;
     case StockList::LIST_ID_COMMISSION:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCOMMISSION());
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterByCOMMISSION());
         break;
     case StockList::LIST_ID_NOTES:
-        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNOTES());
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterByNOTES());
         break;
     default:
         break;
@@ -581,7 +581,7 @@ void StockList::createSummary()
     m_marketVal = 0;
 
     std::sort(m_stocks.begin(), m_stocks.end());
-    std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySYMBOL());
+    std::stable_sort(m_stocks.begin(), m_stocks.end(), StockTable::SorterBySYMBOL());
 
     for (StockModel::Data stock : m_stocks) {
         if (stock.SYMBOL != prevSymbol) {

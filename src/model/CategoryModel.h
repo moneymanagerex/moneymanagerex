@@ -22,14 +22,14 @@
 #include "base/defs.h"
 #include <wx/sharedptr.h>
 
-#include "_Model.h"
-#include "db/DB_Table_Category_V1.h"
+#include "_ModelBase.h"
+#include "table/CategoryTable.h"
 
 class mmDateRange;
-class CategoryModel : public Model<DB_Table_CATEGORY_V1>
+class CategoryModel : public Model<CategoryTable>
 {
 public:
-    using Model<DB_Table_CATEGORY_V1>::get;
+    using Model<CategoryTable>::cache_id;
     struct SorterByFULLNAME
     {
         template<class DATA>
@@ -60,8 +60,8 @@ public:
 
 public:
     /** Return the Data record for the given category name */
-    Data* get(const wxString& name, const int64 parentid);
-    Data* get(const wxString& name, const wxString& parentname);
+    Data* cache_key(const wxString& name, const int64 parentid);
+    Data* cache_name(const wxString& name, const wxString& parentname);
 
     const wxArrayString FilterCategory(const wxString& category_pattern);
     static const std::map<wxString, int64 > all_categories(bool excludeHidden = false);

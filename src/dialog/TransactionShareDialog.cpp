@@ -76,7 +76,7 @@ TransactionShareDialog::TransactionShareDialog(wxWindow* parent, TransactionLink
 {
     if (m_translink_entry)
     {
-        m_stock = StockModel::instance().get(m_translink_entry->LINKRECORDID);
+        m_stock = StockModel::instance().cache_id(m_translink_entry->LINKRECORDID);
         if (m_translink_entry->LINKTYPE == StockModel::refTypeName)
         {
             m_share_entry = TransactionShareModel::ShareEntry(m_translink_entry->CHECKINGACCOUNTID);
@@ -167,13 +167,13 @@ void TransactionShareDialog::DataToControls()
 
             if (m_translink_entry)
             {
-                TransactionModel::Data* checking_entry = TransactionModel::instance().get(m_translink_entry->CHECKINGACCOUNTID);
+                TransactionModel::Data* checking_entry = TransactionModel::instance().cache_id(m_translink_entry->CHECKINGACCOUNTID);
                 if (checking_entry)
                 {
                     m_transaction_panel->TransactionDate(TransactionModel::getTransDateTime(checking_entry));
                     m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->SHARENUMBER)
                         , m_share_entry->SHAREPRICE, m_share_entry->SHARECOMMISSION), true);
-                    m_transaction_panel->SetTransactionAccount(AccountModel::get_account_name(checking_entry->ACCOUNTID));
+                    m_transaction_panel->SetTransactionAccount(AccountModel::cache_id_name(checking_entry->ACCOUNTID));
                     m_transaction_panel->SetTransactionStatus(TransactionModel::status_id(checking_entry));
                     m_transaction_panel->SetTransactionPayee(checking_entry->PAYEEID);
                     m_transaction_panel->SetTransactionCategory(checking_entry->CATEGID);
@@ -343,7 +343,7 @@ void TransactionShareDialog::CreateControls()
     }
     else
     {
-        wxString acc_held = AccountModel::get_account_name(m_stock->HELDAT);
+        wxString acc_held = AccountModel::cache_id_name(m_stock->HELDAT);
         m_transaction_panel->SetTransactionNumber(m_stock->STOCKNAME + "_" + m_stock->SYMBOL);
         m_transaction_panel->SetTransactionAccount(acc_held);
     }
@@ -391,7 +391,7 @@ void TransactionShareDialog::OnStockPriceButton(wxCommandEvent& WXUNUSED(event))
 
     if (!stockSymbol.IsEmpty())
     {
-        const wxString& stockURL = InfotableModel::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
+        const wxString& stockURL = InfoModel::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
         const wxString& httpString = wxString::Format(stockURL, stockSymbol);
         wxLaunchDefaultBrowser(httpString);
     }
@@ -492,7 +492,7 @@ void TransactionShareDialog::OnDeductibleSplit(wxCommandEvent&)
         double commission = 0;
         m_share_commission_ctrl->GetDouble(commission);
 
-        CategoryModel::Data* category = CategoryModel::instance().get(_("Investment"), int64(-1L));
+        CategoryModel::Data* category = CategoryModel::instance().cache_key(_("Investment"), int64(-1L));
         if (!category)
         {
             category = CategoryModel::instance().create();

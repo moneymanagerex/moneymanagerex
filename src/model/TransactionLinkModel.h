@@ -21,14 +21,14 @@
 #pragma once
 
 #include "base/defs.h"
-#include "db/DB_Table_Translink_V1.h"
-#include "_Model.h"
+#include "table/TransactionLinkTable.h"
+#include "_ModelBase.h"
 #include "TransactionModel.h"
 #include "StockModel.h"
 #include "AssetModel.h"
 #include "AttachmentModel.h"
 
-class TransactionLinkModel : public Model<DB_Table_TRANSLINK_V1>
+class TransactionLinkModel : public Model<TransactionLinkTable>
 {
 public:
     enum CHECKING_TYPE { AS_INCOME_EXPENSE = 32701, AS_TRANSFER }; /* Transfers ignore accounting */

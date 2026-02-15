@@ -120,7 +120,7 @@ void DiagnosticsDialog::RefreshView()
          << ", closed: " << all_accounts.size() - all_accounts_open.size()
          << "</td></tr>";
     // Transactions info
-    auto all_transactions = TransactionModel::instance().all();
+    auto all_transactions = TransactionModel::instance().get_all();
     html << "<tr><td><b>Transactions</b></td><td>" << all_transactions.size() 
          << "</td></tr>";
     // Payee info

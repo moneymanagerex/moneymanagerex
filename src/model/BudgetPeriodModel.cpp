@@ -20,7 +20,7 @@
 #include "BudgetModel.h"
 
 BudgetPeriodModel::BudgetPeriodModel()
-: Model<DB_Table_BUDGETYEAR_V1>()
+: Model<BudgetPeriodTable>()
 {
 }
 
@@ -35,9 +35,9 @@ BudgetPeriodModel::~BudgetPeriodModel()
 BudgetPeriodModel& BudgetPeriodModel::instance(wxSQLite3Database* db)
 {
     BudgetPeriodModel& ins = Singleton<BudgetPeriodModel>::instance();
-    ins.db_ = db;
+    ins.m_db = db;
     ins.destroy_cache();
-    ins.ensure(db);
+    ins.ensure_table();
 
     return ins;
 }
@@ -52,35 +52,32 @@ bool BudgetPeriodModel::remove(int64 id)
 {
     for (const BudgetModel::Data& d : BudgetModel::instance().find(BudgetModel::BUDGETYEARID(id)))
         BudgetModel::instance().remove(d.BUDGETENTRYID);
-    return this->remove(id, db_);
+    return this->remove(id);
 }
 
 // Setter
 void BudgetPeriodModel::Set(int64 year_id, const wxString& value)
 {
-    Data* info = this->get(year_id, this->db_);
-    if (info)
-    {
+    Data* info = this->cache_id(year_id);
+    if (info) {
         info->BUDGETYEARNAME = value;
-        info->save(this->db_);
+        save(info);
     }
-    else
-    {
+    else {
         info = this->create();
         info->BUDGETYEARID = year_id;
         info->BUDGETYEARNAME = value;
-        info->save(this->db_);
+        save(info);
     }
 }
 
 int64 BudgetPeriodModel::Add(const wxString& value)
 {
     int64 year_id = this->Get(value);
-    if (year_id < 0)
-    {
+    if (year_id < 0) {
         Data* e = this->create();
         e->BUDGETYEARNAME = value;
-        e->save(this->db_);
+        save(e);
         year_id = e->id();
     }
     return year_id;
@@ -89,7 +86,7 @@ int64 BudgetPeriodModel::Add(const wxString& value)
 // Getter
 wxString BudgetPeriodModel::Get(int64 year_id)
 {
-    Data* e = this->get(year_id, this->db_);
+    Data* e = this->cache_id(year_id);
     if (e) return e->BUDGETYEARNAME;
 
     return "";
@@ -97,8 +94,7 @@ wxString BudgetPeriodModel::Get(int64 year_id)
 
 int64 BudgetPeriodModel::Get(const wxString& year_name)
 {
-    for (const auto& record: this->all())
-    {
+    for (const auto& record: this->get_all()) {
         if (record.BUDGETYEARNAME == year_name)
             return record.BUDGETYEARID;
     }
@@ -108,7 +104,7 @@ int64 BudgetPeriodModel::Get(const wxString& year_name)
 
 bool BudgetPeriodModel::Exists(int64 year_id)
 {
-    Data* e = this->get(year_id, this->db_);
+    Data* e = this->cache_id(year_id);
     if (e) return true;
 
     return false;
@@ -116,8 +112,7 @@ bool BudgetPeriodModel::Exists(int64 year_id)
 
 bool BudgetPeriodModel::Exists(const wxString& year_name)
 {
-    for (const auto& record: this->all())
-    {
+    for (const auto& record: this->get_all()) {
         if (record.BUDGETYEARNAME == year_name) 
             return true;
     }

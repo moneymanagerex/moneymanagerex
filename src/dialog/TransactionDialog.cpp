@@ -83,7 +83,7 @@ TransactionDialog::~TransactionDialog()
     wxSize size = GetSize();
     if (m_custom_fields->IsCustomPanelShown())
         size = wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight());
-    InfotableModel::instance().setSize("TRANSACTION_DIALOG_SIZE", size);
+    InfoModel::instance().setSize("TRANSACTION_DIALOG_SIZE", size);
 }
 
 void TransactionDialog::SetEventHandlers()
@@ -154,7 +154,7 @@ TransactionDialog::TransactionDialog(
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
 
     // If duplicate then we may need to copy the attachments
-    if (m_mode == MODE_DUP && InfotableModel::instance().getBool("ATTACHMENTSDUPLICATE", false))
+    if (m_mode == MODE_DUP && InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false))
     {
         const wxString& refType = TransactionModel::refTypeName;
         mmAttachmentManage::CloneAllAttachments(refType, journal_id.first, -1);
@@ -245,16 +245,16 @@ void TransactionDialog::dataToControls()
     //Account
     if (!skip_account_init_)
     {
-        AccountModel::Data* acc = AccountModel::instance().get(m_journal_data.ACCOUNTID);
+        AccountModel::Data* acc = AccountModel::instance().cache_id(m_journal_data.ACCOUNTID);
         if (acc)
         {
             cbAccount_->ChangeValue(acc->ACCOUNTNAME);
-            m_textAmount->SetCurrency(CurrencyModel::instance().get(acc->CURRENCYID));
+            m_textAmount->SetCurrency(CurrencyModel::instance().cache_id(acc->CURRENCYID));
         }
-        AccountModel::Data* to_acc = AccountModel::instance().get(m_journal_data.TOACCOUNTID);
+        AccountModel::Data* to_acc = AccountModel::instance().cache_id(m_journal_data.TOACCOUNTID);
         if (to_acc) {
             cbToAccount_->ChangeValue(to_acc->ACCOUNTNAME);
-            toTextAmount_->SetCurrency(CurrencyModel::instance().get(to_acc->CURRENCYID));
+            toTextAmount_->SetCurrency(CurrencyModel::instance().cache_id(to_acc->CURRENCYID));
         }
 
         skip_account_init_ = true;
@@ -311,17 +311,17 @@ void TransactionDialog::dataToControls()
                 && (-1 != accountID))
             {
                 TransactionModel::Data_Set transactions = TransactionModel::instance().find(
-                    TransactionModel::TRANSCODE(TransactionModel::TYPE_ID_TRANSFER, NOT_EQUAL)
-                    , TransactionModel::ACCOUNTID(accountID, EQUAL));
+                    TransactionModel::TRANSCODE(OP_NE, TransactionModel::TYPE_ID_TRANSFER),
+                    TransactionModel::ACCOUNTID(OP_EQ, accountID));
 
                 if (!transactions.empty()) {
-                    PayeeModel::Data* payee = PayeeModel::instance().get(transactions.back().PAYEEID);
+                    PayeeModel::Data* payee = PayeeModel::instance().cache_id(transactions.back().PAYEEID);
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                 }
             }
             else if (m_mode == MODE_NEW && PreferencesModel::instance().getTransPayeeNone() == PreferencesModel::UNUSED)
             {
-                PayeeModel::Data *payee = PayeeModel::instance().get(_t("Unknown"));
+                PayeeModel::Data *payee = PayeeModel::instance().cache_key(_t("Unknown"));
                 if (!payee)
                 {
                     payee = PayeeModel::instance().create();
@@ -335,7 +335,7 @@ void TransactionDialog::dataToControls()
             }
             else
             {
-                PayeeModel::Data* payee = PayeeModel::instance().get(m_journal_data.PAYEEID);
+                PayeeModel::Data* payee = PayeeModel::instance().cache_id(m_journal_data.PAYEEID);
                 if (payee)
                     cbPayee_->ChangeValue(payee->PAYEENAME);
             }
@@ -367,7 +367,8 @@ void TransactionDialog::dataToControls()
             && PreferencesModel::instance().getTransCategoryTransferNone() == PreferencesModel::LASTUSED)
         {
             TransactionModel::Data_Set transactions = TransactionModel::instance().find(
-                TransactionModel::TRANSCODE(TransactionModel::TYPE_ID_TRANSFER, EQUAL));
+                TransactionModel::TRANSCODE(OP_EQ, TransactionModel::TYPE_ID_TRANSFER)
+            );
 
             if (!transactions.empty()
                 && (!CategoryModel::is_hidden(transactions.back().CATEGID)))
@@ -478,7 +479,7 @@ void TransactionDialog::CreateControls()
 
     for (int i = 0; i < TransactionModel::TYPE_ID_size; ++i) {
         if (i != TransactionModel::TYPE_ID_TRANSFER ||
-            AccountModel::instance().all().size() > 1
+            AccountModel::instance().get_all().size() > 1
         ) {
             wxString type = TransactionModel::type_name(i);
             transaction_type_->Append(wxGetTranslation(type), new wxStringClientData(type));
@@ -695,7 +696,7 @@ bool TransactionDialog::ValidateData()
         return false;
     }
     m_journal_data.ACCOUNTID = cbAccount_->mmGetId();
-    const AccountModel::Data* account = AccountModel::instance().get(m_journal_data.ACCOUNTID);
+    const AccountModel::Data* account = AccountModel::instance().cache_id(m_journal_data.ACCOUNTID);
 
     if (m_journal_data.TRANSDATE < account->INITIALDATE)
     {
@@ -726,7 +727,7 @@ bool TransactionDialog::ValidateData()
         if (payee_loc != wxNOT_FOUND)
             payee_name = cbPayee_->GetString(payee_loc);
 
-        PayeeModel::Data* payee = PayeeModel::instance().get(payee_name);
+        PayeeModel::Data* payee = PayeeModel::instance().cache_key(payee_name);
         if (!payee)
         {
             wxMessageDialog msgDlg( this
@@ -761,7 +762,7 @@ bool TransactionDialog::ValidateData()
     }
     else //transfer
     {
-        const AccountModel::Data *to_account = AccountModel::instance().get(cbToAccount_->GetValue());
+        const AccountModel::Data *to_account = AccountModel::instance().cache_key(cbToAccount_->GetValue());
 
         if (!to_account || to_account->ACCOUNTID == m_journal_data.ACCOUNTID)
         {
@@ -914,7 +915,7 @@ void TransactionDialog::OnFocusChange(wxChildFocusEvent& event)
     }
     else
     {
-        const AccountModel::Data* to_account = AccountModel::instance().get(cbToAccount_->mmGetId());
+        const AccountModel::Data* to_account = AccountModel::instance().cache_id(cbToAccount_->mmGetId());
         if (to_account)
             m_journal_data.TOACCOUNTID = to_account->ACCOUNTID;
     }
@@ -930,7 +931,7 @@ void TransactionDialog::SetDialogTitle(const wxString& title)
 
 void TransactionDialog::OnPayeeChanged(wxCommandEvent& /*event*/)
 {
-    PayeeModel::Data * payee = PayeeModel::instance().get(cbPayee_->GetValue());
+    PayeeModel::Data * payee = PayeeModel::instance().cache_key(cbPayee_->GetValue());
     if (payee)
     {
         SetCategoryForPayee(payee);
@@ -980,7 +981,7 @@ void TransactionDialog::OnComboKey(wxKeyEvent& event)
                 if (dlg.getRefreshRequested())
                     cbPayee_->mmDoReInitialize();
                 int64 payee_id = dlg.getPayeeId();
-                PayeeModel::Data* payee = PayeeModel::instance().get(payee_id);
+                PayeeModel::Data* payee = PayeeModel::instance().cache_id(payee_id);
                 if (payee) {
                     cbPayee_->ChangeValue(payee->PAYEENAME);
                     cbPayee_->SetInsertionPointEnd();
@@ -1027,7 +1028,7 @@ void TransactionDialog::SetCategoryForPayee(const PayeeModel::Data *payee)
     if (m_mode == MODE_NEW && PreferencesModel::instance().getTransCategoryNone() == PreferencesModel::UNUSED
         && m_local_splits.empty())
     {
-        CategoryModel::Data *category = CategoryModel::instance().get(_t("Unknown"), int64(-1));
+        CategoryModel::Data *category = CategoryModel::instance().cache_key(_t("Unknown"), int64(-1));
         if (!category)
         {
             category = CategoryModel::instance().create();
@@ -1044,7 +1045,7 @@ void TransactionDialog::SetCategoryForPayee(const PayeeModel::Data *payee)
 
     if (!payee)
     {
-        payee = PayeeModel::instance().get(cbPayee_->GetValue());
+        payee = PayeeModel::instance().cache_key(cbPayee_->GetValue());
         if (!payee)
             return;
     }
@@ -1057,7 +1058,7 @@ void TransactionDialog::SetCategoryForPayee(const PayeeModel::Data *payee)
         && (!CategoryModel::is_hidden(payee->CATEGID)))
     {
         // if payee has memory of last category used then display last category for payee
-        CategoryModel::Data *category = CategoryModel::instance().get(payee->CATEGID);
+        CategoryModel::Data *category = CategoryModel::instance().cache_id(payee->CATEGID);
         if (category)
         {
             m_journal_data.CATEGID = payee->CATEGID;
@@ -1095,9 +1096,10 @@ void TransactionDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
     auto d = TransactionModel::getTransDateTime(m_journal_data).Subtract(wxDateSpan::Months(12));
     double next_number = 0, temp_num;
     const auto numbers = TransactionModel::instance().find(
-        TransactionModel::ACCOUNTID(m_journal_data.ACCOUNTID, EQUAL)
-        , TransactionModel::TRANSDATE(d, GREATER_OR_EQUAL)
-        , TransactionModel::TRANSACTIONNUMBER("", NOT_EQUAL));
+        TransactionModel::ACCOUNTID(OP_EQ, m_journal_data.ACCOUNTID),
+        TransactionModel::TRANSDATE(OP_GE, d),
+        TransactionModel::TRANSACTIONNUMBER(OP_NE, "")
+    );
     for (const auto &num : numbers)
     {
         if (!num.TRANSACTIONNUMBER.IsNumber()) continue;
@@ -1240,8 +1242,8 @@ void TransactionDialog::OnOk(wxCommandEvent& event)
     if (!m_advanced)
         m_journal_data.TOTRANSAMOUNT = m_journal_data.TRANSAMOUNT;
 
-    if (m_transfer && !m_advanced && (AccountModel::currency(AccountModel::instance().get(m_journal_data.ACCOUNTID))
-        != AccountModel::currency(AccountModel::instance().get(m_journal_data.TOACCOUNTID))))
+    if (m_transfer && !m_advanced && (AccountModel::currency(AccountModel::instance().cache_id(m_journal_data.ACCOUNTID))
+        != AccountModel::currency(AccountModel::instance().cache_id(m_journal_data.TOACCOUNTID))))
     {
         wxMessageDialog msgDlg( this
             , _t("The two accounts have different currencies, but no advanced transaction is defined. Is this correct?")
@@ -1252,7 +1254,7 @@ void TransactionDialog::OnOk(wxCommandEvent& event)
     }
 
     TransactionModel::Data *r = (m_mode == MODE_EDIT) ?
-        TransactionModel::instance().get(m_journal_data.TRANSID) :
+        TransactionModel::instance().cache_id(m_journal_data.TRANSID) :
         TransactionModel::instance().create();
 
     TransactionModel::putDataToTransaction(r, m_journal_data);
@@ -1348,7 +1350,7 @@ void TransactionDialog::SetTooltips()
         mmToolTip(bSplit_, _t("Use split Categories"));
     else {
         const CurrencyModel::Data* currency = CurrencyModel::GetBaseCurrency();
-        const AccountModel::Data* account = AccountModel::instance().get(m_journal_data.ACCOUNTID);
+        const AccountModel::Data* account = AccountModel::instance().cache_id(m_journal_data.ACCOUNTID);
         if (account)
             currency = AccountModel::currency(account);
 

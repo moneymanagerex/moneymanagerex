@@ -63,7 +63,7 @@ void TransactionFilter::setAccountList(wxSharedPtr<wxArrayString> accountList)
         m_account_a.clear();
         for (const auto &entry : *accountList)
         {
-            const auto account = AccountModel::instance().get(entry);
+            const auto account = AccountModel::instance().cache_key(entry);
             if (account) m_account_a.push_back(account->ACCOUNTID);
         }
         m_filter_account = true;
@@ -129,9 +129,9 @@ wxString TransactionFilter::getHTML()
 {
     mmHTMLBuilder hb;
     m_trans.clear();
-    const auto splits = TransactionSplitModel::instance().get_all();
-    const auto tags = TagLinkModel::instance().get_all(TransactionModel::refTypeName);
-    for (const auto& tran : TransactionModel::instance().all()) //TODO: find should be faster
+    const auto splits = TransactionSplitModel::instance().get_all_id();
+    const auto tags = TagLinkModel::instance().get_all_id(TransactionModel::refTypeName);
+    for (const auto& tran : TransactionModel::instance().get_all()) //TODO: find should be faster
     {
         if (!mmIsRecordMatches(tran, splits)) continue;
         TransactionModel::Full_Data full_tran(tran, splits, tags);
@@ -167,7 +167,7 @@ wxString TransactionFilter::getHTML()
             m_trans.push_back(full_tran);
     }
 
-    std::stable_sort(m_trans.begin(), m_trans.end(), SorterByTRANSDATE());
+    std::stable_sort(m_trans.begin(), m_trans.end(), TransactionTable::SorterByTRANSDATE());
 
     const wxString extra_style = R"(
 table {
@@ -233,7 +233,7 @@ table {
 
         AccountModel::Data* acc;
         const CurrencyModel::Data* curr;
-        acc = AccountModel::instance().get(transaction.ACCOUNTID);
+        acc = AccountModel::instance().cache_id(transaction.ACCOUNTID);
         curr = AccountModel::currency(acc);
         if (acc)
         {

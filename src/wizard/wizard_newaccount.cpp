@@ -92,7 +92,7 @@ void mmAddAccountNamePage::processPage(wxWizardEvent& event)
         }
         else
         {
-            if (AccountModel::instance().get(account_name))
+            if (AccountModel::instance().cache_key(account_name))
             {
                 wxMessageBox(_t("An account with this name already exists"), _t("New Account"), wxOK|wxICON_ERROR, this);
                 event.Veto();

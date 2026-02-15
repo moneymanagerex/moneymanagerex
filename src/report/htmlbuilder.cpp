@@ -27,7 +27,7 @@
 #include "util/_util.h"
 
 #include "model/CurrencyModel.h"
-#include "model/InfotableModel.h"
+#include "model/InfoModel.h"
 #include "model/PreferencesModel.h"
 
 #include "htmlbuilder.h"
@@ -663,7 +663,7 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
                     , chartWidth);
     htmlChart += wxString::Format(", title: { text: '%s'}", gd.title);
 
-    wxString locale = InfotableModel::instance().getString("LOCALE", "");
+    wxString locale = InfoModel::instance().getString("LOCALE", "");
 
     if (locale.IsEmpty())
     {
