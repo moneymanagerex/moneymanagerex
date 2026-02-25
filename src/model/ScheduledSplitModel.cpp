@@ -58,11 +58,11 @@ double ScheduledSplitModel::get_total(const Data_Set& rows)
     return total;
 }
 
-bool ScheduledSplitModel::remove(int64 id)
+bool ScheduledSplitModel::remove(const int64 id)
 {
     // Delete all tags for the split before removing it
     TagLinkModel::instance().DeleteAllTags(ScheduledSplitModel::refTypeName, id);
-    return this->remove(id);
+    return Model<ScheduledSplitTable>::remove(id);
 }
 
 std::map<int64, ScheduledSplitModel::Data_Set> ScheduledSplitModel::get_all_id()

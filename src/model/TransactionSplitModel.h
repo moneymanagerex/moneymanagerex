@@ -62,7 +62,7 @@ public:
     std::map<int64, TransactionSplitModel::Data_Set> get_all_id();
     int update(Data_Set& rows, int64 transactionID);
     int update(const std::vector<Split>& rows, int64 transactionID);
-    bool remove(int64 id);
+    bool remove(const int64 id);
 
 public:
     static const wxString refTypeName;

@@ -80,7 +80,7 @@ public:
     static wxString cache_id_name(int64 account_id);
 
     /** Remove the Data record from memory and the database. */
-    bool remove(int64 id);
+    bool remove(const int64 id);
 
 public:
     wxArrayString all_checking_account_names(bool skip_closed = false);

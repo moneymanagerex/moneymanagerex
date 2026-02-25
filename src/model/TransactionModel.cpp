@@ -96,7 +96,7 @@ TransactionModel& TransactionModel::instance()
     return Singleton<TransactionModel>::instance();
 }
 
-bool TransactionModel::remove(int64 id)
+bool TransactionModel::remove(const int64 id)
 {
     //TODO: remove all split at once
     //TransactionSplitModel::instance().remove(TransactionSplitModel::instance().find(TransactionSplitModel::TRANSID(id)));
@@ -110,7 +110,7 @@ bool TransactionModel::remove(int64 id)
     // remove all custom fields for the transaction
     FieldValueModel::DeleteAllData(RefType, id);
     TagLinkModel::instance().DeleteAllTags(RefType, id);
-    return this->remove(id);
+    return Model<TransactionTable>::remove(id);
 }
 
 int64 TransactionModel::save_trx(Data* r)

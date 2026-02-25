@@ -101,13 +101,13 @@ TransactionModel::STATUS_ID ScheduledModel::status_id(const Data& r)
 * Remove the Data record instance from memory and the database
 * including any splits associated with the Data Record.
 */
-bool ScheduledModel::remove(int64 id)
+bool ScheduledModel::remove(const int64 id)
 {
     for (auto &item : ScheduledModel::split(get_id(id)))
         ScheduledSplitModel::instance().remove(item.SPLITTRANSID);
     // Delete tags for the scheduled transaction
     TagLinkModel::instance().DeleteAllTags(this->refTypeName, id);
-    return this->remove(id);
+    return Model<ScheduledTable>::remove(id);
 }
 
 ScheduledTable::STATUS ScheduledModel::STATUS(OP op, TransactionModel::STATUS_ID status)

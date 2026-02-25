@@ -131,7 +131,7 @@ wxString AccountModel::cache_id_name(int64 account_id)
 }
 
 /** Remove the Data record instance from memory and the database. */
-bool AccountModel::remove(int64 id)
+bool AccountModel::remove(const int64 id)
 {
     this->Savepoint();
     for (const auto& r: TransactionModel::instance().find_or(TransactionModel::ACCOUNTID(id), TransactionModel::TOACCOUNTID(id)))
@@ -154,7 +154,7 @@ bool AccountModel::remove(int64 id)
     }
     this->ReleaseSavepoint();
 
-    return this->remove(id);
+    return Model<AccountTable>::remove(id);
 }
 
 CurrencyModel::Data* AccountModel::currency(const Data* r)

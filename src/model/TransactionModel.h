@@ -240,7 +240,7 @@ public:
     static TransactionModel& instance();
 
 public:
-    bool remove(int64 id);
+    bool remove(const int64 id);
     int64 save_trx(Data* r);
     int save_trx(std::vector<Data>& rows);
     int save_trx(std::vector<Data*>& rows);

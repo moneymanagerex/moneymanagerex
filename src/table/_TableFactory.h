@@ -31,11 +31,11 @@ protected:
     // A container to hold a list of Row record pointers for the table in memory
     Cache m_cache;
     CacheIndex m_cache_index;
-    size_t m_hit, m_miss, m_skip;
-    Row* fake_; // in case the entity not found
+    size_t m_hit=0, m_miss=0, m_skip=0;
+    Row* fake_ = nullptr; // in case the entity not found
 
 public:
-    TableFactory<RowType>(): m_hit(0), m_miss(0), m_skip(0), fake_(new Row()) {};
+    TableFactory(): fake_(new Row()) {}
 
     bool cache_empty() const { return m_cache.empty(); }
     void destroy_cache();

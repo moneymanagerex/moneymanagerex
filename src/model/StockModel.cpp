@@ -97,7 +97,7 @@ double StockModel::CurrentValue(const Data& r)
 * Remove the Data record from memory and the database.
 * Delete also all stock history
 */
-bool StockModel::remove(int64 id)
+bool StockModel::remove(const int64 id)
 {
     StockModel::Data *data = this->get_id(id);
     const auto &stocks = StockModel::instance().find(StockModel::SYMBOL(data->SYMBOL));
@@ -109,7 +109,7 @@ bool StockModel::remove(int64 id)
         this->ReleaseSavepoint();
     }
 
-    return this->remove(id);
+    return Model<StockTable>::remove(id);
 }
 
 /**

@@ -228,7 +228,7 @@ public:
     * Remove the Data record instance from memory and the database
     * including any splits associated with the Data Record.
     */
-    bool remove(int64 id);
+    bool remove(const int64 id);
 
     static ScheduledTable::STATUS STATUS(OP op, TransactionModel::STATUS_ID status);
     static ScheduledTable::TRANSCODE TRANSCODE(OP op, TransactionModel::TYPE_ID type);

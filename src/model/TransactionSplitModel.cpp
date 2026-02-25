@@ -50,11 +50,11 @@ TransactionSplitModel& TransactionSplitModel::instance()
     return Singleton<TransactionSplitModel>::instance();
 }
 
-bool TransactionSplitModel::remove(int64 id)
+bool TransactionSplitModel::remove(const int64 id)
 {
     // Delete all tags for the split before removing it
     TagLinkModel::instance().DeleteAllTags(TransactionSplitModel::refTypeName, id);
-    return this->remove(id);
+    return Model<TransactionSplitTable>::remove(id);
 }
 
 double TransactionSplitModel::get_total(const Data_Set& rows)
