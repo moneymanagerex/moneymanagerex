@@ -865,7 +865,7 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
         case LIST_ID_WITHDRAWAL: {
             columnIsAmount = true;
             const AccountData* account = AccountModel::instance().get_id_data_n(m_trans[row].ACCOUNTID_W);
-            const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id_p) : nullptr;
+            const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency) {
                 copyText_ = CurrencyModel::toString(m_trans[row].TRANSAMOUNT_W, currency);
                 menuItemText = wxString::Format("%.2f", m_trans[row].TRANSAMOUNT_W);
@@ -876,7 +876,7 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
         case LIST_ID_DEPOSIT: {
             columnIsAmount = true;
             const AccountData* account = AccountModel::instance().get_id_data_n(m_trans[row].ACCOUNTID_D);
-            const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id_p) : nullptr;
+            const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency) {
                 copyText_ = CurrencyModel::toString(m_trans[row].TRANSAMOUNT_D, currency);
                 menuItemText = wxString::Format("%.2f", m_trans[row].TRANSAMOUNT_D);
@@ -1171,7 +1171,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             if (id.second) continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
 
-            if (checkTransactionLocked(trx_n->m_account_id_p, trx_n->TRANSDATE)) {
+            if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE)) {
                 continue;
             }
 
@@ -1339,7 +1339,7 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
     Journal::IdRepeat id = m_selected_id[0];
     if (!id.second) {
         TrxData* checking_entry = TrxModel::instance().unsafe_get_id_data_n(id.first);
-        if (checkTransactionLocked(checking_entry->m_account_id_p, checking_entry->TRANSDATE))
+        if (checkTransactionLocked(checking_entry->m_account_id, checking_entry->TRANSDATE))
             return;
 
         if (!TrxLinkModel::instance().find(
@@ -1410,14 +1410,14 @@ void JournalList::onMoveTransaction(wxCommandEvent& /*event*/)
             for (const auto& id : m_selected_id) {
                 if (!id.second) {
                     TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-                    if (checkTransactionLocked(trx_n->m_account_id_p, trx_n->TRANSDATE) ||
+                    if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE) ||
                         TrxModel::is_foreign(*trx_n) ||
                         TrxModel::type_id(trx_n->TRANSCODE) == TrxModel::TYPE_ID_TRANSFER ||
                         mmDate(trx_n->TRANSDATE) < dest_account->m_open_date
                     ) {
                         skip_trx.push_back(trx_n->m_id);
                     } else {
-                        trx_n->m_account_id_p = dest_account_id;
+                        trx_n->m_account_id = dest_account_id;
                         TrxModel::instance().unsafe_save_trx(trx_n);
                     }
                 }
@@ -1448,8 +1448,8 @@ void JournalList::onViewOtherAccount(wxCommandEvent& /*event*/)
         ? Journal::Full_Data(*TrxModel::instance().get_id_data_n(id.first))
         : Journal::Full_Data(*SchedModel::instance().get_id_data_n(id.first));
 
-    int64 gotoAccountID = (m_cp->m_account_id == tran.m_account_id_p) ? tran.m_to_account_id_n : tran.m_account_id_p;
-    wxString gotoAccountName = (m_cp->m_account_id == tran.m_account_id_p) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;
+    int64 gotoAccountID = (m_cp->m_account_id == tran.m_account_id) ? tran.m_to_account_id_n : tran.m_account_id;
+    wxString gotoAccountName = (m_cp->m_account_id == tran.m_account_id) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;
 
     m_cp->m_frame->selectNavTreeItem(gotoAccountName);
     m_cp->m_frame->setGotoAccountID(gotoAccountID, id);
@@ -1550,7 +1550,7 @@ void JournalList::onMarkTransaction(wxCommandEvent& event)
         if (GetItemState(row, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
             continue;
         const AccountData* account_n = AccountModel::instance().get_id_data_n(
-            m_trans[row].m_account_id_p
+            m_trans[row].m_account_id
         );
         mmDateN trx_date_n = mmDateN(TrxModel::getTransDateTime(m_trans[row]));
         if (trx_date_n.has_value() && account_n->is_locked_for(trx_date_n.value()))
@@ -1700,9 +1700,9 @@ int64 JournalList::onPaste(const TrxData* tran)
         );
     }
     if (TrxModel::type_id(new_trx.TRANSCODE) != TrxModel::TYPE_ID_TRANSFER ||
-        (m_cp->m_account_id != new_trx.m_account_id_p && m_cp->m_account_id != new_trx.m_to_account_id_n)
+        (m_cp->m_account_id != new_trx.m_account_id && m_cp->m_account_id != new_trx.m_to_account_id_n)
     )
-    new_trx.m_account_id_p = m_cp->m_account_id;
+    new_trx.m_account_id = m_cp->m_account_id;
     TrxModel::instance().save_trx(new_trx);
     int64 transactionID = new_trx.id();
     m_pasted_id.push_back({transactionID, 0});   // add the newly pasted transaction
@@ -1725,7 +1725,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     for (const auto& tp_d : TrxModel::find_split(*tran)) {
         TrxSplitData new_tp_d;
         new_tp_d.clone_from(tp_d);
-        new_tp_d.m_trx_id_p = transactionID;
+        new_tp_d.m_trx_id = transactionID;
         TrxSplitModel::instance().add_data_n(new_tp_d);
 
         // Clone split tags
@@ -1972,7 +1972,7 @@ const wxString JournalList::getItem(long item, int col_id) const
         if (!m_cp->isAccount()) {
             const AccountData* account = AccountModel::instance().get_id_data_n(journal.ACCOUNTID_W);
             const CurrencyData* currency = account ?
-                CurrencyModel::instance().get_id_data_n(account->m_currency_id_p) : nullptr;
+                CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
                 value = CurrencyModel::toCurrency(journal.TRANSAMOUNT_W, currency);
         }
@@ -1986,7 +1986,7 @@ const wxString JournalList::getItem(long item, int col_id) const
         if (!m_cp->isAccount()) {
             const AccountData* account = AccountModel::instance().get_id_data_n(journal.ACCOUNTID_D);
             const CurrencyData* currency = account ?
-                CurrencyModel::instance().get_id_data_n(account->m_currency_id_p) : nullptr;
+                CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
                 value = CurrencyModel::toCurrency(journal.TRANSAMOUNT_D, currency);
         }
@@ -2242,7 +2242,7 @@ bool JournalList::checkForClosedAccounts()
         Journal::Data journal_d = !id.second
             ? Journal::Data(*TrxModel::instance().get_id_data_n(id.first))
             : Journal::Data(*SchedModel::instance().get_id_data_n(id.first));
-        const AccountData* account_n = AccountModel::instance().get_id_data_n(journal_d.m_account_id_p);
+        const AccountData* account_n = AccountModel::instance().get_id_data_n(journal_d.m_account_id);
         if (account_n && account_n->is_closed()) {
             closedTrx++;
             continue;

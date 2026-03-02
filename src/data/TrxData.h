@@ -28,7 +28,7 @@ struct TrxData
     wxString TRANSDATE;
     wxString TRANSCODE;
     wxString STATUS;
-    int64    m_account_id_p;    // non-null (> 0) after initialization
+    int64    m_account_id;      // non-null (> 0) after initialization
     int64    m_to_account_id_n; // optional (can be null)
     int64    m_payee_id_n;      // optional (can be null)
     int64    m_category_id_n;   // optional (can be null)
@@ -75,7 +75,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.m_account_id_p < y.m_account_id_p;
+            return x.m_account_id < y.m_account_id;
         }
     };
 

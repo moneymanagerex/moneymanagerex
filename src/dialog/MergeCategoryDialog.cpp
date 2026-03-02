@@ -188,7 +188,7 @@ void MergeCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_changedRecords += sched_a.size();
 
         for (auto& tp_d : tp_a) {
-            tp_d.m_category_id_p = m_destCatID;
+            tp_d.m_category_id = m_destCatID;
         }
         TrxSplitModel::instance().save_data_a(tp_a);
         m_changedRecords += tp_a.size();
@@ -201,7 +201,7 @@ void MergeCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         mmWebApp::MMEX_WebApp_UpdatePayee();
 
         for (auto& qp_d : qp_a) {
-            qp_d.m_category_id_p = m_destCatID;
+            qp_d.m_category_id = m_destCatID;
         }
         SchedSplitModel::instance().save_data_a(qp_a);
         m_changedRecords += qp_a.size();

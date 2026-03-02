@@ -620,10 +620,10 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         if (sData.ToLongLong(&transID)) {
             const TrxData* trx_n = TrxModel::instance().get_id_data_n(transID);
             if (trx_n && trx_n->m_id > -1) {
-                const AccountData* account = AccountModel::instance().get_id_data_n(trx_n->m_account_id_p);
+                const AccountData* account = AccountModel::instance().get_id_data_n(trx_n->m_account_id);
                 if (account) {
                     w_frame->selectNavTreeItem(account->m_name);
-                    w_frame->setGotoAccountID(trx_n->m_account_id_p, { transID, 0 });
+                    w_frame->setGotoAccountID(trx_n->m_account_id, { transID, 0 });
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     w_frame->GetEventHandler()->AddPendingEvent(event);
                 }

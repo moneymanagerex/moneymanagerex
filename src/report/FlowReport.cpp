@@ -45,14 +45,14 @@ double FlowReport::trueAmount(const TrxData& trx)
 {
     double amount = 0.0;
     bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-        trx.m_account_id_p
+        trx.m_account_id
     ) != m_account_id.end();
     bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
         trx.m_to_account_id_n
     ) != m_account_id.end();
     if (!(isAccountFound && isToAccountFound)) {
         const double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get_id_data_n(trx.m_account_id_p)->m_currency_id_p,
+            AccountModel::instance().get_id_data_n(trx.m_account_id)->m_currency_id,
             trx.TRANSDATE
         );
         switch (TrxModel::type_id(trx.TRANSCODE)) {
@@ -67,7 +67,7 @@ double FlowReport::trueAmount(const TrxData& trx)
                 amount = -trx.m_amount * convRate;
             else {
                 const double toConvRate = CurrencyHistoryModel::getDayRate(
-                    AccountModel::instance().get_id_data_n(trx.m_to_account_id_n)->m_currency_id_p,
+                    AccountModel::instance().get_id_data_n(trx.m_to_account_id_n)->m_currency_id,
                     trx.TRANSDATE
                 );
                 amount = +trx.m_to_amount * toConvRate;
@@ -99,7 +99,7 @@ void FlowReport::getTransactions()
             continue;
         }
 
-        double convRate = CurrencyHistoryModel::getDayRate(account.m_currency_id_p, todayString);
+        double convRate = CurrencyHistoryModel::getDayRate(account.m_currency_id, todayString);
         m_balance += account.m_open_balance * convRate;
 
         m_account_id.push_back(account.m_id);
@@ -123,7 +123,7 @@ void FlowReport::getTransactions()
         if (!trx_d.DELETEDTIME.IsEmpty())
             continue;
         bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-            trx_d.m_account_id_p
+            trx_d.m_account_id
         ) != m_account_id.end();
         bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
             trx_d.m_to_account_id_n
@@ -137,7 +137,7 @@ void FlowReport::getTransactions()
         }
         else {
             for (const auto& tp_d : tp_a) {
-                trx_d.m_category_id_n = tp_d.m_category_id_p;
+                trx_d.m_category_id_n = tp_d.m_category_id;
                 trx_d.m_amount        = tp_d.m_amount;
                 trx_d.m_amount        = trueAmount(trx_d);
                 m_forecastVector.push_back(trx_d);
@@ -158,7 +158,7 @@ void FlowReport::getTransactions()
             continue;
 
         bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-            sched_d.m_account_id_p
+            sched_d.m_account_id
         ) != m_account_id.end();
         bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
             sched_d.m_to_account_id_n
@@ -173,7 +173,7 @@ void FlowReport::getTransactions()
 
             TrxData trx_d;
             trx_d.TRANSDATE         = next_date.FormatISODate();
-            trx_d.m_account_id_p    = sched_d.m_account_id_p;
+            trx_d.m_account_id      = sched_d.m_account_id;
             trx_d.m_to_account_id_n = sched_d.m_to_account_id_n;
             trx_d.m_payee_id_n      = sched_d.m_payee_id_n;
             trx_d.TRANSCODE         = sched_d.TRANSCODE;
@@ -182,7 +182,7 @@ void FlowReport::getTransactions()
 
             if (!SchedModel::split(sched_d).empty()) {
                 for (const auto& qp_d : SchedModel::split(sched_d)) {
-                    trx_d.m_category_id_n = qp_d.m_category_id_p;
+                    trx_d.m_category_id_n = qp_d.m_category_id;
                     trx_d.m_amount        = qp_d.m_amount;
                     trx_d.m_amount        = trueAmount(trx_d);
                     m_forecastVector.push_back(trx_d);
@@ -442,7 +442,7 @@ wxString mmReportCashFlowTransactions::getHTMLText()
         else
             hb.startAltTableRow();
         hb.addTableCellDate(trx.TRANSDATE);
-        hb.addTableCell(AccountModel::instance().get_id_name(trx.m_account_id_p));
+        hb.addTableCell(AccountModel::instance().get_id_name(trx.m_account_id));
         hb.addTableCell((trx.m_to_account_id_n == -1) ? PayeeModel::instance().get_id_name(trx.m_payee_id_n)
             : "> " + AccountModel::instance().get_id_name(trx.m_to_account_id_n));
         hb.addTableCell(CategoryModel::full_name(trx.m_category_id_n));

@@ -627,7 +627,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 continueExecution = true;
                 TrxData new_trx_d = TrxData();
                 const wxDateTime payment_date = bills.getTransDateTime(q1);
-                new_trx_d.m_account_id_p    = q1.m_account_id_p;
+                new_trx_d.m_account_id      = q1.m_account_id;
                 new_trx_d.m_to_account_id_n = q1.m_to_account_id_n;
                 new_trx_d.m_payee_id_n      = q1.m_payee_id_n;
                 new_trx_d.TRANSCODE         = q1.TRANSCODE;
@@ -647,10 +647,10 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 std::vector<wxArrayInt64> splitTags;
                 for (const auto& qp_d : SchedModel::split(q1)) {
                     TrxSplitData tp_d = TrxSplitData();
-                    tp_d.m_trx_id_p      = transID;
-                    tp_d.m_category_id_p = qp_d.m_category_id_p;
-                    tp_d.m_amount        = qp_d.m_amount;
-                    tp_d.m_notes         = qp_d.m_notes;
+                    tp_d.m_trx_id      = transID;
+                    tp_d.m_category_id = qp_d.m_category_id;
+                    tp_d.m_amount      = qp_d.m_amount;
+                    tp_d.m_notes       = qp_d.m_notes;
                     tp_a.push_back(tp_d);
 
                     wxArrayInt64 tags;

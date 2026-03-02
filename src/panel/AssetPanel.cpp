@@ -871,7 +871,7 @@ void AssetPanel::LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId)
 
 void AssetPanel::FillAssetListRow(wxListCtrl* listCtrl, long index, const TrxData& txn)
 {
-    listCtrl->SetItem(index, 0, AccountModel::instance().get_id_name(txn.m_account_id_p));
+    listCtrl->SetItem(index, 0, AccountModel::instance().get_id_name(txn.m_account_id));
     listCtrl->SetItem(index, 1, mmGetDateTimeForDisplay(txn.TRANSDATE));
     listCtrl->SetItem(index, 2, TrxModel::trade_type_name(TrxModel::type_id(txn.TRANSCODE)));
     listCtrl->SetItem(index, 3, CurrencyModel::toString(txn.m_amount));
@@ -944,7 +944,7 @@ void AssetPanel::GotoAssetAccount(const int selected_index)
         for (const auto &asset_d : asset_a) {
             const TrxData* trx_n = TrxModel::instance().get_id_data_n(asset_d.CHECKINGACCOUNTID);
             if (trx_n) {
-                account_n = AccountModel::instance().get_id_data_n(trx_n->m_account_id_p);
+                account_n = AccountModel::instance().get_id_data_n(trx_n->m_account_id);
                 SetAccountParameters(account_n);
             }
         }

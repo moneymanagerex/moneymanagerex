@@ -528,11 +528,11 @@ void StockDialog::CreateShareAccount(
         return;
 
     AccountData new_account_d = AccountData();
-    new_account_d.m_name          = name;
-    new_account_d.m_type_         = NavigatorTypes::instance().getShareAccountStr();
-    new_account_d.m_currency_id_p = stock_account->m_currency_id_p;
-    new_account_d.m_open_date     = mmDate(openingDate);
-    new_account_d.m_open_balance  = 0;
+    new_account_d.m_name         = name;
+    new_account_d.m_type_        = NavigatorTypes::instance().getShareAccountStr();
+    new_account_d.m_currency_id  = stock_account->m_currency_id;
+    new_account_d.m_open_date    = mmDate(openingDate);
+    new_account_d.m_open_balance = 0;
     AccountModel::instance().add_data_n(new_account_d);
 
     TrxShareDialog share_dialog(this, m_stock_n);

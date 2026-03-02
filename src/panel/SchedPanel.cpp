@@ -473,16 +473,16 @@ wxString SchedPanel::getItem(long item, int col_id)
             int64 accountid;
             double transamount;
             if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
-                accountid = bill.m_account_id_p; transamount = bill.m_amount;
+                accountid = bill.m_account_id; transamount = bill.m_amount;
             }
             else if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                accountid = bill.m_account_id_p; transamount = bill.m_amount;
+                accountid = bill.m_account_id; transamount = bill.m_amount;
             }
             else
                 return value;
             const AccountData* account = AccountModel::instance().get_id_data_n(accountid);
             const CurrencyData* currency = account ?
-                CurrencyModel::instance().get_id_data_n(account->m_currency_id_p) : nullptr;
+                CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
                 value = CurrencyModel::toCurrency(transamount, currency);
             if (!value.IsEmpty() && TrxModel::status_id(bill.STATUS) == TrxModel::STATUS_ID_VOID)
@@ -495,7 +495,7 @@ wxString SchedPanel::getItem(long item, int col_id)
             int64 accountid;
             double transamount;
             if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
-                accountid = bill.m_account_id_p; transamount = bill.m_amount;
+                accountid = bill.m_account_id; transamount = bill.m_amount;
             }
             else if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
                 accountid = bill.m_to_account_id_n; transamount = bill.m_to_amount;
@@ -504,7 +504,7 @@ wxString SchedPanel::getItem(long item, int col_id)
                 return value;
             const AccountData* account = AccountModel::instance().get_id_data_n(accountid);
             const CurrencyData* currency = account ?
-                CurrencyModel::instance().get_id_data_n(account->m_currency_id_p) : nullptr;
+                CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
                 value = CurrencyModel::toCurrency(transamount, currency);
             if (!value.IsEmpty() && TrxModel::status_id(bill.STATUS) == TrxModel::STATUS_ID_VOID)

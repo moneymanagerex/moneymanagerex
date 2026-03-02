@@ -64,7 +64,7 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int64 GetAccountID() { return m_journal_data.m_account_id_p; }
+    int64 GetAccountID() { return m_journal_data.m_account_id; }
     int64 GetToAccountID() { return m_journal_data.m_to_account_id_n; }
     int64 GetTransactionID() { return m_journal_data.m_id; }
 

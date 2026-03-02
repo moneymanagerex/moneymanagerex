@@ -101,7 +101,7 @@ void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
     this_n->TRANSCODE         = other_d.TRANSCODE;
     this_n->TRANSDATE         = other_d.TRANSDATE;
     this_n->m_payee_id_n      = other_d.m_payee_id_n;
-    this_n->m_account_id_p    = other_d.m_account_id_p;
+    this_n->m_account_id      = other_d.m_account_id;
     this_n->m_amount          = other_d.m_amount;
     this_n->m_category_id_n   = other_d.m_category_id_n;
     this_n->m_to_account_id_n = other_d.m_to_account_id_n;
@@ -137,15 +137,15 @@ wxDateTime TrxModel::getTransDateTime(const Data& this_d)
 
 double TrxModel::account_flow(const Data& this_d, int64 account_id)
 {
-    if (this_d.m_account_id_p == this_d.m_to_account_id_n && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
+    if (this_d.m_account_id == this_d.m_to_account_id_n && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
         return 0.0;  // Self Transfer as Revaluation
     if (TrxModel::status_id(this_d.STATUS) == TrxModel::STATUS_ID_VOID || !this_d.DELETEDTIME.IsEmpty())
         return 0.0;
-    if (account_id == this_d.m_account_id_p && type_id(this_d.TRANSCODE) == TYPE_ID_WITHDRAWAL)
+    if (account_id == this_d.m_account_id && type_id(this_d.TRANSCODE) == TYPE_ID_WITHDRAWAL)
         return -(this_d.m_amount);
-    if (account_id == this_d.m_account_id_p && type_id(this_d.TRANSCODE) == TYPE_ID_DEPOSIT)
+    if (account_id == this_d.m_account_id && type_id(this_d.TRANSCODE) == TYPE_ID_DEPOSIT)
         return this_d.m_amount;
-    if (account_id == this_d.m_account_id_p && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
+    if (account_id == this_d.m_account_id && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
         return -(this_d.m_amount);
     if (account_id == this_d.m_to_account_id_n && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
         return this_d.m_to_amount;
@@ -184,7 +184,7 @@ bool TrxModel::is_foreignAsTransfer(const Data& this_d)
 {
     return is_foreign(this_d) && (
         this_d.m_to_account_id_n == TrxLinkModel::AS_TRANSFER ||
-        this_d.m_to_account_id_n == this_d.m_account_id_p
+        this_d.m_to_account_id_n == this_d.m_account_id
     );
 }
 
@@ -321,7 +321,7 @@ void TrxModel::setEmptyData(Data &trx_d, int64 accountID)
     }
 
     trx_d.TRANSDATE       = max_trx_date;
-    trx_d.m_account_id_p  = accountID;
+    trx_d.m_account_id    = accountID;
     trx_d.STATUS          = status_key(PrefModel::instance().getTransStatusReconciled());
     trx_d.TRANSCODE       = TYPE_NAME_WITHDRAWAL;
     trx_d.m_category_id_n = -1;
@@ -335,7 +335,7 @@ void TrxModel::setEmptyData(Data &trx_d, int64 accountID)
 bool TrxModel::is_locked(const Data& trx_d)
 {
     // FIXME: check if m_to_account_id_n is locked
-    const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id_p);
+    const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
     mmDateN trx_date_n = mmDateN(trx_d.TRANSDATE);
     return trx_date_n.has_value() && account_n->is_locked_for(trx_date_n.value());
 }
@@ -452,7 +452,7 @@ TrxModel::Full_Data::Full_Data(
 void TrxModel::Full_Data::fill_data()
 {
     displayID = wxString::Format("%lld", m_id);
-    ACCOUNTNAME = AccountModel::instance().get_id_name(m_account_id_p);
+    ACCOUNTNAME = AccountModel::instance().get_id_name(m_account_id);
 
     if (TrxModel::type_id(TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
         TOACCOUNTNAME = AccountModel::instance().get_id_name(m_to_account_id_n);
@@ -465,7 +465,7 @@ void TrxModel::Full_Data::fill_data()
     if (!m_splits.empty()) {
         for (const auto& tp_d : m_splits)
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
-                + CategoryModel::full_name(tp_d.m_category_id_p);
+                + CategoryModel::full_name(tp_d.m_category_id);
     }
     else {
         CATEGNAME = CategoryModel::full_name(m_category_id_n);
@@ -482,13 +482,13 @@ void TrxModel::Full_Data::fill_data()
     }
 
     if (type_id(TRANSCODE) == TYPE_ID_WITHDRAWAL) {
-        ACCOUNTID_W = m_account_id_p; TRANSAMOUNT_W = m_amount;
+        ACCOUNTID_W = m_account_id; TRANSAMOUNT_W = m_amount;
     }
     else if (type_id(TRANSCODE) == TYPE_ID_DEPOSIT) {
-        ACCOUNTID_D = m_account_id_p; TRANSAMOUNT_D = m_amount;
+        ACCOUNTID_D = m_account_id; TRANSAMOUNT_D = m_amount;
     }
     else if (type_id(TRANSCODE) == TYPE_ID_TRANSFER) {
-        ACCOUNTID_W = m_account_id_p; TRANSAMOUNT_W = m_amount;
+        ACCOUNTID_W = m_account_id; TRANSAMOUNT_W = m_amount;
         ACCOUNTID_D = m_to_account_id_n; TRANSAMOUNT_D = m_to_amount;
     }
 }
@@ -501,7 +501,7 @@ wxString TrxModel::Full_Data::real_payee_name(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
     {
-        if (this->m_account_id_p == account_id || account_id < 0)
+        if (this->m_account_id == account_id || account_id < 0)
             return ("> " + this->TOACCOUNTNAME);
         else
             return ("< " + this->ACCOUNTNAME);
@@ -514,13 +514,13 @@ const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
     {
-        if (this->m_account_id_p == account_id || account_id == -1)
-            account_id = this->m_account_id_p;
+        if (this->m_account_id == account_id || account_id == -1)
+            account_id = this->m_account_id;
         else
             account_id = this->m_to_account_id_n;
     }
     const AccountData* account_n = AccountModel::instance().get_id_data_n(account_id);
-    int64 currency_id = account_n ? account_n->m_currency_id_p: -1;
+    int64 currency_id = account_n ? account_n->m_currency_id: -1;
     const CurrencyData* curr = CurrencyModel::instance().get_id_data_n(currency_id);
 
     return curr ? curr->m_symbol : "";
@@ -529,7 +529,7 @@ const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
 const wxString TrxModel::Full_Data::get_account_name(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE)) {
-        if (this->m_account_id_p == account_id || account_id == -1) {
+        if (this->m_account_id == account_id || account_id == -1) {
             return this->ACCOUNTNAME;
         }
         else {
@@ -588,7 +588,7 @@ const wxString TrxModel::Full_Data::to_json()
         json_writer.StartArray();
         for (const auto& tp_d : m_splits) {
             json_writer.StartObject();
-            json_writer.Key(CategoryModel::full_name(tp_d.m_category_id_p).utf8_str());
+            json_writer.Key(CategoryModel::full_name(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
             json_writer.EndObject();
         }
@@ -599,7 +599,7 @@ const wxString TrxModel::Full_Data::to_json()
         json_writer.StartArray();
         for (const auto & tp_d : m_splits) {
             json_writer.StartObject();
-            json_writer.Key(CategoryModel::full_name(tp_d.m_category_id_p).utf8_str());
+            json_writer.Key(CategoryModel::full_name(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
             json_writer.EndObject();
         }

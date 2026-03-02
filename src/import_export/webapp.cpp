@@ -566,7 +566,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     new_trx_d.STATUS            = TrStatus;
     new_trx_d.TRANSCODE         = WebAppTrans.Type;
     new_trx_d.m_amount          = WebAppTrans.Amount;
-    new_trx_d.m_account_id_p    = AccountID;
+    new_trx_d.m_account_id      = AccountID;
     new_trx_d.m_to_account_id_n = ToAccountID;
     new_trx_d.m_payee_id_n      = payeeID;
     new_trx_d.m_category_id_n   = categoryID;

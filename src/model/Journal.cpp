@@ -22,7 +22,7 @@ TrxData Journal::execute_bill(const SchedData& sched_d, wxString date)
 {
     TrxData trx_d;
     trx_d.m_id              = 0;
-    trx_d.m_account_id_p    = sched_d.m_account_id_p;
+    trx_d.m_account_id      = sched_d.m_account_id;
     trx_d.m_to_account_id_n = sched_d.m_to_account_id_n;
     trx_d.m_payee_id_n      = sched_d.m_payee_id_n;
     trx_d.TRANSCODE         = sched_d.TRANSCODE;
@@ -42,7 +42,7 @@ TrxModel::Full_Data Journal::execute_bill_full(const SchedData& sched_d, wxStrin
 {
     TrxModel::Full_Data trx_xd;
     trx_xd.m_id              = 0;
-    trx_xd.m_account_id_p    = sched_d.m_account_id_p;
+    trx_xd.m_account_id      = sched_d.m_account_id;
     trx_xd.m_to_account_id_n = sched_d.m_to_account_id_n;
     trx_xd.m_payee_id_n      = sched_d.m_payee_id_n;
     trx_xd.TRANSCODE         = sched_d.TRANSCODE;
@@ -64,11 +64,11 @@ TrxSplitModel::DataA Journal::execute_splits(const SchedSplitDataA& qp_a)
     for (auto& qp_d : qp_a) {
         TrxSplitData tp_d;
         // FIXME: tp_d.m_id is invalid
-        tp_d.m_id            = qp_d.m_id;
-        tp_d.m_trx_id_p      = 0;
-        tp_d.m_category_id_p = qp_d.m_category_id_p;
-        tp_d.m_amount        = qp_d.m_amount;
-        tp_d.m_notes         = qp_d.m_notes;
+        tp_d.m_id          = qp_d.m_id;
+        tp_d.m_trx_id      = 0;
+        tp_d.m_category_id = qp_d.m_category_id;
+        tp_d.m_amount      = qp_d.m_amount;
+        tp_d.m_notes       = qp_d.m_notes;
         tp_a.push_back(tp_d);
     }
     return tp_a;
@@ -182,7 +182,7 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         journal_d.m_repeat_num      = 0;
         journal_d.m_bdid            = 0;
         journal_d.m_id              = trx_n->m_id;
-        journal_d.m_account_id_p    = trx_n->m_account_id_p;
+        journal_d.m_account_id      = trx_n->m_account_id;
         journal_d.m_to_account_id_n = trx_n->m_to_account_id_n;
         journal_d.m_payee_id_n      = trx_n->m_payee_id_n;
         journal_d.TRANSCODE         = trx_n->TRANSCODE;
@@ -205,7 +205,7 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         journal_d.m_repeat_num = 1;
         journal_d.m_id              = 0;
         journal_d.m_bdid            = sched_n->m_id;
-        journal_d.m_account_id_p    = sched_n->m_account_id_p;
+        journal_d.m_account_id      = sched_n->m_account_id;
         journal_d.m_to_account_id_n = sched_n->m_to_account_id_n;
         journal_d.m_payee_id_n      = sched_n->m_payee_id_n;
         journal_d.TRANSCODE         = sched_n->TRANSCODE;

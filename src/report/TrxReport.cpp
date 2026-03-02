@@ -271,7 +271,7 @@ table {
         int noOfTrans = 1;
         if ((TrxModel::type_id(transaction) == TrxModel::TYPE_ID_TRANSFER) &&
             (allAccounts ||
-                (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.m_account_id_p) != selected_accounts.end()
+                (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.m_account_id) != selected_accounts.end()
                     && std::find(selected_accounts.begin(), selected_accounts.end(), transaction.m_to_account_id_n) != selected_accounts.end())))
             noOfTrans = 2;
 
@@ -323,12 +323,12 @@ table {
                         hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
                 }
 
-                const AccountData* acc = AccountModel::instance().get_id_data_n(transaction.m_account_id_p);
+                const AccountData* acc = AccountModel::instance().get_id_data_n(transaction.m_account_id);
 
                 if (acc) {
                     const CurrencyData* curr = AccountModel::instance().get_data_currency_p(*acc);
                     double flow = TrxModel::account_flow(transaction, acc->m_id);
-                    if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.m_account_id_p) == selected_accounts.end())))
+                    if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.m_account_id) == selected_accounts.end())))
                         flow = -flow;
                     const double convRate = CurrencyHistoryModel::getDayRate(curr->m_id, transaction.TRANSDATE);
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT)) {
@@ -565,7 +565,7 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
     for (const auto& tran : TrxModel::instance().find_all()) {
         TrxModel::Full_Data trx_xd(tran, splits, tags);
 
-        trx_xd.PAYEENAME = trx_xd.real_payee_name(trx_xd.m_account_id_p);
+        trx_xd.PAYEENAME = trx_xd.real_payee_name(trx_xd.m_account_id);
         if (trx_xd.has_split()) {
             TrxModel::Full_Data single_tran = trx_xd;
             single_tran.m_amount = 0;
@@ -575,8 +575,8 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
             for (const auto& tp_d : trx_xd.m_splits) {
                 trx_xd.displayID       = wxString::Format("%lld", tran.m_id) + "." +
                     wxString::Format("%i", splitIndex++);
-                trx_xd.m_category_id_n = tp_d.m_category_id_p;
-                trx_xd.CATEGNAME       = CategoryModel::full_name(tp_d.m_category_id_p);
+                trx_xd.m_category_id_n = tp_d.m_category_id;
+                trx_xd.CATEGNAME       = CategoryModel::full_name(tp_d.m_category_id);
                 trx_xd.m_amount        = tp_d.m_amount;
                 trx_xd.NOTES           = tran.NOTES;
                 trx_xd.TAGNAMES        = tranTagnames;

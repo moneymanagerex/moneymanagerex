@@ -94,7 +94,7 @@ public:
 
         Bill_Data() {
             m_id               = 0;
-            m_account_id_p     = -1;
+            m_account_id       = -1;
             m_to_account_id_n  = -1;
             m_payee_id_n       = -1;
             TRANSCODE          = TrxModel::TYPE_NAME_WITHDRAWAL;
@@ -211,16 +211,16 @@ public:
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
             if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
-                x_accountid = x.m_account_id_p; x_transamount = x.m_amount;
+                x_accountid = x.m_account_id; x_transamount = x.m_amount;
             }
             else if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                x_accountid = x.m_account_id_p; x_transamount = x.m_amount;
+                x_accountid = x.m_account_id; x_transamount = x.m_amount;
             }
             if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
-                y_accountid = y.m_account_id_p; y_transamount = y.m_amount;
+                y_accountid = y.m_account_id; y_transamount = y.m_amount;
             }
             else if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                y_accountid = y.m_account_id_p; y_transamount = y.m_amount;
+                y_accountid = y.m_account_id; y_transamount = y.m_amount;
             }
             return x_accountid != -1 && (y_accountid == -1 || x_transamount < y_transamount);
         }
@@ -233,13 +233,13 @@ public:
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
             if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
-                x_accountid = x.m_account_id_p; x_transamount = x.m_amount;
+                x_accountid = x.m_account_id; x_transamount = x.m_amount;
             }
             else if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
                 x_accountid = x.m_to_account_id_n; x_transamount = x.m_to_amount;
             }
             if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
-                y_accountid = y.m_account_id_p; y_transamount = y.m_amount;
+                y_accountid = y.m_account_id; y_transamount = y.m_amount;
             }
             else if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
                 y_accountid = y.m_to_account_id_n; y_transamount = y.m_to_amount;

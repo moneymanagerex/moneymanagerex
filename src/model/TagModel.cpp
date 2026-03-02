@@ -80,7 +80,7 @@ int TagModel::is_used(int64 id)
         else if (gl_d.REFTYPE == TrxSplitModel::refTypeName) {
             const TrxSplitData* tp_n = TrxSplitModel::instance().get_id_data_n(gl_d.REFID);
             if (tp_n) {
-                const TrxData* trx_n = TrxModel::instance().get_id_data_n(tp_n->m_trx_id_p);
+                const TrxData* trx_n = TrxModel::instance().get_id_data_n(tp_n->m_trx_id);
                 if (trx_n && trx_n->DELETEDTIME.IsEmpty())
                     return 1;
             }

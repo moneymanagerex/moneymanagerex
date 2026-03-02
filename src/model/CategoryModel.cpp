@@ -214,7 +214,7 @@ bool CategoryModel::is_used(int64 id)
         TrxCol::CATEGID(id)
     );
     for (const auto& split_d : split_a)
-        if (TrxModel::instance().get_id_data_n(split_d.m_trx_id_p)->DELETEDTIME.IsEmpty())
+        if (TrxModel::instance().get_id_data_n(split_d.m_trx_id)->DELETEDTIME.IsEmpty())
             return true;
 
     const auto& sched_a = SchedModel::instance().find(
@@ -325,14 +325,14 @@ void CategoryModel::getCategoryStats(
         if (!transaction.DELETEDTIME.IsEmpty()) continue;
 
         if (accountArray) {
-            const auto account = AccountModel::instance().get_id_data_n(transaction.m_account_id_p);
+            const auto account = AccountModel::instance().get_id_data_n(transaction.m_account_id);
             if (wxNOT_FOUND == accountArray->Index(account->m_name)) {
                 continue;
             }
         }
 
         const double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get_id_data_n(transaction.m_account_id_p)->m_currency_id_p,
+            AccountModel::instance().get_id_data_n(transaction.m_account_id)->m_currency_id,
             transaction.TRANSDATE
         );
         wxDateTime d = TrxModel::getTransDateTime(transaction);
@@ -351,7 +351,7 @@ void CategoryModel::getCategoryStats(
                 // Do not include asset or stock transfers in income expense calculations.
                 if (TrxModel::is_foreignAsTransfer(transaction))
                     continue;
-                categoryStats[categID][month] += TrxModel::account_flow(transaction, transaction.m_account_id_p) * convRate;
+                categoryStats[categID][month] += TrxModel::account_flow(transaction, transaction.m_account_id) * convRate;
             }
             else if (budgetAmt != 0) {
                 double amt = transaction.m_amount * convRate;
@@ -363,7 +363,7 @@ void CategoryModel::getCategoryStats(
         }
         else {
             for (const auto& tp_d : id_tp_m[transaction.id()]) {
-                categoryStats[tp_d.m_category_id_p][month] +=
+                categoryStats[tp_d.m_category_id][month] +=
                     tp_d.m_amount * convRate *
                     ((TrxModel::type_id(transaction) == TrxModel::TYPE_ID_WITHDRAWAL) ? -1 : 1);
             }

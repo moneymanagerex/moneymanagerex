@@ -745,7 +745,7 @@ void JournalPanel::filterList()
         }
 
         if (isGroup() &&
-            m_group_ids.find(tran->m_account_id_p) == m_group_ids.end() &&
+            m_group_ids.find(tran->m_account_id) == m_group_ids.end() &&
             m_group_ids.find(tran->m_to_account_id_n) == m_group_ids.end()
         )
             continue;
@@ -867,8 +867,8 @@ void JournalPanel::filterList()
             journal_xd.displaySN = tranDisplaySN + "." + wxString::Format("%i", splitIndex);
             journal_xd.displayID = tranDisplayID + "." + wxString::Format("%i", splitIndex);
             splitIndex++;
-            journal_xd.m_category_id_n = tp_d.m_category_id_p;
-            journal_xd.CATEGNAME       = CategoryModel::full_name(tp_d.m_category_id_p);
+            journal_xd.m_category_id_n = tp_d.m_category_id;
+            journal_xd.CATEGNAME       = CategoryModel::full_name(tp_d.m_category_id);
             journal_xd.m_amount        = tp_d.m_amount;
             journal_xd.NOTES           = tran->NOTES;
             journal_xd.TAGNAMES        = tranTagnames;
@@ -1003,14 +1003,14 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 item = m_lc->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
                 if (item == -1) break;
                 const CurrencyData* curr = AccountModel::instance().get_id_currency_p(
-                    m_lc->m_trans[item].m_account_id_p
+                    m_lc->m_trans[item].m_account_id
                 );
                 if ((m_account_id < 0) && TrxModel::is_transfer(m_lc->m_trans[item].TRANSCODE))
                     continue;
                 double convrate = (curr != m_currency_n)
                     ? CurrencyHistoryModel::getDayRate(curr->m_id, m_lc->m_trans[item].TRANSDATE)
                     : 1.0;
-                flow += convrate * TrxModel::account_flow(m_lc->m_trans[item], (m_account_id < 0) ? m_lc->m_trans[item].m_account_id_p : m_account_id);
+                flow += convrate * TrxModel::account_flow(m_lc->m_trans[item], (m_account_id < 0) ? m_lc->m_trans[item].m_account_id : m_account_id);
                 wxString transdate = m_lc->m_trans[item].TRANSDATE;
                 if (minDate > transdate || minDate.empty()) minDate = transdate;
                 if (maxDate < transdate || maxDate.empty()) maxDate = transdate;
@@ -1427,7 +1427,7 @@ void JournalPanel::displaySplitCategories(Journal::IdB journal_id)
     std::vector<Split> splits;
     for (const auto& tp_d : Journal::split(journal)) {
         Split split_d;
-        split_d.CATEGID          = tp_d.m_category_id_p;
+        split_d.CATEGID          = tp_d.m_category_id;
         split_d.SPLITTRANSAMOUNT = tp_d.m_amount;
         split_d.NOTES            = tp_d.m_notes;
         splits.push_back(split_d);

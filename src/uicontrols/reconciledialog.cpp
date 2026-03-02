@@ -52,7 +52,7 @@ mmReconcileDialog::mmReconcileDialog(wxWindow* parent, const AccountData* accoun
     m_account = account;
     m_checkingPanel = cp;
     m_reconciledBalance = cp->GetTodayReconciledBalance();
-    m_currency = CurrencyModel::instance().get_id_data_n(account->m_currency_id_p);
+    m_currency = CurrencyModel::instance().get_id_data_n(account->m_currency_id);
     m_ignore  = false;
     this->SetFont(parent->GetFont());
 
@@ -669,7 +669,7 @@ void mmReconcileDialog::moveItemData(wxListCtrl* list, int row1, int row2)
 void mmReconcileDialog::setListItemData(const TrxData* trx, wxListCtrl* list, long item)
 {
     wxString prefix = trx->TRANSCODE == "Transfer" ? (trx->m_to_account_id_n == m_account->m_id ? "< " : "> ") : "";
-    wxString payeeName = (trx->TRANSCODE == "Transfer") ? AccountModel::instance().get_id_name(trx->m_to_account_id_n == m_account->m_id ? trx->m_account_id_p : trx->m_to_account_id_n): PayeeModel::instance().get_id_name(trx->m_payee_id_n);
+    wxString payeeName = (trx->TRANSCODE == "Transfer") ? AccountModel::instance().get_id_name(trx->m_to_account_id_n == m_account->m_id ? trx->m_account_id : trx->m_to_account_id_n): PayeeModel::instance().get_id_name(trx->m_payee_id_n);
     list->SetItem(item, 1, mmGetDateTimeForDisplay(trx->TRANSDATE));
     list->SetItem(item, 2, trx->m_number);
     list->SetItem(item, 3, prefix + payeeName);

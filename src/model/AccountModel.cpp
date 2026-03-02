@@ -99,7 +99,7 @@ bool AccountModel::purge_id(int64 account_id)
 const CurrencyData* AccountModel::get_data_currency_p(const Data& account_d)
 {
     const CurrencyData* currency_n = CurrencyModel::instance().get_id_data_n(
-        account_d.m_currency_id_p
+        account_d.m_currency_id
     );
     if (currency_n)
         return currency_n;

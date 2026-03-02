@@ -101,7 +101,7 @@ TrxShareDialog::TrxShareDialog(
                     tag_id_a.push_back(gl_d.TAGID);
                 }
                 m_local_deductible_splits.push_back(
-                    {tp_d.m_category_id_p, tp_d.m_amount, tag_id_a, tp_d.m_notes}
+                    {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
                 );
             }
         }
@@ -119,7 +119,7 @@ TrxShareDialog::TrxShareDialog(
                 tag_id_a.push_back(gl_d.TAGID);
             }
             m_local_non_deductible_splits.push_back(
-                {tp_d.m_category_id_p, tp_d.m_amount, tag_id_a, tp_d.m_notes}
+                {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
             );
         }
     }
@@ -192,7 +192,7 @@ void TrxShareDialog::DataToControls()
                     m_transaction_panel->TransactionDate(TrxModel::getTransDateTime(*trx_n));
                     m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->SHARENUMBER)
                         , m_share_entry->SHAREPRICE, m_share_entry->SHARECOMMISSION), true);
-                    m_transaction_panel->SetTransactionAccount(AccountModel::instance().get_id_name(trx_n->m_account_id_p));
+                    m_transaction_panel->SetTransactionAccount(AccountModel::instance().get_id_name(trx_n->m_account_id));
                     m_transaction_panel->SetTransactionStatus(TrxModel::status_id(*trx_n));
                     m_transaction_panel->SetTransactionPayee(trx_n->m_payee_id_n);
                     m_transaction_panel->SetTransactionCategory(trx_n->m_category_id_n);

@@ -96,7 +96,7 @@ bool TrxFilter::checkCategory(
     else {
         for (const auto& tp_d : it->second) {
             for (auto it2 : m_category_a) {
-                if (it2 == tp_d.m_category_id_p)
+                if (it2 == tp_d.m_category_id)
                     return true;
             }
         }
@@ -112,7 +112,7 @@ bool TrxFilter::mmIsRecordMatches(
     bool ok = true;
     wxString strDate = TrxModel::getTransDateTime(trx_d).FormatISOCombined();
     if (m_filter_account
-        && (std::find(m_account_a.begin(), m_account_a.end(), trx_d.m_account_id_p) == m_account_a.end())
+        && (std::find(m_account_a.begin(), m_account_a.end(), trx_d.m_account_id) == m_account_a.end())
         && (std::find(m_account_a.begin(), m_account_a.end(), trx_d.m_to_account_id_n) == m_account_a.end()))
         ok = false;
     else if (m_filter_date && ((strDate < m_start_date) || (strDate > m_end_date)))
@@ -135,7 +135,7 @@ wxString TrxFilter::getHTML()
         if (!mmIsRecordMatches(trx_d, splits)) continue;
         TrxModel::Full_Data full_tran(trx_d, splits, tags);
 
-        full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.m_account_id_p);
+        full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.m_account_id);
         if (full_tran.has_split()) {
             bool found = true;
             for (const auto& tp_d : full_tran.m_splits) {
@@ -143,7 +143,7 @@ wxString TrxFilter::getHTML()
                     found = false;
 
                     for (const auto& it : m_category_a) {
-                        if (it == tp_d.m_category_id_p) {
+                        if (it == tp_d.m_category_id) {
                             found = true;
                             break;
                         }
@@ -151,7 +151,7 @@ wxString TrxFilter::getHTML()
                 }
 
                 if (found) {
-                    full_tran.CATEGNAME = CategoryModel::full_name(tp_d.m_category_id_p);
+                    full_tran.CATEGNAME = CategoryModel::full_name(tp_d.m_category_id);
                     full_tran.m_amount = tp_d.m_amount;
                     full_tran.NOTES.Append((trx_d.NOTES.IsEmpty() ? "" : " ") + tp_d.m_notes);
                     m_trans.push_back(full_tran);
@@ -225,7 +225,7 @@ table {
         else
             hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
 
-        const AccountData* acc = AccountModel::instance().get_id_data_n(transaction.m_account_id_p);
+        const AccountData* acc = AccountModel::instance().get_id_data_n(transaction.m_account_id);
         if (acc) {
             const CurrencyData* curr = AccountModel::instance().get_data_currency_p(*acc);
             double flow = TrxModel::account_flow(transaction, acc->m_id);

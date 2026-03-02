@@ -78,7 +78,7 @@ std::map<int64, TrxSplitModel::DataA> TrxSplitModel::get_all_id()
 {
     std::map<int64, TrxSplitModel::DataA> id_tpa_m;
     for (const auto& tp_d : instance().find_all()) {
-        id_tpa_m[tp_d.m_trx_id_p].push_back(tp_d);
+        id_tpa_m[tp_d.m_trx_id].push_back(tp_d);
     }
     return id_tpa_m;
 }
@@ -99,7 +99,7 @@ int TrxSplitModel::update(DataA& src_tp_a, int64 trx_id)
                 if (row_id_map.find(i) != row_id_map.end())
                     continue;
                 match = (
-                    src_tp_a[i].m_category_id_p == old_tp_d.m_category_id_p &&
+                    src_tp_a[i].m_category_id == old_tp_d.m_category_id &&
                     src_tp_a[i].m_amount == old_tp_d.m_amount &&
                     src_tp_a[i].m_notes.IsSameAs(old_tp_d.m_notes)
                 );
@@ -115,10 +115,10 @@ int TrxSplitModel::update(DataA& src_tp_a, int64 trx_id)
 
     for (auto& src_tp_d : src_tp_a) {
         Data new_tp_d = Data();
-        new_tp_d.m_trx_id_p      = trx_id;
-        new_tp_d.m_amount        = src_tp_d.m_amount;
-        new_tp_d.m_category_id_p = src_tp_d.m_category_id_p;
-        new_tp_d.m_notes         = src_tp_d.m_notes;
+        new_tp_d.m_trx_id      = trx_id;
+        new_tp_d.m_amount      = src_tp_d.m_amount;
+        new_tp_d.m_category_id = src_tp_d.m_category_id;
+        new_tp_d.m_notes       = src_tp_d.m_notes;
         instance().add_data_n(new_tp_d);
         src_tp_d.m_id = new_tp_d.id();
     }
@@ -134,9 +134,9 @@ int TrxSplitModel::update(const std::vector<Split>& split_a, int64 trx_id)
     DataA tp_a;
     for (const auto& entry : split_a) {
         Data tp_d = Data();
-        tp_d.m_category_id_p = entry.CATEGID;
-        tp_d.m_amount        = entry.SPLITTRANSAMOUNT;
-        tp_d.m_notes         = entry.NOTES;
+        tp_d.m_category_id = entry.CATEGID;
+        tp_d.m_amount      = entry.SPLITTRANSAMOUNT;
+        tp_d.m_notes       = entry.NOTES;
         tp_a.push_back(tp_d);
     }
 

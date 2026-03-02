@@ -110,7 +110,7 @@ const std::pair<double, double> AssetModel::get_data_value_date(const Data& asse
         if (trx_n &&
             trx_n->DELETEDTIME.IsEmpty() &&
             // FIXME: ignore Void transactions
-            trx_n->m_account_id_p >= 0 &&
+            trx_n->m_account_id >= 0 &&
             date < mmDate(TrxModel::getTransDateTime(*trx_n))
         ) {
             trx_a.push_back(*trx_n);
@@ -122,10 +122,10 @@ const std::pair<double, double> AssetModel::get_data_value_date(const Data& asse
         mmDateN last_n = mmDateN();
         for (const auto& trx_d : trx_a) {
             const mmDate trx_date = mmDate(TrxModel::getTransDateTime(trx_d));
-            const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id_p);
-            int64 currency_id_n = account_n ? account_n->m_currency_id_p : -1;
+            const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
+            int64 currency_id_n = account_n ? account_n->m_currency_id : -1;
             double currency_rate = CurrencyHistoryModel::getDayRate(currency_id_n, trx_date.getDateTime());
-            double account_flow = TrxModel::account_flow(trx_d, trx_d.m_account_id_p);
+            double account_flow = TrxModel::account_flow(trx_d, trx_d.m_account_id);
             double base_amount = -(account_flow * currency_rate);
 
             if (!last_n.has_value())
@@ -150,7 +150,7 @@ const std::pair<double, double> AssetModel::get_data_value_date(const Data& asse
 
             // Self Transfer as Revaluation
             // FIXME: missing currency conversion
-            if (trx_d.m_account_id_p == trx_d.m_to_account_id_n &&
+            if (trx_d.m_account_id == trx_d.m_to_account_id_n &&
                 TrxModel::type_id(trx_d.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER
             ) {
                 // TODO honor m_amount => m_to_amount

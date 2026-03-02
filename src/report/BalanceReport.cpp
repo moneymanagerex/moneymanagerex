@@ -201,9 +201,9 @@ wxString BalanceReport::getHTMLText()
             }
             if (idx > -1) {
                 std::pair<double, double> dailybal = getBalance(&account, end_date);
-                balancePerDay[idx] += dailybal.first * getCurrencyDateRate(account.m_currency_id_p, end_date);
+                balancePerDay[idx] += dailybal.first * getCurrencyDateRate(account.m_currency_id, end_date);
                 if (AccountModel::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
-                    balancePerDay[idx] += dailybal.second * getCurrencyDateRate(account.m_currency_id_p, end_date);
+                    balancePerDay[idx] += dailybal.second * getCurrencyDateRate(account.m_currency_id, end_date);
                 }
             }
         }

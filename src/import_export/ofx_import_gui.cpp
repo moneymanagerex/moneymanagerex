@@ -1515,11 +1515,11 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
         }
 
         TrxData new_trx_d = TrxData();
-        new_trx_d.m_account_id_p = account->m_id;
-        new_trx_d.m_number       = result.fitid;
-        new_trx_d.TRANSDATE      = date.FormatISODate();
-        new_trx_d.m_amount       = fabs(amount);
-        new_trx_d.NOTES          = memo;
+        new_trx_d.m_account_id = account->m_id;
+        new_trx_d.m_number     = result.fitid;
+        new_trx_d.TRANSDATE    = date.FormatISODate();
+        new_trx_d.m_amount     = fabs(amount);
+        new_trx_d.NOTES        = memo;
 
         bool isTransfer = false;
         // Check for existing transaction in the current account first
@@ -1545,7 +1545,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
             for (auto& existing_trx_d : allExistingTrans) {
                 // Check if this FITID is already a transfer involving the current account
                 if (existing_trx_d.TRANSCODE == "Transfer" &&
-                    (existing_trx_d.m_account_id_p == account->m_id || existing_trx_d.m_to_account_id_n == account->m_id)) {
+                    (existing_trx_d.m_account_id == account->m_id || existing_trx_d.m_to_account_id_n == account->m_id)) {
                     result.imported      = false;
                     result.transType     = "";
                     result.importedPayee = "DUPLICATE";
@@ -1558,7 +1558,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                     transactionIndex++;
                     break;
                 }
-                else if (existing_trx_d.m_account_id_p != account->m_id) {
+                else if (existing_trx_d.m_account_id != account->m_id) {
                     // Potential new transfer
                     double existingAmount = existing_trx_d.m_amount;
                     wxDateTime existingDate;
@@ -1569,7 +1569,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                     int compDate = abs((date - existingDate).GetDays());
                     if (compAmt < 0.01 && compDate <= 7) {
                         if (existing_trx_d.TRANSCODE == "Transfer") {
-                            wxLogWarning("FITID='%s' is a transfer from %lld to %lld, not updating", fitid, existing_trx_d.m_account_id_p,
+                            wxLogWarning("FITID='%s' is a transfer from %lld to %lld, not updating", fitid, existing_trx_d.m_account_id,
                                          existing_trx_d.m_to_account_id_n);
                             stats.skippedErrors++;
                             result.imported = false;
@@ -1585,8 +1585,8 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                             }
                             else if (existing_trx_d.TRANSCODE == "Deposit" && amount < 0) {
                                 existing_trx_d.TRANSCODE = "Transfer";
-                                existing_trx_d.m_to_account_id_n = existing_trx_d.m_account_id_p;
-                                existing_trx_d.m_account_id_p = account->m_id;
+                                existing_trx_d.m_to_account_id_n = existing_trx_d.m_account_id;
+                                existing_trx_d.m_account_id = account->m_id;
                                 existing_trx_d.m_amount = fabs(amount);
                                 existing_trx_d.m_to_amount = existingAmount;
                             }
@@ -1609,11 +1609,11 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                                 TrxModel::instance().save_trx(existing_trx_d);
                                 result.imported = true;
                                 result.transType = "Transfer";
-                                result.importedPayee = AccountModel::instance().get_id_data_n(existing_trx_d.m_account_id_p)->m_name;
+                                result.importedPayee = AccountModel::instance().get_id_data_n(existing_trx_d.m_account_id)->m_name;
                                 result.category = "Transfer";
                                 result.matchMode = "Transfer";
                                 stats.autoImportedCount++;
-                                wxLogDebug("Updated FITID='%s' to Transfer from %lld to %lld", fitid, existing_trx_d.m_account_id_p, existing_trx_d.m_to_account_id_n);
+                                wxLogDebug("Updated FITID='%s' to Transfer from %lld to %lld", fitid, existing_trx_d.m_account_id, existing_trx_d.m_to_account_id_n);
                             }
                             catch (const wxSQLite3Exception& e) {
                                 wxLogError("Failed to update FITID='%s': %s", fitid, e.GetMessage());

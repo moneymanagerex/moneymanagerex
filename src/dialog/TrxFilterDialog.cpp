@@ -1385,12 +1385,12 @@ bool TrxFilterDialog::mmIsTagMatches(const wxString& refType, int64 refId, bool 
     if (refType == TrxSplitModel::refTypeName)
         txnTagnames = TagLinkModel::instance().get_ref(
             TrxModel::refTypeName,
-            TrxSplitModel::instance().get_id_data_n(refId)->m_trx_id_p
+            TrxSplitModel::instance().get_id_data_n(refId)->m_trx_id
         );
     else if (refType == SchedSplitModel::refTypeName)
         txnTagnames = TagLinkModel::instance().get_ref(
             SchedModel::refTypeName,
-            SchedSplitModel::instance().get_id_data_n(refId)->m_sched_id_p
+            SchedSplitModel::instance().get_id_data_n(refId)->m_sched_id
         );
 
     if (mergeSplitTags)
@@ -1453,7 +1453,7 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
     bool ok = true;
 
     // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
-    if (mmIsAccountChecked() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_account_id_p) == m_selected_accounts_id.end() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_to_account_id_n) == m_selected_accounts_id.end())
+    if (mmIsAccountChecked() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_account_id) == m_selected_accounts_id.end() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_to_account_id_n) == m_selected_accounts_id.end())
         ok = false;
     else if (m_use_date_filter && (mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date.Mid(0, tran.TRANSDATE.length()) || tran.TRANSDATE > m_end_date.Mid(0, tran.TRANSDATE.length())))
         ok = false;
@@ -1463,7 +1463,7 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
         ok = false;
     else if (mmIsStatusChecked() && !mmIsStatusMatches(tran.STATUS))
         ok = false;
-    else if (mmIsTypeChecked() && !mmIsTypeMaches(tran.TRANSCODE, tran.m_account_id_p, tran.m_to_account_id_n))
+    else if (mmIsTypeChecked() && !mmIsTypeMaches(tran.TRANSCODE, tran.m_account_id, tran.m_to_account_id_n))
         ok = false;
     else if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > tran.m_amount)
         ok = false;
@@ -1520,7 +1520,7 @@ int TrxFilterDialog::mmIsRecordMatches(const TrxData& trx_d, const TrxSplitModel
     {
         // Need to check if the split matches using the transaction Notes & Tags as well
         TrxData trx_trx_d(trx_d);
-        trx_trx_d.m_category_id_n = tp_d.m_category_id_p;
+        trx_trx_d.m_category_id_n = tp_d.m_category_id;
         trx_trx_d.m_amount        = tp_d.m_amount;
         TrxData trx_tp_d = trx_trx_d;
         trx_tp_d.NOTES = tp_d.m_notes;
@@ -1554,7 +1554,7 @@ int TrxFilterDialog::mmIsRecordMatches(
 
     for (const auto& qp_d : it->second) {
         SchedData sched_sched_d = sched_d;
-        sched_sched_d.m_category_id_n = qp_d.m_category_id_p;
+        sched_sched_d.m_category_id_n = qp_d.m_category_id;
         sched_sched_d.m_amount        = qp_d.m_amount;
         SchedData sched_qp_d = sched_sched_d;
         sched_qp_d.NOTES = qp_d.m_notes;

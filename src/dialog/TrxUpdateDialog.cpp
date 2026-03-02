@@ -414,7 +414,7 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             wxString date = trx_n->TRANSDATE;
             if (m_date_checkbox->IsChecked()) {
                 date.replace(0, 10, m_dpc->GetValue().FormatISODate());
-                const AccountData* account = AccountModel::instance().get_id_data_n(trx_n->m_account_id_p);
+                const AccountData* account = AccountModel::instance().get_id_data_n(trx_n->m_account_id);
                 const AccountData* to_account = AccountModel::instance().get_id_data_n(trx_n->m_to_account_id_n);
                 if ((mmDate(date) < account->m_open_date) ||
                     (to_account && (mmDate(date) < to_account->m_open_date)))
@@ -503,10 +503,10 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 trx_n->m_to_amount = trx_n->m_amount;
             }
             else {
-                const auto acc = AccountModel::instance().get_id_data_n(trx_n->m_account_id_p);
-                const auto curr = CurrencyModel::instance().get_id_data_n(acc->m_currency_id_p);
+                const auto acc = AccountModel::instance().get_id_data_n(trx_n->m_account_id);
+                const auto curr = CurrencyModel::instance().get_id_data_n(acc->m_currency_id);
                 const auto to_acc = AccountModel::instance().get_id_data_n(trx_n->m_to_account_id_n);
-                const auto to_curr = CurrencyModel::instance().get_id_data_n(to_acc->m_currency_id_p);
+                const auto to_curr = CurrencyModel::instance().get_id_data_n(to_acc->m_currency_id);
                 if (curr == to_curr) {
                     trx_n->m_to_amount = trx_n->m_amount;
                 }

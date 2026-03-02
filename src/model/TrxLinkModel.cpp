@@ -185,7 +185,7 @@ void TrxLinkModel::UpdateAssetValue(AssetData* asset_n)
             && TrxModel::status_id(trx_n->STATUS) != TrxModel::STATUS_ID_VOID
         ) {
             const CurrencyData* currency_n = AccountModel::instance().get_id_currency_p(
-                trx_n->m_account_id_p
+                trx_n->m_account_id
             );
             const double conv_rate = CurrencyHistoryModel::getDayRate(
                 currency_n->m_id,
@@ -217,7 +217,7 @@ bool TrxLinkModel::ShareAccountId(int64& stock_entry_id)
             TrxCol::TRANSID(stock_translink_list.at(0).CHECKINGACCOUNTID));
         if (!checking_entry.empty())
         {
-            const AccountData* account_entry = AccountModel::instance().get_id_data_n(checking_entry.at(0).m_account_id_p);
+            const AccountData* account_entry = AccountModel::instance().get_id_data_n(checking_entry.at(0).m_account_id);
             stock_entry_id = account_entry->m_id;
             return true;
         }

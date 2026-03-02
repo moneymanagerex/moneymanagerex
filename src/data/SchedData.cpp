@@ -21,7 +21,7 @@
 SchedData::SchedData()
 {
     m_id              = -1;
-    m_account_id_p    = -1;
+    m_account_id      = -1;
     m_to_account_id_n = -1;
     m_payee_id_n      = -1;
     m_amount          = 0.0;
@@ -39,7 +39,7 @@ SchedRow SchedData::to_row() const
     SchedRow row;
 
     row.BDID               = m_id;
-    row.ACCOUNTID          = m_account_id_p;
+    row.ACCOUNTID          = m_account_id;
     row.TOACCOUNTID        = m_to_account_id_n;
     row.PAYEEID            = m_payee_id_n;
     row.TRANSCODE          = TRANSCODE;
@@ -63,7 +63,7 @@ SchedRow SchedData::to_row() const
 SchedData& SchedData::from_row(const SchedRow& row)
 {
     m_id               = row.BDID;               // int64
-    m_account_id_p     = row.ACCOUNTID;          // int64
+    m_account_id       = row.ACCOUNTID;          // int64
     m_to_account_id_n  = row.TOACCOUNTID;        // int64
     m_payee_id_n       = row.PAYEEID;            // int64
     TRANSCODE          = row.TRANSCODE;          // wxString
@@ -86,7 +86,7 @@ SchedData& SchedData::from_row(const SchedRow& row)
 bool SchedData::equals(const SchedData* other) const
 {
     if ( m_id != other->m_id) return false;
-    if ( m_account_id_p != other->m_account_id_p) return false;
+    if ( m_account_id != other->m_account_id) return false;
     if ( m_to_account_id_n != other->m_to_account_id_n) return false;
     if ( m_payee_id_n != other->m_payee_id_n) return false;
     if (!TRANSCODE.IsSameAs(other->TRANSCODE)) return false;

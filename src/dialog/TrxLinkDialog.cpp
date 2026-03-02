@@ -72,7 +72,7 @@ TrxLinkDialog::TrxLinkDialog(
                 tag_id_a.push_back(gl_d.TAGID);
             }
             m_local_splits.push_back(
-                {tp_d.m_category_id_p, tp_d.m_amount, tag_id_a, tp_d.m_notes}
+                {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
             );
         }
     }
@@ -256,7 +256,7 @@ void TrxLinkDialog::DataToControls()
     TransactionDate(trans_date);
 
     m_transaction_id = m_transaction_n->m_id;
-    m_account_id = m_transaction_n->m_account_id_p;
+    m_account_id = m_transaction_n->m_account_id;
     m_account->SetLabelText(AccountModel::instance().get_id_name(m_account_id));
     m_type_selector->SetSelection(TrxModel::type_id(m_transaction_n->TRANSCODE));
 
@@ -489,7 +489,7 @@ void TrxLinkDialog::SetTransactionAccount(const wxString& trans_account)
         m_account->SetLabelText(account->m_name);
         m_account_id = account->m_id;
         SetLastPayeeAndCategory(m_account_id);
-        const CurrencyData* currency = CurrencyModel::instance().get_id_data_n(account->m_currency_id_p);
+        const CurrencyData* currency = CurrencyModel::instance().get_id_data_n(account->m_currency_id);
         m_entered_amount->SetCurrency(currency);
         m_trans_currency->SetLabelText(currency->m_symbol);
     }
@@ -534,7 +534,7 @@ int64 TrxLinkDialog::SaveChecking()
         m_transaction_n = &m_transaction_d;
     }
 
-    m_transaction_n->m_account_id_p = m_account_id;
+    m_transaction_n->m_account_id = m_account_id;
     m_transaction_n->m_to_account_id_n = (
         TransactionType() == TrxModel::TYPE_ID_TRANSFER ||
         CheckingType() == TrxLinkModel::AS_TRANSFER

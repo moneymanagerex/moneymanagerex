@@ -59,11 +59,11 @@ wxString ForecastReport::getHTMLText()
         )
             continue;
         const double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get_id_data_n(trx_d.m_account_id_p)->m_currency_id_p,
+            AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
             trx_d.TRANSDATE
         );
-        amount_by_day[trx_d.TRANSDATE].first += TrxModel::account_outflow(trx_d, trx_d.m_account_id_p) * convRate;
-        amount_by_day[trx_d.TRANSDATE].second += TrxModel::account_inflow(trx_d, trx_d.m_account_id_p) * convRate;
+        amount_by_day[trx_d.TRANSDATE].first += TrxModel::account_outflow(trx_d, trx_d.m_account_id) * convRate;
+        amount_by_day[trx_d.TRANSDATE].second += TrxModel::account_inflow(trx_d, trx_d.m_account_id) * convRate;
     }
 
     // Build the report

@@ -54,7 +54,7 @@ wxString InExReport::getHTMLText()
         if (TrxModel::is_foreignAsTransfer(transaction))
             continue;
 
-        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.m_account_id_p);
+        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.m_account_id);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->m_name))
                 continue;
@@ -158,7 +158,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         if (TrxModel::is_foreignAsTransfer(transaction))
             continue;
 
-        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.m_account_id_p);
+        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.m_account_id);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->m_name))
                 continue;

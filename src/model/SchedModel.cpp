@@ -286,7 +286,7 @@ bool SchedModel::AllowTransaction(const Data& r)
     if (r.TRANSCODE != TrxModel::TYPE_NAME_WITHDRAWAL && r.TRANSCODE != TrxModel::TYPE_NAME_TRANSFER)
         return true;
 
-    const int64 acct_id = r.m_account_id_p;
+    const int64 acct_id = r.m_account_id;
     const AccountData* account_n = AccountModel::instance().get_id_data_n(acct_id);
 
     if (account_n->m_min_balance == 0 && account_n->m_credit_limit == 0)
@@ -380,7 +380,7 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
     if (!m_bill_splits.empty()) {
         for (const auto& qp_d : m_bill_splits) {
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
-                + CategoryModel::full_name(qp_d.m_category_id_p);
+                + CategoryModel::full_name(qp_d.m_category_id);
 
             wxString splitTags;
             for (const auto& tag : TagLinkModel::instance().get_ref(SchedSplitModel::refTypeName, qp_d.m_id))
@@ -392,7 +392,7 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
     else
         CATEGNAME = CategoryModel::full_name(r.m_category_id_n);
 
-    ACCOUNTNAME = AccountModel::instance().get_id_name(r.m_account_id_p);
+    ACCOUNTNAME = AccountModel::instance().get_id_name(r.m_account_id);
 
     PAYEENAME = PayeeModel::instance().get_id_name(r.m_payee_id_n);
     if (SchedModel::type_id(r) == TrxModel::TYPE_ID_TRANSFER) {

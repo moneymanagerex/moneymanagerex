@@ -1526,7 +1526,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
         TrxData new_trx_d = TrxData();
         new_trx_d.TRANSDATE         = trx_datetime.FormatISOCombined();
-        new_trx_d.m_account_id_p    = accountID_;
+        new_trx_d.m_account_id      = accountID_;
         new_trx_d.m_to_account_id_n = holder.ToAccountID;
         new_trx_d.m_payee_id_n      = holder.PayeeID;
         new_trx_d.TRANSCODE         = holder.Type;
@@ -1722,9 +1722,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 
             if (!has_split) {
                 TrxSplitData tp_d = TrxSplitData();
-                tp_d.m_trx_id_p      = tran.m_id;
-                tp_d.m_category_id_p = tran.m_category_id_n;
-                tp_d.m_amount        = value;
+                tp_d.m_trx_id      = tran.m_id;
+                tp_d.m_category_id = tran.m_category_id_n;
+                tp_d.m_amount      = value;
                 tran.m_splits.push_back(tp_d);
             }
 
@@ -1735,7 +1735,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     pTxFile->AddNewLine();
 
                     const CategoryData* category = CategoryModel::instance().get_id_data_n(
-                        tp_d.m_category_id_p
+                        tp_d.m_category_id
                     );
 
                     double amt = tp_d.m_amount;
@@ -2112,9 +2112,9 @@ void mmUnivCSVDialog::update_preview()
 
                         if (!has_split) {
                             TrxSplitData tp_d = TrxSplitData();
-                            tp_d.m_trx_id_p      = tran.m_id;
-                            tp_d.m_category_id_p = tran.m_category_id_n;
-                            tp_d.m_amount        = value;
+                            tp_d.m_trx_id      = tran.m_id;
+                            tp_d.m_category_id = tran.m_category_id_n;
+                            tp_d.m_amount      = value;
                             tran.m_splits.push_back(tp_d);
                         }
 
@@ -2126,7 +2126,7 @@ void mmUnivCSVDialog::update_preview()
                             buf.Printf("%d", row + 1);
                             m_list_ctrl_->SetItem(itemIndex, col, buf);
                             m_list_ctrl_->SetItemData(itemIndex, row);
-                            const CategoryData* category = CategoryModel::instance().get_id_data_n(tp_d.m_category_id_p);
+                            const CategoryData* category = CategoryModel::instance().get_id_data_n(tp_d.m_category_id);
 
                             const CurrencyData* currency = AccountModel::instance().get_data_currency_p(*from_account);
 
