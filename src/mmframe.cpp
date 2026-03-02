@@ -640,7 +640,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 new_trx_d.m_followup_id     = q1.m_followup_id;
                 new_trx_d.TRANSDATE         = payment_date.FormatISOCombined();
                 new_trx_d.m_color           = q1.m_color;
-                TrxModel::instance().save_trx(new_trx_d);
+                TrxModel::instance().save_trx_n(new_trx_d);
                 int64 transID = new_trx_d.id();
 
                 TrxSplitModel::DataA tp_a;

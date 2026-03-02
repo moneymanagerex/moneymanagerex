@@ -1245,7 +1245,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         for (int i = 0; i < static_cast<int>(trx_a.size()); i++) {
             if (!m_txnTaglinks[std::make_pair(0, i)].empty()) {
                 // we need to know the transid for the taglink, so save the transaction first
-                TrxModel::instance().save_trx(trx_a[i]);
+                TrxModel::instance().save_trx_n(trx_a[i]);
                 int64 transid = trx_a[i].id();
                 // apply that transid to all associated tags
                 for (auto& taglink : m_txnTaglinks[std::make_pair(0, i)])

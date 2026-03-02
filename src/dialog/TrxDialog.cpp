@@ -1261,7 +1261,7 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     }
 
     TrxModel::copy_from_trx(trx_n, m_journal_data);
-    TrxModel::instance().unsafe_save_trx(trx_n);
+    TrxModel::instance().unsafe_save_trx_n(trx_n);
     m_journal_data.m_id         = trx_n->id();
     m_journal_data.m_bdid       = 0;
     m_journal_data.m_repeat_num = 0;

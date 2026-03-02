@@ -550,7 +550,7 @@ int64 TrxLinkDialog::SaveChecking()
     m_transaction_n->TRANSDATE       = trx_datetime.FormatISOCombined();
     m_transaction_n->m_to_amount     = m_transaction_n->m_amount;
 
-    TrxModel::instance().unsafe_save_trx(m_transaction_n);
+    TrxModel::instance().unsafe_save_trx_n(m_transaction_n);
     return m_transaction_n->id();
 }
 

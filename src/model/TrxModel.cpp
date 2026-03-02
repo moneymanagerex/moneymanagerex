@@ -383,13 +383,13 @@ void TrxModel::update_timestamp(Data& trx_d)
     }
 }
 
-const TrxData* TrxModel::unsafe_save_trx(Data* trx_n)
+const TrxData* TrxModel::unsafe_save_trx_n(Data* trx_n)
 {
     update_timestamp(*trx_n);
     return unsafe_save_data_n(trx_n);
 }
 
-const TrxData* TrxModel::save_trx(Data& trx_d)
+const TrxData* TrxModel::save_trx_n(Data& trx_d)
 {
     update_timestamp(trx_d);
     return save_data_n(trx_d);
@@ -403,7 +403,7 @@ bool TrxModel::save_trx_a(DataA& trx_a)
     for (auto& trx_d : trx_a) {
         if (trx_d.id() < 0)
             wxLogDebug("Incorrect function call to save %s", trx_d.to_json().utf8_str());
-        if (!save_trx(trx_d)) {
+        if (!save_trx_n(trx_d)) {
             ok = false;
             break;
         }

@@ -94,7 +94,7 @@ void TrxLinkModel::SetTranslink(
     // set the checking type as AS_INCOME_EXPENSE = 32701 or AS_TRANSFER
     TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(checking_id);
     // trx_n->m_to_account_id_n = checking_type;
-    TrxModel::instance().unsafe_save_trx(trx_n);
+    TrxModel::instance().unsafe_save_trx_n(trx_n);
     //TrxLinkModel::instance().get_id_data_n(new_tl_d.id());
 }
 

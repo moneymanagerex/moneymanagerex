@@ -199,8 +199,8 @@ public:
     bool purge_id(int64 id) override;
     void save_timestamp(int64 id);
     void update_timestamp(Data& trx_d);
-    const Data* unsafe_save_trx(Data* trx_n);
-    const Data* save_trx(Data& trx_d);
+    const Data* unsafe_save_trx_n(Data* trx_n);
+    const Data* save_trx_n(Data& trx_d);
     bool save_trx_a(DataA& rows);
 
 public:

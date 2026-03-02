@@ -1181,7 +1181,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             }
             else {
                 trx_n->DELETEDTIME = deletionTime;
-                TrxModel::instance().unsafe_save_trx(trx_n);
+                TrxModel::instance().unsafe_save_trx_n(trx_n);
                 TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
                 );
@@ -1247,7 +1247,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
             if (!id.second) {
                 TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
                 trx_n->DELETEDTIME.Clear();
-                TrxModel::instance().unsafe_save_trx(trx_n);
+                TrxModel::instance().unsafe_save_trx_n(trx_n);
                 TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
                 );
@@ -1289,7 +1289,7 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
             if (tran.m_repeat_num) continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(tran.m_id);
             trx_n->DELETEDTIME.Clear();
-            TrxModel::instance().unsafe_save_trx(trx_n);
+            TrxModel::instance().unsafe_save_trx_n(trx_n);
             TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
                 TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
             );
@@ -1418,7 +1418,7 @@ void JournalList::onMoveTransaction(wxCommandEvent& /*event*/)
                         skip_trx.push_back(trx_n->m_id);
                     } else {
                         trx_n->m_account_id = dest_account_id;
-                        TrxModel::instance().unsafe_save_trx(trx_n);
+                        TrxModel::instance().unsafe_save_trx_n(trx_n);
                     }
                 }
             }
@@ -1558,7 +1558,7 @@ void JournalList::onMarkTransaction(wxCommandEvent& event)
         //bRefreshRequired |= (status == TrxModel::STATUS_KEY_VOID) || (m_trans[row].STATUS == TrxModel::STATUS_KEY_VOID);
         if (!m_trans[row].m_repeat_num) {
             m_trans[row].STATUS = status;
-            TrxModel::instance().save_trx(m_trans[row]);
+            TrxModel::instance().save_trx_n(m_trans[row]);
         }
     }
 
@@ -1703,7 +1703,7 @@ int64 JournalList::onPaste(const TrxData* tran)
         (m_cp->m_account_id != new_trx.m_account_id && m_cp->m_account_id != new_trx.m_to_account_id_n)
     )
     new_trx.m_account_id = m_cp->m_account_id;
-    TrxModel::instance().save_trx(new_trx);
+    TrxModel::instance().save_trx_n(new_trx);
     int64 transactionID = new_trx.id();
     m_pasted_id.push_back({transactionID, 0});   // add the newly pasted transaction
 
@@ -1832,7 +1832,7 @@ void JournalList::onSetUserColour(wxCommandEvent& event)
             if (tran) {
                 TrxData tran_d = *tran;
                 tran_d.m_color = user_color_id;
-                TrxModel::instance().save_trx(tran_d);
+                TrxModel::instance().save_trx_n(tran_d);
             }
         }
         else {
@@ -2205,7 +2205,7 @@ void JournalList::deleteTransactionsByStatus(const wxString& status)
             else {
                 TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(tran.m_id);
                 trx_n->DELETEDTIME = deletionTime;
-                TrxModel::instance().unsafe_save_trx(trx_n);
+                TrxModel::instance().unsafe_save_trx_n(trx_n);
                 TrxLinkModel::DataA translink = TrxLinkModel::instance().find(
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
                 );

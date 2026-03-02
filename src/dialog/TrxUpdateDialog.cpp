@@ -524,7 +524,7 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         m_custom_fields->UpdateCustomValues(id);
 
-        TrxModel::instance().unsafe_save_trx(trx_n);
+        TrxModel::instance().unsafe_save_trx_n(trx_n);
     }
     TagLinkModel::instance().db_release_savepoint();
     TrxModel::instance().db_release_savepoint();

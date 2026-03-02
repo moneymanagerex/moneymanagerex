@@ -1543,7 +1543,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
             );
         new_trx_d.m_color = color_id;
 
-        TrxModel::instance().save_trx(new_trx_d);
+        TrxModel::instance().save_trx_n(new_trx_d);
 
         // save custom field data
         if (!holder.customFieldData.empty()) {

@@ -1606,7 +1606,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                             existing_trx_d.NOTES = "Existing: " + existing_trx_d.NOTES + "\nUpdated: " + memo;
 
                             try {
-                                TrxModel::instance().save_trx(existing_trx_d);
+                                TrxModel::instance().save_trx_n(existing_trx_d);
                                 result.imported = true;
                                 result.transType = "Transfer";
                                 result.importedPayee = AccountModel::instance().get_id_data_n(existing_trx_d.m_account_id)->m_name;
@@ -1743,7 +1743,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
 
         if (result.imported) {
             try {
-                TrxModel::instance().save_trx(new_trx_d);
+                TrxModel::instance().save_trx_n(new_trx_d);
                 stats.importedTransactions++;
                 wxLogDebug("Imported: FITID='%s', Type='%s', Payee='%s', Mode='%s'",
                     fitid, result.transType, result.importedPayee, result.matchMode

@@ -782,7 +782,7 @@ void mmReconcileDialog::OnClose(wxCommandEvent& event)
                 trx_n->STATUS = "";
             }
         }
-        TrxModel::instance().unsafe_save_trx(trx_n);
+        TrxModel::instance().unsafe_save_trx_n(trx_n);
     };
 
     if (event.GetId() != wxID_CANCEL) {
