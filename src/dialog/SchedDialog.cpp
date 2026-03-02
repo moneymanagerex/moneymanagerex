@@ -1141,7 +1141,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             new_trx_d.TOTRANSAMOUNT     = m_sched_xd.TOTRANSAMOUNT;
             new_trx_d.FOLLOWUPID        = m_sched_xd.FOLLOWUPID;
             new_trx_d.COLOR             = m_sched_xd.COLOR;
-            TrxModel::instance().add_data_n(new_trx_d);
+            TrxModel::instance().save_trx(new_trx_d);
             int64 trx_id = new_trx_d.id();
 
             TrxSplitModel::DataA tp_a;
