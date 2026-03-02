@@ -1526,21 +1526,22 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
         TrxData new_trx_d = TrxData();
         new_trx_d.TRANSDATE         = trx_datetime.FormatISOCombined();
-        new_trx_d.ACCOUNTID         = accountID_;
-        new_trx_d.TOACCOUNTID       = holder.ToAccountID;
-        new_trx_d.PAYEEID           = holder.PayeeID;
+        new_trx_d.m_account_id_p    = accountID_;
+        new_trx_d.m_to_account_id_n = holder.ToAccountID;
+        new_trx_d.m_payee_id_n      = holder.PayeeID;
         new_trx_d.TRANSCODE         = holder.Type;
-        new_trx_d.TRANSAMOUNT       = holder.Amount;
-        new_trx_d.TOTRANSAMOUNT     = holder.ToAmount;
-        new_trx_d.CATEGID           = holder.CategoryID;
+        new_trx_d.m_amount          = holder.Amount;
+        new_trx_d.m_to_amount       = holder.ToAmount;
+        new_trx_d.m_category_id_n   = holder.CategoryID;
         new_trx_d.STATUS            = holder.Status;
-        new_trx_d.TRANSACTIONNUMBER = holder.Number;
+        new_trx_d.m_number          = holder.Number;
         new_trx_d.NOTES             = holder.Notes;
+
         if (payeeMatchAddNotes_->IsChecked() && !holder.PayeeMatchNotes.IsEmpty())
             new_trx_d.NOTES.Append(
                 (new_trx_d.NOTES.IsEmpty() ? "" : "\n" ) + holder.PayeeMatchNotes
             );
-        new_trx_d.COLOR = color_id;
+        new_trx_d.m_color = color_id;
 
         TrxModel::instance().save_trx(new_trx_d);
 
@@ -1549,7 +1550,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
             for (const auto& field : holder.customFieldData) {
                 FieldValueData new_fv_d = FieldValueData();
                 new_fv_d.FIELDID = field.first;
-                new_fv_d.REFID   = new_trx_d.TRANSID;
+                new_fv_d.REFID   = new_trx_d.m_id;
                 new_fv_d.CONTENT = field.second;
                 FieldValueModel::instance().add_data_n(new_fv_d);
             }
@@ -1560,7 +1561,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
             for (const auto& tag : holder.tagIDs) {
                 TagLinkData new_gl_d = TagLinkData();
                 new_gl_d.REFTYPE = reftype;
-                new_gl_d.REFID   = new_trx_d.TRANSID;
+                new_gl_d.REFID   = new_trx_d.m_id;
                 new_gl_d.TAGID   = tag;
                 TagLinkModel::instance().add_data_n(new_gl_d);
             }
@@ -1721,8 +1722,8 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 
             if (!has_split) {
                 TrxSplitData tp_d = TrxSplitData();
-                tp_d.m_trx_id_p      = tran.TRANSID;
-                tp_d.m_category_id_p = tran.CATEGID;
+                tp_d.m_trx_id_p      = tran.m_id;
+                tp_d.m_category_id_p = tran.m_category_id_n;
                 tp_d.m_amount        = value;
                 tran.m_splits.push_back(tp_d);
             }
@@ -1790,7 +1791,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             break;
                         }
                         case UNIV_CSV_TRANSNUM:
-                            entry = pBankTransaction.TRANSACTIONNUMBER;
+                            entry = pBankTransaction.m_number;
                             break;
                         case UNIV_CSV_NOTES:
                             entry = wxString(pBankTransaction.NOTES).Trim();
@@ -1812,13 +1813,13 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             entry = TrxModel::type_name(TrxModel::type_id(pBankTransaction));
                             break;
                         case UNIV_CSV_ID:
-                            entry = wxString::Format("%lld", tran.TRANSID);
+                            entry = wxString::Format("%lld", tran.m_id);
                             break;
                         default:
                             if (it.first > UNIV_CSV_LAST) // Custom Fields
                             {
                                 // Get field content
-                                const FieldValueData* data = FieldValueModel::instance().get_key(CSVFieldName_[it.first].second, pBankTransaction.TRANSID);
+                                const FieldValueData* data = FieldValueModel::instance().get_key(CSVFieldName_[it.first].second, pBankTransaction.m_id);
                                 if (data)
                                 {
                                     // format date fields
@@ -2111,8 +2112,8 @@ void mmUnivCSVDialog::update_preview()
 
                         if (!has_split) {
                             TrxSplitData tp_d = TrxSplitData();
-                            tp_d.m_trx_id_p      = tran.TRANSID;
-                            tp_d.m_category_id_p = tran.CATEGID;
+                            tp_d.m_trx_id_p      = tran.m_id;
+                            tp_d.m_category_id_p = tran.m_category_id_n;
                             tp_d.m_amount        = value;
                             tran.m_splits.push_back(tp_d);
                         }
@@ -2144,7 +2145,7 @@ void mmUnivCSVDialog::update_preview()
                                 switch (it)
                                 {
                                 case UNIV_CSV_ID:
-                                    text << wxString::Format("%lld", tran.TRANSID);
+                                    text << wxString::Format("%lld", tran.m_id);
                                     break;
                                 case UNIV_CSV_DATE:
                                     text << inQuotes(mmGetDateTimeForDisplay(TrxModel::getTransDateTime(pBankTransaction).FormatISODate(), date_format_), delimit);
@@ -2185,7 +2186,7 @@ void mmUnivCSVDialog::update_preview()
                                     break;
                                 }
                                 case UNIV_CSV_TRANSNUM:
-                                    text << inQuotes(pBankTransaction.TRANSACTIONNUMBER, delimit);
+                                    text << inQuotes(pBankTransaction.m_number, delimit);
                                     break;
                                 case UNIV_CSV_NOTES:
                                     text << inQuotes(wxString(pBankTransaction.NOTES).Trim(), delimit);
@@ -2205,7 +2206,7 @@ void mmUnivCSVDialog::update_preview()
                                 default:
                                     if (it > UNIV_CSV_LAST) // Custom Fields
                                     {
-                                        const FieldValueData* data = FieldValueModel::instance().get_key(CSVFieldName_[it].second, pBankTransaction.TRANSID);
+                                        const FieldValueData* data = FieldValueModel::instance().get_key(CSVFieldName_[it].second, pBankTransaction.m_id);
                                         if (data)
                                         {
                                             // Format date fields

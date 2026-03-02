@@ -89,7 +89,7 @@ bool TrxFilter::checkCategory(
     const auto it = splits.find(tran.id());
     if (it == splits.end()) {
         for (auto it2 : m_category_a) {
-            if (it2 == tran.CATEGID)
+            if (it2 == tran.m_category_id_n)
                 return true;
         }
     }
@@ -112,12 +112,12 @@ bool TrxFilter::mmIsRecordMatches(
     bool ok = true;
     wxString strDate = TrxModel::getTransDateTime(trx_d).FormatISOCombined();
     if (m_filter_account
-        && (std::find(m_account_a.begin(), m_account_a.end(), trx_d.ACCOUNTID) == m_account_a.end())
-        && (std::find(m_account_a.begin(), m_account_a.end(), trx_d.TOACCOUNTID) == m_account_a.end()))
+        && (std::find(m_account_a.begin(), m_account_a.end(), trx_d.m_account_id_p) == m_account_a.end())
+        && (std::find(m_account_a.begin(), m_account_a.end(), trx_d.m_to_account_id_n) == m_account_a.end()))
         ok = false;
     else if (m_filter_date && ((strDate < m_start_date) || (strDate > m_end_date)))
         ok = false;
-    else if (m_filter_payee && (std::find(m_payee_a.begin(), m_payee_a.end(), trx_d.PAYEEID) == m_payee_a.end()))
+    else if (m_filter_payee && (std::find(m_payee_a.begin(), m_payee_a.end(), trx_d.m_payee_id_n) == m_payee_a.end()))
         ok = false;
     else if (m_filter_category && !checkCategory<TrxModel>(trx_d, split))
         ok = false;
@@ -135,7 +135,7 @@ wxString TrxFilter::getHTML()
         if (!mmIsRecordMatches(trx_d, splits)) continue;
         TrxModel::Full_Data full_tran(trx_d, splits, tags);
 
-        full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
+        full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.m_account_id_p);
         if (full_tran.has_split()) {
             bool found = true;
             for (const auto& tp_d : full_tran.m_splits) {
@@ -152,7 +152,7 @@ wxString TrxFilter::getHTML()
 
                 if (found) {
                     full_tran.CATEGNAME = CategoryModel::full_name(tp_d.m_category_id_p);
-                    full_tran.TRANSAMOUNT = tp_d.m_amount;
+                    full_tran.m_amount = tp_d.m_amount;
                     full_tran.NOTES.Append((trx_d.NOTES.IsEmpty() ? "" : " ") + tp_d.m_notes);
                     m_trans.push_back(full_tran);
                 }
@@ -210,12 +210,12 @@ table {
     for (auto& transaction : m_trans)
     {
         hb.startTableRow();
-        hb.addTableCellLink(wxString::Format("trx:%lld", transaction.TRANSID)
-            , wxString::Format("%lld", transaction.TRANSID), true);
-        hb.addColorMarker(getUDColour(transaction.COLOR.GetValue()).GetAsString(), true);
+        hb.addTableCellLink(wxString::Format("trx:%lld", transaction.m_id)
+            , wxString::Format("%lld", transaction.m_id), true);
+        hb.addColorMarker(getUDColour(transaction.m_color.GetValue()).GetAsString(), true);
         hb.addTableCellDate(transaction.TRANSDATE);
-        hb.addTableCell(transaction.TRANSACTIONNUMBER);
-        hb.addTableCellLink(wxString::Format("trxid:%lld", transaction.TRANSID)
+        hb.addTableCell(transaction.m_number);
+        hb.addTableCellLink(wxString::Format("trxid:%lld", transaction.m_id)
             , transaction.ACCOUNTNAME);
         hb.addTableCell(transaction.PAYEENAME);
         hb.addTableCell(transaction.STATUS, false, true);
@@ -225,7 +225,7 @@ table {
         else
             hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
 
-        const AccountData* acc = AccountModel::instance().get_id_data_n(transaction.ACCOUNTID);
+        const AccountData* acc = AccountModel::instance().get_id_data_n(transaction.m_account_id_p);
         if (acc) {
             const CurrencyData* curr = AccountModel::instance().get_data_currency_p(*acc);
             double flow = TrxModel::account_flow(transaction, acc->m_id);
@@ -238,9 +238,9 @@ table {
 
         // Attachments
         wxString AttachmentsLink = "";
-        if (AttachmentModel::instance().NrAttachments(AttRefType, transaction.TRANSID)) {
+        if (AttachmentModel::instance().NrAttachments(AttRefType, transaction.m_id)) {
             AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
-                AttRefType, transaction.TRANSID, mmAttachmentManage::GetAttachmentNoteSign());
+                AttRefType, transaction.m_id, mmAttachmentManage::GetAttachmentNoteSign());
         }
 
         //Notes

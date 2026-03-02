@@ -181,7 +181,7 @@ void SchedList::OnColClick(wxListEvent& event)
     savePref();
 
     if (m_selected_row >= 0)
-        refreshVisualList(m_bdp->initVirtualListControl(m_bdp->bills_[m_selected_row].BDID));
+        refreshVisualList(m_bdp->initVirtualListControl(m_bdp->bills_[m_selected_row].m_id));
     else
         refreshVisualList(m_bdp->initVirtualListControl(-1));
 }
@@ -356,7 +356,7 @@ int SchedPanel::initVirtualListControl(int64 id)
     int cnt = 0, selected_item = -1;
     for (const auto& entry: bills_)
     {
-        if (id == entry.BDID)
+        if (id == entry.m_id)
         {
             selected_item = cnt;
             break;
@@ -452,7 +452,7 @@ wxString SchedPanel::getItem(long item, int col_id)
 
     switch (col_id) {
     case SchedList::LIST_ID_ID:
-        return wxString::Format("%lld", bill.BDID).Trim();
+        return wxString::Format("%lld", bill.m_id).Trim();
     case SchedList::LIST_ID_PAYMENT_DATE:
         return mmGetDateTimeForDisplay(bill.TRANSDATE);
     case SchedList::LIST_ID_DUE_DATE:
@@ -473,10 +473,10 @@ wxString SchedPanel::getItem(long item, int col_id)
             int64 accountid;
             double transamount;
             if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
-                accountid = bill.ACCOUNTID; transamount = bill.TRANSAMOUNT;
+                accountid = bill.m_account_id_p; transamount = bill.m_amount;
             }
             else if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                accountid = bill.ACCOUNTID; transamount = bill.TRANSAMOUNT;
+                accountid = bill.m_account_id_p; transamount = bill.m_amount;
             }
             else
                 return value;
@@ -495,10 +495,10 @@ wxString SchedPanel::getItem(long item, int col_id)
             int64 accountid;
             double transamount;
             if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
-                accountid = bill.ACCOUNTID; transamount = bill.TRANSAMOUNT;
+                accountid = bill.m_account_id_p; transamount = bill.m_amount;
             }
             else if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                accountid = bill.TOACCOUNTID; transamount = bill.TOTRANSAMOUNT;
+                accountid = bill.m_to_account_id_n; transamount = bill.m_to_amount;
             }
             else
                 return value;
@@ -528,11 +528,11 @@ wxString SchedPanel::getItem(long item, int col_id)
     case SchedList::LIST_ID_REMAINING:
         return is_active ? GetRemainingDays(bill) : _t("Inactive");
     case SchedList::LIST_ID_NUMBER:
-        return bill.TRANSACTIONNUMBER;
+        return bill.m_number;
     case SchedList::LIST_ID_NOTES: {
         wxString value = bill.NOTES;
         value.Replace("\n", " ");
-        if (AttachmentModel::NrAttachments(SchedModel::refTypeName, bill.BDID))
+        if (AttachmentModel::NrAttachments(SchedModel::refTypeName, bill.m_id))
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     }
@@ -644,7 +644,7 @@ void SchedList::OnEditBDSeries(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    SchedDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, false, false);
+    SchedDialog dlg(this, m_bdp->bills_[m_selected_row].m_id, false, false);
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
 }
@@ -653,7 +653,7 @@ void SchedList::OnDuplicateBDSeries(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    SchedDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, true, false);
+    SchedDialog dlg(this, m_bdp->bills_[m_selected_row].m_id, true, false);
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
 }
@@ -668,7 +668,7 @@ void SchedList::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        int64 BdId = m_bdp->bills_[m_selected_row].BDID;
+        int64 BdId = m_bdp->bills_[m_selected_row].m_id;
         SchedModel::instance().purge_id(BdId);
         mmAttachmentManage::DeleteAllAttachments(SchedModel::refTypeName, BdId);
         m_bdp->do_delete_custom_values(-BdId);
@@ -681,12 +681,12 @@ void SchedList::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int64 id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].m_id;
     SchedDialog dlg(this, id, false, true);
     if ( dlg.ShowModal() == wxID_OK )
     {
         if (++m_selected_row < long(m_bdp->bills_.size()))
-            id = m_bdp->bills_[m_selected_row].BDID;
+            id = m_bdp->bills_[m_selected_row].m_id;
         refreshVisualList(m_bdp->initVirtualListControl(id));
     }
 }
@@ -695,10 +695,10 @@ void SchedList::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int64 id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].m_id;
     SchedModel::instance().completeBDInSeries(id);
     if (++m_selected_row < long(m_bdp->bills_.size()))
-        id = m_bdp->bills_[m_selected_row].BDID;
+        id = m_bdp->bills_[m_selected_row].m_id;
     refreshVisualList(m_bdp->initVirtualListControl(id));
 }
 
@@ -706,7 +706,7 @@ void SchedList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
+    int64 RefId = m_bdp->bills_[m_selected_row].m_id;
     const wxString& RefType = SchedModel::refTypeName;
 
     AttachmentDialog dlg(this, RefType, RefId);
@@ -718,7 +718,7 @@ void SchedList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 void SchedList::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
-    int64 RefId = m_bdp->bills_[m_selected_row].BDID;
+    int64 RefId = m_bdp->bills_[m_selected_row].m_id;
     const wxString& RefType = SchedModel::refTypeName;
 
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
@@ -729,7 +729,7 @@ void SchedList::OnListItemActivated(wxListEvent& WXUNUSED(event))
 {
     if (m_selected_row == -1) return;
 
-    SchedDialog dlg(this, m_bdp->bills_[m_selected_row].BDID, false, false);
+    SchedDialog dlg(this, m_bdp->bills_[m_selected_row].m_id, false, false);
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
 }
@@ -739,7 +739,7 @@ void SchedPanel::updateBottomPanelData(int selIndex)
     enableEditDeleteButtons(selIndex >= 0);
     if (selIndex != -1)
     {
-        m_infoTextMini->SetLabelText(CategoryModel::full_name(bills_[selIndex].CATEGID));
+        m_infoTextMini->SetLabelText(CategoryModel::full_name(bills_[selIndex].m_category_id_n));
         m_infoText->SetLabelText(bills_[selIndex].NOTES);
     }
 }
@@ -876,7 +876,7 @@ void SchedList::RefreshList()
     int64 id = -1;
     if (m_selected_row != -1)
     {
-        id = m_bdp->bills_[m_selected_row].BDID;
+        id = m_bdp->bills_[m_selected_row].m_id;
     }
     refreshVisualList(m_bdp->initVirtualListControl(id));
 }
@@ -885,7 +885,7 @@ wxListItemAttr* SchedList::OnGetItemAttr(long item) const
 {
     if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size())) return 0;
 
-    int color_id = m_bdp->bills_[item].COLOR.GetValue();
+    int color_id = m_bdp->bills_[item].m_color.GetValue();
 
     static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
     if (color_id > 0)
@@ -915,7 +915,7 @@ wxListItemAttr* SchedList::OnGetItemAttr(long item) const
 void SchedList::OnSetUserColour(wxCommandEvent& event)
 {
     if (m_selected_row == -1) return;
-    int64 id = m_bdp->bills_[m_selected_row].BDID;
+    int64 id = m_bdp->bills_[m_selected_row].m_id;
 
     int user_color_id = event.GetId();
     user_color_id -= MENU_ON_SET_UDC0;
@@ -925,7 +925,7 @@ void SchedList::OnSetUserColour(wxCommandEvent& event)
 
     SchedData* sched_n = SchedModel::instance().unsafe_get_id_data_n(id);
     if (sched_n) {
-        sched_n->COLOR = user_color_id;
+        sched_n->m_color = user_color_id;
         SchedModel::instance().unsafe_update_data_n(sched_n);
     }
     SchedModel::instance().db_release_savepoint();

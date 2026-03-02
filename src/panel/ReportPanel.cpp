@@ -618,12 +618,12 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
     else if (uri.StartsWith("trxid:", &sData)) {
         long long transID = -1;
         if (sData.ToLongLong(&transID)) {
-            const TrxData* transaction = TrxModel::instance().get_id_data_n(transID);
-            if (transaction && transaction->TRANSID > -1) {
-                const AccountData* account = AccountModel::instance().get_id_data_n(transaction->ACCOUNTID);
+            const TrxData* trx_n = TrxModel::instance().get_id_data_n(transID);
+            if (trx_n && trx_n->m_id > -1) {
+                const AccountData* account = AccountModel::instance().get_id_data_n(trx_n->m_account_id_p);
                 if (account) {
                     w_frame->selectNavTreeItem(account->m_name);
-                    w_frame->setGotoAccountID(transaction->ACCOUNTID, { transID, 0 });
+                    w_frame->setGotoAccountID(trx_n->m_account_id_p, { transID, 0 });
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     w_frame->GetEventHandler()->AddPendingEvent(event);
                 }
@@ -633,19 +633,19 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
     else if (uri.StartsWith("trx:", &sData)) {
         long long transId = -1;
         if (sData.ToLongLong(&transId)) {
-            TrxData* transaction = TrxModel::instance().unsafe_get_id_data_n(transId);
-            if (transaction && transaction->TRANSID > -1) {
-                if (TrxModel::is_foreign(*transaction)) {
+            TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(transId);
+            if (trx_n && trx_n->m_id > -1) {
+                if (TrxModel::is_foreign(*trx_n)) {
                     TrxLinkData translink = TrxLinkModel::TranslinkRecord(transId);
                     if (translink.LINKTYPE == StockModel::refTypeName) {
-                        TrxShareDialog dlg(w_frame, &translink, transaction);
+                        TrxShareDialog dlg(w_frame, &translink, trx_n);
                         if (dlg.ShowModal() == wxID_OK) {
                             m_rb->getHTMLText();
                             saveReportText();
                         }
                     }
                     else {
-                        AssetDialog dlg(w_frame, &translink, transaction);
+                        AssetDialog dlg(w_frame, &translink, trx_n);
                         if (dlg.ShowModal() == wxID_OK) {
                             m_rb->getHTMLText();
                             saveReportText();

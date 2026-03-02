@@ -45,32 +45,32 @@ double FlowReport::trueAmount(const TrxData& trx)
 {
     double amount = 0.0;
     bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-        trx.ACCOUNTID
+        trx.m_account_id_p
     ) != m_account_id.end();
     bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-        trx.TOACCOUNTID
+        trx.m_to_account_id_n
     ) != m_account_id.end();
     if (!(isAccountFound && isToAccountFound)) {
         const double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get_id_data_n(trx.ACCOUNTID)->m_currency_id_p,
+            AccountModel::instance().get_id_data_n(trx.m_account_id_p)->m_currency_id_p,
             trx.TRANSDATE
         );
         switch (TrxModel::type_id(trx.TRANSCODE)) {
         case TrxModel::TYPE_ID_WITHDRAWAL:
-            amount = -trx.TRANSAMOUNT * convRate;
+            amount = -trx.m_amount * convRate;
             break;
         case TrxModel::TYPE_ID_DEPOSIT:
-            amount = +trx.TRANSAMOUNT * convRate;
+            amount = +trx.m_amount * convRate;
             break;
         case TrxModel::TYPE_ID_TRANSFER:
             if (isAccountFound)
-                amount = -trx.TRANSAMOUNT * convRate;
+                amount = -trx.m_amount * convRate;
             else {
                 const double toConvRate = CurrencyHistoryModel::getDayRate(
-                    AccountModel::instance().get_id_data_n(trx.TOACCOUNTID)->m_currency_id_p,
+                    AccountModel::instance().get_id_data_n(trx.m_to_account_id_n)->m_currency_id_p,
                     trx.TRANSDATE
                 );
-                amount = +trx.TOTRANSAMOUNT * toConvRate;
+                amount = +trx.m_to_amount * toConvRate;
             }
         }
     }
@@ -123,23 +123,23 @@ void FlowReport::getTransactions()
         if (!trx_d.DELETEDTIME.IsEmpty())
             continue;
         bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-            trx_d.ACCOUNTID
+            trx_d.m_account_id_p
         ) != m_account_id.end();
         bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-            trx_d.TOACCOUNTID
+            trx_d.m_to_account_id_n
         ) != m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
         const auto& tp_a = TrxModel::find_split(trx_d);
         if (tp_a.empty()) {
-            trx_d.TRANSAMOUNT = trueAmount(trx_d);
+            trx_d.m_amount = trueAmount(trx_d);
             m_forecastVector.push_back(trx_d);
         }
         else {
             for (const auto& tp_d : tp_a) {
-                trx_d.CATEGID     = tp_d.m_category_id_p;
-                trx_d.TRANSAMOUNT = tp_d.m_amount;
-                trx_d.TRANSAMOUNT = trueAmount(trx_d);
+                trx_d.m_category_id_n = tp_d.m_category_id_p;
+                trx_d.m_amount        = tp_d.m_amount;
+                trx_d.m_amount        = trueAmount(trx_d);
                 m_forecastVector.push_back(trx_d);
             }
         }
@@ -158,10 +158,10 @@ void FlowReport::getTransactions()
             continue;
 
         bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-            sched_d.ACCOUNTID
+            sched_d.m_account_id_p
         ) != m_account_id.end();
         bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-            sched_d.TOACCOUNTID
+            sched_d.m_to_account_id_n
         ) != m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
@@ -172,24 +172,25 @@ void FlowReport::getTransactions()
                 break;
 
             TrxData trx_d;
-            trx_d.TRANSDATE     = next_date.FormatISODate();
-            trx_d.ACCOUNTID     = sched_d.ACCOUNTID;
-            trx_d.TOACCOUNTID   = sched_d.TOACCOUNTID;
-            trx_d.PAYEEID       = sched_d.PAYEEID;
-            trx_d.TRANSCODE     = sched_d.TRANSCODE;
-            trx_d.TRANSAMOUNT   = sched_d.TRANSAMOUNT;
-            trx_d.TOTRANSAMOUNT = sched_d.TOTRANSAMOUNT;
+            trx_d.TRANSDATE         = next_date.FormatISODate();
+            trx_d.m_account_id_p    = sched_d.m_account_id_p;
+            trx_d.m_to_account_id_n = sched_d.m_to_account_id_n;
+            trx_d.m_payee_id_n      = sched_d.m_payee_id_n;
+            trx_d.TRANSCODE         = sched_d.TRANSCODE;
+            trx_d.m_amount          = sched_d.m_amount;
+            trx_d.m_to_amount       = sched_d.m_to_amount;
+
             if (!SchedModel::split(sched_d).empty()) {
                 for (const auto& qp_d : SchedModel::split(sched_d)) {
-                    trx_d.CATEGID     = qp_d.m_category_id_p;
-                    trx_d.TRANSAMOUNT = qp_d.m_amount;
-                    trx_d.TRANSAMOUNT = trueAmount(trx_d);
+                    trx_d.m_category_id_n = qp_d.m_category_id_p;
+                    trx_d.m_amount        = qp_d.m_amount;
+                    trx_d.m_amount        = trueAmount(trx_d);
                     m_forecastVector.push_back(trx_d);
                 }
             }
             else {
-                trx_d.CATEGID     = sched_d.CATEGID;
-                trx_d.TRANSAMOUNT = trueAmount(trx_d);
+                trx_d.m_category_id_n = sched_d.m_category_id_n;
+                trx_d.m_amount        = trueAmount(trx_d);
                 m_forecastVector.push_back(trx_d);
             }
 
@@ -242,7 +243,7 @@ wxString FlowReport::getHTMLText_DayOrMonth(bool monthly)
         {
             date = dt.SetDay(1).FormatISODate();
         }
-        dateMap[date] += trx.TRANSAMOUNT;
+        dateMap[date] += trx.m_amount;
     }
 
     // Build the report
@@ -393,7 +394,7 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     double runningBalance = m_balance;
     for (const auto& entry : m_forecastVector)
     {
-        runningBalance += entry.TRANSAMOUNT;
+        runningBalance += entry.m_amount;
         gs.values.push_back(runningBalance);
         gd.labels.push_back(entry.TRANSDATE);
     }
@@ -441,11 +442,11 @@ wxString mmReportCashFlowTransactions::getHTMLText()
         else
             hb.startAltTableRow();
         hb.addTableCellDate(trx.TRANSDATE);
-        hb.addTableCell(AccountModel::instance().get_id_name(trx.ACCOUNTID));
-        hb.addTableCell((trx.TOACCOUNTID == -1) ? PayeeModel::instance().get_id_name(trx.PAYEEID)
-            : "> " + AccountModel::instance().get_id_name(trx.TOACCOUNTID));
-        hb.addTableCell(CategoryModel::full_name(trx.CATEGID));
-        double amount = trx.TRANSAMOUNT;
+        hb.addTableCell(AccountModel::instance().get_id_name(trx.m_account_id_p));
+        hb.addTableCell((trx.m_to_account_id_n == -1) ? PayeeModel::instance().get_id_name(trx.m_payee_id_n)
+            : "> " + AccountModel::instance().get_id_name(trx.m_to_account_id_n));
+        hb.addTableCell(CategoryModel::full_name(trx.m_category_id_n));
+        double amount = trx.m_amount;
         hb.addMoneyCell(amount);
         runningBalance += amount;
         hb.addMoneyCell(runningBalance);

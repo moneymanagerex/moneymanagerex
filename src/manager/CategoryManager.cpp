@@ -557,9 +557,9 @@ void CategoryManager::mmDoDeleteSelectedCategory()
             }
 
             for (auto& trx_d : deleted_trx_a) {
-                TrxModel::instance().purge_id(trx_d.TRANSID);
-                mmAttachmentManage::DeleteAllAttachments(RefType, trx_d.TRANSID);
-                FieldValueModel::DeleteAllData(RefType, trx_d.TRANSID);
+                TrxModel::instance().purge_id(trx_d.m_id);
+                mmAttachmentManage::DeleteAllAttachments(RefType, trx_d.m_id);
+                FieldValueModel::DeleteAllData(RefType, trx_d.m_id);
             }
 
             TrxModel::instance().db_release_savepoint();

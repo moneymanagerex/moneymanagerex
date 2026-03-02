@@ -158,8 +158,7 @@ void TrxFilterDialog::mmDoInitVariables()
     const auto accounts = AccountModel::instance().find(
         AccountCol::ACCOUNTTYPE(OP_NE, NavigatorTypes::instance().type_name(NavigatorTypes::TYPE_ID_INVESTMENT))
     );
-    for (const auto& acc : accounts)
-    {
+    for (const auto& acc : accounts) {
         m_accounts_name.push_back(acc.m_name);
     }
     m_accounts_name.Sort();
@@ -189,8 +188,7 @@ int TrxFilterDialog::ShowModal()
 void TrxFilterDialog::mmDoDataToControls(const wxString& json)
 {
     Document j_doc;
-    if (j_doc.Parse(json.utf8_str()).HasParseError())
-    {
+    if (j_doc.Parse(json.utf8_str()).HasParseError()) {
         j_doc.Parse("{}");
     }
 
@@ -202,14 +200,11 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
     // Account
     m_selected_accounts_id.clear();
     Value& j_account = GetValueByPointerWithDefault(j_doc, "/ACCOUNT", "");
-    if (isMultiAccount_)
-    {
-        if (j_account.IsArray())
-        {
+    if (isMultiAccount_) {
+        if (j_account.IsArray()) {
             wxString baloon = "";
             wxString acc_name;
-            for (rapidjson::SizeType i = 0; i < j_account.Size(); i++)
-            {
+            for (rapidjson::SizeType i = 0; i < j_account.Size(); i++) {
                 wxASSERT(j_account[i].IsString());
                 acc_name = wxString::FromUTF8(j_account[i].GetString());
                 wxLogDebug("%s", acc_name);
@@ -223,16 +218,14 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
             }
             if (m_selected_accounts_id.size() == 1)
                 bSelectedAccounts_->SetLabelText(acc_name);
-            else
-            {
+            else {
                 mmToolTip(bSelectedAccounts_, baloon);
                 bSelectedAccounts_->SetLabelText("...");
             }
         }
 
         // If no accounts are explicitly selected, turn off the Account filter and set selection to "All"
-        if (m_selected_accounts_id.empty())
-        {
+        if (m_selected_accounts_id.empty()) {
             bSelectedAccounts_->SetLabelText(_t("All"));
             accountCheckBox_->SetValue(false);
             bSelectedAccounts_->Disable();
@@ -271,8 +264,7 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
         rangeChoice_->SetStringSelection(wxGetTranslation(s_range));
         datesCheckBox_->SetValue(rangeChoice_->GetSelection() != wxNOT_FOUND && !s_range.empty());
         rangeChoice_->Enable(datesCheckBox_->IsChecked());
-        if (datesCheckBox_->IsChecked())
-        {
+        if (datesCheckBox_->IsChecked()) {
             wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
             evt.SetInt(rangeChoice_->GetSelection());
             OnChoice(evt);
@@ -291,15 +283,12 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
     wxString s_category = j_category.IsString() ? wxString::FromUTF8(j_category.GetString()) : "";
 
     const wxString& delimiter = InfoModel::instance().getString("CATEG_DELIMITER", ":");
-    if (delimiter != ":" && s_category.Contains(":"))
-    {
-        for (const auto& category : CategoryModel::all_categories())
-        {
+    if (delimiter != ":" && s_category.Contains(":")) {
+        for (const auto& category : CategoryModel::all_categories()) {
             wxString full_name = category.first;
             wxRegEx regex(delimiter);
             regex.Replace(&full_name, ":");
-            if (s_category == full_name)
-            {
+            if (s_category == full_name) {
                 s_category = category.first;
                 break;
             }
@@ -428,10 +417,10 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
 
     // Custom Fields
     bool is_custom_found = false;
-    const wxString RefType = TrxModel::refTypeName;
+    const wxString ref_type = TrxModel::refTypeName;
     int field_index = 0;
     for (const auto& i : FieldModel::instance().find(
-        FieldCol::REFTYPE(RefType)
+        FieldCol::REFTYPE(ref_type)
     )) {
         const auto entry = wxString::Format("CUSTOM%lld", i.FIELDID);
         if (j_doc.HasMember(entry.c_str())) {
@@ -1464,28 +1453,28 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
     bool ok = true;
 
     // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
-    if (mmIsAccountChecked() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.ACCOUNTID) == m_selected_accounts_id.end() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.TOACCOUNTID) == m_selected_accounts_id.end())
+    if (mmIsAccountChecked() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_account_id_p) == m_selected_accounts_id.end() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_to_account_id_n) == m_selected_accounts_id.end())
         ok = false;
     else if (m_use_date_filter && (mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date.Mid(0, tran.TRANSDATE.length()) || tran.TRANSDATE > m_end_date.Mid(0, tran.TRANSDATE.length())))
         ok = false;
-    else if (mmIsPayeeChecked() && !mmIsPayeeMatches(tran.PAYEEID))
+    else if (mmIsPayeeChecked() && !mmIsPayeeMatches(tran.m_payee_id_n))
         ok = false;
-    else if (mmIsCategoryChecked() && !mmIsCategoryMatches(tran.CATEGID))
+    else if (mmIsCategoryChecked() && !mmIsCategoryMatches(tran.m_category_id_n))
         ok = false;
     else if (mmIsStatusChecked() && !mmIsStatusMatches(tran.STATUS))
         ok = false;
-    else if (mmIsTypeChecked() && !mmIsTypeMaches(tran.TRANSCODE, tran.ACCOUNTID, tran.TOACCOUNTID))
+    else if (mmIsTypeChecked() && !mmIsTypeMaches(tran.TRANSCODE, tran.m_account_id_p, tran.m_to_account_id_n))
         ok = false;
-    else if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > tran.TRANSAMOUNT)
+    else if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > tran.m_amount)
         ok = false;
-    else if (mmIsAmountRangeMaxChecked() && mmGetAmountMax() < tran.TRANSAMOUNT)
+    else if (mmIsAmountRangeMaxChecked() && mmGetAmountMax() < tran.m_amount)
         ok = false;
-    else if (mmIsNumberChecked() && (mmGetNumber().empty() ? !tran.TRANSACTIONNUMBER.empty()
-                                                           : tran.TRANSACTIONNUMBER.empty() || !tran.TRANSACTIONNUMBER.Lower().Matches(mmGetNumber().Lower())))
+    else if (mmIsNumberChecked() && (mmGetNumber().empty() ? !tran.m_number.empty()
+                                                           : tran.m_number.empty() || !tran.m_number.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
     else if (mmIsNotesChecked() && !mmIsNoteMatches(tran.NOTES))
         ok = false;
-    else if (mmIsColorChecked() && (m_color_value != tran.COLOR))
+    else if (mmIsColorChecked() && (m_color_value != tran.m_color))
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id()))
         ok = false;
@@ -1531,8 +1520,8 @@ int TrxFilterDialog::mmIsRecordMatches(const TrxData& trx_d, const TrxSplitModel
     {
         // Need to check if the split matches using the transaction Notes & Tags as well
         TrxData trx_trx_d(trx_d);
-        trx_trx_d.CATEGID     = tp_d.m_category_id_p;
-        trx_trx_d.TRANSAMOUNT = tp_d.m_amount;
+        trx_trx_d.m_category_id_n = tp_d.m_category_id_p;
+        trx_trx_d.m_amount        = tp_d.m_amount;
         TrxData trx_tp_d = trx_trx_d;
         trx_tp_d.NOTES = tp_d.m_notes;
         ok += (
@@ -1565,8 +1554,8 @@ int TrxFilterDialog::mmIsRecordMatches(
 
     for (const auto& qp_d : it->second) {
         SchedData sched_sched_d = sched_d;
-        sched_sched_d.CATEGID     = qp_d.m_category_id_p;
-        sched_sched_d.TRANSAMOUNT = qp_d.m_amount;
+        sched_sched_d.m_category_id_n = qp_d.m_category_id_p;
+        sched_sched_d.m_amount        = qp_d.m_amount;
         SchedData sched_qp_d = sched_sched_d;
         sched_qp_d.NOTES = qp_d.m_notes;
         ok += (

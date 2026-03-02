@@ -109,7 +109,7 @@ TrxShareDialog::TrxShareDialog(
 
     if (m_checking_entry) {
         for (const auto& tp_d: TrxSplitModel::instance().find(
-            TrxSplitCol::TRANSID(m_checking_entry->TRANSID)
+            TrxSplitCol::TRANSID(m_checking_entry->m_id)
         )) {
             wxArrayInt64 tag_id_a;
             for (const auto& gl_d : TagLinkModel::instance().find(
@@ -187,16 +187,16 @@ void TrxShareDialog::DataToControls()
             m_share_lot_ctrl->SetValue(m_share_entry->SHARELOT);
 
             if (m_translink_entry) {
-                const TrxData* checking_entry = TrxModel::instance().get_id_data_n(m_translink_entry->CHECKINGACCOUNTID);
-                if (checking_entry) {
-                    m_transaction_panel->TransactionDate(TrxModel::getTransDateTime(*checking_entry));
+                const TrxData* trx_n = TrxModel::instance().get_id_data_n(m_translink_entry->CHECKINGACCOUNTID);
+                if (trx_n) {
+                    m_transaction_panel->TransactionDate(TrxModel::getTransDateTime(*trx_n));
                     m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->SHARENUMBER)
                         , m_share_entry->SHAREPRICE, m_share_entry->SHARECOMMISSION), true);
-                    m_transaction_panel->SetTransactionAccount(AccountModel::instance().get_id_name(checking_entry->ACCOUNTID));
-                    m_transaction_panel->SetTransactionStatus(TrxModel::status_id(*checking_entry));
-                    m_transaction_panel->SetTransactionPayee(checking_entry->PAYEEID);
-                    m_transaction_panel->SetTransactionCategory(checking_entry->CATEGID);
-                    if (!checking_entry->DELETEDTIME.IsEmpty()) {
+                    m_transaction_panel->SetTransactionAccount(AccountModel::instance().get_id_name(trx_n->m_account_id_p));
+                    m_transaction_panel->SetTransactionStatus(TrxModel::status_id(*trx_n));
+                    m_transaction_panel->SetTransactionPayee(trx_n->m_payee_id_n);
+                    m_transaction_panel->SetTransactionCategory(trx_n->m_category_id_n);
+                    if (!trx_n->DELETEDTIME.IsEmpty()) {
                         m_share_num_ctrl->Enable(false);
                         m_share_price_ctrl->Enable(false);
                         m_share_commission_ctrl->Enable(false);
@@ -355,12 +355,12 @@ void TrxShareDialog::CreateControls()
     m_transaction_panel = new TrxLinkDialog(transaction_frame, m_checking_entry, false, wxID_STATIC);
     m_transaction_panel->Bind(wxEVT_CHOICE, &TrxShareDialog::CalculateAmount, this, wxID_VIEW_DETAILS);
     transaction_frame_sizer->Add(m_transaction_panel, g_flagsV);
-    if (m_translink_entry && m_checking_entry)
-    {
-        m_transaction_panel->CheckingType(TrxLinkModel::type_checking(m_checking_entry->TOACCOUNTID));
+    if (m_translink_entry && m_checking_entry) {
+        m_transaction_panel->CheckingType(
+            TrxLinkModel::type_checking(m_checking_entry->m_to_account_id_n)
+        );
     }
-    else
-    {
+    else {
         wxString acc_held = AccountModel::instance().get_id_name(m_stock_n->m_account_id_n);
         m_transaction_panel->SetTransactionNumber(m_stock_n->m_name + "_" + m_stock_n->m_symbol);
         m_transaction_panel->SetTransactionAccount(acc_held);

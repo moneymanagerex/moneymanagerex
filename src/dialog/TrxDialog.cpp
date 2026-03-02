@@ -150,10 +150,10 @@ TrxDialog::TrxDialog(
     }
 
     m_transfer = TrxModel::type_id(m_journal_data.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER;
-    m_advanced = m_mode != MODE_NEW && m_transfer && (m_journal_data.TRANSAMOUNT != m_journal_data.TOTRANSAMOUNT);
+    m_advanced = m_mode != MODE_NEW && m_transfer && (m_journal_data.m_amount != m_journal_data.m_to_amount);
 
     int64 ref_id = (m_mode == MODE_NEW) ? 0 : (m_journal_data.m_repeat_num == 0) ?
-        m_journal_data.TRANSID : -(m_journal_data.m_bdid);
+        m_journal_data.m_id : -(m_journal_data.m_bdid);
     m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
 
     // If duplicate then we may need to copy the attachments
@@ -219,7 +219,7 @@ void TrxDialog::dataToControls()
     TrxModel&      T  = TrxModel::instance();
     TagLinkModel&  GL = TagLinkModel::instance();
 
-    TrxModel::getFrequentUsedNotes(frequentNotes_, m_journal_data.ACCOUNTID);
+    TrxModel::getFrequentUsedNotes(frequentNotes_, m_journal_data.m_account_id_p);
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(
         FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES)
     );
@@ -259,12 +259,12 @@ void TrxDialog::dataToControls()
 
     //Account
     if (!skip_account_init_) {
-        const AccountData* acc_n = A.get_id_data_n(m_journal_data.ACCOUNTID);
+        const AccountData* acc_n = A.get_id_data_n(m_journal_data.m_account_id_p);
         if (acc_n) {
             cbAccount_->ChangeValue(acc_n->m_name);
             m_textAmount->SetCurrency(U.get_id_data_n(acc_n->m_currency_id_p));
         }
-        const AccountData* to_acc = A.get_id_data_n(m_journal_data.TOACCOUNTID);
+        const AccountData* to_acc = A.get_id_data_n(m_journal_data.m_to_account_id_n);
         if (to_acc) {
             cbToAccount_->ChangeValue(to_acc->m_name);
             toTextAmount_->SetCurrency(U.get_id_data_n(to_acc->m_currency_id_p));
@@ -297,12 +297,12 @@ void TrxDialog::dataToControls()
     //Amounts
     if (!skip_amount_init_) {
         if (m_transfer && m_advanced)
-            toTextAmount_->SetValue(m_journal_data.TOTRANSAMOUNT);
+            toTextAmount_->SetValue(m_journal_data.m_to_amount);
         else
             toTextAmount_->ChangeValue("");
 
         if (m_mode != MODE_NEW)
-            m_textAmount->SetValue(m_journal_data.TRANSAMOUNT);
+            m_textAmount->SetValue(m_journal_data.m_amount);
         skip_amount_init_ = true;
     }
 
@@ -314,7 +314,7 @@ void TrxDialog::dataToControls()
         cbPayee_->UnsetToolTip();
         if (!m_transfer) {
             if (!TrxModel::is_foreign(m_journal_data)) {
-                m_journal_data.TOACCOUNTID = -1;
+                m_journal_data.m_to_account_id_n = -1;
             }
 
             int64 accountID = cbAccount_->mmGetId();
@@ -327,7 +327,7 @@ void TrxDialog::dataToControls()
                     TrxCol::ACCOUNTID(OP_EQ, accountID));
 
                 if (!transactions.empty()) {
-                    const PayeeData* payee_n = P.get_id_data_n(transactions.back().PAYEEID);
+                    const PayeeData* payee_n = P.get_id_data_n(transactions.back().m_payee_id_n);
                     cbPayee_->ChangeValue(payee_n->m_name);
                 }
             }
@@ -345,7 +345,7 @@ void TrxDialog::dataToControls()
                 cbPayee_->ChangeValue(_t("Unknown"));
             }
             else {
-                const PayeeData* payee_n = P.get_id_data_n(m_journal_data.PAYEEID);
+                const PayeeData* payee_n = P.get_id_data_n(m_journal_data.m_payee_id_n);
                 if (payee_n)
                     cbPayee_->ChangeValue(payee_n->m_name);
             }
@@ -370,7 +370,7 @@ void TrxDialog::dataToControls()
             cbCategory_->ChangeValue(_t("Split Transaction"));
             cbCategory_->Disable();
             m_textAmount->SetValue(TrxSplitModel::get_total(m_local_splits));
-            m_journal_data.CATEGID = -1;
+            m_journal_data.m_category_id_n = -1;
         }
         else if (m_mode == MODE_NEW && m_transfer &&
             PrefModel::instance().getTransCategoryTransferNone() == PrefModel::LASTUSED
@@ -380,14 +380,14 @@ void TrxDialog::dataToControls()
             );
 
             if (!transactions.empty() &&
-                !CategoryModel::is_hidden(transactions.back().CATEGID)
+                !CategoryModel::is_hidden(transactions.back().m_category_id_n)
             ) {
-                const int64 cat = transactions.back().CATEGID;
+                const int64 cat = transactions.back().m_category_id_n;
                 cbCategory_->ChangeValue(CategoryModel::full_name(cat));
             }
         }
         else {
-            auto fullCategoryName = CategoryModel::full_name(m_journal_data.CATEGID);
+            auto fullCategoryName = CategoryModel::full_name(m_journal_data.m_category_id_n);
             cbCategory_->ChangeValue(fullCategoryName);
         }
         skip_category_init_ = true;
@@ -406,7 +406,7 @@ void TrxDialog::dataToControls()
                 TrxModel::refTypeName :
                 SchedModel::refTypeName),
             TagLinkCol::REFID((m_journal_data.m_repeat_num == 0) ?
-                m_journal_data.TRANSID :
+                m_journal_data.m_id :
                 m_journal_data.m_bdid))
         )
             tagIds.push_back(tag.TAGID);
@@ -416,7 +416,7 @@ void TrxDialog::dataToControls()
 
     //Notes & Transaction Number
     if (!skip_notes_init_) {
-        textNumber_->SetValue(m_journal_data.TRANSACTIONNUMBER);
+        textNumber_->SetValue(m_journal_data.m_number);
         textNotes_->SetValue(m_journal_data.NOTES);
         skip_notes_init_ = true;
     }
@@ -533,7 +533,7 @@ void TrxDialog::CreateControls()
     account_label_ = new wxStaticText(static_box, wxID_STATIC, _t("Account"));
     account_label_->SetFont(bold);
 
-    cbAccount_ = new mmComboBoxAccount(static_box, mmID_ACCOUNTNAME, wxDefaultSize, m_journal_data.ACCOUNTID);
+    cbAccount_ = new mmComboBoxAccount(static_box, mmID_ACCOUNTNAME, wxDefaultSize, m_journal_data.m_account_id_p);
     cbAccount_->SetMinSize(cbAccount_->GetSize());
     flex_sizer->Add(account_label_, g_flagsH);
     flex_sizer->Add(cbAccount_, g_flagsExpand);
@@ -547,7 +547,7 @@ void TrxDialog::CreateControls()
     to_acc_label_ = new wxStaticText(static_box, mmID_TOACCOUNT_LABEL, _t("To"));
     to_acc_label_->SetFont(bold);
     flex_sizer->Add(to_acc_label_, g_flagsH);
-    cbToAccount_ = new mmComboBoxAccount(static_box, mmID_TOACCOUNTNAME, wxDefaultSize, m_journal_data.TOACCOUNTID);
+    cbToAccount_ = new mmComboBoxAccount(static_box, mmID_TOACCOUNTNAME, wxDefaultSize, m_journal_data.m_to_account_id_n);
     cbToAccount_->SetMinSize(cbToAccount_->GetSize());
     flex_sizer->Add(cbToAccount_, g_flagsExpand);
     flex_sizer->AddSpacer(1);
@@ -556,7 +556,7 @@ void TrxDialog::CreateControls()
     payee_label_ = new wxStaticText(static_box, mmID_PAYEE_LABEL, _t("Payee"));
     payee_label_->SetFont(bold);
 
-    cbPayee_ = new mmComboBoxPayee(static_box, mmID_PAYEE, wxDefaultSize, m_journal_data.PAYEEID, true);
+    cbPayee_ = new mmComboBoxPayee(static_box, mmID_PAYEE, wxDefaultSize, m_journal_data.m_payee_id_n, true);
     cbPayee_->SetMinSize(cbPayee_->GetSize());
     flex_sizer->Add(payee_label_, g_flagsH);
     flex_sizer->Add(cbPayee_, g_flagsExpand);
@@ -566,7 +566,7 @@ void TrxDialog::CreateControls()
     categ_label_ = new wxStaticText(static_box, ID_DIALOG_TRANS_CATEGLABEL2, _t("Category"));
     categ_label_->SetFont(bold);
     cbCategory_ = new mmComboBoxCategory(static_box, mmID_CATEGORY, wxDefaultSize
-        , m_journal_data.CATEGID, true);
+        , m_journal_data.m_category_id_n, true);
     cbCategory_->SetMinSize(cbCategory_->GetSize());
     bSplit_ = new wxBitmapButton(static_box, mmID_CATEGORY_SPLIT, mmBitmapBundle(png::NEW_TRX, mmBitmapButtonSize));
     mmToolTip(bSplit_, _t("Use split Categories"));
@@ -616,7 +616,7 @@ void TrxDialog::CreateControls()
     // Colours
     bColours_ = new mmColorButton(static_box, wxID_LOWEST, bAuto->GetSize());
     mmToolTip(bColours_, _t("User Colors"));
-    bColours_->SetBackgroundColor(m_journal_data.COLOR.GetValue());
+    bColours_->SetBackgroundColor(m_journal_data.m_color.GetValue());
 
     // Attachments
     bAttachments_ = new wxBitmapButton(static_box, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));
@@ -693,7 +693,7 @@ void TrxDialog::CreateControls()
 
 bool TrxDialog::ValidateData()
 {
-    if (!m_textAmount->checkValue(m_journal_data.TRANSAMOUNT))
+    if (!m_textAmount->checkValue(m_journal_data.m_amount))
         return false;
     if (!tagTextCtrl_->IsValid()) {
         mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _t("Invalid value"), _t("Tags"), wxICON_ERROR);
@@ -703,8 +703,8 @@ bool TrxDialog::ValidateData()
         mmErrorDialogs::ToolTip4Object(cbAccount_, _t("Invalid value"), _t("Account"), wxICON_ERROR);
         return false;
     }
-    m_journal_data.ACCOUNTID = cbAccount_->mmGetId();
-    const AccountData* account = AccountModel::instance().get_id_data_n(m_journal_data.ACCOUNTID);
+    m_journal_data.m_account_id_p = cbAccount_->mmGetId();
+    const AccountData* account = AccountModel::instance().get_id_data_n(m_journal_data.m_account_id_p);
 
     if (mmDate(m_journal_data.TRANSDATE) < account->m_open_date) {
         mmErrorDialogs::ToolTip4Object(
@@ -720,7 +720,7 @@ bool TrxDialog::ValidateData()
             mmErrorDialogs::ToolTip4Object(cbCategory_, _t("Invalid value"), _t("Category"), wxICON_ERROR);
             return false;
         }
-        m_journal_data.CATEGID = cbCategory_->mmGetCategoryId();
+        m_journal_data.m_category_id_n = cbCategory_->mmGetCategoryId();
     }
 
     if (!m_transfer) {
@@ -753,17 +753,17 @@ bool TrxDialog::ValidateData()
             else
                 return false;
         }
-        m_journal_data.TOTRANSAMOUNT = m_journal_data.TRANSAMOUNT;
-        m_journal_data.PAYEEID = payee_n->m_id;
+        m_journal_data.m_to_amount = m_journal_data.m_amount;
+        m_journal_data.m_payee_id_n = payee_n->m_id;
         if (!TrxModel::is_foreign(m_journal_data)) {
-            m_journal_data.TOACCOUNTID = -1;
+            m_journal_data.m_to_account_id_n = -1;
         }
 
         if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED
-            && !CategoryModel::is_hidden(m_journal_data.CATEGID)
+            && !CategoryModel::is_hidden(m_journal_data.m_category_id_n)
         ) {
             PayeeData payee_d = *payee_n;
-            payee_d.m_category_id_n = m_journal_data.CATEGID;
+            payee_d.m_category_id_n = m_journal_data.m_category_id_n;
             PayeeModel::instance().save_data_n(payee_d);
             mmWebApp::MMEX_WebApp_UpdatePayee();
         }
@@ -772,11 +772,11 @@ bool TrxDialog::ValidateData()
     {
         const AccountData *to_account = AccountModel::instance().get_name_data_n(cbToAccount_->GetValue());
 
-        if (!to_account || to_account->m_id == m_journal_data.ACCOUNTID) {
+        if (!to_account || to_account->m_id == m_journal_data.m_account_id_p) {
             mmErrorDialogs::InvalidAccount(cbToAccount_, true);
             return false;
         }
-        m_journal_data.TOACCOUNTID = to_account->m_id;
+        m_journal_data.m_to_account_id_n = to_account->m_id;
 
         if (mmDate(m_journal_data.TRANSDATE) < to_account->m_open_date) {
             mmErrorDialogs::ToolTip4Object(cbToAccount_, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
@@ -784,10 +784,10 @@ bool TrxDialog::ValidateData()
         }
 
         if (m_advanced) {
-            if (!toTextAmount_->checkValue(m_journal_data.TOTRANSAMOUNT))
+            if (!toTextAmount_->checkValue(m_journal_data.m_to_amount))
                 return false;
         }
-        m_journal_data.PAYEEID = -1;
+        m_journal_data.m_payee_id_n = -1;
     }
 
     /* Check if transaction is to proceed.*/
@@ -810,7 +810,7 @@ bool TrxDialog::ValidateData()
             (account->m_min_balance != 0 || account->m_credit_limit != 0))
         {
             const double fromAccountBalance = AccountModel::instance().get_data_balance(*account);
-            const double new_value = fromAccountBalance - m_journal_data.TRANSAMOUNT;
+            const double new_value = fromAccountBalance - m_journal_data.m_amount;
 
             bool abort_transaction =
                 (account->m_min_balance != 0 && new_value < account->m_min_balance) ||
@@ -827,9 +827,9 @@ bool TrxDialog::ValidateData()
 
     int color_id = bColours_->GetColorId();
     if (color_id > 0 && color_id < 8)
-        m_journal_data.COLOR = color_id;
+        m_journal_data.m_color = color_id;
     else
-        m_journal_data.COLOR = -1;
+        m_journal_data.m_color = -1;
 
     return true;
 }
@@ -871,7 +871,7 @@ void TrxDialog::OnFocusChange(wxChildFocusEvent& event)
         cbAccount_->ChangeValue(cbAccount_->GetValue());
         if (cbAccount_->mmIsValid())
         {
-            m_journal_data.ACCOUNTID = cbAccount_->mmGetId();
+            m_journal_data.m_account_id_p = cbAccount_->mmGetId();
             skip_account_init_ = false;
         }
         break;
@@ -879,13 +879,13 @@ void TrxDialog::OnFocusChange(wxChildFocusEvent& event)
         cbToAccount_->ChangeValue(cbToAccount_->GetValue());
         if (cbToAccount_->mmIsValid())
         {
-            m_journal_data.TOACCOUNTID = cbToAccount_->mmGetId();
+            m_journal_data.m_to_account_id_n = cbToAccount_->mmGetId();
             skip_account_init_ = false;
         }
         break;
     case mmID_PAYEE:
         cbPayee_->ChangeValue(cbPayee_->GetValue());
-        m_journal_data.PAYEEID = cbPayee_->mmGetId();
+        m_journal_data.m_payee_id_n = cbPayee_->mmGetId();
         SetCategoryForPayee();
         break;
     case mmID_CATEGORY:
@@ -893,14 +893,14 @@ void TrxDialog::OnFocusChange(wxChildFocusEvent& event)
         break;
     case mmID_TEXTAMOUNT:
         if (m_textAmount->Calculate()) {
-            m_textAmount->GetDouble(m_journal_data.TRANSAMOUNT);
+            m_textAmount->GetDouble(m_journal_data.m_amount);
         }
         skip_amount_init_ = false;
         calcTarget_ = m_textAmount;
         break;
     case mmID_TOTEXTAMOUNT:
         if (toTextAmount_->Calculate()) {
-            toTextAmount_->GetDouble(m_journal_data.TOTRANSAMOUNT);
+            toTextAmount_->GetDouble(m_journal_data.m_to_amount);
         }
         skip_amount_init_ = false;
         calcTarget_ = toTextAmount_;
@@ -912,13 +912,13 @@ void TrxDialog::OnFocusChange(wxChildFocusEvent& event)
     if (!m_transfer)
     {
         toTextAmount_->ChangeValue("");
-        m_journal_data.TOACCOUNTID = -1;
+        m_journal_data.m_to_account_id_n = -1;
     }
     else
     {
         const AccountData* to_account_n = AccountModel::instance().get_id_data_n(cbToAccount_->mmGetId());
         if (to_account_n)
-            m_journal_data.TOACCOUNTID = to_account_n->m_id;
+            m_journal_data.m_to_account_id_n = to_account_n->m_id;
     }
 
     dataToControls();
@@ -954,11 +954,11 @@ void TrxDialog::OnTransTypeChanged(wxCommandEvent& event)
         skip_tooltips_init_ = false;
 
         if (m_transfer) {
-            m_journal_data.PAYEEID = -1;
+            m_journal_data.m_payee_id_n = -1;
             skip_category_init_ = false;
         } else {
-            m_journal_data.TOTRANSAMOUNT = m_journal_data.TRANSAMOUNT;
-            m_journal_data.TOACCOUNTID = -1;
+            m_journal_data.m_to_amount = m_journal_data.m_amount;
+            m_journal_data.m_to_account_id_n = -1;
         }
         dataToControls();
     }
@@ -1037,7 +1037,7 @@ void TrxDialog::SetCategoryForPayee(const PayeeData *payee_n)
             cbCategory_->mmDoReInitialize();
         }
 
-        m_journal_data.CATEGID = category_n->m_id;
+        m_journal_data.m_category_id_n = category_n->m_id;
         cbCategory_->ChangeValue(_t("Unknown"));
         return;
     }
@@ -1058,12 +1058,12 @@ void TrxDialog::SetCategoryForPayee(const PayeeData *payee_n)
         // if payee has memory of last category used then display last category for payee
         const CategoryData* category_n = CategoryModel::instance().get_id_data_n(payee_n->m_category_id_n);
         if (category_n) {
-            m_journal_data.CATEGID = payee_n->m_category_id_n;
+            m_journal_data.m_category_id_n = payee_n->m_category_id_n;
             cbCategory_->ChangeValue(CategoryModel::full_name(payee_n->m_category_id_n));
-            wxLogDebug("Category: %s = %.2f", cbCategory_->GetLabel(), m_journal_data.TRANSAMOUNT);
+            wxLogDebug("Category: %s = %.2f", cbCategory_->GetLabel(), m_journal_data.m_amount);
         }
         else {
-            m_journal_data.CATEGID = -1;
+            m_journal_data.m_category_id_n = -1;
             cbCategory_->ChangeValue("");
         }
     }
@@ -1092,14 +1092,14 @@ void TrxDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
     auto d = TrxModel::getTransDateTime(m_journal_data).Subtract(wxDateSpan::Months(12));
     double next_number = 0, temp_num;
     const auto numbers = TrxModel::instance().find(
-        TrxCol::ACCOUNTID(OP_EQ, m_journal_data.ACCOUNTID),
+        TrxCol::ACCOUNTID(OP_EQ, m_journal_data.m_account_id_p),
         TrxModel::TRANSDATE(OP_GE, d),
         TrxCol::TRANSACTIONNUMBER(OP_NE, "")
     );
     for (const auto &num : numbers)
     {
-        if (!num.TRANSACTIONNUMBER.IsNumber()) continue;
-        if (num.TRANSACTIONNUMBER.ToDouble(&temp_num) && temp_num > next_number)
+        if (!num.m_number.IsNumber()) continue;
+        if (num.m_number.ToDouble(&temp_num) && temp_num > next_number)
             next_number = temp_num;
     }
 
@@ -1116,8 +1116,8 @@ void TrxDialog::OnAdvanceChecked(wxCommandEvent& WXUNUSED(event))
 
 void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 {
-    if (!m_textAmount->GetDouble(m_journal_data.TRANSAMOUNT)) {
-        m_journal_data.TRANSAMOUNT = 0;
+    if (!m_textAmount->GetDouble(m_journal_data.m_amount)) {
+        m_journal_data.m_amount = 0;
     }
 
     if (cbCategory_->IsEnabled() && !cbCategory_->GetValue().IsEmpty() && !cbCategory_->mmIsValid()) {
@@ -1125,30 +1125,29 @@ void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         return;
     }
     wxLogDebug("Cat Valid %d, Cat Is Empty %d, Cat value [%s]", cbCategory_->mmIsValid(), cbCategory_->GetValue().IsEmpty(), cbCategory_->GetValue());
-    if (m_local_splits.empty())
-    {
-        Split s;
-        s.SPLITTRANSAMOUNT = m_journal_data.TRANSAMOUNT;
+    if (m_local_splits.empty()) {
+        Split split_d;
+        split_d.SPLITTRANSAMOUNT = m_journal_data.m_amount;
         if (cbCategory_->mmIsValid())
-            s.CATEGID = cbCategory_->mmGetCategoryId();
-        m_local_splits.push_back(s);
+            split_d.CATEGID = cbCategory_->mmGetCategoryId();
+        m_local_splits.push_back(split_d);
     }
 
-    SplitDialog dlg(this, m_local_splits, m_journal_data.ACCOUNTID);
+    SplitDialog dlg(this, m_local_splits, m_journal_data.m_account_id_p);
 
     if (dlg.ShowModal() == wxID_OK)
     {
         m_local_splits = dlg.mmGetResult();
 
         if (m_local_splits.size() == 1) {
-            m_journal_data.CATEGID = m_local_splits[0].CATEGID;
-            m_journal_data.TRANSAMOUNT = m_local_splits[0].SPLITTRANSAMOUNT;
-            m_textAmount->SetValue(m_journal_data.TRANSAMOUNT);
+            m_journal_data.m_category_id_n = m_local_splits[0].CATEGID;
+            m_journal_data.m_amount = m_local_splits[0].SPLITTRANSAMOUNT;
+            m_textAmount->SetValue(m_journal_data.m_amount);
             m_local_splits.clear();
         }
 
         if (!m_local_splits.empty()) {
-            m_textAmount->SetValue(m_journal_data.TRANSAMOUNT);
+            m_textAmount->SetValue(m_journal_data.m_amount);
         }
 
         skip_category_init_ = false;
@@ -1164,7 +1163,7 @@ void TrxDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
     const wxString& refType = (m_journal_data.m_repeat_num == 0) ?
         TrxModel::refTypeName :
         SchedModel::refTypeName;
-    int64 transID = (m_mode == MODE_DUP) ? -1 : m_journal_data.TRANSID;
+    int64 transID = (m_mode == MODE_DUP) ? -1 : m_journal_data.m_id;
     AttachmentDialog dlg(this, refType, transID);
     dlg.ShowModal();
 }
@@ -1175,14 +1174,14 @@ void TrxDialog::OnTextEntered(wxCommandEvent& WXUNUSED(event))
     {
         if (m_textAmount->Calculate())
         {
-            m_textAmount->GetDouble(m_journal_data.TRANSAMOUNT);
+            m_textAmount->GetDouble(m_journal_data.m_amount);
         }
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
         if (toTextAmount_->Calculate())
         {
-            toTextAmount_->GetDouble(m_journal_data.TOTRANSAMOUNT);
+            toTextAmount_->GetDouble(m_journal_data.m_to_amount);
         }
     }
     skip_amount_init_ = false;
@@ -1220,7 +1219,7 @@ void TrxDialog::OnNoteSelected(wxCommandEvent& event)
 void TrxDialog::OnOk(wxCommandEvent& event)
 {
     m_journal_data.NOTES = textNotes_->GetValue();
-    m_journal_data.TRANSACTIONNUMBER = textNumber_->GetValue();
+    m_journal_data.m_number = textNumber_->GetValue();
     m_journal_data.TRANSDATE = dpc_->GetValue().FormatISOCombined();
     wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
     if (status_obj)
@@ -1231,16 +1230,16 @@ void TrxDialog::OnOk(wxCommandEvent& event)
 
     if (!ValidateData()) return;
     if (!m_custom_fields->ValidateCustomValues((m_journal_data.m_repeat_num == 0) ?
-        m_journal_data.TRANSID : -(m_journal_data.m_bdid))
+        m_journal_data.m_id : -(m_journal_data.m_bdid))
     )
         return;
 
     if (!m_advanced)
-        m_journal_data.TOTRANSAMOUNT = m_journal_data.TRANSAMOUNT;
+        m_journal_data.m_to_amount = m_journal_data.m_amount;
 
     if (m_transfer && !m_advanced && (
-        AccountModel::instance().get_id_currency_p(m_journal_data.ACCOUNTID) !=
-        AccountModel::instance().get_id_currency_p(m_journal_data.TOACCOUNTID)
+        AccountModel::instance().get_id_currency_p(m_journal_data.m_account_id_p) !=
+        AccountModel::instance().get_id_currency_p(m_journal_data.m_to_account_id_n)
     )) {
         wxMessageDialog msgDlg(this,
             _t("The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"),
@@ -1254,7 +1253,7 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     TrxData* trx_n;
     TrxData trx_d;
     if (m_mode == MODE_EDIT) {
-        trx_n = TrxModel::instance().unsafe_get_id_data_n(m_journal_data.TRANSID);
+        trx_n = TrxModel::instance().unsafe_get_id_data_n(m_journal_data.m_id);
     }
     else {
         trx_d = TrxData();
@@ -1263,19 +1262,19 @@ void TrxDialog::OnOk(wxCommandEvent& event)
 
     TrxModel::copy_from_trx(trx_n, m_journal_data);
     TrxModel::instance().unsafe_save_trx(trx_n);
-    m_journal_data.TRANSID      = trx_n->id();
+    m_journal_data.m_id         = trx_n->id();
     m_journal_data.m_bdid       = 0;
     m_journal_data.m_repeat_num = 0;
 
     TrxSplitModel::DataA tp_a;
-    for (const auto& entry : m_local_splits) {
+    for (const auto& split_d : m_local_splits) {
         TrxSplitData tp_d = TrxSplitData();
-        tp_d.m_category_id_p = entry.CATEGID;
-        tp_d.m_amount        = entry.SPLITTRANSAMOUNT;
-        tp_d.m_notes         = entry.NOTES;
+        tp_d.m_category_id_p = split_d.CATEGID;
+        tp_d.m_amount        = split_d.SPLITTRANSAMOUNT;
+        tp_d.m_notes         = split_d.NOTES;
         tp_a.push_back(tp_d);
     }
-    TrxSplitModel::instance().update(tp_a, m_journal_data.TRANSID);
+    TrxSplitModel::instance().update(tp_a, m_journal_data.m_id);
 
     // Save split tags
     const wxString& splitRefType = TrxSplitModel::refTypeName;
@@ -1291,23 +1290,23 @@ void TrxDialog::OnOk(wxCommandEvent& event)
         }
         TagLinkModel::instance().update(splitTaglinks, splitRefType, tp_a.at(i).m_id);
     }
-    const wxString& RefType = TrxModel::refTypeName;
+    const wxString& ref_type = TrxModel::refTypeName;
     if (m_mode != MODE_EDIT) {
-        mmAttachmentManage::RelocateAllAttachments(RefType, -1, RefType, m_journal_data.TRANSID);
+        mmAttachmentManage::RelocateAllAttachments(ref_type, -1, ref_type, m_journal_data.m_id);
     }
 
-    m_custom_fields->SaveCustomValues(m_journal_data.TRANSID);
+    m_custom_fields->SaveCustomValues(m_journal_data.m_id);
 
     // Save base transaction tags
     TagLinkModel::DataA taglinks;
     for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
         TagLinkData gl_d = TagLinkData();
-        gl_d.REFTYPE = RefType;
-        gl_d.REFID   = m_journal_data.TRANSID;
+        gl_d.REFTYPE = ref_type;
+        gl_d.REFID   = m_journal_data.m_id;
         gl_d.TAGID   = tag_id;
         taglinks.push_back(gl_d);
     }
-    TagLinkModel::instance().update(taglinks, RefType, m_journal_data.TRANSID);
+    TagLinkModel::instance().update(taglinks, ref_type, m_journal_data.m_id);
 
     //TrxModel::Full_Data trx(trx_d);
     //wxLogDebug("%s", trx.to_json());
@@ -1334,9 +1333,9 @@ void TrxDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 #endif
 
     if (m_mode != MODE_EDIT) {
-        const wxString& RefType = TrxModel::refTypeName;
-        mmAttachmentManage::DeleteAllAttachments(RefType, -1);
-        FieldValueModel::instance().DeleteAllData(RefType, -1);
+        const wxString& ref_type = TrxModel::refTypeName;
+        mmAttachmentManage::DeleteAllAttachments(ref_type, -1);
+        FieldValueModel::instance().DeleteAllData(ref_type, -1);
     }
     previousDate = wxDateTime(); // invalidate!
     EndModal(wxID_CANCEL);
@@ -1350,7 +1349,7 @@ void TrxDialog::SetTooltips()
         mmToolTip(bSplit_, _t("Use split Categories"));
     else {
         const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
-        const AccountData* account_n = AccountModel::instance().get_id_data_n(m_journal_data.ACCOUNTID);
+        const AccountData* account_n = AccountModel::instance().get_id_data_n(m_journal_data.m_account_id_p);
         if (account_n)
             currency = AccountModel::instance().get_data_currency_p(*account_n);
 
@@ -1363,8 +1362,7 @@ void TrxDialog::SetTooltips()
     cbAccount_->UnsetToolTip();
     cbPayee_->UnsetToolTip();
 
-    if (m_transfer)
-    {
+    if (m_transfer) {
         mmToolTip(cbAccount_, _t("Specify account the money is taken from"));
         mmToolTip(cbPayee_, _t("Specify account the money is moved to"));
         mmToolTip(m_textAmount, _t("Specify the transfer amount in the From Account."));
@@ -1372,8 +1370,7 @@ void TrxDialog::SetTooltips()
         if (m_advanced)
             mmToolTip(toTextAmount_, _t("Specify the transfer amount in the To Account"));
     }
-    else
-    {
+    else {
         mmToolTip(m_textAmount, _t("Specify the amount for this transaction"));
         mmToolTip(cbAccount_, _t("Specify account for the transaction"));
         if (!TrxModel::is_deposit(m_journal_data.TRANSCODE))
@@ -1393,10 +1390,10 @@ void TrxDialog::SetTooltips()
 
 void TrxDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& RefType = TrxModel::refTypeName;
+    const wxString& ref_type = TrxModel::refTypeName;
     if (m_mode != MODE_EDIT) {
-        mmAttachmentManage::DeleteAllAttachments(RefType, -1);
-        FieldValueModel::instance().DeleteAllData(RefType, -1);
+        mmAttachmentManage::DeleteAllAttachments(ref_type, -1);
+        FieldValueModel::instance().DeleteAllData(ref_type, -1);
     }
     EndModal(wxID_CANCEL);
 }
@@ -1409,13 +1406,11 @@ void TrxDialog::OnMoreFields(wxCommandEvent& WXUNUSED(event))
         button->SetBitmap(mmBitmapBundle(m_custom_fields->IsCustomPanelShown() ? png::RIGHTARROW : png::LEFTARROW, mmBitmapButtonSize));
 
     m_custom_fields->ShowHideCustomPanel();
-    if (m_custom_fields->IsCustomPanelShown())
-    {
+    if (m_custom_fields->IsCustomPanelShown()) {
         SetMinSize(wxSize(min_size_.GetWidth() + m_custom_fields->GetMinWidth(), min_size_.GetHeight()));
         SetSize(wxSize(GetSize().GetWidth() + m_custom_fields->GetMinWidth(), GetSize().GetHeight()));
     }
-    else
-    {
+    else {
         SetMinSize(min_size_);
         SetSize(wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight()));
     }

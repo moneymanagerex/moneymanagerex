@@ -100,16 +100,16 @@ void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
     this_n->STATUS            = other_d.STATUS;
     this_n->TRANSCODE         = other_d.TRANSCODE;
     this_n->TRANSDATE         = other_d.TRANSDATE;
-    this_n->PAYEEID           = other_d.PAYEEID;
-    this_n->ACCOUNTID         = other_d.ACCOUNTID;
-    this_n->TRANSAMOUNT       = other_d.TRANSAMOUNT;
-    this_n->CATEGID           = other_d.CATEGID;
-    this_n->TOACCOUNTID       = other_d.TOACCOUNTID;
-    this_n->TOTRANSAMOUNT     = other_d.TOTRANSAMOUNT;
+    this_n->m_payee_id_n      = other_d.m_payee_id_n;
+    this_n->m_account_id_p    = other_d.m_account_id_p;
+    this_n->m_amount          = other_d.m_amount;
+    this_n->m_category_id_n   = other_d.m_category_id_n;
+    this_n->m_to_account_id_n = other_d.m_to_account_id_n;
+    this_n->m_to_amount       = other_d.m_to_amount;
     this_n->NOTES             = other_d.NOTES;
-    this_n->TRANSACTIONNUMBER = other_d.TRANSACTIONNUMBER;
-    this_n->FOLLOWUPID        = other_d.FOLLOWUPID;
-    this_n->COLOR             = other_d.COLOR;
+    this_n->m_number          = other_d.m_number;
+    this_n->m_followup_id     = other_d.m_followup_id;
+    this_n->m_color           = other_d.m_color;
 }
 
 bool TrxModel::is_transfer(const wxString& r)
@@ -137,18 +137,18 @@ wxDateTime TrxModel::getTransDateTime(const Data& this_d)
 
 double TrxModel::account_flow(const Data& this_d, int64 account_id)
 {
-    if (this_d.ACCOUNTID == this_d.TOACCOUNTID && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
+    if (this_d.m_account_id_p == this_d.m_to_account_id_n && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
         return 0.0;  // Self Transfer as Revaluation
     if (TrxModel::status_id(this_d.STATUS) == TrxModel::STATUS_ID_VOID || !this_d.DELETEDTIME.IsEmpty())
         return 0.0;
-    if (account_id == this_d.ACCOUNTID && type_id(this_d.TRANSCODE) == TYPE_ID_WITHDRAWAL)
-        return -(this_d.TRANSAMOUNT);
-    if (account_id == this_d.ACCOUNTID && type_id(this_d.TRANSCODE) == TYPE_ID_DEPOSIT)
-        return this_d.TRANSAMOUNT;
-    if (account_id == this_d.ACCOUNTID && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
-        return -(this_d.TRANSAMOUNT);
-    if (account_id == this_d.TOACCOUNTID && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
-        return this_d.TOTRANSAMOUNT;
+    if (account_id == this_d.m_account_id_p && type_id(this_d.TRANSCODE) == TYPE_ID_WITHDRAWAL)
+        return -(this_d.m_amount);
+    if (account_id == this_d.m_account_id_p && type_id(this_d.TRANSCODE) == TYPE_ID_DEPOSIT)
+        return this_d.m_amount;
+    if (account_id == this_d.m_account_id_p && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
+        return -(this_d.m_amount);
+    if (account_id == this_d.m_to_account_id_n && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
+        return this_d.m_to_amount;
     return 0.0;
 }
 
@@ -174,7 +174,7 @@ double TrxModel::account_recflow(const Data& this_d, int64 account_id)
 // same as TrxModel::Full_Data::is_foreign()
 bool TrxModel::is_foreign(const Data& this_d)
 {
-    return (this_d.TOACCOUNTID > 0) && (
+    return (this_d.m_to_account_id_n > 0) && (
         this_d.TRANSCODE == TYPE_NAME_DEPOSIT || this_d.TRANSCODE == TYPE_NAME_WITHDRAWAL
     );
 }
@@ -183,8 +183,8 @@ bool TrxModel::is_foreign(const Data& this_d)
 bool TrxModel::is_foreignAsTransfer(const Data& this_d)
 {
     return is_foreign(this_d) && (
-        this_d.TOACCOUNTID == TrxLinkModel::AS_TRANSFER ||
-        this_d.TOACCOUNTID == this_d.ACCOUNTID
+        this_d.m_to_account_id_n == TrxLinkModel::AS_TRANSFER ||
+        this_d.m_to_account_id_n == this_d.m_account_id_p
     );
 }
 
@@ -245,7 +245,7 @@ const TrxModel::DataA TrxModel::find_allByDateTimeId()
 const TrxSplitModel::DataA TrxModel::find_split(const Data& trx_d)
 {
     return TrxSplitModel::instance().find(
-        TrxSplitCol::TRANSID(trx_d.TRANSID)
+        TrxSplitCol::TRANSID(trx_d.m_id)
     );
 }
 
@@ -299,8 +299,8 @@ void TrxModel::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 
 
 void TrxModel::setEmptyData(Data &trx_d, int64 accountID)
 {
-    trx_d.TRANSID = -1;
-    trx_d.PAYEEID = -1;
+    trx_d.m_id = -1;
+    trx_d.m_payee_id_n = -1;
     const wxString today_date = wxDate::Now().FormatISOCombined();
     wxString max_trx_date;
     if (PrefModel::instance().getTransDateDefault() != PrefModel::NONE) {
@@ -320,22 +320,22 @@ void TrxModel::setEmptyData(Data &trx_d, int64 accountID)
         max_trx_date = today_date;
     }
 
-    trx_d.TRANSDATE         = max_trx_date;
-    trx_d.ACCOUNTID         = accountID;
-    trx_d.STATUS            = status_key(PrefModel::instance().getTransStatusReconciled());
-    trx_d.TRANSCODE         = TYPE_NAME_WITHDRAWAL;
-    trx_d.CATEGID           = -1;
-    trx_d.FOLLOWUPID        = -1;
-    trx_d.TRANSAMOUNT       = 0;
-    trx_d.TOTRANSAMOUNT     = 0;
-    trx_d.TRANSACTIONNUMBER = "";
-    trx_d.COLOR             = -1;
+    trx_d.TRANSDATE       = max_trx_date;
+    trx_d.m_account_id_p  = accountID;
+    trx_d.STATUS          = status_key(PrefModel::instance().getTransStatusReconciled());
+    trx_d.TRANSCODE       = TYPE_NAME_WITHDRAWAL;
+    trx_d.m_category_id_n = -1;
+    trx_d.m_followup_id   = -1;
+    trx_d.m_amount        = 0;
+    trx_d.m_to_amount     = 0;
+    trx_d.m_number        = "";
+    trx_d.m_color         = -1;
 }
 
 bool TrxModel::is_locked(const Data& trx_d)
 {
-    // FIXME: check if TOACCOUNTID is locked
-    const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.ACCOUNTID);
+    // FIXME: check if m_to_account_id_n is locked
+    const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id_p);
     mmDateN trx_date_n = mmDateN(trx_d.TRANSDATE);
     return trx_date_n.has_value() && account_n->is_locked_for(trx_date_n.value());
 }
@@ -364,7 +364,7 @@ bool TrxModel::purge_id(int64 id)
 void TrxModel::save_timestamp(int64 id)
 {
     Data* trx_n = instance().unsafe_get_id_data_n(id);
-    if (trx_n && trx_n->TRANSID == id) {
+    if (trx_n && trx_n->m_id == id) {
         trx_n->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
         unsafe_update_data_n(trx_n);
     }
@@ -374,7 +374,7 @@ void TrxModel::update_timestamp(Data& trx_d)
 {
     // get record from database bypassing the cache
     TrxModel::DataA trx_a = TrxModel::instance().find(
-        TrxCol::TRANSID(trx_d.TRANSID)
+        TrxCol::TRANSID(trx_d.m_id)
     );
     if (trx_a.size() == 0 || (!trx_a[0].equals(&trx_d)
         && trx_a[0].DELETEDTIME.IsEmpty() && trx_d.DELETEDTIME.IsEmpty()
@@ -423,10 +423,10 @@ TrxModel::Full_Data::Full_Data() :
 TrxModel::Full_Data::Full_Data(const Data& r) :
     Data(r),
     m_splits(TrxSplitModel::instance().find(
-        TrxSplitCol::TRANSID(r.TRANSID))),
+        TrxSplitCol::TRANSID(r.m_id))),
     m_tags(TagLinkModel::instance().find(
         TagLinkCol::REFTYPE(TrxModel::refTypeName),
-        TagLinkCol::REFID(r.TRANSID))),
+        TagLinkCol::REFID(r.m_id))),
     ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
     SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
 {
@@ -435,8 +435,8 @@ TrxModel::Full_Data::Full_Data(const Data& r) :
 
 TrxModel::Full_Data::Full_Data(
     const Data& r,
-    const std::map<int64 /* TRANSID */, TrxSplitModel::DataA>& splits,
-    const std::map<int64 /* TRANSID */, TagLinkModel::DataA>& tags
+    const std::map<int64 /* m_id */, TrxSplitModel::DataA>& splits,
+    const std::map<int64 /* m_id */, TagLinkModel::DataA>& tags
 ) :
     Data(r),
     ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
@@ -451,15 +451,15 @@ TrxModel::Full_Data::Full_Data(
 
 void TrxModel::Full_Data::fill_data()
 {
-    displayID = wxString::Format("%lld", TRANSID);
-    ACCOUNTNAME = AccountModel::instance().get_id_name(ACCOUNTID);
+    displayID = wxString::Format("%lld", m_id);
+    ACCOUNTNAME = AccountModel::instance().get_id_name(m_account_id_p);
 
     if (TrxModel::type_id(TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-        TOACCOUNTNAME = AccountModel::instance().get_id_name(TOACCOUNTID);
+        TOACCOUNTNAME = AccountModel::instance().get_id_name(m_to_account_id_n);
         PAYEENAME = TOACCOUNTNAME;
     }
     else {
-        PAYEENAME = PayeeModel::instance().get_id_name(PAYEEID);
+        PAYEENAME = PayeeModel::instance().get_id_name(m_payee_id_n);
     }
 
     if (!m_splits.empty()) {
@@ -468,7 +468,7 @@ void TrxModel::Full_Data::fill_data()
                 + CategoryModel::full_name(tp_d.m_category_id_p);
     }
     else {
-        CATEGNAME = CategoryModel::full_name(CATEGID);
+        CATEGNAME = CategoryModel::full_name(m_category_id_n);
     }
 
     if (!m_tags.empty()) {
@@ -482,14 +482,14 @@ void TrxModel::Full_Data::fill_data()
     }
 
     if (type_id(TRANSCODE) == TYPE_ID_WITHDRAWAL) {
-        ACCOUNTID_W = ACCOUNTID; TRANSAMOUNT_W = TRANSAMOUNT;
+        ACCOUNTID_W = m_account_id_p; TRANSAMOUNT_W = m_amount;
     }
     else if (type_id(TRANSCODE) == TYPE_ID_DEPOSIT) {
-        ACCOUNTID_D = ACCOUNTID; TRANSAMOUNT_D = TRANSAMOUNT;
+        ACCOUNTID_D = m_account_id_p; TRANSAMOUNT_D = m_amount;
     }
     else if (type_id(TRANSCODE) == TYPE_ID_TRANSFER) {
-        ACCOUNTID_W = ACCOUNTID; TRANSAMOUNT_W = TRANSAMOUNT;
-        ACCOUNTID_D = TOACCOUNTID; TRANSAMOUNT_D = TOTRANSAMOUNT;
+        ACCOUNTID_W = m_account_id_p; TRANSAMOUNT_W = m_amount;
+        ACCOUNTID_D = m_to_account_id_n; TRANSAMOUNT_D = m_to_amount;
     }
 }
 
@@ -501,7 +501,7 @@ wxString TrxModel::Full_Data::real_payee_name(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
     {
-        if (this->ACCOUNTID == account_id || account_id < 0)
+        if (this->m_account_id_p == account_id || account_id < 0)
             return ("> " + this->TOACCOUNTNAME);
         else
             return ("< " + this->ACCOUNTNAME);
@@ -514,10 +514,10 @@ const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
     {
-        if (this->ACCOUNTID == account_id || account_id == -1)
-            account_id = this->ACCOUNTID;
+        if (this->m_account_id_p == account_id || account_id == -1)
+            account_id = this->m_account_id_p;
         else
-            account_id = this->TOACCOUNTID;
+            account_id = this->m_to_account_id_n;
     }
     const AccountData* account_n = AccountModel::instance().get_id_data_n(account_id);
     int64 currency_id = account_n ? account_n->m_currency_id_p: -1;
@@ -529,11 +529,11 @@ const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
 const wxString TrxModel::Full_Data::get_account_name(int64 account_id) const
 {
     if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE)) {
-        if (this->ACCOUNTID == account_id || account_id == -1) {
+        if (this->m_account_id_p == account_id || account_id == -1) {
             return this->ACCOUNTNAME;
         }
         else {
-            const AccountData* account_n = AccountModel::instance().get_id_data_n(TOACCOUNTID);
+            const AccountData* account_n = AccountModel::instance().get_id_data_n(m_to_account_id_n);
             return account_n ? account_n->m_name : "";
         }
     }
@@ -544,7 +544,7 @@ const wxString TrxModel::Full_Data::get_account_name(int64 account_id) const
 // same as TrxModel::is_foreign()
 bool TrxModel::Full_Data::is_foreign() const
 {
-    return (this->TOACCOUNTID > 0) && (
+    return (this->m_to_account_id_n > 0) && (
         type_id(this->TRANSCODE) == TYPE_ID_DEPOSIT ||
         type_id(this->TRANSCODE) == TYPE_ID_WITHDRAWAL
     );
@@ -553,7 +553,7 @@ bool TrxModel::Full_Data::is_foreign() const
 // see also TrxModel::is_foreignAsTransfer()
 bool TrxModel::Full_Data::is_foreign_transfer() const
 {
-    return is_foreign() && (this->TOACCOUNTID == TrxLinkModel::AS_TRANSFER);
+    return is_foreign() && (this->m_to_account_id_n == TrxLinkModel::AS_TRANSFER);
 }
 
 wxString TrxModel::Full_Data::info() const
@@ -607,7 +607,7 @@ const wxString TrxModel::Full_Data::to_json()
     }
     else {
         json_writer.Key("CATEG");
-        json_writer.String(CategoryModel::full_name(this->CATEGID).utf8_str());
+        json_writer.String(CategoryModel::full_name(this->m_category_id_n).utf8_str());
     }
 
     json_writer.EndObject();

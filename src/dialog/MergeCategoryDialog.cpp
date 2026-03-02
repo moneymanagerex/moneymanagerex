@@ -176,13 +176,13 @@ void MergeCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             .find(PayeeCol::CATEGID(m_sourceCatID));
 
         for (auto& trx_d : trx_a) {
-            trx_d.CATEGID = m_destCatID;
+            trx_d.m_category_id_n = m_destCatID;
         }
         TrxModel::instance().save_trx_a(trx_a);
         m_changedRecords += trx_a.size();
 
         for (auto& sched_d : sched_a) {
-            sched_d.CATEGID = m_destCatID;
+            sched_d.m_category_id_n = m_destCatID;
         }
         SchedModel::instance().save_data_a(sched_a);
         m_changedRecords += sched_a.size();

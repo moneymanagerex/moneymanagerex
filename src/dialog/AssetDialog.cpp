@@ -302,7 +302,7 @@ void AssetDialog::CreateControls()
     transaction_frame_sizer->Add(w_transaction_panel, g_flagsV);
     if (m_transfer_entry && m_checking_entry) {
         w_transaction_panel->CheckingType(
-            TrxLinkModel::type_checking(m_checking_entry->TOACCOUNTID)
+            TrxLinkModel::type_checking(m_checking_entry->m_to_account_id_n)
         );
     }
     else if (m_asset_n) {

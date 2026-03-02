@@ -93,7 +93,7 @@ void TrxLinkModel::SetTranslink(
     // set the checking entry to recognise it as a foreign transaction
     // set the checking type as AS_INCOME_EXPENSE = 32701 or AS_TRANSFER
     TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(checking_id);
-    // trx_n->TOACCOUNTID = checking_type;
+    // trx_n->m_to_account_id_n = checking_type;
     TrxModel::instance().unsafe_save_trx(trx_n);
     //TrxLinkModel::instance().get_id_data_n(new_tl_d.id());
 }
@@ -185,7 +185,7 @@ void TrxLinkModel::UpdateAssetValue(AssetData* asset_n)
             && TrxModel::status_id(trx_n->STATUS) != TrxModel::STATUS_ID_VOID
         ) {
             const CurrencyData* currency_n = AccountModel::instance().get_id_currency_p(
-                trx_n->ACCOUNTID
+                trx_n->m_account_id_p
             );
             const double conv_rate = CurrencyHistoryModel::getDayRate(
                 currency_n->m_id,
@@ -193,10 +193,10 @@ void TrxLinkModel::UpdateAssetValue(AssetData* asset_n)
             );
 
             if (trx_n->TRANSCODE == TrxModel::TYPE_NAME_DEPOSIT) {
-                new_value -= trx_n->TRANSAMOUNT * conv_rate; // Withdrawal from asset value
+                new_value -= trx_n->m_amount * conv_rate; // Withdrawal from asset value
             }
             else {
-                new_value += trx_n->TRANSAMOUNT * conv_rate;  // Deposit to asset value
+                new_value += trx_n->m_amount * conv_rate;  // Deposit to asset value
             }
         }
     }
@@ -217,7 +217,7 @@ bool TrxLinkModel::ShareAccountId(int64& stock_entry_id)
             TrxCol::TRANSID(stock_translink_list.at(0).CHECKINGACCOUNTID));
         if (!checking_entry.empty())
         {
-            const AccountData* account_entry = AccountModel::instance().get_id_data_n(checking_entry.at(0).ACCOUNTID);
+            const AccountData* account_entry = AccountModel::instance().get_id_data_n(checking_entry.at(0).m_account_id_p);
             stock_entry_id = account_entry->m_id;
             return true;
         }

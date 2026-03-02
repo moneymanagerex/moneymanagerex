@@ -114,8 +114,8 @@ public:
         Full_Data();
         explicit Full_Data(const Data& r);
         Full_Data(const Data& r,
-            const std::map<int64 /* TRANSID */, TrxSplitModel::DataA> & splits,
-            const std::map<int64 /* TRANSID */, TagLinkModel::DataA> & tags
+            const std::map<int64 /* m_id */, TrxSplitModel::DataA> & splits,
+            const std::map<int64 /* m_id */, TagLinkModel::DataA> & tags
         );
         ~Full_Data();
 
@@ -208,9 +208,9 @@ public:
     {
         bool operator()(const Full_Data& x, const Full_Data& y)
         {
-            return x.TRANSACTIONNUMBER.IsNumber() && y.TRANSACTIONNUMBER.IsNumber()
-                ? (wxAtoi(x.TRANSACTIONNUMBER) < wxAtoi(y.TRANSACTIONNUMBER))
-                : x.TRANSACTIONNUMBER < y.TRANSACTIONNUMBER;
+            return x.m_number.IsNumber() && y.m_number.IsNumber()
+                ? (wxAtoi(x.m_number) < wxAtoi(y.m_number))
+                : x.m_number < y.m_number;
         }
     };
 

@@ -237,7 +237,7 @@ SchedCol::TRANSCODE SchedModel::TRANSCODE(OP op, TrxModel::TYPE_ID type)
 const SchedSplitModel::DataA SchedModel::split(const Data& sched_d)
 {
     return SchedSplitModel::instance().find(
-        SchedSplitCol::TRANSID(sched_d.BDID)
+        SchedSplitCol::TRANSID(sched_d.m_id)
     );
 }
 
@@ -245,7 +245,7 @@ const TagLinkModel::DataA SchedModel::taglink(const Data& sched_d)
 {
     return TagLinkModel::instance().find(
         TagLinkCol::REFTYPE(SchedModel::refTypeName),
-        TagLinkCol::REFID(sched_d.BDID)
+        TagLinkCol::REFID(sched_d.m_id)
     );
 }
 
@@ -286,14 +286,14 @@ bool SchedModel::AllowTransaction(const Data& r)
     if (r.TRANSCODE != TrxModel::TYPE_NAME_WITHDRAWAL && r.TRANSCODE != TrxModel::TYPE_NAME_TRANSFER)
         return true;
 
-    const int64 acct_id = r.ACCOUNTID;
+    const int64 acct_id = r.m_account_id_p;
     const AccountData* account_n = AccountModel::instance().get_id_data_n(acct_id);
 
     if (account_n->m_min_balance == 0 && account_n->m_credit_limit == 0)
         return true;
 
     double current_balance = AccountModel::instance().get_data_balance(*account_n);
-    double new_balance = current_balance - r.TRANSAMOUNT;
+    double new_balance = current_balance - r.m_amount;
 
     bool allow_transaction = true;
     wxString limitDescription;
@@ -316,7 +316,7 @@ bool SchedModel::AllowTransaction(const Data& r)
             "Transaction amount: %3$6.2f\n"
             "%4$s: %5$6.2f") + "\n\n" +
             _t("Do you want to continue?");
-        message.Printf(message, account_n->m_name, current_balance, r.TRANSAMOUNT, limitDescription, limitAmount);
+        message.Printf(message, account_n->m_name, current_balance, r.m_amount, limitDescription, limitAmount);
 
         if (wxMessageBox(message, _t("MMEX Scheduled Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
             allow_transaction = true;
@@ -364,7 +364,7 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
     m_bill_splits(split(r)),
     m_tags(TagLinkModel::instance().find(
         TagLinkCol::REFTYPE(SchedModel::refTypeName),
-        TagLinkCol::REFID(r.BDID)
+        TagLinkCol::REFID(r.m_id)
     ))
 {
     if (!m_tags.empty()) {
@@ -390,13 +390,13 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
         }
     }
     else
-        CATEGNAME = CategoryModel::full_name(r.CATEGID);
+        CATEGNAME = CategoryModel::full_name(r.m_category_id_n);
 
-    ACCOUNTNAME = AccountModel::instance().get_id_name(r.ACCOUNTID);
+    ACCOUNTNAME = AccountModel::instance().get_id_name(r.m_account_id_p);
 
-    PAYEENAME = PayeeModel::instance().get_id_name(r.PAYEEID);
+    PAYEENAME = PayeeModel::instance().get_id_name(r.m_payee_id_n);
     if (SchedModel::type_id(r) == TrxModel::TYPE_ID_TRANSFER) {
-        PAYEENAME = AccountModel::instance().get_id_name(r.TOACCOUNTID);
+        PAYEENAME = AccountModel::instance().get_id_name(r.m_to_account_id_n);
     }
 }
 

@@ -286,47 +286,52 @@ wxListCtrl* StockPanel::InitStockTxnListCtrl(wxWindow* parent)
 // Load stock transactions into the list control
 void StockPanel::LoadStockTransactions(wxListCtrl* listCtrl, wxString symbol, int64 stockId)
 {
-    TrxLinkModel::DataA stock_list;
-    TrxModel::DataA checking_list;
+    TrxLinkModel::DataA tl_a;
+    TrxModel::DataA trx_a;
     if (symbol.IsEmpty()) {
-        stock_list = TrxLinkModel::TranslinkList<StockModel>(stockId);
+        tl_a = TrxLinkModel::TranslinkList<StockModel>(stockId);
     }
-    else {  // search for all
-        stock_list = TrxLinkModel::TranslinkListBySymbol(symbol);
+    else {
+        // search for all
+        tl_a = TrxLinkModel::TranslinkListBySymbol(symbol);
     }
 
-    for (const auto& trans : stock_list) {
-        const TrxData* checking_entry = TrxModel::instance().get_id_data_n(trans.CHECKINGACCOUNTID);
-        if (checking_entry && checking_entry->DELETEDTIME.IsEmpty()) {
-            checking_list.push_back(*checking_entry);
+    for (const auto& tl_d : tl_a) {
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.CHECKINGACCOUNTID);
+        if (trx_n && trx_n->DELETEDTIME.IsEmpty()) {
+            trx_a.push_back(*trx_n);
         }
     }
-    std::stable_sort(checking_list.begin(), checking_list.end(), TrxData::SorterByTRANSDATE());
+    std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
 
     int row = 0;
-    for (const auto& stock_trans : checking_list) {
-        auto* share_entry = TrxShareModel::instance().unsafe_get_trx_share_n(stock_trans.TRANSID);
-        if (!share_entry || (share_entry->SHARENUMBER <= 0 && share_entry->SHAREPRICE <= 0))
+    for (const auto& trx_d : trx_a) {
+        auto* ts_n = TrxShareModel::instance().unsafe_get_trx_share_n(trx_d.m_id);
+        if (!ts_n || (ts_n->SHARENUMBER <= 0 && ts_n->SHAREPRICE <= 0))
             continue;
 
         long index = listCtrl->InsertItem(row++, "");
-        listCtrl->SetItemData(index, stock_trans.TRANSID.GetValue());
-        FillListRow(listCtrl, index, stock_trans, *share_entry);
+        listCtrl->SetItemData(index, trx_d.m_id.GetValue());
+        FillListRow(listCtrl, index, trx_d, *ts_n);
     }
 }
 
 // Fill list row with stock transaction data
-void StockPanel::FillListRow(wxListCtrl* listCtrl, long index, const TrxData& txn, const TrxShareData& share_entry)
-{
-    listCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(txn.TRANSDATE));
-    listCtrl->SetItem(index, 1, share_entry.SHARELOT);
+void StockPanel::FillListRow(
+    wxListCtrl* listCtrl,
+    long index,
+    const TrxData& trx_d,
+    const TrxShareData& ts_d
+) {
+    listCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(trx_d.TRANSDATE));
+    listCtrl->SetItem(index, 1, ts_d.SHARELOT);
 
-    int precision = share_entry.SHARENUMBER == floor(share_entry.SHARENUMBER) ? 0 : PrefModel::instance().getSharePrecision();
-    listCtrl->SetItem(index, 2, wxString::FromDouble(share_entry.SHARENUMBER, precision));
-    listCtrl->SetItem(index, 3, wxGetTranslation(TrxModel::trade_type_name(TrxModel::type_id(txn.TRANSCODE))));
-    listCtrl->SetItem(index, 4, wxString::FromDouble(share_entry.SHAREPRICE, PrefModel::instance().getSharePrecision()));
-    listCtrl->SetItem(index, 5, wxString::FromDouble(share_entry.SHARECOMMISSION, 2));
-    double total = share_entry.SHARENUMBER * share_entry.SHAREPRICE + share_entry.SHARECOMMISSION;
+    int precision = ts_d.SHARENUMBER == floor(ts_d.SHARENUMBER) ? 0 : PrefModel::instance().getSharePrecision();
+    listCtrl->SetItem(index, 2, wxString::FromDouble(ts_d.SHARENUMBER, precision));
+    listCtrl->SetItem(index, 3, wxGetTranslation(TrxModel::trade_type_name(TrxModel::type_id(trx_d.TRANSCODE))));
+    listCtrl->SetItem(index, 4, wxString::FromDouble(ts_d.SHAREPRICE, PrefModel::instance().getSharePrecision()));
+    listCtrl->SetItem(index, 5, wxString::FromDouble(ts_d.SHARECOMMISSION, 2));
+    double total = ts_d.SHARENUMBER * ts_d.SHAREPRICE + ts_d.SHARECOMMISSION;
     listCtrl->SetItem(index, 6, wxString::FromDouble(total, 2));
 }
 
@@ -335,18 +340,18 @@ void StockPanel::BindListEvents(wxListCtrl* listCtrl)
 {
     listCtrl->Bind(wxEVT_LIST_ITEM_ACTIVATED, [listCtrl, this](wxListEvent& event) {
         long index = event.GetIndex();
-        TrxData* txn = TrxModel::instance().unsafe_get_id_data_n(event.GetData());
-        if (!txn)
+        TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(event.GetData());
+        if (!trx_n)
             return;
 
-        auto link = TrxLinkModel::TranslinkRecord(txn->TRANSID);
-        TrxShareDialog dlg(listCtrl, &link, txn);
+        auto link = TrxLinkModel::TranslinkRecord(trx_n->m_id);
+        TrxShareDialog dlg(listCtrl, &link, trx_n);
         dlg.ShowModal();
 
         // Update the modified row
-        auto* share_entry = TrxShareModel::instance().unsafe_get_trx_share_n(txn->TRANSID);
-        if (share_entry) {
-            this->FillListRow(listCtrl, index, *txn, *share_entry);
+        auto* ts_n = TrxShareModel::instance().unsafe_get_trx_share_n(trx_n->m_id);
+        if (ts_n) {
+            this->FillListRow(listCtrl, index, *trx_n, *ts_n);
         }
 
         // Re-sort the list
