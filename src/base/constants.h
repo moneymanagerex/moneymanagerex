@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include "paths.h"
 #include "versions.h"
+#include <tuple>
 
 class wxString;
 
@@ -120,6 +121,13 @@ extern const wxDateTime DATE_MAX;
 
 extern const wxArrayString g_locales();
 extern const wxString g_fiat_curr();
+
+typedef std::tuple<
+    int,      /* language id (wxLANGUAGE_*) */
+    wxString, /* language label (canonical name and description) */
+    wxString  /* help message (canonical name) */
+> mm_language_t;
+extern const std::vector<mm_language_t> g_translations();
 
 enum id
 {
