@@ -75,9 +75,7 @@ wxLanguage mmGUIApp::getGUILanguage() const
 bool mmGUIApp::setGUILanguage(wxLanguage lang)
 {
     if (lang == this->m_lang && lang != wxLANGUAGE_UNKNOWN)
-    {
         return false;
-    }
     wxTranslations* trans = new wxTranslations;
 
     // Add the common UI Language translation catalog
@@ -85,39 +83,37 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     trans->AddCatalog("common", wxLANGUAGE_ENGLISH_US);
 
     trans->SetLanguage(lang);
-    trans->AddStdCatalog();
-    if (trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) || lang == wxLANGUAGE_ENGLISH_US || lang == wxLANGUAGE_DEFAULT)
-    {
+    if (!trans->AddStdCatalog()) {
+        wxLogDebug("ERROR: mmGUIApp::setGUILanguage(): cannot add std catalog");
+    }
+    if (trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) ||
+        lang == wxLANGUAGE_ENGLISH_US || lang == wxLANGUAGE_DEFAULT
+    ) {
         wxTranslations::Set(trans);
         this->m_lang = lang;
         PrefModel::instance().setLanguage(lang);
         return true;
     }
-    else
-    {
+    else {
         wxArrayString lang_files = trans->GetAvailableTranslations("mmex");
         if (lang_files.Index("en_US") == wxNOT_FOUND)
             lang_files.Add("en_US");
         wxArrayString lang_names;
-        for (const auto& file : lang_files)
-        {
+        for (const auto& file : lang_files) {
             const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
-            if (info)
-            {
+            if (info) {
                 lang_names.Add(wxGetTranslation(info->Description));
             }
         }
         lang_names.Sort();
 
         wxString languages_list;
-        for (const auto& name : lang_names)
-        {
+        for (const auto& name : lang_names) {
             languages_list += (languages_list.empty() ? "" : ", ") + name;
         }
 
         wxString msg;
-        if (lang != wxLANGUAGE_UNKNOWN)
-        {
+        if (lang != wxLANGUAGE_UNKNOWN) {
             wxString best;
 #if wxCHECK_VERSION(3, 1, 2) && !wxCHECK_VERSION(3, 1, 3)
             // workaround for https://github.com/wxWidgets/wxWidgets/pull/1082
@@ -129,8 +125,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
             msg = wxString::Format("Cannot load a translation for the language: %s", best);
             lang = wxLANGUAGE_UNKNOWN;
         }
-        if (lang == wxLANGUAGE_UNKNOWN)
-        {
+        if (lang == wxLANGUAGE_UNKNOWN) {
             msg += "\n\n";
             msg += wxString::Format("Please use the Switch Application Language option in "
                                     "View menu to select one of the following available languages:\n\n%s",
@@ -159,8 +154,7 @@ bool mmGUIApp::OnCmdLineParsed(wxCmdLineParser& parser)
     if (parser.GetParamCount() > 0)
         m_optParam1 = parser.GetParam(0);
 
-    if (parser.FoundSwitch("s"))
-    {
+    if (parser.FoundSwitch("s")) {
         m_optParamSilent = true;
     }
 
