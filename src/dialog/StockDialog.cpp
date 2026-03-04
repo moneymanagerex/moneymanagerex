@@ -566,117 +566,116 @@ void StockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
         wxEmptyString, wxEmptyString, wxEmptyString,
         "*.csv", wxFD_FILE_MUST_EXIST
     );
-    const AccountData *account_n = AccountModel::instance().get_id_data_n(
+    if (fileName.IsEmpty())
+        return;
+    wxFileName csv_file(fileName);
+    if (fileName.IsEmpty() || !csv_file.FileExists())
+        return;
+    wxTextFile tFile(fileName);
+    if (!tFile.Open())
+        return;
+    wxProgressDialog* progressDlg = new wxProgressDialog(
+        _t("Stock History CSV Import"),
+        _t("Quotes imported from CSV: "), tFile.GetLineCount(),
+        nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT
+    );
+
+    const AccountData* account_n = AccountModel::instance().get_id_data_n(
         m_stock_n->m_account_id_n
     );
-    const CurrencyData *currency = AccountModel::instance().get_data_currency_p(*account_n);
+    const CurrencyData* currency_p = AccountModel::instance().get_data_currency_p(*account_n);
 
-    if (!fileName.IsEmpty()) {
-        wxFileName csv_file(fileName);
-        if (fileName.IsEmpty() || !csv_file.FileExists())
-            return;
-        wxTextFile tFile(fileName);
-        if (!tFile.Open())
-            return;
-        wxProgressDialog* progressDlg = new wxProgressDialog(
-            _t("Stock History CSV Import"),
-            _t("Quotes imported from CSV: "), tFile.GetLineCount(),
-            nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT
-        );
+    bool canceledbyuser = false;
+    long countNumTotal = 0;
+    long countImported = 0;
+    double price;
+    wxString dateStr, priceStr;
+    StockHistoryModel::DataA new_sh_a;
 
-        bool canceledbyuser = false;
-        long countNumTotal = 0;
-        long countImported = 0;
-        double price;
-        wxString dateStr, priceStr;
-        StockHistoryModel::DataA new_sh_a;
-
-        wxString line;
-        std::vector<wxString> rows;
-        for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine()) {
-            wxString progressMsg;
-            progressMsg << _t("Quotes imported from CSV: ") << countImported;
-            if (!progressDlg->Update(countImported, progressMsg)) {
-                canceledbyuser = true;
-                break; // abort processing
-            }
-
-            if (!line.IsEmpty())
-                ++countNumTotal;
-            else
-                continue;
-
-            dateStr.clear();
-            priceStr.clear();
-
-            const wxString& delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
-            csv2tab_separated_values(line, delimiter);
-            wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
-            if (static_cast<int>(tkz.CountTokens()) < 2)
-                continue;
-
-            std::vector<wxString> tokens;
-            while (tkz.HasMoreTokens()) {
-                wxString token = tkz.GetNextToken();
-                tokens.push_back(token);
-            }
-
-            // date
-            wxDateTime dt;
-            dateStr = tokens[0];
-            mmParseDisplayStringToDate(dt, dateStr, PrefModel::instance().getDateFormat());
-            dateStr = dt.FormatISODate();
-            // price
-            priceStr = tokens[1];
-            priceStr.Replace(" ", wxEmptyString);
-            if (!CurrencyModel::fromString(priceStr, price, currency) || price <= 0.0)
-                continue;
-
-            StockHistoryData new_sh_d = StockHistoryData();
-            new_sh_d.m_symbol      = m_stock_n->m_symbol;
-            new_sh_d.m_date_       = dateStr;
-            new_sh_d.m_price       = price;
-            new_sh_d.m_update_type_ = 2;
-            new_sh_a.push_back(new_sh_d);
-
-            if (rows.size()<10) {
-                dateStr <<  wxT ("  ") << priceStr;
-                rows.push_back(dateStr);
-            }
-            countImported++;
-        }
-
-        progressDlg->Destroy();
-
-        wxString msg = wxString::Format(_t("Total lines: %ld"), countNumTotal);
-        msg << "\n";
-        msg << wxString::Format(_t("Total imported: %ld"), countImported);
-        msg << "\n";
-        msg << _t("Date") << "              " << _t("Price");
-        msg << "\n";
-        for (std::vector<wxString>::const_iterator d = rows.begin(); d != rows.end(); ++d)
-            msg << *d << "\n";
-        wxString confirmMsg = msg + _t("Please confirm saving");
-        if (!canceledbyuser && wxMessageBox(
-            confirmMsg,
-            _t("Importing CSV"),
-            wxOK | wxCANCEL | wxICON_INFORMATION
-        ) == wxCANCEL) {
+    wxString line;
+    std::vector<wxString> rows;
+    for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine()) {
+        wxString progressMsg;
+        progressMsg << _t("Quotes imported from CSV: ") << countImported;
+        if (!progressDlg->Update(countImported, progressMsg)) {
             canceledbyuser = true;
+            break; // abort processing
         }
 
-        // Since all database transactions are only in memory,
-        if (!canceledbyuser) {
-            // we need to save them to the database.
-            for (auto& new_sh_d : new_sh_a)
-                StockHistoryModel::instance().add_data_n(new_sh_d);
-            // show the data
-            ShowStockHistory();
-        }
+        if (!line.IsEmpty())
+            ++countNumTotal;
         else
-        {
-            //TODO: and discard the database changes.
+            continue;
+
+        dateStr.clear();
+        priceStr.clear();
+
+        const wxString& delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
+        csv2tab_separated_values(line, delimiter);
+        wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);
+        if (static_cast<int>(tkz.CountTokens()) < 2)
+            continue;
+
+        std::vector<wxString> tokens;
+        while (tkz.HasMoreTokens()) {
+            wxString token = tkz.GetNextToken();
+            tokens.push_back(token);
         }
+
+        // date
+        wxDateTime dt;
+        dateStr = tokens[0];
+        mmParseDisplayStringToDate(dt, dateStr, PrefModel::instance().getDateFormat());
+        dateStr = dt.FormatISODate();
+        // price
+        priceStr = tokens[1];
+        priceStr.Replace(" ", wxEmptyString);
+        if (!CurrencyModel::fromString(priceStr, price, currency_p) || price <= 0.0)
+            continue;
+
+        StockHistoryData new_sh_d = StockHistoryData();
+        new_sh_d.m_symbol      = m_stock_n->m_symbol;
+        new_sh_d.m_date        = mmDate(dateStr);
+        new_sh_d.m_price       = price;
+        new_sh_d.m_update_type = UpdateType(UpdateType::e_manual);
+        new_sh_a.push_back(new_sh_d);
+
+        if (rows.size()<10) {
+            dateStr <<  wxT ("  ") << priceStr;
+            rows.push_back(dateStr);
+        }
+        countImported++;
+    }
+
+    progressDlg->Destroy();
+
+    wxString msg = wxString::Format(_t("Total lines: %ld"), countNumTotal);
+    msg << "\n";
+    msg << wxString::Format(_t("Total imported: %ld"), countImported);
+    msg << "\n";
+    msg << _t("Date") << "              " << _t("Price");
+    msg << "\n";
+    for (std::vector<wxString>::const_iterator d = rows.begin(); d != rows.end(); ++d)
+        msg << *d << "\n";
+    wxString confirmMsg = msg + _t("Please confirm saving");
+    if (!canceledbyuser && wxMessageBox(
+        confirmMsg,
+        _t("Importing CSV"),
+        wxOK | wxCANCEL | wxICON_INFORMATION
+    ) == wxCANCEL) {
+        canceledbyuser = true;
+    }
+
+    // Since all database transactions are only in memory,
+    if (!canceledbyuser) {
+        // we need to save them to the database.
+        for (auto& new_sh_d : new_sh_a)
+            StockHistoryModel::instance().add_data_n(new_sh_d);
+        // show the data
+        ShowStockHistory();
+    }
+    else {
+        //TODO: and discard the database changes.
     }
 }
 
@@ -767,29 +766,29 @@ void StockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
 
         Value chart = json_doc["chart"].GetObject();
         wxASSERT(chart.HasMember("error"));
-        if (chart.HasMember("error")) {
-            if (chart["error"].IsObject()) {
+        if (chart.HasMember("error") && chart["error"].IsObject()) {
 
-                /* {
-                    "chart":{
-                        "result":null,
-                        "error":{
-                            "code":"Not Found",
-                            "description":"No data found, symbol may be delisted"
-                        }
+            /* {
+                "chart":{
+                    "result":null,
+                    "error":{
+                        "code":"Not Found",
+                        "description":"No data found, symbol may be delisted"
                     }
-                } */
-
-                Value e = chart["error"].GetObject();
-                if (!e.HasMember("code") || !e.HasMember("description") || !e["code"].IsString() || !e["description"].IsString()) {
-                    break;
                 }
+            } */
 
-                const wxString code = wxString::FromUTF8(e["code"].GetString());
-                const wxString description = wxString::FromUTF8(e["description"].GetString());
-                sOutput = wxString::Format("%s - %s", code, description);
+            Value e = chart["error"].GetObject();
+            if (!e.HasMember("code") || !e.HasMember("description") ||
+                !e["code"].IsString() || !e["description"].IsString()
+            ) {
                 break;
             }
+
+            const wxString code = wxString::FromUTF8(e["code"].GetString());
+            const wxString description = wxString::FromUTF8(e["description"].GetString());
+            sOutput = wxString::Format("%s - %s", code, description);
+            break;
         }
 
         if (!chart.HasMember("result") || !chart["result"].IsArray())
@@ -828,32 +827,30 @@ void StockDialog::OnHistoryDownloadButton(wxCommandEvent& /*event*/)
         if (timestamp.Size() != quotes_closed.Size())
             break;
 
-        std::map<time_t, float> history;
+        std::map<mmDate, float> date_price_a;
         for (rapidjson::SizeType i = 0; i < timestamp.Size(); i++) {
-            if (!timestamp[i].IsInt()) continue;
-            time_t time = timestamp[i].GetInt();
-            if (!quotes_closed[i].IsFloat()) continue;
-            float rate = quotes_closed[i].GetFloat() / k;
-            history[time] = rate;
+            if (!timestamp[i].IsInt() || !quotes_closed[i].IsFloat())
+                continue;
+            mmDate date = mmDate(wxDateTime(static_cast<time_t>(timestamp[i].GetInt())));
+            date_price_a[date] = quotes_closed[i].GetFloat() / k;
         }
 
-        const wxString today = wxDate::Today().FormatISODate();
         StockHistoryModel::instance().db_savepoint();
-        for (const auto& entry : history) {
-            float dPrice = entry.second;
-            const wxString date_str = wxDateTime(static_cast<time_t>(entry.first)).FormatISODate();
-            if (date_str == today)
+        for (const auto& date_price : date_price_a) {
+            const mmDate date = date_price.first;
+            if (date == mmDate::today())
                 continue;
+            float price = date_price.second;
 
             if (StockHistoryModel::instance().find(
                 StockHistoryCol::SYMBOL(m_stock_n->m_symbol),
-                StockHistoryCol::DATE(date_str)
-            ).empty() && dPrice > 0) {
+                StockHistoryCol::DATE(date.isoDate())
+            ).empty() && price > 0) {
                 StockHistoryData new_sh_d = StockHistoryData();
                 new_sh_d.m_symbol      = m_stock_n->m_symbol;
-                new_sh_d.m_date_       = date_str;
-                new_sh_d.m_price       = dPrice;
-                new_sh_d.m_update_type_ = StockHistoryModel::ONLINE;
+                new_sh_d.m_date        = date;
+                new_sh_d.m_price       = price;
+                new_sh_d.m_update_type = UpdateType(UpdateType::e_online);
                 StockHistoryModel::instance().add_data_n(new_sh_d);
             }
         }
@@ -968,30 +965,34 @@ void StockDialog::ShowStockHistory()
     if (sh_a.empty())
         return;
 
-    for (size_t idx = 0; idx < sh_a.size(); idx++ ) {
+    for (size_t sh_i = 0; sh_i < sh_a.size(); ++sh_i ) {
+        const auto& sh_d = sh_a.at(sh_i);
         wxListItem item;
-        item.SetId(static_cast<long>(idx));
-        item.SetData(reinterpret_cast<void*>(sh_a.at(idx).m_id.GetValue()));
+        item.SetId(static_cast<long>(sh_i));
+        item.SetData(reinterpret_cast<void*>(sh_d.m_id.GetValue()));
         m_price_listbox->InsertItem(item);
-        const wxDate dtdt = StockHistoryModel::DATE(sh_a.at(idx));
-        const wxString dispAmount = AccountModel::instance().value_number(
-            *account, sh_a.at(idx).m_price, PrefModel::instance().getSharePrecision()
+        const wxString disp_price = AccountModel::instance().value_number(
+            *account, sh_d.m_price, PrefModel::instance().getSharePrecision()
         );
-        m_price_listbox->SetItem(static_cast<long>(idx), 0, mmGetDateTimeForDisplay(sh_a.at(idx).m_date_));
-        m_price_listbox->SetItem(static_cast<long>(idx), 1, dispAmount);
-        if (idx == 0) {
-            m_history_date_ctrl->SetValue(dtdt);
-            m_history_price_ctrl->SetValue(dispAmount);
-            m_current_price_ctrl->SetValue(dispAmount);
-            // if the latest share price is not the current stock price, update it.
-            if (m_stock_n->m_current_price != sh_a.at(idx).m_price) {
-                StockModel::UpdateCurrentPrice(m_stock_n->m_symbol, sh_a.at(idx).m_price);
-                m_stock_n = StockModel::instance().unsafe_get_id_data_n(m_stock_n->m_id);
-                m_value_investment->SetLabelText(AccountModel::instance().value_number_currency(
-                    *(AccountModel::instance().get_id_data_n(m_stock_n->m_account_id_n)),
-                    StockModel::instance().CurrentValue(*m_stock_n)
-                ));
-            }
+        m_price_listbox->SetItem(static_cast<long>(sh_i), 0,
+            mmGetDateTimeForDisplay(sh_d.m_date.isoDate())
+        );
+        m_price_listbox->SetItem(static_cast<long>(sh_i), 1,
+            disp_price
+        );
+        if (sh_i != 0)
+            continue;
+        m_history_date_ctrl->SetValue(sh_d.m_date.getDateTime());
+        m_history_price_ctrl->SetValue(disp_price);
+        m_current_price_ctrl->SetValue(disp_price);
+        // if the latest share price is not the current stock price, update it.
+        if (m_stock_n->m_current_price != sh_d.m_price) {
+            StockModel::UpdateCurrentPrice(m_stock_n->m_symbol, sh_d.m_price);
+            m_stock_n = StockModel::instance().unsafe_get_id_data_n(m_stock_n->m_id);
+            m_value_investment->SetLabelText(AccountModel::instance().value_number_currency(
+                *(AccountModel::instance().get_id_data_n(m_stock_n->m_account_id_n)),
+                StockModel::instance().CurrentValue(*m_stock_n)
+            ));
         }
     }
     m_price_listbox->RefreshItems(0, rows);

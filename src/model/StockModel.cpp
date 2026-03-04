@@ -107,7 +107,7 @@ wxString StockModel::lastPriceDate(const Data& stock_d)
 
     std::sort(sh_a.begin(), sh_a.end(), StockHistoryData::SorterByDATE());
     if (!sh_a.empty())
-        dtStr = sh_a.back().m_date_;
+        dtStr = sh_a.back().m_date.isoDate();
 
     return dtStr;
 }
@@ -118,43 +118,41 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
     wxString strDate = date.FormatISODate();
     std::map<int64, double> totBalance;
 
-    DataA stocks = this->instance().find(StockCol::HELDAT(account_d.id()));
-    for (const auto & stock : stocks)
-    {
+    DataA stock_a = this->instance().find(StockCol::HELDAT(account_d.id()));
+    for (const Data& stock_d : stock_a) {
         wxString precValueDate, nextValueDate;
-        StockHistoryModel::DataA stock_hist = StockHistoryModel::instance().find(
-            StockCol::SYMBOL(stock.m_symbol)
+        StockHistoryModel::DataA sh_a = StockHistoryModel::instance().find(
+            StockCol::SYMBOL(stock_d.m_symbol)
         );
-        std::stable_sort(stock_hist.begin(), stock_hist.end(), StockHistoryData::SorterByDATE());
-        std::reverse(stock_hist.begin(), stock_hist.end());
+        std::stable_sort(sh_a.begin(), sh_a.end(), StockHistoryData::SorterByDATE());
+        std::reverse(sh_a.begin(), sh_a.end());
 
         double valueAtDate = 0.0,  precValue = 0.0, nextValue = 0.0;
 
-        for (const auto & sh_d : stock_hist)
-        {
+        for (const auto & sh_d : sh_a) {
             // test for the date requested
-            if (sh_d.m_date_ == strDate) {
+            if (sh_d.m_date == mmDate(date)) {
                 valueAtDate = sh_d.m_price;
                 break;
             }
             // if not found, search for previous and next date
-            if (precValue == 0.0 && sh_d.m_date_ < strDate) {
+            if (precValue == 0.0 && sh_d.m_date < mmDate(date)) {
                 precValue = sh_d.m_price;
-                precValueDate = sh_d.m_date_;
+                precValueDate = sh_d.m_date.isoDate();
             }
-            if (sh_d.m_date_ > strDate) {
+            if (sh_d.m_date > mmDate(date)) {
                 nextValue = sh_d.m_price;
-                nextValueDate = sh_d.m_date_;
+                nextValueDate = sh_d.m_date.isoDate();
             }
             // end conditions: prec value assigned and price date < requested date
-            if (precValue != 0.0 && sh_d.m_date_ < strDate)
+            if (precValue != 0.0 && sh_d.m_date < mmDate(date))
                 break;
         }
         if (valueAtDate == 0.0) {
             //  if previous not found but if the given date is after purchase date, takes purchase price
-            if (precValue == 0.0 && date >= PURCHASEDATE(stock)) {
-                precValue = stock.m_purchase_price;
-                precValueDate = stock.m_purchase_date_;
+            if (precValue == 0.0 && date >= PURCHASEDATE(stock_d)) {
+                precValue = stock_d.m_purchase_price;
+                precValueDate = stock_d.m_purchase_date_;
             }
             //  if next not found and the accoung is open, takes previous date
             if (nextValue == 0.0 && account_d.is_open()) {
@@ -162,22 +160,22 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
                 nextValueDate = precValueDate;
             }
             if (precValue > 0.0 && nextValue > 0.0 &&
-                precValueDate >= stock.m_purchase_date_ &&
-                nextValueDate >= stock.m_purchase_date_
+                precValueDate >= stock_d.m_purchase_date_ &&
+                nextValueDate >= stock_d.m_purchase_date_
             )
                 valueAtDate = precValue;
         }
 
         double numShares = 0.0;
 
-        TrxLinkModel::DataA linkrecords = TrxLinkModel::TranslinkList<StockModel>(stock.m_id);
+        TrxLinkModel::DataA linkrecords = TrxLinkModel::TranslinkList<StockModel>(stock_d.m_id);
         for (const auto& linkrecord : linkrecords) {
             const TrxData* trx_n = TrxModel::instance().get_id_data_n(
                 linkrecord.CHECKINGACCOUNTID
             );
             if (trx_n->m_id > -1 &&
                 trx_n->DELETEDTIME.IsEmpty() &&
-                TrxModel::getTransDateTime(*trx_n).FormatISODate() <= strDate
+                mmDate(TrxModel::getTransDateTime(*trx_n)) <= mmDate(date)
             ) {
                 numShares += TrxShareModel::instance().unsafe_get_trx_share_n(
                     linkrecord.CHECKINGACCOUNTID
@@ -185,10 +183,10 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
             }
         }
 
-        if (linkrecords.empty() && stock.m_purchase_date_ <= strDate)
-            numShares = stock.m_num_shares;
+        if (linkrecords.empty() && stock_d.m_purchase_date_ <= strDate)
+            numShares = stock_d.m_num_shares;
 
-        totBalance[stock.id()] += numShares * valueAtDate;
+        totBalance[stock_d.id()] += numShares * valueAtDate;
     }
 
     double balance = 0.0;
