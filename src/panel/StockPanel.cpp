@@ -595,72 +595,105 @@ void StockPanel::updateExtraStocksData(int selectedIndex)
     stock_details_->SetLabelText(selectedIndex >= 0 ? m_lc->getStockInfo(selectedIndex, m_account_id > -1) : "");
 }
 
-wxString StockList::getStockInfo(int selectedIndex, bool addtotal) const
+wxString StockList::getStockInfo(int selectedIndex, bool with_symbol) const
 {
-    int purchasedTime = 0;
-    double stocktotalnumShares = 0;
-    double stockavgPurchasePrice = 0;
-    for (const auto& s: StockModel::instance().find(
-        StockCol::SYMBOL(m_stocks[selectedIndex].m_symbol)
+    const StockData& stock_d = m_stocks[selectedIndex];
+
+    // Short symbols
+    // pur_m  : times purchased
+    // pur_n  : number of shares
+    //
+    // pur_p  : purchase price per share (not including commission)
+    // cur_p  : current price per share
+    // diff_p : price difference per share (not including commission)
+    // gain_p : price change in % (not including commission)
+    //
+    // pur_q  : purchase value per share (including commission)
+    // diff_q : value difference per share (including commission)
+    // gain_q : price change in % (including commission)
+    //
+    // pur_v  : purchase value (including commission)
+    // cur_v  : current value
+    // diff_v : value difference (including commission)
+
+    // Selected share
+    double stock_pur_n  = stock_d.m_num_shares;
+    double stock_pur_p  = stock_d.m_purchase_price;
+    double stock_cur_p  = stock_d.m_current_price;
+    double stock_diff_p = stock_cur_p - stock_pur_p;
+    double stock_gain_p = (stock_cur_p / stock_pur_p - 1.0) * 100.0;
+    double stock_pur_v  = stock_d.m_purchase_value;
+    double stock_cur_v  = stock_pur_n * stock_cur_p;
+    double stock_diff_v = stock_cur_v - stock_pur_v;
+
+    wxString stock_pur_n_str = wxString::Format("%i", static_cast<int>(stock_pur_n));
+    if (stock_pur_n - static_cast<long>(stock_pur_n) != 0.0)
+        stock_pur_n_str = wxString::Format("%.4f", stock_pur_n);
+    const wxString& stock_pur_p_str = CurrencyModel::toCurrency(
+        stock_pur_p, m_stock_panel->m_currency, 4
+    );
+    const wxString& stock_cur_p_str = CurrencyModel::toCurrency(
+        stock_cur_p, m_stock_panel->m_currency, 4
+    );
+    const wxString& stock_diff_p_str = CurrencyModel::toCurrency(
+        stock_diff_p, m_stock_panel->m_currency, 4
+    );
+    const wxString& stock_gain_p_str = (stock_d.m_purchase_price != 0.0)
+        ? wxString::Format("(%s %%)",
+            CurrencyModel::toStringNoFormatting(stock_gain_p, nullptr, 2)
+        ) : "";
+
+    // Summary for selected symbol
+    int    symbol_pur_m = 0;
+    double symbol_pur_n = 0;
+    double symbol_pur_v = 0;
+    for (const auto& symbol_stock_d: StockModel::instance().find(
+        StockCol::SYMBOL(stock_d.m_symbol)
     )) {
-        purchasedTime++;
-        stocktotalnumShares += s.m_num_shares;
-        stockavgPurchasePrice += s.m_purchase_value;
+        symbol_pur_m += 1;
+        symbol_pur_n += symbol_stock_d.m_num_shares;
+        symbol_pur_v += symbol_stock_d.m_purchase_value;
     }
-    stockavgPurchasePrice /= stocktotalnumShares;
+    double symbol_pur_q  = symbol_pur_v / symbol_pur_n;
+    double symbol_cur_p  = stock_cur_p;
+    double symbol_diff_q = symbol_cur_p - symbol_pur_q;
+    double symbol_gain_q = (symbol_cur_p / symbol_pur_q - 1.0) * 100.0;
+    double symbol_diff_v = symbol_diff_q * symbol_pur_n;
 
-    double numShares = m_stocks[selectedIndex].m_num_shares;
-    wxString sNumShares = wxString::Format("%i", static_cast<int>(numShares));
-    if (numShares - static_cast<long>(numShares) != 0.0)
-        sNumShares = wxString::Format("%.4f", numShares);
-
-    wxString sTotalNumShares = wxString::Format("%i", static_cast<int>(stocktotalnumShares));
-    if ((stocktotalnumShares - static_cast<long>(stocktotalnumShares)) != 0.0)
-        sTotalNumShares = wxString::Format("%.4f", stocktotalnumShares);
-
-    double stockPurchasePrice = m_stocks[selectedIndex].m_purchase_price;
-    double stockCurrentPrice = m_stocks[selectedIndex].m_current_price;
-    double stockDifference = stockCurrentPrice - stockPurchasePrice;
-
-    double stocktotalDifference = stockCurrentPrice - stockavgPurchasePrice;
-    // Commission don't calculates here
-    const wxString& stockPercentage = (stockPurchasePrice != 0.0)
-        ? wxString::Format("(%s %%)", CurrencyModel::toStringNoFormatting(
-            ((stockCurrentPrice / stockPurchasePrice - 1.0) * 100.0), nullptr, 2))
-        : "";
-    double stocktotalPercentage = (stockCurrentPrice / stockavgPurchasePrice - 1.0)*100.0;
-    double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
-
-    const wxString& sPurchasePrice = CurrencyModel::toCurrency(stockPurchasePrice, m_stock_panel->m_currency, 4);
-    const wxString& sAvgPurchasePrice = CurrencyModel::toCurrency(stockavgPurchasePrice, m_stock_panel->m_currency, 4);
-    const wxString& sCurrentPrice = CurrencyModel::toCurrency(stockCurrentPrice, m_stock_panel->m_currency, 4);
-    const wxString& sDifference = CurrencyModel::toCurrency(stockDifference, m_stock_panel->m_currency, 4);
-    const wxString& sTotalDifference = CurrencyModel::toCurrency(stocktotalDifference);
+    wxString symbol_pur_n_str = wxString::Format("%i", static_cast<int>(symbol_pur_n));
+    if (symbol_pur_n - static_cast<long>(symbol_pur_n) != 0.0)
+        symbol_pur_n_str = wxString::Format("%.4f", symbol_pur_n);
+    const wxString& symbol_pur_q_str = CurrencyModel::toCurrency(
+        symbol_pur_q, m_stock_panel->m_currency, 4
+    );
+    const wxString& symbol_diff_q_str = CurrencyModel::toCurrency(symbol_diff_q);
 
     wxString miniInfo = "";
-    if (m_stocks[selectedIndex].m_symbol != "")
-        miniInfo << "\t" << wxString::Format(_t("Symbol: %s"), m_stocks[selectedIndex].m_symbol) << "\t\t";
-    miniInfo << wxString::Format(_t("Total: %s"), " (" + sTotalNumShares + ") ");
+    if (stock_d.m_symbol != "")
+        miniInfo << "\t" << wxString::Format(_t("Symbol: %s"), stock_d.m_symbol) << "\t\t";
+    miniInfo << wxString::Format(_t("Total: %s"), " (" + symbol_pur_n_str + ") ");
     m_stock_panel->stock_details_short_->SetLabelText(miniInfo);
 
-    //Selected share info
-    wxString additionInfo = wxString::Format("This Account: |%s - %s| = %s, %s * %s = %s %s\n"
-        , sCurrentPrice, sPurchasePrice, sDifference
-        , sDifference, sNumShares
-        , CurrencyModel::toCurrency(GetGainLoss(selectedIndex), m_stock_panel->m_currency)
-        , stockPercentage);
+    // Selected share info
+    wxString info_str = wxString::Format("This Account: |%s - %s| = %s, %s * %s = %s %s\n",
+        stock_cur_p_str, stock_pur_p_str, stock_diff_p_str,
+        stock_diff_p_str, stock_pur_n_str,
+        // CHECK: stock_diff_v includes commission; all other do not include commission
+        CurrencyModel::toCurrency(stock_diff_v, m_stock_panel->m_currency),
+        stock_gain_p_str
+    );
 
-    //Summary for account for selected symbol
-    if (addtotal && purchasedTime > 1)
-    {
-        additionInfo += wxString::Format( "All Accounts: |%s - %s| = %s, %s * %s = %s ( %s %% )\n%s"
-            ,  sCurrentPrice, sAvgPurchasePrice, sTotalDifference
-            , sTotalDifference, sTotalNumShares
-            , CurrencyModel::toCurrency(stocktotalgainloss)
-            , CurrencyModel::toStringNoFormatting(stocktotalPercentage, nullptr, 2)
-            , OnGetItemText(selectedIndex, static_cast<long>(LIST_ID_NOTES)));
+    // Summary for selected symbol
+    if (with_symbol && symbol_pur_m > 1) {
+        info_str += wxString::Format("All Accounts: |%s - %s| = %s, %s * %s = %s ( %s %% )\n%s",
+            stock_cur_p_str, symbol_pur_q_str, symbol_diff_q_str,
+            symbol_diff_q_str, symbol_pur_n_str,
+            CurrencyModel::toCurrency(symbol_diff_v),
+            CurrencyModel::toStringNoFormatting(symbol_gain_q, nullptr, 2),
+            OnGetItemText(selectedIndex, static_cast<long>(LIST_ID_NOTES))
+        );
     }
-    return additionInfo;
+    return info_str;
 }
 
 void StockPanel::enableEditDeleteButtons(bool en)
@@ -671,19 +704,30 @@ void StockPanel::enableEditDeleteButtons(bool en)
     wxButton* bV = static_cast<wxButton*>(FindWindow(wxID_VIEW_DETAILS));
     wxButton* bD = static_cast<wxButton*>(FindWindow(wxID_DELETE));
     wxButton* bM = static_cast<wxButton*>(FindWindow(wxID_MOVE_FRAME));
-    bool isaccountview = m_account_id > -1;
-    if (bN) bN->Enable(!en && isaccountview);
-    if (bE) bE->Enable(en);
-    if (bA) bA->Enable(en && isaccountview);
-    if (bV) bV->Enable(en);
-    if (bD) bD->Enable(en && isaccountview);
-    if (bM) bM->Enable(en && isaccountview);
+    bool isaccountview = (m_account_id > -1);
+
+    if (bN)
+        bN->Enable(!en && isaccountview);
+    if (bE)
+        bE->Enable(en);
+    if (bA)
+        bA->Enable(en && isaccountview);
+    if (bV)
+        bV->Enable(en);
+    if (bD)
+        bD->Enable(en && isaccountview);
+    if (bM)
+        bM->Enable(en && isaccountview);
+
     attachment_button_->Enable(en);
-    if (!en)
-    {
+    if (!en) {
         if (PrefModel::instance().getShowMoneyTips())
-            stock_details_->SetLabelText(wxGetTranslation(mmStockTips[rand() % (sizeof(mmStockTips) / sizeof(wxString))]));
-        stock_details_short_->SetLabelText(wxString::Format(_t("Last updated %s"), strLastUpdate_));
+            stock_details_->SetLabelText(wxGetTranslation(
+                mmStockTips[rand() % (sizeof(mmStockTips) / sizeof(wxString))]
+            ));
+        stock_details_short_->SetLabelText(wxString::Format(_t("Last updated %s"),
+            strLastUpdate_
+        ));
     }
 }
 

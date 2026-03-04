@@ -61,7 +61,7 @@ StockModel& StockModel::instance()
 
 wxDate StockModel::PURCHASEDATE(const Data& stock_d)
 {
-    return parseDateTime(stock_d.m_purchase_date_);
+    return stock_d.m_purchase_date.getDateTime();
 }
 
 // Original value of Stocks
@@ -100,7 +100,7 @@ bool StockModel::purge_id(int64 id)
 // Return the last price date of a given stock
 wxString StockModel::lastPriceDate(const Data& stock_d)
 {
-    wxString dtStr = stock_d.m_purchase_date_;
+    wxString dtStr = stock_d.m_purchase_date.isoDate();
     StockHistoryModel::DataA sh_a = StockHistoryModel::instance().find(
         StockCol::SYMBOL(stock_d.m_symbol)
     );
@@ -115,12 +115,12 @@ wxString StockModel::lastPriceDate(const Data& stock_d)
 // Return the total stock balance at a given date
 double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate& date)
 {
-    wxString strDate = date.FormatISODate();
     std::map<int64, double> totBalance;
 
-    DataA stock_a = this->instance().find(StockCol::HELDAT(account_d.id()));
-    for (const Data& stock_d : stock_a) {
-        wxString precValueDate, nextValueDate;
+    for (const Data& stock_d : find(
+        StockCol::HELDAT(account_d.m_id)
+    )) {
+        mmDateN precValueDate, nextValueDate;
         StockHistoryModel::DataA sh_a = StockHistoryModel::instance().find(
             StockCol::SYMBOL(stock_d.m_symbol)
         );
@@ -138,11 +138,11 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
             // if not found, search for previous and next date
             if (precValue == 0.0 && sh_d.m_date < mmDate(date)) {
                 precValue = sh_d.m_price;
-                precValueDate = sh_d.m_date.isoDate();
+                precValueDate = sh_d.m_date;
             }
             if (sh_d.m_date > mmDate(date)) {
                 nextValue = sh_d.m_price;
-                nextValueDate = sh_d.m_date.isoDate();
+                nextValueDate = sh_d.m_date;
             }
             // end conditions: prec value assigned and price date < requested date
             if (precValue != 0.0 && sh_d.m_date < mmDate(date))
@@ -152,7 +152,7 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
             //  if previous not found but if the given date is after purchase date, takes purchase price
             if (precValue == 0.0 && date >= PURCHASEDATE(stock_d)) {
                 precValue = stock_d.m_purchase_price;
-                precValueDate = stock_d.m_purchase_date_;
+                precValueDate = stock_d.m_purchase_date;
             }
             //  if next not found and the accoung is open, takes previous date
             if (nextValue == 0.0 && account_d.is_open()) {
@@ -160,8 +160,8 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
                 nextValueDate = precValueDate;
             }
             if (precValue > 0.0 && nextValue > 0.0 &&
-                precValueDate >= stock_d.m_purchase_date_ &&
-                nextValueDate >= stock_d.m_purchase_date_
+                precValueDate.has_value() && precValueDate.value() >= stock_d.m_purchase_date &&
+                nextValueDate.has_value() && nextValueDate.value() >= stock_d.m_purchase_date
             )
                 valueAtDate = precValue;
         }
@@ -183,7 +183,7 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
             }
         }
 
-        if (linkrecords.empty() && stock_d.m_purchase_date_ <= strDate)
+        if (linkrecords.empty() && stock_d.m_purchase_date <= mmDate(date))
             numShares = stock_d.m_num_shares;
 
         totBalance[stock_d.id()] += numShares * valueAtDate;
@@ -387,7 +387,7 @@ void StockModel::UpdatePosition(StockData* stock_n)
     else {
         wxDateTime purchasedate;
         purchasedate.ParseDateTime(earliest_date) || purchasedate.ParseDate(earliest_date);
-        stock_n->m_purchase_date_ = purchasedate.FormatISODate();
+        stock_n->m_purchase_date  = mmDate(purchasedate);
         stock_n->m_purchase_price = avg_share_price;
         stock_n->m_num_shares     = total_shares;
         stock_n->m_purchase_value = total_initial_value;

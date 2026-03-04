@@ -491,7 +491,7 @@ void StockDialog::OnSave(wxCommandEvent & /*event*/)
     m_stock_n->m_name           = stockName;
     m_stock_n->m_symbol         = stockSymbol;
     m_stock_n->m_num_shares     = numShares;
-    m_stock_n->m_purchase_date_ = pdate.isoDate();
+    m_stock_n->m_purchase_date  = pdate;
     m_stock_n->m_purchase_price = initPrice;
     m_stock_n->m_current_price  = currentPrice;
     m_stock_n->m_purchase_value = initValue;
