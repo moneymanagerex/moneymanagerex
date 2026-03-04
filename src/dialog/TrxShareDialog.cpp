@@ -86,12 +86,12 @@ TrxShareDialog::TrxShareDialog(
             m_share_entry = TrxShareModel::instance().unsafe_get_trx_share_n(
                 m_translink_entry->CHECKINGACCOUNTID
             );
-            if (m_share_entry->SHARELOT.IsEmpty())
+            if (m_share_entry->m_lot.IsEmpty())
                 // FIXME: m_share_entry is changed but not saved
-                m_share_entry->SHARELOT = m_stock_n->m_id.ToString();
+                m_share_entry->m_lot = m_stock_n->m_id.ToString();
 
             for (const auto& tp_d: TrxSplitModel::instance().find(
-                TrxSplitCol::TRANSID(m_share_entry->SHAREINFOID)
+                TrxSplitCol::TRANSID(m_share_entry->m_id)
             )) {
                 wxArrayInt64 tag_id_a;
                 for (const auto& gl_d : TagLinkModel::instance().find(
@@ -165,8 +165,8 @@ void TrxShareDialog::DataToControls()
 
     TrxLinkModel::DataA translink_list = TrxLinkModel::TranslinkList<StockModel>(m_stock_n->m_id);
 
-    if (translink_list.empty())
-    {   // Set up the transaction as the first entry.
+    if (translink_list.empty()) {
+        // Set up the transaction as the first entry.
         int precision = m_stock_n->m_num_shares == floor(m_stock_n->m_num_shares) ? 0 : PrefModel::instance().getSharePrecision();
         m_share_num_ctrl->SetValue(m_stock_n->m_num_shares, precision);
         m_share_price_ctrl->SetValue(m_stock_n->m_purchase_price, PrefModel::instance().getSharePrecision());
@@ -176,22 +176,20 @@ void TrxShareDialog::DataToControls()
         m_transaction_panel->SetTransactionValue(GetAmount(m_stock_n->m_num_shares, m_stock_n->m_purchase_price
                 , m_stock_n->m_commission), true);
     }
-    else
-    {
-        if (m_share_entry)
-        {
-            int precision = m_share_entry->SHARENUMBER == floor(m_share_entry->SHARENUMBER) ? 0 : PrefModel::instance().getSharePrecision();
-            m_share_num_ctrl->SetValue(std::abs(m_share_entry->SHARENUMBER), precision);
-            m_share_price_ctrl->SetValue(m_share_entry->SHAREPRICE, PrefModel::instance().getSharePrecision());
-            m_share_commission_ctrl->SetValue(m_share_entry->SHARECOMMISSION, PrefModel::instance().getSharePrecision());
-            m_share_lot_ctrl->SetValue(m_share_entry->SHARELOT);
+    else {
+        if (m_share_entry) {
+            int precision = m_share_entry->m_number == floor(m_share_entry->m_number) ? 0 : PrefModel::instance().getSharePrecision();
+            m_share_num_ctrl->SetValue(std::abs(m_share_entry->m_number), precision);
+            m_share_price_ctrl->SetValue(m_share_entry->m_price, PrefModel::instance().getSharePrecision());
+            m_share_commission_ctrl->SetValue(m_share_entry->m_commission, PrefModel::instance().getSharePrecision());
+            m_share_lot_ctrl->SetValue(m_share_entry->m_lot);
 
             if (m_translink_entry) {
                 const TrxData* trx_n = TrxModel::instance().get_id_data_n(m_translink_entry->CHECKINGACCOUNTID);
                 if (trx_n) {
                     m_transaction_panel->TransactionDate(TrxModel::getTransDateTime(*trx_n));
-                    m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->SHARENUMBER)
-                        , m_share_entry->SHAREPRICE, m_share_entry->SHARECOMMISSION), true);
+                    m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->m_number)
+                        , m_share_entry->m_price, m_share_entry->m_commission), true);
                     m_transaction_panel->SetTransactionAccount(AccountModel::instance().get_id_name(trx_n->m_account_id));
                     m_transaction_panel->SetTransactionStatus(TrxModel::status_id(*trx_n));
                     m_transaction_panel->SetTransactionPayee(trx_n->m_payee_id_n);

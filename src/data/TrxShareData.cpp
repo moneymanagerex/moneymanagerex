@@ -16,18 +16,15 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-// This is only sample code re-used from "table/TrxShareTable.cpp".
-
 #include "TrxShareData.h"
 
-TrxShareData::TrxShareData()
+TrxShareData::TrxShareData() :
+    m_id(-1),
+    m_trx_id(-1),
+    m_number(0.0),
+    m_price(0.0),
+    m_commission(0.0)
 {
-    SHAREINFOID = -1;
-    CHECKINGACCOUNTID = -1;
-    SHARENUMBER = 0.0;
-    SHAREPRICE = 0.0;
-    SHARECOMMISSION = 0.0;
 }
 
 // Convert TrxShareData to TrxShareRow
@@ -35,12 +32,12 @@ TrxShareRow TrxShareData::to_row() const
 {
     TrxShareRow row;
 
-    row.SHAREINFOID = SHAREINFOID;
-    row.CHECKINGACCOUNTID = CHECKINGACCOUNTID;
-    row.SHARENUMBER = SHARENUMBER;
-    row.SHAREPRICE = SHAREPRICE;
-    row.SHARECOMMISSION = SHARECOMMISSION;
-    row.SHARELOT = SHARELOT;
+    row.SHAREINFOID       = m_id;
+    row.CHECKINGACCOUNTID = m_trx_id;
+    row.SHARENUMBER       = m_number;
+    row.SHAREPRICE        = m_price;
+    row.SHARECOMMISSION   = m_commission;
+    row.SHARELOT          = m_lot;
 
     return row;
 }
@@ -48,24 +45,24 @@ TrxShareRow TrxShareData::to_row() const
 // Convert TrxShareRow to TrxShareData
 TrxShareData& TrxShareData::from_row(const TrxShareRow& row)
 {
-    SHAREINFOID = row.SHAREINFOID; // int64
-    CHECKINGACCOUNTID = row.CHECKINGACCOUNTID; // int64
-    SHARENUMBER = row.SHARENUMBER; // double
-    SHAREPRICE = row.SHAREPRICE; // double
-    SHARECOMMISSION = row.SHARECOMMISSION; // double
-    SHARELOT = row.SHARELOT; // wxString
+    m_id         = row.SHAREINFOID;       // int64
+    m_trx_id     = row.CHECKINGACCOUNTID; // int64
+    m_number     = row.SHARENUMBER;       // double
+    m_price      = row.SHAREPRICE;        // double
+    m_commission = row.SHARECOMMISSION;   // double
+    m_lot        = row.SHARELOT;          // wxString
 
     return *this;
 }
 
 bool TrxShareData::equals(const TrxShareData* other) const
 {
-    if ( SHAREINFOID != other->SHAREINFOID) return false;
-    if ( CHECKINGACCOUNTID != other->CHECKINGACCOUNTID) return false;
-    if ( SHARENUMBER != other->SHARENUMBER) return false;
-    if ( SHAREPRICE != other->SHAREPRICE) return false;
-    if ( SHARECOMMISSION != other->SHARECOMMISSION) return false;
-    if (!SHARELOT.IsSameAs(other->SHARELOT)) return false;
+    if ( m_id         != other->m_id)         return false;
+    if ( m_trx_id     != other->m_trx_id)     return false;
+    if ( m_number     != other->m_number)     return false;
+    if ( m_price      != other->m_price)      return false;
+    if ( m_commission != other->m_commission) return false;
+    if (!m_lot.IsSameAs( other->m_lot))       return false;
 
     return true;
 }

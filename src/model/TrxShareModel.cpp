@@ -50,7 +50,7 @@ TrxShareModel& TrxShareModel::instance()
 int64 TrxShareModel::find_trx_share_id(const int64 trx_id)
 {
     DataA ts_a = find(TrxShareCol::CHECKINGACCOUNTID(trx_id));
-    return !ts_a.empty() ? ts_a.at(0).SHAREINFOID : -1;
+    return !ts_a.empty() ? ts_a.at(0).m_id : -1;
 }
 
 TrxShareData* TrxShareModel::unsafe_get_trx_share_n(const int64 trx_id)
@@ -78,14 +78,14 @@ void TrxShareModel::ShareEntry(
     }
     else {
         new_ts_d = Data();
-        new_ts_d.CHECKINGACCOUNTID = trx_id;
+        new_ts_d.m_trx_id = trx_id;
         save_timestamp = true;
     }
 
-    new_ts_d.SHARENUMBER     = share_number;
-    new_ts_d.SHAREPRICE      = share_price;
-    new_ts_d.SHARECOMMISSION = share_commission;
-    new_ts_d.SHARELOT        = share_lot;
+    new_ts_d.m_number     = share_number;
+    new_ts_d.m_price      = share_price;
+    new_ts_d.m_commission = share_commission;
+    new_ts_d.m_lot        = share_lot;
     TrxShareModel::instance().save_data_n(new_ts_d);
     TrxSplitModel::instance().update(commission_splits, new_ts_d.id());
     if (save_timestamp || !new_ts_d.equals(&old_ts_d))

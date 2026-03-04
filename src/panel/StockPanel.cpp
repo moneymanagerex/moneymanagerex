@@ -307,7 +307,7 @@ void StockPanel::LoadStockTransactions(wxListCtrl* listCtrl, wxString symbol, in
     int row = 0;
     for (const auto& trx_d : trx_a) {
         auto* ts_n = TrxShareModel::instance().unsafe_get_trx_share_n(trx_d.m_id);
-        if (!ts_n || (ts_n->SHARENUMBER <= 0 && ts_n->SHAREPRICE <= 0))
+        if (!ts_n || (ts_n->m_number <= 0 && ts_n->m_price <= 0))
             continue;
 
         long index = listCtrl->InsertItem(row++, "");
@@ -324,14 +324,14 @@ void StockPanel::FillListRow(
     const TrxShareData& ts_d
 ) {
     listCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(trx_d.TRANSDATE));
-    listCtrl->SetItem(index, 1, ts_d.SHARELOT);
+    listCtrl->SetItem(index, 1, ts_d.m_lot);
 
-    int precision = ts_d.SHARENUMBER == floor(ts_d.SHARENUMBER) ? 0 : PrefModel::instance().getSharePrecision();
-    listCtrl->SetItem(index, 2, wxString::FromDouble(ts_d.SHARENUMBER, precision));
+    int precision = ts_d.m_number == floor(ts_d.m_number) ? 0 : PrefModel::instance().getSharePrecision();
+    listCtrl->SetItem(index, 2, wxString::FromDouble(ts_d.m_number, precision));
     listCtrl->SetItem(index, 3, wxGetTranslation(TrxModel::trade_type_name(TrxModel::type_id(trx_d.TRANSCODE))));
-    listCtrl->SetItem(index, 4, wxString::FromDouble(ts_d.SHAREPRICE, PrefModel::instance().getSharePrecision()));
-    listCtrl->SetItem(index, 5, wxString::FromDouble(ts_d.SHARECOMMISSION, 2));
-    double total = ts_d.SHARENUMBER * ts_d.SHAREPRICE + ts_d.SHARECOMMISSION;
+    listCtrl->SetItem(index, 4, wxString::FromDouble(ts_d.m_price, PrefModel::instance().getSharePrecision()));
+    listCtrl->SetItem(index, 5, wxString::FromDouble(ts_d.m_commission, 2));
+    double total = ts_d.m_number * ts_d.m_price + ts_d.m_commission;
     listCtrl->SetItem(index, 6, wxString::FromDouble(total, 2));
 }
 

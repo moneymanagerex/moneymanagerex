@@ -168,22 +168,22 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
 
         double numShares = 0.0;
 
-        TrxLinkModel::DataA linkrecords = TrxLinkModel::TranslinkList<StockModel>(stock_d.m_id);
-        for (const auto& linkrecord : linkrecords) {
+        TrxLinkModel::DataA tl_a = TrxLinkModel::TranslinkList<StockModel>(stock_d.m_id);
+        for (const auto& tl_d : tl_a) {
             const TrxData* trx_n = TrxModel::instance().get_id_data_n(
-                linkrecord.CHECKINGACCOUNTID
+                tl_d.CHECKINGACCOUNTID
             );
             if (trx_n->m_id > -1 &&
                 trx_n->DELETEDTIME.IsEmpty() &&
                 mmDate(TrxModel::getTransDateTime(*trx_n)) <= mmDate(date)
             ) {
                 numShares += TrxShareModel::instance().unsafe_get_trx_share_n(
-                    linkrecord.CHECKINGACCOUNTID
-                )->SHARENUMBER;
+                    tl_d.CHECKINGACCOUNTID
+                )->m_number;
             }
         }
 
-        if (linkrecords.empty() && stock_d.m_purchase_date <= mmDate(date))
+        if (tl_a.empty() && stock_d.m_purchase_date <= mmDate(date))
             numShares = stock_d.m_num_shares;
 
         totBalance[stock_d.id()] += numShares * valueAtDate;
@@ -228,19 +228,18 @@ double StockModel::RealGainLoss(const Data& stock_d, bool to_base_curr)
         conv_rate = to_base_curr
             ? CurrencyHistoryModel::getDayRate(currency->m_id, trx_d.TRANSDATE)
             : 1;
-        total_shares += ts_n->SHARENUMBER;
+        total_shares += ts_n->m_number;
 
-        if (ts_n->SHARENUMBER > 0) {
+        if (ts_n->m_number > 0) {
             total_initial_value += (
-                ts_n->SHARENUMBER * ts_n->SHAREPRICE +
-                ts_n->SHARECOMMISSION
+                ts_n->m_number * ts_n->m_price + ts_n->m_commission
             ) * conv_rate;
         }
         else {
-            total_initial_value += ts_n->SHARENUMBER * avg_share_price;
+            total_initial_value += ts_n->m_number * avg_share_price;
             real_gain_loss +=
-                -ts_n->SHARENUMBER * (ts_n->SHAREPRICE * conv_rate - avg_share_price) -
-                ts_n->SHARECOMMISSION * conv_rate;
+                -ts_n->m_number * (ts_n->m_price * conv_rate - avg_share_price) -
+                ts_n->m_commission * conv_rate;
         }
 
         if (total_shares < 0) total_shares = 0;
@@ -283,21 +282,20 @@ double StockModel::UnrealGainLoss(const Data& stock_d, bool to_base_curr)
         );
 
         for (const auto& trx_d : trx_a) {
-            const TrxShareData* share_entry = TrxShareModel::instance().unsafe_get_trx_share_n(
+            const TrxShareData* ts_d = TrxShareModel::instance().unsafe_get_trx_share_n(
                 trx_d.m_id
             );
             conv_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id, trx_d.TRANSDATE);
-            total_shares += share_entry->SHARENUMBER;
+            total_shares += ts_d->m_number;
             if (total_shares < 0) total_shares = 0;
 
-            if (share_entry->SHARENUMBER > 0) {
+            if (ts_d->m_number > 0) {
                 total_initial_value += (
-                    share_entry->SHARENUMBER * share_entry->SHAREPRICE +
-                    share_entry->SHARECOMMISSION
+                    ts_d->m_number * ts_d->m_price + ts_d->m_commission
                 ) * conv_rate;
             }
             else {
-                total_initial_value += share_entry->SHARENUMBER * avg_share_price;
+                total_initial_value += ts_d->m_number * avg_share_price;
             }
 
             if (total_initial_value < 0) total_initial_value = 0;
@@ -359,21 +357,21 @@ void StockModel::UpdatePosition(StockData* stock_n)
             trx_d.m_id
         );
 
-        total_shares += ts_n->SHARENUMBER;
+        total_shares += ts_n->m_number;
         if (total_shares < 0)
             total_shares = 0;
 
-        if (ts_n->SHARENUMBER > 0)
-            total_initial_value += ts_n->SHARENUMBER * ts_n->SHAREPRICE + ts_n->SHARECOMMISSION;
+        if (ts_n->m_number > 0)
+            total_initial_value += ts_n->m_number * ts_n->m_price + ts_n->m_commission;
         else
-            total_initial_value += ts_n->SHARENUMBER * avg_share_price;
+            total_initial_value += ts_n->m_number * avg_share_price;
 
         if (total_initial_value < 0)
             total_initial_value = 0;
         if (total_shares > 0)
             avg_share_price = total_initial_value / total_shares;
 
-        total_commission += ts_n->SHARECOMMISSION;
+        total_commission += ts_n->m_commission;
 
         wxString transdate = trx_d.TRANSDATE;
         if (transdate < earliest_date)
