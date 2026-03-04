@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include "base/types.h"
 #include "util/mmChoice.h"
 
 struct AccountStatus
@@ -229,5 +230,31 @@ public:
 
     mmChoiceId id() const { return m_id; }
     const wxString name() const { return CurrencyType::s_choice_a.get_name(m_id); }
+};
+
+struct UpdateType
+{
+public:
+    enum
+    {
+        e_none = 0,
+        e_online,
+        e_manual,
+        size
+    };
+    static mmChoiceNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    UpdateType(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    UpdateType(int64 value) :
+        UpdateType(static_cast<mmChoiceId>(value.GetValue())) {}
+
+    mmChoiceId id() const { return m_id; }
+    const int64 value() const { return static_cast<int64>(m_id); }
+    const wxString name() const { return UpdateType::s_choice_a.get_name(m_id); }
 };
 

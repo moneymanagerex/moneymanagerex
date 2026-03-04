@@ -18,17 +18,19 @@
 
 #pragma once
 
+#include "util/mmDate.h"
+#include "_DataEnum.h"
 #include "table/_TableBase.h"
 #include "table/CurrencyHistoryTable.h"
 
 // User-friendly representation of a record in table CURRENCYHISTORY_V1.
 struct CurrencyHistoryData
 {
-    int64    m_id;
-    int64    m_currency_id;
-    wxString m_date;
-    double   m_base_conv_rate;
-    int64    m_update_type_;
+    int64  m_id;
+    int64  m_currency_id;     // non-null (> 0) after initialization
+    mmDate m_date;            // non-null
+    double m_base_conv_rate;
+    UpdateType m_update_type; // the numeric value instead of the name is written in database
 
     explicit CurrencyHistoryData();
     explicit CurrencyHistoryData(wxSQLite3ResultSet& q);
@@ -88,7 +90,7 @@ struct CurrencyHistoryData
     {
         bool operator()(const CurrencyHistoryData& x, const CurrencyHistoryData& y)
         {
-            return x.m_update_type_ < y.m_update_type_;
+            return x.m_update_type.id() < y.m_update_type.id();
         }
     };
 };

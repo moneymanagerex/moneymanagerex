@@ -1,5 +1,19 @@
-Model to access database with complex operation
+Model to access database with complex operation. For further instructions, refer to
+   ../table/_readme.txt
+   ../../util/README.md
 
-For further instructions, refer to
-   /src/db/readme.txt
-   /util/readme.txt
+Common prefix symbols (to avoid name collision with methods):
+  prefix e_ : enumeration case
+  prefix m_ : member variable
+  prefix s_ : static
+  prefix w_ : widget member variable (derived from wxWidgets class)
+
+Common suffix symols (to indicate the variable content):
+  suffix _a : array
+  suffix _c : count (int, size_t)
+  suffix _d : *Data
+  suffix _m : ordered map, unordered map, set
+  suffix _n : nullable (e.g., nullptr, nullopt, value out of range)
+  suffix _p : non-null (e.g., pointer which is always non-null)
+  suffix _t : typedef
+

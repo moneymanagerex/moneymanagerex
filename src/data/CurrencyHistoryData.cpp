@@ -18,12 +18,13 @@
 
 #include "CurrencyHistoryData.h"
 
-CurrencyHistoryData::CurrencyHistoryData()
+CurrencyHistoryData::CurrencyHistoryData() :
+    m_id(-1),
+    m_currency_id(-1),
+    m_date(mmDate::today()),
+    m_base_conv_rate(0.0),
+    m_update_type(UpdateType())
 {
-    m_id             = -1;
-    m_currency_id    = -1;
-    m_base_conv_rate = 0.0;
-    m_update_type_   = -1;
 }
 
 // Convert CurrencyHistoryData to CurrencyHistoryRow
@@ -33,9 +34,9 @@ CurrencyHistoryRow CurrencyHistoryData::to_row() const
 
     row.CURRHISTID  = m_id;
     row.CURRENCYID  = m_currency_id;
-    row.CURRDATE    = m_date;
+    row.CURRDATE    = m_date.isoDate();
     row.CURRVALUE   = m_base_conv_rate;
-    row.CURRUPDTYPE = m_update_type_;
+    row.CURRUPDTYPE = m_update_type.value();
 
     return row;
 }
@@ -43,22 +44,22 @@ CurrencyHistoryRow CurrencyHistoryData::to_row() const
 // Convert CurrencyHistoryRow to CurrencyHistoryData
 CurrencyHistoryData& CurrencyHistoryData::from_row(const CurrencyHistoryRow& row)
 {
-    m_id             = row.CURRHISTID;  // int64
-    m_currency_id    = row.CURRENCYID;  // int64
-    m_date           = row.CURRDATE;    // wxString
-    m_base_conv_rate = row.CURRVALUE;   // double
-    m_update_type_   = row.CURRUPDTYPE; // int64
+    m_id             = row.CURRHISTID;              // int64
+    m_currency_id    = row.CURRENCYID;              // int64
+    m_date           = mmDate(row.CURRDATE);        // wxString
+    m_base_conv_rate = row.CURRVALUE;               // double
+    m_update_type    = UpdateType(row.CURRUPDTYPE); // int64
 
     return *this;
 }
 
 bool CurrencyHistoryData::equals(const CurrencyHistoryData* other) const
 {
-    if ( m_id != other->m_id) return false;
-    if ( m_currency_id != other->m_currency_id) return false;
-    if (!m_date.IsSameAs(other->m_date)) return false;
-    if ( m_base_conv_rate != other->m_base_conv_rate) return false;
-    if ( m_update_type_ != other->m_update_type_) return false;
+    if ( m_id               != other->m_id)               return false;
+    if ( m_currency_id      != other->m_currency_id)      return false;
+    if ( m_date             != other->m_date)             return false;
+    if ( m_base_conv_rate   != other->m_base_conv_rate)   return false;
+    if ( m_update_type.id() != other->m_update_type.id()) return false;
 
     return true;
 }
