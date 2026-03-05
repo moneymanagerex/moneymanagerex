@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include "base/types.h"
 #include "util/mmChoice.h"
 
 struct AccountStatus
@@ -229,5 +230,64 @@ public:
 
     mmChoiceId id() const { return m_id; }
     const wxString name() const { return CurrencyType::s_choice_a.get_name(m_id); }
+};
+
+struct RefTypeN
+{
+public:
+    enum
+    {
+        e_trx = 0,
+        e_stock,
+        e_asset,
+        e_account,
+        e_sched,
+        e_payee,
+        e_trx_split,
+        e_sched_split,
+        size
+    };
+    static mmChoiceNameA s_choice_a;
+
+private:
+    mmChoiceId m_id_n;
+
+public:
+    RefTypeN(mmChoiceId id_n = s_choice_a.default_id_n()) :
+        m_id_n(s_choice_a.valid_id_n(id_n)) {}
+    RefTypeN(const wxString& name) :
+        m_id_n(RefTypeN::s_choice_a.find_name_n(name)) {}
+
+    bool has_value() const { return m_id_n >= 0; }
+    mmChoiceId id_n() const { return m_id_n; }
+    const wxString name_n() const {
+        return has_value() ? RefTypeN::s_choice_a.get_name(m_id_n) : "";
+    }
+};
+
+struct UpdateType
+{
+public:
+    enum
+    {
+        e_none = 0,
+        e_online,
+        e_manual,
+        size
+    };
+    static mmChoiceNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    UpdateType(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    UpdateType(int64 value) :
+        UpdateType(static_cast<mmChoiceId>(value.GetValue())) {}
+
+    mmChoiceId id() const { return m_id; }
+    const int64 value() const { return static_cast<int64>(m_id); }
+    const wxString name() const { return UpdateType::s_choice_a.get_name(m_id); }
 };
 

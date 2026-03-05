@@ -302,7 +302,7 @@ void AssetDialog::CreateControls()
     transaction_frame_sizer->Add(w_transaction_panel, g_flagsV);
     if (m_transfer_entry && m_checking_entry) {
         w_transaction_panel->CheckingType(
-            TrxLinkModel::type_checking(m_checking_entry->TOACCOUNTID)
+            TrxLinkModel::type_checking(m_checking_entry->m_to_account_id_n)
         );
     }
     else if (m_asset_n) {
@@ -486,11 +486,11 @@ void AssetDialog::SetTransactionDate()
 void AssetDialog::CreateAssetAccount()
 {
     AccountData new_account_d = AccountData();
-    new_account_d.m_name          = m_asset_n->m_type.name();
-    new_account_d.m_type_         = NavigatorTypes::instance().getAssetAccountStr();
-    new_account_d.m_open_balance  = 0;
-    new_account_d.m_open_date     = m_asset_n->m_start_date;
-    new_account_d.m_currency_id_p = CurrencyModel::GetBaseCurrency()->m_id;
+    new_account_d.m_name         = m_asset_n->m_type.name();
+    new_account_d.m_type_        = NavigatorTypes::instance().getAssetAccountStr();
+    new_account_d.m_open_balance = 0;
+    new_account_d.m_open_date    = m_asset_n->m_start_date;
+    new_account_d.m_currency_id  = CurrencyModel::GetBaseCurrency()->m_id;
     AccountModel::instance().add_data_n(new_account_d);
 
     AssetDialog dlg(this, m_asset_n, true);

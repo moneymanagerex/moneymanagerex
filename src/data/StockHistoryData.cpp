@@ -18,11 +18,12 @@
 
 #include "StockHistoryData.h"
 
-StockHistoryData::StockHistoryData()
+StockHistoryData::StockHistoryData() :
+    m_id(-1),
+    m_date(mmDate::today()),
+    m_price(0.0),
+    m_update_type(UpdateType())
 {
-    m_id          = -1;
-    m_price       = 0.0;
-    m_update_type_ = -1;
 }
 
 // Convert StockHistoryData to StockHistoryRow
@@ -32,9 +33,9 @@ StockHistoryRow StockHistoryData::to_row() const
 
     row.HISTID  = m_id;
     row.SYMBOL  = m_symbol;
-    row.DATE    = m_date_;
+    row.DATE    = m_date.isoDate();
     row.VALUE   = m_price;
-    row.UPDTYPE = m_update_type_;
+    row.UPDTYPE = m_update_type.value();
 
     return row;
 }
@@ -42,22 +43,22 @@ StockHistoryRow StockHistoryData::to_row() const
 // Convert StockHistoryRow to StockHistoryData
 StockHistoryData& StockHistoryData::from_row(const StockHistoryRow& row)
 {
-    m_id          = row.HISTID;   // int64
-    m_symbol      = row.SYMBOL;   // wxString
-    m_date_       = row.DATE;     // wxString
-    m_price       = row.VALUE;    // double
-    m_update_type_ = row.UPDTYPE; // int64
+    m_id          = row.HISTID;              // int64
+    m_symbol      = row.SYMBOL;              // wxString
+    m_date        = mmDate(row.DATE);        // wxString
+    m_price       = row.VALUE;               // double
+    m_update_type = UpdateType(row.UPDTYPE); // int64
 
     return *this;
 }
 
 bool StockHistoryData::equals(const StockHistoryData* other) const
 {
-    if ( m_id != other->m_id) return false;
-    if (!m_symbol.IsSameAs(other->m_symbol)) return false;
-    if (!m_date_.IsSameAs(other->m_date_)) return false;
-    if ( m_price != other->m_price) return false;
-    if ( m_update_type_ != other->m_update_type_) return false;
+    if ( m_id               != other->m_id)               return false;
+    if (!m_symbol.IsSameAs(    other->m_symbol))          return false;
+    if ( m_date             != other->m_date)             return false;
+    if ( m_price            != other->m_price)            return false;
+    if ( m_update_type.id() != other->m_update_type.id()) return false;
 
     return true;
 }

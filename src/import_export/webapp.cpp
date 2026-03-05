@@ -561,48 +561,47 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         wxMessageBox(msgStr, _t("Invalid Date"), wxICON_ERROR);
         trx_datetime = wxDate::Today();
     }
+
     new_trx_d.TRANSDATE         = trx_datetime.FormatISOCombined();
     new_trx_d.STATUS            = TrStatus;
     new_trx_d.TRANSCODE         = WebAppTrans.Type;
-    new_trx_d.TRANSAMOUNT       = WebAppTrans.Amount;
-    new_trx_d.ACCOUNTID         = AccountID;
-    new_trx_d.TOACCOUNTID       = ToAccountID;
-    new_trx_d.PAYEEID           = payeeID;
-    new_trx_d.CATEGID           = categoryID;
-    new_trx_d.TRANSACTIONNUMBER = "";
-    new_trx_d.NOTES             = WebAppTrans.Notes;
-    new_trx_d.FOLLOWUPID        = -1;
-    new_trx_d.TOTRANSAMOUNT     = WebAppTrans.Amount;
-    new_trx_d.COLOR             = -1;
+    new_trx_d.m_amount          = WebAppTrans.Amount;
+    new_trx_d.m_account_id      = AccountID;
+    new_trx_d.m_to_account_id_n = ToAccountID;
+    new_trx_d.m_payee_id_n      = payeeID;
+    new_trx_d.m_category_id_n   = categoryID;
+    new_trx_d.m_number          = "";
+    new_trx_d.m_notes           = WebAppTrans.Notes;
+    new_trx_d.m_followup_id     = -1;
+    new_trx_d.m_to_amount       = WebAppTrans.Amount;
+    new_trx_d.m_color           = -1;
     TrxModel::instance().add_data_n(new_trx_d);
     DeskNewTrID = new_trx_d.id();
 
-    if (DeskNewTrID > 0)
-    {
-        if (!WebAppTrans.Attachments.IsEmpty())
-        {
-            const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
-            if (AttachmentsFolder == wxEmptyString || !wxDirExists(AttachmentsFolder))
-            {
+    if (DeskNewTrID > 0) {
+        if (!WebAppTrans.Attachments.IsEmpty()) {
+            const wxString AttachmentsFolder = mmex::getPathAttachment(
+                mmAttachmentManage::InfotablePathSetting()
+            );
+            if (AttachmentsFolder == wxEmptyString || !wxDirExists(AttachmentsFolder)) {
                 TrxModel::instance().purge_id(DeskNewTrID);
                 DeskNewTrID = -1;
 
-                wxString msgStr = wxString() << _t("Unable to download attachments from the WebApp.") << "\n"
+                wxString msgStr = wxString()
+                    << _t("Unable to download attachments from the WebApp.") << "\n"
                     << _t("Attachments folder not set or unavailable.") << "\n" << "\n"
                     << _t("Transaction not downloaded:") << "\n"
                     << _t("Please fix the attachments folder or delete the attachments from the WebApp.") << "\n";
                 wxMessageBox(msgStr, _t("Attachment folder error"), wxICON_ERROR);
             }
-            else
-            {
+            else {
                 int AttachmentNr = 0;
                 wxString WebAppAttachmentName, DesktopAttachmentName;
                 wxArrayString AttachmentsArray;
                 wxStringTokenizer tkz1(WebAppTrans.Attachments, (';'), wxTOKEN_RET_EMPTY_ALL);
                 while (tkz1.HasMoreTokens())
                     {AttachmentsArray.Add(tkz1.GetNextToken());}
-                for (size_t i = 0; i < AttachmentsArray.GetCount(); i++)
-                {
+                for (size_t i = 0; i < AttachmentsArray.GetCount(); i++) {
                     AttachmentNr++;
                     WebAppAttachmentName = AttachmentsArray.Item(i);
                     wxString CurlError = "";

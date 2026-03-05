@@ -1,5 +1,4 @@
-Model to access database with complex operation
+Model to access database with complex operation. For further instructions, refer to
+  ../table/_readme.txt
+  ../../util/README.md
 
-For further instructions, refer to
-   /src/db/readme.txt
-   /util/readme.txt

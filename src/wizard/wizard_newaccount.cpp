@@ -64,12 +64,12 @@ void mmAddAccountWizard::RunIt()
     if (RunWizard(page1)) {
         // Success
         AccountData account_d = AccountData();
-        account_d.m_name          = accountName_;
-        account_d.m_type_         = NavigatorTypes::instance().type_name(accountType_);
-        account_d.m_currency_id_p = currencyID_;
-        account_d.m_open_date     = mmDate::today();
-        account_d.m_open_balance  = 0;
-        account_d.m_favorite      = AccountFavorite(true);
+        account_d.m_name         = accountName_;
+        account_d.m_type_        = NavigatorTypes::instance().type_name(accountType_);
+        account_d.m_currency_id  = currencyID_;
+        account_d.m_open_date    = mmDate::today();
+        account_d.m_open_balance = 0;
+        account_d.m_favorite     = AccountFavorite(true);
         AccountModel::instance().save_data_n(account_d);
         acctID_ = account_d.m_id;
     }

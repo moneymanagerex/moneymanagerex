@@ -180,7 +180,7 @@ wxString StockList::OnGetItemText(long item, long col_nr) const
     case LIST_ID_ID:
         return wxString::Format("%lld", m_stocks[item].m_id).Trim();
     case LIST_ID_DATE:
-        return mmGetDateTimeForDisplay(m_stocks[item].m_purchase_date_);
+        return mmGetDateTimeForDisplay(m_stocks[item].m_purchase_date.isoDate());
     case LIST_ID_NAME:
         return m_stocks[item].m_name;
     case LIST_ID_SYMBOL:
@@ -222,9 +222,9 @@ double StockList::GetGainLoss(long item) const
     return getGainLoss(m_stocks[item]);
 }
 
-double StockList::getGainLoss(const StockData& stock)
+double StockList::getGainLoss(const StockData& stock_d)
 {
-    return StockModel::CurrentValue(stock) - stock.m_purchase_value;
+    return StockModel::CurrentValue(stock_d) - stock_d.m_purchase_value;
 }
 
 double StockList::GetRealGainLoss(long item) const

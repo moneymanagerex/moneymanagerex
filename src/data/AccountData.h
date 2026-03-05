@@ -29,7 +29,7 @@ struct AccountData
     int64           m_id;
     wxString        m_name;
     wxString        m_type_;              // TODO: restore account types
-    int64           m_currency_id_p;      // non-null (> 0) after initialization
+    int64           m_currency_id;        // non-null (> 0) after initialization
     AccountStatus   m_status;
     AccountFavorite m_favorite;
     wxString        m_num;
@@ -188,7 +188,7 @@ struct AccountData
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
-            return x.m_currency_id_p < y.m_currency_id_p;
+            return x.m_currency_id < y.m_currency_id;
         }
     };
 

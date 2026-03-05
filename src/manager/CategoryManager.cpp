@@ -551,15 +551,15 @@ void CategoryManager::mmDoDeleteSelectedCategory()
 
             // TODO: do not delete the same trx id multiple times
             for (auto& tp_d : deleted_tp_a) {
-                TrxModel::instance().purge_id(tp_d.m_trx_id_p);
-                mmAttachmentManage::DeleteAllAttachments(RefType, tp_d.m_trx_id_p);
-                FieldValueModel::DeleteAllData(RefType, tp_d.m_trx_id_p);
+                TrxModel::instance().purge_id(tp_d.m_trx_id);
+                mmAttachmentManage::DeleteAllAttachments(RefType, tp_d.m_trx_id);
+                FieldValueModel::DeleteAllData(RefType, tp_d.m_trx_id);
             }
 
             for (auto& trx_d : deleted_trx_a) {
-                TrxModel::instance().purge_id(trx_d.TRANSID);
-                mmAttachmentManage::DeleteAllAttachments(RefType, trx_d.TRANSID);
-                FieldValueModel::DeleteAllData(RefType, trx_d.TRANSID);
+                TrxModel::instance().purge_id(trx_d.m_id);
+                mmAttachmentManage::DeleteAllAttachments(RefType, trx_d.m_id);
+                FieldValueModel::DeleteAllData(RefType, trx_d.m_id);
             }
 
             TrxModel::instance().db_release_savepoint();

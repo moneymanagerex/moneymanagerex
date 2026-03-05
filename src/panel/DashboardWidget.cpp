@@ -105,7 +105,7 @@ const wxString htmlWidgetStocks::getHTMLText()
         if (!account_d.is_open())
             continue;
 
-        double conv_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id_p, today);
+        double conv_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id, today);
         auto inv_bal = AccountModel::instance().get_data_investment_balance(account_d);
         double cash_bal = AccountModel::instance().get_data_balance(account_d);
 
@@ -230,20 +230,20 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
         bool withdrawal = TrxModel::type_id(trx) == TrxModel::TYPE_ID_WITHDRAWAL;
         double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get_id_data_n(trx.ACCOUNTID)->m_currency_id_p,
+            AccountModel::instance().get_id_data_n(trx.m_account_id)->m_currency_id,
             trx.TRANSDATE
         );
 
-        if (const auto it = split.find(trx.TRANSID); it == split.end()) {
-            int64 category = trx.CATEGID;
+        if (const auto it = split.find(trx.m_id); it == split.end()) {
+            int64 category = trx.m_category_id_n;
             if (withdrawal)
-                stat[category] -= trx.TRANSAMOUNT * convRate;
+                stat[category] -= trx.m_amount * convRate;
             else
-                stat[category] += trx.TRANSAMOUNT * convRate;
+                stat[category] += trx.m_amount * convRate;
         }
         else {
             for (const auto& tp_d : it->second) {
-                int64 category = tp_d.m_category_id_p;
+                int64 category = tp_d.m_category_id;
                 double val = tp_d.m_amount * convRate * (withdrawal ? -1 : 1);
                 stat[category] += val;
             }
@@ -297,18 +297,20 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
     //                    days, payee, description, amount, account, notes
     std::vector< std::tuple<int, wxString, wxString, double, const AccountData*, wxString> > bd_days;
-    for (const auto& entry : SchedModel::instance().find_all(SchedCol::COL_ID_TRANSDATE)) {
-        int daysPayment = SchedModel::getTransDateTime(entry)
+    for (const auto& sched_d : SchedModel::instance().find_all(
+        SchedCol::COL_ID_TRANSDATE
+    )) {
+        int daysPayment = SchedModel::getTransDateTime(sched_d)
             .Subtract(today).GetDays();
         if (daysPayment > 14)
             break; // Done searching for all to include
 
         // ignore invalid entries
         SchedModel::RepeatNum rn;
-        if (!SchedModel::decode_repeat_num(entry, rn))
+        if (!SchedModel::decode_repeat_num(sched_d, rn))
             continue;
 
-        int daysOverdue = SchedModel::NEXTOCCURRENCEDATE(entry)
+        int daysOverdue = SchedModel::NEXTOCCURRENCEDATE(sched_d)
             .Subtract(today).GetDays();
         wxString daysRemainingStr = (daysPayment > 0
             ? wxString::Format(wxPLURAL("%d day", "%d days", daysPayment), daysPayment)
@@ -317,24 +319,24 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
             daysRemainingStr = "*" + wxString::Format(wxPLURAL("%d day overdue", "%d days overdue", std::abs(daysOverdue)), std::abs(daysOverdue));
 
         wxString accountStr = "";
-        const auto *account = AccountModel::instance().get_id_data_n(entry.ACCOUNTID);
+        const auto *account = AccountModel::instance().get_id_data_n(sched_d.m_account_id);
         if (account) accountStr = account->m_name;
 
         wxString payeeStr = "";
-        if (SchedModel::type_id(entry) == TrxModel::TYPE_ID_TRANSFER) {
-            const AccountData *to_account = AccountModel::instance().get_id_data_n(entry.TOACCOUNTID);
+        if (SchedModel::type_id(sched_d) == TrxModel::TYPE_ID_TRANSFER) {
+            const AccountData *to_account = AccountModel::instance().get_id_data_n(sched_d.m_to_account_id_n);
             if (to_account) payeeStr = to_account->m_name;
             payeeStr += " &larr; " + accountStr;
         }
         else {
-            const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(entry.PAYEEID);
+            const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(sched_d.m_payee_id_n);
             payeeStr = accountStr;
-            payeeStr += (SchedModel::type_id(entry) == TrxModel::TYPE_ID_WITHDRAWAL ? " &rarr; " : " &larr; ");
+            payeeStr += (SchedModel::type_id(sched_d) == TrxModel::TYPE_ID_WITHDRAWAL ? " &rarr; " : " &larr; ");
             if (payee_n)
                 payeeStr += payee_n->m_name;
         }
-        double amount = (SchedModel::type_id(entry) == TrxModel::TYPE_ID_WITHDRAWAL ? -entry.TRANSAMOUNT : entry.TRANSAMOUNT);
-        wxString notes = HTMLEncode(entry.NOTES);
+        double amount = (SchedModel::type_id(sched_d) == TrxModel::TYPE_ID_WITHDRAWAL ? -sched_d.m_amount : sched_d.m_amount);
+        wxString notes = HTMLEncode(sched_d.m_notes);
         bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account, notes));
     }
 
@@ -408,15 +410,15 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
             continue;
 
         double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get_id_data_n(pBankTransaction.ACCOUNTID)->m_currency_id_p,
+            AccountModel::instance().get_id_data_n(pBankTransaction.m_account_id)->m_currency_id,
             pBankTransaction.TRANSDATE
         );
 
-        int64 idx = pBankTransaction.ACCOUNTID;
+        int64 idx = pBankTransaction.m_account_id;
         if (TrxModel::type_id(pBankTransaction) == TrxModel::TYPE_ID_DEPOSIT)
-            incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
+            incomeExpensesStats[idx].first += pBankTransaction.m_amount * convRate;
         else
-            incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;
+            incomeExpensesStats[idx].second += pBankTransaction.m_amount * convRate;
     }
 
     for (const auto& account : AccountModel::instance().find_all())
@@ -509,13 +511,13 @@ const wxString htmlWidgetStatistics::getHTMLText()
         if (TrxModel::status_id(trx) == TrxModel::STATUS_ID_FOLLOWUP)
             countFollowUp++;
 
-        accountStats[trx.ACCOUNTID].first += TrxModel::account_recflow(trx, trx.ACCOUNTID);
-        accountStats[trx.ACCOUNTID].second += TrxModel::account_flow(trx, trx.ACCOUNTID);
+        accountStats[trx.m_account_id].first += TrxModel::account_recflow(trx, trx.m_account_id);
+        accountStats[trx.m_account_id].second += TrxModel::account_flow(trx, trx.m_account_id);
 
         if (TrxModel::type_id(trx) == TrxModel::TYPE_ID_TRANSFER)
         {
-            accountStats[trx.TOACCOUNTID].first += TrxModel::account_recflow(trx, trx.TOACCOUNTID);
-            accountStats[trx.TOACCOUNTID].second += TrxModel::account_flow(trx, trx.TOACCOUNTID);
+            accountStats[trx.m_to_account_id_n].first += TrxModel::account_recflow(trx, trx.m_to_account_id_n);
+            accountStats[trx.m_to_account_id_n].second += TrxModel::account_flow(trx, trx.m_to_account_id_n);
         }
     }
 
@@ -703,13 +705,13 @@ void htmlWidgetAccounts::get_account_stats()
 
     for (const auto& trx : all_trans)
     {
-        accountStats_[trx.ACCOUNTID].first += TrxModel::account_recflow(trx, trx.ACCOUNTID);
-        accountStats_[trx.ACCOUNTID].second += TrxModel::account_flow(trx, trx.ACCOUNTID);
+        accountStats_[trx.m_account_id].first += TrxModel::account_recflow(trx, trx.m_account_id);
+        accountStats_[trx.m_account_id].second += TrxModel::account_flow(trx, trx.m_account_id);
 
         if (TrxModel::type_id(trx) == TrxModel::TYPE_ID_TRANSFER)
         {
-            accountStats_[trx.TOACCOUNTID].first += TrxModel::account_recflow(trx, trx.TOACCOUNTID);
-            accountStats_[trx.TOACCOUNTID].second += TrxModel::account_flow(trx, trx.TOACCOUNTID);
+            accountStats_[trx.m_to_account_id_n].first += TrxModel::account_recflow(trx, trx.m_to_account_id_n);
+            accountStats_[trx.m_to_account_id_n].second += TrxModel::account_flow(trx, trx.m_to_account_id_n);
         }
     }
 
@@ -744,7 +746,7 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
     for (const auto& account_d : account_a) {
         const CurrencyData* currency = AccountModel::instance().get_data_currency_p(account_d);
 
-        double currency_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id_p, today);
+        double currency_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id, today);
         double bal = account_d.m_open_balance + accountStats_[account_d.m_id].second; //AccountModel::instance().get_data_balance(account_d);
         double reconciledBal = account_d.m_open_balance + accountStats_[account_d.m_id].first;
         tabBalance += bal * currency_rate;

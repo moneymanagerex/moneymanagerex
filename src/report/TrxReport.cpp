@@ -35,7 +35,7 @@
 
 TrxReport::TrxReport(wxSharedPtr<TrxFilterDialog>& transDialog)
     : ReportBase("Transaction Report")
-    , trans_()
+    , trx_xa()
     , m_transDialog(transDialog)
 {
 }
@@ -162,25 +162,24 @@ table {
     }
 
     // Display the data for each row
-    for (auto& transaction : trans_)
-    {
-        if (!transaction.DELETEDTIME.IsEmpty()) continue;
+    for (auto& trx_xd : trx_xa) {
+        if (!trx_xd.DELETEDTIME.IsEmpty()) continue;
 
         wxString sortLabel = "ALL";
         if (groupBy == TrxFilterDialog::GROUPBY_ACCOUNT)
-            sortLabel = transaction.ACCOUNTNAME;
+            sortLabel = trx_xd.ACCOUNTNAME;
         else if (groupBy == TrxFilterDialog::GROUPBY_PAYEE)
-            sortLabel = transaction.PAYEENAME;
+            sortLabel = trx_xd.PAYEENAME;
         else if (groupBy == TrxFilterDialog::GROUPBY_CATEGORY)
-            sortLabel = transaction.CATEGNAME;
+            sortLabel = trx_xd.CATEGNAME;
         else if (groupBy == TrxFilterDialog::GROUPBY_TYPE)
-            sortLabel = wxGetTranslation(transaction.TRANSCODE);
+            sortLabel = wxGetTranslation(trx_xd.TRANSCODE);
         else if (groupBy == TrxFilterDialog::GROUPBY_DAY)
-            sortLabel = mmGetDateTimeForDisplay(transaction.TRANSDATE);
+            sortLabel = mmGetDateTimeForDisplay(trx_xd.TRANSDATE);
         else if (groupBy == TrxFilterDialog::GROUPBY_MONTH)
-            sortLabel = TrxModel::getTransDateTime(transaction).Format("%Y-%m");
+            sortLabel = TrxModel::getTransDateTime(trx_xd).Format("%Y-%m");
         else if (groupBy == TrxFilterDialog::GROUPBY_YEAR)
-            sortLabel = TrxModel::getTransDateTime(transaction).Format("%Y");
+            sortLabel = TrxModel::getTransDateTime(trx_xd).Format("%Y");
 
         if (sortLabel != lastSortLabel)
         {
@@ -269,10 +268,10 @@ table {
         // If a transfer between two accounts in the list of accounts being reported then we
         // should report both the transfer in and transfer out, i.e. two transactions
         int noOfTrans = 1;
-        if ((TrxModel::type_id(transaction) == TrxModel::TYPE_ID_TRANSFER) &&
+        if ((TrxModel::type_id(trx_xd) == TrxModel::TYPE_ID_TRANSFER) &&
             (allAccounts ||
-                (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.ACCOUNTID) != selected_accounts.end()
-                    && std::find(selected_accounts.begin(), selected_accounts.end(), transaction.TOACCOUNTID) != selected_accounts.end())))
+                (std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_account_id) != selected_accounts.end()
+                    && std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_to_account_id_n) != selected_accounts.end())))
             noOfTrans = 2;
 
         bool is_time_used = PrefModel::instance().UseTransDateTime();
@@ -283,79 +282,79 @@ table {
         {
             hb.startTableRow();
             {
-                /*  if ((TrxModel::type_id(transaction) == TrxModel::TYPE_ID_TRANSFER)
+                /*  if ((TrxModel::type_id(trx_xd) == TrxModel::TYPE_ID_TRANSFER)
                     && m_transDialog->getTypeCheckBox() && */
                 if (showColumnById(TrxFilterDialog::COL_ID))
                 {
-                    hb.addTableCellLink(wxString::Format("trx:%lld", transaction.TRANSID)
-                        , transaction.displayID, true);
+                    hb.addTableCellLink(wxString::Format("trx:%lld", trx_xd.m_id)
+                        , trx_xd.displayID, true);
                 }
                 if (showColumnById(TrxFilterDialog::COL_COLOR))
-                    hb.addColorMarker(getUDColour(transaction.COLOR.GetValue()).GetAsString(), true);
+                    hb.addColorMarker(getUDColour(trx_xd.m_color.GetValue()).GetAsString(), true);
                 if (showColumnById(TrxFilterDialog::COL_DATE))
                 {
                     wxDateTime dt;
-                    dt.ParseFormat(transaction.TRANSDATE, mask) || dt.ParseDate(transaction.TRANSDATE);
+                    dt.ParseFormat(trx_xd.TRANSDATE, mask) || dt.ParseDate(trx_xd.TRANSDATE);
                     hb.addTableCellDate(dt.FormatISODate());
                 }
                 if (showColumnById(TrxFilterDialog::COL_TIME))
-                    hb.addTableCell(mmGetTimeForDisplay(transaction.TRANSDATE));
+                    hb.addTableCell(mmGetTimeForDisplay(trx_xd.TRANSDATE));
                 if (showColumnById(TrxFilterDialog::COL_NUMBER))
-                    hb.addTableCell(transaction.TRANSACTIONNUMBER);
+                    hb.addTableCell(trx_xd.m_number);
                 if (showColumnById(TrxFilterDialog::COL_ACCOUNT))
                 {
-                    hb.addTableCellLink(wxString::Format("trxid:%lld", transaction.TRANSID)
-                        , noOfTrans ? transaction.TOACCOUNTNAME : transaction.ACCOUNTNAME);
+                    hb.addTableCellLink(wxString::Format("trxid:%lld", trx_xd.m_id)
+                        , noOfTrans ? trx_xd.TOACCOUNTNAME : trx_xd.ACCOUNTNAME);
                 }
                 if (showColumnById(TrxFilterDialog::COL_PAYEE))
-                    hb.addTableCell(noOfTrans ? "< " + transaction.ACCOUNTNAME : transaction.PAYEENAME);
+                    hb.addTableCell(noOfTrans ? "< " + trx_xd.ACCOUNTNAME : trx_xd.PAYEENAME);
                 if (showColumnById(TrxFilterDialog::COL_STATUS))
-                    hb.addTableCell(transaction.STATUS, false, true);
+                    hb.addTableCell(trx_xd.STATUS, false, true);
                 if (showColumnById(TrxFilterDialog::COL_CATEGORY))
-                    hb.addTableCell(transaction.CATEGNAME);
+                    hb.addTableCell(trx_xd.CATEGNAME);
                 // Tags
                 if (showColumnById(TrxFilterDialog::COL_TAGS))
-                    hb.addTableCell(transaction.TAGNAMES);
+                    hb.addTableCell(trx_xd.TAGNAMES);
                 if (showColumnById(TrxFilterDialog::COL_TYPE)) {
-                    if (TrxModel::is_foreignAsTransfer(transaction))
-                        hb.addTableCell("< " + wxGetTranslation(transaction.TRANSCODE));
+                    if (TrxModel::is_foreignAsTransfer(trx_xd))
+                        hb.addTableCell("< " + wxGetTranslation(trx_xd.TRANSCODE));
                     else
-                        hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
+                        hb.addTableCell(wxGetTranslation(trx_xd.TRANSCODE));
                 }
 
-                const AccountData* acc = AccountModel::instance().get_id_data_n(transaction.ACCOUNTID);
+                const AccountData* acc = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
 
                 if (acc) {
                     const CurrencyData* curr = AccountModel::instance().get_data_currency_p(*acc);
-                    double flow = TrxModel::account_flow(transaction, acc->m_id);
-                    if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), transaction.ACCOUNTID) == selected_accounts.end())))
+                    double flow = TrxModel::account_flow(trx_xd, acc->m_id);
+                    if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_account_id) == selected_accounts.end())))
                         flow = -flow;
-                    const double convRate = CurrencyHistoryModel::getDayRate(curr->m_id, transaction.TRANSDATE);
+                    const double convRate = CurrencyHistoryModel::getDayRate(curr->m_id, trx_xd.TRANSDATE);
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT)) {
-                        if (TrxModel::status_id(transaction.STATUS) == TrxModel::STATUS_ID_VOID) {
-                            double void_flow = TrxModel::type_id(transaction.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT ? transaction.TRANSAMOUNT : -transaction.TRANSAMOUNT;
+                        if (TrxModel::status_id(trx_xd.STATUS) == TrxModel::STATUS_ID_VOID) {
+                            double void_flow = TrxModel::type_id(trx_xd.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT ? trx_xd.m_amount : -trx_xd.m_amount;
                             hb.addCurrencyCell(void_flow, curr, -1, true);
                         }
-                        else if (transaction.DELETEDTIME.IsEmpty())
+                        else if (trx_xd.DELETEDTIME.IsEmpty())
                             hb.addCurrencyCell(flow, curr);
                     }
                     total[curr->m_id] += flow;
                     grand_total[curr->m_id] += flow;
                     total_in_base_curr[curr->m_id] += flow * convRate;
                     grand_total_in_base_curr[curr->m_id] += flow * convRate;
-                    if (TrxModel::type_id(transaction) != TrxModel::TYPE_ID_TRANSFER)
+                    if (TrxModel::type_id(trx_xd) != TrxModel::TYPE_ID_TRANSFER)
                     {
                         grand_total_extrans[curr->m_id] += flow;
                         grand_total_in_base_curr_extrans[curr->m_id] += flow * convRate;
                     }
                     if (chart > -1 && groupBy == -1)
                     {
-                        values_chart[transaction.TRANSID.ToString()] += (flow * convRate);
+                        values_chart[trx_xd.m_id.ToString()] += (flow * convRate);
                     }
                 }
                 else
                 {
-                    wxFAIL_MSG("account for transaction not found");
+                    wxFAIL_MSG("account for trx_xd not found");
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT))
                         hb.addEmptyTableCell();
                 }
@@ -363,24 +362,24 @@ table {
                 // Exchange Rate
                 if (showColumnById(TrxFilterDialog::COL_RATE))
                 {
-                    if ((TrxModel::type_id(transaction) == TrxModel::TYPE_ID_TRANSFER)
-                        && (transaction.TRANSAMOUNT != transaction.TOTRANSAMOUNT))
-                        hb.addMoneyCell(transaction.TOTRANSAMOUNT / transaction.TRANSAMOUNT);
+                    if ((TrxModel::type_id(trx_xd) == TrxModel::TYPE_ID_TRANSFER)
+                        && (trx_xd.m_amount != trx_xd.m_to_amount))
+                        hb.addMoneyCell(trx_xd.m_to_amount / trx_xd.m_amount);
                     else
                         hb.addEmptyTableCell();
                 }
 
                 // Attachments
                 wxString AttachmentsLink = "";
-                if (AttachmentModel::instance().NrAttachments(AttRefType, transaction.TRANSID))
+                if (AttachmentModel::instance().NrAttachments(AttRefType, trx_xd.m_id))
                 {
                     AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
-                        AttRefType, transaction.TRANSID, mmAttachmentManage::GetAttachmentNoteSign());
+                        AttRefType, trx_xd.m_id, mmAttachmentManage::GetAttachmentNoteSign());
                 }
 
                 // Notes
                 if (showColumnById(TrxFilterDialog::COL_NOTES))
-                    hb.addTableCell(AttachmentsLink + transaction.NOTES);
+                    hb.addTableCell(AttachmentsLink + trx_xd.m_notes);
 
                 // Custom Fields
 
@@ -388,16 +387,16 @@ table {
                 for (int i = 0; i < 5; i++) {
                     wxString field = udfc_fields[i+1];
                     udfc_id[i] = FieldModel::getUDFCID(refType, field);
-                    transaction.UDFC_value[i] = -DBL_MAX;
+                    trx_xd.UDFC_value[i] = -DBL_MAX;
                 }
 
-                if (custom_fields_data.find(transaction.TRANSID) != custom_fields_data.end()) {
-                    const auto& udfcs = custom_fields_data.at(transaction.TRANSID);
+                if (custom_fields_data.find(trx_xd.m_id) != custom_fields_data.end()) {
+                    const auto& udfcs = custom_fields_data.at(trx_xd.m_id);
                     for (const auto& udfc : udfcs) {
                         for (int i = 0; i < 5; i++) {
                             if (udfc.FIELDID == udfc_id[i]) {
-                                transaction.UDFC_content[i] = udfc.CONTENT;
-                                transaction.UDFC_value[i] = cleanseNumberStringToDouble(
+                                trx_xd.UDFC_content[i] = udfc.CONTENT;
+                                trx_xd.UDFC_value[i] = cleanseNumberStringToDouble(
                                     udfc.CONTENT, udfc_scale[i] > 0
                                 );
                                 break;
@@ -410,8 +409,8 @@ table {
                     if (showColumnById(TrxFilterDialog::COL_UDFC01 + i))
                         UDFCFormatHelper(
                             udfc_type[i], udfc_id[i],
-                            transaction.UDFC_content[i],
-                            transaction.UDFC_value[i],
+                            trx_xd.UDFC_content[i],
+                            trx_xd.UDFC_value[i],
                             udfc_scale[i]
                         );
                 }
@@ -557,77 +556,80 @@ table {
 
 void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
 {
-    trans_.clear();
+    trx_xa.clear();
     const auto splits = TrxSplitModel::instance().get_all_id();
     const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
-    const wxString splitRefType = TrxSplitModel::refTypeName;
-    for (const auto& tran : TrxModel::instance().find_all()) {
-        TrxModel::Full_Data full_tran(tran, splits, tags);
-
-        full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.ACCOUNTID);
-        if (full_tran.has_split()) {
-            TrxModel::Full_Data single_tran = full_tran;
-            single_tran.TRANSAMOUNT = 0;
+    for (const auto& trx_d : TrxModel::instance().find_all()) {
+        TrxModel::Full_Data trx_xd(trx_d, splits, tags);
+        trx_xd.PAYEENAME = trx_xd.real_payee_name(trx_xd.m_account_id);
+        if (trx_xd.has_split()) {
+            TrxModel::Full_Data single_tran = trx_xd;
+            single_tran.m_amount = 0;
             int splitIndex = 1;
             bool match = false;
-            wxString tranTagnames = full_tran.TAGNAMES;
-            for (const auto& tp_d : full_tran.m_splits) {
-                full_tran.displayID   = (wxString::Format("%lld", tran.TRANSID) + "." + wxString::Format("%i", splitIndex++));
-                full_tran.CATEGID     = tp_d.m_category_id_p;
-                full_tran.CATEGNAME   = CategoryModel::full_name(tp_d.m_category_id_p);
-                full_tran.TRANSAMOUNT = tp_d.m_amount;
-                full_tran.NOTES       = tran.NOTES;
-                full_tran.TAGNAMES    = tranTagnames;
+            wxString tranTagnames = trx_xd.TAGNAMES;
+            for (const auto& tp_d : trx_xd.m_splits) {
+                trx_xd.displayID       = wxString::Format("%lld", trx_d.m_id) + "." +
+                    wxString::Format("%i", splitIndex++);
+                trx_xd.m_category_id_n = tp_d.m_category_id;
+                trx_xd.CATEGNAME       = CategoryModel::full_name(tp_d.m_category_id);
+                trx_xd.m_amount        = tp_d.m_amount;
+                trx_xd.m_notes         = trx_d.m_notes;
+                trx_xd.TAGNAMES        = tranTagnames;
 
-                TrxData splitWithTxnNotes = full_tran;
-                TrxData splitWithSplitNotes = full_tran;
-                splitWithSplitNotes.NOTES = tp_d.m_notes;
+                TrxData trx_trx_d = trx_xd;
+                TrxData trx_tp_d = trx_xd;
+                trx_tp_d.m_notes = tp_d.m_notes;
                 if (dlg.get()->mmIsSplitRecordMatches<TrxSplitModel>(tp_d) && (
-                    dlg.get()->mmIsRecordMatches<TrxModel>(splitWithSplitNotes, true) ||
-                    dlg.get()->mmIsRecordMatches<TrxModel>(splitWithTxnNotes, true)
+                    dlg.get()->mmIsRecordMatches<TrxModel>(trx_tp_d, true) ||
+                    dlg.get()->mmIsRecordMatches<TrxModel>(trx_trx_d, true)
                 )) {
                     match = true;
-                    full_tran.NOTES.Append((tran.NOTES.IsEmpty() ? "" : " ") + tp_d.m_notes);
+                    trx_xd.m_notes.Append((trx_d.m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
 
                     wxString tagnames;
-                    for (const auto& [tag_name, _] : TagLinkModel::instance().get_ref(splitRefType, tp_d.m_id))
+                    for (const auto& [tag_name, _] : TagLinkModel::instance().get_ref(TrxSplitModel::refTypeName, tp_d.m_id))
                         tagnames.Append(tag_name + " ");
                     if (!tagnames.IsEmpty())
-                        full_tran.TAGNAMES.Append((full_tran.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
+                        trx_xd.TAGNAMES.Append((trx_xd.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
 
-                    if (!combine_splits) trans_.push_back(full_tran);
-                    else single_tran.TRANSAMOUNT += full_tran.TRANSAMOUNT;
+                    if (!combine_splits)
+                        trx_xa.push_back(trx_xd);
+                    else
+                        single_tran.m_amount += trx_xd.m_amount;
                 }
             }
-            if (match && combine_splits) trans_.push_back(single_tran);
+            if (match && combine_splits)
+                trx_xa.push_back(single_tran);
         }
-        else if (dlg.get()->mmIsRecordMatches<TrxModel>(tran)) trans_.push_back(full_tran);
+        else if (dlg.get()->mmIsRecordMatches<TrxModel>(trx_d))
+            trx_xa.push_back(trx_xd);
     }
 
-    std::stable_sort(trans_.begin(), trans_.end(), TrxData::SorterByTRANSDATE());
+    std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
     switch (dlg.get()->mmGetGroupBy())
     {
     case TrxFilterDialog::GROUPBY_ACCOUNT:
-        std::stable_sort(trans_.begin(), trans_.end(), TrxModel::SorterByACCOUNTNAME());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxModel::SorterByACCOUNTNAME());
         break;
     case TrxFilterDialog::GROUPBY_PAYEE:
-        std::stable_sort(trans_.begin(), trans_.end(), TrxModel::SorterByPAYEENAME());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxModel::SorterByPAYEENAME());
         break;
     case TrxFilterDialog::GROUPBY_CATEGORY:
-        std::stable_sort(trans_.begin(), trans_.end(), TrxModel::SorterByCATEGNAME());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxModel::SorterByCATEGNAME());
         break;
     case TrxFilterDialog::GROUPBY_TYPE:
-        std::stable_sort(trans_.begin(), trans_.end(), TrxData::SorterByTRANSCODE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSCODE());
         break;
     case TrxFilterDialog::GROUPBY_DAY:
-        std::stable_sort(trans_.begin(), trans_.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
         break;
     case TrxFilterDialog::GROUPBY_MONTH:
-        std::stable_sort(trans_.begin(), trans_.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
         break;
     case TrxFilterDialog::GROUPBY_YEAR:
-        std::stable_sort(trans_.begin(), trans_.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
         break;
     }
 }
@@ -637,8 +639,7 @@ bool TrxReport::showColumnById(int num)
     if (num == TrxFilterDialog::COL_TIME && !PrefModel::instance().UseTransDateTime())
         return false;
 
-    if (m_transDialog->mmIsHideColumnsChecked())
-    {
+    if (m_transDialog->mmIsHideColumnsChecked()) {
         wxArrayInt columns = m_transDialog->mmGetHideColumnsID();
         return columns.Index(num) == wxNOT_FOUND;
     }

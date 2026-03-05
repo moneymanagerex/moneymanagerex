@@ -20,7 +20,7 @@
 
 AccountData::AccountData() :
     m_id(-1),
-    m_currency_id_p(-1),
+    m_currency_id(-1),
     m_status(AccountStatus()),
     m_favorite(AccountFavorite()),
     m_open_date(mmDate::today()),
@@ -53,7 +53,7 @@ AccountRow AccountData::to_row() const
     row.INITIALBAL      = m_open_balance;
     row.INITIALDATE     = m_open_date.isoDate();
     row.FAVORITEACCT    = m_favorite.name();
-    row.CURRENCYID      = m_currency_id_p;
+    row.CURRENCYID      = m_currency_id;
     row.STATEMENTLOCKED = (m_stmt_locked ? 1 : 0);
     row.STATEMENTDATE   = m_stmt_date_n.isoDateN();
     row.MINIMUMBALANCE  = m_min_balance;
@@ -71,7 +71,7 @@ AccountData& AccountData::from_row(const AccountRow& row)
     m_id                 = row.ACCOUNTID;                     // int64
     m_name               = row.ACCOUNTNAME;                   // wxString
     m_type_              = row.ACCOUNTTYPE;                   // wxString
-    m_currency_id_p      = row.CURRENCYID;                    // int64
+    m_currency_id        = row.CURRENCYID;                    // int64
     m_status             = AccountStatus(row.STATUS);         // wxString
     m_favorite           = AccountFavorite(row.FAVORITEACCT); // wxString
     m_num                = row.ACCOUNTNUM;                    // wxString
@@ -98,7 +98,7 @@ bool AccountData::equals(const AccountData* other) const
     if ( m_id                  != other->m_id)                 return false;
     if (!m_name.IsSameAs(         other->m_name))              return false;
     if (!m_type_.IsSameAs(        other->m_type_))             return false;
-    if ( m_currency_id_p       != other->m_currency_id_p)      return false;
+    if ( m_currency_id         != other->m_currency_id)        return false;
     if ( m_status.id()         != other->m_status.id())        return false;
     if ( m_favorite.id()       != other->m_favorite.id())      return false;
     if (!m_num.IsSameAs(          other->m_num))               return false;

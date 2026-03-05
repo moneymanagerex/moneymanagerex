@@ -85,7 +85,7 @@ void  StocksReport::refreshData()
 
             line.name       = stock_d.m_name;
             line.symbol     = stock_d.m_symbol;
-            line.date       = stock_d.m_purchase_date_;
+            line.date       = stock_d.m_purchase_date.isoDate();
             line.qty        = stock_d.m_num_shares;
             line.purchase   = StockModel::InvestmentValue(stock_d);
             line.current    = stock_d.m_current_price;

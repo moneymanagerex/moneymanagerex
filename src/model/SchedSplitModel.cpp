@@ -71,7 +71,7 @@ std::map<int64, SchedSplitModel::DataA> SchedSplitModel::get_all_id()
 {
     std::map<int64, SchedSplitModel::DataA> data;
     for (const auto& qp_d : instance().find_all()) {
-        data[qp_d.m_sched_id_p].push_back(qp_d);
+        data[qp_d.m_sched_id].push_back(qp_d);
     }
     return data;
 }
@@ -89,16 +89,16 @@ int SchedSplitModel::update(DataA& src_qp_a, int64 sched_id)
         DataA new_qp_a;
         for (const auto& src_qp_d : src_qp_a) {
             Data new_qp_d = Data();
-            new_qp_d.m_sched_id_p    = sched_id;
-            new_qp_d.m_amount        = src_qp_d.m_amount;
-            new_qp_d.m_category_id_p = src_qp_d.m_category_id_p;
-            new_qp_d.m_notes         = src_qp_d.m_notes;
+            new_qp_d.m_sched_id    = sched_id;
+            new_qp_d.m_amount      = src_qp_d.m_amount;
+            new_qp_d.m_category_id = src_qp_d.m_category_id;
+            new_qp_d.m_notes       = src_qp_d.m_notes;
             new_qp_a.push_back(new_qp_d);
         }
         instance().save_data_a(new_qp_a);
 
         // Send back the new m_id which is needed to update taglinks
-        // CHECK: src_qp_a.at(i).m_sched_id_p is not updated
+        // CHECK: src_qp_a.at(i).m_sched_id is not updated
         for (int i = 0; i < static_cast<int>(src_qp_a.size()); i++)
             src_qp_a.at(i).m_id = new_qp_a.at(i).m_id;
     }
