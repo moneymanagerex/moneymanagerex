@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include "util/mmDate.h"
 #include "table/_TableBase.h"
 #include "table/StockTable.h"
 
@@ -29,7 +30,7 @@ struct StockData
     wxString m_name;
     wxString m_symbol;
     double   m_num_shares;
-    wxString m_purchase_date_; // TODO: mmDate
+    mmDate   m_purchase_date;  // non-null
     double   m_purchase_price;
     double   m_current_price;
     double   m_purchase_value;
@@ -78,7 +79,7 @@ struct StockData
     {
         bool operator()(const StockData& x, const StockData& y)
         {
-            return x.m_purchase_date_ < y.m_purchase_date_;
+            return x.m_purchase_date < y.m_purchase_date;
         }
     };
 

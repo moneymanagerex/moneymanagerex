@@ -130,7 +130,7 @@ int TagLinkModel::update(const DataA& rows, const wxString& refType, int64 ref_i
             TrxModel::instance().save_timestamp(ref_id);
         else if (refType == TrxSplitModel::refTypeName)
             TrxModel::instance().save_timestamp(
-                TrxSplitModel::instance().get_id_data_n(ref_id)->m_trx_id_p
+                TrxSplitModel::instance().get_id_data_n(ref_id)->m_trx_id
             );
     }
 

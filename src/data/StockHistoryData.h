@@ -18,17 +18,19 @@
 
 #pragma once
 
+#include "util/mmDate.h"
+#include "_DataEnum.h"
 #include "table/_TableBase.h"
 #include "table/StockHistoryTable.h"
 
 // User-friendly representation of a record in table STOCKHISTORY_V1.
 struct StockHistoryData
 {
-    int64    m_id;
-    wxString m_symbol;
-    wxString m_date_;
-    double   m_price;
-    int64    m_update_type_;
+    int64      m_id;
+    wxString   m_symbol;
+    mmDate     m_date;        // non-null
+    double     m_price;
+    UpdateType m_update_type; // the numeric value instead of the name is written in database
 
     explicit StockHistoryData();
     explicit StockHistoryData(wxSQLite3ResultSet& q);
@@ -72,7 +74,7 @@ struct StockHistoryData
     {
         bool operator()(const StockHistoryData& x, const StockHistoryData& y)
         {
-            return x.m_date_ < y.m_date_;
+            return x.m_date < y.m_date;
         }
     };
 
@@ -88,7 +90,7 @@ struct StockHistoryData
     {
         bool operator()(const StockHistoryData& x, const StockHistoryData& y)
         {
-            return x.m_update_type_ < y.m_update_type_;
+            return x.m_update_type.id() < y.m_update_type.id();
         }
     };
 };

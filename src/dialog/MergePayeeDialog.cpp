@@ -165,7 +165,7 @@ void MergePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             TrxCol::PAYEEID(sourcePayeeID_)
         );
         for (auto& trx_d : trx_a) {
-            trx_d.PAYEEID = destPayeeID_;
+            trx_d.m_payee_id_n = destPayeeID_;
         }
         TrxModel::instance().save_trx_a(trx_a);
         m_changed_records += trx_a.size();
@@ -176,7 +176,7 @@ void MergePayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             SchedCol::PAYEEID(sourcePayeeID_)
         );
         for (auto& sched_d : sched_a) {
-            sched_d.PAYEEID = destPayeeID_;
+            sched_d.m_payee_id_n = destPayeeID_;
         }
         SchedModel::instance().save_data_a(sched_a);
         m_changed_records += sched_a.size();

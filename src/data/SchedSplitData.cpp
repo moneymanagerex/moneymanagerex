@@ -20,10 +20,10 @@
 
 SchedSplitData::SchedSplitData()
 {
-    m_id            = -1;
-    m_sched_id_p    = -1;
-    m_category_id_p = -1;
-    m_amount        = 0.0;
+    m_id          = -1;
+    m_sched_id    = -1;
+    m_category_id = -1;
+    m_amount      = 0.0;
 }
 
 // Convert SchedSplitData to SchedSplitRow
@@ -32,8 +32,8 @@ SchedSplitRow SchedSplitData::to_row() const
     SchedSplitRow row;
 
     row.SPLITTRANSID     = m_id;
-    row.TRANSID          = m_sched_id_p;
-    row.CATEGID          = m_category_id_p;
+    row.TRANSID          = m_sched_id;
+    row.CATEGID          = m_category_id;
     row.SPLITTRANSAMOUNT = m_amount;
     row.NOTES            = m_notes;
 
@@ -43,11 +43,11 @@ SchedSplitRow SchedSplitData::to_row() const
 // Convert SchedSplitRow to SchedSplitData
 SchedSplitData& SchedSplitData::from_row(const SchedSplitRow& row)
 {
-    m_id            = row.SPLITTRANSID;     // int64
-    m_sched_id_p    = row.TRANSID;          // int64
-    m_category_id_p = row.CATEGID;          // int64
-    m_amount        = row.SPLITTRANSAMOUNT; // double
-    m_notes         = row.NOTES;            // wxString
+    m_id          = row.SPLITTRANSID;     // int64
+    m_sched_id    = row.TRANSID;          // int64
+    m_category_id = row.CATEGID;          // int64
+    m_amount      = row.SPLITTRANSAMOUNT; // double
+    m_notes       = row.NOTES;            // wxString
 
     return *this;
 }
@@ -55,8 +55,8 @@ SchedSplitData& SchedSplitData::from_row(const SchedSplitRow& row)
 bool SchedSplitData::equals(const SchedSplitData* other) const
 {
     if ( m_id != other->m_id) return false;
-    if ( m_sched_id_p != other->m_sched_id_p) return false;
-    if ( m_category_id_p != other->m_category_id_p) return false;
+    if ( m_sched_id != other->m_sched_id) return false;
+    if ( m_category_id != other->m_category_id) return false;
     if ( m_amount != other->m_amount) return false;
     if (!m_notes.IsSameAs(other->m_notes)) return false;
 

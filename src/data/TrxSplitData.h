@@ -25,8 +25,8 @@
 struct TrxSplitData
 {
     int64    m_id;
-    int64    m_trx_id_p;      // non-null (> 0) after initialization
-    int64    m_category_id_p; // non-null (> 0) after initialization
+    int64    m_trx_id;      // non-null (> 0) after initialization
+    int64    m_category_id; // non-null (> 0) after initialization
     double   m_amount;
     wxString m_notes;
 
@@ -64,7 +64,7 @@ struct TrxSplitData
     {
         bool operator()(const TrxSplitData& x, const TrxSplitData& y)
         {
-            return x.m_trx_id_p < y.m_trx_id_p;
+            return x.m_trx_id < y.m_trx_id;
         }
     };
 
@@ -72,7 +72,7 @@ struct TrxSplitData
     {
         bool operator()(const TrxSplitData& x, const TrxSplitData& y)
         {
-            return x.m_category_id_p < y.m_category_id_p;
+            return x.m_category_id < y.m_category_id;
         }
     };
 

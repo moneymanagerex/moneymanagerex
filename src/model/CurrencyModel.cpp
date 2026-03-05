@@ -146,17 +146,18 @@ const CurrencyData* CurrencyModel::GetCurrencyRecord(const wxString& currency_sy
     return currency_n;
 }
 
-std::map<wxDateTime, int> CurrencyModel::DateUsed(int64 CurrencyID)
+std::map<wxDateTime, int> CurrencyModel::DateUsed(int64 currency_id)
 {
     wxDateTime dt;
     std::map<wxDateTime, int> datesList;
-    const auto& account_a = AccountModel::instance().find(CurrencyCol::CURRENCYID(CurrencyID));
-    for (const auto& account_d : account_a) {
+    for (const auto& account_d : AccountModel::instance().find(
+        CurrencyCol::CURRENCYID(currency_id)
+    )) {
         if (AccountModel::type_id(account_d) == NavigatorTypes::TYPE_ID_INVESTMENT) {
             for (const auto& stock_d : StockModel::instance().find(
                 StockCol::HELDAT(account_d.m_id)
             )) {
-                dt.ParseDate(stock_d.m_purchase_date_);
+                dt = stock_d.m_purchase_date.getDateTime();
                 datesList[dt] = 1;
             }
         }
@@ -172,10 +173,9 @@ std::map<wxDateTime, int> CurrencyModel::DateUsed(int64 CurrencyID)
     }
     return datesList;
 }
-/**
-* Remove the Data record from memory and the database.
-* Delete also all currency history
-*/
+
+// Remove the Data record from memory and the database.
+// Delete also all currency history
 bool CurrencyModel::purge_id(int64 id)
 {
     // purge CurrencyHistoryData owned by id

@@ -1514,22 +1514,22 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
             continue;
         }
 
-        TrxData transaction = TrxData();
-        transaction.ACCOUNTID      = account->m_id;
-        transaction.TRANSACTIONNUMBER = result.fitid;
-        transaction.TRANSDATE         = date.FormatISODate();
-        transaction.TRANSAMOUNT       = fabs(amount);
-        transaction.NOTES             = memo;
+        TrxData new_trx_d = TrxData();
+        new_trx_d.m_account_id = account->m_id;
+        new_trx_d.m_number     = result.fitid;
+        new_trx_d.TRANSDATE    = date.FormatISODate();
+        new_trx_d.m_amount     = fabs(amount);
+        new_trx_d.m_notes      = memo;
 
         bool isTransfer = false;
         // Check for existing transaction in the current account first
-        TrxModel::DataA sameAccountTrans =
+        TrxModel::DataA same_account_trx_d =
             TrxModel::instance().find(
                 TrxCol::TRANSACTIONNUMBER(OP_EQ, fitid),
                 TrxCol::ACCOUNTID(OP_EQ, account->m_id)
             );
-        if (!sameAccountTrans.empty()) {
-            result.imported = false;
+        if (!same_account_trx_d.empty()) {
+            result.imported      = false;
             result.importedPayee = "DUPLICATE";
             stats.skippedDuplicates++;
             results.push_back(result);
@@ -1542,15 +1542,15 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
             TrxCol::TRANSACTIONNUMBER(OP_EQ, fitid)
         );
         if (!allExistingTrans.empty()) {
-            for (auto& existing : allExistingTrans) {
+            for (auto& existing_trx_d : allExistingTrans) {
                 // Check if this FITID is already a transfer involving the current account
-                if (existing.TRANSCODE == "Transfer" &&
-                    (existing.ACCOUNTID == account->m_id || existing.TOACCOUNTID == account->m_id)) {
-                    result.imported = false;
-                    result.transType = "";
+                if (existing_trx_d.TRANSCODE == "Transfer" &&
+                    (existing_trx_d.m_account_id == account->m_id || existing_trx_d.m_to_account_id_n == account->m_id)) {
+                    result.imported      = false;
+                    result.transType     = "";
                     result.importedPayee = "DUPLICATE";
-                    result.category = "";
-                    result.matchMode = "None";
+                    result.category      = "";
+                    result.matchMode     = "None";
                     stats.autoImportedCount++;
                     wxLogDebug("FITID='%s' already a transfer involving %lld, skipped", fitid, account->m_id);
                     isTransfer = true;
@@ -1558,40 +1558,40 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                     transactionIndex++;
                     break;
                 }
-                else if (existing.ACCOUNTID != account->m_id) {
+                else if (existing_trx_d.m_account_id != account->m_id) {
                     // Potential new transfer
-                    double existingAmount = existing.TRANSAMOUNT;
+                    double existingAmount = existing_trx_d.m_amount;
                     wxDateTime existingDate;
-                    existingDate.ParseISODate(existing.TRANSDATE);
-                    double adjustedExistingAmount = (existing.TRANSCODE == "Withdrawal") ? -existingAmount : existingAmount;
+                    existingDate.ParseISODate(existing_trx_d.TRANSDATE);
+                    double adjustedExistingAmount = (existing_trx_d.TRANSCODE == "Withdrawal") ? -existingAmount : existingAmount;
 
                     double compAmt = fabs(adjustedExistingAmount + amount);
                     int compDate = abs((date - existingDate).GetDays());
                     if (compAmt < 0.01 && compDate <= 7) {
-                        if (existing.TRANSCODE == "Transfer") {
-                            wxLogWarning("FITID='%s' is a transfer from %lld to %lld, not updating", fitid, existing.ACCOUNTID,
-                                         existing.TOACCOUNTID);
+                        if (existing_trx_d.TRANSCODE == "Transfer") {
+                            wxLogWarning("FITID='%s' is a transfer from %lld to %lld, not updating", fitid, existing_trx_d.m_account_id,
+                                         existing_trx_d.m_to_account_id_n);
                             stats.skippedErrors++;
                             result.imported = false;
                             result.importedPayee = "TRANSFER CONFLICT";
                             isTransfer = true;
                         }
                         else {
-                            if (existing.TRANSCODE == "Withdrawal" && amount > 0) {
-                                existing.TRANSCODE = "Transfer";
-                                existing.TOACCOUNTID = account->m_id;
-                                existing.TRANSAMOUNT = existingAmount;
-                                existing.TOTRANSAMOUNT = amount;
+                            if (existing_trx_d.TRANSCODE == "Withdrawal" && amount > 0) {
+                                existing_trx_d.TRANSCODE = "Transfer";
+                                existing_trx_d.m_to_account_id_n = account->m_id;
+                                existing_trx_d.m_amount = existingAmount;
+                                existing_trx_d.m_to_amount = amount;
                             }
-                            else if (existing.TRANSCODE == "Deposit" && amount < 0) {
-                                existing.TRANSCODE = "Transfer";
-                                existing.TOACCOUNTID = existing.ACCOUNTID;
-                                existing.ACCOUNTID = account->m_id;
-                                existing.TRANSAMOUNT = fabs(amount);
-                                existing.TOTRANSAMOUNT = existingAmount;
+                            else if (existing_trx_d.TRANSCODE == "Deposit" && amount < 0) {
+                                existing_trx_d.TRANSCODE = "Transfer";
+                                existing_trx_d.m_to_account_id_n = existing_trx_d.m_account_id;
+                                existing_trx_d.m_account_id = account->m_id;
+                                existing_trx_d.m_amount = fabs(amount);
+                                existing_trx_d.m_to_amount = existingAmount;
                             }
                             else {
-                                wxLogWarning("FITID='%s' incompatible (Existing=%s, New=%.2f), skipping", fitid, existing.TRANSCODE, amount);
+                                wxLogWarning("FITID='%s' incompatible (Existing=%s, New=%.2f), skipping", fitid, existing_trx_d.TRANSCODE, amount);
                                 stats.skippedErrors++;
                                 result.imported = false;
                                 result.importedPayee = "TRANSFER ERROR";
@@ -1601,19 +1601,19 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                                 break;
                             }
 
-                            existing.PAYEEID = -1;
-                            existing.CATEGID = transferCategId_;
-                            existing.NOTES = "Existing: " + existing.NOTES + "\nUpdated: " + memo;
+                            existing_trx_d.m_payee_id_n = -1;
+                            existing_trx_d.m_category_id_n = transferCategId_;
+                            existing_trx_d.m_notes = "Existing: " + existing_trx_d.m_notes + "\nUpdated: " + memo;
 
                             try {
-                                TrxModel::instance().save_trx(existing);
+                                TrxModel::instance().save_trx_n(existing_trx_d);
                                 result.imported = true;
                                 result.transType = "Transfer";
-                                result.importedPayee = AccountModel::instance().get_id_data_n(existing.ACCOUNTID)->m_name;
+                                result.importedPayee = AccountModel::instance().get_id_data_n(existing_trx_d.m_account_id)->m_name;
                                 result.category = "Transfer";
                                 result.matchMode = "Transfer";
                                 stats.autoImportedCount++;
-                                wxLogDebug("Updated FITID='%s' to Transfer from %lld to %lld", fitid, existing.ACCOUNTID, existing.TOACCOUNTID);
+                                wxLogDebug("Updated FITID='%s' to Transfer from %lld to %lld", fitid, existing_trx_d.m_account_id, existing_trx_d.m_to_account_id_n);
                             }
                             catch (const wxSQLite3Exception& e) {
                                 wxLogError("Failed to update FITID='%s': %s", fitid, e.GetMessage());
@@ -1633,8 +1633,8 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
         }
 
         if (!isTransfer) {
-            transaction.TRANSCODE = (amount >= 0) ? "Deposit" : "Withdrawal";
-            result.transType = transaction.TRANSCODE;
+            new_trx_d.TRANSCODE = (amount >= 0) ? "Deposit" : "Withdrawal";
+            result.transType = new_trx_d.TRANSCODE;
 
             double matchConfidence = 0.0;
             wxString matchMethod;
@@ -1667,7 +1667,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                 mmPayeeSelectionDialog payeeDlg(this,
                     memo, payeeName, fitid, date.FormatISODate(),
                     wxString::Format("%.2f", amount),
-                    transaction.TRANSCODE,
+                    new_trx_d.TRANSCODE,
                     transactionIndex, newTransactions,
                     importStartTime_, matchConfidence, matchMethod, totalTransactions
                 );
@@ -1682,18 +1682,18 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                         new_payee_d.m_name          = payeeName;
                         new_payee_d.m_category_id_n = payeeDlg.GetSelectedCategoryID();
                         PayeeModel::instance().add_data_n(new_payee_d);
-                        transaction.PAYEEID = new_payee_d.m_id;
+                        new_trx_d.m_payee_id_n = new_payee_d.m_id;
                         stats.newPayeesCreated++;
                     }
                     else if (payee_n) {
-                        transaction.PAYEEID = payee_n->m_id;
+                        new_trx_d.m_payee_id_n = payee_n->m_id;
                         if (payeeDlg.ShouldUpdatePayeeCategory()) {
                             payee_n->m_category_id_n = payeeDlg.GetSelectedCategoryID();
                             PayeeModel::instance().unsafe_update_data_n(payee_n);
                         }
                     }
-                    transaction.CATEGID = payeeDlg.GetSelectedCategoryID();
-                    const CategoryData* category_n = CategoryModel::instance().get_id_data_n(transaction.CATEGID);
+                    new_trx_d.m_category_id_n = payeeDlg.GetSelectedCategoryID();
+                    const CategoryData* category_n = CategoryModel::instance().get_id_data_n(new_trx_d.m_category_id_n);
                     result.category = category_n ? category_n->m_name : "Uncategorized";
                     if (payeeDlg.ShouldUpdateRegex() && payee_n) {
                         payee_n->m_pattern = payeeDlg.GetRegexPattern();
@@ -1720,10 +1720,10 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                 || (matchMethod == "Fuzzy" && matchConfidence >= minFuzzyConfidence)
             ) {
                 if (payee_n) {
-                    transaction.PAYEEID = payee_n->m_id;
-                    transaction.CATEGID = payee_n->m_category_id_n;
-                    transaction.STATUS = (matchMethod == "Fuzzy" && markFuzzyFollowUp) ? "F" : "";
-                    const CategoryData* category = CategoryModel::instance().get_id_data_n(transaction.CATEGID);
+                    new_trx_d.m_payee_id_n = payee_n->m_id;
+                    new_trx_d.m_category_id_n = payee_n->m_category_id_n;
+                    new_trx_d.STATUS = (matchMethod == "Fuzzy" && markFuzzyFollowUp) ? "F" : "";
+                    const CategoryData* category = CategoryModel::instance().get_id_data_n(new_trx_d.m_category_id_n);
                     result.category = category ? category->m_name : "Uncategorized";
                     stats.autoImportedCount++;
                     result.imported = true;
@@ -1743,7 +1743,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
 
         if (result.imported) {
             try {
-                TrxModel::instance().save_trx(transaction);
+                TrxModel::instance().save_trx_n(new_trx_d);
                 stats.importedTransactions++;
                 wxLogDebug("Imported: FITID='%s', Type='%s', Payee='%s', Mode='%s'",
                     fitid, result.transType, result.importedPayee, result.matchMode
@@ -1778,15 +1778,21 @@ mmOFXImportSummaryDialog::mmOFXImportSummaryDialog(wxWindow* parent, const std::
     wxLongLong elapsedTimeMs = importEndTime - importStartTime_;
     double elapsedTimeSec = elapsedTimeMs.ToDouble() / 1000.0;
 
-    wxStaticText* statsText =
-        new wxStaticText(this, wxID_ANY,
-                         wxString::Format(_("Import Statistics:\n"
-                                            "- Total Transactions: %1$d\n"
-                                            "- Automatically Imported: %2$d\n"
-                                            "- New Payees Created: %3$d\n"
-                                            "- Manually Allocated to Payees: %4$d\n"
-                                            "- Time Taken: %5$s"),
-                                          totalTransactions_, autoImportedCount_, newPayeesCreated_, manuallyAllocated_, FormatTimeTaken(elapsedTimeSec)));
+    wxStaticText* statsText = new wxStaticText(this, wxID_ANY,
+        wxString::Format(_(
+            "Import Statistics:\n"
+            "- Total Transactions: %1$d\n"
+            "- Automatically Imported: %2$d\n"
+            "- New Payees Created: %3$d\n"
+            "- Manually Allocated to Payees: %4$d\n"
+            "- Time Taken: %5$s"
+        ),
+        totalTransactions_,
+        autoImportedCount_,
+        newPayeesCreated_,
+        manuallyAllocated_,
+        FormatTimeTaken(elapsedTimeSec)
+    ));
     mainSizer->Add(statsText, 0, wxALL | wxEXPAND, 10);
 
     scrolledWindow = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
@@ -1892,15 +1898,15 @@ mmOFXImportSummaryDialog::mmOFXImportSummaryDialog(wxWindow* parent, const std::
     Layout();
 
     scrolledWindow->Bind(wxEVT_MOUSEWHEEL,
-                         [this](wxMouseEvent& event)
-                         {
-                             int delta = event.GetWheelDelta();
-                             int rotation = event.GetWheelRotation();
-                             int lines = rotation / delta;
-                             int scrollPos = scrolledWindow->GetScrollPos(wxVERTICAL);
-                             scrolledWindow->Scroll(-1, scrollPos - lines);
-                             event.Skip();
-                         });
+        [this](wxMouseEvent& event) {
+            int delta = event.GetWheelDelta();
+            int rotation = event.GetWheelRotation();
+            int lines = rotation / delta;
+            int scrollPos = scrolledWindow->GetScrollPos(wxVERTICAL);
+            scrolledWindow->Scroll(-1, scrollPos - lines);
+            event.Skip();
+        }
+    );
 
     grid->Bind(wxEVT_MOUSEWHEEL, &mmOFXImportSummaryDialog::OnGridMouseWheel, this);
 }
