@@ -195,45 +195,38 @@ void StartupDialog::OnButtonAppstartOpenDatabaseClick( wxCommandEvent& /*event*/
 
 void StartupDialog::OnButtonAppstartChangeLanguage( wxCommandEvent& /*event*/ )
 {
-    wxArrayString langFiles = wxTranslations::Get()->GetAvailableTranslations("mmex");
-    wxArrayString langChoices;
-    std::map<wxString, std::pair<int, wxString>> langs;
-
-    langs[wxGetTranslation(wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US))] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
-    for (auto &file : langFiles)
-    {
-        const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
-        if (info) {
-            //wxString label = wxGetTranslation(info->Description);
-            wxString label = info->CanonicalName + " " + info->DescriptionNative;
-            langs[label] = std::make_pair(info->Language, info->CanonicalName);
-        }
+    const std::vector<mm_language_t> lang_a = g_translations();
+    wxArrayString lang_label_a;
+    int current_i = -1;
+    int i = 0;
+    for (auto const& lang : lang_a) {
+        lang_label_a.Add(std::get<1>(lang));
+        if (current_i < 0 && std::get<0>(lang) == m_app->getGUILanguage())
+            current_i = i;
+        ++i;
+    }
+    if (current_i < 0) {
+        // 0 index must be wxLANGUAGE_DEFAULT
+        current_i = 0;
     }
 
-    langChoices.Add(_t("System default"));
-    int current = -1;
-    int i = 1;
-    for (auto &lang : langs)
-    {
-        langChoices.Add(lang.first);
-        if ((current < 0) && (lang.second.first == m_app->getGUILanguage()))
-            current = i;
-        i++;
-    }
-    if ((current < 0)) // Must be wxLANGUAGE_DEFAULT
-        current = 0;
+    mmSingleChoiceDialog lang_choice(this,
+        _t("Change user interface language"),
+        _t("User Interface Language"),
+        lang_label_a
+    );
+    if (lang_choice.ShowModal() != wxID_OK)
+        return;
 
-    mmSingleChoiceDialog lang_choice(this, _t("Change user interface language"), _t("User Interface Language"), langChoices);
-    if (lang_choice.ShowModal() == wxID_OK)
-    {
-        auto selected = lang_choice.GetStringSelection();
-        int langNo = (langs.count(selected) == 1) ? langs[selected].first : wxLANGUAGE_DEFAULT;
-        wxLanguage lang = static_cast<wxLanguage>(langNo);
-        if (lang != m_app->getGUILanguage() && m_app->setGUILanguage(lang))
-        mmErrorDialogs::MessageWarning(this
-            , _t("The language for this application has been changed. "
-                "The change will take effect the next time the application is started.")
-            , _t("Language change"));
+    std::size_t lang_i = static_cast<std::size_t>(lang_choice.GetSelection());
+    wxLanguage lang_id = static_cast<wxLanguage>(std::get<0>(lang_a[lang_i]));
+    if (lang_id != m_app->getGUILanguage() && m_app->setGUILanguage(lang_id)) {
+        mmErrorDialogs::MessageWarning(this,
+            _t("The language for this application has been changed. "
+                "The change will take effect the next time the application is started."
+            ),
+            _t("Language change")
+        );
     }
 }
 
