@@ -535,13 +535,13 @@ void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
     SetIcon(mmex::getProgramIcon());
 
     // Calculate payee usage
-    for (const auto& txn : TrxModel::instance().find_all()) {
-        if (txn.DELETEDTIME.IsEmpty()) {
-            m_payeeUsage[txn.PAYEEID]++;
+    for (const auto& trx_d : TrxModel::instance().find_all()) {
+        if (trx_d.DELETEDTIME.IsEmpty()) {
+            m_payeeUsage[trx_d.m_payee_id_n]++;
         }
     }
-    for (const auto &bills : SchedModel::instance().find_all()) {
-        m_payeeUsage[bills.PAYEEID]++;
+    for (const auto& sched_d : SchedModel::instance().find_all()) {
+        m_payeeUsage[sched_d.m_payee_id_n]++;
     }
     fillControls();
     mmSetSize(this);
@@ -753,7 +753,7 @@ void mmPayeeDialog::EditPayee()
 void mmPayeeDialog::DeletePayee()
 {
     FindSelectedPayees();
-    for(RowData* rdata : m_selectedItems) {
+    for (RowData* rdata : m_selectedItems) {
         const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(rdata->payeeId);
         if (PayeeModel::instance().find_id_dep_cnt(rdata->payeeId) > 0) {
             wxString deletePayeeErrMsg = _t("Payee in use.");
@@ -769,7 +769,7 @@ void mmPayeeDialog::DeletePayee()
             wxMessageBox(deletePayeeErrMsg, _t("Payee Manager: Delete Error"), wxOK | wxICON_ERROR);
             continue;
         }
-        TrxModel::DataA deletedTrans = TrxModel::instance().find(
+        TrxModel::DataA trx_a = TrxModel::instance().find(
             TrxCol::PAYEEID(rdata->payeeId)
         );
         wxMessageDialog msgDlg(this
@@ -778,19 +778,19 @@ void mmPayeeDialog::DeletePayee()
                 + "\n\n" + _t("Do you want to continue?")
             , _t("Confirm Payee Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
-        if (deletedTrans.empty() || msgDlg.ShowModal() == wxID_YES)
+        if (trx_a.empty() || msgDlg.ShowModal() == wxID_YES)
         {
-            if (!deletedTrans.empty()) {
+            if (!trx_a.empty()) {
                 TrxModel::instance().db_savepoint();
                 TrxSplitModel::instance().db_savepoint();
                 AttachmentModel::instance().db_savepoint();
                 FieldValueModel::instance().db_savepoint();
                 const wxString& RefType = TrxModel::refTypeName;
 
-                for (auto& tran : deletedTrans) {
-                    TrxModel::instance().purge_id(tran.TRANSID);
-                    mmAttachmentManage::DeleteAllAttachments(RefType, tran.TRANSID);
-                    FieldValueModel::DeleteAllData(RefType, tran.TRANSID);
+                for (auto& trx_d : trx_a) {
+                    TrxModel::instance().purge_id(trx_d.m_id);
+                    mmAttachmentManage::DeleteAllAttachments(RefType, trx_d.m_id);
+                    FieldValueModel::DeleteAllData(RefType, trx_d.m_id);
                 }
 
                 TrxModel::instance().db_release_savepoint();

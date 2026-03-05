@@ -317,7 +317,7 @@ void TagManager::OnDelete(wxCommandEvent& WXUNUSED(event))
                 if (link.REFTYPE == TrxModel::refTypeName)
                     TrxModel::instance().purge_id(link.REFID);
                 else if (link.REFTYPE == TrxSplitModel::refTypeName)
-                    TrxModel::instance().purge_id(TrxSplitModel::instance().get_id_data_n(link.REFID)->m_trx_id_p);
+                    TrxModel::instance().purge_id(TrxSplitModel::instance().get_id_data_n(link.REFID)->m_trx_id);
             TagModel::instance().purge_id(tag_d->m_id);
             tagList_.Remove(selection);
             int index = selectedTags_.Index(selection);

@@ -16,21 +16,6 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-//
-// This is only sample code re-used from "table/TrxTable.h".
-//
-// The data structure can be refined by:
-// * using more user-frielndly filed name
-// * using stronger field types
-// * adding enumerations for fields with limited choices
-// * demultiplexing composite values in database columns
-//
-// See also an implementation in Swift:
-//   https://github.com/moneymanagerex/mmex-ios/tree/master/MMEX/Data
-// and an implementation in Java:
-//   https://github.com/moneymanagerex/android-money-manager-ex/tree/master/app/src/main/java/com/money/manager/ex/domainmodel
-
 #pragma once
 
 #include "table/_TableBase.h"
@@ -39,29 +24,29 @@
 // User-friendly representation of a record in table CHECKINGACCOUNT_V1.
 struct TrxData
 {
-    int64 TRANSID; // primary key
-    int64 ACCOUNTID;
-    int64 TOACCOUNTID;
-    int64 PAYEEID;
-    wxString TRANSCODE;
-    double TRANSAMOUNT;
-    wxString STATUS;
-    wxString TRANSACTIONNUMBER;
-    wxString NOTES;
-    int64 CATEGID;
+    int64    m_id;
     wxString TRANSDATE;
+    wxString TRANSCODE;
+    wxString STATUS;
+    int64    m_account_id;      // non-null (> 0) after initialization
+    int64    m_to_account_id_n; // optional (can be null)
+    int64    m_payee_id_n;      // optional (can be null)
+    int64    m_category_id_n;   // optional (can be null)
+    double   m_amount;
+    double   m_to_amount;
+    wxString m_number;
+    wxString m_notes;
+    int64    m_followup_id;     // this is not a database id
+    int64    m_color;
     wxString LASTUPDATEDTIME;
     wxString DELETEDTIME;
-    int64 FOLLOWUPID;
-    double TOTRANSAMOUNT;
-    int64 COLOR;
 
     explicit TrxData();
     explicit TrxData(wxSQLite3ResultSet& q);
     TrxData(const TrxData& other) = default;
 
-    int64 id() const { return TRANSID; }
-    void id(const int64 id) { TRANSID = id; }
+    int64 id() const { return m_id; }
+    void id(const int64 id) { m_id = id; }
     TrxRow to_row() const;
     TrxData& from_row(const TrxRow& row);
     void to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const;
@@ -82,7 +67,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.TRANSID < y.TRANSID;
+            return x.m_id < y.m_id;
         }
     };
 
@@ -90,7 +75,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.ACCOUNTID < y.ACCOUNTID;
+            return x.m_account_id < y.m_account_id;
         }
     };
 
@@ -98,7 +83,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.TOACCOUNTID < y.TOACCOUNTID;
+            return x.m_to_account_id_n < y.m_to_account_id_n;
         }
     };
 
@@ -106,7 +91,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.PAYEEID < y.PAYEEID;
+            return x.m_payee_id_n < y.m_payee_id_n;
         }
     };
 
@@ -122,7 +107,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.TRANSAMOUNT < y.TRANSAMOUNT;
+            return x.m_amount < y.m_amount;
         }
     };
 
@@ -138,7 +123,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.TRANSACTIONNUMBER < y.TRANSACTIONNUMBER;
+            return x.m_number < y.m_number;
         }
     };
 
@@ -146,7 +131,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.NOTES < y.NOTES;
+            return x.m_notes < y.m_notes;
         }
     };
 
@@ -154,7 +139,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.CATEGID < y.CATEGID;
+            return x.m_category_id_n < y.m_category_id_n;
         }
     };
 
@@ -186,7 +171,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.FOLLOWUPID < y.FOLLOWUPID;
+            return x.m_followup_id < y.m_followup_id;
         }
     };
 
@@ -194,7 +179,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.TOTRANSAMOUNT < y.TOTRANSAMOUNT;
+            return x.m_to_amount < y.m_to_amount;
         }
     };
 
@@ -202,7 +187,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.COLOR < y.COLOR;
+            return x.m_color < y.m_color;
         }
     };
 };

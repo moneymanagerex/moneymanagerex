@@ -42,25 +42,25 @@ mmExportTransaction::~mmExportTransaction()
 const wxString mmExportTransaction::getTransactionCSV(const TrxModel::Full_Data& full_tran
     , const wxString& dateMask, bool reverce)
 {
-    auto account_id = full_tran.ACCOUNTID;
+    auto account_id = full_tran.m_account_id;
     wxString buffer = "";
     bool is_transfer = TrxModel::is_transfer(full_tran.TRANSCODE);
     const wxString delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
-    wxString categ = full_tran.m_splits.empty() ? CategoryModel::full_name(full_tran.CATEGID, ":") : "";
-    wxString transNum = full_tran.TRANSACTIONNUMBER;
-    wxString notes = (full_tran.NOTES);
+    wxString categ = full_tran.m_splits.empty() ? CategoryModel::full_name(full_tran.m_category_id_n, ":") : "";
+    wxString transNum = full_tran.m_number;
+    wxString notes = full_tran.m_notes;
     wxString payee = full_tran.PAYEENAME;
 
-    const auto acc_in = AccountModel::instance().get_id_data_n(full_tran.ACCOUNTID);
-    const auto curr_in = CurrencyModel::instance().get_id_data_n(acc_in->m_currency_id_p);
+    const auto acc_in = AccountModel::instance().get_id_data_n(full_tran.m_account_id);
+    const auto curr_in = CurrencyModel::instance().get_id_data_n(acc_in->m_currency_id);
     wxString account = acc_in->m_name;
     wxString currency = curr_in->m_symbol;
 
     if (is_transfer) {
-        account_id = reverce ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID;
-        const auto acc_to = AccountModel::instance().get_id_data_n(full_tran.TOACCOUNTID);
-        const auto curr_to = CurrencyModel::instance().get_id_data_n(acc_to->m_currency_id_p);
+        account_id = reverce ? full_tran.m_account_id : full_tran.m_to_account_id_n;
+        const auto acc_to = AccountModel::instance().get_id_data_n(full_tran.m_to_account_id_n);
+        const auto curr_to = CurrencyModel::instance().get_id_data_n(acc_to->m_currency_id);
 
         payee = reverce ? acc_to->m_name : acc_in->m_name;
         account = reverce ? acc_in->m_name : acc_to->m_name;
@@ -79,9 +79,9 @@ const wxString mmExportTransaction::getTransactionCSV(const TrxModel::Full_Data&
             if (TrxModel::type_id(full_tran) == TrxModel::TYPE_ID_WITHDRAWAL)
                 valueSplit = -valueSplit;
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-            const wxString split_categ = CategoryModel::full_name(tp_d.m_category_id_p, ":");
+            const wxString split_categ = CategoryModel::full_name(tp_d.m_category_id, ":");
 
-            buffer << inQuotes(wxString::Format("%lld", full_tran.TRANSID), delimiter) << delimiter;
+            buffer << inQuotes(wxString::Format("%lld", full_tran.m_id), delimiter) << delimiter;
             buffer << inQuotes(mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
             buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
             buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
@@ -100,7 +100,7 @@ const wxString mmExportTransaction::getTransactionCSV(const TrxModel::Full_Data&
         }
     }
     else {
-        buffer << inQuotes(wxString::Format("%lld", full_tran.TRANSID), delimiter) << delimiter;
+        buffer << inQuotes(wxString::Format("%lld", full_tran.m_id), delimiter) << delimiter;
         buffer << inQuotes(mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
         buffer << inQuotes(full_tran.STATUS, delimiter) << delimiter;
         buffer << inQuotes(full_tran.TRANSCODE, delimiter) << delimiter;
@@ -128,25 +128,25 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
     bool transfer = TrxModel::is_transfer(full_tran.TRANSCODE);
 
     wxString buffer = "";
-    wxString categ = full_tran.m_splits.empty() ? CategoryModel::full_name(full_tran.CATEGID, ":") : "";
+    wxString categ = full_tran.m_splits.empty() ? CategoryModel::full_name(full_tran.m_category_id_n, ":") : "";
     // Replace square brackets which are used to denote transfers in QIF
     categ.Replace("[", "(");
     categ.Replace("]", ")");
-    wxString transNum = full_tran.TRANSACTIONNUMBER;
-    wxString notes = (full_tran.NOTES);
+    wxString transNum = full_tran.m_number;
+    wxString notes = full_tran.m_notes;
     wxString payee = full_tran.PAYEENAME;
 
     if (transfer)
     {
-        const auto acc_in = AccountModel::instance().get_id_data_n(full_tran.ACCOUNTID);
-        const auto acc_to = AccountModel::instance().get_id_data_n(full_tran.TOACCOUNTID);
-        const auto curr_in = CurrencyModel::instance().get_id_data_n(acc_in->m_currency_id_p);
-        const auto curr_to = CurrencyModel::instance().get_id_data_n(acc_to->m_currency_id_p);
+        const auto acc_in = AccountModel::instance().get_id_data_n(full_tran.m_account_id);
+        const auto acc_to = AccountModel::instance().get_id_data_n(full_tran.m_to_account_id_n);
+        const auto curr_in = CurrencyModel::instance().get_id_data_n(acc_in->m_currency_id);
+        const auto curr_to = CurrencyModel::instance().get_id_data_n(acc_to->m_currency_id);
 
         categ = "[" + (reverce ? full_tran.ACCOUNTNAME : full_tran.TOACCOUNTNAME) + "]";
         payee = wxString::Format("%s %s %s -> %s %s %s"
-            , wxString::FromCDouble(full_tran.TRANSAMOUNT, 2), curr_in->m_symbol, acc_in->m_name
-            , wxString::FromCDouble(full_tran.TOTRANSAMOUNT, 2), curr_to->m_symbol, acc_to->m_name);
+            , wxString::FromCDouble(full_tran.m_amount, 2), curr_in->m_symbol, acc_in->m_name
+            , wxString::FromCDouble(full_tran.m_to_amount, 2), curr_to->m_symbol, acc_to->m_name);
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
@@ -166,7 +166,7 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
     buffer << "D" << mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask) << "\n";
     buffer << "C" << (full_tran.STATUS == TrxModel::STATUS_KEY_RECONCILED ? "R" : "") << "\n";
     double value = TrxModel::account_flow(full_tran
-        , (reverce ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID));
+        , (reverce ? full_tran.m_to_account_id_n : full_tran.m_account_id));
     const wxString& s = wxString::FromCDouble(value, 2);
     buffer << "T" << s << "\n";
     if (!payee.empty())
@@ -188,7 +188,7 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
         if (TrxModel::type_id(full_tran) == TrxModel::TYPE_ID_WITHDRAWAL)
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-        wxString split_categ = CategoryModel::full_name(tp_d.m_category_id_p, ":");
+        wxString split_categ = CategoryModel::full_name(tp_d.m_category_id, ":");
         split_categ.Replace("/", "-");
         TagLinkModel::DataA splitTags = TagLinkModel::instance().find(
             TagLinkCol::REFTYPE(reftype),
@@ -222,7 +222,7 @@ const wxString mmExportTransaction::getAccountHeaderQIF(int64 accountID)
     const AccountData *account_n = AccountModel::instance().get_id_data_n(accountID);
     if (account_n) {
         double dInitBalance = account_n->m_open_balance;
-        const CurrencyData *currency = CurrencyModel::instance().get_id_data_n(account_n->m_currency_id_p);
+        const CurrencyData *currency = CurrencyModel::instance().get_id_data_n(account_n->m_currency_id);
         if (currency) {
             currency_symbol = currency->m_symbol;
         }
@@ -308,7 +308,7 @@ void mmExportTransaction::getAccountsJSON(PrettyWriter<StringBuffer>& json_write
     for (const auto &entry : allAccounts4Export)
     {
         const AccountData* a = AccountModel::instance().get_id_data_n(entry.first);
-        const CurrencyData* c = CurrencyModel::instance().get_id_data_n(a->m_currency_id_p);
+        const CurrencyData* c = CurrencyModel::instance().get_id_data_n(a->m_currency_id);
         json_writer.StartObject();
         json_writer.Key("ID");
         json_writer.Int64(a->m_id.GetValue());
@@ -423,7 +423,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
 
             json_writer.StartObject();
             json_writer.Key("CATEGORY_ID");
-            json_writer.Int64(tp_d.m_category_id_p.GetValue());
+            json_writer.Int64(tp_d.m_category_id.GetValue());
             json_writer.Key("AMOUNT");
             json_writer.Double(valueSplit);
             json_writer.Key("TAGS");

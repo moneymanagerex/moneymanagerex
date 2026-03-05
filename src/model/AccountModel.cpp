@@ -71,18 +71,18 @@ bool AccountModel::purge_id(int64 account_id)
         TrxCol::TOACCOUNTID(account_id)
     )) {
         if (TrxModel::is_foreign(trx_d)) {
-            TrxShareModel::instance().remove_trx_share(trx_d.TRANSID);
-            TrxLinkData tr = TrxLinkModel::TranslinkRecord(trx_d.TRANSID);
+            TrxShareModel::instance().remove_trx_share(trx_d.m_id);
+            TrxLinkData tr = TrxLinkModel::TranslinkRecord(trx_d.m_id);
             TrxLinkModel::instance().purge_id(tr.TRANSLINKID);
         }
-        TrxModel::instance().purge_id(trx_d.TRANSID);
+        TrxModel::instance().purge_id(trx_d.m_id);
     }
 
     for (const auto& sched_d : SchedModel::instance().find_or(
         SchedCol::ACCOUNTID(account_id),
         SchedCol::TOACCOUNTID(account_id)
     ))
-        SchedModel::instance().purge_id(sched_d.BDID);
+        SchedModel::instance().purge_id(sched_d.m_id);
 
     for (const auto& stock_d : StockModel::instance().find(StockCol::HELDAT(account_id))) {
         TrxLinkModel::RemoveTransLinkRecords<StockModel>(stock_d.m_id);
@@ -99,7 +99,7 @@ bool AccountModel::purge_id(int64 account_id)
 const CurrencyData* AccountModel::get_data_currency_p(const Data& account_d)
 {
     const CurrencyData* currency_n = CurrencyModel::instance().get_id_data_n(
-        account_d.m_currency_id_p
+        account_d.m_currency_id
     );
     if (currency_n)
         return currency_n;

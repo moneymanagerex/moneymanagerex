@@ -16,24 +16,21 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-// This is only sample code re-used from "table/SchedTable.cpp".
-
 #include "SchedData.h"
 
-SchedData::SchedData()
+SchedData::SchedData() :
+    m_id(-1),
+    m_account_id(-1),
+    m_to_account_id_n(-1),
+    m_payee_id_n(-1),
+    m_amount(0.0),
+    m_category_id_n(-1),
+    m_followup_id(-1),
+    m_to_amount(0.0),
+    REPEATS(-1),
+    NUMOCCURRENCES(-1),
+    m_color(-1)
 {
-    BDID = -1;
-    ACCOUNTID = -1;
-    TOACCOUNTID = -1;
-    PAYEEID = -1;
-    TRANSAMOUNT = 0.0;
-    CATEGID = -1;
-    FOLLOWUPID = -1;
-    TOTRANSAMOUNT = 0.0;
-    REPEATS = -1;
-    NUMOCCURRENCES = -1;
-    COLOR = -1;
 }
 
 // Convert SchedData to SchedRow
@@ -41,23 +38,23 @@ SchedRow SchedData::to_row() const
 {
     SchedRow row;
 
-    row.BDID = BDID;
-    row.ACCOUNTID = ACCOUNTID;
-    row.TOACCOUNTID = TOACCOUNTID;
-    row.PAYEEID = PAYEEID;
-    row.TRANSCODE = TRANSCODE;
-    row.TRANSAMOUNT = TRANSAMOUNT;
-    row.STATUS = STATUS;
-    row.TRANSACTIONNUMBER = TRANSACTIONNUMBER;
-    row.NOTES = NOTES;
-    row.CATEGID = CATEGID;
-    row.TRANSDATE = TRANSDATE;
-    row.FOLLOWUPID = FOLLOWUPID;
-    row.TOTRANSAMOUNT = TOTRANSAMOUNT;
-    row.REPEATS = REPEATS;
+    row.BDID               = m_id;
+    row.ACCOUNTID          = m_account_id;
+    row.TOACCOUNTID        = m_to_account_id_n;
+    row.PAYEEID            = m_payee_id_n;
+    row.TRANSCODE          = TRANSCODE;
+    row.TRANSAMOUNT        = m_amount;
+    row.STATUS             = STATUS;
+    row.TRANSACTIONNUMBER  = m_number;
+    row.NOTES              = m_notes;
+    row.CATEGID            = m_category_id_n;
+    row.TRANSDATE          = TRANSDATE;
+    row.FOLLOWUPID         = m_followup_id;
+    row.TOTRANSAMOUNT      = m_to_amount;
+    row.REPEATS            = REPEATS;
     row.NEXTOCCURRENCEDATE = NEXTOCCURRENCEDATE;
-    row.NUMOCCURRENCES = NUMOCCURRENCES;
-    row.COLOR = COLOR;
+    row.NUMOCCURRENCES     = NUMOCCURRENCES;
+    row.COLOR              = m_color;
 
     return row;
 }
@@ -65,46 +62,46 @@ SchedRow SchedData::to_row() const
 // Convert SchedRow to SchedData
 SchedData& SchedData::from_row(const SchedRow& row)
 {
-    BDID = row.BDID; // int64
-    ACCOUNTID = row.ACCOUNTID; // int64
-    TOACCOUNTID = row.TOACCOUNTID; // int64
-    PAYEEID = row.PAYEEID; // int64
-    TRANSCODE = row.TRANSCODE; // wxString
-    TRANSAMOUNT = row.TRANSAMOUNT; // double
-    STATUS = row.STATUS; // wxString
-    TRANSACTIONNUMBER = row.TRANSACTIONNUMBER; // wxString
-    NOTES = row.NOTES; // wxString
-    CATEGID = row.CATEGID; // int64
-    TRANSDATE = row.TRANSDATE; // wxString
-    FOLLOWUPID = row.FOLLOWUPID; // int64
-    TOTRANSAMOUNT = row.TOTRANSAMOUNT; // double
-    REPEATS = row.REPEATS; // int64
+    m_id               = row.BDID;               // int64
+    m_account_id       = row.ACCOUNTID;          // int64
+    m_to_account_id_n  = row.TOACCOUNTID;        // int64
+    m_payee_id_n       = row.PAYEEID;            // int64
+    TRANSCODE          = row.TRANSCODE;          // wxString
+    m_amount           = row.TRANSAMOUNT;        // double
+    STATUS             = row.STATUS;             // wxString
+    m_number           = row.TRANSACTIONNUMBER;  // wxString
+    m_notes            = row.NOTES;              // wxString
+    m_category_id_n    = row.CATEGID;            // int64
+    TRANSDATE          = row.TRANSDATE;          // wxString
+    m_followup_id      = row.FOLLOWUPID;         // int64
+    m_to_amount        = row.TOTRANSAMOUNT;      // double
+    REPEATS            = row.REPEATS;            // int64
     NEXTOCCURRENCEDATE = row.NEXTOCCURRENCEDATE; // wxString
-    NUMOCCURRENCES = row.NUMOCCURRENCES; // int64
-    COLOR = row.COLOR; // int64
+    NUMOCCURRENCES     = row.NUMOCCURRENCES;     // int64
+    m_color            = row.COLOR;              // int64
 
     return *this;
 }
 
 bool SchedData::equals(const SchedData* other) const
 {
-    if ( BDID != other->BDID) return false;
-    if ( ACCOUNTID != other->ACCOUNTID) return false;
-    if ( TOACCOUNTID != other->TOACCOUNTID) return false;
-    if ( PAYEEID != other->PAYEEID) return false;
+    if ( m_id != other->m_id) return false;
+    if ( m_account_id != other->m_account_id) return false;
+    if ( m_to_account_id_n != other->m_to_account_id_n) return false;
+    if ( m_payee_id_n != other->m_payee_id_n) return false;
     if (!TRANSCODE.IsSameAs(other->TRANSCODE)) return false;
-    if ( TRANSAMOUNT != other->TRANSAMOUNT) return false;
+    if ( m_amount != other->m_amount) return false;
     if (!STATUS.IsSameAs(other->STATUS)) return false;
-    if (!TRANSACTIONNUMBER.IsSameAs(other->TRANSACTIONNUMBER)) return false;
-    if (!NOTES.IsSameAs(other->NOTES)) return false;
-    if ( CATEGID != other->CATEGID) return false;
+    if (!m_number.IsSameAs(other->m_number)) return false;
+    if (!m_notes.IsSameAs(other->m_notes)) return false;
+    if ( m_category_id_n != other->m_category_id_n) return false;
     if (!TRANSDATE.IsSameAs(other->TRANSDATE)) return false;
-    if ( FOLLOWUPID != other->FOLLOWUPID) return false;
-    if ( TOTRANSAMOUNT != other->TOTRANSAMOUNT) return false;
+    if ( m_followup_id != other->m_followup_id) return false;
+    if ( m_to_amount != other->m_to_amount) return false;
     if ( REPEATS != other->REPEATS) return false;
     if (!NEXTOCCURRENCEDATE.IsSameAs(other->NEXTOCCURRENCEDATE)) return false;
     if ( NUMOCCURRENCES != other->NUMOCCURRENCES) return false;
-    if ( COLOR != other->COLOR) return false;
+    if ( m_color != other->m_color) return false;
 
     return true;
 }

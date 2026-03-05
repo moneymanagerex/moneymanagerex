@@ -16,21 +16,6 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-//
-// This is only sample code re-used from "table/TrxShareTable.h".
-//
-// The data structure can be refined by:
-// * using more user-frielndly filed name
-// * using stronger field types
-// * adding enumerations for fields with limited choices
-// * demultiplexing composite values in database columns
-//
-// See also an implementation in Swift:
-//   https://github.com/moneymanagerex/mmex-ios/tree/master/MMEX/Data
-// and an implementation in Java:
-//   https://github.com/moneymanagerex/android-money-manager-ex/tree/master/app/src/main/java/com/money/manager/ex/domainmodel
-
 #pragma once
 
 #include "table/_TableBase.h"
@@ -39,19 +24,19 @@
 // User-friendly representation of a record in table SHAREINFO_V1.
 struct TrxShareData
 {
-    int64 SHAREINFOID; // primary key
-    int64 CHECKINGACCOUNTID;
-    double SHARENUMBER;
-    double SHAREPRICE;
-    double SHARECOMMISSION;
-    wxString SHARELOT;
+    int64    m_id;
+    int64    m_trx_id;     // non-null (> 0) after initialization
+    double   m_number;
+    double   m_price;
+    double   m_commission;
+    wxString m_lot;
 
     explicit TrxShareData();
     explicit TrxShareData(wxSQLite3ResultSet& q);
     TrxShareData(const TrxShareData& other) = default;
 
-    int64 id() const { return SHAREINFOID; }
-    void id(const int64 id) { SHAREINFOID = id; }
+    int64 id() const { return m_id; }
+    void id(const int64 id) { m_id = id; }
     TrxShareRow to_row() const;
     TrxShareData& from_row(const TrxShareRow& row);
     void to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const;
@@ -72,7 +57,7 @@ struct TrxShareData
     {
         bool operator()(const TrxShareData& x, const TrxShareData& y)
         {
-            return x.SHAREINFOID < y.SHAREINFOID;
+            return x.m_id < y.m_id;
         }
     };
 
@@ -80,7 +65,7 @@ struct TrxShareData
     {
         bool operator()(const TrxShareData& x, const TrxShareData& y)
         {
-            return x.CHECKINGACCOUNTID < y.CHECKINGACCOUNTID;
+            return x.m_trx_id < y.m_trx_id;
         }
     };
 
@@ -88,7 +73,7 @@ struct TrxShareData
     {
         bool operator()(const TrxShareData& x, const TrxShareData& y)
         {
-            return x.SHARENUMBER < y.SHARENUMBER;
+            return x.m_number < y.m_number;
         }
     };
 
@@ -96,7 +81,7 @@ struct TrxShareData
     {
         bool operator()(const TrxShareData& x, const TrxShareData& y)
         {
-            return x.SHAREPRICE < y.SHAREPRICE;
+            return x.m_price < y.m_price;
         }
     };
 
@@ -104,7 +89,7 @@ struct TrxShareData
     {
         bool operator()(const TrxShareData& x, const TrxShareData& y)
         {
-            return x.SHARECOMMISSION < y.SHARECOMMISSION;
+            return x.m_commission < y.m_commission;
         }
     };
 
@@ -112,7 +97,7 @@ struct TrxShareData
     {
         bool operator()(const TrxShareData& x, const TrxShareData& y)
         {
-            return x.SHARELOT < y.SHARELOT;
+            return x.m_lot < y.m_lot;
         }
     };
 };

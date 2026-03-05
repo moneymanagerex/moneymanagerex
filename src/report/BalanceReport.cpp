@@ -148,12 +148,14 @@ wxString BalanceReport::getHTMLText()
             histItem.stockId         = stock.m_id;
             histItem.purchasePrice   = stock.m_purchase_price;
             histItem.purchaseDate    = StockModel::PURCHASEDATE(stock);
-            histItem.purchaseDateStr = stock.m_purchase_date_;
+            histItem.purchaseDateStr = stock.m_purchase_date.isoDate();
             histItem.numShares       = stock.m_num_shares;
             histItem.stockHist       = StockHistoryModel::instance().find(
                 StockHistoryCol::SYMBOL(stock.m_symbol)
             );
-            std::stable_sort(histItem.stockHist.begin(), histItem.stockHist.end(), StockHistoryData::SorterByDATE());
+            std::stable_sort(histItem.stockHist.begin(), histItem.stockHist.end(),
+                StockHistoryData::SorterByDATE()
+            );
             std::reverse(histItem.stockHist.begin(), histItem.stockHist.end());
             m_stock_a.push_back(histItem);
         }
@@ -201,9 +203,9 @@ wxString BalanceReport::getHTMLText()
             }
             if (idx > -1) {
                 std::pair<double, double> dailybal = getBalance(&account, end_date);
-                balancePerDay[idx] += dailybal.first * getCurrencyDateRate(account.m_currency_id_p, end_date);
+                balancePerDay[idx] += dailybal.first * getCurrencyDateRate(account.m_currency_id, end_date);
                 if (AccountModel::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
-                    balancePerDay[idx] += dailybal.second * getCurrencyDateRate(account.m_currency_id_p, end_date);
+                    balancePerDay[idx] += dailybal.second * getCurrencyDateRate(account.m_currency_id, end_date);
                 }
             }
         }

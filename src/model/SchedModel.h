@@ -93,23 +93,24 @@ public:
         wxArrayInt64 TAGS;
 
         Bill_Data() {
-            BDID               = 0;
-            ACCOUNTID          = -1;
-            TOACCOUNTID        = -1;
-            PAYEEID            = -1;
+            m_id               = 0;
+            m_account_id       = -1;
+            m_to_account_id_n  = -1;
+            m_payee_id_n       = -1;
             TRANSCODE          = TrxModel::TYPE_NAME_WITHDRAWAL;
-            TRANSAMOUNT        = 0;
+            m_amount           = 0;
             STATUS             = TrxModel::STATUS_NAME_NONE;
-            TRANSACTIONNUMBER  = "";
-            NOTES              = "";
-            CATEGID            = -1;
+            m_number           = "";
+            m_notes            = "";
+            m_category_id_n    = -1;
             TRANSDATE          = wxDateTime::Now().FormatISOCombined();
-            FOLLOWUPID         = -1;
-            TOTRANSAMOUNT      = 0;
+            m_followup_id      = -1;
+            m_to_amount        = 0;
             REPEATS            = 0;
             NEXTOCCURRENCEDATE = "";
             NUMOCCURRENCES     = 0;
-            COLOR              = -1;
+            m_color            = -1;
+
         }
     };
 
@@ -210,16 +211,16 @@ public:
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
             if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
-                x_accountid = x.ACCOUNTID; x_transamount = x.TRANSAMOUNT;
+                x_accountid = x.m_account_id; x_transamount = x.m_amount;
             }
             else if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                x_accountid = x.ACCOUNTID; x_transamount = x.TRANSAMOUNT;
+                x_accountid = x.m_account_id; x_transamount = x.m_amount;
             }
             if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
-                y_accountid = y.ACCOUNTID; y_transamount = y.TRANSAMOUNT;
+                y_accountid = y.m_account_id; y_transamount = y.m_amount;
             }
             else if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                y_accountid = y.ACCOUNTID; y_transamount = y.TRANSAMOUNT;
+                y_accountid = y.m_account_id; y_transamount = y.m_amount;
             }
             return x_accountid != -1 && (y_accountid == -1 || x_transamount < y_transamount);
         }
@@ -232,16 +233,16 @@ public:
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
             if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
-                x_accountid = x.ACCOUNTID; x_transamount = x.TRANSAMOUNT;
+                x_accountid = x.m_account_id; x_transamount = x.m_amount;
             }
             else if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                x_accountid = x.TOACCOUNTID; x_transamount = x.TOTRANSAMOUNT;
+                x_accountid = x.m_to_account_id_n; x_transamount = x.m_to_amount;
             }
             if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
-                y_accountid = y.ACCOUNTID; y_transamount = y.TRANSAMOUNT;
+                y_accountid = y.m_account_id; y_transamount = y.m_amount;
             }
             else if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                y_accountid = y.TOACCOUNTID; y_transamount = y.TOTRANSAMOUNT;
+                y_accountid = y.m_to_account_id_n; y_transamount = y.m_to_amount;
             }
             return x_accountid != -1 && (y_accountid == -1 || x_transamount < y_transamount);
         }

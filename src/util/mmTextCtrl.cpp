@@ -59,7 +59,7 @@ void mmTextCtrl::SetValueNoEvent(double value, int precision)
 void mmTextCtrl::SetValue(double value, const AccountData* account, int precision)
 {
     if (account)
-        m_currency = CurrencyModel::instance().get_id_data_n(account->m_currency_id_p);
+        m_currency = CurrencyModel::instance().get_id_data_n(account->m_currency_id);
     this->SetValue(value, precision > -1 ? precision : log10(m_currency->m_scale.GetValue()));
 }
 
