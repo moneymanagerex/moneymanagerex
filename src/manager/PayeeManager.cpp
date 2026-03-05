@@ -755,7 +755,7 @@ void mmPayeeDialog::DeletePayee()
     FindSelectedPayees();
     for (RowData* rdata : m_selectedItems) {
         const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(rdata->payeeId);
-        if (PayeeModel::instance().find_id_dep_cnt(rdata->payeeId) > 0) {
+        if (PayeeModel::instance().find_id_dep_c(rdata->payeeId) > 0) {
             wxString deletePayeeErrMsg = _t("Payee in use.");
             deletePayeeErrMsg
                 << "\n"

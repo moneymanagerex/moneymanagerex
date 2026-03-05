@@ -24,18 +24,18 @@
 // If key is not in cache, return nullptr.
 // The returned pointer can modify the value in cache.
 // The returned pointer is invalidated at the next clear() or reset();
-// if capacity is set (> 0) and the cache is not locked (lock_cnt == 0),
+// if capacity is set (> 0) and the cache is not locked (lock_c == 0),
 // the returned may be invalidated at the next add() or set().
 template<typename K, typename V>
 auto mmCache<K, V>::unsafe_get(const Key& key) -> Value*
 {
     auto it = m_key_value.find(key);
     if (it != m_key_value.end()) {
-        ++m_stat.hit_cnt;
+        ++m_stat.hit_c;
         return it->second;
     }
     else {
-        ++m_stat.miss_cnt;
+        ++m_stat.miss_c;
         return nullptr;
     }
 }
@@ -52,7 +52,7 @@ auto mmCache<K, V>::get(const Key& key) -> const Value*
 // to the copy owned by cache. If key is alredy in cache, return nullptr.
 // value shall not be owned by cache before the call; it is not embraced
 // by cache after the call.
-// If capacity is set (> 0) and the cache is not locked (lock_cnt == 0),
+// If capacity is set (> 0) and the cache is not locked (lock_c == 0),
 // this call may invalidate pointers into cache.
 template<typename K, typename V>
 auto mmCache<K, V>::add(const Key& key, const Value& value) -> const Value*
@@ -60,7 +60,7 @@ auto mmCache<K, V>::add(const Key& key, const Value& value) -> const Value*
     if (m_key_value.find(key) != m_key_value.end())
         return nullptr;
 
-    if (m_stat.lock_cnt == 0 && m_stat.capacity > 0 && m_key_value.size() >= m_stat.capacity)
+    if (m_stat.lock_c == 0 && m_stat.capacity > 0 && m_key_value.size() >= m_stat.capacity)
         clear();
 
     m_key_value[key] = new Value(value);
@@ -86,7 +86,7 @@ auto mmCache<K, V>::update(const Key& key, const Value& value) -> const Value*
 }
 
 // Copy or update value into cache and return a pointer to the copy owned by cache.
-// If capacity is set (> 0) and the cache is not locked (lock_cnt == 0),
+// If capacity is set (> 0) and the cache is not locked (lock_c == 0),
 // this call may invalidate pointers into cache.
 template<typename K, typename V>
 auto mmCache<K, V>::set(const Key& key, const Value& value) -> const Value*
@@ -117,15 +117,15 @@ bool mmCache<K, V>::remove(const Key& key)
 template<typename K, typename V>
 void mmCache<K, V>::lock()
 {
-    ++m_stat.lock_cnt;
+    ++m_stat.lock_c;
 }
 
 // Decrease the lock counter.
 template<typename K, typename V>
 void mmCache<K, V>::unlock()
 {
-    if (m_stat.lock_cnt > 0)
-        --m_stat.lock_cnt;
+    if (m_stat.lock_c > 0)
+        --m_stat.lock_c;
 }
 
 // If the cache is not locked, remove all keys and delete all values;
@@ -134,7 +134,7 @@ void mmCache<K, V>::unlock()
 template<typename K, typename V>
 void mmCache<K, V>::clear()
 {
-    if (m_stat.lock_cnt > 0)
+    if (m_stat.lock_c > 0)
         return;
 
     for (auto& [_, v] : m_key_value)

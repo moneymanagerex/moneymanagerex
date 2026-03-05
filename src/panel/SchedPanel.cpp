@@ -532,7 +532,7 @@ wxString SchedPanel::getItem(long item, int col_id)
     case SchedList::LIST_ID_NOTES: {
         wxString value = sched_xd.m_notes;
         value.Replace("\n", " ");
-        if (AttachmentModel::NrAttachments(SchedModel::refTypeName, sched_xd.m_id))
+        if (AttachmentModel::instance().find_id_c(SchedModel::s_ref_type, sched_xd.m_id))
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     }

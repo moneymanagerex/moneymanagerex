@@ -22,6 +22,7 @@
 #include "base/defs.h"
 
 #include "table/SchedTable.h"
+#include "data/_DataEnum.h"
 #include "data/SchedData.h"
 
 #include "_ModelBase.h"
@@ -132,6 +133,7 @@ public:
 
 public:
     static const wxString refTypeName;
+    static const RefTypeN s_ref_type;
 
 public:
     // Initialize the global SchedModel table on initial call.

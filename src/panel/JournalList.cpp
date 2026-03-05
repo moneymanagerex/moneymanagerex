@@ -764,7 +764,7 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 
         menu.Append(MENU_TREEPOPUP_MOVE2, (1 == selected) ? _tu("&Move Transaction…") : _tu("&Move Transactions…"));
         if (is_nothing_selected || type_transfer ||
-            AccountModel::instance().find_money_type_cnt() < 2 ||
+            AccountModel::instance().find_money_type_c() < 2 ||
             is_foreign
         )
             menu.Enable(MENU_TREEPOPUP_MOVE2, false);

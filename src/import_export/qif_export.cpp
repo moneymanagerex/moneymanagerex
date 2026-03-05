@@ -528,7 +528,7 @@ void mmQIFExportDialog::mmExportQIF()
                     allPayees4Export.push_back(full_tran.m_payee_id_n);
                 }
 
-                if (!AttachmentModel::instance().FilterAttachments(RefType, full_tran.id()).empty()
+                if (!AttachmentModel::instance().find_id_data_a(RefTypeN(RefType), full_tran.id()).empty()
                     && std::find(allAttachments4Export.begin(), allAttachments4Export.end(), full_tran.m_id) == allAttachments4Export.end()) {
                     allAttachments4Export.push_back(full_tran.m_id);
                 }

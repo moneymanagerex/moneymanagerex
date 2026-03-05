@@ -23,6 +23,7 @@
 #include "base/defs.h"
 
 #include "table/PayeeTable.h"
+#include "data/_DataEnum.h"
 #include "data/PayeeData.h"
 
 #include "_ModelBase.h"
@@ -31,6 +32,7 @@ class PayeeModel : public TableFactory<PayeeTable, PayeeData>
 {
 public:
     static const wxString refTypeName;
+    static const RefTypeN s_ref_type;
 
 public:
     PayeeModel();
@@ -42,8 +44,8 @@ public:
 
 public:
     // TODO: add to virtual methods in TableFactory
-    int find_id_aux_cnt(int64 payee_id);
-    int find_id_dep_cnt(int64 payee_id);
+    int find_id_aux_c(int64 payee_id);
+    int find_id_dep_c(int64 payee_id);
 
     // override
     bool purge_id(int64 payee_id) override;

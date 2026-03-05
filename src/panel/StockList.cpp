@@ -208,7 +208,7 @@ wxString StockList::OnGetItemText(long item, long col_nr) const
     case LIST_ID_NOTES: {
         wxString full_notes = m_stocks[item].m_notes;
         full_notes.Replace("\n", " ");
-        if (AttachmentModel::NrAttachments(StockModel::refTypeName, m_stocks[item].m_id))
+        if (AttachmentModel::instance().find_id_c(StockModel::s_ref_type, m_stocks[item].m_id))
             full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
     }

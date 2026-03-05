@@ -29,6 +29,8 @@
  // TODO: Move attachment management outside of AttachmentDialog
 #include "dialog/AttachmentDialog.h"
 
+const RefTypeN SchedModel::s_ref_type = RefTypeN(RefTypeN::e_sched);
+
 // -- static methods --
 
 // Initialize the global SchedModel table.

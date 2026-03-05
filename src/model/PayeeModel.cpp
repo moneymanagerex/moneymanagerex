@@ -23,6 +23,8 @@
 #include "TrxModel.h"
 #include "SchedModel.h"
 
+const RefTypeN PayeeModel::s_ref_type = RefTypeN(RefTypeN::e_payee);
+
 PayeeModel::PayeeModel() :
     TableFactory<PayeeTable, PayeeData>()
 {
@@ -51,12 +53,12 @@ PayeeModel& PayeeModel::instance()
     return Singleton<PayeeModel>::instance();
 }
 
-int PayeeModel::find_id_aux_cnt(int64 payee_id)
+int PayeeModel::find_id_aux_c(int64 payee_id)
 {
-    return AttachmentModel::NrAttachments(PayeeModel::refTypeName, payee_id);
+    return AttachmentModel::instance().find_id_c(PayeeModel::s_ref_type, payee_id);
 }
 
-int PayeeModel::find_id_dep_cnt(int64 payee_id)
+int PayeeModel::find_id_dep_c(int64 payee_id)
 {
     // FIX (2026-03-01): Do not exclude deleted transactions. Deleted transactions
     // are shown in a panel and they can be restored; they must have a valid payee id.
@@ -73,7 +75,7 @@ int PayeeModel::find_id_dep_cnt(int64 payee_id)
 
 bool PayeeModel::purge_id(int64 payee_id)
 {
-    if (PayeeModel::find_id_dep_cnt(payee_id) > 0)
+    if (PayeeModel::find_id_dep_c(payee_id) > 0)
         return false;
 
     // FIXME: remove AttachmentData owned by payee_id

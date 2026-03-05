@@ -663,7 +663,7 @@ void JournalPanel::filterList()
         : TrxModel::instance().find_allByDateTimeId();
     const auto trans_splits = TrxSplitModel::instance().get_all_id();
     const auto trans_tags = TagLinkModel::instance().get_all_id(tranRefType);
-    const auto trans_attachments = AttachmentModel::instance().get_reftype(TrxModel::refTypeName);
+    const auto trans_attachments = AttachmentModel::instance().find_type_id_data_a_m(TrxModel::s_ref_type);
 
     wxString date_start_str, date_end_str;
     wxDateTime date_end = wxDateTime::Now() + wxTimeSpan::Days(30);
@@ -700,7 +700,7 @@ void JournalPanel::filterList()
     if (m_scheduled_enable && m_scheduled_selected) {
         bills_splits = SchedSplitModel::instance().get_all_id();
         bills_tags = TagLinkModel::instance().get_all_id(billRefType);
-        bills_attachments = AttachmentModel::instance().get_reftype(SchedModel::refTypeName);
+        bills_attachments = AttachmentModel::instance().find_type_id_data_a_m(SchedModel::s_ref_type);
         bills = m_account_n
             ? AccountModel::instance().find_id_sched_a(m_account_n->m_id)
             : SchedModel::instance().find_all();
@@ -800,12 +800,12 @@ void JournalPanel::filterList()
         }
 
         if (repeat_num == 0 && trans_attachments.find(trx_n->m_id) != trans_attachments.end()) {
-            for (const auto& entry : trans_attachments.at(trx_n->m_id))
-                journal_xd.ATTACHMENT_DESCRIPTION.Add(entry.DESCRIPTION);
+            for (const auto& att_d : trans_attachments.at(trx_n->m_id))
+                journal_xd.ATTACHMENT_DESCRIPTION.Add(att_d.m_description);
         }
         else if (repeat_num > 0 && bills_attachments.find(journal_xd.m_bdid) != bills_attachments.end()) {
-            for (const auto& entry : bills_attachments.at(journal_xd.m_bdid))
-                journal_xd.ATTACHMENT_DESCRIPTION.Add(entry.DESCRIPTION);
+            for (const auto& att_d : bills_attachments.at(journal_xd.m_bdid))
+                journal_xd.ATTACHMENT_DESCRIPTION.Add(att_d.m_description);
         }
 
         for (int i = 0; i < 5; i++) {
@@ -948,10 +948,9 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 }
             if (journal_xd.has_attachment()) {
                 const wxString& refType = TrxModel::refTypeName;
-                AttachmentModel::DataA attachments = AttachmentModel::instance().FilterAttachments(refType, journal_xd.m_id);
-                for (const auto& i : attachments) {
+                for (const auto& att_d : AttachmentModel::instance().find_id_data_a(RefTypeN(refType), journal_xd.m_id)) {
                     notesStr += notesStr.empty() ? "" : "\n";
-                    notesStr += _t("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
+                    notesStr += _t("Attachment") + " " + att_d.m_description + " " + att_d.m_filename;
                 }
             }
         }
@@ -966,10 +965,9 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 }
             if (journal_xd.has_attachment()) {
                 const wxString& refType = SchedModel::refTypeName;
-                AttachmentModel::DataA attachments = AttachmentModel::instance().FilterAttachments(refType, journal_xd.m_bdid);
-                for (const auto& i : attachments) {
+                for (const auto& att_d : AttachmentModel::instance().find_id_data_a(RefTypeN(refType), journal_xd.m_bdid)) {
                     notesStr += notesStr.empty() ? "" : "\n";
-                    notesStr += _t("Attachment") + " " + i.DESCRIPTION + " " + i.FILENAME;
+                    notesStr += _t("Attachment") + " " + att_d.m_description + " " + att_d.m_filename;
                 }
             }
         }

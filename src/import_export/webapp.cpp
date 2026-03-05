@@ -608,10 +608,10 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
                     DesktopAttachmentName = WebApp_DownloadOneAttachment(WebAppAttachmentName, DeskNewTrID, AttachmentNr, CurlError);
                     if (DesktopAttachmentName != wxEmptyString) {
                         AttachmentData new_att_d = AttachmentData();
-                        new_att_d.REFTYPE     = TrxModel::refTypeName;
-                        new_att_d.REFID       = DeskNewTrID;
-                        new_att_d.DESCRIPTION = _t("Attachment") + "_" << AttachmentNr;
-                        new_att_d.FILENAME    = DesktopAttachmentName;
+                        new_att_d.m_ref_type_n  = RefTypeN(RefTypeN::e_trx);
+                        new_att_d.m_ref_id      = DeskNewTrID;
+                        new_att_d.m_description = _t("Attachment") + "_" << AttachmentNr;
+                        new_att_d.m_filename    = DesktopAttachmentName;
                         AttachmentModel::instance().add_data_n(new_att_d);
                     }
                     else {

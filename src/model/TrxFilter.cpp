@@ -236,7 +236,7 @@ table {
 
         // Attachments
         wxString AttachmentsLink = "";
-        if (AttachmentModel::instance().NrAttachments(TrxModel::refTypeName, trx_xd.m_id)) {
+        if (AttachmentModel::instance().find_id_c(TrxModel::s_ref_type, trx_xd.m_id)) {
             AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
                 TrxModel::refTypeName, trx_xd.m_id,
                 mmAttachmentManage::GetAttachmentNoteSign());

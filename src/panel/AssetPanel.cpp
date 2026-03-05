@@ -648,7 +648,7 @@ wxString AssetPanel::getItem(long item, int col_id)
     case AssetList::LIST_ID_NOTES: {
         wxString full_notes = asset.m_notes;
         full_notes.Replace("\n", " ");
-        if (AttachmentModel::NrAttachments(AssetModel::refTypeName, asset.m_id))
+        if (AttachmentModel::instance().find_id_c(AssetModel::s_ref_type, asset.m_id))
             full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
     }

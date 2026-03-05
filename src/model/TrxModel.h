@@ -136,6 +136,7 @@ public:
 
 public:
     static const wxString refTypeName;
+    static const RefTypeN s_ref_type;
 
 public:
     // Initialize the global TrxModel table on initial call.

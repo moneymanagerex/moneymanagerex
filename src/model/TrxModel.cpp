@@ -32,6 +32,8 @@
 
 #include "dialog/AttachmentDialog.h"
 
+const RefTypeN TrxModel::s_ref_type = RefTypeN(RefTypeN::e_trx);
+
 mmChoiceNameA TrxModel::TYPE_CHOICES = mmChoiceNameA({
     { TYPE_ID_WITHDRAWAL, _n("Withdrawal") },
     { TYPE_ID_DEPOSIT,    _n("Deposit") },

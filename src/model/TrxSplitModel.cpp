@@ -21,6 +21,8 @@
 #include "CategoryModel.h"
 #include "TrxModel.h"
 
+const RefTypeN TrxSplitModel::s_ref_type = RefTypeN(RefTypeN::e_trx_split);
+
 TrxSplitModel::TrxSplitModel() :
     TableFactory<TrxSplitTable, TrxSplitData>()
 {

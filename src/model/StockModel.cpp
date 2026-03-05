@@ -23,6 +23,8 @@
 #include "TrxShareModel.h"
 #include "CurrencyHistoryModel.h"
 
+const RefTypeN StockModel::s_ref_type = RefTypeN(RefTypeN::e_stock);
+
 StockModel::StockModel() :
     TableFactory<StockTable, StockData>()
 {

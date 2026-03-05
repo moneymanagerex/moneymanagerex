@@ -21,6 +21,8 @@
 #include "TrxLinkModel.h"
 #include "CurrencyHistoryModel.h"
 
+const RefTypeN AssetModel::s_ref_type = RefTypeN(RefTypeN::e_asset);
+
 AssetModel::AssetModel() :
     TableFactory<AssetTable, AssetData>()
 {

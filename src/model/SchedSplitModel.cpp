@@ -21,6 +21,8 @@
 #include "AttachmentModel.h"
 #include "TagLinkModel.h"
 
+const RefTypeN SchedSplitModel::s_ref_type = RefTypeN(RefTypeN::e_sched_split);
+
 SchedSplitModel::SchedSplitModel() :
     TableFactory<SchedSplitTable, SchedSplitData>()
 {

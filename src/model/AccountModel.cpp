@@ -26,6 +26,8 @@
 #include "TrxLinkModel.h"
 #include "TrxShareModel.h"
 
+const RefTypeN AccountModel::s_ref_type = RefTypeN(RefTypeN::e_account);
+
 AccountModel::AccountModel() :
     TableFactory<AccountTable, AccountData>()
 {
@@ -284,7 +286,7 @@ const wxArrayString AccountModel::find_all_type_a(bool only_open)
     return usedTypes;
 }
 
-int AccountModel::find_money_type_cnt()
+int AccountModel::find_money_type_c()
 {
     return
         find(

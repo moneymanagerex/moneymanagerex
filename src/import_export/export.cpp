@@ -440,34 +440,32 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
     }
 
     const wxString RefType = TrxModel::refTypeName;
-    AttachmentModel::DataA attachments = AttachmentModel::instance().FilterAttachments(RefType, full_tran.id());
+    AttachmentModel::DataA att_a = AttachmentModel::instance().find_id_data_a(RefTypeN(RefType), full_tran.id());
 
-    if (!attachments.empty()) {
+    if (!att_a.empty()) {
         //const wxString folder = InfoModel::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
         json_writer.Key("ATTACHMENTS");
         json_writer.StartArray();
-        for (const auto &entry : attachments) {
-            json_writer.Int64(entry.ATTACHMENTID.GetValue());
+        for (const auto& att_d : att_a) {
+            json_writer.Int64(att_d.m_id.GetValue());
         }
         json_writer.EndArray();
     }
 
-    auto data = FieldValueModel::instance().find(
+    auto fv_a = FieldValueModel::instance().find(
         FieldValueCol::REFID(full_tran.id())
     );
     auto f = FieldModel::instance().find(FieldCol::REFTYPE(RefType));
-    if (!data.empty()) {
+    if (!fv_a.empty()) {
         json_writer.Key("CUSTOM_FIELDS");
         json_writer.StartArray();
-        for (const auto &entry : data) {
-
-            auto customFields = FieldModel::instance().find(
+        for (const auto& fv_d : fv_a) {
+            auto field_a = FieldModel::instance().find(
                 FieldCol::REFTYPE(RefType),
-                FieldCol::FIELDID(entry.FIELDID)
+                FieldCol::FIELDID(fv_d.FIELDID)
             );
-
-            for (const auto& i : customFields) {
-                json_writer.Int64(i.FIELDID.GetValue());
+            for (const auto& field_d : field_a) {
+                json_writer.Int64(field_d.FIELDID.GetValue());
             }
         }
         json_writer.EndArray();
@@ -476,48 +474,49 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
     json_writer.EndObject();
 }
 
-void mmExportTransaction::getAttachmentsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allAttachment4Export)
-{
+void mmExportTransaction::getAttachmentsJSON(
+    PrettyWriter<StringBuffer>& json_writer,
+    wxArrayInt64& ref_id_a
+) {
+    if (ref_id_a.empty())
+        return;
 
-    if (!allAttachment4Export.empty())
-    {
-        const wxString RefType = TrxModel::refTypeName;
-        const wxString folder = InfoModel::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
-        const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
+    RefTypeN ref_type = RefTypeN(RefTypeN::e_trx);
+    const wxString folder = InfoModel::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+    const wxString AttachmentsFolder = mmex::getPathAttachment(folder);
 
-        json_writer.Key("ATTACHMENTS");
+    json_writer.Key("ATTACHMENTS");
+    json_writer.StartObject();
+
+    json_writer.Key("FOLDER");
+    json_writer.String(folder.utf8_str());
+    json_writer.Key("FULL_PATH");
+    json_writer.String(AttachmentsFolder.utf8_str());
+    json_writer.Key("REFTYPE");
+    json_writer.String(ref_type.name_n().utf8_str());
+
+    json_writer.Key("ATTACHMENTS_DATA");
+    json_writer.StartArray();
+
+    AttachmentModel::DataA att_a = AttachmentModel::instance().find_all();
+    for (const auto& att_d : att_a) {
+        if (att_d.m_ref_type_n.id_n() != ref_type.id_n())
+            continue;
+        if (std::find(ref_id_a.begin(), ref_id_a.end(), att_d.m_ref_id) == ref_id_a.end())
+            continue;
         json_writer.StartObject();
-
-        json_writer.Key("FOLDER");
-        json_writer.String(folder.utf8_str());
-        json_writer.Key("FULL_PATH");
-        json_writer.String(AttachmentsFolder.utf8_str());
-        json_writer.Key("REFTYPE");
-        json_writer.String(RefType.utf8_str());
-
-        json_writer.Key("ATTACHMENTS_DATA");
-        json_writer.StartArray();
-
-        AttachmentModel::DataA attachments = AttachmentModel::instance().find_all();
-        for (const auto& entry : attachments)
-        {
-            if (entry.REFTYPE != RefType) continue;
-            if (std::find(allAttachment4Export.begin(), allAttachment4Export.end(), entry.REFID) == allAttachment4Export.end()) continue;
-
-            json_writer.StartObject();
-            entry.as_json(json_writer);
-            json_writer.EndObject();
-        }
-        json_writer.EndArray();
+        att_d.as_json(json_writer);
         json_writer.EndObject();
     }
+    json_writer.EndArray();
+    json_writer.EndObject();
 }
 
-void mmExportTransaction::getCustomFieldsJSON(PrettyWriter<StringBuffer>& json_writer, wxArrayInt64& allCustomFields4Export)
-{
-
-    if (!allCustomFields4Export.empty())
-    {
+void mmExportTransaction::getCustomFieldsJSON(
+    PrettyWriter<StringBuffer>& json_writer,
+    wxArrayInt64& allCustomFields4Export
+) {
+    if (!allCustomFields4Export.empty()) {
         const wxString RefType = TrxModel::refTypeName;
 
         json_writer.Key("CUSTOM_FIELDS");

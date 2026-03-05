@@ -37,39 +37,39 @@
 wxIMPLEMENT_DYNAMIC_CLASS(AttachmentDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE( AttachmentDialog, wxDialog )
-    EVT_BUTTON(wxID_CANCEL, AttachmentDialog::OnCancel)
-    EVT_BUTTON(wxID_OK, AttachmentDialog::OnOk)
-    EVT_BUTTON(wxID_APPLY, AttachmentDialog::OnMagicButton)
+    EVT_BUTTON(wxID_CANCEL,                  AttachmentDialog::OnCancel)
+    EVT_BUTTON(wxID_OK,                      AttachmentDialog::OnOk)
+    EVT_BUTTON(wxID_APPLY,                   AttachmentDialog::OnMagicButton)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, AttachmentDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, AttachmentDialog::OnItemRightClick)
-    EVT_MENU_RANGE(MENU_NEW_ATTACHMENT, MENU_DELETE_ATTACHMENT, AttachmentDialog::OnMenuSelected)
-    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, AttachmentDialog::OnListItemActivated)
+    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY,    AttachmentDialog::OnListItemActivated)
+    EVT_MENU_RANGE(MENU_NEW_ATTACHMENT, MENU_DELETE_ATTACHMENT,
+        AttachmentDialog::OnMenuSelected
+    )
 wxEND_EVENT_TABLE()
 
-
 AttachmentDialog::AttachmentDialog (wxWindow* parent, const wxString& RefType, int64 RefId, const wxString& name) :
-    m_RefType(RefType)
-    , m_RefId(RefId)
+    m_RefType(RefType),
+    m_RefId(RefId)
 {
-    if (debug_) ColName_[ATTACHMENT_ID] = "#";
+    if (debug_)
+        ColName_[ATTACHMENT_ID] = "#";
     ColName_[ATTACHMENT_DESCRIPTION] = _t("Description");
     ColName_[ATTACHMENT_FILENAME] = _t("File");
 
     Create(parent, name);
     mmThemeAutoColour(this);
 
-    const wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
+    const wxString folder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
 
-    if (AttachmentsFolder == wxEmptyString)
-    {
+    if (folder == wxEmptyString) {
         wxString msgStr = wxString() << _t("Attachment folder not defined.") << "\n"
             << _tu("Please set it in Tools → Settings… → Attachments") << "\n";
         wxMessageBox(msgStr, _t("Attachment folder not defined"), wxICON_ERROR);
     }
-    else if (!wxDirExists(AttachmentsFolder))
-    {
+    else if (!wxDirExists(folder)) {
         wxString msgStr = wxString() << _t("Unable to find attachments folder:") << "\n"
-            << "'" << AttachmentsFolder << "'" << "\n"
+            << "'" << folder << "'" << "\n"
             << "\n"
             << _t("Please verify that above path is correct") << "\n";
         wxMessageBox(msgStr, _t("Attachments folder not found."), wxICON_ERROR);
@@ -82,8 +82,7 @@ void AttachmentDialog::Create(wxWindow* parent, const wxString& name)
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
 
     wxString WindowTitle;
-    if (m_RefId > 0)
-    {
+    if (m_RefId > 0) {
         int refEnum = 0;
         for (int i = 0; i < ModelBase::REFTYPE_ID_size; ++i) {
             wxString reftype = ModelBase::reftype_name(i);
@@ -112,13 +111,22 @@ void AttachmentDialog::Create(wxWindow* parent, const wxString& name)
             RefName = "";
         }       
         if (RefName.IsEmpty())
-            WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$lld"), wxGetTranslation(m_RefType), m_RefId);
+            WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$lld"),
+                wxGetTranslation(m_RefType), m_RefId
+            );
         else
-            WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$s"), wxGetTranslation(m_RefType), RefName);
+            WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$s"),
+                wxGetTranslation(m_RefType), RefName
+            );
     } else
-        WindowTitle = wxString::Format(_t("Attachment Manager | New %s"), wxGetTranslation(m_RefType));
+        WindowTitle = wxString::Format(_t("Attachment Manager | New %s"),
+            wxGetTranslation(m_RefType)
+        );
 
-    if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style, name))
+    if (!wxDialog::Create(
+        parent, wxID_ANY, WindowTitle,
+        wxDefaultPosition, wxDefaultSize, style, name
+    ))
         return;
 
     CreateControls();
@@ -134,10 +142,12 @@ void AttachmentDialog::CreateControls()
 {
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
-    attachmentListBox_ = new wxDataViewListCtrl( this
-        , wxID_ANY, wxDefaultPosition, wxSize(460, 500)/*, wxDV_HORIZ_RULES*/);
+    attachmentListBox_ = new wxDataViewListCtrl(this, wxID_ANY,
+        wxDefaultPosition, wxSize(460, 500)/*, wxDV_HORIZ_RULES*/
+    );
 
-    if (debug_) attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_ID], wxDATAVIEW_CELL_INERT, 30);
+    if (debug_)
+        attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_ID], wxDATAVIEW_CELL_INERT, 30);
     attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_DESCRIPTION], wxDATAVIEW_CELL_INERT, 150);
     attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_FILENAME], wxDATAVIEW_CELL_INERT, 300);
     attachmentListBox_->DragAcceptFiles(true);
@@ -167,67 +177,75 @@ void AttachmentDialog::fillControls()
 {    
     attachmentListBox_->DeleteAllItems();
 
-    AttachmentModel::DataA attachments = AttachmentModel::instance().FilterAttachments(m_RefType, m_RefId);
-    if (attachments.size() == 0) return;
+    AttachmentModel::DataA att_a = AttachmentModel::instance().find_id_data_a(RefTypeN(m_RefType), m_RefId);
+    if (att_a.empty())
+        return;
 
     int64 firstInTheListAttachentID = -1;
-    for (const auto &entry : attachments)
-    {
-        if (firstInTheListAttachentID == -1) firstInTheListAttachentID = entry.ATTACHMENTID;
+    for (const auto& att_d : att_a) {
+        if (firstInTheListAttachentID == -1)
+            firstInTheListAttachentID = att_d.m_id;
         wxVector<wxVariant> data;
-        if (debug_) data.push_back(wxVariant(wxString::Format("%lld", entry.ATTACHMENTID)));
-        data.push_back(wxVariant(entry.DESCRIPTION));
-        data.push_back(wxVariant(entry.REFTYPE + m_PathSep + entry.FILENAME));
-        attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.ATTACHMENTID.GetValue()));
+        if (debug_)
+            data.push_back(wxVariant(wxString::Format("%lld", att_d.m_id)));
+        data.push_back(wxVariant(att_d.m_description));
+        data.push_back(wxVariant(att_d.m_ref_type_n.name_n() + m_PathSep + att_d.m_filename));
+        attachmentListBox_->AppendItem(data, static_cast<wxUIntPtr>(att_d.m_id.GetValue()));
     }
 
     m_attachment_id = firstInTheListAttachentID;
 }
 
-void AttachmentDialog::AddAttachment(wxString FilePath)
+void AttachmentDialog::AddAttachment(wxString file_path)
 {
-    if (FilePath.empty())
-    {
-        FilePath = wxFileSelector(_t("Import attachment:")
-            , wxEmptyString, wxEmptyString, wxEmptyString
-            , "All Files |*.*"
-            , wxFD_FILE_MUST_EXIST);
-
-        if (FilePath.empty()) return;
+    if (file_path.empty()) {
+        file_path = wxFileSelector(
+            _t("Import attachment:"),
+            wxEmptyString, wxEmptyString, wxEmptyString,
+            "All Files |*.*",
+            wxFD_FILE_MUST_EXIST
+        );
+        if (file_path.empty())
+            return;
     }
 
-    const wxString attachmentFileName = wxFileName(FilePath).GetName();
-    const wxString attachmentFileExtension = wxFileName(FilePath).GetExt().MakeLower();
+    const wxString file_name = wxFileName(file_path).GetName();
+    const wxString file_ext = wxFileName(file_path).GetExt().MakeLower();
     
-    mmDialogComboBoxAutocomplete dlg(this, _t("Enter a description for the new attachment:") + wxString::Format("\n(%s)", FilePath),
-        _t("Attachment Manager: Add Attachment"), attachmentFileName, AttachmentModel::instance().allDescriptions());
+    mmDialogComboBoxAutocomplete dlg(this,
+        _t("Enter a description for the new attachment:") +
+            wxString::Format("\n(%s)", file_path),
+        _t("Attachment Manager: Add Attachment"),
+        file_name,
+        AttachmentModel::instance().find_all_desc_a()
+    );
 
     if (dlg.ShowModal() != wxID_OK)
         return;
 
-    const wxString attachmentDescription = dlg.getText();
+    const wxString desc = dlg.getText();
 
-    const wxString attachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
-    int attachmentLastNumber = AttachmentModel::LastAttachmentNumber(m_RefType, m_RefId);
+    const wxString folder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
+    int last_num = AttachmentModel::instance().find_id_last_num(RefTypeN(m_RefType), m_RefId);
 
     wxString importedFileName = m_RefType + "_" + wxString::Format("%lld", m_RefId) + "_Attach"
-        + wxString::Format("%i", attachmentLastNumber + 1);
-    if (!attachmentFileExtension.empty())
-        importedFileName += "." + attachmentFileExtension;
+        + wxString::Format("%i", last_num + 1);
+    if (!file_ext.empty())
+        importedFileName += "." + file_ext;
 
     if (mmAttachmentManage::CopyAttachment(
-        FilePath,
-        attachmentsFolder + m_RefType + m_PathSep + importedFileName
+        file_path,
+        folder + m_RefType + m_PathSep + importedFileName
     )) {
         AttachmentData new_att_d = AttachmentData();
-        new_att_d.REFTYPE     = m_RefType;
-        new_att_d.REFID       = m_RefId;
-        new_att_d.DESCRIPTION = attachmentDescription;
-        new_att_d.FILENAME    = importedFileName;
+        new_att_d.m_ref_type_n  = RefTypeN(m_RefType);
+        new_att_d.m_ref_id      = m_RefId;
+        new_att_d.m_description = desc;
+        new_att_d.m_filename    = importedFileName;
         AttachmentModel::instance().add_data_n(new_att_d);
         m_attachment_id = new_att_d.id();
 
-        if (m_RefType == TrxModel::refTypeName)
+        if (RefTypeN(m_RefType).id_n() == RefTypeN::e_trx)
             TrxModel::instance().save_timestamp(m_RefId);
     }
 
@@ -236,11 +254,10 @@ void AttachmentDialog::AddAttachment(wxString FilePath)
 
 void AttachmentDialog::OpenAttachment()
 {
-    const AttachmentData *data_n = AttachmentModel::instance().get_id_data_n(m_attachment_id);
-    wxString path = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
-        + data_n->REFTYPE + m_PathSep + data_n->FILENAME;
-
-    mmAttachmentManage::OpenAttachment(path);
+    const AttachmentData* att_n = AttachmentModel::instance().get_id_data_n(m_attachment_id);
+    wxString file_path = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
+        + att_n->m_ref_type_n.name_n() + m_PathSep + att_n->m_filename;
+    mmAttachmentManage::OpenAttachment(file_path);
 }
 
 void AttachmentDialog::EditAttachment()
@@ -252,47 +269,47 @@ void AttachmentDialog::EditAttachment()
     mmDialogComboBoxAutocomplete dlg(this,
         _t("Enter a new description for the attachment:"),
         _t("Attachment Manager: Edit Attachment"),
-        att_n->DESCRIPTION,
-        AttachmentModel::instance().allDescriptions()
+        att_n->m_description,
+        AttachmentModel::instance().find_all_desc_a()
     );
 
     if (dlg.ShowModal() != wxID_OK)
         return;
 
-    const wxString description = dlg.getText();
-    if (description == att_n->DESCRIPTION)
+    const wxString desc = dlg.getText();
+    if (desc == att_n->m_description)
         return;
 
-    att_n->DESCRIPTION = description;
+    att_n->m_description = desc;
     AttachmentModel::instance().unsafe_update_data_n(att_n);
     m_attachment_id = att_n->id();
 
-    if (att_n->REFTYPE == TrxModel::refTypeName)
-        TrxModel::instance().save_timestamp(att_n->REFID);
+    if (att_n->m_ref_type_n.id_n() == RefTypeN::e_trx)
+        TrxModel::instance().save_timestamp(att_n->m_ref_id);
 
     fillControls();
 }
 
 void AttachmentDialog::DeleteAttachment()
 {
-    const AttachmentData *data_n = AttachmentModel::instance().get_id_data_n(m_attachment_id);
-    if (!data_n)
+    const AttachmentData* att_n = AttachmentModel::instance().get_id_data_n(m_attachment_id);
+    if (!att_n)
         return;
 
     int deleteResponse = wxMessageBox(
-        _t("Do you want to delete this attachment?")
-        , _t("Confirm Attachment Deletion")
-        , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
-    if (deleteResponse == wxYES)
-    {
+        _t("Do you want to delete this attachment?"),
+        _t("Confirm Attachment Deletion"),
+        wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
+    );
+    if (deleteResponse == wxYES) {
         const wxString AttachmentsFolder = mmex::getPathAttachment(
             mmAttachmentManage::InfotablePathSetting()
-        ) + data_n->REFTYPE;
+        ) + att_n->m_ref_type_n.name_n();
         if (mmAttachmentManage::DeleteAttachment(
-            AttachmentsFolder + m_PathSep + data_n->FILENAME
+            AttachmentsFolder + m_PathSep + att_n->m_filename
         )) {
-            if (data_n->REFTYPE == TrxModel::refTypeName)
-                TrxModel::instance().save_timestamp(data_n->REFID);
+            if (att_n->m_ref_type_n.id_n() == RefTypeN::e_trx)
+                TrxModel::instance().save_timestamp(att_n->m_ref_id);
             AttachmentModel::instance().purge_id(m_attachment_id);
         }
         m_attachment_id = -1;
@@ -302,14 +319,12 @@ void AttachmentDialog::DeleteAttachment()
 
 void AttachmentDialog::OnDropFiles(wxDropFilesEvent& event)
 {
-    if (event.GetNumberOfFiles() > 0)
-    {
+    if (event.GetNumberOfFiles() > 0) {
         wxString* dropped = event.GetFiles();
-        for (int i = 0; i < event.GetNumberOfFiles(); i++)
-        {
-            wxString FilePath = dropped[i];
-            if (wxFileExists(FilePath))
-                AddAttachment(FilePath);
+        for (int i = 0; i < event.GetNumberOfFiles(); i++) {
+            wxString file_path = dropped[i];
+            if (wxFileExists(file_path))
+                AddAttachment(file_path);
         }
     }
 }
@@ -325,10 +340,10 @@ void AttachmentDialog::OnListItemSelected(wxDataViewEvent& event)
 
 void AttachmentDialog::OnListItemActivated(wxDataViewEvent& WXUNUSED(event))
 {
-    const AttachmentData* data_n = AttachmentModel::instance().get_id_data_n(m_attachment_id);
+    const AttachmentData* att_n = AttachmentModel::instance().get_id_data_n(m_attachment_id);
     const wxString path = mmex::getPathAttachment(
         mmAttachmentManage::InfotablePathSetting()
-    ) + data_n->REFTYPE + m_PathSep + data_n->FILENAME;
+    ) + att_n->m_ref_type_n.name_n() + m_PathSep + att_n->m_filename;
 
     mmAttachmentManage::OpenAttachment(path);
 }
@@ -356,16 +371,16 @@ void AttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
     evt.SetEventObject( this );
 
-    const AttachmentData* data_n = AttachmentModel::instance().get_id_data_n(m_attachment_id);
+    const AttachmentData* att_n = AttachmentModel::instance().get_id_data_n(m_attachment_id);
 
     wxMenu* mainMenu = new wxMenu;
-    if (data_n)
-        mainMenu->SetTitle(data_n->DESCRIPTION);
+    if (att_n)
+        mainMenu->SetTitle(att_n->m_description);
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_NEW_ATTACHMENT, _t("&Add ")));
     mainMenu->AppendSeparator();
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_OPEN_ATTACHMENT, _t("&Open ")));
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_ATTACHMENT, _t("&Edit ")));
-    if (!data_n)
+    if (!att_n)
         mainMenu->Enable(MENU_EDIT_ATTACHMENT, false);
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_ATTACHMENT, _t("&Remove ")));
     
@@ -376,7 +391,7 @@ void AttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
     if (AttachmentsFolder == wxEmptyString || !wxDirExists(AttachmentsFolder))
         mainMenu->Enable(MENU_NEW_ATTACHMENT, false);
 
-    if (!data_n) {
+    if (!att_n) {
         mainMenu->Enable(MENU_OPEN_ATTACHMENT, false);
         mainMenu->Enable(MENU_EDIT_ATTACHMENT, false);
         mainMenu->Enable(MENU_DELETE_ATTACHMENT, false);
@@ -413,42 +428,38 @@ const wxString mmAttachmentManage::GetAttachmentNoteSign()
     return wxString::Format("[%s] ",_t("Att."));
 }
 
-bool mmAttachmentManage::CreateReadmeFile(const wxString& FolderPath)
+bool mmAttachmentManage::CreateReadmeFile(const wxString& folder)
 {
-    wxString ReadmeFilePath = FolderPath + m_PathSep + "readme.txt";
-    wxString ReadmeText;
-    ReadmeText << _t("This directory and its files are automatically managed by MMEX.") << wxTextFile::GetEOL();
-    ReadmeText << wxTextFile::GetEOL();
-    ReadmeText << _t("Please do not remove, rename or modify manually directories and files.") << wxTextFile::GetEOL();
-
-    if (wxFileExists(ReadmeFilePath))
-    {
+    wxString readme_path = folder + m_PathSep + "readme.txt";
+    if (wxFileExists(readme_path))
         return true;
-    }
-    else
-    {
-        try
-        {
-            wxFile file(ReadmeFilePath, wxFile::write);
 
-            if (file.IsOpened())
-            {
-                file.Write(ReadmeText);
-                file.Close();
-                return true;
-            }
-        }
-        catch (...)
-        {
-            return false;
+    wxString readme_text;
+    readme_text << _t("This directory and its files are automatically managed by MMEX.")
+        << wxTextFile::GetEOL();
+    readme_text << wxTextFile::GetEOL();
+    readme_text << _t("Please do not remove, rename or modify manually directories and files.")
+        << wxTextFile::GetEOL();
+
+    bool ok = false;
+    try {
+        wxFile file(readme_path, wxFile::write);
+        if (file.IsOpened()) {
+            file.Write(readme_text);
+            file.Close();
+            ok = true;
         }
     }
+    catch (...) {
+    }
 
-    return false;
+    return ok;
 }
 
-bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile)
-{
+bool mmAttachmentManage::CopyAttachment(
+    const wxString& FileToImport,
+    const wxString& ImportedFile
+) {
     wxString destinationFolder = wxPathOnly(ImportedFile);
 
     if (!wxDirExists(destinationFolder)) {
@@ -490,21 +501,19 @@ bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxSt
 
 bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
 {
-    if (wxFileExists(FileToDelete))
-    {
-        if (InfoModel::instance().getBool("ATTACHMENTSTRASH", false))
-        {
-            const wxString DeletedAttachmentFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + m_PathSep + "Deleted";
+    if (wxFileExists(FileToDelete)) {
+        if (InfoModel::instance().getBool("ATTACHMENTSTRASH", false)) {
+            const wxString folder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
+            const wxString folder_deleted = folder + m_PathSep + "Deleted";
 
-            if (!wxDirExists(DeletedAttachmentFolder))
-            {
-                if (wxMkdir(DeletedAttachmentFolder))
-                    mmAttachmentManage::CreateReadmeFile(DeletedAttachmentFolder);
+            if (!wxDirExists(folder_deleted)) {
+                if (wxMkdir(folder_deleted))
+                    mmAttachmentManage::CreateReadmeFile(folder_deleted);
                 else
                     return false;
             }
 
-            const wxString FileToTrash = DeletedAttachmentFolder + m_PathSep
+            const wxString FileToTrash = folder_deleted + m_PathSep
                 + wxDateTime::Now().FormatISODate() + "_" + wxFileNameFromPath(FileToDelete);
 
             if (!wxRenameFile(FileToDelete, FileToTrash))
@@ -519,7 +528,11 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
             << "'" << FileToDelete << "'" << "\n"
             << "\n"
             << _t("Do you want to delete the attachment in the database?") << "\n";
-        int DeleteResponse = wxMessageBox(msgStr, _t("Delete attachment failed"), wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+        int DeleteResponse = wxMessageBox(
+            msgStr,
+            _t("Delete attachment failed"),
+            wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
+        );
         if (DeleteResponse == wxYES)
             return true;
         else
@@ -530,8 +543,7 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
 
 bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
 {
-    if (!wxFileExists(FileToOpen))
-    {
+    if (!wxFileExists(FileToOpen)) {
         wxString msgStr = wxString() << _t("Unable to open file:") << "\n"
             << "'" << FileToOpen << "'" << "\n"
             << "\n"
@@ -543,118 +555,118 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
     return wxLaunchDefaultApplication(FileToOpen);;
 }
 
-bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, int64 RefId)
+bool mmAttachmentManage::DeleteAllAttachments(const wxString& ref_type, int64 ref_id)
 {
-    AttachmentModel::DataA attachments = AttachmentModel::instance().FilterAttachments(RefType, RefId);
-    wxString AttachmentsFolder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting()) + m_PathSep + RefType;
+    AttachmentModel::DataA att_a = AttachmentModel::instance().find_id_data_a(RefTypeN(ref_type), ref_id);
+    wxString folder = mmex::getPathAttachment(
+        mmAttachmentManage::InfotablePathSetting()
+    ) + m_PathSep + ref_type;
 
-    for (const auto &entry : attachments)
-    {
-        mmAttachmentManage::DeleteAttachment(AttachmentsFolder + m_PathSep + entry.FILENAME);
-        AttachmentModel::instance().purge_id(entry.ATTACHMENTID);
+    for (const auto& att_d : att_a) {
+        mmAttachmentManage::DeleteAttachment(folder + m_PathSep + att_d.m_filename);
+        AttachmentModel::instance().purge_id(att_d.m_id);
     }
 
-    if (RefType == TrxModel::refTypeName)
-        TrxModel::instance().save_timestamp(RefId);
+    if (RefTypeN(ref_type).id_n() == RefTypeN::e_trx)
+        TrxModel::instance().save_timestamp(ref_id);
 
     return true;
 }
 
 bool mmAttachmentManage::RelocateAllAttachments(
-        const wxString& OldRefType,
-        int64 OldRefId,
-        const wxString& NewRefType,
-        int64 NewRefId
+    const wxString& old_ref_type,
+    int64 old_ref_id,
+    const wxString& new_ref_type,
+    int64 new_ref_id
 ) {
-    auto attachment_a = AttachmentModel::instance().find(
-        AttachmentCol::REFTYPE(OldRefType),
-        AttachmentCol::REFID(OldRefId)
+    auto att_a = AttachmentModel::instance().find(
+        AttachmentCol::REFTYPE(old_ref_type),
+        AttachmentCol::REFID(old_ref_id)
     );
 
-    if (attachment_a.size() == 0)
+    if (att_a.size() == 0)
         return false;
 
-    const wxString OldAttachmentsFolder = mmex::getPathAttachment(
+    const wxString old_folder = mmex::getPathAttachment(
         mmAttachmentManage::InfotablePathSetting()
-    ) + OldRefType + m_PathSep;
-    const wxString NewAttachmentsFolder = mmex::getPathAttachment(
+    ) + old_ref_type + m_PathSep;
+    const wxString new_folder = mmex::getPathAttachment(
         mmAttachmentManage::InfotablePathSetting()
-    ) + NewRefType + m_PathSep;
+    ) + new_ref_type + m_PathSep;
 
-    for (auto& att_d : attachment_a) {
-        wxString newFileName = att_d.FILENAME;
+    for (auto& att_d : att_a) {
+        wxString newFileName = att_d.m_filename;
         newFileName.Replace(
-            att_d.REFTYPE + "_" + wxString::Format("%lld", att_d.REFID),
-            NewRefType + "_" + wxString::Format("%lld", NewRefId)
+            att_d.m_ref_type_n.name_n() + "_" + wxString::Format("%lld", att_d.m_ref_id),
+            new_ref_type + "_" + wxString::Format("%lld", new_ref_id)
         );
         wxRenameFile(
-            OldAttachmentsFolder + att_d.FILENAME,
-            NewAttachmentsFolder + newFileName
+            old_folder + att_d.m_filename,
+            new_folder + newFileName
         );
-        att_d.REFTYPE  = NewRefType;
-        att_d.REFID    = NewRefId;
-        att_d.FILENAME = newFileName;
+        att_d.m_ref_type_n = RefTypeN(new_ref_type);
+        att_d.m_ref_id     = new_ref_id;
+        att_d.m_filename   = newFileName;
     }
-    AttachmentModel::instance().save_data_a(attachment_a);
+    AttachmentModel::instance().save_data_a(att_a);
 
-    if (OldRefType == TrxModel::refTypeName)
-        TrxModel::instance().save_timestamp(OldRefId);
-    if (NewRefType == TrxModel::refTypeName)
-        TrxModel::instance().save_timestamp(NewRefId);
+    if (RefTypeN(old_ref_type).id_n() == RefTypeN::e_trx)
+        TrxModel::instance().save_timestamp(old_ref_id);
+    if (RefTypeN(new_ref_type).id_n() == RefTypeN::e_trx)
+        TrxModel::instance().save_timestamp(new_ref_id);
 
     return true;
 }
 
 bool mmAttachmentManage::CloneAllAttachments(
-    const wxString& refType,
-    int64 srcRefId,
-    int64 dstRefId
+    const wxString& ref_type,
+    int64 ref_id,
+    int64 new_ref_id
 ) {
-    auto src_a = AttachmentModel::instance().find(
-        AttachmentCol::REFTYPE(refType),
-        AttachmentCol::REFID(srcRefId)
-    );
-    const wxString AttachmentsFolder = mmex::getPathAttachment(
+    const wxString folder = mmex::getPathAttachment(
         mmAttachmentManage::InfotablePathSetting()
-    ) + refType + m_PathSep;
+    ) + ref_type + m_PathSep;
 
-    for (auto& src_d : src_a) {
-        wxString dstFileName = src_d.FILENAME;
-        dstFileName.Replace(
-            src_d.REFTYPE + "_" + wxString::Format("%lld", src_d.REFID),
-            src_d.REFTYPE + "_" + wxString::Format("%lld", dstRefId)
+    for (auto& att_d : AttachmentModel::instance().find(
+        AttachmentCol::REFTYPE(ref_type),
+        AttachmentCol::REFID(ref_id)
+    )) {
+        wxString new_filename = att_d.m_filename;
+        new_filename.Replace(
+            att_d.m_ref_type_n.name_n() + "_" + wxString::Format("%lld", att_d.m_ref_id),
+            att_d.m_ref_type_n.name_n() + "_" + wxString::Format("%lld", new_ref_id)
         );
-        wxCopyFile(AttachmentsFolder + src_d.FILENAME, AttachmentsFolder + dstFileName);
-        AttachmentData dst_d = AttachmentData();
-        dst_d.REFTYPE     = refType;
-        dst_d.REFID       = dstRefId;
-        dst_d.FILENAME    = dstFileName;
-        dst_d.DESCRIPTION = src_d.DESCRIPTION;
-        AttachmentModel::instance().add_data_n(dst_d);
+        wxCopyFile(folder + att_d.m_filename, folder + new_filename);
+        AttachmentData new_att_d = AttachmentData();
+        new_att_d.m_ref_type_n  = RefTypeN(ref_type);
+        new_att_d.m_ref_id      = new_ref_id;
+        new_att_d.m_filename    = new_filename;
+        new_att_d.m_description = att_d.m_description;
+        AttachmentModel::instance().add_data_n(new_att_d);
     }
 
-    if (refType == TrxModel::refTypeName)
-        TrxModel::instance().save_timestamp(dstRefId);
+    if (RefTypeN(ref_type).id_n() == RefTypeN::e_trx)
+        TrxModel::instance().save_timestamp(new_ref_id);
 
     return true;
 }
 
 void mmAttachmentManage::OpenAttachmentFromPanelIcon(
     wxWindow* parent,
-    const wxString& refType,
-    int64 refId
+    const wxString& ref_type,
+    int64 ref_id
 ) {
-    int AttachmentsNr = AttachmentModel::instance().NrAttachments(refType, refId);
+    int att_c = AttachmentModel::instance().find_id_c(RefTypeN(ref_type), ref_id);
 
-    if (AttachmentsNr == 1) {
-        AttachmentModel::DataA attachments = AttachmentModel::instance().FilterAttachments(refType, refId);
-        wxString attachmentFilePath = mmex::getPathAttachment(
+    if (att_c == 1) {
+        AttachmentModel::DataA att_a = AttachmentModel::instance().find_id_data_a(RefTypeN(ref_type), ref_id);
+        wxString file_path = mmex::getPathAttachment(
             mmAttachmentManage::InfotablePathSetting()
-        ) + attachments[0].REFTYPE + m_PathSep + attachments[0].FILENAME;
-        mmAttachmentManage::OpenAttachment(attachmentFilePath);
+        ) + att_a[0].m_ref_type_n.name_n() + m_PathSep + att_a[0].m_filename;
+        mmAttachmentManage::OpenAttachment(file_path);
     }
     else {
-        AttachmentDialog dlg(parent, refType, refId);
+        AttachmentDialog dlg(parent, ref_type, ref_id);
         dlg.ShowModal();
     }
 }
