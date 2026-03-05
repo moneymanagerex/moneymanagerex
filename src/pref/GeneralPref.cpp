@@ -350,8 +350,11 @@ void GeneralPref::OnMouseLeftDown(wxCommandEvent& event)
     for (auto & file : lang_files)
     {
         const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
-        if (info)
-            langs[wxGetTranslation(info->Description)] = std::make_pair(info->Language, info->CanonicalName);
+        if (info) {
+            //wxString label = wxGetTranslation(info->Description);
+            wxString label = info->CanonicalName + " " + info->DescriptionNative;
+            langs[label] = std::make_pair(info->Language, info->CanonicalName);
+        }
     }
     langs[wxGetTranslation(wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US))] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
     for (auto const& lang : langs)
