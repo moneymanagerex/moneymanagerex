@@ -173,7 +173,8 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
             const TrxData* trx_n = TrxModel::instance().get_id_data_n(
                 tl_d.CHECKINGACCOUNTID
             );
-            if (trx_n->m_id > -1 &&
+            if (trx_n &&
+                trx_n->m_id > -1 &&
                 trx_n->DELETEDTIME.IsEmpty() &&
                 mmDate(TrxModel::getTransDateTime(*trx_n)) <= mmDate(date)
             ) {
@@ -216,7 +217,7 @@ double StockModel::RealGainLoss(const Data& stock_d, bool to_base_curr)
         const TrxData* trx_d = TrxModel::instance().get_id_data_n(
             tl_d.CHECKINGACCOUNTID
         );
-        if (trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
+        if (trx_d && trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
             trx_a.push_back(*trx_d);
     }
     std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
@@ -274,7 +275,7 @@ double StockModel::UnrealGainLoss(const Data& stock_d, bool to_base_curr)
             const TrxData* trx_d = TrxModel::instance().get_id_data_n(
                 tl_d.CHECKINGACCOUNTID
             );
-            if (trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
+            if (trx_d && trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
                 trx_a.push_back(*trx_d);
         }
         std::stable_sort(trx_a.begin(), trx_a.end(),
@@ -346,10 +347,11 @@ void StockModel::UpdatePosition(StockData* stock_n)
     TrxModel::DataA trx_a;
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.CHECKINGACCOUNTID);
-        if (trx_n->m_id > -1 && trx_n->DELETEDTIME.IsEmpty() &&
+        if (trx_n && trx_n->m_id > -1 && trx_n->DELETEDTIME.IsEmpty() &&
             TrxModel::status_id(trx_n->STATUS) != TrxModel::STATUS_ID_VOID
-        )
+        ) {
             trx_a.push_back(*trx_n);
+        }
     }
     std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
     for (const auto& trx_d : trx_a) {
