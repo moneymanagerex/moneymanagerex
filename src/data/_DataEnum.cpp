@@ -74,6 +74,17 @@ mmChoiceNameA CurrencyType::s_choice_a = mmChoiceNameA({
     { e_crypto, _n("Crypto") },
 }, e_fiat, true);
 
+mmChoiceNameA FieldTypeN::s_choice_a = mmChoiceNameA({
+    { e_string,        _n("String") },
+    { e_integer,       _n("Integer") },
+    { e_decimal,       _n("Decimal") },
+    { e_boolean,       _n("Boolean") },
+    { e_date,          _n("Date") },
+    { e_time,          _n("Time") },
+    { e_single_choice, _n("SingleChoice") },
+    { e_multi_choice,  _n("MultiChoice") },
+}, -1, true);
+
 mmChoiceNameA RefTypeN::s_choice_a = mmChoiceNameA({
     { e_trx,         _n("Transaction") },
     { e_stock,       _n("Stock") },

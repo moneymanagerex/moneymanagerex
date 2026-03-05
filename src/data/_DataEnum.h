@@ -232,6 +232,39 @@ public:
     const wxString name() const { return CurrencyType::s_choice_a.get_name(m_id); }
 };
 
+struct FieldTypeN
+{
+public:
+    enum
+    {
+        e_string = 0,
+        e_integer,
+        e_decimal,
+        e_boolean,
+        e_date,
+        e_time,
+        e_single_choice,
+        e_multi_choice,
+        size
+    };
+    static mmChoiceNameA s_choice_a;
+
+private:
+    mmChoiceId m_id_n;
+
+public:
+    FieldTypeN(mmChoiceId id_n = s_choice_a.default_id_n()) :
+        m_id_n(s_choice_a.valid_id_n(id_n)) {}
+    FieldTypeN(const wxString& name) :
+        m_id_n(FieldTypeN::s_choice_a.find_name_n(name)) {}
+
+    bool has_value() const { return m_id_n >= 0; }
+    mmChoiceId id_n() const { return m_id_n; }
+    const wxString name_n() const {
+        return has_value() ? FieldTypeN::s_choice_a.get_name(m_id_n) : "";
+    }
+};
+
 struct RefTypeN
 {
 public:
