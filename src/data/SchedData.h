@@ -35,7 +35,7 @@ struct SchedData
     double   m_amount;
     double   m_to_amount;
     wxString m_number;
-    wxString NOTES;
+    wxString m_notes;
     int64    m_followup_id;
     int64    m_color;
     wxString NEXTOCCURRENCEDATE;
@@ -132,7 +132,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.NOTES < y.NOTES;
+            return x.m_notes < y.m_notes;
         }
     };
 

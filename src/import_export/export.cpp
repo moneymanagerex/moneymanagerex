@@ -49,7 +49,7 @@ const wxString mmExportTransaction::getTransactionCSV(const TrxModel::Full_Data&
 
     wxString categ = full_tran.m_splits.empty() ? CategoryModel::full_name(full_tran.m_category_id_n, ":") : "";
     wxString transNum = full_tran.m_number;
-    wxString notes = (full_tran.NOTES);
+    wxString notes = full_tran.m_notes;
     wxString payee = full_tran.PAYEENAME;
 
     const auto acc_in = AccountModel::instance().get_id_data_n(full_tran.m_account_id);
@@ -133,7 +133,7 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
     categ.Replace("[", "(");
     categ.Replace("]", ")");
     wxString transNum = full_tran.m_number;
-    wxString notes = (full_tran.NOTES);
+    wxString notes = full_tran.m_notes;
     wxString payee = full_tran.PAYEENAME;
 
     if (transfer)

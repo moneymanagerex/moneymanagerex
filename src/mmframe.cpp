@@ -635,7 +635,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 new_trx_d.m_to_amount       = q1.m_to_amount;
                 new_trx_d.STATUS            = q1.STATUS;
                 new_trx_d.m_number          = q1.m_number;
-                new_trx_d.NOTES             = q1.NOTES;
+                new_trx_d.m_notes           = q1.m_notes;
                 new_trx_d.m_category_id_n   = q1.m_category_id_n;
                 new_trx_d.m_followup_id     = q1.m_followup_id;
                 new_trx_d.TRANSDATE         = payment_date.FormatISOCombined();

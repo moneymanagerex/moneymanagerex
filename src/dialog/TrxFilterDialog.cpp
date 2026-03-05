@@ -1472,7 +1472,7 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
     else if (mmIsNumberChecked() && (mmGetNumber().empty() ? !tran.m_number.empty()
                                                            : tran.m_number.empty() || !tran.m_number.Lower().Matches(mmGetNumber().Lower())))
         ok = false;
-    else if (mmIsNotesChecked() && !mmIsNoteMatches(tran.NOTES))
+    else if (mmIsNotesChecked() && !mmIsNoteMatches(tran.m_notes))
         ok = false;
     else if (mmIsColorChecked() && (m_color_value != tran.m_color))
         ok = false;
@@ -1516,14 +1516,13 @@ template bool TrxFilterDialog::mmIsSplitRecordMatches<SchedSplitModel>(const Sch
 int TrxFilterDialog::mmIsRecordMatches(const TrxData& trx_d, const TrxSplitModel::DataA& tp_a)
 {
     int ok = mmIsRecordMatches<TrxModel>(trx_d);
-    for (const auto& tp_d : tp_a)
-    {
+    for (const auto& tp_d : tp_a) {
         // Need to check if the split matches using the transaction Notes & Tags as well
         TrxData trx_trx_d(trx_d);
         trx_trx_d.m_category_id_n = tp_d.m_category_id;
         trx_trx_d.m_amount        = tp_d.m_amount;
         TrxData trx_tp_d = trx_trx_d;
-        trx_tp_d.NOTES = tp_d.m_notes;
+        trx_tp_d.m_notes = tp_d.m_notes;
         ok += (
             mmIsRecordMatches<TrxModel>(trx_tp_d, true) ||
             mmIsRecordMatches<TrxModel>(trx_trx_d, true)
@@ -1557,7 +1556,7 @@ int TrxFilterDialog::mmIsRecordMatches(
         sched_sched_d.m_category_id_n = qp_d.m_category_id;
         sched_sched_d.m_amount        = qp_d.m_amount;
         SchedData sched_qp_d = sched_sched_d;
-        sched_qp_d.NOTES = qp_d.m_notes;
+        sched_qp_d.m_notes = qp_d.m_notes;
         ok += (
             mmIsRecordMatches<SchedModel>(sched_qp_d, true) ||
             mmIsRecordMatches<SchedModel>(sched_sched_d, true)

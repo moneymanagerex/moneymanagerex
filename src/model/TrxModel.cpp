@@ -106,7 +106,7 @@ void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
     this_n->m_category_id_n   = other_d.m_category_id_n;
     this_n->m_to_account_id_n = other_d.m_to_account_id_n;
     this_n->m_to_amount       = other_d.m_to_amount;
-    this_n->NOTES             = other_d.NOTES;
+    this_n->m_notes           = other_d.m_notes;
     this_n->m_number          = other_d.m_number;
     this_n->m_followup_id     = other_d.m_followup_id;
     this_n->m_color           = other_d.m_color;
@@ -266,18 +266,18 @@ void TrxModel::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 
     frequentNotes.clear();
     size_t max = 20;
 
-    const auto notes = instance().find(
+    const auto trx_a = instance().find(
         TrxCol::NOTES(OP_NE, ""),
         accountID > 0 ? TrxCol::ACCOUNTID(accountID) : TrxCol::ACCOUNTID(OP_NE, -1)
     );
 
     // Count frequency
     std::map <wxString, std::pair<int, wxString> > counterMap;
-    for (const auto& entry : notes) {
-        auto& counter = counterMap[entry.NOTES];
+    for (const auto& trx_d : trx_a) {
+        auto& counter = counterMap[trx_d.m_notes];
         counter.first--;
-        if (entry.TRANSDATE > counter.second)
-            counter.second = entry.TRANSDATE;
+        if (trx_d.TRANSDATE > counter.second)
+            counter.second = trx_d.TRANSDATE;
     }
 
     // Convert to vector

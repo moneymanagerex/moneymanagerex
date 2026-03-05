@@ -276,7 +276,7 @@ void TrxLinkDialog::DataToControls()
     m_category->SetValue(CategoryModel::full_name(m_category_id));
 
     m_entered_number->SetValue(m_transaction_n->m_number);
-    m_entered_notes->SetValue(m_transaction_n->NOTES);
+    m_entered_notes->SetValue(m_transaction_n->m_notes);
 
     bool has_split = !(m_local_splits.size() <= 1);
     if (has_split) {
@@ -545,7 +545,7 @@ int64 TrxLinkDialog::SaveChecking()
     m_transaction_n->m_amount        = initial_amount;
     m_transaction_n->STATUS          = m_status_selector->GetStringSelection().Mid(0, 1);
     m_transaction_n->m_number        = m_entered_number->GetValue();
-    m_transaction_n->NOTES           = m_entered_notes->GetValue();
+    m_transaction_n->m_notes         = m_entered_notes->GetValue();
     m_transaction_n->m_category_id_n = m_category_id;
     m_transaction_n->TRANSDATE       = trx_datetime.FormatISOCombined();
     m_transaction_n->m_to_amount     = m_transaction_n->m_amount;

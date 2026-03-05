@@ -1223,22 +1223,22 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         appendTransfers(trx_a, trx_to_a);
 
         //Search for duplicates for transfers
-        for (auto& trx : trx_a) {
-            if (!TrxModel::is_transfer(trx))
+        for (auto& trx_d : trx_a) {
+            if (!TrxModel::is_transfer(trx_d))
                 continue;
             wxDate dt;
-            dt.ParseISODate(trx.TRANSDATE);
+            dt.ParseISODate(trx_d.TRANSDATE);
             const auto data = TrxModel::instance().find(
                 TrxModel::TRANSDATE(OP_EQ, dt),
-                TrxCol::ACCOUNTID(OP_EQ, trx.m_account_id),
-                TrxCol::TOACCOUNTID(OP_EQ, trx.m_to_account_id_n),
-                TrxCol::NOTES(OP_EQ, trx.NOTES),
-                TrxCol::TRANSACTIONNUMBER(OP_EQ, trx.m_number),
+                TrxCol::ACCOUNTID(OP_EQ, trx_d.m_account_id),
+                TrxCol::TOACCOUNTID(OP_EQ, trx_d.m_to_account_id_n),
+                TrxCol::NOTES(OP_EQ, trx_d.m_notes),
+                TrxCol::TRANSACTIONNUMBER(OP_EQ, trx_d.m_number),
                 TrxModel::TRANSCODE(OP_EQ, TrxModel::TYPE_ID_TRANSFER),
-                TrxCol::TRANSAMOUNT(OP_EQ, trx.m_amount)
+                TrxCol::TRANSAMOUNT(OP_EQ, trx_d.m_amount)
             );
             if (data.size() > 0)
-                trx.STATUS = TrxModel::STATUS_KEY_DUPLICATE;
+                trx_d.STATUS = TrxModel::STATUS_KEY_DUPLICATE;
         }
         // At this point all transactions and tags have been merged into single sets
         TagLinkModel::instance().db_savepoint();
@@ -1336,23 +1336,25 @@ void mmQIFImportDialog::appendTransfers(
 }
 
 bool mmQIFImportDialog::mergeTransferPair(
-    TrxModel::DataA& to_a,
-    TrxModel::DataA& from_a
+    TrxModel::DataA& dst_trx_a,
+    TrxModel::DataA& src_trx_a
 ) {
-    if (to_a.empty() && from_a.empty()) return false; //Nothing to merge
+    // Nothing to merge
+    if (dst_trx_a.empty() && src_trx_a.empty())
+        return false;
 
-    for (auto& refTrxTo : to_a) {
+    for (auto& dst_trx_d : dst_trx_a) {
         int i = -1;
         bool pair_found = false;
-        for (auto& refTrxFrom : from_a) {
+        for (auto& src_trx_d : src_trx_a) {
             ++i;
-            if (refTrxTo.m_account_id != refTrxFrom.m_to_account_id_n) continue;
-            if (refTrxTo.m_to_account_id_n != refTrxFrom.m_account_id) continue;
-            if (refTrxTo.m_number != refTrxFrom.m_number) continue;
-            if (refTrxTo.NOTES != refTrxFrom.NOTES) continue;
-            if (refTrxTo.TRANSDATE != refTrxFrom.TRANSDATE) continue;
-            refTrxTo.m_to_amount = refTrxFrom.m_amount;
-            from_a.erase(from_a.begin() + i);
+            if (dst_trx_d.m_account_id != src_trx_d.m_to_account_id_n) continue;
+            if (dst_trx_d.m_to_account_id_n != src_trx_d.m_account_id) continue;
+            if (dst_trx_d.m_number != src_trx_d.m_number) continue;
+            if (dst_trx_d.m_notes != src_trx_d.m_notes) continue;
+            if (dst_trx_d.TRANSDATE != src_trx_d.TRANSDATE) continue;
+            dst_trx_d.m_to_amount = src_trx_d.m_amount;
+            src_trx_a.erase(src_trx_a.begin() + i);
             // a match is found so erase the 'from' taglinks
             m_txnTaglinks.erase(std::make_pair(2, i));
             pair_found = true;
@@ -1360,57 +1362,57 @@ bool mmQIFImportDialog::mergeTransferPair(
         }
 
         if (!pair_found)
-            refTrxTo.m_to_amount = refTrxTo.m_amount;
+            dst_trx_d.m_to_amount = dst_trx_d.m_amount;
     }
 
     // now merge 'from' and 'to' transaction lists
-    for (int i = 0; i < static_cast<int>(from_a.size()); i++) {
-        std::swap(from_a[i].m_account_id, from_a[i].m_to_account_id_n);
+    for (int i = 0; i < static_cast<int>(src_trx_a.size()); i++) {
+        std::swap(src_trx_a[i].m_account_id, src_trx_a[i].m_to_account_id_n);
         // also need to move the 'from' taglinks to the 'to' taglinks list, keeping track
         // of the new transaction indices
-        m_txnTaglinks[std::make_pair(1, to_a.size())] = m_txnTaglinks[std::make_pair(2, i)];
-        to_a.push_back(from_a[i]);
+        m_txnTaglinks[std::make_pair(1, dst_trx_a.size())] = m_txnTaglinks[std::make_pair(2, i)];
+        dst_trx_a.push_back(src_trx_a[i]);
     }
 
     return true;
 }
 
 bool mmQIFImportDialog::completeTransaction(
-    /*in*/ const std::unordered_map <int, wxString> &i,
-    /*out*/ TrxData* trx,
+    /* in */ const std::unordered_map <int, wxString> &i,
+    /* out */ TrxData* trx_n,
     wxString& msg
 ) {
     auto t = i;
-    trx->TRANSCODE = (t.find(QIF_ID_TrxType) != t.end() ? t[QIF_ID_TrxType] : "");
-    if (trx->TRANSCODE.empty()) {
+    trx_n->TRANSCODE = (t.find(QIF_ID_TrxType) != t.end() ? t[QIF_ID_TrxType] : "");
+    if (trx_n->TRANSCODE.empty()) {
         msg = _t("Transaction code is missing");
         return false;
     }
-    bool transfer = TrxModel::is_transfer(trx->TRANSCODE);
+    bool transfer = TrxModel::is_transfer(trx_n->TRANSCODE);
 
     if (!transfer) {
         wxString payee_name = t.find(QIF_ID_Payee) != t.end() ? t.at(QIF_ID_Payee) : "";
         if (!payee_name.empty()) {
             if (m_QIFpayeeNames.find(payee_name) != m_QIFpayeeNames.end()) {
-                trx->m_payee_id_n = std::get<0>(m_QIFpayeeNames[payee_name]);
+                trx_n->m_payee_id_n = std::get<0>(m_QIFpayeeNames[payee_name]);
                 // NOTES haven't been filled yet, so we can just direct assign match details if necessary
                 if (payeeMatchAddNotes_->IsChecked()
                     && !std::get<2>(m_QIFpayeeNames[payee_name]).IsEmpty()
                 ) {
-                    trx->NOTES =  wxString::Format(_t("%1$s matched by %2$s"),
+                    trx_n->m_notes =  wxString::Format(_t("%1$s matched by %2$s"),
                         payee_name, std::get<2>(m_QIFpayeeNames[payee_name])
                     );
                 }
             }
             else
-                trx->m_payee_id_n = -1;
+                trx_n->m_payee_id_n = -1;
         }
         else {
-            trx->m_payee_id_n = -1;
+            trx_n->m_payee_id_n = -1;
         }
     }
 
-    if (trx->m_payee_id_n == -1 && !transfer) {
+    if (trx_n->m_payee_id_n == -1 && !transfer) {
         msg = _t("Transaction Payee is missing or incorrect");
         return false;
     }
@@ -1420,7 +1422,7 @@ bool mmQIFImportDialog::completeTransaction(
     wxDateTime dtdt;
     wxString::const_iterator end;
     if (dtdt.ParseFormat(dateStr, m_dateFormatStr, &end))
-        trx->TRANSDATE = dtdt.FormatISOCombined();
+        trx_n->TRANSDATE = dtdt.FormatISOCombined();
     else {
         *log_field_ << _t("Date format or date mask is incorrect") << "\n";
         return false;
@@ -1436,17 +1438,20 @@ bool mmQIFImportDialog::completeTransaction(
         msg = _t("Transaction Account is incorrect");
         return false;
     }
-    trx->m_account_id = accountID;
-    trx->m_to_account_id_n = (t.find(QIF_ID_ToAccountName) != t.end()
+    trx_n->m_account_id = accountID;
+    trx_n->m_to_account_id_n = (t.find(QIF_ID_ToAccountName) != t.end()
         ? (m_QIFaccountsID.find(t[QIF_ID_ToAccountName]) != m_QIFaccountsID.end()
             ? m_QIFaccountsID[t[QIF_ID_ToAccountName]] : -1) : -1);
-    if (trx->m_account_id == trx->m_to_account_id_n && transfer) {
+    if (trx_n->m_account_id == trx_n->m_to_account_id_n && transfer) {
         msg = _t("Transaction Account for transfer is incorrect");
         return false;
     }
 
-    trx->m_number = (t.find(QIF_ID_TransNumber) != t.end() ? t[QIF_ID_TransNumber] : "");
-    trx->NOTES.Prepend(!trx->NOTES.IsEmpty() ? "\n" : "").Prepend(t.find(QIF_ID_Memo) != t.end() ? t[QIF_ID_Memo] : ""); // add the actual NOTES before the payee match details
+    trx_n->m_number = (t.find(QIF_ID_TransNumber) != t.end() ? t[QIF_ID_TransNumber] : "");
+    // add the actual NOTES before the payee match details
+    trx_n->m_notes
+        .Prepend(!trx_n->m_notes.IsEmpty() ? "\n" : "")
+        .Prepend(t.find(QIF_ID_Memo) != t.end() ? t[QIF_ID_Memo] : "");
     wxString status = TrxModel::STATUS_KEY_NONE;
     if (t.find(QIF_ID_Status) != t.end()) {
         wxString s = t[QIF_ID_Status];
@@ -1458,12 +1463,12 @@ bool mmQIFImportDialog::completeTransaction(
         }*/
 
     }
-    trx->STATUS = status;
+    trx_n->STATUS = status;
 
     int color_id = mmColorBtn_->GetColorId();
-    trx->m_color = -1;
+    trx_n->m_color = -1;
     if (colorCheckBox_->IsChecked() && color_id > 0 && color_id < 8)
-        trx->m_color = color_id;
+        trx_n->m_color = color_id;
 
     const wxString value = mmTrimAmount(t.find(QIF_ID_Amount) != t.end() ? t[QIF_ID_Amount] : "", decimal_, ".");
     if (value.empty()) {
@@ -1474,8 +1479,8 @@ bool mmQIFImportDialog::completeTransaction(
     double amt;
     value.ToCDouble(&amt);
 
-    trx->m_amount = fabs(amt);
-    trx->m_to_amount = transfer ? amt : trx->m_amount;
+    trx_n->m_amount = fabs(amt);
+    trx_n->m_to_amount = transfer ? amt : trx_n->m_amount;
     wxString tagStr;
     wxRegEx regex(" ?: ?");
     if (t.find(QIF_ID_CategorySplit) != t.end()) {
@@ -1513,8 +1518,8 @@ bool mmQIFImportDialog::completeTransaction(
                     break;
             }
 
-            tp_d.m_amount   = (TrxModel::is_deposit(*trx) ? amount : -amount);
-            tp_d.m_trx_id = trx->m_id;
+            tp_d.m_amount   = (TrxModel::is_deposit(*trx_n) ? amount : -amount);
+            tp_d.m_trx_id = trx_n->m_id;
             tp_d.m_notes    = memo;
             tp_a.push_back(tp_d);
 
@@ -1546,7 +1551,7 @@ bool mmQIFImportDialog::completeTransaction(
             }
             split_id++;
         }
-        trx->m_category_id_n = -1 * static_cast<int>(m_splitDataSets.size());
+        trx_n->m_category_id_n = -1 * static_cast<int>(m_splitDataSets.size());
         m_splitDataSets.push_back(tp_a);
     }
     else {
@@ -1555,18 +1560,18 @@ bool mmQIFImportDialog::completeTransaction(
             : ""
         );
         if (categStr.empty()) {
-            const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(trx->m_payee_id_n);
+            const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(trx_n->m_payee_id_n);
             if (payee_n) {
-                trx->m_category_id_n = payee_n->m_category_id_n;
+                trx_n->m_category_id_n = payee_n->m_category_id_n;
             }
-            categStr = CategoryModel::full_name(trx->m_category_id_n, ":");
+            categStr = CategoryModel::full_name(trx_n->m_category_id_n, ":");
 
             if (categStr.empty()) {
-                trx->m_category_id_n = (m_QIFcategoryNames[_t("Unknown")]);
+                trx_n->m_category_id_n = (m_QIFcategoryNames[_t("Unknown")]);
             }
         }
         else {
-            trx->m_category_id_n = (m_QIFcategoryNames[categStr]);
+            trx_n->m_category_id_n = (m_QIFcategoryNames[categStr]);
         }
     }
 
@@ -1578,9 +1583,9 @@ bool mmQIFImportDialog::completeTransaction(
 
         // By transaction number
         if (dupMethod == 0) {
-            if (!trx->m_number.empty()) {
+            if (!trx_n->m_number.empty()) {
                 const auto existing_transactions = TrxModel::instance().find(
-                    TrxCol::TRANSACTIONNUMBER(OP_EQ, trx->m_number),
+                    TrxCol::TRANSACTIONNUMBER(OP_EQ, trx_n->m_number),
                     TrxCol::DELETEDTIME(OP_EQ, wxEmptyString)
                 );
 
@@ -1590,7 +1595,7 @@ bool mmQIFImportDialog::completeTransaction(
         // By amount and date (exact or nearby)
         else if (dupMethod == 1 || dupMethod == 2) {
             wxDateTime startDate, endDate;
-            wxString trxDateStr = trx->TRANSDATE;
+            wxString trxDateStr = trx_n->TRANSDATE;
 
             // exact date
             if (dupMethod == 1) {
@@ -1612,7 +1617,7 @@ bool mmQIFImportDialog::completeTransaction(
             wxString endDateStr = mmDateRange::getDayEnd(endDate).FormatISOCombined();
 
             const auto potential_matches = TrxModel::instance().find(
-                TrxCol::TRANSAMOUNT(trx->m_amount),
+                TrxCol::TRANSAMOUNT(trx_n->m_amount),
                 TrxCol::TRANSDATE(OP_GE, startDateStr),
                 TrxCol::TRANSDATE(OP_LE, endDateStr),
                 TrxCol::DELETEDTIME(OP_EQ, wxEmptyString)
@@ -1635,7 +1640,7 @@ bool mmQIFImportDialog::completeTransaction(
                 return false;
             }
             else if (dupAction == 1) // Flag as duplicate
-                trx->STATUS = TrxModel::STATUS_KEY_DUPLICATE;
+                trx_n->STATUS = TrxModel::STATUS_KEY_DUPLICATE;
         }
     }
 

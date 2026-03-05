@@ -624,7 +624,7 @@ void JournalPanel::refreshList()
 
 void JournalPanel::filterList()
 {
-    m_lc->m_trans.clear();
+    m_lc->m_journal_xa.clear();
 
     int sn = 0; // sequence number
     m_flow = 0.0;
@@ -676,10 +676,10 @@ void JournalPanel::filterList()
         date_start_str = m_current_date_range.rangeStartIsoStartN();
         // find last un-deleted transaction and use that if later than current date + 30 days
         for (auto it = trans.rbegin(); it != trans.rend(); ++it) {
-            const TrxData* tran = &(*it);
-            if (tran && (isDeletedTrans() || tran->DELETEDTIME.IsEmpty())) {
-                if (date_end < TrxModel::getTransDateTime(*tran))
-                    date_end = TrxModel::getTransDateTime(*tran);
+            const TrxData* trx_n = &(*it);
+            if (trx_n && (isDeletedTrans() || trx_n->DELETEDTIME.IsEmpty())) {
+                if (date_end < TrxModel::getTransDateTime(*trx_n))
+                    date_end = TrxModel::getTransDateTime(*trx_n);
                 // FIXME: early break
                 break;
             }
@@ -725,14 +725,14 @@ void JournalPanel::filterList()
         wxString tran_date;
         int repeat_num = 0;
         TrxData bill_tran;
-        const TrxData* tran = nullptr;
+        const TrxData* trx_n = nullptr;
 
         if (trans_it != trans.end())
             tran_date = TrxModel::getTransDateTime(*trans_it).FormatISOCombined();
         if (trans_it != trans.end() &&
             (bills_it == bills_index.end() || tran_date.Left(10) <= std::get<1>(*bills_it).Left(10))
         ) {
-            tran = &(*trans_it);
+            trx_n = &(*trans_it);
             trans_it++;
         }
         else {
@@ -740,16 +740,16 @@ void JournalPanel::filterList()
             tran_date = std::get<1>(*bills_it);
             repeat_num = std::get<2>(*bills_it);
             bill_tran = Journal::execute_bill(bills[bill_i], tran_date);
-            tran = &bill_tran;
+            trx_n = &bill_tran;
             bills_it++;
         }
 
         if (isGroup() &&
-            m_group_ids.find(tran->m_account_id) == m_group_ids.end() &&
-            m_group_ids.find(tran->m_to_account_id_n) == m_group_ids.end()
+            m_group_ids.find(trx_n->m_account_id) == m_group_ids.end() &&
+            m_group_ids.find(trx_n->m_to_account_id_n) == m_group_ids.end()
         )
             continue;
-        if (isDeletedTrans() != !tran->DELETEDTIME.IsEmpty())
+        if (isDeletedTrans() != !trx_n->DELETEDTIME.IsEmpty())
             continue;
         if (ignore_future && tran_date > today_date)
             break;
@@ -757,10 +757,10 @@ void JournalPanel::filterList()
         // update m_balance even if tran is filtered out
         double account_flow = 0.0;
         if (isAccount()) {
-            // assertion: tran->DELETEDTIME.IsEmpty()
-            account_flow = TrxModel::account_flow(*tran, m_account_id);
+            // assertion: trx_n->DELETEDTIME.IsEmpty()
+            account_flow = TrxModel::account_flow(*trx_n, m_account_id);
             m_balance += account_flow;
-            if (TrxModel::status_id(tran->STATUS) == TrxModel::STATUS_ID_RECONCILED) {
+            if (TrxModel::status_id(trx_n->STATUS) == TrxModel::STATUS_ID_RECONCILED) {
                 m_reconciled_balance += account_flow;
                 if (tran_date <= today_date)
                     m_today_reconciled_balance += account_flow;
@@ -773,12 +773,12 @@ void JournalPanel::filterList()
             continue;
 
         Journal::Full_Data journal_xd = (repeat_num == 0) ?
-            Journal::Full_Data(*tran, trans_splits, trans_tags) :
+            Journal::Full_Data(*trx_n, trans_splits, trans_tags) :
             Journal::Full_Data(bills[bill_i], tran_date, repeat_num, bills_splits, bills_tags);
 
         bool expandSplits = false;
         if (m_filter_advanced) {
-            int txnMatch = m_trans_filter_dlg->mmIsRecordMatches(*tran, journal_xd.m_splits);
+            int txnMatch = m_trans_filter_dlg->mmIsRecordMatches(*trx_n, journal_xd.m_splits);
             if (txnMatch) {
                 expandSplits = (txnMatch < static_cast<int>(journal_xd.m_splits.size()) + 1);
             }
@@ -799,8 +799,8 @@ void JournalPanel::filterList()
             journal_xd.ACCOUNT_BALANCE = m_balance;
         }
 
-        if (repeat_num == 0 && trans_attachments.find(tran->m_id) != trans_attachments.end()) {
-            for (const auto& entry : trans_attachments.at(tran->m_id))
+        if (repeat_num == 0 && trans_attachments.find(trx_n->m_id) != trans_attachments.end()) {
+            for (const auto& entry : trans_attachments.at(trx_n->m_id))
                 journal_xd.ATTACHMENT_DESCRIPTION.Add(entry.DESCRIPTION);
         }
         else if (repeat_num > 0 && bills_attachments.find(journal_xd.m_bdid) != bills_attachments.end()) {
@@ -813,8 +813,8 @@ void JournalPanel::filterList()
             journal_xd.UDFC_value[i] = -DBL_MAX;
         }
 
-        if (repeat_num == 0 && tranFieldData.find(tran->m_id) != tranFieldData.end()) {
-            for (const auto& udfc : tranFieldData.at(tran->m_id)) {
+        if (repeat_num == 0 && tranFieldData.find(trx_n->m_id) != tranFieldData.end()) {
+            for (const auto& udfc : tranFieldData.at(trx_n->m_id)) {
                 for (int i = 0; i < 5; i++) {
                     if (udfc.FIELDID == udfc_id[i]) {
                         journal_xd.UDFC_type[i] = udfc_type[i];
@@ -849,7 +849,7 @@ void JournalPanel::filterList()
             journal_xd.displayID = wxString::Format("%s%ld", marker, journal_xd.m_bdid);
 
         if (!expandSplits) {
-            m_lc->m_trans.push_back(journal_xd);
+            m_lc->m_journal_xa.push_back(journal_xd);
             if (isAccount())
                 m_flow += account_flow;
             continue;
@@ -870,31 +870,29 @@ void JournalPanel::filterList()
             journal_xd.m_category_id_n = tp_d.m_category_id;
             journal_xd.CATEGNAME       = CategoryModel::full_name(tp_d.m_category_id);
             journal_xd.m_amount        = tp_d.m_amount;
-            journal_xd.NOTES           = tran->NOTES;
+            journal_xd.m_notes         = trx_n->m_notes;
             journal_xd.TAGNAMES        = tranTagnames;
-            TrxData splitWithTxnNotes = journal_xd;
-            TrxData splitWithSplitNotes = journal_xd;
-            splitWithSplitNotes.NOTES = tp_d.m_notes;
-            if (m_filter_advanced) {
-                if (
-                    !m_trans_filter_dlg->mmIsRecordMatches<TrxModel>(splitWithSplitNotes, true) &&
-                    !m_trans_filter_dlg->mmIsRecordMatches<TrxModel>(splitWithTxnNotes, true)
-                ) {
-                    continue;
-                }
+            TrxData journal_trx_xd = journal_xd;
+            TrxData journal_split_xd = journal_xd;
+            journal_split_xd.m_notes = tp_d.m_notes;
+            if (m_filter_advanced &&
+                !m_trans_filter_dlg->mmIsRecordMatches<TrxModel>(journal_split_xd, true) &&
+                !m_trans_filter_dlg->mmIsRecordMatches<TrxModel>(journal_trx_xd, true)
+            ) {
+                continue;
             }
             if (isAccount()) {
-                journal_xd.ACCOUNT_FLOW = TrxModel::account_flow(splitWithTxnNotes, m_account_id);
+                journal_xd.ACCOUNT_FLOW = TrxModel::account_flow(journal_trx_xd, m_account_id);
                 m_flow += journal_xd.ACCOUNT_FLOW;
             }
-            journal_xd.NOTES.Append((tran->NOTES.IsEmpty() ? "" : " ") + tp_d.m_notes);
+            journal_xd.m_notes.Append((trx_n->m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
             wxString tagnames;
             const wxString reftype = (repeat_num == 0) ? tranSplitRefType : billSplitRefType;
             for (const auto& tag : TagLinkModel::instance().get_ref(reftype, tp_d.m_id))
                 tagnames.Append(tag.first + " ");
             if (!tagnames.IsEmpty())
                 journal_xd.TAGNAMES.Append((journal_xd.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
-            m_lc->m_trans.push_back(journal_xd);
+            m_lc->m_journal_xa.push_back(journal_xd);
         }
     }
 }
@@ -924,7 +922,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 break;
         }
 
-        Journal::Full_Data journal_xd(m_lc->m_trans[x]);
+        Journal::Full_Data journal_xd(m_lc->m_journal_xa[x]);
         wxString miniStr = journal_xd.info();
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty()) {
@@ -938,7 +936,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
             mmToolTip(m_info_panel_mini, miniStr);
         }
 
-        wxString notesStr = journal_xd.NOTES;
+        wxString notesStr = journal_xd.m_notes;
         if (!journal_xd.m_repeat_num) {
             auto tp_a = TrxSplitModel::instance().find(
                 TrxSplitCol::TRANSID(journal_xd.m_id)
@@ -1003,15 +1001,15 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 item = m_lc->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
                 if (item == -1) break;
                 const CurrencyData* curr = AccountModel::instance().get_id_currency_p(
-                    m_lc->m_trans[item].m_account_id
+                    m_lc->m_journal_xa[item].m_account_id
                 );
-                if ((m_account_id < 0) && TrxModel::is_transfer(m_lc->m_trans[item].TRANSCODE))
+                if ((m_account_id < 0) && TrxModel::is_transfer(m_lc->m_journal_xa[item].TRANSCODE))
                     continue;
                 double convrate = (curr != m_currency_n)
-                    ? CurrencyHistoryModel::getDayRate(curr->m_id, m_lc->m_trans[item].TRANSDATE)
+                    ? CurrencyHistoryModel::getDayRate(curr->m_id, m_lc->m_journal_xa[item].TRANSDATE)
                     : 1.0;
-                flow += convrate * TrxModel::account_flow(m_lc->m_trans[item], (m_account_id < 0) ? m_lc->m_trans[item].m_account_id : m_account_id);
-                wxString transdate = m_lc->m_trans[item].TRANSDATE;
+                flow += convrate * TrxModel::account_flow(m_lc->m_journal_xa[item], (m_account_id < 0) ? m_lc->m_journal_xa[item].m_account_id : m_account_id);
+                wxString transdate = m_lc->m_journal_xa[item].TRANSDATE;
                 if (minDate > transdate || minDate.empty()) minDate = transdate;
                 if (maxDate < transdate || maxDate.empty()) maxDate = transdate;
             }

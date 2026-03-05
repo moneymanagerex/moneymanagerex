@@ -132,7 +132,7 @@ SchedDialog::SchedDialog(
         m_sched_xd.NEXTOCCURRENCEDATE = sched_n->NEXTOCCURRENCEDATE;
         m_sched_xd.REPEATS            = sched_n->REPEATS;
         m_sched_xd.NUMOCCURRENCES     = sched_n->NUMOCCURRENCES;
-        m_sched_xd.NOTES              = sched_n->NOTES;
+        m_sched_xd.m_notes            = sched_n->m_notes;
         m_sched_xd.STATUS             = sched_n->STATUS;
         m_sched_xd.m_number           = sched_n->m_number;
         m_sched_xd.TRANSCODE          = sched_n->TRANSCODE;
@@ -290,7 +290,7 @@ void SchedDialog::dataToControls()
 
     tagTextCtrl_->SetTags(m_sched_xd.TAGS);
 
-    textNotes_->SetValue(m_sched_xd.NOTES);
+    textNotes_->SetValue(m_sched_xd.m_notes);
     textNumber_->SetValue(m_sched_xd.m_number);
 
     if (!m_sched_xd.local_splits.empty())
@@ -345,25 +345,25 @@ void SchedDialog::SetDialogParameters(int64 trx_id)
     const auto split = TrxSplitModel::instance().get_all_id();
     const auto tags = TagLinkModel::instance().get_all_id(SchedModel::refTypeName);
     //const auto trx = TrxModel::instance().find(TrxCol::TRANSID(trx_id)).at(0);
-    const TrxData* trx = TrxModel::instance().get_id_data_n(trx_id);
-    TrxModel::Full_Data t(*trx, split, tags);
-    m_sched_xd.m_account_id = t.m_account_id;
-    cbAccount_->SetValue(t.ACCOUNTNAME);
+    const TrxData* trx_n = TrxModel::instance().get_id_data_n(trx_id);
+    TrxModel::Full_Data trx_xd(*trx_n, split, tags);
+    m_sched_xd.m_account_id = trx_xd.m_account_id;
+    cbAccount_->SetValue(trx_xd.ACCOUNTNAME);
 
-    m_sched_xd.TRANSCODE = t.TRANSCODE;
-    m_choice_transaction_type->SetSelection(TrxModel::type_id(t.TRANSCODE));
+    m_sched_xd.TRANSCODE = trx_xd.TRANSCODE;
+    m_choice_transaction_type->SetSelection(TrxModel::type_id(trx_xd.TRANSCODE));
     m_transfer = (m_sched_xd.TRANSCODE == TrxModel::TYPE_NAME_TRANSFER);
     updateControlsForTransType();
 
-    m_sched_xd.m_amount = t.m_amount;
-    SetAmountCurrencies(t.m_account_id, t.m_to_account_id_n);
+    m_sched_xd.m_amount = trx_xd.m_amount;
+    SetAmountCurrencies(trx_xd.m_account_id, trx_xd.m_to_account_id_n);
     textAmount_->SetValue(m_sched_xd.m_amount);
 
     if (m_transfer) {
-        m_sched_xd.m_to_account_id_n = t.m_to_account_id_n;
-        cbToAccount_->ChangeValue(t.TOACCOUNTNAME);
+        m_sched_xd.m_to_account_id_n = trx_xd.m_to_account_id_n;
+        cbToAccount_->ChangeValue(trx_xd.TOACCOUNTNAME);
 
-        m_sched_xd.m_to_amount = t.m_to_amount;
+        m_sched_xd.m_to_amount = trx_xd.m_to_amount;
         toTextAmount_->SetValue(m_sched_xd.m_to_amount);
         if (m_sched_xd.m_to_amount != m_sched_xd.m_amount) {
             cAdvanced_->SetValue(true);
@@ -371,12 +371,12 @@ void SchedDialog::SetDialogParameters(int64 trx_id)
         }
     }
     else {
-        m_sched_xd.m_payee_id_n = t.m_payee_id_n;
-        cbPayee_->ChangeValue(t.PAYEENAME);
+        m_sched_xd.m_payee_id_n = trx_xd.m_payee_id_n;
+        cbPayee_->ChangeValue(trx_xd.PAYEENAME);
     }
 
-    if (t.has_split()) {
-        for (auto& tp_d : t.m_splits) {
+    if (trx_xd.has_split()) {
+        for (auto& tp_d : trx_xd.m_splits) {
             Split split_d;
             split_d.CATEGID          = tp_d.m_category_id;
             split_d.SPLITTRANSAMOUNT = tp_d.m_amount;
@@ -385,13 +385,13 @@ void SchedDialog::SetDialogParameters(int64 trx_id)
         }
     }
     else {
-        m_sched_xd.m_category_id_n = t.m_category_id_n;
+        m_sched_xd.m_category_id_n = trx_xd.m_category_id_n;
     }
 
-    m_sched_xd.m_number = t.m_number;
+    m_sched_xd.m_number = trx_xd.m_number;
     textNumber_->SetValue(m_sched_xd.m_number);
-    m_sched_xd.NOTES = t.NOTES;
-    textNotes_->SetValue(m_sched_xd.NOTES);
+    m_sched_xd.m_notes = trx_xd.m_notes;
+    textNotes_->SetValue(m_sched_xd.m_notes);
     setCategoryLabel();
 }
 
@@ -1026,7 +1026,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     m_sched_xd.m_number = textNumber_->GetValue();
-    m_sched_xd.NOTES = textNotes_->GetValue();
+    m_sched_xd.m_notes = textNotes_->GetValue();
 
     int color_id = bColours_->GetColorId();
     if (color_id > 0 && color_id < 8)
@@ -1061,7 +1061,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         sched_d.m_amount           = m_sched_xd.m_amount;
         sched_d.STATUS             = m_sched_xd.STATUS;
         sched_d.m_number           = m_sched_xd.m_number;
-        sched_d.NOTES              = m_sched_xd.NOTES;
+        sched_d.m_notes            = m_sched_xd.m_notes;
         sched_d.m_category_id_n    = m_sched_xd.m_category_id_n;
         sched_d.TRANSDATE          = m_sched_xd.TRANSDATE;
         sched_d.m_to_amount        = m_sched_xd.m_to_amount;
@@ -1138,7 +1138,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             new_trx_d.m_amount          = m_sched_xd.m_amount;
             new_trx_d.STATUS            = m_sched_xd.STATUS;
             new_trx_d.m_number          = m_sched_xd.m_number;
-            new_trx_d.NOTES             = m_sched_xd.NOTES;
+            new_trx_d.m_notes           = m_sched_xd.m_notes;
             new_trx_d.m_category_id_n   = m_sched_xd.m_category_id_n;
             new_trx_d.TRANSDATE         = m_sched_xd.TRANSDATE;
             new_trx_d.m_to_amount       = m_sched_xd.m_to_amount;
@@ -1405,7 +1405,7 @@ void SchedDialog::activateSplitTransactionsDlg()
         Split split_d;
         split_d.SPLITTRANSAMOUNT = m_sched_xd.m_amount;
         split_d.CATEGID          = m_sched_xd.m_category_id_n;
-        split_d.NOTES            = m_sched_xd.NOTES;
+        split_d.NOTES            = m_sched_xd.m_notes;
         m_sched_xd.local_splits.push_back(split_d);
     }
 

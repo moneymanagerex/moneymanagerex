@@ -122,7 +122,7 @@ private:
     };
 
 private:
-    Journal::Full_DataA m_trans;
+    Journal::Full_DataA m_journal_xa;
     long m_topItemIndex = -1; // where to display the list again after refresh
     wxString m_today;
     bool m_firstSort = true;

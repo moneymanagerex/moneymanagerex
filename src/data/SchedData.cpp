@@ -18,19 +18,19 @@
 
 #include "SchedData.h"
 
-SchedData::SchedData()
+SchedData::SchedData() :
+    m_id(-1),
+    m_account_id(-1),
+    m_to_account_id_n(-1),
+    m_payee_id_n(-1),
+    m_amount(0.0),
+    m_category_id_n(-1),
+    m_followup_id(-1),
+    m_to_amount(0.0),
+    REPEATS(-1),
+    NUMOCCURRENCES(-1),
+    m_color(-1)
 {
-    m_id              = -1;
-    m_account_id      = -1;
-    m_to_account_id_n = -1;
-    m_payee_id_n      = -1;
-    m_amount          = 0.0;
-    m_category_id_n   = -1;
-    m_followup_id     = -1;
-    m_to_amount       = 0.0;
-    REPEATS           = -1;
-    NUMOCCURRENCES    = -1;
-    m_color           = -1;
 }
 
 // Convert SchedData to SchedRow
@@ -46,7 +46,7 @@ SchedRow SchedData::to_row() const
     row.TRANSAMOUNT        = m_amount;
     row.STATUS             = STATUS;
     row.TRANSACTIONNUMBER  = m_number;
-    row.NOTES              = NOTES;
+    row.NOTES              = m_notes;
     row.CATEGID            = m_category_id_n;
     row.TRANSDATE          = TRANSDATE;
     row.FOLLOWUPID         = m_followup_id;
@@ -70,7 +70,7 @@ SchedData& SchedData::from_row(const SchedRow& row)
     m_amount           = row.TRANSAMOUNT;        // double
     STATUS             = row.STATUS;             // wxString
     m_number           = row.TRANSACTIONNUMBER;  // wxString
-    NOTES              = row.NOTES;              // wxString
+    m_notes            = row.NOTES;              // wxString
     m_category_id_n    = row.CATEGID;            // int64
     TRANSDATE          = row.TRANSDATE;          // wxString
     m_followup_id      = row.FOLLOWUPID;         // int64
@@ -93,7 +93,7 @@ bool SchedData::equals(const SchedData* other) const
     if ( m_amount != other->m_amount) return false;
     if (!STATUS.IsSameAs(other->STATUS)) return false;
     if (!m_number.IsSameAs(other->m_number)) return false;
-    if (!NOTES.IsSameAs(other->NOTES)) return false;
+    if (!m_notes.IsSameAs(other->m_notes)) return false;
     if ( m_category_id_n != other->m_category_id_n) return false;
     if (!TRANSDATE.IsSameAs(other->TRANSDATE)) return false;
     if ( m_followup_id != other->m_followup_id) return false;

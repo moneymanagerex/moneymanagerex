@@ -417,7 +417,7 @@ void TrxDialog::dataToControls()
     //Notes & Transaction Number
     if (!skip_notes_init_) {
         textNumber_->SetValue(m_journal_data.m_number);
-        textNotes_->SetValue(m_journal_data.NOTES);
+        textNotes_->SetValue(m_journal_data.m_notes);
         skip_notes_init_ = true;
     }
 
@@ -1218,7 +1218,7 @@ void TrxDialog::OnNoteSelected(wxCommandEvent& event)
 
 void TrxDialog::OnOk(wxCommandEvent& event)
 {
-    m_journal_data.NOTES = textNotes_->GetValue();
+    m_journal_data.m_notes = textNotes_->GetValue();
     m_journal_data.m_number = textNumber_->GetValue();
     m_journal_data.TRANSDATE = dpc_->GetValue().FormatISOCombined();
     wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));

@@ -446,37 +446,37 @@ void SchedList::OnItemRightClick(wxMouseEvent& event)
 
 wxString SchedPanel::getItem(long item, int col_id)
 {
-    const SchedModel::Full_Data& bill = this->bills_.at(item);
+    const SchedModel::Full_Data& sched_xd = this->bills_.at(item);
     SchedModel::RepeatNum rn;
-    bool is_active = SchedModel::decode_repeat_num(bill, rn);
+    bool is_active = SchedModel::decode_repeat_num(sched_xd, rn);
 
     switch (col_id) {
     case SchedList::LIST_ID_ID:
-        return wxString::Format("%lld", bill.m_id).Trim();
+        return wxString::Format("%lld", sched_xd.m_id).Trim();
     case SchedList::LIST_ID_PAYMENT_DATE:
-        return mmGetDateTimeForDisplay(bill.TRANSDATE);
+        return mmGetDateTimeForDisplay(sched_xd.TRANSDATE);
     case SchedList::LIST_ID_DUE_DATE:
-        return mmGetDateTimeForDisplay(bill.NEXTOCCURRENCEDATE);
+        return mmGetDateTimeForDisplay(sched_xd.NEXTOCCURRENCEDATE);
     case SchedList::LIST_ID_ACCOUNT:
-        return bill.ACCOUNTNAME;
+        return sched_xd.ACCOUNTNAME;
     case SchedList::LIST_ID_PAYEE:
-        return bill.real_payee_name();
+        return sched_xd.real_payee_name();
     case SchedList::LIST_ID_STATUS:
-        return bill.STATUS;
+        return sched_xd.STATUS;
     case SchedList::LIST_ID_CATEGORY:
-        return bill.CATEGNAME;
+        return sched_xd.CATEGNAME;
     case SchedList::LIST_ID_TAGS:
-        return bill.TAGNAMES;
+        return sched_xd.TAGNAMES;
     case SchedList::LIST_ID_WITHDRAWAL:
         {
             wxString value = wxEmptyString;
             int64 accountid;
             double transamount;
-            if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
-                accountid = bill.m_account_id; transamount = bill.m_amount;
+            if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
+                accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
             }
-            else if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                accountid = bill.m_account_id; transamount = bill.m_amount;
+            else if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+                accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
             }
             else
                 return value;
@@ -485,7 +485,7 @@ wxString SchedPanel::getItem(long item, int col_id)
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
                 value = CurrencyModel::toCurrency(transamount, currency);
-            if (!value.IsEmpty() && TrxModel::status_id(bill.STATUS) == TrxModel::STATUS_ID_VOID)
+            if (!value.IsEmpty() && TrxModel::status_id(sched_xd.STATUS) == TrxModel::STATUS_ID_VOID)
                 value = "* " + value;
             return value;
         }
@@ -494,11 +494,11 @@ wxString SchedPanel::getItem(long item, int col_id)
             wxString value = wxEmptyString;
             int64 accountid;
             double transamount;
-            if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
-                accountid = bill.m_account_id; transamount = bill.m_amount;
+            if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
+                accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
             }
-            else if (TrxModel::type_id(bill.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                accountid = bill.m_to_account_id_n; transamount = bill.m_to_amount;
+            else if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+                accountid = sched_xd.m_to_account_id_n; transamount = sched_xd.m_to_amount;
             }
             else
                 return value;
@@ -507,7 +507,7 @@ wxString SchedPanel::getItem(long item, int col_id)
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
                 value = CurrencyModel::toCurrency(transamount, currency);
-            if (!value.IsEmpty() && TrxModel::status_id(bill.STATUS) == TrxModel::STATUS_ID_VOID)
+            if (!value.IsEmpty() && TrxModel::status_id(sched_xd.STATUS) == TrxModel::STATUS_ID_VOID)
                 value = "* " + value;
             return value;
         }
@@ -526,13 +526,13 @@ wxString SchedPanel::getItem(long item, int col_id)
         return repeatSTR;
     }
     case SchedList::LIST_ID_REMAINING:
-        return is_active ? GetRemainingDays(bill) : _t("Inactive");
+        return is_active ? GetRemainingDays(sched_xd) : _t("Inactive");
     case SchedList::LIST_ID_NUMBER:
-        return bill.m_number;
+        return sched_xd.m_number;
     case SchedList::LIST_ID_NOTES: {
-        wxString value = bill.NOTES;
+        wxString value = sched_xd.m_notes;
         value.Replace("\n", " ");
-        if (AttachmentModel::NrAttachments(SchedModel::refTypeName, bill.m_id))
+        if (AttachmentModel::NrAttachments(SchedModel::refTypeName, sched_xd.m_id))
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     }
@@ -740,7 +740,7 @@ void SchedPanel::updateBottomPanelData(int selIndex)
     if (selIndex != -1)
     {
         m_infoTextMini->SetLabelText(CategoryModel::full_name(bills_[selIndex].m_category_id_n));
-        m_infoText->SetLabelText(bills_[selIndex].NOTES);
+        m_infoText->SetLabelText(bills_[selIndex].m_notes);
     }
 }
 

@@ -29,7 +29,7 @@ TrxData Journal::execute_bill(const SchedData& sched_d, wxString date)
     trx_d.m_amount          = sched_d.m_amount;
     trx_d.STATUS            = sched_d.STATUS;
     trx_d.m_number          = sched_d.m_number;
-    trx_d.NOTES             = sched_d.NOTES;
+    trx_d.m_notes           = sched_d.m_notes;
     trx_d.m_category_id_n   = sched_d.m_category_id_n;
     trx_d.TRANSDATE         = date;
     trx_d.m_followup_id     = sched_d.m_followup_id;
@@ -49,7 +49,7 @@ TrxModel::Full_Data Journal::execute_bill_full(const SchedData& sched_d, wxStrin
     trx_xd.m_amount          = sched_d.m_amount;
     trx_xd.STATUS            = sched_d.STATUS;
     trx_xd.m_number          = sched_d.m_number;
-    trx_xd.NOTES             = sched_d.NOTES;
+    trx_xd.m_notes           = sched_d.m_notes;
     trx_xd.m_category_id_n   = sched_d.m_category_id_n;
     trx_xd.TRANSDATE         = date;
     trx_xd.m_followup_id     = sched_d.m_followup_id;
@@ -189,7 +189,7 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         journal_d.m_amount          = trx_n->m_amount;
         journal_d.STATUS            = trx_n->STATUS;
         journal_d.m_number          = trx_n->m_number;
-        journal_d.NOTES             = trx_n->NOTES;
+        journal_d.m_notes           = trx_n->m_notes;
         journal_d.m_category_id_n   = trx_n->m_category_id_n;
         journal_d.TRANSDATE         = trx_n->TRANSDATE;
         journal_d.LASTUPDATEDTIME   = trx_n->LASTUPDATEDTIME;
@@ -212,7 +212,7 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         journal_d.m_amount          = sched_n->m_amount;
         journal_d.STATUS            = sched_n->STATUS;
         journal_d.m_number          = sched_n->m_number;
-        journal_d.NOTES             = sched_n->NOTES;
+        journal_d.m_notes           = sched_n->m_notes;
         journal_d.m_category_id_n   = sched_n->m_category_id_n;
         journal_d.TRANSDATE         = sched_n->TRANSDATE;
         journal_d.LASTUPDATEDTIME   = "";

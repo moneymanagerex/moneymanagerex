@@ -571,7 +571,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     new_trx_d.m_payee_id_n      = payeeID;
     new_trx_d.m_category_id_n   = categoryID;
     new_trx_d.m_number          = "";
-    new_trx_d.NOTES             = WebAppTrans.Notes;
+    new_trx_d.m_notes           = WebAppTrans.Notes;
     new_trx_d.m_followup_id     = -1;
     new_trx_d.m_to_amount       = WebAppTrans.Amount;
     new_trx_d.m_color           = -1;

@@ -101,7 +101,7 @@ public:
             m_amount           = 0;
             STATUS             = TrxModel::STATUS_NAME_NONE;
             m_number           = "";
-            NOTES              = "";
+            m_notes            = "";
             m_category_id_n    = -1;
             TRANSDATE          = wxDateTime::Now().FormatISOCombined();
             m_followup_id      = -1;

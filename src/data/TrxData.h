@@ -35,7 +35,7 @@ struct TrxData
     double   m_amount;
     double   m_to_amount;
     wxString m_number;
-    wxString NOTES;
+    wxString m_notes;
     int64    m_followup_id;     // this is not a database id
     int64    m_color;
     wxString LASTUPDATEDTIME;
@@ -131,7 +131,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.NOTES < y.NOTES;
+            return x.m_notes < y.m_notes;
         }
     };
 

@@ -444,12 +444,12 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         if (m_notes_checkbox->IsChecked()) {
             if (m_append_checkbox->IsChecked()) {
-                trx_n->NOTES += (trx_n->NOTES.Right(1) == "\n" || trx_n->NOTES.empty()
+                trx_n->m_notes += (trx_n->m_notes.Right(1) == "\n" || trx_n->m_notes.empty()
                     ? "" : "\n")
                     + m_notes_ctrl->GetValue();
             }
             else {
-                trx_n->NOTES = m_notes_ctrl->GetValue();
+                trx_n->m_notes = m_notes_ctrl->GetValue();
             }
         }
 

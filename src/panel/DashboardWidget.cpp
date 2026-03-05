@@ -297,18 +297,20 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
     //                    days, payee, description, amount, account, notes
     std::vector< std::tuple<int, wxString, wxString, double, const AccountData*, wxString> > bd_days;
-    for (const auto& entry : SchedModel::instance().find_all(SchedCol::COL_ID_TRANSDATE)) {
-        int daysPayment = SchedModel::getTransDateTime(entry)
+    for (const auto& sched_d : SchedModel::instance().find_all(
+        SchedCol::COL_ID_TRANSDATE
+    )) {
+        int daysPayment = SchedModel::getTransDateTime(sched_d)
             .Subtract(today).GetDays();
         if (daysPayment > 14)
             break; // Done searching for all to include
 
         // ignore invalid entries
         SchedModel::RepeatNum rn;
-        if (!SchedModel::decode_repeat_num(entry, rn))
+        if (!SchedModel::decode_repeat_num(sched_d, rn))
             continue;
 
-        int daysOverdue = SchedModel::NEXTOCCURRENCEDATE(entry)
+        int daysOverdue = SchedModel::NEXTOCCURRENCEDATE(sched_d)
             .Subtract(today).GetDays();
         wxString daysRemainingStr = (daysPayment > 0
             ? wxString::Format(wxPLURAL("%d day", "%d days", daysPayment), daysPayment)
@@ -317,24 +319,24 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
             daysRemainingStr = "*" + wxString::Format(wxPLURAL("%d day overdue", "%d days overdue", std::abs(daysOverdue)), std::abs(daysOverdue));
 
         wxString accountStr = "";
-        const auto *account = AccountModel::instance().get_id_data_n(entry.m_account_id);
+        const auto *account = AccountModel::instance().get_id_data_n(sched_d.m_account_id);
         if (account) accountStr = account->m_name;
 
         wxString payeeStr = "";
-        if (SchedModel::type_id(entry) == TrxModel::TYPE_ID_TRANSFER) {
-            const AccountData *to_account = AccountModel::instance().get_id_data_n(entry.m_to_account_id_n);
+        if (SchedModel::type_id(sched_d) == TrxModel::TYPE_ID_TRANSFER) {
+            const AccountData *to_account = AccountModel::instance().get_id_data_n(sched_d.m_to_account_id_n);
             if (to_account) payeeStr = to_account->m_name;
             payeeStr += " &larr; " + accountStr;
         }
         else {
-            const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(entry.m_payee_id_n);
+            const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(sched_d.m_payee_id_n);
             payeeStr = accountStr;
-            payeeStr += (SchedModel::type_id(entry) == TrxModel::TYPE_ID_WITHDRAWAL ? " &rarr; " : " &larr; ");
+            payeeStr += (SchedModel::type_id(sched_d) == TrxModel::TYPE_ID_WITHDRAWAL ? " &rarr; " : " &larr; ");
             if (payee_n)
                 payeeStr += payee_n->m_name;
         }
-        double amount = (SchedModel::type_id(entry) == TrxModel::TYPE_ID_WITHDRAWAL ? -entry.m_amount : entry.m_amount);
-        wxString notes = HTMLEncode(entry.NOTES);
+        double amount = (SchedModel::type_id(sched_d) == TrxModel::TYPE_ID_WITHDRAWAL ? -sched_d.m_amount : sched_d.m_amount);
+        wxString notes = HTMLEncode(sched_d.m_notes);
         bd_days.push_back(std::make_tuple(daysPayment, payeeStr, daysRemainingStr, amount, account, notes));
     }
 

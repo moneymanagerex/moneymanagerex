@@ -1519,7 +1519,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
         new_trx_d.m_number     = result.fitid;
         new_trx_d.TRANSDATE    = date.FormatISODate();
         new_trx_d.m_amount     = fabs(amount);
-        new_trx_d.NOTES        = memo;
+        new_trx_d.m_notes      = memo;
 
         bool isTransfer = false;
         // Check for existing transaction in the current account first
@@ -1603,7 +1603,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
 
                             existing_trx_d.m_payee_id_n = -1;
                             existing_trx_d.m_category_id_n = transferCategId_;
-                            existing_trx_d.NOTES = "Existing: " + existing_trx_d.NOTES + "\nUpdated: " + memo;
+                            existing_trx_d.m_notes = "Existing: " + existing_trx_d.m_notes + "\nUpdated: " + memo;
 
                             try {
                                 TrxModel::instance().save_trx_n(existing_trx_d);
