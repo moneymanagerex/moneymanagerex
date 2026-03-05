@@ -74,6 +74,17 @@ mmChoiceNameA CurrencyType::s_choice_a = mmChoiceNameA({
     { e_crypto, _n("Crypto") },
 }, e_fiat, true);
 
+mmChoiceNameA RefTypeN::s_choice_a = mmChoiceNameA({
+    { e_trx,         _n("Transaction") },
+    { e_stock,       _n("Stock") },
+    { e_asset,       _n("Asset") },
+    { e_account,     _n("BankAccount") },
+    { e_sched,       _n("RecurringTransaction") },
+    { e_payee,       _n("Payee") },
+    { e_trx_split,   _n("TransactionSplit") },
+    { e_sched_split, _n("RecurringTransactionSplit") },
+}, -1, true);
+
 mmChoiceNameA UpdateType::s_choice_a = mmChoiceNameA({
     { e_none,   _n("None") },
     { e_online, _n("Online") },
