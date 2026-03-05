@@ -100,6 +100,8 @@ private:
     void OnRightItemRightClick(wxMouseEvent& event);
 
     void OnListKeyDown(wxKeyEvent& event);
+    void OnListItemSelection(wxListEvent& event);
+    void updateButtonState();
 
     void OnLeftFocus(wxFocusEvent& event);
     void OnRightFocus(wxFocusEvent& event);
