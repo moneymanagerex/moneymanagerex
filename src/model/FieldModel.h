@@ -103,7 +103,7 @@ inline int FieldModel::type_id(const wxString& name)
 }
 inline FieldModel::TYPE_ID FieldModel::type_id(const Data* r)
 {
-    return static_cast<TYPE_ID>(type_id(r->TYPE));
+    return static_cast<TYPE_ID>(r->m_type_n.id_n());
 }
 inline FieldModel::TYPE_ID FieldModel::type_id(const Data& r)
 {

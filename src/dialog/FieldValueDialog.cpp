@@ -43,21 +43,21 @@ FieldValueDialog::FieldValueDialog()
 {
 }
 
-FieldValueDialog::FieldValueDialog(wxDialog* dialog, const wxString& ref_type, int64 ref_id)
-    : wxDialog()
-    , m_ref_type(ref_type)
-    , m_ref_id(ref_id)
+FieldValueDialog::FieldValueDialog(wxDialog* dialog, const wxString& ref_type, int64 ref_id) :
+    wxDialog(),
+    m_ref_type(ref_type),
+    m_ref_id(ref_id)
 {
     m_dialog = dialog;
-    m_fields = FieldModel::instance().find(FieldCol::REFTYPE(m_ref_type));
-    std::sort(m_fields.begin(), m_fields.end(), FieldData::SorterByDESCRIPTION());
+    m_field_a = FieldModel::instance().find(FieldCol::REFTYPE(m_ref_type));
+    std::sort(m_field_a.begin(), m_field_a.end(), FieldData::SorterByDESCRIPTION());
     m_data_changed.clear();
 }
 
-mmCustomDataTransaction::mmCustomDataTransaction(wxDialog* dialog, int64 ref_id, wxWindowID base_id)
-    : FieldValueDialog(dialog
-        , TrxModel::refTypeName
-        , ref_id)
+mmCustomDataTransaction::mmCustomDataTransaction(
+    wxDialog* dialog, int64 ref_id, wxWindowID base_id
+) :
+    FieldValueDialog(dialog, TrxModel::refTypeName, ref_id)
 {
     SetBaseID(base_id);
 }
@@ -78,43 +78,45 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
     custom_sizer->Add(grid_sizer_custom, g_flagsExpand);
 
     int field_index = 0;
-    for (const auto &field : m_fields) {
+    for (const auto& field_d : m_field_a) {
         bool nonDefaultData = true;
-        const FieldValueData* fv_n = FieldValueModel::instance().get_key(field.FIELDID, m_ref_id);
+        const FieldValueData* fv_n = FieldValueModel::instance().get_key(field_d.m_id, m_ref_id);
         FieldValueData fv_data;
         if (fv_n) {
             fv_data = *fv_n;
         }
         else {
             fv_data = FieldValueData();
-            fv_data.FIELDID = field.FIELDID;
+            fv_data.FIELDID = field_d.m_id;
             fv_data.REFID = m_ref_id;
-            fv_data.CONTENT = FieldModel::getDefault(field.PROPERTIES);
+            fv_data.CONTENT = FieldModel::getDefault(field_d.m_properties);
             nonDefaultData = false;
         }
 
         wxWindowID controlID = GetBaseID() + field_index++ * FIELDMULTIPLIER;
         wxWindowID labelID = controlID + CONTROLOFFSET;
 
-        wxCheckBox* Description = new wxCheckBox(scrolled_window
-            , labelID, field.DESCRIPTION
-            , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-            , wxDefaultValidator, field.TYPE);
-        Description->Connect(labelID, wxEVT_CHECKBOX
-            , wxCommandEventHandler(FieldValueDialog::OnCheckBoxActivated), nullptr, this);
+        wxCheckBox* Description = new wxCheckBox(
+            scrolled_window,
+            labelID, field_d.m_description,
+            wxDefaultPosition, wxDefaultSize, wxCHK_2STATE,
+            wxDefaultValidator, field_d.m_type_n.name_n()
+        );
+        Description->Connect(labelID, wxEVT_CHECKBOX,
+            wxCommandEventHandler(FieldValueDialog::OnCheckBoxActivated), nullptr, this
+        );
 
         grid_sizer_custom->Add(Description, g_flagsH);
 
-        switch (FieldModel::type_id(field))
+        switch (FieldModel::type_id(field_d))
         {
         case FieldModel::TYPE_ID_STRING:
         {
             const auto& data = fv_data.CONTENT;
             wxTextCtrl* CustomString = new wxTextCtrl(scrolled_window, controlID, data, wxDefaultPosition, wxDefaultSize);
-            mmToolTip(CustomString, FieldModel::getTooltip(field.PROPERTIES));
-            if (FieldModel::getAutocomplete(field.PROPERTIES))
-            {
-                const wxArrayString& values = FieldValueModel::instance().allValue(field.FIELDID);
+            mmToolTip(CustomString, FieldModel::getTooltip(field_d.m_properties));
+            if (FieldModel::getAutocomplete(field_d.m_properties)) {
+                const wxArrayString& values = FieldValueModel::instance().allValue(field_d.m_id);
                 CustomString->AutoComplete(values);
             }
             grid_sizer_custom->Add(CustomString, g_flagsExpand);
@@ -130,7 +132,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
         case FieldModel::TYPE_ID_INTEGER:
         case FieldModel::TYPE_ID_DECIMAL:
         {
-            int digitScale = FieldModel::getDigitScale(field.PROPERTIES);
+            int digitScale = FieldModel::getDigitScale(field_d.m_properties);
             wxString content = cleanseNumberString(fv_data.CONTENT, digitScale > 0);
 
             double value;
@@ -150,7 +152,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
             CustomDecimal->Connect(wxID_ANY, wxEVT_TEXT
                 , wxCommandEventHandler(FieldValueDialog::OnStringChanged), nullptr, this);
 
-            mmToolTip(CustomDecimal, FieldModel::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomDecimal, FieldModel::getTooltip(field_d.m_properties));
             grid_sizer_custom->Add(CustomDecimal, g_flagsExpand);
 
             break;
@@ -170,8 +172,8 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
                     SetWidgetChanged(controlID, data);
             }
 
-            mmToolTip(CustomBooleanF, FieldModel::getTooltip(field.PROPERTIES));
-            mmToolTip(CustomBooleanT, FieldModel::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomBooleanF, FieldModel::getTooltip(field_d.m_properties));
+            mmToolTip(CustomBooleanT, FieldModel::getTooltip(field_d.m_properties));
             wxBoxSizer* boolsizer = new wxBoxSizer(wxHORIZONTAL);
             boolsizer->Add(CustomBooleanF);
             boolsizer->Add(CustomBooleanT);
@@ -194,7 +196,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
             }
 
             mmDatePickerCtrl* CustomDate = new mmDatePickerCtrl(scrolled_window, controlID, value);
-            mmToolTip(CustomDate, FieldModel::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomDate, FieldModel::getTooltip(field_d.m_properties));
             grid_sizer_custom->Add(CustomDate->mmGetLayout(false));
 
             CustomDate->Connect(controlID, wxEVT_DATE_CHANGED, wxDateEventHandler(FieldValueDialog::OnDateChanged), nullptr, this);
@@ -214,7 +216,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
 
             wxTimePickerCtrl* CustomTime = new wxTimePickerCtrl(scrolled_window, controlID
                 , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
-            mmToolTip(CustomTime, FieldModel::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomTime, FieldModel::getTooltip(field_d.m_properties));
             grid_sizer_custom->Add(CustomTime, g_flagsExpand);
 
             CustomTime->Connect(controlID, wxEVT_TIME_CHANGED, wxDateEventHandler(FieldValueDialog::OnTimeChanged), nullptr, this);
@@ -223,12 +225,12 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
         }
         case FieldModel::TYPE_ID_SINGLECHOICE:
         {
-            wxArrayString Choices = FieldModel::getChoices(field.PROPERTIES);
+            wxArrayString Choices = FieldModel::getChoices(field_d.m_properties);
             Choices.Sort();
 
             wxChoice* CustomChoice = new wxChoice(scrolled_window, controlID
                 , wxDefaultPosition, wxDefaultSize, Choices);
-            mmToolTip(CustomChoice, FieldModel::getTooltip(field.PROPERTIES));
+            mmToolTip(CustomChoice, FieldModel::getTooltip(field_d.m_properties));
             grid_sizer_custom->Add(CustomChoice, g_flagsExpand);
 
             if (Choices.empty()) {
@@ -249,11 +251,11 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
         case FieldModel::TYPE_ID_MULTICHOICE:
         {
             const auto& content = fv_data.CONTENT;
-            const auto& name = field.DESCRIPTION;
+            const auto& name = field_d.m_description;
 
             wxButton* multi_choice_button = new wxButton(scrolled_window, controlID, content
                 , wxDefaultPosition, wxDefaultSize, 0L, wxDefaultValidator, name);
-            mmToolTip(multi_choice_button, FieldModel::getTooltip(field.PROPERTIES));
+            mmToolTip(multi_choice_button, FieldModel::getTooltip(field_d.m_properties));
             grid_sizer_custom->Add(multi_choice_button, g_flagsExpand);
 
             if (!content.empty()) {
@@ -292,12 +294,12 @@ void FieldValueDialog::OnMultiChoice(wxCommandEvent& event)
     const auto& name = button->GetName();
     const wxString& type = FieldModel::type_name(FieldModel::TYPE_ID_MULTICHOICE);
 
-    FieldModel::DataA fields = FieldModel::instance().find(
+    FieldModel::DataA field_a = FieldModel::instance().find(
         FieldCol::REFTYPE(m_ref_type),
         FieldCol::TYPE(type),
         FieldCol::DESCRIPTION(name)
     );
-    wxArrayString all_choices = FieldModel::getChoices(fields.begin()->PROPERTIES);
+    wxArrayString all_choices = FieldModel::getChoices(field_a.begin()->m_properties);
 
     const wxString& label = button->GetLabelText();
     wxArrayInt arr_selections;
@@ -341,9 +343,9 @@ std::map<int64, wxString> FieldValueDialog::GetActiveCustomFields() const
     std::map<int64, wxString> values;
     for (const auto& entry : m_data_changed) {
         int id = (entry.first - GetBaseID()) / FIELDMULTIPLIER;
-        const FieldData* data_n = FieldModel::instance().get_id_data_n(m_fields[id].FIELDID);
-        if (data_n) {
-            values[data_n->FIELDID] = entry.second;
+        const FieldData* field_n = FieldModel::instance().get_id_data_n(m_field_a[id].m_id);
+        if (field_n) {
+            values[field_n->m_id] = entry.second;
         }
     }
 
@@ -478,22 +480,22 @@ bool FieldValueDialog::SaveCustomValues(int64 ref_id)
     bool save_timestamp = false;
     FieldValueModel::instance().db_savepoint();
     int field_index = 0;
-    for (const auto &field : m_fields) {
+    for (const auto& field_d : m_field_a) {
         wxWindowID controlID = GetBaseID() + field_index++ * FIELDMULTIPLIER;
         const auto& data = IsWidgetChanged(controlID) ? GetWidgetData(controlID) : "";
 
-        const FieldValueData* fv_n = FieldValueModel::instance().get_key(field.FIELDID, ref_id);
+        const FieldValueData* fv_n = FieldValueModel::instance().get_key(field_d.m_id, ref_id);
         FieldValueData oldData;
         if (fv_n)
             oldData = *fv_n;
         if (!data.empty()) {
             FieldValueData fv_d = fv_n ? *fv_n : FieldValueData();
             fv_d.REFID   = ref_id;
-            fv_d.FIELDID = field.FIELDID;
+            fv_d.FIELDID = field_d.m_id;
             fv_d.CONTENT = data;
             wxLogDebug("Control:%i Type:%s Value:%s",
                 controlID,
-                FieldModel::type_name(FieldModel::type_id(field)),
+                FieldModel::type_name(FieldModel::type_id(field_d)),
                 data
             );
 
@@ -521,7 +523,7 @@ void FieldValueDialog::UpdateCustomValues(int64 ref_id)
     FieldValueModel::instance().db_savepoint();
     bool save_timestamp = false;
     int field_index = 0;
-    for (const auto& field : m_fields) {
+    for (const auto& field_d : m_field_a) {
         bool is_changed = false;
 
         wxWindowID controlID = GetBaseID() + field_index++ * FIELDMULTIPLIER;
@@ -533,14 +535,14 @@ void FieldValueDialog::UpdateCustomValues(int64 ref_id)
 
         if (is_changed) {
             const auto& data = GetWidgetData(controlID);
-            const FieldValueData* fv_n = FieldValueModel::instance().get_key(field.FIELDID, ref_id);
+            const FieldValueData* fv_n = FieldValueModel::instance().get_key(field_d.m_id, ref_id);
             FieldValueData oldData;
             if (fv_n)
                 oldData = *fv_n;
             if (!data.empty()) {
                 FieldValueData fv_d = fv_n ? *fv_n : FieldValueData();
                 fv_d.REFID   = ref_id;
-                fv_d.FIELDID = field.FIELDID;
+                fv_d.FIELDID = field_d.m_id;
                 fv_d.CONTENT = data;
 
                 if (!fv_d.equals(&oldData))
@@ -602,7 +604,7 @@ void FieldValueDialog::ResetWidgetsChanged()
 
 void FieldValueDialog::ClearSettings()
 {
-    for (unsigned int field_index = 0 ; field_index < m_fields.size() ; field_index++ )
+    for (unsigned int field_index = 0 ; field_index < m_field_a.size() ; field_index++ )
     {
         SetStringValue(field_index, "");
         wxWindowID labelID = GetBaseID() + field_index * FIELDMULTIPLIER + CONTROLOFFSET;
@@ -629,13 +631,12 @@ void FieldValueDialog::OnRadioButtonChanged(wxCommandEvent& event)
 
 int FieldValueDialog::GetWidgetType(wxWindowID controlID) const
 {
-    FieldModel::DataA fields = FieldModel::instance().find(
-        FieldCol::REFTYPE(m_ref_type)
-    );
     int control_id = (controlID - GetBaseID()) / FIELDMULTIPLIER;
-    for (const auto& entry : fields) {
-        if (entry.FIELDID == m_fields[control_id].FIELDID) {
-            return FieldModel::type_id(entry);
+    for (const auto& field_d : FieldModel::instance().find(
+        FieldCol::REFTYPE(m_ref_type)
+    )) {
+        if (field_d.m_id == m_field_a[control_id].m_id) {
+            return field_d.m_type_n.id_n();
         }
     }
     wxFAIL_MSG("unknown custom field type");
@@ -645,9 +646,9 @@ int FieldValueDialog::GetWidgetType(wxWindowID controlID) const
 int FieldValueDialog::GetPrecision(wxWindowID controlID) const
 {
     int control_id = (controlID - GetBaseID()) / FIELDMULTIPLIER;
-    for (const auto &field : m_fields)
-    if (field.FIELDID == m_fields[control_id].FIELDID)
-            return (FieldModel::getDigitScale(field.PROPERTIES));
+    for (const auto& field_d : m_field_a)
+    if (field_d.m_id == m_field_a[control_id].m_id)
+            return (FieldModel::getDigitScale(field_d.m_properties));
     wxFAIL_MSG("No field found");
     return -1;
 }
@@ -736,7 +737,7 @@ void FieldValueDialog::ShowHideCustomPanel() const
         m_static_box->Hide();
     }
     else {
-        if (!m_fields.empty())
+        if (!m_field_a.empty())
             m_static_box->Show();
     }
 }
@@ -758,8 +759,7 @@ bool FieldValueDialog::ValidateCustomValues(int64)
 {
     bool is_valid = true;
     int field_index = 0;
-    for (const auto &field : m_fields)
-    {
+    for (const auto& field_d : m_field_a) {
         wxWindowID controlID = GetBaseID() + field_index++ * FIELDMULTIPLIER;
         wxWindowID labelID = controlID + CONTROLOFFSET;
 
@@ -768,32 +768,32 @@ bool FieldValueDialog::ValidateCustomValues(int64)
             continue;
 
         if (GetWidgetType(controlID) == FieldModel::TYPE_ID_DECIMAL 
-                || GetWidgetType(controlID) == FieldModel::TYPE_ID_INTEGER)
-        {
+                || GetWidgetType(controlID) == FieldModel::TYPE_ID_INTEGER
+        ) {
             wxWindow* w = FindWindowById(controlID, m_dialog);
-            if (w)
-            {
+            if (w) {
                 mmTextCtrl* d = static_cast<mmTextCtrl*>(w);
                 double value;
                 if (d->checkValue(value, false))
-                    SetWidgetChanged(controlID, CurrencyModel::toString(value, nullptr
-                                                , FieldModel::getDigitScale(field.PROPERTIES)));
+                    SetWidgetChanged(controlID,
+                        CurrencyModel::toString(value, nullptr,
+                            FieldModel::getDigitScale(field_d.m_properties)
+                        )
+                    );
                 else
                     is_valid = false;
             }
         }
 
-        const wxString regExStr = FieldModel::getRegEx(field.PROPERTIES);
-        if (!regExStr.empty())
-        {
+        const wxString regExStr = FieldModel::getRegEx(field_d.m_properties);
+        if (!regExStr.empty()) {
             const auto& data = GetWidgetData(controlID);
             wxRegEx regEx(regExStr, wxRE_EXTENDED);
 
-            if (!regEx.Matches(data))
-            {
+            if (!regEx.Matches(data)) {
                 mmErrorDialogs::MessageError(this, wxString::Format(_t("Unable to save custom field \"%1$s\":\nvalue \"%2$s\" "
                     "does not match RegEx validation \"%3$s\"")
-                    , field.DESCRIPTION, data, regExStr)
+                    , field_d.m_description, data, regExStr)
                     , _t("CustomField validation error"));
                 is_valid = false;
                 continue;

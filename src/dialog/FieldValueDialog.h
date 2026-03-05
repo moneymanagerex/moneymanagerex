@@ -65,7 +65,7 @@ private:
     wxStaticBox* m_static_box =nullptr;
     const wxString m_ref_type;
     int64 m_ref_id = -1;
-    FieldModel::DataA m_fields;
+    FieldModel::DataA m_field_a;
     std::map<wxWindowID, wxString> m_data_changed;
     void OnStringChanged(wxCommandEvent& event);
     void OnDateChanged(wxDateEvent& event);
@@ -89,6 +89,6 @@ public:
 
 inline void       FieldValueDialog::ResetRefID() { m_ref_id = wxID_ANY; }
 inline void       FieldValueDialog::SetBaseID(wxWindowID id) { m_init_control_id = id; }
-inline size_t     FieldValueDialog::GetCustomFieldsCount() const { return m_fields.size(); }
+inline size_t     FieldValueDialog::GetCustomFieldsCount() const { return m_field_a.size(); }
 inline wxWindowID FieldValueDialog::GetBaseID() const { return m_init_control_id; }
 

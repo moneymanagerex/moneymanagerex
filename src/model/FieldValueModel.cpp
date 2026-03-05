@@ -31,10 +31,8 @@ FieldValueModel::~FieldValueModel()
 {
 }
 
-/**
-* Initialize the global FieldValueModel table.
-* Reset the FieldValueModel table or create the table if it does not exist.
-*/
+// Initialize the global FieldValueModel table.
+// Reset the FieldValueModel table or create the table if it does not exist.
 FieldValueModel& FieldValueModel::instance(wxSQLite3Database* db)
 {
     FieldValueModel& ins = Singleton<FieldValueModel>::instance();
@@ -45,66 +43,66 @@ FieldValueModel& FieldValueModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of FieldValueModel table */
+// Return the static instance of FieldValueModel table
 FieldValueModel& FieldValueModel::instance()
 {
     return Singleton<FieldValueModel>::instance();
 }
 
-const FieldValueData* FieldValueModel::get_key(int64 FieldID, int64 RefID)
+const FieldValueData* FieldValueModel::get_key(int64 field_id, int64 ref_id)
 {
-    FieldValueModel::DataA items = this->find(
-        FieldValueCol::FIELDID(FieldID),
-        FieldValueCol::REFID(RefID)
+    FieldValueModel::DataA fv_a = this->find(
+        FieldValueCol::FIELDID(field_id),
+        FieldValueCol::REFID(ref_id)
     );
-    if (!items.empty())
-        return get_id_data_n(items[0].FIELDATADID);
+    if (!fv_a.empty())
+        return get_id_data_n(fv_a[0].FIELDATADID);
     return nullptr;
 }
 
 std::map<int64, FieldValueModel::DataA> FieldValueModel::get_all_id(const wxString& reftype)
 {
-    FieldModel::DataA custom_fields = FieldModel::instance().find(
+    std::map<int64, FieldValueModel::DataA> id_data_a_m;
+    for (const auto& field_d : FieldModel::instance().find(
         FieldCol::REFTYPE(reftype)
-    );
-    std::map<int64, FieldValueModel::DataA> data;
-    for (const auto& entry : custom_fields) {
-        for (const auto& custom_field : find(FieldValueCol::FIELDID(entry.FIELDID))) {
-            data[custom_field.REFID].push_back(custom_field);
+    )) {
+        for (const auto& fv_d : find(
+            FieldValueCol::FIELDID(field_d.m_id))
+        ) {
+            id_data_a_m[fv_d.REFID].push_back(fv_d);
         }
     }
-    return data;
+    return id_data_a_m;
 }
 
 // Return all CustomFieldData value
-wxArrayString FieldValueModel::allValue(const int64 FieldID)
+wxArrayString FieldValueModel::allValue(const int64 field_id)
 {
     wxArrayString values;
     wxString PreviousValue;
 
-    FieldValueModel::DataA items = this->find(FieldValueCol::FIELDID(FieldID));
-    std::sort(items.begin(), items.end(), FieldValueData::SorterByCONTENT());
+    FieldValueModel::DataA fv_a = find(
+        FieldValueCol::FIELDID(field_id)
+    );
+    std::sort(fv_a.begin(), fv_a.end(), FieldValueData::SorterByCONTENT());
 
-    for (const auto &item : items)
-    {
-        if (item.CONTENT != PreviousValue)
-        {
-            values.Add(item.CONTENT);
-            PreviousValue = item.CONTENT;
+    for (const auto& fv_d : fv_a) {
+        if (fv_d.CONTENT != PreviousValue) {
+            values.Add(fv_d.CONTENT);
+            PreviousValue = fv_d.CONTENT;
         }
     }
     return values;
 }
 
-bool FieldValueModel::DeleteAllData(const wxString& RefType, int64 RefID)
+bool FieldValueModel::DeleteAllData(const wxString& RefType, int64 ref_id)
 {
-    const auto& fields = FieldModel::instance().find(FieldCol::REFTYPE(RefType));
-
-    for (const auto& field : fields)
-    {
-        const Data* data = FieldValueModel::instance().get_key(field.FIELDID, RefID);
-        if (data)
-            FieldValueModel::instance().purge_id(data->FIELDATADID);
+    for (const auto& field_d : FieldModel::instance().find(
+        FieldCol::REFTYPE(RefType)
+    )) {
+        const Data* fv_n = FieldValueModel::instance().get_key(field_d.m_id, ref_id);
+        if (fv_n)
+            FieldValueModel::instance().purge_id(fv_n->FIELDATADID);
     }
     return true;
 }

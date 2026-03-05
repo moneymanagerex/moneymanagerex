@@ -419,10 +419,10 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
     bool is_custom_found = false;
     const wxString ref_type = TrxModel::refTypeName;
     int field_index = 0;
-    for (const auto& i : FieldModel::instance().find(
+    for (const auto& field_d : FieldModel::instance().find(
         FieldCol::REFTYPE(ref_type)
     )) {
-        const auto entry = wxString::Format("CUSTOM%lld", i.FIELDID);
+        const auto entry = wxString::Format("CUSTOM%lld", field_d.m_id);
         if (j_doc.HasMember(entry.c_str())) {
             const auto value = j_doc[const_cast<char*>(static_cast<const char*>(entry.mb_str()))].GetString();
             m_custom_fields->SetStringValue(field_index, value, true);
@@ -441,10 +441,8 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
     // Hide Columns
     Value& j_columns = GetValueByPointerWithDefault(j_doc, "/COLUMN", "");
     m_selected_columns_id.Clear();
-    if (j_columns.IsArray())
-    {
-        for (rapidjson::SizeType i = 0; i < j_columns.Size(); i++)
-        {
+    if (j_columns.IsArray()) {
+        for (rapidjson::SizeType i = 0; i < j_columns.Size(); i++) {
             wxASSERT(j_columns[i].IsInt());
             const int colID = j_columns[i].GetInt();
 
@@ -453,8 +451,7 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
         showColumnsCheckBox_->SetValue(true);
         bHideColumns_->SetLabelText("...");
     }
-    else
-    {
+    else {
         showColumnsCheckBox_->SetValue(false);
         bHideColumns_->SetLabelText("");
     }
@@ -1944,8 +1941,8 @@ const wxString TrxFilterDialog::mmGetJsonSettings(bool i18n) const
     if (cf.size() > 0) {
         for (const auto& i : cf) {
             if (!i.second.empty()) {
-                const auto field = FieldModel::instance().get_id_data_n(i.first);
-                json_writer.Key(wxString::Format("CUSTOM%lld", field->FIELDID).utf8_str());
+                const auto field_n = FieldModel::instance().get_id_data_n(i.first);
+                json_writer.Key(wxString::Format("CUSTOM%lld", field_n->m_id).utf8_str());
                 json_writer.String(i.second.utf8_str());
             }
         }

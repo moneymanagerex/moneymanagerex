@@ -465,7 +465,7 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
                 FieldCol::FIELDID(fv_d.FIELDID)
             );
             for (const auto& field_d : field_a) {
-                json_writer.Int64(field_d.FIELDID.GetValue());
+                json_writer.Int64(field_d.m_id.GetValue());
             }
         }
         json_writer.EndArray();
@@ -547,30 +547,29 @@ void mmExportTransaction::getCustomFieldsJSON(
         }
 
         //Settings
-        FieldModel::DataA custom_fields = FieldModel::instance().find(
+        FieldModel::DataA field_a = FieldModel::instance().find(
             FieldCol::REFTYPE(RefType)
         );
 
-        if (!custom_fields.empty()) {
+        if (!field_a.empty()) {
             json_writer.Key("CUSTOM_FIELDS_SETTINGS");
             json_writer.StartArray();
 
-            for (const auto& entry : custom_fields)
-            {
-                if (std::find(cd.begin(), cd.end(), entry.FIELDID) == cd.end())
+            for (const auto& field_d : field_a) {
+                if (std::find(cd.begin(), cd.end(), field_d.m_id) == cd.end())
                     continue;
 
                 json_writer.StartObject();
                 json_writer.Key("ID");
-                json_writer.Int64(entry.FIELDID.GetValue());
+                json_writer.Int64(field_d.m_id.GetValue());
                 json_writer.Key("REFTYPE");
-                json_writer.String(entry.REFTYPE.utf8_str());
+                json_writer.String(field_d.m_ref_type.name_n().utf8_str());
                 json_writer.Key("DESCRIPTION");
-                json_writer.String(entry.DESCRIPTION.utf8_str());
+                json_writer.String(field_d.m_description.utf8_str());
                 json_writer.Key("TYPE");
-                json_writer.String(entry.TYPE.utf8_str());
+                json_writer.String(field_d.m_type_n.name_n().utf8_str());
                 json_writer.Key("PROPERTIES");
-                json_writer.RawValue(entry.PROPERTIES.utf8_str(), entry.PROPERTIES.utf8_str().length(), rapidjson::Type::kObjectType);
+                json_writer.RawValue(field_d.m_properties.utf8_str(), field_d.m_properties.utf8_str().length(), rapidjson::Type::kObjectType);
                 json_writer.EndObject();
             }
             json_writer.EndArray();
