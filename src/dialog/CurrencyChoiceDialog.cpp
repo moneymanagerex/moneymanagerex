@@ -70,8 +70,8 @@ CurrencyChoiceDialog::CurrencyChoiceDialog(
     int64 currencyID,
     bool bEnableSelect
 ) :
-    m_select_en(bEnableSelect),
-    m_maskStr("")
+    m_maskStr(""),
+    m_select_en(bEnableSelect)
 {
     m_history_en = PrefModel::instance().getUseCurrencyHistory();
 

@@ -23,13 +23,13 @@ SchedData::SchedData() :
     m_account_id(-1),
     m_to_account_id_n(-1),
     m_payee_id_n(-1),
-    m_amount(0.0),
     m_category_id_n(-1),
-    m_followup_id(-1),
+    m_amount(0.0),
     m_to_amount(0.0),
+    m_followup_id(-1),
+    m_color(-1),
     REPEATS(-1),
-    NUMOCCURRENCES(-1),
-    m_color(-1)
+    NUMOCCURRENCES(-1)
 {
 }
 

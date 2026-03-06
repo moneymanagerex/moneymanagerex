@@ -202,9 +202,6 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
 // to base currency.
 double StockModel::RealGainLoss(const Data& stock_d, bool to_base_curr)
 {
-    const CurrencyData* currency = AccountModel::instance().get_id_currency_p(
-        stock_d.m_account_id_n
-    );
     TrxLinkModel::DataA tl_a = TrxLinkModel::TranslinkList<StockModel>(stock_d.m_id);
     double real_gain_loss = 0;
     double total_shares = 0;
@@ -221,6 +218,10 @@ double StockModel::RealGainLoss(const Data& stock_d, bool to_base_curr)
             trx_a.push_back(*trx_d);
     }
     std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
+
+    const CurrencyData* currency = to_base_curr ? AccountModel::instance().get_id_currency_p(
+                                                    stock_d.m_account_id_n
+                                                ) : nullptr; // only retrieve currency data if needed
 
     for (const auto& trx_d : trx_a) {
         const TrxShareData* ts_n = TrxShareModel::instance().unsafe_get_trx_share_n(
