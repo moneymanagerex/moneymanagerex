@@ -270,7 +270,7 @@ void FieldDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
             FieldValueModel::instance().db_savepoint();
             for (auto& fv_d : fv_a) {
-                if (ArrChoices.Index(fv_d.CONTENT) == wxNOT_FOUND)
+                if (ArrChoices.Index(fv_d.m_content) == wxNOT_FOUND)
                     FieldValueModel::instance().purge_id(fv_d.id());
             }
             FieldValueModel::instance().save_data_a(fv_a);

@@ -440,8 +440,10 @@ void AssetDialog::OnOk(wxCommandEvent& /*event*/)
     int64 new_asset_id = m_asset_n->id();
 
     if (old_asset_id < 0) {
-        const wxString& RefType = AssetModel::refTypeName;
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, new_asset_id);
+        mmAttachmentManage::RelocateAllAttachments(
+            AssetModel::s_ref_type, 0,
+            AssetModel::s_ref_type, new_asset_id
+        );
     }
     if (w_transaction_panel->ValidCheckingAccountEntry()) {
         int64 checking_id = w_transaction_panel->SaveChecking();
@@ -504,31 +506,24 @@ void AssetDialog::OnCancel(wxCommandEvent& /*event*/)
     if (m_asset_rich_text)
         return;
 
-    const wxString& RefType = AssetModel::refTypeName;
+    // FIXME: temporary records (with id <= 0) are not stored in database
     if (!m_asset_n)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(AssetModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
 void AssetDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString& RefType = AssetModel::refTypeName;
+    // FIXME: temporary records (with id <= 0) are not stored in database
     if (!m_asset_n)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(AssetModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
 void AssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    const wxString& RefType = AssetModel::refTypeName;
-    int64 RefId;
-
-    if (!m_asset_n)
-        RefId = 0;
-    else
-        RefId= m_asset_n->m_id;
-
-    AttachmentDialog dlg(this, RefType, RefId);
+    int64 ref_id = m_asset_n ? m_asset_n->m_id : 0;
+    AttachmentDialog dlg(this, AssetModel::refTypeName, ref_id);
     dlg.ShowModal();
 }
 

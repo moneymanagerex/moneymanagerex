@@ -651,7 +651,8 @@ void JournalPanel::filterList()
         );
     }
 
-    auto tranFieldData = FieldValueModel::instance().get_all_id(TrxModel::refTypeName);
+    auto trx_fv_m = FieldValueModel::instance().find_reftype_refid_data_m(TrxModel::s_ref_type);
+    auto sched_fv_m = FieldValueModel::instance().find_reftype_refid_data_m(SchedModel::s_ref_type);
 
     bool ignore_future = PrefModel::instance().getIgnoreFutureTransactions();
     const wxString today_date = PrefModel::instance().UseTransDateTime() ?
@@ -813,28 +814,28 @@ void JournalPanel::filterList()
             journal_xd.UDFC_value[i] = -DBL_MAX;
         }
 
-        if (repeat_num == 0 && tranFieldData.find(trx_n->m_id) != tranFieldData.end()) {
-            for (const auto& udfc : tranFieldData.at(trx_n->m_id)) {
+        if (repeat_num == 0 && trx_fv_m.find(trx_n->m_id) != trx_fv_m.end()) {
+            for (const auto& udfc : trx_fv_m.at(trx_n->m_id)) {
                 for (int i = 0; i < 5; i++) {
-                    if (udfc.FIELDID == udfc_id[i]) {
+                    if (udfc.m_field_id == udfc_id[i]) {
                         journal_xd.UDFC_type[i] = udfc_type[i];
-                        journal_xd.UDFC_content[i] = udfc.CONTENT;
+                        journal_xd.UDFC_content[i] = udfc.m_content;
                         journal_xd.UDFC_value[i] = cleanseNumberStringToDouble(
-                            udfc.CONTENT, udfc_scale[i] > 0
+                            udfc.m_content, udfc_scale[i] > 0
                         );
                         break;
                     }
                 }
             }
         }
-        else if (repeat_num > 0 && tranFieldData.find(-journal_xd.m_bdid) != tranFieldData.end()) {
-            for (const auto& udfc : tranFieldData.at(-journal_xd.m_bdid)) {
+        else if (repeat_num > 0 && sched_fv_m.find(journal_xd.m_bdid) != sched_fv_m.end()) {
+            for (const auto& udfc : sched_fv_m.at(journal_xd.m_bdid)) {
                 for (int i = 0; i < 5; i++) {
-                    if (udfc.FIELDID == udfc_id[i]) {
+                    if (udfc.m_field_id == udfc_id[i]) {
                         journal_xd.UDFC_type[i] = udfc_type[i];
-                        journal_xd.UDFC_content[i] = udfc.CONTENT;
+                        journal_xd.UDFC_content[i] = udfc.m_content;
                         journal_xd.UDFC_value[i] = cleanseNumberStringToDouble(
-                            udfc.CONTENT, udfc_scale[i] > 0
+                            udfc.m_content, udfc_scale[i] > 0
                         );
                         break;
                     }
@@ -947,8 +948,9 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                     notesStr += tp_d.m_notes;
                 }
             if (journal_xd.has_attachment()) {
-                const wxString& refType = TrxModel::refTypeName;
-                for (const auto& att_d : AttachmentModel::instance().find_id_data_a(RefTypeN(refType), journal_xd.m_id)) {
+                for (const auto& att_d : AttachmentModel::instance().find_ref_data_a(
+                    TrxModel::s_ref_type, journal_xd.m_id)
+                ) {
                     notesStr += notesStr.empty() ? "" : "\n";
                     notesStr += _t("Attachment") + " " + att_d.m_description + " " + att_d.m_filename;
                 }
@@ -964,8 +966,9 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                     notesStr += qp_d.m_notes;
                 }
             if (journal_xd.has_attachment()) {
-                const wxString& refType = SchedModel::refTypeName;
-                for (const auto& att_d : AttachmentModel::instance().find_id_data_a(RefTypeN(refType), journal_xd.m_bdid)) {
+                for (const auto& att_d : AttachmentModel::instance().find_ref_data_a(
+                    SchedModel::s_ref_type, journal_xd.m_bdid)
+                ) {
                     notesStr += notesStr.empty() ? "" : "\n";
                     notesStr += _t("Attachment") + " " + att_d.m_description + " " + att_d.m_filename;
                 }

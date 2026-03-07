@@ -401,23 +401,25 @@ void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json
     json_writer.EndArray();
 }
 
-void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const TrxModel::Full_Data& full_tran)
-{
+void mmExportTransaction::getTransactionJSON(
+    PrettyWriter<StringBuffer>& json_writer,
+    const TrxModel::Full_Data& trx_xd
+) {
     json_writer.StartObject();
-    full_tran.as_json(json_writer);
+    trx_xd.as_json(json_writer);
 
     json_writer.Key("TAGS");
     json_writer.StartArray();
-    for (const auto& tag : full_tran.m_tags)
+    for (const auto& tag : trx_xd.m_tags)
         json_writer.Int64(tag.TAGID.GetValue());
     json_writer.EndArray();
 
-    if (!full_tran.m_splits.empty()) {
+    if (!trx_xd.m_splits.empty()) {
         json_writer.Key("DIVISION");
         json_writer.StartArray();
-        for (const auto& tp_d : full_tran.m_splits) {
+        for (const auto& tp_d : trx_xd.m_splits) {
             double valueSplit = tp_d.m_amount;
-            if (TrxModel::type_id(full_tran) == TrxModel::TYPE_ID_WITHDRAWAL) {
+            if (TrxModel::type_id(trx_xd) == TrxModel::TYPE_ID_WITHDRAWAL) {
                 valueSplit = -valueSplit;
             }
 
@@ -439,8 +441,9 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
         json_writer.EndArray();
     }
 
-    const wxString RefType = TrxModel::refTypeName;
-    AttachmentModel::DataA att_a = AttachmentModel::instance().find_id_data_a(RefTypeN(RefType), full_tran.id());
+    AttachmentModel::DataA att_a = AttachmentModel::instance().find_ref_data_a(
+        TrxModel::s_ref_type, trx_xd.id()
+    );
 
     if (!att_a.empty()) {
         //const wxString folder = InfoModel::instance().getString("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
@@ -453,16 +456,19 @@ void mmExportTransaction::getTransactionJSON(PrettyWriter<StringBuffer>& json_wr
     }
 
     auto fv_a = FieldValueModel::instance().find(
-        FieldValueCol::REFID(full_tran.id())
+        FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_xd.id())
     );
-    auto f = FieldModel::instance().find(FieldCol::REFTYPE(RefType));
+    auto f = FieldModel::instance().find(
+        FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())
+    );
     if (!fv_a.empty()) {
         json_writer.Key("CUSTOM_FIELDS");
         json_writer.StartArray();
         for (const auto& fv_d : fv_a) {
+            // TODO: field_d.m_id is equal to fv_d.m_field_id
             auto field_a = FieldModel::instance().find(
-                FieldCol::REFTYPE(RefType),
-                FieldCol::FIELDID(fv_d.FIELDID)
+                FieldCol::REFTYPE(TrxModel::s_ref_type.name_n()),
+                FieldCol::FIELDID(fv_d.m_field_id)
             );
             for (const auto& field_d : field_a) {
                 json_writer.Int64(field_d.m_id.GetValue());
@@ -514,66 +520,66 @@ void mmExportTransaction::getAttachmentsJSON(
 
 void mmExportTransaction::getCustomFieldsJSON(
     PrettyWriter<StringBuffer>& json_writer,
-    wxArrayInt64& allCustomFields4Export
+    wxArrayInt64& fv_id_a
 ) {
-    if (!allCustomFields4Export.empty()) {
-        const wxString RefType = TrxModel::refTypeName;
+    if (fv_id_a.empty())
+        return;
 
-        json_writer.Key("CUSTOM_FIELDS");
-        json_writer.StartObject();
+    json_writer.Key("CUSTOM_FIELDS");
+    json_writer.StartObject();
 
-        // Data
-        wxArrayInt64 cd;
-        FieldValueModel::DataA cds = FieldValueModel::instance().find_all();
+    // Data
+    wxArrayInt64 field_id_a;
+    FieldValueModel::DataA fv_a = FieldValueModel::instance().find_all();
+    if (!fv_a.empty()) {
+        json_writer.Key("CUSTOM_FIELDS_DATA");
+        json_writer.StartArray();
+        for (const auto& fv_d : fv_a) {
+            if (std::find(fv_id_a.begin(), fv_id_a.end(), fv_d.m_id) == fv_id_a.end())
+                continue;
 
-        if (!cds.empty()) {
-            json_writer.Key("CUSTOM_FIELDS_DATA");
-            json_writer.StartArray();
-
-            for (const auto& entry : cds)
-            {
-                if (std::find(allCustomFields4Export.begin(), allCustomFields4Export.end(), entry.FIELDATADID) != allCustomFields4Export.end())
-                {
-                    if (std::find(cd.begin(), cd.end(), entry.FIELDID) == cd.end())
-                    {
-                        cd.push_back(entry.FIELDID);
-                    }
-                    json_writer.StartObject();
-                    entry.as_json(json_writer);
-                    json_writer.EndObject();
-                }
+            if (std::find(
+                field_id_a.begin(), field_id_a.end(), fv_d.m_field_id
+            ) == field_id_a.end()) {
+                field_id_a.push_back(fv_d.m_field_id);
             }
-            json_writer.EndArray();
-        }
-
-        //Settings
-        FieldModel::DataA field_a = FieldModel::instance().find(
-            FieldCol::REFTYPE(RefType)
-        );
-
-        if (!field_a.empty()) {
-            json_writer.Key("CUSTOM_FIELDS_SETTINGS");
-            json_writer.StartArray();
-
-            for (const auto& field_d : field_a) {
-                if (std::find(cd.begin(), cd.end(), field_d.m_id) == cd.end())
-                    continue;
-
-                json_writer.StartObject();
-                json_writer.Key("ID");
-                json_writer.Int64(field_d.m_id.GetValue());
-                json_writer.Key("REFTYPE");
-                json_writer.String(field_d.m_ref_type.name_n().utf8_str());
-                json_writer.Key("DESCRIPTION");
-                json_writer.String(field_d.m_description.utf8_str());
-                json_writer.Key("TYPE");
-                json_writer.String(field_d.m_type_n.name_n().utf8_str());
-                json_writer.Key("PROPERTIES");
-                json_writer.RawValue(field_d.m_properties.utf8_str(), field_d.m_properties.utf8_str().length(), rapidjson::Type::kObjectType);
-                json_writer.EndObject();
-            }
-            json_writer.EndArray();
+            json_writer.StartObject();
+            fv_d.as_json(json_writer);
             json_writer.EndObject();
         }
+        json_writer.EndArray();
+    }
+
+    //Settings
+    FieldModel::DataA field_a = FieldModel::instance().find(
+        FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())
+    );
+
+    if (!field_a.empty()) {
+        json_writer.Key("CUSTOM_FIELDS_SETTINGS");
+        json_writer.StartArray();
+
+        for (const auto& field_d : field_a) {
+            if (std::find(
+                field_id_a.begin(), field_id_a.end(), field_d.m_id
+            ) == field_id_a.end()) {
+                continue;
+            }
+
+            json_writer.StartObject();
+            json_writer.Key("ID");
+            json_writer.Int64(field_d.m_id.GetValue());
+            json_writer.Key("REFTYPE");
+            json_writer.String(field_d.m_ref_type.name_n().utf8_str());
+            json_writer.Key("DESCRIPTION");
+            json_writer.String(field_d.m_description.utf8_str());
+            json_writer.Key("TYPE");
+            json_writer.String(field_d.m_type_n.name_n().utf8_str());
+            json_writer.Key("PROPERTIES");
+            json_writer.RawValue(field_d.m_properties.utf8_str(), field_d.m_properties.utf8_str().length(), rapidjson::Type::kObjectType);
+            json_writer.EndObject();
+        }
+        json_writer.EndArray();
+        json_writer.EndObject();
     }
 }

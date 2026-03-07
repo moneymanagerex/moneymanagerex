@@ -216,7 +216,7 @@ void AssetList::OnDeleteAsset(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES) {
         const AssetData& asset = m_panel->m_assets[m_selected_row];
         AssetModel::instance().purge_id(asset.m_id);
-        mmAttachmentManage::DeleteAllAttachments(AssetModel::refTypeName, asset.m_id);
+        mmAttachmentManage::DeleteAllAttachments(AssetModel::s_ref_type, asset.m_id);
         TrxLinkModel::RemoveTransLinkRecords<AssetModel>(asset.m_id);
 
         m_panel->initVirtualListControl();
@@ -286,13 +286,12 @@ void AssetList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 
 void AssetList::OnOpenAttachment(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row < 0) return;
+    if (m_selected_row < 0)
+        return;
 
-    wxString RefType = AssetModel::refTypeName;
-    int64 RefId = m_panel->m_assets[m_selected_row].m_id;
-
-    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
-    doRefreshItems(RefId);
+    int64 ref_id = m_panel->m_assets[m_selected_row].m_id;
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, AssetModel::s_ref_type, ref_id);
+    doRefreshItems(ref_id);
 }
 
 void AssetList::OnListItemActivated(wxListEvent& event)
@@ -648,7 +647,7 @@ wxString AssetPanel::getItem(long item, int col_id)
     case AssetList::LIST_ID_NOTES: {
         wxString full_notes = asset.m_notes;
         full_notes.Replace("\n", " ");
-        if (AttachmentModel::instance().find_id_c(AssetModel::s_ref_type, asset.m_id))
+        if (AttachmentModel::instance().find_ref_c(AssetModel::s_ref_type, asset.m_id))
             full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
     }

@@ -208,7 +208,7 @@ wxString StockList::OnGetItemText(long item, long col_nr) const
     case LIST_ID_NOTES: {
         wxString full_notes = m_stocks[item].m_notes;
         full_notes.Replace("\n", " ");
-        if (AttachmentModel::instance().find_id_c(StockModel::s_ref_type, m_stocks[item].m_id))
+        if (AttachmentModel::instance().find_ref_c(StockModel::s_ref_type, m_stocks[item].m_id))
             full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return full_notes;
     }
@@ -307,7 +307,7 @@ void StockList::OnDeleteStocks(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES)
     {
         StockModel::instance().purge_id(m_stocks[m_selected_row].m_id);
-        mmAttachmentManage::DeleteAllAttachments(StockModel::refTypeName, m_stocks[m_selected_row].m_id);
+        mmAttachmentManage::DeleteAllAttachments(StockModel::s_ref_type, m_stocks[m_selected_row].m_id);
         TrxLinkModel::RemoveTransLinkRecords<StockModel>(m_stocks[m_selected_row].m_id);
         DeleteItem(m_selected_row);
         doRefreshItems(-1);
@@ -389,30 +389,27 @@ void StockList::OnStockWebPage(wxCommandEvent& /*event*/)
 
 void StockList::OnOpenAttachment(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row < 0) return;
+    if (m_selected_row < 0)
+        return;
 
-    wxString RefType = StockModel::refTypeName;
-    int64 RefId = m_stocks[m_selected_row].m_id;
-
-    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
-    doRefreshItems(RefId);
+    int64 ref_id = m_stocks[m_selected_row].m_id;
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, StockModel::s_ref_type, ref_id);
+    doRefreshItems(ref_id);
 }
 
 void StockList::OnListItemActivated(wxListEvent& event)
 {
-    if ((event.GetId() == wxID_ADD) || (event.GetId() == MENU_TREEPOPUP_ADDTRANS))
-    {
-        if (m_stock_panel->AddStockTransaction(m_selected_row) == wxID_OK)
-        {
+    if ((event.GetId() == wxID_ADD) || (event.GetId() == MENU_TREEPOPUP_ADDTRANS)) {
+        if (m_stock_panel->AddStockTransaction(m_selected_row) == wxID_OK) {
             m_stock_panel->m_frame->RefreshNavigationTree();
         }
     }
-    else if ((event.GetId() == wxID_VIEW_DETAILS) || (event.GetId() == MENU_TREEPOPUP_VIEWTRANS))
-    {
+    else if ((event.GetId() == wxID_VIEW_DETAILS) ||
+        (event.GetId() == MENU_TREEPOPUP_VIEWTRANS)
+    ) {
         m_stock_panel->ViewStockTransactions(m_selected_row);
     }
-    else
-    {
+    else {
         m_stock_panel->OnListItemActivated(m_selected_row);
     }
 }

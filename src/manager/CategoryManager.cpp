@@ -19,6 +19,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <set>
 #include "base/constants.h"
 #include "base/paths.h"
 #include "base/images_list.h"
@@ -510,27 +511,26 @@ void CategoryManager::mmDoDeleteSelectedCategory()
     if (CategoryModel::is_used(m_categ_id) || m_categ_id == m_init_selected_categ_id)
         return showCategDialogDeleteError();
 
-    // TODO: only the deleted trx ids are needed; define a single set of int64
-    TrxModel::DataA deleted_trx_a;
-    TrxSplitModel::DataA deleted_tp_a;
-
-    deleted_trx_a = TrxModel::instance().find(
-        TrxCol::CATEGID(m_categ_id)
-    );
-    deleted_tp_a = TrxSplitModel::instance().find(
-        TrxSplitCol::CATEGID(m_categ_id)
-    );
+    std::set<int64> category_id_m;
+    category_id_m.insert(m_categ_id);
     for (const auto& subcat_d : CategoryModel::sub_tree(
         CategoryModel::instance().get_id_data_n(m_categ_id)
     )) {
-        TrxModel::DataA trx_a = TrxModel::instance().find(
-            TrxCol::CATEGID(subcat_d.m_id)
-        );
-        deleted_trx_a.insert(deleted_trx_a.end(), trx_a.begin(), trx_a.end());
-        TrxSplitModel::DataA tp_a = TrxSplitModel::instance().find(
-            TrxSplitCol::CATEGID(subcat_d.m_id)
-        );
-        deleted_tp_a.insert(deleted_tp_a.end(), tp_a.begin(), tp_a.end());
+        category_id_m.insert(subcat_d.m_id);
+    }
+
+    std::set<int64> trx_id_m;
+    for (int64 category_id : category_id_m) {
+        for (const TrxData& trx_d : TrxModel::instance().find(
+            TrxCol::CATEGID(category_id)
+        )) {
+            trx_id_m.insert(trx_d.m_id);
+        }
+        for (const TrxSplitData& tp_d : TrxSplitModel::instance().find(
+            TrxSplitCol::CATEGID(category_id)
+        )) {
+            trx_id_m.insert(tp_d.m_trx_id);
+        }
     }
 
     wxMessageDialog msgDlg(this,
@@ -540,40 +540,33 @@ void CategoryManager::mmDoDeleteSelectedCategory()
         _t("Confirm Category Deletion"),
         wxYES_NO | wxNO_DEFAULT | wxICON_WARNING
     );
+    if (!trx_id_m.empty() && msgDlg.ShowModal() != wxID_YES)
+        return;
 
-    if ((deleted_trx_a.empty() && deleted_tp_a.empty()) || msgDlg.ShowModal() == wxID_YES) {
-        if (!deleted_trx_a.empty() || !deleted_tp_a.empty()) {
-            TrxModel::instance().db_savepoint();
-            TrxSplitModel::instance().db_savepoint();
-            AttachmentModel::instance().db_savepoint();
-            FieldValueModel::instance().db_savepoint();
-            const wxString& RefType = TrxModel::refTypeName;
+    if (!trx_id_m.empty()) {
+        TrxModel::instance().db_savepoint();
+        TrxSplitModel::instance().db_savepoint();
+        AttachmentModel::instance().db_savepoint();
+        FieldValueModel::instance().db_savepoint();
 
-            // TODO: do not delete the same trx id multiple times
-            for (auto& tp_d : deleted_tp_a) {
-                TrxModel::instance().purge_id(tp_d.m_trx_id);
-                mmAttachmentManage::DeleteAllAttachments(RefType, tp_d.m_trx_id);
-                FieldValueModel::DeleteAllData(RefType, tp_d.m_trx_id);
-            }
-
-            for (auto& trx_d : deleted_trx_a) {
-                TrxModel::instance().purge_id(trx_d.m_id);
-                mmAttachmentManage::DeleteAllAttachments(RefType, trx_d.m_id);
-                FieldValueModel::DeleteAllData(RefType, trx_d.m_id);
-            }
-
-            TrxModel::instance().db_release_savepoint();
-            TrxSplitModel::instance().db_release_savepoint();
-            AttachmentModel::instance().db_release_savepoint();
-            FieldValueModel::instance().db_release_savepoint();
+        for (int64 trx_id : trx_id_m) {
+            FieldValueModel::instance().purge_ref(TrxModel::s_ref_type, trx_id);
+            mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, trx_id);
+            TrxModel::instance().purge_id(trx_id);
         }
 
-        for (auto& subcat : CategoryModel::sub_tree(CategoryModel::instance().get_id_data_n(m_categ_id)))
-            CategoryModel::instance().purge_id(subcat.m_id);
-
-        CategoryModel::instance().purge_id(m_categ_id);
+        FieldValueModel::instance().db_release_savepoint();
+        AttachmentModel::instance().db_release_savepoint();
+        TrxSplitModel::instance().db_release_savepoint();
+        TrxModel::instance().db_release_savepoint();
     }
-    else return;
+
+    for (auto& subcat_d : CategoryModel::sub_tree(
+        CategoryModel::instance().get_id_data_n(m_categ_id)
+    )) {
+        CategoryModel::instance().purge_id(subcat_d.m_id);
+    }
+    CategoryModel::instance().purge_id(m_categ_id);
 
     m_refresh_requested = true;
     m_treeCtrl->Delete(m_selectedItemId);

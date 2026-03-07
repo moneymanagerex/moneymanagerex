@@ -532,7 +532,7 @@ wxString SchedPanel::getItem(long item, int col_id)
     case SchedList::LIST_ID_NOTES: {
         wxString value = sched_xd.m_notes;
         value.Replace("\n", " ");
-        if (AttachmentModel::instance().find_id_c(SchedModel::s_ref_type, sched_xd.m_id))
+        if (AttachmentModel::instance().find_ref_c(SchedModel::s_ref_type, sched_xd.m_id))
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     }
@@ -663,15 +663,16 @@ void SchedList::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
     if (m_bdp->bills_.empty()) return;
     if (m_selected_row < 0) return;
 
-    wxMessageDialog msgDlg(this, _t("Do you want to delete the scheduled transaction?")
-        , _t("Confirm Deletion")
-        , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
-    if (msgDlg.ShowModal() == wxID_YES)
-    {
-        int64 BdId = m_bdp->bills_[m_selected_row].m_id;
-        SchedModel::instance().purge_id(BdId);
-        mmAttachmentManage::DeleteAllAttachments(SchedModel::refTypeName, BdId);
-        m_bdp->do_delete_custom_values(-BdId);
+    wxMessageDialog msgDlg(this,
+        _t("Do you want to delete the scheduled transaction?"),
+        _t("Confirm Deletion"),
+        wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
+    );
+    if (msgDlg.ShowModal() == wxID_YES) {
+        int64 sched_id = m_bdp->bills_[m_selected_row].m_id;
+        SchedModel::instance().purge_id(sched_id);
+        mmAttachmentManage::DeleteAllAttachments(SchedModel::s_ref_type, sched_id);
+        FieldValueModel::instance().purge_ref(SchedModel::s_ref_type, sched_id);
         m_bdp->initVirtualListControl();
         refreshVisualList(m_selected_row);
     }
@@ -717,12 +718,12 @@ void SchedList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 
 void SchedList::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_selected_row == -1) return;
-    int64 RefId = m_bdp->bills_[m_selected_row].m_id;
-    const wxString& RefType = SchedModel::refTypeName;
+    if (m_selected_row == -1)
+        return;
 
-    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
-    refreshVisualList(m_bdp->initVirtualListControl(RefId));
+    int64 ref_id = m_bdp->bills_[m_selected_row].m_id;
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, SchedModel::s_ref_type, ref_id);
+    refreshVisualList(m_bdp->initVirtualListControl(ref_id));
 }
 
 void SchedList::OnListItemActivated(wxListEvent& WXUNUSED(event))
@@ -958,10 +959,4 @@ void SchedPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
 wxString  SchedPanel::BuildPage() const
 {
     return m_lc->BuildPage(_t("Scheduled Transactions"));
-}
-
-void SchedPanel::do_delete_custom_values(int64 id)
-{
-    const wxString& RefType = TrxModel::refTypeName;
-    FieldValueModel::DeleteAllData(RefType, id);
 }

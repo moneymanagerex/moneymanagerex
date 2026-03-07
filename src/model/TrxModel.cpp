@@ -342,31 +342,30 @@ bool TrxModel::is_locked(const Data& trx_d)
     return trx_date_n.has_value() && account_n->is_locked_for(trx_date_n.value());
 }
 
-bool TrxModel::purge_id(int64 id)
+bool TrxModel::purge_id(int64 trx_id)
 {
     // TODO: remove all split at once
-    // TrxSplitModel::instance().purge_id(TrxSplitModel::instance().find(TrxSplitCol::TRANSID(id)));
+    // TrxSplitModel::instance().purge_id(TrxSplitModel::instance().find(TrxSplitCol::TRANSID(trx_id)));
     for (const auto& tp_d : TrxSplitModel::instance().find(
-        TrxSplitCol::TRANSID(id)
+        TrxSplitCol::TRANSID(trx_id)
     )) {
         TrxSplitModel::instance().purge_id(tp_d.m_id);
     }
-    if (is_foreign(*instance().get_id_data_n(id)))
-        TrxLinkModel::RemoveTranslinkEntry(id);
+    if (is_foreign(*instance().get_id_data_n(trx_id)))
+        TrxLinkModel::RemoveTranslinkEntry(trx_id);
 
-    const wxString& RefType = TrxModel::refTypeName;
     // remove all attachments
-    mmAttachmentManage::DeleteAllAttachments(RefType, id);
+    mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, trx_id);
     // remove all custom fields for the transaction
-    FieldValueModel::DeleteAllData(RefType, id);
-    TagLinkModel::instance().DeleteAllTags(RefType, id);
-    return unsafe_remove_id(id);
+    FieldValueModel::instance().purge_ref(TrxModel::s_ref_type, trx_id);
+    TagLinkModel::instance().DeleteAllTags(TrxModel::refTypeName, trx_id);
+    return unsafe_remove_id(trx_id);
 }
 
-void TrxModel::save_timestamp(int64 id)
+void TrxModel::save_timestamp(int64 trx_id)
 {
-    Data* trx_n = instance().unsafe_get_id_data_n(id);
-    if (trx_n && trx_n->m_id == id) {
+    Data* trx_n = instance().unsafe_get_id_data_n(trx_id);
+    if (trx_n && trx_n->m_id == trx_id) {
         trx_n->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
         unsafe_update_data_n(trx_n);
     }

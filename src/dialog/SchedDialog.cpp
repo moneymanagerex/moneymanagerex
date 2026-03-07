@@ -161,17 +161,21 @@ SchedDialog::SchedDialog(
         }
 
         // If duplicate then we may need to copy the attachments
-        if (m_dup_bill && InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false))
-        {
-            const wxString& RefType = SchedModel::refTypeName;
-            mmAttachmentManage::CloneAllAttachments(RefType, sched_id, 0);
+        if (m_dup_bill && InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false)) {
+            // FIXME: id 0 does not exist in database
+            mmAttachmentManage::CloneAllAttachments(
+                SchedModel::s_ref_type, sched_id, 0
+            );
         }
     }
 
     m_transfer = (m_sched_xd.TRANSCODE == TrxModel::TYPE_NAME_TRANSFER);
 
-    int64 ref_id = m_dup_bill ? -sched_id : (m_new_bill ? 0 : -m_sched_xd.m_id);
-    m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
+    m_custom_fields = new mmCustomDataTransaction(this,
+        SchedModel::s_ref_type,
+        (m_dup_bill ? sched_id : !m_new_bill ? m_sched_xd.m_id : 0),
+        ID_CUSTOMFIELDS
+    );
 
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -685,9 +689,8 @@ void SchedDialog::CreateControls()
 
 void SchedDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& RefType = SchedModel::refTypeName;
     if (m_enter_occur && m_sched_xd.m_id != 0) {
-        mmAttachmentManage::DeleteAllAttachments(RefType, m_sched_xd.m_id);
+        mmAttachmentManage::DeleteAllAttachments(SchedModel::s_ref_type, m_sched_xd.m_id);
     }
     EndModal(wxID_CANCEL);
 }
@@ -704,9 +707,8 @@ void SchedDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
     }
 #endif
 
-    const wxString RefType = SchedModel::refTypeName;
     if (m_enter_occur && m_sched_xd.m_id != 0) {
-        mmAttachmentManage::DeleteAllAttachments(RefType, m_sched_xd.m_id);
+        mmAttachmentManage::DeleteAllAttachments(SchedModel::s_ref_type, m_sched_xd.m_id);
     }
     EndModal(wxID_CANCEL);
 }
@@ -1085,7 +1087,6 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         // Save split tags
         const wxString& splitRefType = SchedSplitModel::refTypeName;
-
         for (size_t i = 0; i < m_sched_xd.local_splits.size(); i++) {
             TagLinkModel::DataA splitTaglinks;
             for (const auto& tag_id : m_sched_xd.local_splits.at(i).TAGS) {
@@ -1098,23 +1099,25 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             TagLinkModel::instance().update(splitTaglinks, splitRefType, qp_a.at(i).m_id);
         }
 
-        const wxString& RefType = SchedModel::refTypeName;
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_trans_id);
+        // FIXME: ref_id 0 does not exists in database
+        mmAttachmentManage::RelocateAllAttachments(
+            SchedModel::s_ref_type, 0,
+            SchedModel::s_ref_type, m_trans_id
+        );
 
         // Save base transaction tags
         TagLinkModel::DataA taglinks;
         for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
             TagLinkData gl_d = TagLinkData();
-            gl_d.REFTYPE = RefType;
+            gl_d.REFTYPE = SchedModel::refTypeName;
             gl_d.REFID   = m_trans_id;
             gl_d.TAGID   = tag_id;
             taglinks.push_back(gl_d);
         }
-        TagLinkModel::instance().update(taglinks, RefType, m_trans_id);
+        TagLinkModel::instance().update(taglinks, SchedModel::refTypeName, m_trans_id);
 
         //Custom Data
-        m_custom_fields->SaveCustomValues(-m_trans_id);
-
+        m_custom_fields->SaveCustomValues(SchedModel::s_ref_type, m_trans_id);
     }
     else {
         // the following condition is always true, since old inactive entries of type
@@ -1123,6 +1126,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             rn.freq > SchedModel::REPEAT_FREQ_EVERY_X_MONTHS ||
             rn.x > 0
         ) {
+            // FIXME: use m_sched_xd directly
             SchedData sched_d;
             sched_d.m_account_id = m_sched_xd.m_account_id;
             sched_d.TRANSCODE    = m_sched_xd.TRANSCODE;
@@ -1159,37 +1163,36 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             TrxSplitModel::instance().update(tp_a, trx_id);
 
             // Save split tags
-            const wxString& splitRefType = TrxSplitModel::refTypeName;
-
             for (size_t i = 0; i < m_sched_xd.local_splits.size(); i++) {
                 TagLinkModel::DataA gl_a;
                 for (const auto& tag_id : m_sched_xd.local_splits.at(i).TAGS) {
                     TagLinkData gl_d = TagLinkData();
-                    gl_d.REFTYPE = splitRefType;
+                    gl_d.REFTYPE = TrxSplitModel::refTypeName;
                     gl_d.REFID   = tp_a.at(i).m_id;
                     gl_d.TAGID   = tag_id;
                     gl_a.push_back(gl_d);
                 }
-                TagLinkModel::instance().update(gl_a, splitRefType, tp_a.at(i).m_id);
+                TagLinkModel::instance().update(gl_a, TrxSplitModel::refTypeName, tp_a.at(i).m_id);
             }
 
             // Custom Data
-            m_custom_fields->SaveCustomValues(trx_id);
+            m_custom_fields->SaveCustomValues(TrxModel::s_ref_type, trx_id);
 
-            const wxString& oldRefType = SchedModel::refTypeName;
-            const wxString& newRefType = TrxModel::refTypeName;
-            mmAttachmentManage::RelocateAllAttachments(oldRefType, m_sched_xd.m_id, newRefType, trx_id);
+            mmAttachmentManage::RelocateAllAttachments(
+                SchedModel::s_ref_type, m_sched_xd.m_id,
+                TrxModel::s_ref_type, trx_id
+            );
 
             // Save base transaction tags
             TagLinkModel::DataA gl_a;
             for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
                 TagLinkData gl_d = TagLinkData();
-                gl_d.REFTYPE = newRefType;
+                gl_d.REFTYPE = TrxModel::refTypeName;
                 gl_d.REFID   = trx_id;
                 gl_d.TAGID   = tag_id;
                 gl_a.push_back(gl_d);
             }
-            TagLinkModel::instance().update(gl_a, newRefType, trx_id);
+            TagLinkModel::instance().update(gl_a, TrxModel::refTypeName, trx_id);
         }
         SchedModel::instance().completeBDInSeries(m_sched_xd.m_id);
     }
@@ -1201,13 +1204,11 @@ void SchedDialog::SetSplitControls(bool split)
 {
     textAmount_->Enable(!split);
     bCalc_->Enable(!split);
-    if (split)
-    {
+    if (split) {
         m_sched_xd.m_amount = TrxSplitModel::get_total(m_sched_xd.local_splits);
         m_sched_xd.m_category_id_n = -1;
     }
-    else
-    {
+    else {
         m_sched_xd.local_splits.clear();
     }
     setCategoryLabel();
@@ -1216,14 +1217,12 @@ void SchedDialog::SetSplitControls(bool split)
 void SchedDialog::OnAutoExecutionUserAckChecked(wxCommandEvent& WXUNUSED(event))
 {
     autoExecuteUserAck_ = !autoExecuteUserAck_;
-    if (autoExecuteUserAck_)
-    {
+    if (autoExecuteUserAck_) {
         itemCheckBoxAutoExeSilent_->SetValue(false);
         itemCheckBoxAutoExeSilent_->Enable(false);
         autoExecuteSilent_ = false;
     }
-    else
-    {
+    else {
         itemCheckBoxAutoExeSilent_->Enable(true);
     }
 }
@@ -1231,14 +1230,12 @@ void SchedDialog::OnAutoExecutionUserAckChecked(wxCommandEvent& WXUNUSED(event))
 void SchedDialog::OnAutoExecutionSilentChecked(wxCommandEvent& WXUNUSED(event))
 {
     autoExecuteSilent_ = !autoExecuteSilent_;
-    if (autoExecuteSilent_)
-    {
+    if (autoExecuteSilent_) {
         itemCheckBoxAutoExeUserAck_->SetValue(false);
         itemCheckBoxAutoExeUserAck_->Enable(false);
         autoExecuteUserAck_ = false;
     }
-    else
-    {
+    else {
         itemCheckBoxAutoExeUserAck_->Enable(true);
     }
 }
@@ -1254,12 +1251,10 @@ void SchedDialog::SetTransferControls(bool transfers)
     wxStaticText* stta = static_cast<wxStaticText*>(FindWindow(ID_DIALOG_TRANS_STATIC_TOACCOUNT));
 
     cAdvanced_->Enable(transfers);
-    if (transfers)
-    {
+    if (transfers) {
         SetSplitControls();
     }
-    else
-    {
+    else {
         SetAdvancedTransferControls();
         toTextAmount_->ChangeValue("");
         cAdvanced_->SetValue(false);
@@ -1277,7 +1272,10 @@ void SchedDialog::SetAdvancedTransferControls(bool advanced)
 {
     m_advanced = advanced;
     toTextAmount_->Enable(m_advanced);
-    mmToolTip(textAmount_, m_advanced ? amountTransferTip_ : _t("Specify the transfer amount in the From Account"));
+    mmToolTip(textAmount_, m_advanced
+        ? amountTransferTip_
+        : _t("Specify the transfer amount in the From Account")
+    );
     if (m_advanced)
         toTextAmount_->SetValue(m_sched_xd.m_to_amount);
     else
@@ -1289,12 +1287,16 @@ void SchedDialog::setRepeatDetails()
     staticTextRepeats_->SetLabelText(_t("Repeats"));
 
     int repeats = getRepeatType();
-    if (repeats == SchedModel::REPEAT_FREQ_IN_X_DAYS || repeats == SchedModel::REPEAT_FREQ_EVERY_X_DAYS) {
+    if (repeats == SchedModel::REPEAT_FREQ_IN_X_DAYS ||
+        repeats == SchedModel::REPEAT_FREQ_EVERY_X_DAYS
+    ) {
         staticTimesRepeat_->SetLabelText(_t("Period: Days"));
         const auto toolTipsStr = _t("Specify period in Days.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
-    else if (repeats == SchedModel::REPEAT_FREQ_IN_X_MONTHS || repeats == SchedModel::REPEAT_FREQ_EVERY_X_MONTHS) {
+    else if (repeats == SchedModel::REPEAT_FREQ_IN_X_MONTHS ||
+        repeats == SchedModel::REPEAT_FREQ_EVERY_X_MONTHS
+    ) {
         staticTimesRepeat_->SetLabelText(_t("Period: Months"));
         const auto toolTipsStr = _t("Specify period in Months.");
         mmToolTip(textNumRepeats_, toolTipsStr);
@@ -1325,24 +1327,21 @@ int SchedDialog::getRepeatType()
 
 void SchedDialog::setRepeatType(int repeatType)
 {
-    if (repeatType < 0)
-    {
+    if (repeatType < 0) {
         wxFAIL;
         return;
     }
 
     // fast path
     int repeatIndex = repeatType;
-    if (BILLSDEPOSITS_REPEATS.at(repeatIndex).first != repeatType)
-    {
+    if (BILLSDEPOSITS_REPEATS.at(repeatIndex).first != repeatType) {
         // slow path: BILLSDEPOSITS_REPEATS is not sorted by REPEAT_FREQ
         // cache the mapping from type to index
         static std::vector<int> index;
         if (index.size() == 0) {
             wxLogDebug("SchedDialog::setRepeatType : cache index");
             index.resize(BILLSDEPOSITS_REPEATS.size(), -1);
-            for (size_t i = 0; i < BILLSDEPOSITS_REPEATS.size(); i++)
-            {
+            for (size_t i = 0; i < BILLSDEPOSITS_REPEATS.size(); i++) {
                 unsigned int j = BILLSDEPOSITS_REPEATS.at(i).first;
                 if (j < BILLSDEPOSITS_REPEATS.size() && index.at(j) == -1)
                     index.at(j) = i;
@@ -1353,8 +1352,7 @@ void SchedDialog::setRepeatType(int repeatType)
         }
 
         repeatIndex = index.at(repeatType);
-        if (repeatIndex == -1)
-        {
+        if (repeatIndex == -1) {
             wxFAIL;
             repeatIndex = 0;
         }
@@ -1462,8 +1460,7 @@ void SchedDialog::setCategoryLabel()
             TrxModel::TRANSDATE(OP_LE, mmDate::today())
         );
 
-        if (!transactions.empty())
-        {
+        if (!transactions.empty()) {
             const int64 cat = transactions.back().m_category_id_n;
             cbCategory_->ChangeValue(CategoryModel::full_name(cat));
         }

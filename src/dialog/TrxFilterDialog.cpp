@@ -117,8 +117,11 @@ TrxFilterDialog::TrxFilterDialog(wxWindow* parent, int64 accountID, bool isRepor
     mmDoDataToControls(m_settings_json);
 }
 
-TrxFilterDialog::TrxFilterDialog(wxWindow* parent, const wxString& json)
-    : isMultiAccount_(true), accountID_(-1), isReportMode_(true), m_filter_key("TRANSACTIONS_FILTER")
+TrxFilterDialog::TrxFilterDialog(wxWindow* parent, const wxString& json) :
+    isMultiAccount_(true),
+    accountID_(-1),
+    isReportMode_(true),
+    m_filter_key("TRANSACTIONS_FILTER")
 {
     this->SetFont(parent->GetFont());
     mmDoInitVariables();
@@ -130,7 +133,11 @@ void TrxFilterDialog::mmDoInitVariables()
 {
     m_use_date_filter = isReportMode_; //|| PrefModel::instance().getUsePerAccountFilter();
 
-    m_custom_fields = new mmCustomDataTransaction(this, 0, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
+    m_custom_fields = new mmCustomDataTransaction(this,
+        TrxModel::s_ref_type,
+        0,
+        ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0)
+    );
 
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmToday()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
@@ -2045,17 +2052,16 @@ bool TrxFilterDialog::mmIsCustomFieldChecked() const
     return (cf.size() > 0);
 }
 
-bool TrxFilterDialog::mmIsCustomFieldMatches(int64 transid) const
+bool TrxFilterDialog::mmIsCustomFieldMatches(int64 trx_id) const
 {
     const auto cf = m_custom_fields->GetActiveCustomFields();
     int matched = 0;
     for (const auto& i : cf) {
-        auto DataSet = FieldValueModel::instance().find(
-            FieldValueCol::REFID(transid)
-        );
-        for (const auto& j : DataSet) {
-            if (i.first == j.FIELDID) {
-                if (j.CONTENT.Matches(i.second))
+        for (const auto& fv_d : FieldValueModel::instance().find(
+            FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_id)
+        )) {
+            if (i.first == fv_d.m_field_id) {
+                if (fv_d.m_content.Matches(i.second))
                     matched += 1;
                 else
                     return false;

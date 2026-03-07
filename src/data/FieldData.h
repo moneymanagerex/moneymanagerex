@@ -28,7 +28,7 @@ struct FieldData
     int64      m_id;
     RefTypeN   m_ref_type;    // one of [e_trx, e_sched] after initialization
     wxString   m_description;
-    FieldTypeN m_type_n;      // check for null
+    FieldTypeN m_type_n;      // can be null
     wxString   m_properties;
 
     explicit FieldData();

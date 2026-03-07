@@ -365,3 +365,25 @@ const wxString FieldModel::formatProperties(
 
     return wxString::FromUTF8(json_buffer.GetString());
 }
+
+// Return all values
+// CHECK: chenge wxArrayString to std::set<wxString>
+wxArrayString FieldModel::find_id_value_a(const int64 field_id)
+{
+    wxArrayString value_a;
+    wxString prev_value;
+
+    FieldValueModel::DataA fv_a = FieldValueModel::instance().find(
+        FieldValueCol::FIELDID(field_id)
+    );
+    std::sort(fv_a.begin(), fv_a.end(), FieldValueData::SorterByCONTENT());
+
+    for (const auto& fv_d : fv_a) {
+        if (fv_d.m_content != prev_value) {
+            value_a.Add(fv_d.m_content);
+            prev_value = fv_d.m_content;
+        }
+    }
+    return value_a;
+}
+

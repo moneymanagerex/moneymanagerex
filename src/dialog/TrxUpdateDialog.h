@@ -31,58 +31,7 @@ class TrxUpdateDialog : public wxDialog
     wxDECLARE_DYNAMIC_CLASS(TrxUpdateDialog);
     wxDECLARE_EVENT_TABLE();
 
-public:
-    TrxUpdateDialog();
-    ~TrxUpdateDialog();
-    TrxUpdateDialog(wxWindow* parent, std::vector<int64>& transaction_id);
-
 private:
-    bool Create(wxWindow* parent
-        , wxWindowID id = wxID_ANY
-        , const wxString& caption = _n("Multi Transactions Update")
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxSize(500, 300)
-        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
-
-    void CreateControls();
-    void OnOk(wxCommandEvent& event);
-    void OnCheckboxClick(wxCommandEvent& event);
-    void OnComboKey(wxKeyEvent& event);
-    void onFocusChange(wxChildFocusEvent& event);
-    void SetPayeeTransferControls();
-    void OnTransTypeChanged(wxCommandEvent&);
-    void OnMoreFields(wxCommandEvent& event);
-
-private:
-    wxCheckBox* m_payee_checkbox = nullptr;
-    mmComboBoxPayee* cbPayee_ = nullptr;
-    wxCheckBox* m_transferAcc_checkbox = nullptr;
-    mmComboBoxAccount* cbAccount_ = nullptr;
-    wxCheckBox* m_date_checkbox = nullptr;
-    mmDatePickerCtrl* m_dpc = nullptr;
-    wxCheckBox* m_time_checkbox = nullptr;
-    wxTimePickerCtrl* m_time_ctrl = nullptr;
-    wxCheckBox* m_status_checkbox = nullptr;
-    wxChoice* m_status_choice = nullptr;
-    wxCheckBox* m_categ_checkbox = nullptr;
-    mmComboBoxCategory* cbCategory_ = nullptr;
-    mmColorButton* bColours_ = nullptr;
-    wxCheckBox* m_color_checkbox = nullptr;
-    wxCheckBox* m_type_checkbox = nullptr;
-    wxCheckBox* tag_checkbox_ = nullptr;
-    wxCheckBox* tag_append_checkbox_ = nullptr;
-    mmTagTextCtrl* tagTextCtrl_ = nullptr;
-    wxChoice* m_type_choice = nullptr;
-    wxCheckBox* m_amount_checkbox = nullptr;
-    mmTextCtrl* m_amount_ctrl = nullptr;
-    wxCheckBox* m_notes_checkbox = nullptr;
-    wxCheckBox* m_append_checkbox = nullptr;
-    wxTextCtrl* m_notes_ctrl = nullptr;
-    std::vector<int64> m_transaction_id;
-    const CurrencyData* m_currency = nullptr;
-    bool m_hasTransfers = false, m_hasNonTransfers = false, m_hasSplits = false;
-    wxSharedPtr<FieldValueDialog> m_custom_fields;
-
     enum
     {
         /* Transaction Dialog */
@@ -92,5 +41,58 @@ private:
         ID_BTN_CUSTOMFIELDS,
         ID_CUSTOMFIELDS,
     };
+
+private:
+    std::vector<int64> m_trx_id_a;
+    const CurrencyData* m_currency_n = nullptr;
+    bool m_hasTransfers = false, m_hasNonTransfers = false, m_hasSplits = false;
+
+    wxSharedPtr<FieldValueDialog> m_custom_fields;
+    wxCheckBox*         m_payee_checkbox       = nullptr;
+    mmComboBoxPayee*    cbPayee_               = nullptr;
+    wxCheckBox*         m_transferAcc_checkbox = nullptr;
+    mmComboBoxAccount*  cbAccount_             = nullptr;
+    wxCheckBox*         m_date_checkbox        = nullptr;
+    mmDatePickerCtrl*   m_dpc                  = nullptr;
+    wxCheckBox*         m_time_checkbox        = nullptr;
+    wxTimePickerCtrl*   m_time_ctrl            = nullptr;
+    wxCheckBox*         m_status_checkbox      = nullptr;
+    wxChoice*           m_status_choice        = nullptr;
+    wxCheckBox*         m_categ_checkbox       = nullptr;
+    mmComboBoxCategory* cbCategory_            = nullptr;
+    mmColorButton*      bColours_              = nullptr;
+    wxCheckBox*         m_color_checkbox       = nullptr;
+    wxCheckBox*         m_type_checkbox        = nullptr;
+    wxCheckBox*         tag_checkbox_          = nullptr;
+    wxCheckBox*         tag_append_checkbox_   = nullptr;
+    mmTagTextCtrl*      tagTextCtrl_           = nullptr;
+    wxChoice*           m_type_choice          = nullptr;
+    wxCheckBox*         m_amount_checkbox      = nullptr;
+    mmTextCtrl*         m_amount_ctrl          = nullptr;
+    wxCheckBox*         m_notes_checkbox       = nullptr;
+    wxCheckBox*         m_append_checkbox      = nullptr;
+    wxTextCtrl*         m_notes_ctrl           = nullptr;
+
+public:
+    TrxUpdateDialog();
+    TrxUpdateDialog(wxWindow* parent, std::vector<int64>& trx_id_a);
+    ~TrxUpdateDialog();
+
+private:
+    bool Create(wxWindow* parent,
+        wxWindowID id = wxID_ANY,
+        const wxString& caption = _n("Multi Transactions Update"),
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxSize(500, 300),
+        long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
+    );
+    void CreateControls();
+    void OnOk(wxCommandEvent& event);
+    void OnCheckboxClick(wxCommandEvent& event);
+    void OnComboKey(wxKeyEvent& event);
+    void onFocusChange(wxChildFocusEvent& event);
+    void SetPayeeTransferControls();
+    void OnTransTypeChanged(wxCommandEvent&);
+    void OnMoreFields(wxCommandEvent& event);
 };
 

@@ -378,29 +378,22 @@ void StockDialog::CreateControls()
 
 void StockDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString& RefType = StockModel::refTypeName;
     if (!m_edit)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(StockModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
 void StockDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-    const wxString& RefType = StockModel::refTypeName;
     if (m_stock_id <= 0)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(StockModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
 void StockDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    const wxString RefType = StockModel::refTypeName;
-    int64 RefId = m_stock_id;
-
-    if (RefId < 0)
-        RefId = 0;
-
-    AttachmentDialog dlg(this, RefType, RefId);
+    int64 ref_id = (m_stock_id > 0) ? m_stock_id : 0;
+    AttachmentDialog dlg(this, StockModel::refTypeName, ref_id);
     dlg.ShowModal();
 }
 
@@ -501,8 +494,11 @@ void StockDialog::OnSave(wxCommandEvent & /*event*/)
     m_stock_id = m_stock_n->id();
 
     if (!m_edit) {
-        const wxString RefType = StockModel::refTypeName;
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_stock_n->m_id);
+        // FIXME
+        mmAttachmentManage::RelocateAllAttachments(
+            StockModel::s_ref_type, 0,
+            StockModel::s_ref_type, m_stock_n->m_id
+        );
         TrxShareDialog share_dialog(this, m_stock_n);
         share_dialog.ShowModal();
     }

@@ -1549,9 +1549,10 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         if (!holder.customFieldData.empty()) {
             for (const auto& field : holder.customFieldData) {
                 FieldValueData new_fv_d = FieldValueData();
-                new_fv_d.FIELDID = field.first;
-                new_fv_d.REFID   = new_trx_d.m_id;
-                new_fv_d.CONTENT = field.second;
+                new_fv_d.m_field_id = field.first;
+                new_fv_d.m_ref_type = TrxModel::s_ref_type;
+                new_fv_d.m_ref_id   = new_trx_d.m_id;
+                new_fv_d.m_content  = field.second;
                 FieldValueModel::instance().add_data_n(new_fv_d);
             }
         }
@@ -1828,17 +1829,18 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             entry = wxString::Format("%lld", tran.m_id);
                             break;
                         default:
-                            if (it.first > UNIV_CSV_LAST) // Custom Fields
-                            {
+                            // Custom Fields
+                            if (it.first > UNIV_CSV_LAST) {
                                 // Get field content
-                                const FieldValueData* data = FieldValueModel::instance().get_key(CSVFieldName_[it.first].second, trx_d.m_id);
-                                if (data)
-                                {
+                                const FieldValueData* fv_n = FieldValueModel::instance().get_key_data_n(
+                                    CSVFieldName_[it.first].second, TrxModel::s_ref_type, trx_d.m_id
+                                );
+                                if (fv_n) {
                                     // format date fields
-                                    if (FieldModel::type_id(FieldModel::instance().get_id_data_n(data->FIELDID)) == FieldModel::TYPE_ID_DATE)
-                                        entry = mmGetDateTimeForDisplay(data->CONTENT, date_format_);
+                                    if (FieldModel::type_id(FieldModel::instance().get_id_data_n(fv_n->m_field_id)) == FieldModel::TYPE_ID_DATE)
+                                        entry = mmGetDateTimeForDisplay(fv_n->m_content, date_format_);
                                     else
-                                        entry = data->CONTENT;
+                                        entry = fv_n->m_content;
                                 }
                             }
                             break;
@@ -2216,16 +2218,15 @@ void mmUnivCSVDialog::update_preview()
                                     text << trx_d.TRANSCODE;
                                     break;
                                 default:
-                                    if (it > UNIV_CSV_LAST) // Custom Fields
-                                    {
-                                        const FieldValueData* data = FieldValueModel::instance().get_key(CSVFieldName_[it].second, trx_d.m_id);
-                                        if (data)
-                                        {
+                                    // Custom Fields
+                                    if (it > UNIV_CSV_LAST) {
+                                        const FieldValueData* fv_n = FieldValueModel::instance().get_key_data_n(CSVFieldName_[it].second, TrxModel::s_ref_type, trx_d.m_id);
+                                        if (fv_n) {
                                             // Format date fields
-                                            if (FieldModel::type_id(FieldModel::instance().get_id_data_n(data->FIELDID)) == FieldModel::TYPE_ID_DATE)
-                                                text << inQuotes(mmGetDateTimeForDisplay(data->CONTENT, date_format_), delimit);
+                                            if (FieldModel::type_id(FieldModel::instance().get_id_data_n(fv_n->m_field_id)) == FieldModel::TYPE_ID_DATE)
+                                                text << inQuotes(mmGetDateTimeForDisplay(fv_n->m_content, date_format_), delimit);
                                             else
-                                                text << inQuotes(data->CONTENT, delimit);
+                                                text << inQuotes(fv_n->m_content, delimit);
                                         }
                                     }
                                     break;

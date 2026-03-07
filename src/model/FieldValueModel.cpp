@@ -49,60 +49,42 @@ FieldValueModel& FieldValueModel::instance()
     return Singleton<FieldValueModel>::instance();
 }
 
-const FieldValueData* FieldValueModel::get_key(int64 field_id, int64 ref_id)
+FieldValueCol::REFID FieldValueModel::REFTYPEID(RefTypeN ref_type, int64 ref_id)
 {
-    FieldValueModel::DataA fv_a = this->find(
-        FieldValueCol::FIELDID(field_id),
-        FieldValueCol::REFID(ref_id)
+    return FieldValueCol::REFID(FieldValueData::encode_REFID(ref_type, ref_id));
+}
+
+bool FieldValueModel::purge_ref(RefTypeN ref_type, int64 ref_id)
+{
+    const DataA fv_a = find(
+        FieldValueModel::REFTYPEID(ref_type, ref_id)
     );
-    if (!fv_a.empty())
-        return get_id_data_n(fv_a[0].FIELDATADID);
-    return nullptr;
-}
-
-std::map<int64, FieldValueModel::DataA> FieldValueModel::get_all_id(const wxString& reftype)
-{
-    std::map<int64, FieldValueModel::DataA> id_data_a_m;
-    for (const auto& field_d : FieldModel::instance().find(
-        FieldCol::REFTYPE(reftype)
-    )) {
-        for (const auto& fv_d : find(
-            FieldValueCol::FIELDID(field_d.m_id))
-        ) {
-            id_data_a_m[fv_d.REFID].push_back(fv_d);
-        }
-    }
-    return id_data_a_m;
-}
-
-// Return all CustomFieldData value
-wxArrayString FieldValueModel::allValue(const int64 field_id)
-{
-    wxArrayString values;
-    wxString PreviousValue;
-
-    FieldValueModel::DataA fv_a = find(
-        FieldValueCol::FIELDID(field_id)
-    );
-    std::sort(fv_a.begin(), fv_a.end(), FieldValueData::SorterByCONTENT());
-
-    for (const auto& fv_d : fv_a) {
-        if (fv_d.CONTENT != PreviousValue) {
-            values.Add(fv_d.CONTENT);
-            PreviousValue = fv_d.CONTENT;
-        }
-    }
-    return values;
-}
-
-bool FieldValueModel::DeleteAllData(const wxString& RefType, int64 ref_id)
-{
-    for (const auto& field_d : FieldModel::instance().find(
-        FieldCol::REFTYPE(RefType)
-    )) {
-        const Data* fv_n = FieldValueModel::instance().get_key(field_d.m_id, ref_id);
-        if (fv_n)
-            FieldValueModel::instance().purge_id(fv_n->FIELDATADID);
+    for (const Data& fv_d : fv_a) {
+        purge_id(fv_d.m_id);
     }
     return true;
 }
+
+const FieldValueData* FieldValueModel::get_key_data_n(
+    int64 field_id, RefTypeN ref_type, int64 ref_id
+) {
+    FieldValueModel::DataA fv_a = find(
+        FieldValueCol::FIELDID(field_id),
+        FieldValueModel::REFTYPEID(ref_type, ref_id)
+    );
+    if (!fv_a.empty())
+        return get_id_data_n(fv_a[0].m_id);
+    return nullptr;
+}
+
+std::map<int64, FieldValueModel::DataA> FieldValueModel::find_reftype_refid_data_m(
+    RefTypeN ref_type
+) {
+    std::map<int64, FieldValueModel::DataA> refid_data_m;
+    for (const Data& fv_d : find_all()) {
+        if (fv_d.m_ref_type.id_n() == ref_type.id_n())
+            refid_data_m[fv_d.m_ref_id].push_back(fv_d);
+    }
+    return refid_data_m;
+}
+

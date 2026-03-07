@@ -665,12 +665,12 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         }
     }
     else if (uri.StartsWith("attachment:", &sData)) {
-        const wxString RefType = sData.BeforeFirst('|');
-        long long refId;
-        sData.AfterFirst('|').ToLongLong(&refId);
+        RefTypeN ref_type = RefTypeN(sData.BeforeFirst('|'));
+        long long ref_id;
+        sData.AfterFirst('|').ToLongLong(&ref_id);
 
-        if (ModelBase::reftype_id(RefType) != -1 && refId > 0) {
-            mmAttachmentManage::OpenAttachmentFromPanelIcon(w_frame, RefType, refId);
+        if (ref_type.has_value() && ref_id > 0) {
+            mmAttachmentManage::OpenAttachmentFromPanelIcon(w_frame, ref_type, ref_id);
             const auto name = getVFname4print("rep", getReportBase()->getHTMLText());
             w_browser->LoadURL(name);
         }

@@ -49,7 +49,7 @@ AttachmentModel& AttachmentModel::instance()
 }
 
 // Return the number of attachments linked to a specific object
-int AttachmentModel::find_id_c(RefTypeN ref_type, const int64 ref_id)
+int AttachmentModel::find_ref_c(RefTypeN ref_type, const int64 ref_id)
 {
     return AttachmentModel::instance().find(
         AttachmentCol::REFTYPE(ref_type.name_n()),
@@ -58,7 +58,7 @@ int AttachmentModel::find_id_c(RefTypeN ref_type, const int64 ref_id)
 }
 
 // Return a dataset with attachments linked to a specific object
-const AttachmentModel::DataA AttachmentModel::find_id_data_a(
+const AttachmentModel::DataA AttachmentModel::find_ref_data_a(
     RefTypeN ref_type,
     const int64 ref_id
 ) {
@@ -73,10 +73,10 @@ const AttachmentModel::DataA AttachmentModel::find_id_data_a(
 }
 
 // Return the last attachment number linked to a specific object
-int AttachmentModel::find_id_last_num(RefTypeN ref_type, const int64 ref_id)
+int AttachmentModel::find_ref_last_num(RefTypeN ref_type, const int64 ref_id)
 {
     int max_num = 0;
-    for (const auto& att_d : AttachmentModel::instance().find_id_data_a(ref_type, ref_id)) {
+    for (const auto& att_d : find_ref_data_a(ref_type, ref_id)) {
         wxString att_filename = att_d.m_filename;
         int num = wxAtoi(att_filename.SubString(
             att_filename.Find("Attach") + 6,

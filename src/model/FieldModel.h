@@ -51,18 +51,7 @@ public:
     ~FieldModel();
 
 public:
-    /**
-    Initialize the global FieldModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for FieldModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static FieldModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for FieldModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static FieldModel& instance();
 
 public:
@@ -85,10 +74,14 @@ public:
     static int64 getUDFCID(const wxString& ref_type, const wxString& name);
     static const std::map<wxString, int64> getMatrix(const wxString& reftype);
     static int getDigitScale(const wxString& Properties);
-    static const wxString formatProperties(const wxString& Tooltip, const wxString& RegEx
-        , bool Autocomplete, const wxString& Default, const wxArrayString& Choices
-        , const int DigitScale, const wxString& udfc_str);
+    static const wxString formatProperties(
+        const wxString& Tooltip, const wxString& RegEx,
+        bool Autocomplete, const wxString& Default, const wxArrayString& Choices,
+        const int DigitScale, const wxString& udfc_str
+    );
     static const wxArrayString UDFC_FIELDS();
+
+    auto find_id_value_a(const int64 FieldID) -> wxArrayString;
 };
 
 //----------------------------------------------------------------------------

@@ -327,16 +327,16 @@ bool SchedModel::AllowTransaction(const Data& r)
     return allow_transaction;
 }
 
-void SchedModel::completeBDInSeries(int64 bdID)
+void SchedModel::completeBDInSeries(int64 sched_id)
 {
-    Data* sched_n = unsafe_get_id_data_n(bdID);
+    Data* sched_n = unsafe_get_id_data_n(sched_id);
     if (!sched_n)
         return;
 
     RepeatNum rn;
     if (!decode_repeat_num(*sched_n, rn) || rn.num == 1) {
-        mmAttachmentManage::DeleteAllAttachments(this->refTypeName, bdID);
-        purge_id(bdID);
+        mmAttachmentManage::DeleteAllAttachments(s_ref_type, sched_id);
+        purge_id(sched_id);
         return;
     }
 

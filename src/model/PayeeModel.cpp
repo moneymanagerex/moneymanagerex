@@ -55,7 +55,7 @@ PayeeModel& PayeeModel::instance()
 
 int PayeeModel::find_id_aux_c(int64 payee_id)
 {
-    return AttachmentModel::instance().find_id_c(PayeeModel::s_ref_type, payee_id);
+    return AttachmentModel::instance().find_ref_c(s_ref_type, payee_id);
 }
 
 int PayeeModel::find_id_dep_c(int64 payee_id)

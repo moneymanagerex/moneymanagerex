@@ -48,7 +48,12 @@ wxBEGIN_EVENT_TABLE( AttachmentDialog, wxDialog )
     )
 wxEND_EVENT_TABLE()
 
-AttachmentDialog::AttachmentDialog (wxWindow* parent, const wxString& RefType, int64 RefId, const wxString& name) :
+AttachmentDialog::AttachmentDialog(
+    wxWindow* parent,
+    const wxString& RefType,
+    int64 RefId,
+    const wxString& name
+) :
     m_RefType(RefType),
     m_RefId(RefId)
 {
@@ -177,7 +182,9 @@ void AttachmentDialog::fillControls()
 {    
     attachmentListBox_->DeleteAllItems();
 
-    AttachmentModel::DataA att_a = AttachmentModel::instance().find_id_data_a(RefTypeN(m_RefType), m_RefId);
+    AttachmentModel::DataA att_a = AttachmentModel::instance().find_ref_data_a(
+        RefTypeN(m_RefType), m_RefId
+    );
     if (att_a.empty())
         return;
 
@@ -226,7 +233,7 @@ void AttachmentDialog::AddAttachment(wxString file_path)
     const wxString desc = dlg.getText();
 
     const wxString folder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
-    int last_num = AttachmentModel::instance().find_id_last_num(RefTypeN(m_RefType), m_RefId);
+    int last_num = AttachmentModel::instance().find_ref_last_num(RefTypeN(m_RefType), m_RefId);
 
     wxString importedFileName = m_RefType + "_" + wxString::Format("%lld", m_RefId) + "_Attach"
         + wxString::Format("%i", last_num + 1);
@@ -555,32 +562,31 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
     return wxLaunchDefaultApplication(FileToOpen);;
 }
 
-bool mmAttachmentManage::DeleteAllAttachments(const wxString& ref_type, int64 ref_id)
+bool mmAttachmentManage::DeleteAllAttachments(RefTypeN ref_type, int64 ref_id)
 {
-    AttachmentModel::DataA att_a = AttachmentModel::instance().find_id_data_a(RefTypeN(ref_type), ref_id);
     wxString folder = mmex::getPathAttachment(
         mmAttachmentManage::InfotablePathSetting()
-    ) + m_PathSep + ref_type;
+    ) + m_PathSep + ref_type.name_n();
 
-    for (const auto& att_d : att_a) {
+    for (const AttachmentData& att_d : AttachmentModel::instance().find_ref_data_a(
+        ref_type, ref_id
+    )) {
         mmAttachmentManage::DeleteAttachment(folder + m_PathSep + att_d.m_filename);
         AttachmentModel::instance().purge_id(att_d.m_id);
     }
 
-    if (RefTypeN(ref_type).id_n() == RefTypeN::e_trx)
+    if (ref_type.id_n() == TrxModel::s_ref_type.id_n())
         TrxModel::instance().save_timestamp(ref_id);
 
     return true;
 }
 
 bool mmAttachmentManage::RelocateAllAttachments(
-    const wxString& old_ref_type,
-    int64 old_ref_id,
-    const wxString& new_ref_type,
-    int64 new_ref_id
+    RefTypeN old_ref_type, int64 old_ref_id,
+    RefTypeN new_ref_type, int64 new_ref_id
 ) {
     auto att_a = AttachmentModel::instance().find(
-        AttachmentCol::REFTYPE(old_ref_type),
+        AttachmentCol::REFTYPE(old_ref_type.name_n()),
         AttachmentCol::REFID(old_ref_id)
     );
 
@@ -589,84 +595,86 @@ bool mmAttachmentManage::RelocateAllAttachments(
 
     const wxString old_folder = mmex::getPathAttachment(
         mmAttachmentManage::InfotablePathSetting()
-    ) + old_ref_type + m_PathSep;
+    ) + old_ref_type.name_n() + m_PathSep;
     const wxString new_folder = mmex::getPathAttachment(
         mmAttachmentManage::InfotablePathSetting()
-    ) + new_ref_type + m_PathSep;
+    ) + new_ref_type.name_n() + m_PathSep;
 
     for (auto& att_d : att_a) {
         wxString newFileName = att_d.m_filename;
         newFileName.Replace(
             att_d.m_ref_type_n.name_n() + "_" + wxString::Format("%lld", att_d.m_ref_id),
-            new_ref_type + "_" + wxString::Format("%lld", new_ref_id)
+            new_ref_type.name_n() + "_" + wxString::Format("%lld", new_ref_id)
         );
         wxRenameFile(
             old_folder + att_d.m_filename,
             new_folder + newFileName
         );
-        att_d.m_ref_type_n = RefTypeN(new_ref_type);
+        att_d.m_ref_type_n = new_ref_type;
         att_d.m_ref_id     = new_ref_id;
         att_d.m_filename   = newFileName;
     }
     AttachmentModel::instance().save_data_a(att_a);
 
-    if (RefTypeN(old_ref_type).id_n() == RefTypeN::e_trx)
+    if (old_ref_type.id_n() == TrxModel::s_ref_type.id_n())
         TrxModel::instance().save_timestamp(old_ref_id);
-    if (RefTypeN(new_ref_type).id_n() == RefTypeN::e_trx)
+    if (new_ref_type.id_n() == TrxModel::s_ref_type.id_n())
         TrxModel::instance().save_timestamp(new_ref_id);
 
     return true;
 }
 
 bool mmAttachmentManage::CloneAllAttachments(
-    const wxString& ref_type,
-    int64 ref_id,
-    int64 new_ref_id
+    RefTypeN ref_type,
+    int64 src_ref_id,
+    int64 dst_ref_id
 ) {
     const wxString folder = mmex::getPathAttachment(
         mmAttachmentManage::InfotablePathSetting()
-    ) + ref_type + m_PathSep;
+    ) + ref_type.name_n() + m_PathSep;
 
-    for (auto& att_d : AttachmentModel::instance().find(
-        AttachmentCol::REFTYPE(ref_type),
-        AttachmentCol::REFID(ref_id)
+    for (auto& src_att_d : AttachmentModel::instance().find(
+        AttachmentCol::REFTYPE(ref_type.name_n()),
+        AttachmentCol::REFID(src_ref_id)
     )) {
-        wxString new_filename = att_d.m_filename;
-        new_filename.Replace(
-            att_d.m_ref_type_n.name_n() + "_" + wxString::Format("%lld", att_d.m_ref_id),
-            att_d.m_ref_type_n.name_n() + "_" + wxString::Format("%lld", new_ref_id)
+        wxString dst_filename = src_att_d.m_filename;
+        dst_filename.Replace(
+            src_att_d.m_ref_type_n.name_n() + "_" + wxString::Format("%lld", src_att_d.m_ref_id),
+            src_att_d.m_ref_type_n.name_n() + "_" + wxString::Format("%lld", dst_ref_id)
         );
-        wxCopyFile(folder + att_d.m_filename, folder + new_filename);
+        wxCopyFile(folder + src_att_d.m_filename, folder + dst_filename);
         AttachmentData new_att_d = AttachmentData();
-        new_att_d.m_ref_type_n  = RefTypeN(ref_type);
-        new_att_d.m_ref_id      = new_ref_id;
-        new_att_d.m_filename    = new_filename;
-        new_att_d.m_description = att_d.m_description;
+        new_att_d.m_ref_type_n  = ref_type;
+        new_att_d.m_ref_id      = dst_ref_id;
+        new_att_d.m_filename    = dst_filename;
+        new_att_d.m_description = src_att_d.m_description;
         AttachmentModel::instance().add_data_n(new_att_d);
     }
 
-    if (RefTypeN(ref_type).id_n() == RefTypeN::e_trx)
-        TrxModel::instance().save_timestamp(new_ref_id);
+    if (ref_type.id_n() == TrxModel::s_ref_type.id_n())
+        TrxModel::instance().save_timestamp(dst_ref_id);
 
     return true;
 }
 
 void mmAttachmentManage::OpenAttachmentFromPanelIcon(
     wxWindow* parent,
-    const wxString& ref_type,
+    RefTypeN ref_type,
     int64 ref_id
 ) {
-    int att_c = AttachmentModel::instance().find_id_c(RefTypeN(ref_type), ref_id);
+    int att_c = AttachmentModel::instance().find_ref_c(ref_type, ref_id);
 
     if (att_c == 1) {
-        AttachmentModel::DataA att_a = AttachmentModel::instance().find_id_data_a(RefTypeN(ref_type), ref_id);
+        AttachmentModel::DataA att_a = AttachmentModel::instance().find_ref_data_a(
+            ref_type, ref_id
+        );
         wxString file_path = mmex::getPathAttachment(
             mmAttachmentManage::InfotablePathSetting()
         ) + att_a[0].m_ref_type_n.name_n() + m_PathSep + att_a[0].m_filename;
         mmAttachmentManage::OpenAttachment(file_path);
     }
     else {
-        AttachmentDialog dlg(parent, ref_type, ref_id);
+        AttachmentDialog dlg(parent, ref_type.name_n(), ref_id);
         dlg.ShowModal();
     }
 }

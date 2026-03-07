@@ -681,14 +681,15 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
                 // Copy the custom fields to the newly created transaction
                 const auto& fv_a = FieldValueModel::instance().find(
-                    FieldValueCol::REFID(-q1.m_id)
+                    FieldValueModel::REFTYPEID(SchedModel::s_ref_type, q1.m_id)
                 );
                 FieldValueModel::instance().db_savepoint();
                 for (const auto& fv_d : fv_a) {
                     FieldValueData new_fv_d = FieldValueData();
-                    new_fv_d.FIELDID = fv_d.FIELDID;
-                    new_fv_d.REFID   = transID;
-                    new_fv_d.CONTENT = fv_d.CONTENT;
+                    new_fv_d.m_field_id = fv_d.m_field_id;
+                    new_fv_d.m_ref_type = RefTypeN(RefTypeN::e_trx);
+                    new_fv_d.m_ref_id   = transID;
+                    new_fv_d.m_content = fv_d.m_content;
                     FieldValueModel::instance().add_data_n(new_fv_d);
                 }
                 FieldValueModel::instance().db_release_savepoint();
@@ -1598,7 +1599,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES) {
         AccountModel::instance().purge_id(account_n->m_id);
         mmAttachmentManage::DeleteAllAttachments(
-            AccountModel::refTypeName, account_n->m_id
+            AccountModel::s_ref_type, account_n->m_id
         );
         DoRecreateNavTreeControl(true);
     }
@@ -3973,7 +3974,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
         wxMessageDialog msgDlg(this, deletingAccountName, _t("Confirm Account Deletion"),
             wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_YES) {
-            mmAttachmentManage::DeleteAllAttachments(AccountModel::refTypeName, account->id());
+            mmAttachmentManage::DeleteAllAttachments(AccountModel::s_ref_type, account->id());
             AccountModel::instance().purge_id(account->id());
         }
     }
@@ -4213,31 +4214,28 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 void mmGUIFrame::autocleanDeletedTransactions() {
     wxDateSpan days = wxDateSpan::Days(SettingModel::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30));
     wxDateTime earliestDate = wxDateTime().Now().ToUTC().Subtract(days);
-    TrxModel::DataA deletedTransactions = TrxModel::instance().find(
+    TrxModel::DataA deleted_trx_a = TrxModel::instance().find(
         TrxCol::DELETEDTIME(OP_LE, earliestDate.FormatISOCombined()),
         TrxCol::DELETEDTIME(OP_NE, wxEmptyString)
     );
-    if (!deletedTransactions.empty()) {
-        TrxModel::instance().db_savepoint();
-        AttachmentModel::instance().db_savepoint();
-        TrxSplitModel::instance().db_savepoint();
-        FieldValueModel::instance().db_savepoint();
-        for (const auto& transaction : deletedTransactions) {
-            // removing the checking transaction also removes split, translink, and share entries
-            TrxModel::instance().purge_id(transaction.m_id);
+    if (deleted_trx_a.empty())
+        return;
 
-            // remove also any attachments for the transaction
-            const wxString& RefType = TrxModel::refTypeName;
-            mmAttachmentManage::DeleteAllAttachments(RefType, transaction.m_id);
+    TrxModel::instance().db_savepoint();
+    TrxSplitModel::instance().db_savepoint();
+    AttachmentModel::instance().db_savepoint();
+    FieldValueModel::instance().db_savepoint();
 
-            // remove also any custom fields for the transaction
-            FieldValueModel::DeleteAllData(RefType, transaction.m_id);
-        }
-        FieldValueModel::instance().db_release_savepoint();
-        TrxSplitModel::instance().db_release_savepoint();
-        AttachmentModel::instance().db_release_savepoint();
-        TrxModel::instance().db_release_savepoint();
+    for (const auto& trx_d : deleted_trx_a) {
+        FieldValueModel::instance().purge_ref(TrxModel::s_ref_type, trx_d.m_id);
+        mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, trx_d.m_id);
+        TrxModel::instance().purge_id(trx_d.m_id);
     }
+
+    FieldValueModel::instance().db_release_savepoint();
+    AttachmentModel::instance().db_release_savepoint();
+    TrxSplitModel::instance().db_release_savepoint();
+    TrxModel::instance().db_release_savepoint();
 }
 
 void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)

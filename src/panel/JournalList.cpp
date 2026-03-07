@@ -1704,8 +1704,8 @@ int64 JournalList::onPaste(const TrxData* tran)
     )
     new_trx.m_account_id = m_cp->m_account_id;
     TrxModel::instance().save_trx_n(new_trx);
-    int64 transactionID = new_trx.id();
-    m_pasted_id.push_back({transactionID, 0});   // add the newly pasted transaction
+    int64 new_trx_id = new_trx.id();
+    m_pasted_id.push_back({new_trx_id, 0});   // add the newly pasted transaction
 
     // Clone transaction tags
     TagLinkModel::DataA new_gl_a;
@@ -1716,7 +1716,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     )) {
         TagLinkData new_gl_d;
         new_gl_d.clone_from(tl_d);
-        new_gl_d.REFID = transactionID;
+        new_gl_d.REFID = new_trx_id;
         new_gl_a.push_back(new_gl_d);
     }
 
@@ -1725,7 +1725,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     for (const auto& tp_d : TrxModel::find_split(*tran)) {
         TrxSplitData new_tp_d;
         new_tp_d.clone_from(tp_d);
-        new_tp_d.m_trx_id = transactionID;
+        new_tp_d.m_trx_id = new_trx_id;
         TrxSplitModel::instance().add_data_n(new_tp_d);
 
         // Clone split tags
@@ -1749,9 +1749,10 @@ int64 JournalList::onPaste(const TrxData* tran)
         FieldValueModel::instance().db_savepoint();
         for (const auto& fv_d : fv_a) {
             FieldValueData new_fv_d = FieldValueData();
-            new_fv_d.FIELDID = fv_d.FIELDID;
-            new_fv_d.REFID   = transactionID;
-            new_fv_d.CONTENT = fv_d.CONTENT;
+            new_fv_d.m_field_id = fv_d.m_field_id;
+            new_fv_d.m_ref_type = RefTypeN(RefTypeN::e_trx);
+            new_fv_d.m_ref_id   = new_trx_id;
+            new_fv_d.m_content  = fv_d.m_content;
             FieldValueModel::instance().add_data_n(new_fv_d);
         }
         FieldValueModel::instance().db_release_savepoint();
@@ -1759,11 +1760,12 @@ int64 JournalList::onPaste(const TrxData* tran)
 
     // Clone attachments if wanted
     if (InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false)) {
-        const wxString& RefType = TrxModel::refTypeName;
-        mmAttachmentManage::CloneAllAttachments(RefType, tran->m_id, transactionID);
+        mmAttachmentManage::CloneAllAttachments(
+            TrxModel::s_ref_type, tran->m_id, new_trx_id
+        );
     }
 
-    return transactionID;
+    return new_trx_id;
 }
 
 void JournalList::onDuplicateTransaction(wxCommandEvent& WXUNUSED(event))
@@ -1857,9 +1859,7 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
     findSelectedTransactions();
     Journal::IdRepeat id = m_selected_id[0];
 
-    const wxString refType = !id.second ?
-        TrxModel::refTypeName :
-        SchedModel::refTypeName;
+    RefTypeN refType = !id.second ? TrxModel::s_ref_type : SchedModel::s_ref_type;
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, refType, id.first);
     refreshVisualList();
 }

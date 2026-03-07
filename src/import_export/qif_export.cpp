@@ -438,7 +438,9 @@ void mmQIFExportDialog::mmExportQIF()
     wxString sErrorMsg;
     size_t numRecords = 0, numCategories = 0;
 
-    wxStringClientData* data_obj = static_cast<wxStringClientData*>(m_choiceDateFormat->GetClientObject(m_choiceDateFormat->GetSelection()));
+    wxStringClientData* data_obj = static_cast<wxStringClientData*>(
+        m_choiceDateFormat->GetClientObject(m_choiceDateFormat->GetSelection())
+    );
     const wxString dateMask = data_obj->GetData();
 
     wxString buffer;
@@ -467,15 +469,14 @@ void mmQIFExportDialog::mmExportQIF()
 
     std::map<int64 /*account ID*/, wxString> allAccounts4Export;
     wxArrayInt64 allPayees4Export;
-    const wxString RefType = TrxModel::refTypeName;
     wxArrayInt64 allAttachments4Export;
     wxArrayInt64 allCustomFields4Export;
     wxArrayInt64 allTags4Export;
-    const auto transactions = TrxModel::instance().find(
-        TrxModel::STATUS(OP_NE, TrxModel::STATUS_ID_VOID));
+    const auto trx_a = TrxModel::instance().find(
+        TrxModel::STATUS(OP_NE, TrxModel::STATUS_ID_VOID)
+    );
 
-    if (exp_transactions && !transactions.empty())
-    {
+    if (exp_transactions && !trx_a.empty()) {
         json_writer.Key("transactions");
         json_writer.StartArray();
 
@@ -491,21 +492,21 @@ void mmQIFExportDialog::mmExportQIF()
         const wxString begin_date = fromDateCtrl_->GetValue().FormatISODate();
         const wxString end_date = toDateCtrl_->GetValue().FormatISODate();
 
-        for (const auto& transaction : transactions)
-        {
-            if (!transaction.DELETEDTIME.IsEmpty()) continue;
-            wxString strDate = TrxModel::getTransDateTime(transaction).FormatISODate();
+        for (const auto& trx_d : trx_a) {
+            if (!trx_d.DELETEDTIME.IsEmpty())
+                continue;
+            wxString strDate = TrxModel::getTransDateTime(trx_d).FormatISODate();
             //Filtering
             if (dateFromCheckBox_->IsChecked() && strDate < begin_date)
                 continue;
             if (dateToCheckBox_->IsChecked() && strDate > end_date)
                 continue;
-            if (!TrxModel::is_transfer(transaction.TRANSCODE)
-                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.m_account_id) == selected_accounts_id_.end()))
+            if (!TrxModel::is_transfer(trx_d.TRANSCODE)
+                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), trx_d.m_account_id) == selected_accounts_id_.end()))
                 continue;
-            if (TrxModel::is_transfer(transaction.TRANSCODE)
-                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.m_account_id) == selected_accounts_id_.end())
-                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.m_to_account_id_n) == selected_accounts_id_.end()))
+            if (TrxModel::is_transfer(trx_d.TRANSCODE)
+                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), trx_d.m_account_id) == selected_accounts_id_.end())
+                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), trx_d.m_to_account_id_n) == selected_accounts_id_.end()))
                 continue;
             //
 
@@ -515,8 +516,8 @@ void mmQIFExportDialog::mmExportQIF()
 
             bool is_reverce = false;
             wxString trx_str;
-            TrxModel::Full_Data full_tran(transaction, splits, tags);
-            int64 account_id = transaction.m_account_id;
+            TrxModel::Full_Data full_tran(trx_d, splits, tags);
+            int64 account_id = trx_d.m_account_id;
 
             switch (m_type)
             {
@@ -528,23 +529,31 @@ void mmQIFExportDialog::mmExportQIF()
                     allPayees4Export.push_back(full_tran.m_payee_id_n);
                 }
 
-                if (!AttachmentModel::instance().find_id_data_a(RefTypeN(RefType), full_tran.id()).empty()
-                    && std::find(allAttachments4Export.begin(), allAttachments4Export.end(), full_tran.m_id) == allAttachments4Export.end()) {
+                if (
+                    !AttachmentModel::instance().find_ref_data_a(
+                        TrxModel::s_ref_type, full_tran.id()
+                    ).empty() &&
+                    std::find(
+                        allAttachments4Export.begin(), allAttachments4Export.end(), full_tran.m_id
+                    ) == allAttachments4Export.end()
+                ) {
                     allAttachments4Export.push_back(full_tran.m_id);
                 }
 
-                for (const auto & entry : FieldValueModel::instance().find(
-                    FieldValueCol::REFID(full_tran.id())
+                for (const auto & fv_d : FieldValueModel::instance().find(
+                    FieldValueModel::REFTYPEID(TrxModel::s_ref_type, full_tran.id())
                 )) {
-                    if (std::find(allCustomFields4Export.begin(), allCustomFields4Export.end(), entry.FIELDATADID) == allCustomFields4Export.end()) {
-                        allCustomFields4Export.push_back(entry.FIELDATADID);
+                    if (std::find(allCustomFields4Export.begin(), allCustomFields4Export.end(),
+                        fv_d.m_id) == allCustomFields4Export.end()
+                    ) {
+                        allCustomFields4Export.push_back(fv_d.m_id);
                     }
                 }
 
                 // store tags from the transaction
-                for (const auto& tag : full_tran.m_tags) {
-                    if (std::find(allTags4Export.begin(), allTags4Export.end(), tag.TAGID) == allTags4Export.end())
-                        allTags4Export.push_back(tag.TAGID);
+                for (const auto& tag_d : full_tran.m_tags) {
+                    if (std::find(allTags4Export.begin(), allTags4Export.end(), tag_d.TAGID) == allTags4Export.end())
+                        allTags4Export.push_back(tag_d.TAGID);
                 }
                 // store tags from the splits
                 for (const auto& tp_d : full_tran.m_splits) {
@@ -560,16 +569,17 @@ void mmQIFExportDialog::mmExportQIF()
 
             case QIF:
 
-                if (TrxModel::is_transfer(transaction.TRANSCODE))
-                {
-                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.m_account_id) == selected_accounts_id_.end()) {
+                if (TrxModel::is_transfer(trx_d.TRANSCODE)) {
+                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(),
+                        trx_d.m_account_id) == selected_accounts_id_.end()
+                    ) {
                         is_reverce = true;
-                        account_id = transaction.m_to_account_id_n;
+                        account_id = trx_d.m_to_account_id_n;
                     }
 
-                    if (transaction.m_amount != transaction.m_to_amount) {
+                    if (trx_d.m_amount != trx_d.m_to_amount) {
                         const auto trx2_str = mmExportTransaction::getTransactionQIF(full_tran, dateMask, !is_reverce);
-                        extraTransfers[is_reverce ? transaction.m_account_id : transaction.m_to_account_id_n] += trx2_str;
+                        extraTransfers[is_reverce ? trx_d.m_account_id : trx_d.m_to_account_id_n] += trx2_str;
                     }
                 }
 
@@ -579,14 +589,13 @@ void mmQIFExportDialog::mmExportQIF()
 
             case CSV:
 
-                if (TrxModel::is_transfer(transaction.TRANSCODE))
-                {
-                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), transaction.m_account_id) == selected_accounts_id_.end()) {
+                if (TrxModel::is_transfer(trx_d.TRANSCODE)) {
+                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), trx_d.m_account_id) == selected_accounts_id_.end()) {
                         is_reverce = true;
-                        account_id = transaction.m_to_account_id_n;
+                        account_id = trx_d.m_to_account_id_n;
                     }
                     const auto trx2_str = mmExportTransaction::getTransactionCSV(full_tran, dateMask, !is_reverce);
-                    extraTransfers[is_reverce ? transaction.m_account_id : transaction.m_to_account_id_n] += trx2_str;
+                    extraTransfers[is_reverce ? trx_d.m_account_id : trx_d.m_to_account_id_n] += trx2_str;
                 }
 
                 trx_str = mmExportTransaction::getTransactionCSV(full_tran, dateMask, is_reverce);
@@ -657,8 +666,7 @@ void mmQIFExportDialog::mmExportQIF()
         break;
     }
 
-    if (write_to_file)
-    {
+    if (write_to_file) {
         wxFileOutputStream output(fileName);
         wxTextOutputStream text(output);
         text << buffer;
@@ -672,12 +680,21 @@ void mmQIFExportDialog::mmExportQIF()
 
     wxString msg = "";
     if (numCategories > 0) {
-        msg += wxString::Format(_t("Number of categories exported: %zu \n"), numCategories);
+        msg += wxString::Format(_t("Number of categories exported: %zu \n"),
+            numCategories
+        );
     }
-    msg += wxString::Format(_t("Number of transactions exported: %zu \n"), numRecords);
-    msg += wxString::Format(_t("Number of accounts exported: %zu"), allAccounts4Export.size());
+    msg += wxString::Format(_t("Number of transactions exported: %zu \n"),
+        numRecords
+    );
+    msg += wxString::Format(_t("Number of accounts exported: %zu"),
+        allAccounts4Export.size()
+    );
 
-    wxMessageDialog msgDlg(this, msg, _t("Export as QIF file"), wxOK | wxICON_INFORMATION);
+    wxMessageDialog msgDlg(this, msg,
+        _t("Export as QIF file"),
+        wxOK | wxICON_INFORMATION
+    );
 
     msgDlg.ShowModal();
 }

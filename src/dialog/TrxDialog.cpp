@@ -152,15 +152,24 @@ TrxDialog::TrxDialog(
     m_transfer = TrxModel::type_id(m_journal_data.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER;
     m_advanced = m_mode != MODE_NEW && m_transfer && (m_journal_data.m_amount != m_journal_data.m_to_amount);
 
-    int64 ref_id = (m_mode == MODE_NEW) ? 0 : (m_journal_data.m_repeat_num == 0) ?
-        m_journal_data.m_id : -(m_journal_data.m_bdid);
-    m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
+    m_custom_fields = new mmCustomDataTransaction(this,
+        (m_mode == MODE_NEW ? TrxModel::s_ref_type :
+            m_journal_data.m_repeat_num == 0 ? TrxModel::s_ref_type :
+            SchedModel::s_ref_type
+        ),
+        (m_mode == MODE_NEW ? 0 :
+            m_journal_data.m_repeat_num == 0 ? m_journal_data.m_id :
+            m_journal_data.m_bdid
+        ),
+        ID_CUSTOMFIELDS
+    );
 
     // If duplicate then we may need to copy the attachments
-    if (m_mode == MODE_DUP && InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false))
-    {
-        const wxString& refType = TrxModel::refTypeName;
-        mmAttachmentManage::CloneAllAttachments(refType, journal_id.first, -1);
+    if (m_mode == MODE_DUP && InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false)) {
+        // FIXME: id -1 does not exist in database
+        mmAttachmentManage::CloneAllAttachments(
+            TrxModel::s_ref_type, journal_id.first, -1
+        );
     }
 
     this->SetFont(parent->GetFont());
@@ -1290,23 +1299,26 @@ void TrxDialog::OnOk(wxCommandEvent& event)
         }
         TagLinkModel::instance().update(splitTaglinks, splitRefType, tp_a.at(i).m_id);
     }
-    const wxString& ref_type = TrxModel::refTypeName;
     if (m_mode != MODE_EDIT) {
-        mmAttachmentManage::RelocateAllAttachments(ref_type, -1, ref_type, m_journal_data.m_id);
+        // FIXME
+        mmAttachmentManage::RelocateAllAttachments(
+            TrxModel::s_ref_type, -1,
+            TrxModel::s_ref_type, m_journal_data.m_id
+        );
     }
 
-    m_custom_fields->SaveCustomValues(m_journal_data.m_id);
+    m_custom_fields->SaveCustomValues(TrxModel::s_ref_type, m_journal_data.m_id);
 
     // Save base transaction tags
     TagLinkModel::DataA taglinks;
     for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
         TagLinkData gl_d = TagLinkData();
-        gl_d.REFTYPE = ref_type;
+        gl_d.REFTYPE = TrxModel::refTypeName;
         gl_d.REFID   = m_journal_data.m_id;
         gl_d.TAGID   = tag_id;
         taglinks.push_back(gl_d);
     }
-    TagLinkModel::instance().update(taglinks, ref_type, m_journal_data.m_id);
+    TagLinkModel::instance().update(taglinks, TrxModel::refTypeName, m_journal_data.m_id);
 
     //TrxModel::Full_Data trx(trx_d);
     //wxLogDebug("%s", trx.to_json());
@@ -1333,9 +1345,9 @@ void TrxDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 #endif
 
     if (m_mode != MODE_EDIT) {
-        const wxString& ref_type = TrxModel::refTypeName;
-        mmAttachmentManage::DeleteAllAttachments(ref_type, -1);
-        FieldValueModel::instance().DeleteAllData(ref_type, -1);
+        // FIXME: temporary records (with id -1) are not stored in database
+        mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, -1);
+        FieldValueModel::instance().purge_ref(TrxModel::s_ref_type, -1);
     }
     previousDate = wxDateTime(); // invalidate!
     EndModal(wxID_CANCEL);
@@ -1390,10 +1402,10 @@ void TrxDialog::SetTooltips()
 
 void TrxDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& ref_type = TrxModel::refTypeName;
     if (m_mode != MODE_EDIT) {
-        mmAttachmentManage::DeleteAllAttachments(ref_type, -1);
-        FieldValueModel::instance().DeleteAllData(ref_type, -1);
+        // FIXME: temporary records (with id -1) are not stored in database
+        mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, -1);
+        FieldValueModel::instance().purge_ref(TrxModel::s_ref_type, -1);
     }
     EndModal(wxID_CANCEL);
 }

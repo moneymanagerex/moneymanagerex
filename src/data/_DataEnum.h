@@ -250,16 +250,16 @@ public:
     static mmChoiceNameA s_choice_a;
 
 private:
-    mmChoiceId m_id_n;
+    mmChoiceIdN m_id_n;
 
 public:
-    FieldTypeN(mmChoiceId id_n = s_choice_a.default_id_n()) :
+    FieldTypeN(mmChoiceIdN id_n = s_choice_a.default_id_n()) :
         m_id_n(s_choice_a.valid_id_n(id_n)) {}
     FieldTypeN(const wxString& name) :
         m_id_n(FieldTypeN::s_choice_a.find_name_n(name)) {}
 
     bool has_value() const { return m_id_n >= 0; }
-    mmChoiceId id_n() const { return m_id_n; }
+    mmChoiceIdN id_n() const { return m_id_n; }
     const wxString name_n() const {
         return has_value() ? FieldTypeN::s_choice_a.get_name(m_id_n) : "";
     }
@@ -283,16 +283,30 @@ public:
     static mmChoiceNameA s_choice_a;
 
 private:
-    mmChoiceId m_id_n;
+    mmChoiceIdN m_id_n;
 
 public:
-    RefTypeN(mmChoiceId id_n = s_choice_a.default_id_n()) :
+    RefTypeN(mmChoiceIdN id_n = s_choice_a.default_id_n()) :
         m_id_n(s_choice_a.valid_id_n(id_n)) {}
     RefTypeN(const wxString& name) :
         m_id_n(RefTypeN::s_choice_a.find_name_n(name)) {}
 
+    static mmChoiceIdN field_id_n(mmChoiceIdN id_n) {
+        switch (id_n) {
+        case e_sched:
+        case e_trx_split:
+        case e_sched_split:
+            return e_trx;
+        default:
+            return id_n;
+        }
+    }
+    static RefTypeN field_ref_type_n(RefTypeN ref_type_n) {
+        return RefTypeN(RefTypeN::field_id_n(ref_type_n.m_id_n));
+    }
+
     bool has_value() const { return m_id_n >= 0; }
-    mmChoiceId id_n() const { return m_id_n; }
+    mmChoiceIdN id_n() const { return m_id_n; }
     const wxString name_n() const {
         return has_value() ? RefTypeN::s_choice_a.get_name(m_id_n) : "";
     }

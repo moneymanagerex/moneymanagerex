@@ -229,7 +229,7 @@ void FieldManager::UpdateField()
         FieldValueCol::CONTENT(txtSearch)
     );
     for (auto& fv_d : fv_a) {
-        fv_d.CONTENT = txtReplace;
+        fv_d.m_content = txtReplace;
     }
     FieldValueModel::instance().save_data_a(fv_a);
 
