@@ -31,10 +31,8 @@ TrxLinkModel::~TrxLinkModel()
 {
 }
 
-/**
-* Initialize the global TrxLinkModel table.
-* Reset the TrxLinkModel table or create the table if it does not exist.
-*/
+// Initialize the global TrxLinkModel table.
+// Reset the TrxLinkModel table or create the table if it does not exist.
 TrxLinkModel& TrxLinkModel::instance(wxSQLite3Database* db)
 {
     TrxLinkModel& ins = Singleton<TrxLinkModel>::instance();
@@ -45,7 +43,7 @@ TrxLinkModel& TrxLinkModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of TrxLinkModel table */
+// Return the static instance of TrxLinkModel table
 TrxLinkModel& TrxLinkModel::instance()
 {
     return Singleton<TrxLinkModel>::instance();
@@ -53,136 +51,113 @@ TrxLinkModel& TrxLinkModel::instance()
 
 TrxLinkModel::CHECKING_TYPE TrxLinkModel::type_checking(const int64 tt)
 {
-    if (tt == AS_INCOME_EXPENSE || tt == -1)
-    {
+    if (tt == AS_INCOME_EXPENSE || tt == -1) {
         return AS_INCOME_EXPENSE;
     }
-    else
-    {
+    else {
         return AS_TRANSFER;
     }
 }
 
-void TrxLinkModel::SetAssetTranslink(const int64 asset_id
-    , const int64 checking_id
-    , const CHECKING_TYPE checking_type)
-{
-    SetTranslink(checking_id, checking_type, AssetModel::refTypeName, asset_id);
-}
-
-void TrxLinkModel::SetStockTranslink(
-    const int64 stock_id,
-    const int64 checking_id,
-    const CHECKING_TYPE checking_type
-) {
-    SetTranslink(checking_id, checking_type, StockModel::refTypeName, stock_id);
-}
-
 void TrxLinkModel::SetTranslink(
-    const int64 checking_id,
-    [[maybe_unused]] const CHECKING_TYPE checking_type,
-    const wxString& link_type,
-    const int64 link_record_id
+    int64 trx_id,
+    RefTypeN ref_type,
+    int64 ref_id,
+    [[maybe_unused]] const CHECKING_TYPE checking_type
 ) {
     TrxLinkData new_tl_d = TrxLinkData();
-    new_tl_d.CHECKINGACCOUNTID = checking_id;
-    new_tl_d.LINKTYPE          = link_type;
-    new_tl_d.LINKRECORDID      = link_record_id;
-    TrxLinkModel::instance().add_data_n(new_tl_d);
+    new_tl_d.m_trx_id   = trx_id;
+    new_tl_d.m_ref_type = ref_type;
+    new_tl_d.m_ref_id   = ref_id;
+    add_data_n(new_tl_d);
 
     // set the checking entry to recognise it as a foreign transaction
     // set the checking type as AS_INCOME_EXPENSE = 32701 or AS_TRANSFER
-    TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(checking_id);
+    TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(trx_id);
+    // FIXME
     // trx_n->m_to_account_id_n = checking_type;
     TrxModel::instance().unsafe_save_trx_n(trx_n);
     //TrxLinkModel::instance().get_id_data_n(new_tl_d.id());
 }
 
-template <typename T>
-TrxLinkModel::DataA TrxLinkModel::TranslinkList(const int64 link_entry_id)
+// Create the translink record as Asset
+void TrxLinkModel::SetAssetTranslink(
+    int64 trx_id,
+    int64 asset_id,
+    const CHECKING_TYPE checking_type
+){
+    SetTranslink(trx_id, AssetModel::s_ref_type, asset_id, checking_type);
+}
+
+// Create a translink record as Stock
+void TrxLinkModel::SetStockTranslink(
+    int64 trx_id,
+    int64 stock_id,
+    const CHECKING_TYPE checking_type
+) {
+    SetTranslink(trx_id, StockModel::s_ref_type, stock_id, checking_type);
+}
+
+// Return a list of translink records for the associated foreign table type.
+// Equivalent SQL statements:
+//    select * from TRANSLINK_V1 where LINKTYPE = "Asset" AND LINKRECORDID = ref_id;
+//    select * from TRANSLINK_V1 where LINKTYPE = "Stock" AND LINKRECORDID = ref_id;
+TrxLinkModel::DataA TrxLinkModel::find_ref_data_a(RefTypeN ref_type, int64 ref_id)
 {
-    TrxLinkModel::DataA translink_list = TrxLinkModel::instance().find(
-        TrxLinkCol::LINKTYPE(T::refTypeName),
-        TrxLinkCol::LINKRECORDID(link_entry_id)
+    return find(
+        TrxLinkCol::LINKTYPE(ref_type.name_n()),
+        TrxLinkCol::LINKRECORDID(ref_id)
     );
-
-    return translink_list;
 }
 
-TrxLinkModel::DataA TrxLinkModel::TranslinkListBySymbol(const wxString symbol)
+// Return the link record for the symbol
+// Equivalent SQL statements:
+//     SELECT * FROM TRANSLINK_V1 WHERE LINKTYPE = "Stock" AND LINKRECORDID IN
+//       (SELECT STOCKID FROM STOCK_V1 WHERE SYMBOL = ?)
+TrxLinkModel::DataA TrxLinkModel::find_symbol_data_a(const wxString stock_symbol)
 {
-    TrxLinkModel::DataA result;
-    StockModel::DataA stocks = StockModel::instance().find(StockCol::SYMBOL(symbol));
-    for (auto& stock : stocks) {
-       TrxLinkModel::DataA t = TrxLinkModel::instance().find(
-            TrxLinkCol::LINKRECORDID(stock.m_id)
-        );
-       result.insert(result.end(), t.begin(), t.end());
+    DataA symbol_tl_a;
+    for (auto& stock_d : StockModel::instance().find(
+        StockCol::SYMBOL(stock_symbol)
+    )) {
+        DataA stock_tl_a = find_ref_data_a(StockModel::s_ref_type, stock_d.m_id);
+        symbol_tl_a.insert(symbol_tl_a.end(), stock_tl_a.begin(), stock_tl_a.end());
     }
-    return result;
+    return symbol_tl_a;
 }
 
-bool TrxLinkModel::HasShares(const int64 stock_id)
+size_t TrxLinkModel::find_stock_id_c(const int64 stock_id)
 {
-    if (TranslinkList<StockModel>(stock_id).empty())
-    {
-        return false;
-    }
-
-    return true;
+    return find_ref_data_a(StockModel::s_ref_type, stock_id).size();
 }
 
-TrxLinkData TrxLinkModel::TranslinkRecord(const int64 checking_id)
+// Return the link record for the checking account
+// Equivalent SQL statements:
+//     select * from TRANSLINK_V1 where CHECKINGACCOUNTID = checking_id;
+const TrxLinkData* TrxLinkModel::get_trx_data_n(int64 trx_id)
 {
-    auto i = TrxLinkCol::CHECKINGACCOUNTID(checking_id);
-    TrxLinkModel::DataA translink_list = TrxLinkModel::instance().find(i);
-
-    if (!translink_list.empty())
-        return *translink_list.begin();
-    else {
-        wxSharedPtr<TrxLinkData> t(new TrxLinkData);
-        return *t;
-    }
+    DataA tl_a = find(TrxLinkCol::CHECKINGACCOUNTID(trx_id));
+    return !tl_a.empty() ? get_id_data_n(tl_a[0].m_id) : nullptr;
 }
 
-template <typename T>
-void TrxLinkModel::RemoveTransLinkRecords(const int64 entry_id)
+// Remove all records associated with the Translink list
+void TrxLinkModel::purge_ref(RefTypeN ref_type, int64 ref_id)
 {
-    for (const auto& translink : TranslinkList<T>(entry_id))
-    {
-        TrxModel::instance().purge_id(translink.CHECKINGACCOUNTID);
-    }
-}
-
-// Explicit Instantiation
-template void TrxLinkModel::RemoveTransLinkRecords<AssetModel>(const int64);
-template void TrxLinkModel::RemoveTransLinkRecords<StockModel>(const int64);
-
-void TrxLinkModel::RemoveTranslinkEntry(const int64 checking_account_id)
-{
-    Data translink = TranslinkRecord(checking_account_id);
-    TrxShareModel::instance().remove_trx_share(translink.CHECKINGACCOUNTID);
-    TrxLinkModel::instance().purge_id(translink.TRANSLINKID);
-
-    if (translink.LINKTYPE == AssetModel::refTypeName) {
-        AssetData* asset_entry = AssetModel::instance().unsafe_get_id_data_n(translink.LINKRECORDID);
-        UpdateAssetValue(asset_entry);
-    }
-
-    if (translink.LINKTYPE == StockModel::refTypeName) {
-        StockData* stock_entry = StockModel::instance().unsafe_get_id_data_n(translink.LINKRECORDID);
-        StockModel::UpdatePosition(stock_entry);
+    for (const auto& tl_d : find_ref_data_a(ref_type, ref_id)) {
+        TrxModel::instance().purge_id(tl_d.m_trx_id);
     }
 }
 
 void TrxLinkModel::UpdateAssetValue(AssetData* asset_n)
 {
-    DataA trans_list = TranslinkList<AssetModel>(asset_n->m_id);
+    DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+        AssetModel::s_ref_type, asset_n->m_id
+    );
     double new_value = 0;
-    for (const auto &trans : trans_list) {
-        const TrxData* trx_n = TrxModel::instance().get_id_data_n(trans.CHECKINGACCOUNTID);
-        if (trx_n && trx_n->DELETEDTIME.IsEmpty()
-            && TrxModel::status_id(trx_n->STATUS) != TrxModel::STATUS_ID_VOID
+    for (const auto& tl_d : tl_a) {
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
+        if (trx_n && trx_n->DELETEDTIME.IsEmpty() &&
+            TrxModel::status_id(trx_n->STATUS) != TrxModel::STATUS_ID_VOID
         ) {
             const CurrencyData* currency_n = AccountModel::instance().get_id_currency_p(
                 trx_n->m_account_id
@@ -205,23 +180,4 @@ void TrxLinkModel::UpdateAssetValue(AssetData* asset_n)
         asset_n->m_value = new_value;
         AssetModel::instance().unsafe_save_data_n(asset_n);
     }
-}
-
-bool TrxLinkModel::ShareAccountId(int64& stock_entry_id)
-{
-    TrxLinkModel::DataA stock_translink_list = TranslinkList<StockModel>(stock_entry_id);
-
-    if (!stock_translink_list.empty())
-    {
-        TrxModel::DataA checking_entry = TrxModel::instance().find(
-            TrxCol::TRANSID(stock_translink_list.at(0).CHECKINGACCOUNTID));
-        if (!checking_entry.empty())
-        {
-            const AccountData* account_entry = AccountModel::instance().get_id_data_n(checking_entry.at(0).m_account_id);
-            stock_entry_id = account_entry->m_id;
-            return true;
-        }
-    }
-
-    return false;
 }

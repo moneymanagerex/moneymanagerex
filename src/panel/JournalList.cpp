@@ -1165,7 +1165,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
     if (msgDlg.ShowModal() == wxID_YES) {
         wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
-        std::set<std::pair<wxString, int64>> assetStockAccts;
+        std::set<std::pair<RefTypeN, int64>> assetStockAccts;
         TrxModel::instance().db_savepoint();
         AttachmentModel::instance().db_savepoint();
         TrxSplitModel::instance().db_savepoint();
@@ -1189,7 +1189,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
                 );
                 if (!tl_a.empty()) {
-                    assetStockAccts.emplace(tl_a.at(0).LINKTYPE, tl_a.at(0).LINKRECORDID);
+                    assetStockAccts.emplace(tl_a.at(0).m_ref_type, tl_a.at(0).m_ref_id);
                 }
             }
             m_selectedForCopy.erase(
@@ -1205,11 +1205,11 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
-                if (i.first == "Asset")
+                if (i.first == AssetModel::s_ref_type)
                     TrxLinkModel::UpdateAssetValue(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
-                else if (i.first == "Stock")
+                else if (i.first == StockModel::s_ref_type)
                     StockModel::UpdatePosition(
                         StockModel::instance().unsafe_get_id_data_n(i.second)
                     );
@@ -1245,7 +1245,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
     );
 
     if (msgDlg.ShowModal() == wxID_YES) {
-        std::set<std::pair<wxString, int64>> assetStockAccts;
+        std::set<std::pair<RefTypeN, int64>> assetStockAccts;
         for (const auto& id : m_selected_id) {
             if (!id.second) {
                 TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
@@ -1255,18 +1255,18 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
                 );
                 if (!tl_a.empty()) {
-                    assetStockAccts.emplace(tl_a.at(0).LINKTYPE, tl_a.at(0).LINKRECORDID);
+                    assetStockAccts.emplace(tl_a.at(0).m_ref_type, tl_a.at(0).m_ref_id);
                 }
             }
         }
         m_selected_id.clear();
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
-                if (i.first == "Asset")
+                if (i.first == AssetModel::s_ref_type)
                     TrxLinkModel::UpdateAssetValue(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
-                else if (i.first == "Stock")
+                else if (i.first == StockModel::s_ref_type)
                     StockModel::UpdatePosition(
                         StockModel::instance().unsafe_get_id_data_n(i.second)
                     );
@@ -1287,7 +1287,7 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
         wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
     );
     if (msgDlg.ShowModal() == wxID_YES) {
-        std::set<std::pair<wxString, int64>> assetStockAccts;
+        std::set<std::pair<RefTypeN, int64>> assetStockAccts;
         for (const auto& tran : this->m_journal_xa) {
             if (tran.m_repeat_num) continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(tran.m_id);
@@ -1297,16 +1297,16 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
                 TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
             );
             if (!tl_a.empty()) {
-                assetStockAccts.emplace(tl_a.at(0).LINKTYPE, tl_a.at(0).LINKRECORDID);
+                assetStockAccts.emplace(tl_a.at(0).m_ref_type, tl_a.at(0).m_ref_id);
             }
         }
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
-                if (i.first == "Asset")
+                if (i.first == AssetModel::s_ref_type)
                     TrxLinkModel::UpdateAssetValue(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
-                else if (i.first == "Stock")
+                else if (i.first == StockModel::s_ref_type)
                     StockModel::UpdatePosition(
                         StockModel::instance().unsafe_get_id_data_n(i.second)
                     );
@@ -1326,13 +1326,15 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
 
     // edit multiple transactions
     if (m_selected_id.size() > 1) {
-        std::vector<int64> transid;
+        std::vector<int64> trx_id_a;
         for (const auto& id : m_selected_id)
             if (!id.second)
-                transid.push_back(id.first);
-        if (transid.size() == 0) return;
-        if (!checkForClosedAccounts()) return;
-        TrxUpdateDialog dlg(this, transid);
+                trx_id_a.push_back(id.first);
+        if (trx_id_a.size() == 0)
+            return;
+        if (!checkForClosedAccounts())
+            return;
+        TrxUpdateDialog dlg(this, trx_id_a);
         if (dlg.ShowModal() == wxID_OK)
             refreshVisualList();
         return;
@@ -1341,21 +1343,23 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
     // edit single transaction
     Journal::IdRepeat id = m_selected_id[0];
     if (!id.second) {
-        TrxData* checking_entry = TrxModel::instance().unsafe_get_id_data_n(id.first);
-        if (checkTransactionLocked(checking_entry->m_account_id, checking_entry->TRANSDATE))
+        TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
+        if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE))
             return;
 
         if (!TrxLinkModel::instance().find(
             TrxLinkCol::CHECKINGACCOUNTID(id.first)
         ).empty()) {
-            TrxLinkData translink = TrxLinkModel::TranslinkRecord(id.first);
-            if (translink.LINKTYPE == StockModel::refTypeName) {
-                TrxShareDialog dlg(this, &translink, checking_entry);
+            const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(id.first);
+            if (tl_n && tl_n->m_ref_type == StockModel::s_ref_type) {
+                TrxLinkData tl_d = *tl_n;
+                TrxShareDialog dlg(this, &tl_d, trx_n);
                 if (dlg.ShowModal() == wxID_OK)
                     refreshVisualList();
             }
-            else if (translink.LINKTYPE == AssetModel::refTypeName) {
-                AssetDialog dlg(this, &translink, checking_entry);
+            else if (tl_n && tl_n->m_ref_type == AssetModel::s_ref_type) {
+                TrxLinkData tl_d = *tl_n;
+                AssetDialog dlg(this, &tl_d, trx_n);
                 if (dlg.ShowModal() == wxID_OK)
                     refreshVisualList();
             }
@@ -2193,7 +2197,7 @@ void JournalList::deleteTransactionsByStatus(const wxString& status)
 {
     int retainDays = SettingModel::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
     wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
-    std::set<std::pair<wxString, int64>> assetStockAccts;
+    std::set<std::pair<RefTypeN, int64>> assetStockAccts;
     const auto s = TrxModel::status_key(status);
     TrxModel::instance().db_savepoint();
     AttachmentModel::instance().db_savepoint();
@@ -2214,7 +2218,7 @@ void JournalList::deleteTransactionsByStatus(const wxString& status)
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
                 );
                 if (!translink.empty()) {
-                    assetStockAccts.emplace(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID);
+                    assetStockAccts.emplace(translink.at(0).m_ref_type, translink.at(0).m_ref_id);
                 }
             }
         }
@@ -2222,11 +2226,11 @@ void JournalList::deleteTransactionsByStatus(const wxString& status)
 
     if (!assetStockAccts.empty()) {
         for (const auto& i : assetStockAccts) {
-            if (i.first == "Asset")
+            if (i.first == AssetModel::s_ref_type)
                 TrxLinkModel::UpdateAssetValue(
                     AssetModel::instance().unsafe_get_id_data_n(i.second)
                 );
-            else if (i.first == "Stock")
+            else if (i.first == StockModel::s_ref_type)
                 StockModel::UpdatePosition(
                     StockModel::instance().unsafe_get_id_data_n(i.second)
                 );

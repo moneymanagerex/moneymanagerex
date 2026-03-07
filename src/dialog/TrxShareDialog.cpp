@@ -71,20 +71,20 @@ TrxShareDialog::TrxShareDialog(wxWindow* parent, StockData* stock)
 
 TrxShareDialog::TrxShareDialog(
     wxWindow* parent,
-    const TrxLinkData* translink_entry,
+    const TrxLinkData* tl_n,
     TrxData* checking_entry
 ) :
     m_dialog_heading(_t("Edit Share Transaction")),
     m_checking_entry(checking_entry),
-    m_translink_entry(translink_entry)
+    m_translink_entry(tl_n)
 {
     if (m_translink_entry) {
         m_stock_n = StockModel::instance().unsafe_get_id_data_n(
-            m_translink_entry->LINKRECORDID
+            m_translink_entry->m_ref_id
         );
-        if (m_translink_entry->LINKTYPE == StockModel::refTypeName) {
+        if (m_translink_entry->m_ref_type == StockModel::s_ref_type) {
             m_share_entry = TrxShareModel::instance().unsafe_get_trx_share_n(
-                m_translink_entry->CHECKINGACCOUNTID
+                m_translink_entry->m_trx_id
             );
             if (m_share_entry->m_lot.IsEmpty())
                 // FIXME: m_share_entry is changed but not saved
@@ -163,9 +163,11 @@ void TrxShareDialog::DataToControls()
     m_share_lot_ctrl->Enable(false);
     m_notes_ctrl->Enable(false);
 
-    TrxLinkModel::DataA translink_list = TrxLinkModel::TranslinkList<StockModel>(m_stock_n->m_id);
+    TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+        StockModel::s_ref_type, m_stock_n->m_id
+    );
 
-    if (translink_list.empty()) {
+    if (tl_a.empty()) {
         // Set up the transaction as the first entry.
         int precision = m_stock_n->m_num_shares == floor(m_stock_n->m_num_shares) ? 0 : PrefModel::instance().getSharePrecision();
         m_share_num_ctrl->SetValue(m_stock_n->m_num_shares, precision);
@@ -185,7 +187,7 @@ void TrxShareDialog::DataToControls()
             m_share_lot_ctrl->SetValue(m_share_entry->m_lot);
 
             if (m_translink_entry) {
-                const TrxData* trx_n = TrxModel::instance().get_id_data_n(m_translink_entry->CHECKINGACCOUNTID);
+                const TrxData* trx_n = TrxModel::instance().get_id_data_n(m_translink_entry->m_trx_id);
                 if (trx_n) {
                     m_transaction_panel->TransactionDate(TrxModel::getTransDateTime(*trx_n));
                     m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->m_number)
@@ -454,8 +456,9 @@ void TrxShareDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         // date of purchase, together with a record in the checking account table.
         */
         if (!m_translink_entry) {
-             TrxLinkModel::SetStockTranslink(
-                m_stock_n->m_id, trx_id, m_transaction_panel->CheckingType()
+             TrxLinkModel::instance().SetStockTranslink(
+                trx_id, m_stock_n->m_id,
+                m_transaction_panel->CheckingType()
             );
         }
         TrxShareModel::ShareEntry(

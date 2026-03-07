@@ -74,8 +74,10 @@ bool AccountModel::purge_id(int64 account_id)
     )) {
         if (TrxModel::is_foreign(trx_d)) {
             TrxShareModel::instance().remove_trx_share(trx_d.m_id);
-            TrxLinkData tr = TrxLinkModel::TranslinkRecord(trx_d.m_id);
-            TrxLinkModel::instance().purge_id(tr.TRANSLINKID);
+            const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(trx_d.m_id);
+            if (tl_n) {
+                TrxLinkModel::instance().purge_id(tl_n->m_id);
+            }
         }
         TrxModel::instance().purge_id(trx_d.m_id);
     }
@@ -87,7 +89,7 @@ bool AccountModel::purge_id(int64 account_id)
         SchedModel::instance().purge_id(sched_d.m_id);
 
     for (const auto& stock_d : StockModel::instance().find(StockCol::HELDAT(account_id))) {
-        TrxLinkModel::RemoveTransLinkRecords<StockModel>(stock_d.m_id);
+        TrxLinkModel::instance().purge_ref(StockModel::s_ref_type, stock_d.m_id);
         StockModel::instance().purge_id(stock_d.m_id);
     }
 

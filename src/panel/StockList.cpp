@@ -308,7 +308,9 @@ void StockList::OnDeleteStocks(wxCommandEvent& /*event*/)
     {
         StockModel::instance().purge_id(m_stocks[m_selected_row].m_id);
         mmAttachmentManage::DeleteAllAttachments(StockModel::s_ref_type, m_stocks[m_selected_row].m_id);
-        TrxLinkModel::RemoveTransLinkRecords<StockModel>(m_stocks[m_selected_row].m_id);
+        TrxLinkModel::instance().purge_ref(
+            StockModel::s_ref_type, m_stocks[m_selected_row].m_id
+        );
         DeleteItem(m_selected_row);
         doRefreshItems(-1);
         m_stock_panel->m_frame->RefreshNavigationTree();

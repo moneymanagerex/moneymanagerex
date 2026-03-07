@@ -170,17 +170,19 @@ double StockModel::getDailyBalanceAt(const AccountData& account_d, const wxDate&
 
         double numShares = 0.0;
 
-        TrxLinkModel::DataA tl_a = TrxLinkModel::TranslinkList<StockModel>(stock_d.m_id);
+        TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+            StockModel::s_ref_type, stock_d.m_id
+        );
         for (const auto& tl_d : tl_a) {
             const TrxData* trx_n = TrxModel::instance().get_id_data_n(
-                tl_d.CHECKINGACCOUNTID
+                tl_d.m_trx_id
             );
             if (trx_n->m_id > -1 &&
                 trx_n->DELETEDTIME.IsEmpty() &&
                 mmDate(TrxModel::getTransDateTime(*trx_n)) <= mmDate(date)
             ) {
                 numShares += TrxShareModel::instance().unsafe_get_trx_share_n(
-                    tl_d.CHECKINGACCOUNTID
+                    tl_d.m_trx_id
                 )->m_number;
             }
         }
@@ -206,7 +208,9 @@ double StockModel::RealGainLoss(const Data& stock_d, bool to_base_curr)
     const CurrencyData* currency = AccountModel::instance().get_id_currency_p(
         stock_d.m_account_id_n
     );
-    TrxLinkModel::DataA tl_a = TrxLinkModel::TranslinkList<StockModel>(stock_d.m_id);
+    TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+        StockModel::s_ref_type, stock_d.m_id
+    );
     double real_gain_loss = 0;
     double total_shares = 0;
     double total_initial_value = 0;
@@ -216,7 +220,7 @@ double StockModel::RealGainLoss(const Data& stock_d, bool to_base_curr)
     TrxModel::DataA trx_a;
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_d = TrxModel::instance().get_id_data_n(
-            tl_d.CHECKINGACCOUNTID
+            tl_d.m_trx_id
         );
         if (trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
             trx_a.push_back(*trx_d);
@@ -265,7 +269,9 @@ double StockModel::UnrealGainLoss(const Data& stock_d, bool to_base_curr)
         stock_d.m_account_id_n
     );
     double conv_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id);
-    TrxLinkModel::DataA tl_a = TrxLinkModel::TranslinkList<StockModel>(stock_d.m_id);
+    TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+        StockModel::s_ref_type, stock_d.m_id
+    );
     if (!tl_a.empty()) {
         double total_shares = 0;
         double total_initial_value = 0;
@@ -274,7 +280,7 @@ double StockModel::UnrealGainLoss(const Data& stock_d, bool to_base_curr)
         TrxModel::DataA trx_a;
         for (const auto& tl_d : tl_a) {
             const TrxData* trx_d = TrxModel::instance().get_id_data_n(
-                tl_d.CHECKINGACCOUNTID
+                tl_d.m_trx_id
             );
             if (trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
                 trx_a.push_back(*trx_d);
@@ -339,7 +345,9 @@ void StockModel::UpdateCurrentPrice(const wxString& symbol, const double price)
 
 void StockModel::UpdatePosition(StockData* stock_n)
 {
-    TrxLinkModel::DataA tl_a = TrxLinkModel::TranslinkList<StockModel>(stock_n->m_id);
+    TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+        StockModel::s_ref_type, stock_n->m_id
+    );
     double total_shares = 0;
     double total_initial_value = 0;
     double total_commission = 0;
@@ -347,7 +355,7 @@ void StockModel::UpdatePosition(StockData* stock_n)
     wxString earliest_date = wxDate::Today().FormatISODate();
     TrxModel::DataA trx_a;
     for (const auto& tl_d : tl_a) {
-        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.CHECKINGACCOUNTID);
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
         if (trx_n->m_id > -1 && trx_n->DELETEDTIME.IsEmpty() &&
             TrxModel::status_id(trx_n->STATUS) != TrxModel::STATUS_ID_VOID
         )

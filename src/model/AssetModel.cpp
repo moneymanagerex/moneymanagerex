@@ -108,7 +108,7 @@ const std::pair<double, double> AssetModel::get_data_value_date(const Data& asse
 
     TrxModel::DataA trx_a;
     for (const auto& tl_d : tl_a) {
-        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.CHECKINGACCOUNTID);
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
         if (trx_n &&
             trx_n->DELETEDTIME.IsEmpty() &&
             // FIXME: ignore Void transactions

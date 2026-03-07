@@ -162,7 +162,7 @@ void StockDialog::UpdateControls()
     wxBitmapButton* buttonAdd = static_cast<wxBitmapButton*>(FindWindow(wxID_ADD));
     buttonAdd->Enable(m_edit);
 
-    bool initial_shares = !TrxLinkModel::HasShares(m_stock_id);
+    bool initial_shares = (TrxLinkModel::instance().find_stock_id_c(m_stock_id) == 0);
     m_num_shares_ctrl->Enable(!m_edit || initial_shares);
     m_purchase_date_ctrl->Enable(!m_edit || initial_shares);
     m_purchase_price_ctrl->Enable(!m_edit || initial_shares);
@@ -187,7 +187,9 @@ void StockDialog::CreateControls()
 {
     bool initial_stock_transaction = true;
     if (m_stock_n) {
-        if (!TrxLinkModel::TranslinkList<StockModel>(m_stock_n->m_id).empty()) {
+        if (!TrxLinkModel::instance().find_ref_data_a(
+            StockModel::s_ref_type, m_stock_n->m_id
+        ).empty()) {
             initial_stock_transaction = false;
         }
     }

@@ -313,6 +313,9 @@ public:
     bool operator== (const RefTypeN& other) const {
         return id_n() == other.id_n();
     }
+    bool operator< (const RefTypeN& other) const {
+        return id_n() < other.id_n();
+    }
 };
 
 struct UpdateType

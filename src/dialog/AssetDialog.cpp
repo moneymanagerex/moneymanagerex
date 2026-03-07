@@ -66,17 +66,17 @@ AssetDialog::AssetDialog(
 
 AssetDialog::AssetDialog(
     wxWindow* parent,
-    const TrxLinkData* transfer_entry,
+    const TrxLinkData* tl_d,
     TrxData* checking_entry
 ) :
-    m_transfer_entry(transfer_entry),
+    m_transfer_entry(tl_d),
     m_checking_entry(checking_entry),
     m_dialog_heading(_t("Add Asset Transaction")),
     m_hidden_trans_entry(false)
 {
-    if (transfer_entry) {
+    if (tl_d) {
         m_dialog_heading = _t("Edit Asset Transaction");
-        m_asset_n = AssetModel::instance().unsafe_get_id_data_n(transfer_entry->LINKRECORDID);
+        m_asset_n = AssetModel::instance().unsafe_get_id_data_n(tl_d->m_ref_id);
     }
 
     Create(parent, wxID_ANY, m_dialog_heading);
@@ -138,12 +138,14 @@ void AssetDialog::dataToControls()
 
     w_notes->SetValue(m_asset_n->m_notes);
 
-    TrxLinkModel::DataA translink = TrxLinkModel::TranslinkList<AssetModel>(m_asset_n->m_id);
-    if (!translink.empty())
+    TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+        AssetModel::s_ref_type, m_asset_n->m_id
+    );
+    if (!tl_a.empty())
         w_value->Enable(false);
 
     // Set up the transaction if this is the first entry.
-    if (translink.empty())
+    if (tl_a.empty())
         w_transaction_panel->SetTransactionValue(bal.first);
 
     if (!m_hidden_trans_entry) {
@@ -446,13 +448,14 @@ void AssetDialog::OnOk(wxCommandEvent& /*event*/)
         );
     }
     if (w_transaction_panel->ValidCheckingAccountEntry()) {
-        int64 checking_id = w_transaction_panel->SaveChecking();
-        if (checking_id < 0)
+        int64 trx_id = w_transaction_panel->SaveChecking();
+        if (trx_id < 0)
             return;
 
         if (!m_transfer_entry) {
-            TrxLinkModel::SetAssetTranslink(
-                new_asset_id, checking_id, w_transaction_panel->CheckingType()
+            TrxLinkModel::instance().SetAssetTranslink(
+                trx_id, new_asset_id,
+                w_transaction_panel->CheckingType()
             );
         }
         TrxLinkModel::UpdateAssetValue(m_asset_n);

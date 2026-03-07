@@ -28,6 +28,7 @@
 #include "PrefModel.h"
 #include "TagModel.h"
 #include "TrxLinkModel.h"
+#include "TrxShareModel.h"
 #include "TrxModel.h"
 
 #include "dialog/AttachmentDialog.h"
@@ -351,8 +352,22 @@ bool TrxModel::purge_id(int64 trx_id)
     )) {
         TrxSplitModel::instance().purge_id(tp_d.m_id);
     }
-    if (is_foreign(*instance().get_id_data_n(trx_id)))
-        TrxLinkModel::RemoveTranslinkEntry(trx_id);
+
+    if (is_foreign(*instance().get_id_data_n(trx_id))) {
+        const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(trx_id);
+        if (tl_n) {
+            TrxShareModel::instance().remove_trx_share(tl_n->m_trx_id);
+            TrxLinkModel::instance().purge_id(tl_n->m_id);
+            if (tl_n->m_ref_type == AssetModel::s_ref_type) {
+                AssetData* asset_n = AssetModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
+                TrxLinkModel::UpdateAssetValue(asset_n);
+            }
+            else if (tl_n->m_ref_type == StockModel::s_ref_type) {
+                StockData* stock_n = StockModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
+                StockModel::UpdatePosition(stock_n);
+            }
+        }
+    }
 
     // remove all attachments
     mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, trx_id);
