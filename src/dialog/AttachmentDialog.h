@@ -49,8 +49,8 @@ private:
 
 private:
     int64 m_attachment_id = -1;
-    wxString m_RefType;
-    int64 m_RefId = -1;
+    RefTypeN m_ref_type;
+    int64 m_ref_id = -1;
     std::map<int, wxString> ColName_;
     wxString m_PathSep = wxFileName::GetPathSeparator();
 
@@ -68,8 +68,8 @@ public:
     AttachmentDialog() {}
     AttachmentDialog(
         wxWindow* parent,
-        const wxString& RefType,
-        int64 RefId,
+        RefTypeN ref_type,
+        int64 ref_id,
         const wxString& name = "AttachmentDialog"
     );
 

@@ -18,9 +18,9 @@
 
 #include "InfoData.h"
 
-InfoData::InfoData()
+InfoData::InfoData() :
+    m_id(-1)
 {
-    m_id = -1;
 }
 
 // Convert InfoData to InfoRow
@@ -38,9 +38,9 @@ InfoRow InfoData::to_row() const
 // Convert InfoRow to InfoData
 InfoData& InfoData::from_row(const InfoRow& row)
 {
-    m_id    = row.INFOID;    // int64
-    m_name  = row.INFONAME;  // wxString
-    m_value = row.INFOVALUE; // wxString
+    m_id    = row.INFOID;
+    m_name  = row.INFONAME;
+    m_value = row.INFOVALUE;
 
     return *this;
 }

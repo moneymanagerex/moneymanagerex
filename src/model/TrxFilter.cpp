@@ -129,7 +129,7 @@ wxString TrxFilter::getHTML()
     mmHTMLBuilder hb;
     m_trans.clear();
     const auto splits = TrxSplitModel::instance().get_all_id();
-    const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
+    const auto tags = TagLinkModel::instance().find_reftype_refid_data_m(TrxModel::s_ref_type);
     //TODO: find should be faster
     for (const auto& trx_d : TrxModel::instance().find_all()) {
         if (!mmIsRecordMatches(trx_d, splits)) continue;

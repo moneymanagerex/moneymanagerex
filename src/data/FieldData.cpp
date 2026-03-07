@@ -18,9 +18,9 @@
 
 #include "FieldData.h"
 
-FieldData::FieldData()
+FieldData::FieldData() :
+    m_id(-1)
 {
-    m_id = -1;
 }
 
 // Convert FieldData to FieldRow
@@ -40,11 +40,11 @@ FieldRow FieldData::to_row() const
 // Convert FieldRow to FieldData
 FieldData& FieldData::from_row(const FieldRow& row)
 {
-    m_id          = row.FIELDID;           // int64
-    m_ref_type    = RefTypeN(row.REFTYPE); // wxString
-    m_description = row.DESCRIPTION;       // wxString
-    m_type_n      = FieldTypeN(row.TYPE);  // wxString
-    m_properties  = row.PROPERTIES;        // wxString
+    m_id          = row.FIELDID;
+    m_ref_type    = RefTypeN(row.REFTYPE);
+    m_description = row.DESCRIPTION;
+    m_type_n      = FieldTypeN(row.TYPE);
+    m_properties  = row.PROPERTIES;
 
     return *this;
 }

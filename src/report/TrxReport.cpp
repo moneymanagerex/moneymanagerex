@@ -551,7 +551,9 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
 {
     trx_xa.clear();
     const auto splits = TrxSplitModel::instance().get_all_id();
-    const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
+    const auto tags = TagLinkModel::instance().find_reftype_refid_data_m(
+        TrxModel::s_ref_type
+    );
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
     for (const auto& trx_d : TrxModel::instance().find_all()) {
         TrxModel::Full_Data trx_xd(trx_d, splits, tags);
@@ -582,8 +584,11 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
                     trx_xd.m_notes.Append((trx_d.m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
 
                     wxString tagnames;
-                    for (const auto& [tag_name, _] : TagLinkModel::instance().get_ref(TrxSplitModel::refTypeName, tp_d.m_id))
+                    for (const auto& [tag_name, _] : TagLinkModel::instance().find_ref_tag_m(
+                        TrxSplitModel::s_ref_type, tp_d.m_id
+                    )) {
                         tagnames.Append(tag_name + " ");
+                    }
                     if (!tagnames.IsEmpty())
                         trx_xd.TAGNAMES.Append((trx_xd.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
 

@@ -487,7 +487,9 @@ void mmQIFExportDialog::mmExportQIF()
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
         const auto splits = TrxSplitModel::instance().get_all_id();
-        const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
+        const auto tags = TagLinkModel::instance().find_reftype_refid_data_m(
+            TrxModel::s_ref_type
+        );
 
         const wxString begin_date = fromDateCtrl_->GetValue().FormatISODate();
         const wxString end_date = toDateCtrl_->GetValue().FormatISODate();
@@ -551,14 +553,14 @@ void mmQIFExportDialog::mmExportQIF()
                 }
 
                 // store tags from the transaction
-                for (const auto& tag_d : full_tran.m_tags) {
-                    if (std::find(allTags4Export.begin(), allTags4Export.end(), tag_d.TAGID) == allTags4Export.end())
-                        allTags4Export.push_back(tag_d.TAGID);
+                for (const auto& gl_d : full_tran.m_tags) {
+                    if (std::find(allTags4Export.begin(), allTags4Export.end(), gl_d.m_tag_id) == allTags4Export.end())
+                        allTags4Export.push_back(gl_d.m_tag_id);
                 }
                 // store tags from the splits
                 for (const auto& tp_d : full_tran.m_splits) {
-                    for (const auto& gl_d : TagLinkModel::instance().get_ref(
-                        TrxSplitModel::refTypeName, tp_d.m_id
+                    for (const auto& gl_d : TagLinkModel::instance().find_ref_tag_m(
+                        TrxSplitModel::s_ref_type, tp_d.m_id
                     )) {
                         if (std::find(allTags4Export.begin(), allTags4Export.end(), gl_d.second) == allTags4Export.end())
                             allTags4Export.push_back(gl_d.second);

@@ -310,6 +310,9 @@ public:
     const wxString name_n() const {
         return has_value() ? RefTypeN::s_choice_a.get_name(m_id_n) : "";
     }
+    bool operator== (const RefTypeN& other) const {
+        return id_n() == other.id_n();
+    }
 };
 
 struct UpdateType

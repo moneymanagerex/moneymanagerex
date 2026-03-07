@@ -69,7 +69,7 @@ TrxLinkDialog::TrxLinkDialog(
                 TagLinkCol::REFTYPE(TrxSplitModel::refTypeName),
                 TagLinkCol::REFID(tp_d.m_id)
             )) {
-                tag_id_a.push_back(gl_d.TAGID);
+                tag_id_a.push_back(gl_d.m_tag_id);
             }
             m_local_splits.push_back(
                 {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}

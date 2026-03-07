@@ -641,42 +641,43 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 new_trx_d.TRANSDATE         = payment_date.FormatISOCombined();
                 new_trx_d.m_color           = q1.m_color;
                 TrxModel::instance().save_trx_n(new_trx_d);
-                int64 transID = new_trx_d.id();
+                int64 new_trx_id = new_trx_d.id();
 
                 TrxSplitModel::DataA tp_a;
                 std::vector<wxArrayInt64> splitTags;
                 for (const auto& qp_d : SchedModel::split(q1)) {
                     TrxSplitData tp_d = TrxSplitData();
-                    tp_d.m_trx_id      = transID;
+                    tp_d.m_trx_id      = new_trx_id;
                     tp_d.m_category_id = qp_d.m_category_id;
                     tp_d.m_amount      = qp_d.m_amount;
                     tp_d.m_notes       = qp_d.m_notes;
                     tp_a.push_back(tp_d);
 
                     wxArrayInt64 tags;
-                    for (const auto& tag_d : TagLinkModel::instance().find(
+                    for (const auto& gl_d : TagLinkModel::instance().find(
                         TagLinkCol::REFTYPE(SchedSplitModel::refTypeName),
                         TagLinkCol::REFID(qp_d.m_id)
                     )) {
-                        tags.push_back(tag_d.TAGID);
+                        tags.push_back(gl_d.m_tag_id);
                     }
                     splitTags.push_back(tags);
                 }
                 TrxSplitModel::instance().save_data_a(tp_a);
 
                 // Save split tags
-                const wxString& splitRefType = TrxSplitModel::refTypeName;
-
                 for (size_t i = 0; i < tp_a.size(); i++) {
-                    TagLinkModel::DataA splitTaglinks;
+                    TagLinkModel::DataA new_gl_a;
                     for (const auto& tagId : splitTags.at(i)) {
                         TagLinkData new_gl_d = TagLinkData();
-                        new_gl_d.REFTYPE = splitRefType;
-                        new_gl_d.REFID   = tp_a[i].m_id;
-                        new_gl_d.TAGID   = tagId;
-                        splitTaglinks.push_back(new_gl_d);
+                        new_gl_d.m_tag_id   = tagId;
+                        new_gl_d.m_ref_type = TrxSplitModel::s_ref_type;
+                        new_gl_d.m_ref_id   = tp_a[i].m_id;
+                        new_gl_a.push_back(new_gl_d);
                     }
-                    TagLinkModel::instance().update(splitTaglinks, splitRefType, tp_a.at(i).m_id);
+                    TagLinkModel::instance().update(
+                        TrxSplitModel::s_ref_type, tp_a.at(i).m_id,
+                        new_gl_a
+                    );
                 }
 
                 // Copy the custom fields to the newly created transaction
@@ -688,26 +689,28 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     FieldValueData new_fv_d = FieldValueData();
                     new_fv_d.m_field_id = fv_d.m_field_id;
                     new_fv_d.m_ref_type = RefTypeN(RefTypeN::e_trx);
-                    new_fv_d.m_ref_id   = transID;
+                    new_fv_d.m_ref_id   = new_trx_id;
                     new_fv_d.m_content = fv_d.m_content;
                     FieldValueModel::instance().add_data_n(new_fv_d);
                 }
                 FieldValueModel::instance().db_release_savepoint();
 
                 // Save base transaction tags
-                TagLinkModel::DataA taglinks;
-                const wxString& txnRefType = TrxModel::refTypeName;
+                TagLinkModel::DataA new_gl_a;
                 for (const auto& gl_d : TagLinkModel::instance().find(
                     TagLinkCol::REFTYPE(SchedModel::refTypeName),
                     TagLinkCol::REFID(q1.m_id)
                 )) {
                     TagLinkData new_gl_d = TagLinkData();
-                    new_gl_d.REFTYPE = txnRefType;
-                    new_gl_d.REFID   = transID;
-                    new_gl_d.TAGID   = gl_d.TAGID;
-                    taglinks.push_back(new_gl_d);
+                    new_gl_d.m_tag_id   = gl_d.m_tag_id;
+                    new_gl_d.m_ref_type = TrxModel::s_ref_type;
+                    new_gl_d.m_ref_id   = new_trx_id;
+                    new_gl_a.push_back(new_gl_d);
                 }
-                TagLinkModel::instance().update(taglinks, txnRefType, transID);
+                TagLinkModel::instance().update(
+                    TrxModel::s_ref_type, new_trx_id,
+                    new_gl_a
+                );
             }
             SchedModel::instance().completeBDInSeries(q1.m_id);
         }

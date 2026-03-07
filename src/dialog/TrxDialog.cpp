@@ -128,7 +128,7 @@ TrxDialog::TrxDialog(
                 TagLinkCol::REFTYPE(splitRefType),
                 TagLinkCol::REFID(tp_d.m_id))
             )
-                tag_id_a.push_back(gl_d.TAGID);
+                tag_id_a.push_back(gl_d.m_tag_id);
             m_local_splits.push_back(
                 {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
             );
@@ -409,17 +409,19 @@ void TrxDialog::dataToControls()
 
     // Tags
     if (!skip_tag_init_) {
-        wxArrayInt64 tagIds;
-        for (const auto& tag : GL.find(
-            TagLinkCol::REFTYPE((m_journal_data.m_repeat_num == 0) ?
-                TrxModel::refTypeName :
-                SchedModel::refTypeName),
-            TagLinkCol::REFID((m_journal_data.m_repeat_num == 0) ?
-                m_journal_data.m_id :
-                m_journal_data.m_bdid))
-        )
-            tagIds.push_back(tag.TAGID);
-        tagTextCtrl_->SetTags(tagIds);
+        wxArrayInt64 tag_id_a;
+        for (const auto& gl_d : GL.find(
+            TagLinkCol::REFTYPE((m_journal_data.m_repeat_num == 0)
+                ? TrxModel::s_ref_type.name_n()
+                : SchedModel::s_ref_type.name_n()
+            ),
+            TagLinkCol::REFID((m_journal_data.m_repeat_num == 0)
+                ? m_journal_data.m_id
+                : m_journal_data.m_bdid
+            )
+        ))
+            tag_id_a.push_back(gl_d.m_tag_id);
+        tagTextCtrl_->SetTags(tag_id_a);
         skip_tag_init_ = true;
     }
 
@@ -1286,18 +1288,19 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     TrxSplitModel::instance().update(tp_a, m_journal_data.m_id);
 
     // Save split tags
-    const wxString& splitRefType = TrxSplitModel::refTypeName;
-
     for (unsigned int i = 0; i < m_local_splits.size(); i++) {
-        TagLinkModel::DataA splitTaglinks;
+        TagLinkModel::DataA new_tp_gl_a;
         for (const auto& tag_id : m_local_splits.at(i).TAGS) {
-            TagLinkData gl_d = TagLinkData();
-            gl_d.REFTYPE = splitRefType;
-            gl_d.REFID   = tp_a.at(i).m_id;
-            gl_d.TAGID   = tag_id;
-            splitTaglinks.push_back(gl_d);
+            TagLinkData new_gl_d = TagLinkData();
+            new_gl_d.m_tag_id   = tag_id;
+            new_gl_d.m_ref_type = TrxSplitModel::s_ref_type;
+            new_gl_d.m_ref_id   = tp_a.at(i).m_id;
+            new_tp_gl_a.push_back(new_gl_d);
         }
-        TagLinkModel::instance().update(splitTaglinks, splitRefType, tp_a.at(i).m_id);
+        TagLinkModel::instance().update(
+            TrxSplitModel::s_ref_type, tp_a.at(i).m_id,
+            new_tp_gl_a
+        );
     }
     if (m_mode != MODE_EDIT) {
         // FIXME
@@ -1310,15 +1313,18 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     m_custom_fields->SaveCustomValues(TrxModel::s_ref_type, m_journal_data.m_id);
 
     // Save base transaction tags
-    TagLinkModel::DataA taglinks;
+    TagLinkModel::DataA new_gl_a;
     for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
-        TagLinkData gl_d = TagLinkData();
-        gl_d.REFTYPE = TrxModel::refTypeName;
-        gl_d.REFID   = m_journal_data.m_id;
-        gl_d.TAGID   = tag_id;
-        taglinks.push_back(gl_d);
+        TagLinkData new_gl_d = TagLinkData();
+        new_gl_d.m_tag_id   = tag_id;
+        new_gl_d.m_ref_type = TrxModel::s_ref_type;
+        new_gl_d.m_ref_id   = m_journal_data.m_id;
+        new_gl_a.push_back(new_gl_d);
     }
-    TagLinkModel::instance().update(taglinks, TrxModel::refTypeName, m_journal_data.m_id);
+    TagLinkModel::instance().update(
+        TrxModel::s_ref_type.name_n(), m_journal_data.m_id,
+        new_gl_a
+    );
 
     //TrxModel::Full_Data trx(trx_d);
     //wxLogDebug("%s", trx.to_json());

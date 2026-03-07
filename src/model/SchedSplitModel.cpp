@@ -61,12 +61,10 @@ double SchedSplitModel::get_total(const DataA& qp_a)
     return total;
 }
 
-bool SchedSplitModel::purge_id(int64 id)
+bool SchedSplitModel::purge_id(int64 qp_id)
 {
-    // remove TagLinkData owned by id
-    TagLinkModel::instance().DeleteAllTags(SchedSplitModel::refTypeName, id);
-
-    return unsafe_remove_id(id);
+    TagLinkModel::instance().purge_ref(s_ref_type, qp_id);
+    return unsafe_remove_id(qp_id);
 }
 
 std::map<int64, SchedSplitModel::DataA> SchedSplitModel::get_all_id()

@@ -18,10 +18,10 @@
 
 #include "TagData.h"
 
-TagData::TagData()
+TagData::TagData() :
+    m_id(-1),
+    m_active(true)
 {
-    m_id     = -1;
-    m_active = true;
 }
 
 // Convert TagData to TagRow
@@ -39,9 +39,9 @@ TagRow TagData::to_row() const
 // Convert TagRow to TagData
 TagData& TagData::from_row(const TagRow& row)
 {
-    m_id     = row.TAGID;         // int64
-    m_name   = row.TAGNAME;       // wxString
-    m_active = (row.ACTIVE != 0); // int64
+    m_id     = row.TAGID;
+    m_name   = row.TAGNAME;
+    m_active = (row.ACTIVE != 0);
 
     return *this;
 }

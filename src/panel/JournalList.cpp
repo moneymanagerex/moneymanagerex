@@ -856,8 +856,11 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             if (!m_journal_xa[row].has_split() && m_journal_xa[row].has_tags()) {
                 copyText_ = menuItemText = m_journal_xa[row].TAGNAMES;
                 // build the tag filter json
-                for (const auto& tag : m_journal_xa[row].m_tags) {
-                    rightClickFilter_ += (rightClickFilter_.IsEmpty() ? "{\n\"TAGS\": [\n" : ",\n") + wxString::Format("%lld", tag.TAGID);
+                for (const auto& gl_d : m_journal_xa[row].m_tags) {
+                    rightClickFilter_ += (rightClickFilter_.IsEmpty()
+                        ? "{\n\"TAGS\": [\n"
+                        : ",\n"
+                    ) + wxString::Format("%lld", gl_d.m_tag_id);
                 }
                 rightClickFilter_ += "\n]\n}";
             }
@@ -1716,7 +1719,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     )) {
         TagLinkData new_gl_d;
         new_gl_d.clone_from(tl_d);
-        new_gl_d.REFID = new_trx_id;
+        new_gl_d.m_ref_id = new_trx_id;
         new_gl_a.push_back(new_gl_d);
     }
 
@@ -1735,7 +1738,7 @@ int64 JournalList::onPaste(const TrxData* tran)
         )) {
             TagLinkData new_gl_d;
             new_gl_d.clone_from(tl_d);
-            new_gl_d.REFID = new_tp_d.id();
+            new_gl_d.m_ref_id = new_tp_d.id();
             new_gl_a.push_back(new_gl_d);
         }
     }
@@ -1933,13 +1936,14 @@ const wxString JournalList::getItem(long item, int col_id) const
     case LIST_ID_TAGS:
         value = journal_xd.TAGNAMES;
         if (!journal_xd.displayID.Contains(".")) {
-            const wxString splitRefType = TrxSplitModel::refTypeName;
             for (const auto& tp_d : journal_xd.m_splits) {
                 wxString tagnames;
-                std::map<wxString, int64> tags = TagLinkModel::instance().get_ref(splitRefType, tp_d.m_id);
-                std::map<wxString, int64, caseInsensitiveComparator> sortedTags(tags.begin(), tags.end());
-                for (const auto& tag : sortedTags)
-                    tagnames.Append(tag.first + " ");
+                std::map<wxString, int64> tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
+                    TrxSplitModel::s_ref_type, tp_d.m_id
+                );
+                std::map<wxString, int64, caseInsensitiveComparator> sortedTags(tag_name_id_m.begin(), tag_name_id_m.end());
+                for (const auto& tag_name_id : sortedTags)
+                    tagnames.Append(tag_name_id.first + " ");
                 if (!tagnames.IsEmpty())
                     value.Append((value.IsEmpty() ? "" : ", ") + tagnames.Trim());
             }

@@ -53,17 +53,17 @@ StockRow StockData::to_row() const
 // Convert StockRow to StockData
 StockData& StockData::from_row(const StockRow& row)
 {
-    m_id             = row.STOCKID;              // int64
-    m_account_id_n   = row.HELDAT;               // int64
-    m_name           = row.STOCKNAME;            // wxString
-    m_symbol         = row.SYMBOL;               // wxString
-    m_num_shares     = row.NUMSHARES;            // double
-    m_purchase_date  = mmDate(row.PURCHASEDATE); // wxString
-    m_purchase_price = row.PURCHASEPRICE;        // double
-    m_current_price  = row.CURRENTPRICE;         // double
-    m_purchase_value = row.VALUE;                // double
-    m_commission     = row.COMMISSION;           // double
-    m_notes          = row.NOTES;                // wxString
+    m_id             = row.STOCKID;
+    m_account_id_n   = row.HELDAT;
+    m_name           = row.STOCKNAME;
+    m_symbol         = row.SYMBOL;
+    m_num_shares     = row.NUMSHARES;
+    m_purchase_date  = mmDate(row.PURCHASEDATE);
+    m_purchase_price = row.PURCHASEPRICE;
+    m_current_price  = row.CURRENTPRICE;
+    m_purchase_value = row.VALUE;
+    m_commission     = row.COMMISSION;
+    m_notes          = row.NOTES;
 
     return *this;
 }

@@ -169,8 +169,8 @@ void MergeTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     TagLinkModel::DataA gl_a = TagLinkModel::instance().find(
         TagLinkCol::TAGID(sourceTagID_)
     );
-    for (auto &gl_d : gl_a) {
-        gl_d.TAGID = destTagID_;
+    for (auto& gl_d : gl_a) {
+        gl_d.m_tag_id = destTagID_;
     }
     TagLinkModel::instance().save_data_a(gl_a);
     m_changed_records += gl_a.size();

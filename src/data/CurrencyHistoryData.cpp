@@ -44,11 +44,11 @@ CurrencyHistoryRow CurrencyHistoryData::to_row() const
 // Convert CurrencyHistoryRow to CurrencyHistoryData
 CurrencyHistoryData& CurrencyHistoryData::from_row(const CurrencyHistoryRow& row)
 {
-    m_id             = row.CURRHISTID;              // int64
-    m_currency_id    = row.CURRENCYID;              // int64
-    m_date           = mmDate(row.CURRDATE);        // wxString
-    m_base_conv_rate = row.CURRVALUE;               // double
-    m_update_type    = UpdateType(row.CURRUPDTYPE); // int64
+    m_id             = row.CURRHISTID;
+    m_currency_id    = row.CURRENCYID;
+    m_date           = mmDate(row.CURRDATE);
+    m_base_conv_rate = row.CURRVALUE;
+    m_update_type    = UpdateType(row.CURRUPDTYPE);
 
     return *this;
 }

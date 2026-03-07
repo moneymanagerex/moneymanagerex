@@ -72,13 +72,13 @@ int TagModel::is_used(int64 id)
 
     for (const auto& gl_d : gl_a) {
         // FIXME: do not exclude deleted transactions
-        if (gl_d.REFTYPE == TrxModel::refTypeName) {
-            const TrxData* trx_n = TrxModel::instance().get_id_data_n(gl_d.REFID);
+        if (gl_d.m_ref_type == TrxModel::s_ref_type) {
+            const TrxData* trx_n = TrxModel::instance().get_id_data_n(gl_d.m_ref_id);
             if (trx_n && trx_n->DELETEDTIME.IsEmpty())
                 return 1;
         }
-        else if (gl_d.REFTYPE == TrxSplitModel::refTypeName) {
-            const TrxSplitData* tp_n = TrxSplitModel::instance().get_id_data_n(gl_d.REFID);
+        else if (gl_d.m_ref_type == TrxSplitModel::s_ref_type) {
+            const TrxSplitData* tp_n = TrxSplitModel::instance().get_id_data_n(gl_d.m_ref_id);
             if (tp_n) {
                 const TrxData* trx_n = TrxModel::instance().get_id_data_n(tp_n->m_trx_id);
                 if (trx_n && trx_n->DELETEDTIME.IsEmpty())

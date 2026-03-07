@@ -1458,9 +1458,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     m_reverce_sign = m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal;
     // A place to store all rejected rows to display after import
     wxString rejectedRows;
-    wxString reftype = TrxModel::refTypeName;
-    for (long nLines = firstRow; nLines < lastRow; nLines++)
-    {
+    for (long nLines = firstRow; nLines < lastRow; nLines++) {
         const wxString& progressMsg = wxString::Format(_t("Transactions imported to account %s: %ld")
             , "'" + acctName + "'", nImportedLines);
         if (!progressDlg.Update(nLines - firstRow, progressMsg))
@@ -1559,11 +1557,11 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
         // save tags
         if (!holder.tagIDs.empty()) {
-            for (const auto& tag : holder.tagIDs) {
+            for (const auto& tag_id : holder.tagIDs) {
                 TagLinkData new_gl_d = TagLinkData();
-                new_gl_d.REFTYPE = reftype;
-                new_gl_d.REFID   = new_trx_d.m_id;
-                new_gl_d.TAGID   = tag;
+                new_gl_d.m_tag_id   = tag_id;
+                new_gl_d.m_ref_type = TrxModel::s_ref_type;
+                new_gl_d.m_ref_id   = new_trx_d.m_id;
                 TagLinkModel::instance().add_data_n(new_gl_d);
             }
         }
@@ -1693,7 +1691,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         );
 
     const auto split = TrxSplitModel::instance().get_all_id();
-    const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
+    const auto tags = TagLinkModel::instance().find_reftype_refid_data_m(
+        TrxModel::s_ref_type
+    );
     int64 fromAccountID = from_account->m_id;
 
     long numRecords = 0;
@@ -1796,7 +1796,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                         case UNIV_CSV_TAGS:
                         {
                             wxString splitTags;
-                            for (const auto& tag : TagLinkModel::instance().get_ref(TrxSplitModel::refTypeName, tp_d.m_id))
+                            for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
+                                TrxSplitModel::s_ref_type, tp_d.m_id
+                            ))
                                 splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                             entry = tran.TAGNAMES;
                             if (!splitTags.IsEmpty())
@@ -2093,7 +2095,9 @@ void mmUnivCSVDialog::update_preview()
 
         if (from_account) {
             const auto split = TrxSplitModel::instance().get_all_id();
-            const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
+            const auto tags = TagLinkModel::instance().find_reftype_refid_data_m(
+                TrxModel::s_ref_type
+            );
             int64 fromAccountID = from_account->m_id;
             size_t count = 0;
             int row = 0;
@@ -2193,8 +2197,9 @@ void mmUnivCSVDialog::update_preview()
                                 case UNIV_CSV_TAGS:
                                 {
                                     wxString splitTags;
-                                    for (const auto& tag :
-                                         TagLinkModel::instance().get_ref(TrxSplitModel::refTypeName, tp_d.m_id))
+                                    for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
+                                            TrxSplitModel::s_ref_type, tp_d.m_id
+                                    ))
                                         splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                                     text << inQuotes(tran.TAGNAMES + (tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags, delimit);
                                     break;

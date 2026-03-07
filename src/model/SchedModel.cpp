@@ -266,19 +266,19 @@ SchedModel::~SchedModel()
 
 // Remove the Data record instance from memory and the database
 // including any splits associated with the Data Record.
-bool SchedModel::purge_id(int64 id)
+bool SchedModel::purge_id(int64 sched_id)
 {
-    // purge SchedSplitData owned by id
-    for (auto& qp_d : SchedModel::split(*get_id_data_n(id)))
+    // purge SchedSplitData owned by sched_id
+    for (auto& qp_d : SchedModel::split(*get_id_data_n(sched_id)))
         SchedSplitModel::instance().purge_id(qp_d.m_id);
 
-    // remove TagLinkData owned by id
-    TagLinkModel::instance().DeleteAllTags(this->refTypeName, id);
+    // remove TagLinkData owned by sched_id
+    TagLinkModel::instance().purge_ref(s_ref_type, sched_id);
 
-    // FIXME: remove FieldValueData owned by id
-    // FIXME: remove AttachmentData owned by id
+    // FIXME: remove FieldValueData owned by sched_id
+    // FIXME: remove AttachmentData owned by sched_id
 
-    return unsafe_remove_id(id);
+    return unsafe_remove_id(sched_id);
 }
 
 bool SchedModel::AllowTransaction(const Data& r)
@@ -372,7 +372,7 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
     if (!m_tags.empty()) {
         wxArrayString tagnames;
         for (const auto& gl_d : m_tags)
-            tagnames.Add(TagModel::instance().get_id_data_n(gl_d.TAGID)->m_name);
+            tagnames.Add(TagModel::instance().get_id_data_n(gl_d.m_tag_id)->m_name);
         // Sort TAGNAMES
         tagnames.Sort();
         for (const auto& name : tagnames)
@@ -385,8 +385,11 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
                 + CategoryModel::full_name(qp_d.m_category_id);
 
             wxString splitTags;
-            for (const auto& tag : TagLinkModel::instance().get_ref(SchedSplitModel::refTypeName, qp_d.m_id))
-                splitTags.Append(tag.first + " ");
+            for (const auto& tag_name_id : TagLinkModel::instance().find_ref_tag_m(
+                SchedSplitModel::s_ref_type, qp_d.m_id
+            )) {
+                splitTags.Append(tag_name_id.first + " ");
+            }
             if (!splitTags.IsEmpty())
                 TAGNAMES.Append((TAGNAMES.IsEmpty() ? "" : ", ") + splitTags.Trim());
         }

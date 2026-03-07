@@ -308,16 +308,20 @@ void TagManager::OnDelete(wxCommandEvent& WXUNUSED(event))
                 , _t("Confirm Tag Deletion"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
         
         if (tag_used == 0 || (tag_used == -1 && msgDlg.ShowModal() == wxID_YES)) {
-            TagLinkModel::DataA taglinks = TagLinkModel::instance().find(
+            TagLinkModel::DataA gl_a = TagLinkModel::instance().find(
                 TagLinkCol::TAGID(tag_d->m_id)
             );
-            for (const auto& link : taglinks)
+            for (const auto& gl_d : gl_a)
                 // Taglinks for deleted transactions are either TRANSACTION or TRANSACTIONSPLIT type.
                 // Remove the transactions which will delete all associated tags.
-                if (link.REFTYPE == TrxModel::refTypeName)
-                    TrxModel::instance().purge_id(link.REFID);
-                else if (link.REFTYPE == TrxSplitModel::refTypeName)
-                    TrxModel::instance().purge_id(TrxSplitModel::instance().get_id_data_n(link.REFID)->m_trx_id);
+                if (gl_d.m_ref_type == TrxModel::s_ref_type)
+                    TrxModel::instance().purge_id(gl_d.m_ref_id);
+                else if (gl_d.m_ref_type == TrxSplitModel::s_ref_type) {
+                    const TrxSplitData* tp_n = TrxSplitModel::instance().get_id_data_n(
+                        gl_d.m_ref_id
+                    );
+                    TrxModel::instance().purge_id(tp_n->m_trx_id);
+                }
             TagModel::instance().purge_id(tag_d->m_id);
             tagList_.Remove(selection);
             int index = selectedTags_.Index(selection);

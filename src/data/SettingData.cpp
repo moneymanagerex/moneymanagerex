@@ -18,9 +18,9 @@
 
 #include "SettingData.h"
 
-SettingData::SettingData()
+SettingData::SettingData() :
+    m_id(-1)
 {
-    m_id = -1;
 }
 
 // Convert SettingData to SettingRow
@@ -38,9 +38,9 @@ SettingRow SettingData::to_row() const
 // Convert SettingRow to SettingData
 SettingData& SettingData::from_row(const SettingRow& row)
 {
-    m_id    = row.SETTINGID;    // int64
-    m_name  = row.SETTINGNAME;  // wxString
-    m_value = row.SETTINGVALUE; // wxString
+    m_id    = row.SETTINGID;
+    m_name  = row.SETTINGNAME;
+    m_value = row.SETTINGVALUE;
 
     return *this;
 }

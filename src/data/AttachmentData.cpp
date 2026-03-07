@@ -42,11 +42,11 @@ AttachmentRow AttachmentData::to_row() const
 // Convert AttachmentRow to AttachmentData
 AttachmentData& AttachmentData::from_row(const AttachmentRow& row)
 {
-    m_id          = row.ATTACHMENTID;      // int64
-    m_ref_type_n  = RefTypeN(row.REFTYPE); // wxString
-    m_ref_id      = row.REFID;             // int64
-    m_description = row.DESCRIPTION;       // wxString
-    m_filename    = row.FILENAME;          // wxString
+    m_id          = row.ATTACHMENTID;
+    m_ref_type_n  = RefTypeN(row.REFTYPE);
+    m_ref_id      = row.REFID;
+    m_description = row.DESCRIPTION;
+    m_filename    = row.FILENAME;
 
     return *this;
 }

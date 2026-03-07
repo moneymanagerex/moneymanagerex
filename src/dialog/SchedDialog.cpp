@@ -139,24 +139,23 @@ SchedDialog::SchedDialog(
         m_sched_xd.m_followup_id      = sched_n->m_followup_id;
         m_sched_xd.m_color            = sched_n->m_color;
 
-        wxArrayInt64 billtags;
-        for (const auto& tag : TagLinkModel::instance().find(
+        wxArrayInt64 tag_id_a;
+        for (const auto& gl_d : TagLinkModel::instance().find(
             TagLinkCol::REFTYPE(SchedModel::refTypeName),
             TagLinkCol::REFID(sched_n->m_id)
         ))
-            billtags.push_back(tag.TAGID);
-        m_sched_xd.TAGS = billtags;
-        //
-        const wxString& splitRefType = SchedSplitModel::refTypeName;
+            tag_id_a.push_back(gl_d.m_tag_id);
+        m_sched_xd.TAGS = tag_id_a;
+
         for (const auto& qp_d : SchedModel::split(*sched_n)) {
-            wxArrayInt64 splittags;
-            for (const auto& tag : TagLinkModel::instance().find(
-                TagLinkCol::REFTYPE(splitRefType),
+            wxArrayInt64 split_tag_id_a;
+            for (const auto& gl_d : TagLinkModel::instance().find(
+                TagLinkCol::REFTYPE(SchedSplitModel::s_ref_type.name_n()),
                 TagLinkCol::REFID(qp_d.m_id)
             ))
-                splittags.push_back(tag.TAGID);
+                split_tag_id_a.push_back(gl_d.m_tag_id);
             m_sched_xd.local_splits.push_back(
-                { qp_d.m_category_id, qp_d.m_amount, splittags, qp_d.m_notes }
+                { qp_d.m_category_id, qp_d.m_amount, split_tag_id_a, qp_d.m_notes }
             );
         }
 
@@ -347,7 +346,9 @@ void SchedDialog::SetDialogHeader(const wxString& header)
 void SchedDialog::SetDialogParameters(int64 trx_id)
 {
     const auto split = TrxSplitModel::instance().get_all_id();
-    const auto tags = TagLinkModel::instance().get_all_id(SchedModel::refTypeName);
+    const auto tags = TagLinkModel::instance().find_reftype_refid_data_m(
+        SchedModel::s_ref_type
+    );
     //const auto trx = TrxModel::instance().find(TrxCol::TRANSID(trx_id)).at(0);
     const TrxData* trx_n = TrxModel::instance().get_id_data_n(trx_id);
     TrxModel::Full_Data trx_xd(*trx_n, split, tags);
@@ -1075,28 +1076,30 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         SchedModel::instance().save_data_n(sched_d);
         m_trans_id = sched_d.id();
 
-        SchedSplitModel::DataA qp_a;
+        SchedSplitModel::DataA new_qp_a;
         for (const auto& split_d : m_sched_xd.local_splits) {
-            SchedSplitData qp_d = SchedSplitData();
-            qp_d.m_category_id = split_d.CATEGID;
-            qp_d.m_amount      = split_d.SPLITTRANSAMOUNT;
-            qp_d.m_notes       = split_d.NOTES;
-            qp_a.push_back(qp_d);
+            SchedSplitData new_qp_d = SchedSplitData();
+            new_qp_d.m_category_id = split_d.CATEGID;
+            new_qp_d.m_amount      = split_d.SPLITTRANSAMOUNT;
+            new_qp_d.m_notes       = split_d.NOTES;
+            new_qp_a.push_back(new_qp_d);
         }
-        SchedSplitModel::instance().update(qp_a, m_trans_id);
+        SchedSplitModel::instance().update(new_qp_a, m_trans_id);
 
         // Save split tags
-        const wxString& splitRefType = SchedSplitModel::refTypeName;
         for (size_t i = 0; i < m_sched_xd.local_splits.size(); i++) {
-            TagLinkModel::DataA splitTaglinks;
+            TagLinkModel::DataA new_qp_gl_a;
             for (const auto& tag_id : m_sched_xd.local_splits.at(i).TAGS) {
-                TagLinkData gl_d = TagLinkData();
-                gl_d.REFTYPE = splitRefType;
-                gl_d.REFID   = qp_a.at(i).m_id;
-                gl_d.TAGID   = tag_id;
-                splitTaglinks.push_back(gl_d);
+                TagLinkData new_gl_d = TagLinkData();
+                new_gl_d.m_tag_id   = tag_id;
+                new_gl_d.m_ref_type = SchedSplitModel::s_ref_type;
+                new_gl_d.m_ref_id   = new_qp_a.at(i).m_id;
+                new_qp_gl_a.push_back(new_gl_d);
             }
-            TagLinkModel::instance().update(splitTaglinks, splitRefType, qp_a.at(i).m_id);
+            TagLinkModel::instance().update(
+                SchedSplitModel::s_ref_type, new_qp_a.at(i).m_id,
+                new_qp_gl_a
+            );
         }
 
         // FIXME: ref_id 0 does not exists in database
@@ -1106,15 +1109,18 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         );
 
         // Save base transaction tags
-        TagLinkModel::DataA taglinks;
+        TagLinkModel::DataA new_gl_a;
         for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
-            TagLinkData gl_d = TagLinkData();
-            gl_d.REFTYPE = SchedModel::refTypeName;
-            gl_d.REFID   = m_trans_id;
-            gl_d.TAGID   = tag_id;
-            taglinks.push_back(gl_d);
+            TagLinkData new_gl_d = TagLinkData();
+            new_gl_d.m_tag_id   = tag_id;
+            new_gl_d.m_ref_type = SchedModel::s_ref_type;
+            new_gl_d.m_ref_id   = m_trans_id;
+            new_gl_a.push_back(new_gl_d);
         }
-        TagLinkModel::instance().update(taglinks, SchedModel::refTypeName, m_trans_id);
+        TagLinkModel::instance().update(
+            SchedModel::s_ref_type, m_trans_id,
+            new_gl_a
+        );
 
         //Custom Data
         m_custom_fields->SaveCustomValues(SchedModel::s_ref_type, m_trans_id);
@@ -1149,50 +1155,56 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             new_trx_d.m_followup_id     = m_sched_xd.m_followup_id;
             new_trx_d.m_color           = m_sched_xd.m_color;
             TrxModel::instance().save_trx_n(new_trx_d);
-            int64 trx_id = new_trx_d.id();
+            int64 new_trx_id = new_trx_d.id();
 
-            TrxSplitModel::DataA tp_a;
+            TrxSplitModel::DataA new_tp_a;
             for (auto& split_d : m_sched_xd.local_splits) {
-                TrxSplitData tp_d = TrxSplitData();
-                tp_d.m_trx_id      = trx_id;
-                tp_d.m_category_id = split_d.CATEGID;
-                tp_d.m_amount      = split_d.SPLITTRANSAMOUNT;
-                tp_d.m_notes       = split_d.NOTES;
-                tp_a.push_back(tp_d);
+                TrxSplitData new_tp_d = TrxSplitData();
+                new_tp_d.m_trx_id      = new_trx_id;
+                new_tp_d.m_category_id = split_d.CATEGID;
+                new_tp_d.m_amount      = split_d.SPLITTRANSAMOUNT;
+                new_tp_d.m_notes       = split_d.NOTES;
+                new_tp_a.push_back(new_tp_d);
             }
-            TrxSplitModel::instance().update(tp_a, trx_id);
+            TrxSplitModel::instance().update(new_tp_a, new_trx_id);
 
             // Save split tags
             for (size_t i = 0; i < m_sched_xd.local_splits.size(); i++) {
-                TagLinkModel::DataA gl_a;
+                TagLinkModel::DataA new_tp_gl_a;
                 for (const auto& tag_id : m_sched_xd.local_splits.at(i).TAGS) {
-                    TagLinkData gl_d = TagLinkData();
-                    gl_d.REFTYPE = TrxSplitModel::refTypeName;
-                    gl_d.REFID   = tp_a.at(i).m_id;
-                    gl_d.TAGID   = tag_id;
-                    gl_a.push_back(gl_d);
+                    TagLinkData new_gl_d = TagLinkData();
+                    new_gl_d.m_tag_id   = tag_id;
+                    new_gl_d.m_ref_type = TrxSplitModel::s_ref_type;
+                    new_gl_d.m_ref_id   = new_tp_a.at(i).m_id;
+                    new_tp_gl_a.push_back(new_gl_d);
                 }
-                TagLinkModel::instance().update(gl_a, TrxSplitModel::refTypeName, tp_a.at(i).m_id);
+                TagLinkModel::instance().update(
+                    TrxSplitModel::s_ref_type, new_tp_a.at(i).m_id,
+                    new_tp_gl_a
+                );
             }
 
             // Custom Data
-            m_custom_fields->SaveCustomValues(TrxModel::s_ref_type, trx_id);
+            m_custom_fields->SaveCustomValues(TrxModel::s_ref_type, new_trx_id);
 
             mmAttachmentManage::RelocateAllAttachments(
                 SchedModel::s_ref_type, m_sched_xd.m_id,
-                TrxModel::s_ref_type, trx_id
+                TrxModel::s_ref_type, new_trx_id
             );
 
             // Save base transaction tags
-            TagLinkModel::DataA gl_a;
+            TagLinkModel::DataA new_gl_a;
             for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
-                TagLinkData gl_d = TagLinkData();
-                gl_d.REFTYPE = TrxModel::refTypeName;
-                gl_d.REFID   = trx_id;
-                gl_d.TAGID   = tag_id;
-                gl_a.push_back(gl_d);
+                TagLinkData new_gl_d = TagLinkData();
+                new_gl_d.m_tag_id   = tag_id;
+                new_gl_d.m_ref_type = TrxModel::s_ref_type;
+                new_gl_d.m_ref_id   = new_trx_id;
+                new_gl_a.push_back(new_gl_d);
             }
-            TagLinkModel::instance().update(gl_a, TrxModel::refTypeName, trx_id);
+            TagLinkModel::instance().update(
+                TrxModel::s_ref_type, new_trx_id,
+                new_gl_a
+            );
         }
         SchedModel::instance().completeBDInSeries(m_sched_xd.m_id);
     }

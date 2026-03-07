@@ -50,12 +50,12 @@ wxEND_EVENT_TABLE()
 
 AttachmentDialog::AttachmentDialog(
     wxWindow* parent,
-    const wxString& RefType,
-    int64 RefId,
+    RefTypeN ref_type,
+    int64 ref_id,
     const wxString& name
 ) :
-    m_RefType(RefType),
-    m_RefId(RefId)
+    m_ref_type(ref_type),
+    m_ref_id(ref_id)
 {
     if (debug_)
         ColName_[ATTACHMENT_ID] = "#";
@@ -87,11 +87,11 @@ void AttachmentDialog::Create(wxWindow* parent, const wxString& name)
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
 
     wxString WindowTitle;
-    if (m_RefId > 0) {
+    if (m_ref_id > 0) {
         int refEnum = 0;
         for (int i = 0; i < ModelBase::REFTYPE_ID_size; ++i) {
             wxString reftype = ModelBase::reftype_name(i);
-            if (reftype == m_RefType)
+            if (reftype == m_ref_type.name_n())
                 break;
             refEnum++;
         }
@@ -99,16 +99,16 @@ void AttachmentDialog::Create(wxWindow* parent, const wxString& name)
         switch (refEnum)
         {
         case ModelBase::REFTYPE_ID_STOCK:
-            RefName = StockModel::get_id_name(m_RefId);
+            RefName = StockModel::get_id_name(m_ref_id);
             break;
         case ModelBase::REFTYPE_ID_ASSET:
-            RefName = AssetModel::instance().get_id_name(m_RefId);
+            RefName = AssetModel::instance().get_id_name(m_ref_id);
             break;
         case ModelBase::REFTYPE_ID_BANKACCOUNT:
-            RefName = AccountModel::instance().get_id_name(m_RefId);
+            RefName = AccountModel::instance().get_id_name(m_ref_id);
             break;
         case ModelBase::REFTYPE_ID_PAYEE:
-            RefName = PayeeModel::instance().get_id_name(m_RefId);
+            RefName = PayeeModel::instance().get_id_name(m_ref_id);
             break;
         case ModelBase::REFTYPE_ID_TRANSACTION:
         case ModelBase::REFTYPE_ID_BILLSDEPOSIT:
@@ -117,15 +117,15 @@ void AttachmentDialog::Create(wxWindow* parent, const wxString& name)
         }       
         if (RefName.IsEmpty())
             WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$lld"),
-                wxGetTranslation(m_RefType), m_RefId
+                wxGetTranslation(m_ref_type.name_n()), m_ref_id
             );
         else
             WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$s"),
-                wxGetTranslation(m_RefType), RefName
+                wxGetTranslation(m_ref_type.name_n()), RefName
             );
     } else
         WindowTitle = wxString::Format(_t("Attachment Manager | New %s"),
-            wxGetTranslation(m_RefType)
+            wxGetTranslation(m_ref_type.name_n())
         );
 
     if (!wxDialog::Create(
@@ -183,7 +183,7 @@ void AttachmentDialog::fillControls()
     attachmentListBox_->DeleteAllItems();
 
     AttachmentModel::DataA att_a = AttachmentModel::instance().find_ref_data_a(
-        RefTypeN(m_RefType), m_RefId
+        m_ref_type, m_ref_id
     );
     if (att_a.empty())
         return;
@@ -233,27 +233,27 @@ void AttachmentDialog::AddAttachment(wxString file_path)
     const wxString desc = dlg.getText();
 
     const wxString folder = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting());
-    int last_num = AttachmentModel::instance().find_ref_last_num(RefTypeN(m_RefType), m_RefId);
+    int last_num = AttachmentModel::instance().find_ref_last_num(m_ref_type, m_ref_id);
 
-    wxString importedFileName = m_RefType + "_" + wxString::Format("%lld", m_RefId) + "_Attach"
+    wxString importedFileName = m_ref_type.name_n() + "_" + wxString::Format("%lld", m_ref_id) + "_Attach"
         + wxString::Format("%i", last_num + 1);
     if (!file_ext.empty())
         importedFileName += "." + file_ext;
 
     if (mmAttachmentManage::CopyAttachment(
         file_path,
-        folder + m_RefType + m_PathSep + importedFileName
+        folder + m_ref_type.name_n() + m_PathSep + importedFileName
     )) {
         AttachmentData new_att_d = AttachmentData();
-        new_att_d.m_ref_type_n  = RefTypeN(m_RefType);
-        new_att_d.m_ref_id      = m_RefId;
+        new_att_d.m_ref_type_n  = m_ref_type;
+        new_att_d.m_ref_id      = m_ref_id;
         new_att_d.m_description = desc;
         new_att_d.m_filename    = importedFileName;
         AttachmentModel::instance().add_data_n(new_att_d);
         m_attachment_id = new_att_d.id();
 
-        if (RefTypeN(m_RefType).id_n() == RefTypeN::e_trx)
-            TrxModel::instance().save_timestamp(m_RefId);
+        if (m_ref_type == TrxModel::s_ref_type)
+            TrxModel::instance().save_timestamp(m_ref_id);
     }
 
     fillControls();
@@ -291,7 +291,7 @@ void AttachmentDialog::EditAttachment()
     AttachmentModel::instance().unsafe_update_data_n(att_n);
     m_attachment_id = att_n->id();
 
-    if (att_n->m_ref_type_n.id_n() == RefTypeN::e_trx)
+    if (att_n->m_ref_type_n == TrxModel::s_ref_type)
         TrxModel::instance().save_timestamp(att_n->m_ref_id);
 
     fillControls();
@@ -315,7 +315,7 @@ void AttachmentDialog::DeleteAttachment()
         if (mmAttachmentManage::DeleteAttachment(
             AttachmentsFolder + m_PathSep + att_n->m_filename
         )) {
-            if (att_n->m_ref_type_n.id_n() == RefTypeN::e_trx)
+            if (att_n->m_ref_type_n == TrxModel::s_ref_type)
                 TrxModel::instance().save_timestamp(att_n->m_ref_id);
             AttachmentModel::instance().purge_id(m_attachment_id);
         }

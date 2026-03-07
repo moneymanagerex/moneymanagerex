@@ -1379,64 +1379,64 @@ bool TrxFilterDialog::mmIsCategoryMatches(int64 categid)
     return std::find(m_selected_categories_id.begin(), m_selected_categories_id.end(), categid) != m_selected_categories_id.end();
 }
 
-bool TrxFilterDialog::mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags)
+bool TrxFilterDialog::mmIsTagMatches(RefTypeN ref_type, int64 ref_id, bool mergeSplitTags)
 {
-    std::map<wxString, int64> tagnames = TagLinkModel::instance().get_ref(refType, refId);
+    std::map<wxString, int64> tagnames = TagLinkModel::instance().find_ref_tag_m(
+        ref_type, ref_id
+    );
 
     // If we have a split, merge the transaciton tags so that an AND condition captures cases
     // where one tag is on the base txn and the other is on the split
-    std::map<wxString, int64> txnTagnames;
-    if (refType == TrxSplitModel::refTypeName)
-        txnTagnames = TagLinkModel::instance().get_ref(
+    std::map<wxString, int64> tag_name_id_m;
+    if (ref_type == TrxSplitModel::s_ref_type)
+        tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
             TrxModel::refTypeName,
-            TrxSplitModel::instance().get_id_data_n(refId)->m_trx_id
+            TrxSplitModel::instance().get_id_data_n(ref_id)->m_trx_id
         );
-    else if (refType == SchedSplitModel::refTypeName)
-        txnTagnames = TagLinkModel::instance().get_ref(
+    else if (ref_type == SchedSplitModel::s_ref_type)
+        tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
             SchedModel::refTypeName,
-            SchedSplitModel::instance().get_id_data_n(refId)->m_sched_id
+            SchedSplitModel::instance().get_id_data_n(ref_id)->m_sched_id
         );
 
-    if (mergeSplitTags)
-    {
+    if (mergeSplitTags) {
         // Merge transaction tags and split tags. This is necessary when checking
         // if a split record matches the filter since we are using mmIsRecordMatches
-        // to validate the split which gives it the wrong refType & refId
-        if (refType == TrxModel::refTypeName) {
+        // to validate the split which gives it the wrong ref_type & ref_id
+        if (ref_type == TrxModel::s_ref_type) {
             // Loop through checking splits and merge tags for each SPLITTRANSID
             for (const auto& tp_d : TrxSplitModel::instance().find(
-                TrxSplitCol::TRANSID(refId)
+                TrxSplitCol::TRANSID(ref_id)
             )) {
                 std::map<wxString, int64> splitTagnames =
-                    TagLinkModel::instance().get_ref(
-                        TrxSplitModel::refTypeName, tp_d.m_id
+                    TagLinkModel::instance().find_ref_tag_m(
+                        TrxSplitModel::s_ref_type, tp_d.m_id
                     );
-                txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
+                tag_name_id_m.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
-        else if (refType == SchedModel::refTypeName) {
+        else if (ref_type == SchedModel::s_ref_type) {
             // Loop through scheduled txn splits and merge tags for each SPLITTRANSID
             for (const auto& qp_d : SchedSplitModel::instance().find(
-                SchedSplitCol::TRANSID(refId)
+                SchedSplitCol::TRANSID(ref_id)
             )) {
                 std::map<wxString, int64> splitTagnames =
-                    TagLinkModel::instance().get_ref(
-                        SchedSplitModel::refTypeName, qp_d.m_id
+                    TagLinkModel::instance().find_ref_tag_m(
+                        SchedSplitModel::s_ref_type, qp_d.m_id
                     );
-                txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
+                tag_name_id_m.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
     }
 
-    tagnames.insert(txnTagnames.begin(), txnTagnames.end());
+    tagnames.insert(tag_name_id_m.begin(), tag_name_id_m.end());
     if (tagnames.empty())
         return false;
 
     bool match = true;
 
     wxArrayString tags = tagTextCtrl_->GetTagStrings();
-    for (int i = 0; i < static_cast<int>(tags.GetCount()); i++)
-    {
+    for (int i = 0; i < static_cast<int>(tags.GetCount()); i++) {
         // if the tag is the "OR" operator, fetch the next tag and compare with OR
         if (tags.Item(i) == "|" && i++ < static_cast<int>(tags.GetCount()) - 1)
             match |= tagnames.find(tags.Item(i)) != tagnames.end();
@@ -1482,14 +1482,13 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id()))
         ok = false;
-    else if (mmIsTagsChecked())
-    {
-        wxString refType;
+    else if (mmIsTagsChecked()) {
+        RefTypeN refType;
         // Check the Data type to determine the tag RefType
         if (typeid(tran).hash_code() == typeid(TrxData).hash_code())
-            refType = TrxModel::refTypeName;
+            refType = TrxModel::s_ref_type;
         else if (typeid(tran).hash_code() == typeid(SchedData).hash_code())
-            refType = SchedModel::refTypeName;
+            refType = SchedModel::s_ref_type;
         if (!mmIsTagMatches(refType, tran.id(), mergeSplitTags))
             ok = false;
     }
@@ -1499,13 +1498,13 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
 template <class MODEL, class DATA>
 bool TrxFilterDialog::mmIsSplitRecordMatches(const DATA& split_d)
 {
-    wxString refType;
+    RefTypeN refType;
 
     if (typeid(split_d).hash_code() == typeid(TrxSplitData).hash_code()) {
-        refType = TrxSplitModel::refTypeName;
+        refType = TrxSplitModel::s_ref_type;
     }
     else if (typeid(split_d).hash_code() == typeid(SchedSplitData).hash_code()) {
-        refType = SchedSplitModel::refTypeName;
+        refType = SchedSplitModel::s_ref_type;
     }
 
     if (mmIsTagsChecked() && !mmIsTagMatches(refType, split_d.m_id))

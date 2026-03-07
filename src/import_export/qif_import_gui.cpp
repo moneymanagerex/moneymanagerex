@@ -1167,7 +1167,6 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 wxString tagStr = (entry.find(QIF_ID_Category) != entry.end() ? entry.at(QIF_ID_Category).AfterFirst('/') : "");
                 TagLinkModel::DataA gl_a;
                 if (!tagStr.IsEmpty()) {
-                    wxString reftype = TrxModel::refTypeName;
                     wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
                     while (tagTokens.HasMoreTokens()) {
                         wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
@@ -1181,8 +1180,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                             tag_n = TagModel::instance().get_id_data_n(new_tag_d.id());
                         }
                         TagLinkData gl_d = TagLinkData();
-                        gl_d.REFTYPE = reftype;
-                        gl_d.TAGID = tag_n->m_id;
+                        gl_d.m_tag_id   = tag_n->m_id;
+                        gl_d.m_ref_type = TrxModel::s_ref_type;
                         // Just cache the new taglink since we don't know the m_id yet
                         gl_a.push_back(gl_d);
                     }
@@ -1246,10 +1245,9 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (!m_txnTaglinks[std::make_pair(0, i)].empty()) {
                 // we need to know the transid for the taglink, so save the transaction first
                 TrxModel::instance().save_trx_n(trx_a[i]);
-                int64 transid = trx_a[i].id();
                 // apply that transid to all associated tags
-                for (auto& taglink : m_txnTaglinks[std::make_pair(0, i)])
-                    taglink.REFID = transid;
+                for (auto& gl_d : m_txnTaglinks[std::make_pair(0, i)])
+                    gl_d.m_ref_id = trx_a[i].m_id;
                 // save the block of taglinks
                 TagLinkModel::instance().save_data_a(m_txnTaglinks[std::make_pair(0, i)]);
             }
@@ -1296,8 +1294,8 @@ void mmQIFImportDialog::saveSplit()
             // check if there are any taglinks for this split index in this group
             if (!m_splitTaglinks[i][j].empty()) {
                 // apply the SPLITTRANSID as the REFID for all the cached taglinks
-                for (auto& taglink : m_splitTaglinks[i][j])
-                    taglink.REFID = splitTransID;
+                for (auto& gl_d : m_splitTaglinks[i][j])
+                    gl_d.m_ref_id = splitTransID;
                 // save cached taglinks
                 TagLinkModel::instance().save_data_a(m_splitTaglinks[i][j]);
             }
@@ -1526,7 +1524,6 @@ bool mmQIFImportDialog::completeTransaction(
             // Save split tags
             if (!tagStr.IsEmpty()) {
                 TagLinkModel::DataA splitTaglinks;
-                wxString reftype = TrxSplitModel::refTypeName;
                 wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
                 while (tagTokens.HasMoreTokens()) {
                     wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
@@ -1540,8 +1537,8 @@ bool mmQIFImportDialog::completeTransaction(
                         tag_n = TagModel::instance().get_id_data_n(new_tag_d.id());
                     }
                     TagLinkData gl_d = TagLinkData();
-                    gl_d.REFTYPE = reftype;
-                    gl_d.TAGID   = tag_n->m_id;
+                    gl_d.m_tag_id   = tag_n->m_id;
+                    gl_d.m_ref_type = TrxSplitModel::s_ref_type;
                     splitTaglinks.push_back(gl_d);
                 }
                 // Here we keep track of which block of splits and which split in the block

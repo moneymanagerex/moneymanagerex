@@ -155,12 +155,13 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
 
     // don't allow '/' in category name as it is reserved for the class/tag separator
     categ.Replace("/", "-");
-    if (!full_tran.m_tags.empty())
-    {
+    if (!full_tran.m_tags.empty()) {
         categ.Append("/");
         auto numTags = full_tran.m_tags.size();
-        for (decltype(numTags) i = 0; i < numTags; i++)
-            categ.Append((i > 0 ? ":" : "") + TagModel::instance().get_id_data_n(full_tran.m_tags[i].TAGID)->m_name);
+        for (decltype(numTags) i = 0; i < numTags; i++) {
+            const TagData* tag_n = TagModel::instance().get_id_data_n(full_tran.m_tags[i].m_tag_id);
+            categ.Append((i > 0 ? ":" : "") + tag_n->m_name);
+        }
     }
 
     buffer << "D" << mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask) << "\n";
@@ -198,7 +199,8 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
             split_categ.Append("/");
             auto numTags = splitTags.size();
             for (decltype(numTags) i = 0; i < numTags; i++) {
-                split_categ.Append((i > 0 ? ":" : "") + TagModel::instance().get_id_data_n(splitTags[i].TAGID)->m_name);
+                const TagData* tag_n = TagModel::instance().get_id_data_n(splitTags[i].m_tag_id);
+                split_categ.Append((i > 0 ? ":" : "") + tag_n->m_name);
             }
         }
         buffer << "S" << split_categ << "\n"
@@ -410,8 +412,8 @@ void mmExportTransaction::getTransactionJSON(
 
     json_writer.Key("TAGS");
     json_writer.StartArray();
-    for (const auto& tag : trx_xd.m_tags)
-        json_writer.Int64(tag.TAGID.GetValue());
+    for (const auto& gl_d : trx_xd.m_tags)
+        json_writer.Int64(gl_d.m_tag_id.GetValue());
     json_writer.EndArray();
 
     if (!trx_xd.m_splits.empty()) {
@@ -430,8 +432,8 @@ void mmExportTransaction::getTransactionJSON(
             json_writer.Double(valueSplit);
             json_writer.Key("TAGS");
             json_writer.StartArray();
-            for (const auto& tag : TagLinkModel::instance().get_ref(
-                TrxSplitModel::refTypeName, tp_d.m_id)
+            for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
+                TrxSplitModel::s_ref_type, tp_d.m_id)
             )
                 json_writer.Int64(tag.second.GetValue());
             json_writer.EndArray();

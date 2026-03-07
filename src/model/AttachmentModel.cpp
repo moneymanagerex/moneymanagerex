@@ -89,16 +89,17 @@ int AttachmentModel::find_ref_last_num(RefTypeN ref_type, const int64 ref_id)
 }
 
 // Return a dataset with attachments linked to a specific type
-std::map<int64, AttachmentModel::DataA> AttachmentModel::find_type_id_data_a_m(RefTypeN ref_type)
-{
-    std::map<int64, AttachmentModel::DataA> id_a_m;
+std::map<int64, AttachmentModel::DataA> AttachmentModel::find_reftype_refid_data_m(
+    RefTypeN ref_type
+) {
+    std::map<int64, AttachmentModel::DataA> refid_data_m;
     for (const auto& att_d : find(
         AttachmentCol::REFTYPE(ref_type.name_n())
     )) {
-        id_a_m[att_d.m_ref_id].push_back(att_d);
+        refid_data_m[att_d.m_ref_id].push_back(att_d);
     }
 
-    return id_a_m;
+    return refid_data_m;
 }
 
 // Return all attachments descriptions

@@ -39,7 +39,7 @@ public:
     int  find_ref_c(RefTypeN ref_type, const int64 ref_id);
     auto find_ref_data_a(RefTypeN ref_type, const int64 ref_id) -> const DataA;
     int  find_ref_last_num(RefTypeN ref_type, const int64 ref_id);
-    auto find_type_id_data_a_m(RefTypeN ref_type) -> std::map<int64, DataA>;
+    auto find_reftype_refid_data_m(RefTypeN ref_type) -> std::map<int64, DataA>;
     auto find_all_desc_a() -> wxArrayString;
 };
 

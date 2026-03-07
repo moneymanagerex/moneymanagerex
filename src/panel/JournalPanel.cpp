@@ -632,11 +632,6 @@ void JournalPanel::filterList()
     m_reconciled_balance = m_today_reconciled_balance = m_balance;
     m_show_reconciled = false;
 
-    const wxString tranRefType = TrxModel::refTypeName;
-    const wxString billRefType = SchedModel::refTypeName;
-    const wxString tranSplitRefType = TrxSplitModel::refTypeName;
-    const wxString billSplitRefType = SchedSplitModel::refTypeName;
-
     static wxArrayString udfc_fields = FieldModel::UDFC_FIELDS();
     int64 udfc_id[5];
     FieldModel::TYPE_ID udfc_type[5];
@@ -644,10 +639,10 @@ void JournalPanel::filterList()
     for (int i = 0; i < 5; i++) {
         // note: udfc_fields starts with ""
         wxString field = udfc_fields[i+1];
-        udfc_id[i] = FieldModel::getUDFCID(tranRefType, field);
-        udfc_type[i] = FieldModel::getUDFCType(tranRefType, field);
+        udfc_id[i] = FieldModel::getUDFCID(TrxModel::refTypeName, field);
+        udfc_type[i] = FieldModel::getUDFCType(TrxModel::refTypeName, field);
         udfc_scale[i] = FieldModel::getDigitScale(
-            FieldModel::getUDFCProperties(tranRefType, field)
+            FieldModel::getUDFCProperties(TrxModel::refTypeName, field)
         );
     }
 
@@ -663,8 +658,12 @@ void JournalPanel::filterList()
         ? AccountModel::instance().find_id_trx_aBySN(m_account_n->m_id)
         : TrxModel::instance().find_allByDateTimeId();
     const auto trans_splits = TrxSplitModel::instance().get_all_id();
-    const auto trans_tags = TagLinkModel::instance().get_all_id(tranRefType);
-    const auto trans_attachments = AttachmentModel::instance().find_type_id_data_a_m(TrxModel::s_ref_type);
+    const auto trans_tags = TagLinkModel::instance().find_reftype_refid_data_m(
+        TrxModel::s_ref_type
+    );
+    const auto trans_attachments = AttachmentModel::instance().find_reftype_refid_data_m(
+        TrxModel::s_ref_type
+    );
 
     wxString date_start_str, date_end_str;
     wxDateTime date_end = wxDateTime::Now() + wxTimeSpan::Days(30);
@@ -700,8 +699,12 @@ void JournalPanel::filterList()
     std::vector<bills_index_t> bills_index;
     if (m_scheduled_enable && m_scheduled_selected) {
         bills_splits = SchedSplitModel::instance().get_all_id();
-        bills_tags = TagLinkModel::instance().get_all_id(billRefType);
-        bills_attachments = AttachmentModel::instance().find_type_id_data_a_m(SchedModel::s_ref_type);
+        bills_tags = TagLinkModel::instance().find_reftype_refid_data_m(
+            SchedModel::s_ref_type
+        );
+        bills_attachments = AttachmentModel::instance().find_reftype_refid_data_m(
+            SchedModel::s_ref_type
+        );
         bills = m_account_n
             ? AccountModel::instance().find_id_sched_a(m_account_n->m_id)
             : SchedModel::instance().find_all();
@@ -888,9 +891,12 @@ void JournalPanel::filterList()
             }
             journal_xd.m_notes.Append((trx_n->m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
             wxString tagnames;
-            const wxString reftype = (repeat_num == 0) ? tranSplitRefType : billSplitRefType;
-            for (const auto& tag : TagLinkModel::instance().get_ref(reftype, tp_d.m_id))
+            for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
+                (repeat_num == 0 ? TrxSplitModel::s_ref_type : SchedSplitModel::s_ref_type),
+                tp_d.m_id
+            )) {
                 tagnames.Append(tag.first + " ");
+            }
             if (!tagnames.IsEmpty())
                 journal_xd.TAGNAMES.Append((journal_xd.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
             m_lc->m_journal_xa.push_back(journal_xd);

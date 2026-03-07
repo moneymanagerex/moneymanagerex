@@ -18,12 +18,12 @@
 
 #include "SchedSplitData.h"
 
-SchedSplitData::SchedSplitData()
+SchedSplitData::SchedSplitData() :
+    m_id(-1),
+    m_sched_id(-1),
+    m_category_id(-1),
+    m_amount(0.0)
 {
-    m_id          = -1;
-    m_sched_id    = -1;
-    m_category_id = -1;
-    m_amount      = 0.0;
 }
 
 // Convert SchedSplitData to SchedSplitRow
@@ -43,11 +43,11 @@ SchedSplitRow SchedSplitData::to_row() const
 // Convert SchedSplitRow to SchedSplitData
 SchedSplitData& SchedSplitData::from_row(const SchedSplitRow& row)
 {
-    m_id          = row.SPLITTRANSID;     // int64
-    m_sched_id    = row.TRANSID;          // int64
-    m_category_id = row.CATEGID;          // int64
-    m_amount      = row.SPLITTRANSAMOUNT; // double
-    m_notes       = row.NOTES;            // wxString
+    m_id          = row.SPLITTRANSID;
+    m_sched_id    = row.TRANSID;
+    m_category_id = row.CATEGID;
+    m_amount      = row.SPLITTRANSAMOUNT;
+    m_notes       = row.NOTES;
 
     return *this;
 }

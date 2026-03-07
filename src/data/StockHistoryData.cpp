@@ -43,11 +43,11 @@ StockHistoryRow StockHistoryData::to_row() const
 // Convert StockHistoryRow to StockHistoryData
 StockHistoryData& StockHistoryData::from_row(const StockHistoryRow& row)
 {
-    m_id          = row.HISTID;              // int64
-    m_symbol      = row.SYMBOL;              // wxString
-    m_date        = mmDate(row.DATE);        // wxString
-    m_price       = row.VALUE;               // double
-    m_update_type = UpdateType(row.UPDTYPE); // int64
+    m_id          = row.HISTID;
+    m_symbol      = row.SYMBOL;
+    m_date        = mmDate(row.DATE);
+    m_price       = row.VALUE;
+    m_update_type = UpdateType(row.UPDTYPE);
 
     return *this;
 }

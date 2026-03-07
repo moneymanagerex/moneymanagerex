@@ -458,34 +458,35 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         // Update tags
         if (tag_checkbox_->IsChecked()) {
-            TagLinkModel::DataA taglinks;
-            const wxString& refType = TrxModel::refTypeName;
-            wxArrayInt64 tagIds = tagTextCtrl_->GetTagIDs();
+            TagLinkModel::DataA gl_a;
+            wxArrayInt64 tag_id_a = tagTextCtrl_->GetTagIDs();
 
             if (tag_append_checkbox_->IsChecked()) {
                 // Since we are appending, start with the existing tags
-                taglinks = TagLinkModel::instance().find(
-                    TagLinkCol::REFTYPE(refType),
+                gl_a = TagLinkModel::instance().find(
+                    TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
                     TagLinkCol::REFID(trx_n->m_id)
                 );
                 // Remove existing tags from the new list to avoid duplicates
-                for (const auto& link : taglinks)
-                {
-                    auto index = std::find(tagIds.begin(), tagIds.end(), link.TAGID);
-                    if (index != tagIds.end())
-                        tagIds.erase(index);
+                for (const auto& gl_d : gl_a) {
+                    auto index = std::find(tag_id_a.begin(), tag_id_a.end(), gl_d.m_tag_id);
+                    if (index != tag_id_a.end())
+                        tag_id_a.erase(index);
                 }
             }
             // Create new taglinks for each tag ID
-            for (const auto& tagId : tagIds) {
+            for (const auto& tag_id : tag_id_a) {
                 TagLinkData new_gl_d = TagLinkData();
-                new_gl_d.REFTYPE = refType;
-                new_gl_d.REFID   = trx_n->m_id;
-                new_gl_d.TAGID   = tagId;
-                taglinks.push_back(new_gl_d);
+                new_gl_d.m_tag_id   = tag_id;
+                new_gl_d.m_ref_type = TrxModel::s_ref_type;
+                new_gl_d.m_ref_id   = trx_n->m_id;
+                gl_a.push_back(new_gl_d);
             }
             // Update the links for the transaction
-            TagLinkModel::instance().update(taglinks, refType, trx_n->m_id);
+            TagLinkModel::instance().update(
+                TrxModel::s_ref_type, trx_n->m_id,
+                gl_a
+            );
         }
 
         if (m_amount_checkbox->IsChecked()) {

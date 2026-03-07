@@ -357,8 +357,8 @@ bool TrxModel::purge_id(int64 trx_id)
     // remove all attachments
     mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, trx_id);
     // remove all custom fields for the transaction
-    FieldValueModel::instance().purge_ref(TrxModel::s_ref_type, trx_id);
-    TagLinkModel::instance().DeleteAllTags(TrxModel::refTypeName, trx_id);
+    FieldValueModel::instance().purge_ref(s_ref_type, trx_id);
+    TagLinkModel::instance().purge_ref(s_ref_type, trx_id);
     return unsafe_remove_id(trx_id);
 }
 
@@ -473,13 +473,13 @@ void TrxModel::Full_Data::fill_data()
     }
 
     if (!m_tags.empty()) {
-        wxArrayString tagnames;
+        wxArrayString tag_name_a;
         for (const auto& gl_d : m_tags)
-            tagnames.Add(TagModel::instance().get_id_data_n(gl_d.TAGID)->m_name);
+            tag_name_a.Add(TagModel::instance().get_id_data_n(gl_d.m_tag_id)->m_name);
         // Sort TAGNAMES
-        tagnames.Sort(CaseInsensitiveCmp);
-        for (const auto& name : tagnames)
-            TAGNAMES += (TAGNAMES.empty() ? "" : " ") + name;
+        tag_name_a.Sort(CaseInsensitiveCmp);
+        for (const auto& tag_name : tag_name_a)
+            TAGNAMES += (TAGNAMES.empty() ? "" : " ") + tag_name;
     }
 
     if (type_id(TRANSCODE) == TYPE_ID_WITHDRAWAL) {

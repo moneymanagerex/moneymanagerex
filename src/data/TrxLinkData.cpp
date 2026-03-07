@@ -21,11 +21,11 @@
 
 #include "TrxLinkData.h"
 
-TrxLinkData::TrxLinkData()
+TrxLinkData::TrxLinkData() :
+    TRANSLINKID(-1),
+    CHECKINGACCOUNTID(-1),
+    LINKRECORDID(-1)
 {
-    TRANSLINKID = -1;
-    CHECKINGACCOUNTID = -1;
-    LINKRECORDID = -1;
 }
 
 // Convert TrxLinkData to TrxLinkRow
@@ -33,10 +33,10 @@ TrxLinkRow TrxLinkData::to_row() const
 {
     TrxLinkRow row;
 
-    row.TRANSLINKID = TRANSLINKID;
+    row.TRANSLINKID       = TRANSLINKID;
     row.CHECKINGACCOUNTID = CHECKINGACCOUNTID;
-    row.LINKTYPE = LINKTYPE;
-    row.LINKRECORDID = LINKRECORDID;
+    row.LINKTYPE          = LINKTYPE;
+    row.LINKRECORDID      = LINKRECORDID;
 
     return row;
 }
@@ -44,10 +44,10 @@ TrxLinkRow TrxLinkData::to_row() const
 // Convert TrxLinkRow to TrxLinkData
 TrxLinkData& TrxLinkData::from_row(const TrxLinkRow& row)
 {
-    TRANSLINKID = row.TRANSLINKID; // int64
-    CHECKINGACCOUNTID = row.CHECKINGACCOUNTID; // int64
-    LINKTYPE = row.LINKTYPE; // wxString
-    LINKRECORDID = row.LINKRECORDID; // int64
+    TRANSLINKID = row.TRANSLINKID;
+    CHECKINGACCOUNTID = row.CHECKINGACCOUNTID;
+    LINKTYPE = row.LINKTYPE;
+    LINKRECORDID = row.LINKRECORDID;
 
     return *this;
 }
