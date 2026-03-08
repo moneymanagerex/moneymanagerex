@@ -47,7 +47,7 @@ const wxString mmExportTransaction::getTransactionCSV(const TrxModel::Full_Data&
     bool is_transfer = TrxModel::is_transfer(full_tran.TRANSCODE);
     const wxString delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
-    wxString categ = full_tran.m_splits.empty() ? CategoryModel::full_name(full_tran.m_category_id_n, ":") : "";
+    wxString categ = full_tran.m_splits.empty() ? CategoryModel::instance().full_name(full_tran.m_category_id_n, ":") : "";
     wxString transNum = full_tran.m_number;
     wxString notes = full_tran.m_notes;
     wxString payee = full_tran.PAYEENAME;
@@ -79,7 +79,7 @@ const wxString mmExportTransaction::getTransactionCSV(const TrxModel::Full_Data&
             if (TrxModel::type_id(full_tran) == TrxModel::TYPE_ID_WITHDRAWAL)
                 valueSplit = -valueSplit;
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-            const wxString split_categ = CategoryModel::full_name(tp_d.m_category_id, ":");
+            const wxString split_categ = CategoryModel::instance().full_name(tp_d.m_category_id, ":");
 
             buffer << inQuotes(wxString::Format("%lld", full_tran.m_id), delimiter) << delimiter;
             buffer << inQuotes(mmGetDateTimeForDisplay(full_tran.TRANSDATE, dateMask), delimiter) << delimiter;
@@ -128,7 +128,7 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
     bool transfer = TrxModel::is_transfer(full_tran.TRANSCODE);
 
     wxString buffer = "";
-    wxString categ = full_tran.m_splits.empty() ? CategoryModel::full_name(full_tran.m_category_id_n, ":") : "";
+    wxString categ = full_tran.m_splits.empty() ? CategoryModel::instance().full_name(full_tran.m_category_id_n, ":") : "";
     // Replace square brackets which are used to denote transfers in QIF
     categ.Replace("[", "(");
     categ.Replace("]", ")");
@@ -188,7 +188,7 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
         if (TrxModel::type_id(full_tran) == TrxModel::TYPE_ID_WITHDRAWAL)
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-        wxString split_categ = CategoryModel::full_name(tp_d.m_category_id, ":");
+        wxString split_categ = CategoryModel::instance().full_name(tp_d.m_category_id, ":");
         split_categ.Replace("/", "-");
         TagLinkModel::DataA splitTags = TagLinkModel::instance().find(
             TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
@@ -248,11 +248,10 @@ const wxString mmExportTransaction::getCategoriesQIF()
     wxString buffer_qif = "";
 
     buffer_qif << "!Type:Cat" << "\n";
-    for (const auto& category : CategoryModel::instance().find_all())
-    {
-        const wxString& categ_name = CategoryModel::full_name(category.m_id, ":");
-        bool bIncome = CategoryModel::has_income(category.m_id);
-        buffer_qif << "N" << categ_name << "\n"
+    for (const auto& cat_d : CategoryModel::instance().find_all()) {
+        const wxString& full_name = CategoryModel::instance().full_name(cat_d.m_id, ":");
+        bool bIncome = CategoryModel::instance().has_income(cat_d.m_id);
+        buffer_qif << "N" << full_name << "\n"
             << (bIncome ? "I" : "E") << "\n"
             << "^" << "\n";
     }
@@ -359,7 +358,7 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
         json_writer.Key("ID");
         json_writer.Int64(category.m_id.GetValue());
         json_writer.Key("NAME");
-        json_writer.String(CategoryModel::full_name(category.m_id, ":").utf8_str());
+        json_writer.String(CategoryModel::instance().full_name(category.m_id, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();
@@ -396,7 +395,7 @@ void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json
         json_writer.Key("ID");
         json_writer.Int64(category.m_id.GetValue());
         json_writer.Key("NAME");
-        json_writer.String(CategoryModel::full_name(category.m_id, ":").utf8_str());
+        json_writer.String(CategoryModel::instance().full_name(category.m_id, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();

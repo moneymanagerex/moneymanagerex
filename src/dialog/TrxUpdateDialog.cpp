@@ -671,7 +671,7 @@ void TrxUpdateDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                category = CategoryModel::full_name(dlg.getCategId());
+                category = CategoryModel::instance().full_name(dlg.getCategId());
                 cbCategory_->ChangeValue(category);
                 cbCategory_->SelectAll();
                 return;

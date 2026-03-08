@@ -151,7 +151,7 @@ wxString TrxFilter::getHTML()
                 }
 
                 if (found) {
-                    full_tran.CATEGNAME = CategoryModel::full_name(tp_d.m_category_id);
+                    full_tran.CATEGNAME = CategoryModel::instance().full_name(tp_d.m_category_id);
                     full_tran.m_amount = tp_d.m_amount;
                     full_tran.m_notes.Append((trx_d.m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
                     m_trans.push_back(full_tran);

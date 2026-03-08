@@ -150,7 +150,7 @@ const wxString TrxSplitModel::get_tooltip(
     wxString split_tooltip = "";
     for (const auto& entry : split_a) {
         split_tooltip += wxString::Format("%s = %s",
-            CategoryModel::full_name(entry.CATEGID),
+            CategoryModel::instance().full_name(entry.CATEGID),
             CurrencyModel::toCurrency(entry.SPLITTRANSAMOUNT, currency)
         );
         if (!entry.NOTES.IsEmpty()) {

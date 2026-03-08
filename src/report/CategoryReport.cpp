@@ -46,23 +46,36 @@ CategoryReport::~CategoryReport()
 double CategoryReport::AppendData(
     [[maybe_unused]] const std::vector<CategoryReport::data_holder> &data,
     std::map<int64, std::map<int, double>> &categoryStats,
-    const CategoryData* category,
+    const CategoryData* category_n,
     int64 groupID,
     int level
 ) {
-    double amt = categoryStats[category->m_id][0];
-    if (type_ == COME && amt < 0.0) amt = 0;
-    if (type_ == GOES && amt > 0.0) amt = 0;
-    CategoryModel::DataA subcategories = CategoryModel::sub_category(category);
-    std::stable_sort(subcategories.begin(), subcategories.end(), CategoryData::SorterByCATEGNAME());
-    std::reverse(subcategories.begin(), subcategories.end());
+    double amt = categoryStats[category_n->m_id][0];
+    if (type_ == COME && amt < 0.0)
+        amt = 0;
+    if (type_ == GOES && amt > 0.0)
+        amt = 0;
+
+    CategoryModel::DataA subcategory_a = CategoryModel::instance().find_data_sub_a(*category_n);
+    std::stable_sort(subcategory_a.begin(), subcategory_a.end(),
+        CategoryData::SorterByCATEGNAME()
+    );
+    std::reverse(subcategory_a.begin(), subcategory_a.end());
     double subamount = 0;
-    for (const auto& subcategory : subcategories) {
-        double amount = AppendData(data_, categoryStats, &subcategory, groupID, level + 1);
-        if (amount != 0) data_.insert(data_.begin(), { category->m_id, subcategory.m_id, category->m_name, amount, groupID, level });
+    for (const auto& subcategory_d : subcategory_a) {
+        double amount = AppendData(data_, categoryStats, &subcategory_d, groupID, level + 1);
+        if (amount != 0)
+            data_.insert(data_.begin(), {
+                category_n->m_id, subcategory_d.m_id, category_n->m_name,
+                amount, groupID, level
+            });
         subamount += amount;
     }
-    if (amt != 0 || subamount != 0) data_.insert(data_.begin(), { category->m_id, -1, category->m_name, amt, groupID, level });
+    if (amt != 0 || subamount != 0)
+        data_.insert(data_.begin(), {
+            category_n->m_id, -1, category_n->m_name,
+            amt, groupID, level
+        });
     return amt + subamount;
 }
 
@@ -80,26 +93,36 @@ void  CategoryReport::refreshData()
 
     data_holder line;
     int groupID = 0;
-    CategoryModel::DataA categories = CategoryModel::instance().find(CategoryCol::PARENTID(-1));
-    std::stable_sort(categories.begin(), categories.end(), CategoryData::SorterByCATEGNAME());
-    std::reverse(categories.begin(), categories.end());
-    for (const auto& category : categories)
-    {
-        double amt = categoryStats[category.m_id][0];
+    CategoryModel::DataA category_a = CategoryModel::instance().find(CategoryCol::PARENTID(-1));
+    std::stable_sort(category_a.begin(), category_a.end(),
+        CategoryData::SorterByCATEGNAME()
+    );
+    std::reverse(category_a.begin(), category_a.end());
+    for (const auto& category_d : category_a) {
+        double amt = categoryStats[category_d.m_id][0];
         if (type_ == COME && amt < 0.0) amt = 0;
         if (type_ == GOES && amt > 0.0) amt = 0;
 
-        auto subcategories = CategoryModel::sub_category(category);
-        std::stable_sort(subcategories.begin(), subcategories.end(), CategoryData::SorterByCATEGNAME());
-        std::reverse(subcategories.begin(), subcategories.end());
+        auto subcategory_a = CategoryModel::instance().find_data_sub_a(category_d);
+        std::stable_sort(subcategory_a.begin(), subcategory_a.end(),
+            CategoryData::SorterByCATEGNAME()
+        );
+        std::reverse(subcategory_a.begin(), subcategory_a.end());
         double subamount = 0;
-        for (const auto& sub_category : subcategories)
-        {
-            double amount = AppendData(data_, categoryStats, &sub_category, category.m_id, 1);
-            if (amount != 0) data_.insert(data_.begin(), { category.m_id, sub_category.m_id, category.m_name, amount, category.m_id, 0 });
+        for (const auto& subcategory_d : subcategory_a) {
+            double amount = AppendData(data_, categoryStats, &subcategory_d, category_d.m_id, 1);
+            if (amount != 0)
+                data_.insert(data_.begin(), {
+                    category_d.m_id, subcategory_d.m_id, category_d.m_name,
+                    amount, category_d.m_id, 0
+                });
             subamount += amount;
         }
-        if (amt != 0 || subamount != 0) data_.insert(data_.begin(), { category.m_id, -1, category.m_name, amt, category.m_id, 0 });
+        if (amt != 0 || subamount != 0)
+            data_.insert(data_.begin(), {
+                category_d.m_id, -1, category_d.m_name,
+                amt, category_d.m_id, 0
+            });
 
         groupID++;
     }
@@ -140,11 +163,11 @@ wxString CategoryReport::getHTMLText()
             {
                 if (entry.amount < 0)
                 {
-                    expense_vector.emplace_back(CategoryModel::full_name(entry.catID), entry.amount);
+                    expense_vector.emplace_back(CategoryModel::instance().full_name(entry.catID), entry.amount);
                 }
                 else if (entry.amount > 0)
                 {
-                    income_vector.emplace_back(CategoryModel::full_name(entry.catID), entry.amount);
+                    income_vector.emplace_back(CategoryModel::instance().full_name(entry.catID), entry.amount);
                 }
             }
         }
@@ -376,7 +399,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         double overall;
     } line;
     std::vector<html_data_holder> data;
-    std::map<wxString, int64> categories = CategoryModel::all_categories();
+    std::map<wxString, int64> categories = CategoryModel::instance().all_categories();
     for (const auto& category : categories) {
         int64 categID = category.second;
         line.catID = categID;

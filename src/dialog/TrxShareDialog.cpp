@@ -527,7 +527,9 @@ void TrxShareDialog::OnDeductibleSplit(wxCommandEvent&)
         double commission = 0;
         m_share_commission_ctrl->GetDouble(commission);
 
-        const CategoryData* category_n = CategoryModel::instance().get_key(_("Investment"), int64(-1L));
+        const CategoryData* category_n = CategoryModel::instance().get_key_data_n(
+            _("Investment"), int64(-1L)
+        );
         if (!category_n) {
             CategoryData new_category_d = CategoryData();
             new_category_d.m_name = _("Investment");

@@ -740,7 +740,7 @@ void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent&)
         wxString selectedCategname = value.GetString();
         id = m_CSVcategoryNames[selectedCategname];
         if (id == -1) {
-            std::map<wxString, int64 > categories = CategoryModel::all_categories();
+            std::map<wxString, int64 > categories = CategoryModel::instance().all_categories();
             for (const auto& category : categories)
             {
                 if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
@@ -1372,17 +1372,19 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder, wxString& message)
         }
     }
 
-    if (holder.CategoryID == -1) //The category name is missing in SCV file and not assigned for the payee
-    {
-        const CategoryData* categ = CategoryModel::instance().get_key(_t("Unknown"), int64(-1));
-        if (categ) {
-            holder.CategoryID = categ->m_id;
+    //The category name is missing in SCV file and not assigned for the payee
+    if (holder.CategoryID == -1) {
+        const CategoryData* cat_n = CategoryModel::instance().get_key_data_n(
+            _t("Unknown"), int64(-1)
+        );
+        if (cat_n) {
+            holder.CategoryID = cat_n->m_id;
         }
         else {
-            CategoryData new_category_d = CategoryData();
-            new_category_d.m_name = _t("Unknown");
-            CategoryModel::instance().add_data_n(new_category_d);
-            holder.CategoryID = new_category_d.id();
+            CategoryData new_cat_d = CategoryData();
+            new_cat_d.m_name = _t("Unknown");
+            CategoryModel::instance().add_data_n(new_cat_d);
+            holder.CategoryID = new_cat_d.id();
         }
     }
 
@@ -1784,9 +1786,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             if (category)
                             {
                                 if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->m_parent_id_n != -1)
-                                    entry = wxGetTranslation(CategoryModel::full_name(category->m_parent_id_n, ":"));
+                                    entry = wxGetTranslation(CategoryModel::instance().full_name(category->m_parent_id_n, ":"));
                                 else
-                                    entry = wxGetTranslation(CategoryModel::full_name(category->m_id, ":"));
+                                    entry = wxGetTranslation(CategoryModel::instance().full_name(category->m_id, ":"));
                             }
                             break;
                         case UNIV_CSV_SUBCATEGORY:
@@ -2184,9 +2186,9 @@ void mmUnivCSVDialog::update_preview()
                                 case UNIV_CSV_CATEGORY:
                                     if (category) {
                                         if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->m_parent_id_n != -1)
-                                            text << inQuotes(CategoryModel::full_name(category->m_parent_id_n, ":"), delimit);
+                                            text << inQuotes(CategoryModel::instance().full_name(category->m_parent_id_n, ":"), delimit);
                                         else
-                                            text << inQuotes(CategoryModel::full_name(category->m_id, ":"), delimit);
+                                            text << inQuotes(CategoryModel::instance().full_name(category->m_id, ":"), delimit);
                                     }
                                     else text << inQuotes("", delimit);
                                     break;
@@ -2738,24 +2740,25 @@ void mmUnivCSVDialog::validatePayees() {
     }
 }
 
-void mmUnivCSVDialog::validateCategories() {
-    for(const auto& catname : m_CSVcategoryNames) {
+void mmUnivCSVDialog::validateCategories()
+{
+    for (const auto& catname : m_CSVcategoryNames) {
         wxString search_name = catname.first;
-        int64 parentID = -1;
+        int64 parent_id = -1;
         // delimit string by ":"
         wxStringTokenizer categs = wxStringTokenizer(search_name, ":");
         // check each level of category exists
-        const CategoryData* category_n = nullptr;
+        const CategoryData* cat_n = nullptr;
         while (categs.HasMoreTokens()) {
-            wxString categname = categs.GetNextToken();
-            category_n = CategoryModel::instance().get_key(categname, parentID);
-            if (!category_n)
+            wxString cat_name = categs.GetNextToken();
+            cat_n = CategoryModel::instance().get_key_data_n(cat_name, parent_id);
+            if (!cat_n)
                 break;
-            parentID = category_n->m_id;
+            parent_id = cat_n->m_id;
         }
 
-        if (category_n)
-            m_CSVcategoryNames[search_name] = category_n->m_id;
+        if (cat_n)
+            m_CSVcategoryNames[search_name] = cat_n->m_id;
     }
 }
 
@@ -2778,12 +2781,16 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
     }
     case UNIV_CSV_PAYEE:
-        if (m_CSVpayeeNames.find(token) != m_CSVpayeeNames.end() && std::get<0>(m_CSVpayeeNames[token]) != -1)
-        {
+        if (m_CSVpayeeNames.find(token) != m_CSVpayeeNames.end() &&
+            std::get<0>(m_CSVpayeeNames[token]) != -1
+        ) {
             holder.PayeeID = std::get<0>(m_CSVpayeeNames[token]);
-            if (payeeMatchAddNotes_->IsChecked() && !std::get<2>(m_CSVpayeeNames[token]).IsEmpty())
-            {
-                holder.PayeeMatchNotes = wxString::Format(_t("%1$s matched by %2$s"), token, std::get<2>(m_CSVpayeeNames[token]));
+            if (payeeMatchAddNotes_->IsChecked() &&
+                !std::get<2>(m_CSVpayeeNames[token]).IsEmpty()
+            ) {
+                holder.PayeeMatchNotes = wxString::Format(_t("%1$s matched by %2$s"),
+                    token, std::get<2>(m_CSVpayeeNames[token])
+                );
             }
         }
         else {
@@ -2798,7 +2805,11 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     case UNIV_CSV_AMOUNT:
         mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
 
-        if (find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(), [](const std::pair<int, int>& element) {return element.first == UNIV_CSV_TYPE; }) == csvFieldOrder_.end()) {
+        if (find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(),
+            [](const std::pair<int, int>& element) {
+                return element.first == UNIV_CSV_TYPE;
+            }
+        ) == csvFieldOrder_.end()) {
             if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign)) {
                 holder.Type = TrxModel::TYPE_NAME_DEPOSIT;
             }
@@ -2813,29 +2824,31 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         wxRegEx categDelimiterRegex(" ?: ?");
         categDelimiterRegex.Replace(&token, ":");
         // check if we already have this category
-        if (m_CSVcategoryNames.find(token) != m_CSVcategoryNames.end() && m_CSVcategoryNames[token] != -1)
+        if (m_CSVcategoryNames.find(token) != m_CSVcategoryNames.end() &&
+            m_CSVcategoryNames[token] != -1
+        )
             holder.CategoryID = m_CSVcategoryNames[token];
-        else // create category and any missing parent categories
-        {
-            const CategoryData* category_n = nullptr;
+        // create category and any missing parent categories
+        else {
+            const CategoryData* cat_n = nullptr;
             int64 parentID = -1;
             wxStringTokenizer tokenizer = wxStringTokenizer(token, ":");
             while (tokenizer.HasMoreTokens()) {
-                wxString categname = tokenizer.GetNextToken().Trim().Trim(false);
-                category_n = CategoryModel::instance().get_key(categname, parentID);
-                if (!category_n) {
-                    CategoryData new_category_d = CategoryData();
-                    new_category_d.m_name        = categname;
-                    new_category_d.m_parent_id_n = parentID;
-                    CategoryModel::instance().add_data_n(new_category_d);
-                    category_n = CategoryModel::instance().get_id_data_n(new_category_d.id());
+                wxString cat_name = tokenizer.GetNextToken().Trim().Trim(false);
+                cat_n = CategoryModel::instance().get_key_data_n(cat_name, parentID);
+                if (!cat_n) {
+                    CategoryData new_cat_d = CategoryData();
+                    new_cat_d.m_name        = cat_name;
+                    new_cat_d.m_parent_id_n = parentID;
+                    CategoryModel::instance().add_data_n(new_cat_d);
+                    cat_n = CategoryModel::instance().get_id_data_n(new_cat_d.id());
                 }
-                parentID = category_n->m_id;
+                parentID = cat_n->m_id;
             }
 
-            if (category_n) {
-                holder.CategoryID = category_n->m_id;
-                m_CSVcategoryNames[token] = category_n->m_id;
+            if (cat_n) {
+                holder.CategoryID = cat_n->m_id;
+                m_CSVcategoryNames[token] = cat_n->m_id;
             }
         }
         break;
@@ -2846,18 +2859,20 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             return;
 
         token.Replace(":", "|");
-        wxString categname = CategoryModel::full_name(holder.CategoryID);
+        wxString categname = CategoryModel::instance().full_name(holder.CategoryID);
         categname.Append(":" + token);
-        if (m_CSVcategoryNames.find(categname) != m_CSVcategoryNames.end() && m_CSVcategoryNames[categname] != -1)
+        if (m_CSVcategoryNames.find(categname) != m_CSVcategoryNames.end() &&
+            m_CSVcategoryNames[categname] != -1
+        )
             holder.CategoryID = m_CSVcategoryNames[categname];
         else {
-            CategoryData new_category_d = CategoryData();
-            new_category_d.m_name        = token;
-            new_category_d.m_parent_id_n = holder.CategoryID;
-            CategoryModel::instance().add_data_n(new_category_d);
+            CategoryData new_cat_d = CategoryData();
+            new_cat_d.m_name        = token;
+            new_cat_d.m_parent_id_n = holder.CategoryID;
+            CategoryModel::instance().add_data_n(new_cat_d);
 
-            holder.CategoryID = new_category_d.m_id;
-            m_CSVcategoryNames[categname] = new_category_d.m_id;
+            holder.CategoryID = new_cat_d.m_id;
+            m_CSVcategoryNames[categname] = new_cat_d.m_id;
         }
         break;
     }

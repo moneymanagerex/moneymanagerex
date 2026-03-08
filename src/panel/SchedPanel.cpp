@@ -734,7 +734,7 @@ void SchedPanel::updateBottomPanelData(int selIndex)
 {
     enableEditDeleteButtons(selIndex >= 0);
     if (selIndex != -1) {
-        m_infoTextMini->SetLabelText(CategoryModel::full_name(bills_[selIndex].m_category_id_n));
+        m_infoTextMini->SetLabelText(CategoryModel::instance().full_name(bills_[selIndex].m_category_id_n));
         m_infoText->SetLabelText(bills_[selIndex].m_notes);
     }
 }

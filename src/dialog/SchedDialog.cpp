@@ -725,11 +725,11 @@ void SchedDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
     if (m_sched_xd.local_splits.empty()
         && (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED ||
             PrefModel::instance().getTransCategoryNone() == PrefModel::DEFAULT)
-        && (!CategoryModel::is_hidden(payee_n->m_category_id_n) && !CategoryModel::is_hidden(payee_n->m_category_id_n)))
+        && (!CategoryModel::instance().is_hidden(payee_n->m_category_id_n) && !CategoryModel::instance().is_hidden(payee_n->m_category_id_n)))
     {
         m_sched_xd.m_category_id_n = payee_n->m_category_id_n;
 
-        cbCategory_->ChangeValue(CategoryModel::full_name(m_sched_xd.m_category_id_n));
+        cbCategory_->ChangeValue(CategoryModel::instance().full_name(m_sched_xd.m_category_id_n));
     }
 }
 
@@ -785,7 +785,7 @@ void SchedDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                category = CategoryModel::full_name(dlg.getCategId());
+                category = CategoryModel::instance().full_name(dlg.getCategId());
                 cbCategory_->ChangeValue(category);
                 cbCategory_->SelectAll();
                 return;
@@ -1463,11 +1463,11 @@ void SchedDialog::setCategoryLabel()
 
         if (!transactions.empty()) {
             const int64 cat = transactions.back().m_category_id_n;
-            cbCategory_->ChangeValue(CategoryModel::full_name(cat));
+            cbCategory_->ChangeValue(CategoryModel::instance().full_name(cat));
         }
     }
     else {
-        const auto fullCategoryName = CategoryModel::full_name(m_sched_xd.m_category_id_n);
+        const auto fullCategoryName = CategoryModel::instance().full_name(m_sched_xd.m_category_id_n);
         cbCategory_->ChangeValue(fullCategoryName);
     }
 

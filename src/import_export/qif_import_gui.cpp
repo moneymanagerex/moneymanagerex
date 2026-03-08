@@ -855,7 +855,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
 
     if (tabs & CAT_TAB) {
         num = 0;
-        const auto& c(CategoryModel::all_categories());
+        const auto& c(CategoryModel::instance().all_categories());
         categoryListBox_->DeleteAllItems();
         for (const auto& categ : m_QIFcategoryNames) {
             wxVector<wxVariant> data;
@@ -899,7 +899,7 @@ void mmQIFImportDialog::OnShowCategDialog(wxMouseEvent&)
         wxString selectedCategname = value.GetString();
         id = m_QIFcategoryNames[selectedCategname];
         if (id == -1) {
-            std::map<wxString, int64 > categories = CategoryModel::all_categories();
+            std::map<wxString, int64 > categories = CategoryModel::instance().all_categories();
             for (const auto& category : categories)
             {
                 if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
@@ -1561,7 +1561,7 @@ bool mmQIFImportDialog::completeTransaction(
             if (payee_n) {
                 trx_n->m_category_id_n = payee_n->m_category_id_n;
             }
-            categStr = CategoryModel::full_name(trx_n->m_category_id_n, ":");
+            categStr = CategoryModel::instance().full_name(trx_n->m_category_id_n, ":");
 
             if (categStr.empty()) {
                 trx_n->m_category_id_n = (m_QIFcategoryNames[_t("Unknown")]);
@@ -1731,24 +1731,26 @@ void mmQIFImportDialog::getOrCreatePayees()
 void mmQIFImportDialog::getOrCreateCategories()
 {
     wxArrayString temp;
-    for (const auto &item : m_QIFcategoryNames) {
+    for (const auto& item : m_QIFcategoryNames) {
         wxString categStr;
         wxStringTokenizer token(item.first, ":");
         int64 parentID = -1;
         while(token.HasMoreTokens()){
             categStr = token.GetNextToken().Trim(false).Trim();
-            const CategoryData* category_n = CategoryModel::instance().get_key(categStr, parentID);
+            const CategoryData* cat_n = CategoryModel::instance().get_key_data_n(
+                categStr, parentID
+            );
             if (temp.Index(categStr + wxString::Format(":%lld", parentID)) == wxNOT_FOUND) {
-                if (!category_n) {
-                    CategoryData new_category_d = CategoryData();
-                    new_category_d.m_name        = categStr;
-                    new_category_d.m_parent_id_n = parentID;
-                    CategoryModel::instance().add_data_n(new_category_d);
-                    category_n = CategoryModel::instance().get_id_data_n(new_category_d.id());
+                if (!cat_n) {
+                    CategoryData new_cat_d = CategoryData();
+                    new_cat_d.m_name        = categStr;
+                    new_cat_d.m_parent_id_n = parentID;
+                    CategoryModel::instance().add_data_n(new_cat_d);
+                    cat_n = CategoryModel::instance().get_id_data_n(new_cat_d.id());
                 }
                 temp.Add(categStr + wxString::Format(":%lld", parentID));
             }
-            parentID = category_n->m_id;
+            parentID = cat_n->m_id;
         }
         m_QIFcategoryNames[item.first] = parentID;
     }
@@ -1756,17 +1758,16 @@ void mmQIFImportDialog::getOrCreateCategories()
 
 int64 mmQIFImportDialog::get_last_imported_acc()
 {
-    int64 accID = -1;
-    const AccountData* acc = AccountModel::instance().get_name_data_n(m_accountNameStr);
-    if (acc)
-        accID = acc->m_id;
-    return accID;
+    const AccountData* account_n = AccountModel::instance().get_name_data_n(m_accountNameStr);
+    return account_n ? account_n->m_id : -1;
 }
 
 void mmQIFImportDialog::OnDecimalChange(wxCommandEvent& event)
 {
     int i = m_choiceDecimalSeparator->GetSelection();
-    wxStringClientData* type_obj = static_cast<wxStringClientData*>(m_choiceDecimalSeparator->GetClientObject(i));
+    wxStringClientData* type_obj = static_cast<wxStringClientData*>(
+        m_choiceDecimalSeparator->GetClientObject(i)
+    );
     if (type_obj) {
         decimal_ = type_obj->GetData();
     }

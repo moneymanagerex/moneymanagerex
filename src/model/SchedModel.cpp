@@ -382,7 +382,7 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
     if (!m_bill_splits.empty()) {
         for (const auto& qp_d : m_bill_splits) {
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
-                + CategoryModel::full_name(qp_d.m_category_id);
+                + CategoryModel::instance().full_name(qp_d.m_category_id);
 
             wxString splitTags;
             for (const auto& tag_name_id : TagLinkModel::instance().find_ref_tag_m(
@@ -395,7 +395,7 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
         }
     }
     else
-        CATEGNAME = CategoryModel::full_name(r.m_category_id_n);
+        CATEGNAME = CategoryModel::instance().full_name(r.m_category_id_n);
 
     ACCOUNTNAME = AccountModel::instance().get_id_name(r.m_account_id);
 

@@ -481,10 +481,10 @@ void TrxModel::Full_Data::fill_data()
     if (!m_splits.empty()) {
         for (const auto& tp_d : m_splits)
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
-                + CategoryModel::full_name(tp_d.m_category_id);
+                + CategoryModel::instance().full_name(tp_d.m_category_id);
     }
     else {
-        CATEGNAME = CategoryModel::full_name(m_category_id_n);
+        CATEGNAME = CategoryModel::instance().full_name(m_category_id_n);
     }
 
     if (!m_tags.empty()) {
@@ -604,7 +604,7 @@ const wxString TrxModel::Full_Data::to_json()
         json_writer.StartArray();
         for (const auto& tp_d : m_splits) {
             json_writer.StartObject();
-            json_writer.Key(CategoryModel::full_name(tp_d.m_category_id).utf8_str());
+            json_writer.Key(CategoryModel::instance().full_name(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
             json_writer.EndObject();
         }
@@ -615,7 +615,7 @@ const wxString TrxModel::Full_Data::to_json()
         json_writer.StartArray();
         for (const auto & tp_d : m_splits) {
             json_writer.StartObject();
-            json_writer.Key(CategoryModel::full_name(tp_d.m_category_id).utf8_str());
+            json_writer.Key(CategoryModel::instance().full_name(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
             json_writer.EndObject();
         }
@@ -623,7 +623,7 @@ const wxString TrxModel::Full_Data::to_json()
     }
     else {
         json_writer.Key("CATEG");
-        json_writer.String(CategoryModel::full_name(this->m_category_id_n).utf8_str());
+        json_writer.String(CategoryModel::instance().full_name(this->m_category_id_n).utf8_str());
     }
 
     json_writer.EndObject();

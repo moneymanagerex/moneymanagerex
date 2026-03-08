@@ -534,7 +534,7 @@ void mmComboBoxCategory::init()
     all_elements_.clear();
     all_categories_ = CategoryModel::instance().all_categories(excludeHidden_);
     if (catID_ > -1)
-        all_categories_.insert(std::make_pair(CategoryModel::full_name(catID_)
+        all_categories_.insert(std::make_pair(CategoryModel::instance().full_name(catID_)
             , catID_));
     for (const auto& item : all_categories_)
     {

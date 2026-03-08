@@ -189,7 +189,7 @@ void PayeeManager::fillControls()
             m_patternTable->SetCellValue(row++, 0, wxString::FromUTF8(member.value.GetString()));
         }
     }
-    const wxString category = CategoryModel::full_name(m_payee_n->m_category_id_n);
+    const wxString category = CategoryModel::instance().full_name(m_payee_n->m_category_id_n);
     m_category->ChangeValue(category);
     ResizeDialog();
 }
@@ -378,7 +378,7 @@ void PayeeManager::OnComboKey(wxKeyEvent& event)
             dlg.ShowModal();
             if (dlg.getRefreshRequested())
                 m_category->mmDoReInitialize();
-            category = CategoryModel::full_name(dlg.getCategId());
+            category = CategoryModel::instance().full_name(dlg.getCategId());
             m_category->ChangeValue(category);
             return;
         }

@@ -570,44 +570,43 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
     else if (uri.StartsWith("viewtrans:", &sData)) {
         wxStringTokenizer tokenizer(sData, ":");
         int i =0;
-        int64 catID = -1;
-        int64 subCatID = -1;
-        int64 payeeID = -1;
-        // categoryID, subcategoryID, payeeID
+        int64 cat_id = -1;
+        int64 sub_id = -1;
+        int64 payee_id = -1;
+        // categoryID, subcategoryID, payee_id
         //      subcategoryID = -2 means inlude all sub categories for the given category
         while ( tokenizer.HasMoreTokens() ) {
             switch (i++) {
             case 0:
-                catID = std::stoll(tokenizer.GetNextToken().ToStdString());
+                cat_id = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             case 1:
-                subCatID = std::stoll(tokenizer.GetNextToken().ToStdString());
+                sub_id = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             case 2:
-                payeeID = std::stoll(tokenizer.GetNextToken().ToStdString());
+                payee_id = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             default:
                 break;
             }
         }
 
-        if (catID > 0) {
-            std::vector<int64> cats;
+        if (cat_id > 0) {
+            std::vector<int64> sub_id_a;
             // include all sub categories
-            if (-2 == subCatID) {
-                for (const auto& subcat_d :
-                    CategoryModel::sub_tree(CategoryModel::instance().get_id_data_n(catID))
-                ) {
-                    cats.push_back(subcat_d.m_id);
+            if (sub_id == -2) {
+                const CategoryData* cat_n = CategoryModel::instance().get_id_data_n(cat_id);
+                for (const auto& sub_d : CategoryModel::instance().find_data_subtree_a(*cat_n)) {
+                    sub_id_a.push_back(sub_d.m_id);
                 }
             }
-            cats.push_back(catID);
-            m_rb->m_filter.setCategoryList(cats);
+            sub_id_a.push_back(cat_id);
+            m_rb->m_filter.setCategoryList(sub_id_a);
         }
 
-        if (payeeID > 0) {
+        if (payee_id > 0) {
             wxArrayInt64 payees;
-            payees.push_back(payeeID);
+            payees.push_back(payee_id);
             m_rb->m_filter.setPayeeList(payees);
         }
 
@@ -682,7 +681,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         std::vector<std::string> parms;
         wxStringTokenizer tokenizer(sData, "|");
         while (tokenizer.HasMoreTokens()) {
-            //"budget: " << estimateVal << "|" << CurrencyModel::toString(actual, CurrencyModel::GetBaseCurrency()) << "|" << catID << "|" << budget_year << "|" << month + 1;
+            //"budget: " << estimateVal << "|" << CurrencyModel::toString(actual, CurrencyModel::GetBaseCurrency()) << "|" << cat_id << "|" << budget_year << "|" << month + 1;
             wxString token = tokenizer.GetNextToken();
             parms.push_back(std::string(token.mb_str()));
 
@@ -703,7 +702,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
             return;
         }
 
-        //get model budget for yearID and catID
+        //get model budget for yearID and cat_id
         BudgetModel::DataA budget_a = BudgetModel::instance().find(
             BudgetCol::BUDGETYEARID(bp_id_n),
             BudgetCol::CATEGID(std::stoll(parms[2]))

@@ -389,14 +389,14 @@ void TrxDialog::dataToControls()
             );
 
             if (!transactions.empty() &&
-                !CategoryModel::is_hidden(transactions.back().m_category_id_n)
+                !CategoryModel::instance().is_hidden(transactions.back().m_category_id_n)
             ) {
                 const int64 cat = transactions.back().m_category_id_n;
-                cbCategory_->ChangeValue(CategoryModel::full_name(cat));
+                cbCategory_->ChangeValue(CategoryModel::instance().full_name(cat));
             }
         }
         else {
-            auto fullCategoryName = CategoryModel::full_name(m_journal_data.m_category_id_n);
+            auto fullCategoryName = CategoryModel::instance().full_name(m_journal_data.m_category_id_n);
             cbCategory_->ChangeValue(fullCategoryName);
         }
         skip_category_init_ = true;
@@ -771,7 +771,7 @@ bool TrxDialog::ValidateData()
         }
 
         if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED
-            && !CategoryModel::is_hidden(m_journal_data.m_category_id_n)
+            && !CategoryModel::instance().is_hidden(m_journal_data.m_category_id_n)
         ) {
             PayeeData payee_d = *payee_n;
             payee_d.m_category_id_n = m_journal_data.m_category_id_n;
@@ -1010,7 +1010,7 @@ void TrxDialog::OnComboKey(wxKeyEvent& event)
                 int rc = dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                if (rc != wxID_CANCEL) cbCategory_->ChangeValue(CategoryModel::full_name(dlg.getCategId()));
+                if (rc != wxID_CANCEL) cbCategory_->ChangeValue(CategoryModel::instance().full_name(dlg.getCategId()));
                 return;
             }
         }
@@ -1039,7 +1039,9 @@ void TrxDialog::SetCategoryForPayee(const PayeeData *payee_n)
         && PrefModel::instance().getTransCategoryNone() == PrefModel::UNUSED
         && m_local_splits.empty()
     ) {
-        const CategoryData* category_n = CategoryModel::instance().get_key(_t("Unknown"), int64(-1));
+        const CategoryData* category_n = CategoryModel::instance().get_key_data_n(
+            _t("Unknown"), int64(-1)
+        );
         if (!category_n) {
             CategoryData new_category_d = CategoryData();
             new_category_d.m_name = _t("Unknown");
@@ -1064,13 +1066,13 @@ void TrxDialog::SetCategoryForPayee(const PayeeData *payee_n)
     if ((PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED ||
             PrefModel::instance().getTransCategoryNone() == PrefModel::DEFAULT)
         && m_mode == MODE_NEW && m_local_splits.empty()
-        && (!CategoryModel::is_hidden(payee_n->m_category_id_n))
+        && (!CategoryModel::instance().is_hidden(payee_n->m_category_id_n))
     ) {
         // if payee has memory of last category used then display last category for payee
         const CategoryData* category_n = CategoryModel::instance().get_id_data_n(payee_n->m_category_id_n);
         if (category_n) {
             m_journal_data.m_category_id_n = payee_n->m_category_id_n;
-            cbCategory_->ChangeValue(CategoryModel::full_name(payee_n->m_category_id_n));
+            cbCategory_->ChangeValue(CategoryModel::instance().full_name(payee_n->m_category_id_n));
             wxLogDebug("Category: %s = %.2f", cbCategory_->GetLabel(), m_journal_data.m_amount);
         }
         else {

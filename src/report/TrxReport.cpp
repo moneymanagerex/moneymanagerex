@@ -568,7 +568,7 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
                 trx_xd.displayID       = wxString::Format("%lld", trx_d.m_id) + "." +
                     wxString::Format("%i", splitIndex++);
                 trx_xd.m_category_id_n = tp_d.m_category_id;
-                trx_xd.CATEGNAME       = CategoryModel::full_name(tp_d.m_category_id);
+                trx_xd.CATEGNAME       = CategoryModel::instance().full_name(tp_d.m_category_id);
                 trx_xd.m_amount        = tp_d.m_amount;
                 trx_xd.m_notes         = trx_d.m_notes;
                 trx_xd.TAGNAMES        = tranTagnames;

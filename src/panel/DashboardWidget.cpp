@@ -254,7 +254,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     for (const auto& i : stat) {
         if (i.second < 0) {
             std::pair <wxString, double> stat_pair;
-            stat_pair.first = CategoryModel::full_name(i.first);
+            stat_pair.first = CategoryModel::instance().full_name(i.first);
             stat_pair.second = i.second;
             categoryStats.push_back(stat_pair);
         }
