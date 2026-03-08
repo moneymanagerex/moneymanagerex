@@ -77,14 +77,14 @@ const FieldValueData* FieldValueModel::get_key_data_n(
     return nullptr;
 }
 
-std::map<int64, FieldValueModel::DataA> FieldValueModel::find_reftype_refid_data_m(
+std::map<int64, FieldValueModel::DataA> FieldValueModel::find_refType_mRefId(
     RefTypeN ref_type
 ) {
-    std::map<int64, FieldValueModel::DataA> refid_data_m;
+    std::map<int64, FieldValueModel::DataA> refId_dataA_m;
     for (const Data& fv_d : find_all()) {
         if (fv_d.m_ref_type.id_n() == ref_type.id_n())
-            refid_data_m[fv_d.m_ref_id].push_back(fv_d);
+            refId_dataA_m[fv_d.m_ref_id].push_back(fv_d);
     }
-    return refid_data_m;
+    return refId_dataA_m;
 }
 

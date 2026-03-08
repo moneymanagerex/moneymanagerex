@@ -40,6 +40,6 @@ public:
 public:
     bool purge_ref(RefTypeN ref_type, int64 ref_id);
     auto get_key_data_n(int64 field_id, RefTypeN ref_type, int64 ref_id) -> const Data*;
-    auto find_reftype_refid_data_m(RefTypeN ref_type) -> std::map<int64, DataA>;
+    auto find_refType_mRefId(RefTypeN ref_type) -> std::map<int64, DataA>;
 };
 

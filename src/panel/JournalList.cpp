@@ -1218,7 +1218,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
                 else if (i.first == StockModel::s_ref_type)
-                    StockModel::UpdatePosition(
+                    StockModel::instance().update_data_position(
                         StockModel::instance().unsafe_get_id_data_n(i.second)
                     );
             }
@@ -1275,7 +1275,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
                 else if (i.first == StockModel::s_ref_type)
-                    StockModel::UpdatePosition(
+                    StockModel::instance().update_data_position(
                         StockModel::instance().unsafe_get_id_data_n(i.second)
                     );
             }
@@ -1315,7 +1315,7 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
                 else if (i.first == StockModel::s_ref_type)
-                    StockModel::UpdatePosition(
+                    StockModel::instance().update_data_position(
                         StockModel::instance().unsafe_get_id_data_n(i.second)
                     );
             }
@@ -2237,7 +2237,7 @@ void JournalList::deleteTransactionsByStatus(const wxString& status)
                     AssetModel::instance().unsafe_get_id_data_n(i.second)
                 );
             else if (i.first == StockModel::s_ref_type)
-                StockModel::UpdatePosition(
+                StockModel::instance().update_data_position(
                     StockModel::instance().unsafe_get_id_data_n(i.second)
                 );
         }

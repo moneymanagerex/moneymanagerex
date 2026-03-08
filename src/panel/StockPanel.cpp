@@ -306,10 +306,9 @@ void StockPanel::LoadStockTransactions(wxListCtrl* listCtrl, wxString symbol, in
 
     int row = 0;
     for (const auto& trx_d : trx_a) {
-        auto* ts_n = TrxShareModel::instance().unsafe_get_trx_share_n(trx_d.m_id);
+        const TrxShareData* ts_n = TrxShareModel::instance().get_trxId_data_n(trx_d.m_id);
         if (!ts_n || (ts_n->m_number <= 0 && ts_n->m_price <= 0))
             continue;
-
         long index = listCtrl->InsertItem(row++, "");
         listCtrl->SetItemData(index, trx_d.m_id.GetValue());
         FillListRow(listCtrl, index, trx_d, *ts_n);
@@ -350,7 +349,7 @@ void StockPanel::BindListEvents(wxListCtrl* listCtrl)
         dlg.ShowModal();
 
         // Update the modified row
-        auto* ts_n = TrxShareModel::instance().unsafe_get_trx_share_n(trx_n->m_id);
+        const TrxShareData* ts_n = TrxShareModel::instance().get_trxId_data_n(trx_n->m_id);
         if (ts_n) {
             this->FillListRow(listCtrl, index, *trx_n, *ts_n);
         }

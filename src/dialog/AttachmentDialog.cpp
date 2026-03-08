@@ -91,7 +91,7 @@ void AttachmentDialog::Create(wxWindow* parent, const wxString& name)
         wxString ref_name;
         switch (m_ref_type.id_n()) {
         case RefTypeN::e_stock:
-            ref_name = StockModel::get_id_name(m_ref_id);
+            ref_name = StockModel::instance().get_id_name(m_ref_id);
             break;
         case RefTypeN::e_asset:
             ref_name = AssetModel::instance().get_id_name(m_ref_id);

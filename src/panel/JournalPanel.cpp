@@ -646,8 +646,8 @@ void JournalPanel::filterList()
         );
     }
 
-    auto trx_fv_m = FieldValueModel::instance().find_reftype_refid_data_m(TrxModel::s_ref_type);
-    auto sched_fv_m = FieldValueModel::instance().find_reftype_refid_data_m(SchedModel::s_ref_type);
+    auto trxId_fvA_m = FieldValueModel::instance().find_refType_mRefId(TrxModel::s_ref_type);
+    auto schedId_fvA_m = FieldValueModel::instance().find_refType_mRefId(SchedModel::s_ref_type);
 
     bool ignore_future = PrefModel::instance().getIgnoreFutureTransactions();
     const wxString today_date = PrefModel::instance().UseTransDateTime() ?
@@ -658,10 +658,10 @@ void JournalPanel::filterList()
         ? AccountModel::instance().find_id_trx_aBySN(m_account_n->m_id)
         : TrxModel::instance().find_allByDateTimeId();
     const auto trans_splits = TrxSplitModel::instance().get_all_id();
-    const auto trans_tags = TagLinkModel::instance().find_reftype_refid_data_m(
+    const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
         TrxModel::s_ref_type
     );
-    const auto trans_attachments = AttachmentModel::instance().find_reftype_refid_data_m(
+    const auto refId_attA_m = AttachmentModel::instance().find_refType_mRefId(
         TrxModel::s_ref_type
     );
 
@@ -687,9 +687,9 @@ void JournalPanel::filterList()
         date_end_str = m_current_date_range.rangeEnd()
             .value_or(mmDate(date_end)).isoEnd();
     }
-    std::map<int64, SchedSplitModel::DataA> bills_splits;
-    std::map<int64, TagLinkModel::DataA> bills_tags;
-    std::map<int64, AttachmentModel::DataA> bills_attachments;
+    std::map<int64, SchedSplitModel::DataA> schedId_qpA_m;
+    std::map<int64, TagLinkModel::DataA> schedId_glA_m;
+    std::map<int64, AttachmentModel::DataA> schedId_attA_m;
     SchedModel::DataA bills;
     typedef std::tuple<
         int /* i */,
@@ -698,11 +698,11 @@ void JournalPanel::filterList()
     > bills_index_t;
     std::vector<bills_index_t> bills_index;
     if (m_scheduled_enable && m_scheduled_selected) {
-        bills_splits = SchedSplitModel::instance().get_all_id();
-        bills_tags = TagLinkModel::instance().find_reftype_refid_data_m(
+        schedId_qpA_m = SchedSplitModel::instance().find_all_mSchedId();
+        schedId_glA_m = TagLinkModel::instance().find_refType_mRefId(
             SchedModel::s_ref_type
         );
-        bills_attachments = AttachmentModel::instance().find_reftype_refid_data_m(
+        schedId_attA_m = AttachmentModel::instance().find_refType_mRefId(
             SchedModel::s_ref_type
         );
         bills = m_account_n
@@ -777,8 +777,8 @@ void JournalPanel::filterList()
             continue;
 
         Journal::Full_Data journal_xd = (repeat_num == 0) ?
-            Journal::Full_Data(*trx_n, trans_splits, trans_tags) :
-            Journal::Full_Data(bills[bill_i], tran_date, repeat_num, bills_splits, bills_tags);
+            Journal::Full_Data(*trx_n, trans_splits, trxId_glA_m) :
+            Journal::Full_Data(bills[bill_i], tran_date, repeat_num, schedId_qpA_m, schedId_glA_m);
 
         bool expandSplits = false;
         if (m_filter_advanced) {
@@ -803,12 +803,12 @@ void JournalPanel::filterList()
             journal_xd.ACCOUNT_BALANCE = m_balance;
         }
 
-        if (repeat_num == 0 && trans_attachments.find(trx_n->m_id) != trans_attachments.end()) {
-            for (const auto& att_d : trans_attachments.at(trx_n->m_id))
+        if (repeat_num == 0 && refId_attA_m.find(trx_n->m_id) != refId_attA_m.end()) {
+            for (const auto& att_d : refId_attA_m.at(trx_n->m_id))
                 journal_xd.ATTACHMENT_DESCRIPTION.Add(att_d.m_description);
         }
-        else if (repeat_num > 0 && bills_attachments.find(journal_xd.m_bdid) != bills_attachments.end()) {
-            for (const auto& att_d : bills_attachments.at(journal_xd.m_bdid))
+        else if (repeat_num > 0 && schedId_attA_m.find(journal_xd.m_bdid) != schedId_attA_m.end()) {
+            for (const auto& att_d : schedId_attA_m.at(journal_xd.m_bdid))
                 journal_xd.ATTACHMENT_DESCRIPTION.Add(att_d.m_description);
         }
 
@@ -817,8 +817,8 @@ void JournalPanel::filterList()
             journal_xd.UDFC_value[i] = -DBL_MAX;
         }
 
-        if (repeat_num == 0 && trx_fv_m.find(trx_n->m_id) != trx_fv_m.end()) {
-            for (const auto& udfc : trx_fv_m.at(trx_n->m_id)) {
+        if (repeat_num == 0 && trxId_fvA_m.find(trx_n->m_id) != trxId_fvA_m.end()) {
+            for (const auto& udfc : trxId_fvA_m.at(trx_n->m_id)) {
                 for (int i = 0; i < 5; i++) {
                     if (udfc.m_field_id == udfc_id[i]) {
                         journal_xd.UDFC_type[i] = udfc_type[i];
@@ -831,8 +831,8 @@ void JournalPanel::filterList()
                 }
             }
         }
-        else if (repeat_num > 0 && sched_fv_m.find(journal_xd.m_bdid) != sched_fv_m.end()) {
-            for (const auto& udfc : sched_fv_m.at(journal_xd.m_bdid)) {
+        else if (repeat_num > 0 && schedId_fvA_m.find(journal_xd.m_bdid) != schedId_fvA_m.end()) {
+            for (const auto& udfc : schedId_fvA_m.at(journal_xd.m_bdid)) {
                 for (int i = 0; i < 5; i++) {
                     if (udfc.m_field_id == udfc_id[i]) {
                         journal_xd.UDFC_type[i] = udfc_type[i];

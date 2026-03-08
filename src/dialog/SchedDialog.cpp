@@ -346,12 +346,12 @@ void SchedDialog::SetDialogHeader(const wxString& header)
 void SchedDialog::SetDialogParameters(int64 trx_id)
 {
     const auto split = TrxSplitModel::instance().get_all_id();
-    const auto tags = TagLinkModel::instance().find_reftype_refid_data_m(
+    const auto schedId_glA_m = TagLinkModel::instance().find_refType_mRefId(
         SchedModel::s_ref_type
     );
     //const auto trx = TrxModel::instance().find(TrxCol::TRANSID(trx_id)).at(0);
     const TrxData* trx_n = TrxModel::instance().get_id_data_n(trx_id);
-    TrxModel::Full_Data trx_xd(*trx_n, split, tags);
+    TrxModel::Full_Data trx_xd(*trx_n, split, schedId_glA_m);
     m_sched_xd.m_account_id = trx_xd.m_account_id;
     cbAccount_->SetValue(trx_xd.ACCOUNTNAME);
 
@@ -756,16 +756,12 @@ void SchedDialog::OnTypeChanged(wxCommandEvent& WXUNUSED(event))
 
 void SchedDialog::OnComboKey(wxKeyEvent& event)
 {
-    if (event.GetKeyCode() == WXK_RETURN)
-    {
+    if (event.GetKeyCode() == WXK_RETURN) {
         auto id = event.GetId();
-        switch (id)
-        {
-        case mmID_PAYEE:
-        {
+        switch (id) {
+        case mmID_PAYEE: {
             const auto payeeName = cbPayee_->GetValue();
-            if (payeeName.empty())
-            {
+            if (payeeName.empty()) {
                 mmPayeeDialog dlg(this, true);
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
@@ -780,13 +776,11 @@ void SchedDialog::OnComboKey(wxKeyEvent& event)
                 }
                 return;
             }
+            break;
         }
-        break;
-        case mmID_CATEGORY:
-        {
+        case mmID_CATEGORY: {
             auto category = cbCategory_->GetValue();
-            if (category.empty())
-            {
+            if (category.empty()) {
                 CategoryManager dlg(this, true, -1);
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
@@ -796,8 +790,8 @@ void SchedDialog::OnComboKey(wxKeyEvent& event)
                 cbCategory_->SelectAll();
                 return;
             }
+            break;
         }
-        break;
         default:
             break;
         }
@@ -805,8 +799,7 @@ void SchedDialog::OnComboKey(wxKeyEvent& event)
 
     // The first time the ALT key is pressed accelerator hints are drawn, but custom painting on the tags button
     // is not applied. We need to refresh the tag ctrl to redraw the drop button with the correct image.
-    if (event.AltDown() && !altRefreshDone)
-    {
+    if (event.AltDown() && !altRefreshDone) {
         tagTextCtrl_->Refresh();
         altRefreshDone = true;
     }
@@ -828,8 +821,7 @@ void SchedDialog::updateControlsForTransType()
     m_transfer = false;
     switch (m_choice_transaction_type->GetSelection())
     {
-    case TrxModel::TYPE_ID_TRANSFER:
-    {
+    case TrxModel::TYPE_ID_TRANSFER: {
         m_transfer = true;
         mmToolTip(textAmount_, amountTransferTip_);
         accountLabel->SetLabelText(_t("From"));
@@ -838,8 +830,7 @@ void SchedDialog::updateControlsForTransType()
         m_sched_xd.m_payee_id_n = -1;
         break;
     }
-    case TrxModel::TYPE_ID_WITHDRAWAL:
-    {
+    case TrxModel::TYPE_ID_WITHDRAWAL: {
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_t("Account"));
         stp->SetLabelText(_t("Payee"));
@@ -851,8 +842,7 @@ void SchedDialog::updateControlsForTransType()
         OnPayee(evt);
         break;
     }
-    case TrxModel::TYPE_ID_DEPOSIT:
-    {
+    case TrxModel::TYPE_ID_DEPOSIT: {
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_t("Account"));
         stp->SetLabelText(_t("From"));
@@ -1083,7 +1073,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             new_qp_d.m_notes       = split_d.NOTES;
             new_qp_a.push_back(new_qp_d);
         }
-        SchedSplitModel::instance().update(new_qp_a, m_trans_id);
+        SchedSplitModel::instance().update(m_trans_id, new_qp_a);
 
         // Save split tags
         for (size_t i = 0; i < m_sched_xd.local_splits.size(); i++) {

@@ -95,16 +95,16 @@ std::map<wxString, int64> TagLinkModel::find_ref_tag_m(RefTypeN ref_type, int64 
     return tag_name_id_m;
 }
 
-std::map<int64, TagLinkModel::DataA> TagLinkModel::find_reftype_refid_data_m(
+std::map<int64, TagLinkModel::DataA> TagLinkModel::find_refType_mRefId(
     RefTypeN ref_type
 ) {
-    std::map<int64, DataA> refid_data_m;
+    std::map<int64, DataA> refId_dataA_m;
     for (const auto& gl_d : instance().find(
         TagLinkCol::REFTYPE(ref_type.name_n())
     )) {
-        refid_data_m[gl_d.m_ref_id].push_back(gl_d);
+        refId_dataA_m[gl_d.m_ref_id].push_back(gl_d);
     }
-    return refid_data_m;
+    return refId_dataA_m;
 }
 
 int TagLinkModel::update(RefTypeN ref_type, int64 ref_id, const DataA& src_gl_a)

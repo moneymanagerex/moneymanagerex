@@ -93,7 +93,7 @@ int64 StockHistoryModel::addUpdate(
         StockHistoryCol::SYMBOL(symbol),
         StockHistoryModel::DATE(OP_GT, date)
     ).size() == 0) {
-        StockModel::UpdateCurrentPrice(symbol, price);
+        StockModel::instance().update_symbol_current_price(symbol, price);
     }
 
     save_data_n(sh_d);

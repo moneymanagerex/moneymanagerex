@@ -487,7 +487,7 @@ void mmQIFExportDialog::mmExportQIF()
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
         const auto splits = TrxSplitModel::instance().get_all_id();
-        const auto tags = TagLinkModel::instance().find_reftype_refid_data_m(
+        const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
             TrxModel::s_ref_type
         );
 
@@ -518,7 +518,7 @@ void mmQIFExportDialog::mmExportQIF()
 
             bool is_reverce = false;
             wxString trx_str;
-            TrxModel::Full_Data full_tran(trx_d, splits, tags);
+            TrxModel::Full_Data full_tran(trx_d, splits, trxId_glA_m);
             int64 account_id = trx_d.m_account_id;
 
             switch (m_type)

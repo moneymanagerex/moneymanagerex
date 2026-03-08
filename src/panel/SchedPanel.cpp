@@ -340,13 +340,12 @@ int SchedPanel::initVirtualListControl(int64 id)
     m_lc->DeleteAllItems();
 
     bills_.clear();
-    const auto split = SchedSplitModel::instance().get_all_id();
-    for (const SchedData& data
-        : SchedModel::instance().find_all(SchedCol::COL_ID_NEXTOCCURRENCEDATE))
-    {
-        if (transFilterActive_ && !transFilterDlg_->mmIsRecordMatches(data, split))
+    const auto schedId_qpA_m = SchedSplitModel::instance().find_all_mSchedId();
+    for (const SchedData& data : SchedModel::instance().find_all(
+        SchedCol::COL_ID_NEXTOCCURRENCEDATE
+    )) {
+        if (transFilterActive_ && !transFilterDlg_->mmIsRecordMatches(data, schedId_qpA_m))
             continue;
-
         SchedModel::Full_Data r(data);
         bills_.push_back(r);
     }
@@ -354,10 +353,8 @@ int SchedPanel::initVirtualListControl(int64 id)
     sortList();
 
     int cnt = 0, selected_item = -1;
-    for (const auto& entry: bills_)
-    {
-        if (id == entry.m_id)
-        {
+    for (const auto& entry: bills_) {
+        if (id == entry.m_id) {
             selected_item = cnt;
             break;
         }
@@ -413,8 +410,7 @@ void SchedList::OnItemRightClick(wxMouseEvent& event)
     int Flags = wxLIST_HITTEST_ONITEM;
     m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
-    if (m_selected_row >= 0)
-    {
+    if (m_selected_row >= 0) {
         SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
     }
@@ -467,54 +463,52 @@ wxString SchedPanel::getItem(long item, int col_id)
         return sched_xd.CATEGNAME;
     case SchedList::LIST_ID_TAGS:
         return sched_xd.TAGNAMES;
-    case SchedList::LIST_ID_WITHDRAWAL:
-        {
-            wxString value = wxEmptyString;
-            int64 accountid;
-            double transamount;
-            if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
-                accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
-            }
-            else if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
-            }
-            else
-                return value;
-            const AccountData* account = AccountModel::instance().get_id_data_n(accountid);
-            const CurrencyData* currency = account ?
-                CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
-            if (currency)
-                value = CurrencyModel::toCurrency(transamount, currency);
-            if (!value.IsEmpty() && TrxModel::status_id(sched_xd.STATUS) == TrxModel::STATUS_ID_VOID)
-                value = "* " + value;
-            return value;
+    case SchedList::LIST_ID_WITHDRAWAL: {
+        wxString value = wxEmptyString;
+        int64 accountid;
+        double transamount;
+        if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
+            accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
         }
-    case SchedList::LIST_ID_DEPOSIT:
-        {
-            wxString value = wxEmptyString;
-            int64 accountid;
-            double transamount;
-            if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
-                accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
-            }
-            else if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
-                accountid = sched_xd.m_to_account_id_n; transamount = sched_xd.m_to_amount;
-            }
-            else
-                return value;
-            const AccountData* account = AccountModel::instance().get_id_data_n(accountid);
-            const CurrencyData* currency = account ?
-                CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
-            if (currency)
-                value = CurrencyModel::toCurrency(transamount, currency);
-            if (!value.IsEmpty() && TrxModel::status_id(sched_xd.STATUS) == TrxModel::STATUS_ID_VOID)
-                value = "* " + value;
-            return value;
+        else if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+            accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
         }
+        else
+            return value;
+        const AccountData* account = AccountModel::instance().get_id_data_n(accountid);
+        const CurrencyData* currency = account ?
+            CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
+        if (currency)
+            value = CurrencyModel::toCurrency(transamount, currency);
+        if (!value.IsEmpty() && TrxModel::status_id(sched_xd.STATUS) == TrxModel::STATUS_ID_VOID)
+            value = "* " + value;
+        return value;
+    }
+    case SchedList::LIST_ID_DEPOSIT: {
+        wxString value = wxEmptyString;
+        int64 accountid;
+        double transamount;
+        if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
+            accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
+        }
+        else if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+            accountid = sched_xd.m_to_account_id_n; transamount = sched_xd.m_to_amount;
+        }
+        else
+            return value;
+        const AccountData* account = AccountModel::instance().get_id_data_n(accountid);
+        const CurrencyData* currency = account ?
+            CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
+        if (currency)
+            value = CurrencyModel::toCurrency(transamount, currency);
+        if (!value.IsEmpty() && TrxModel::status_id(sched_xd.STATUS) == TrxModel::STATUS_ID_VOID)
+            value = "* " + value;
+        return value;
+    }
     case SchedList::LIST_ID_FREQUENCY:
         return GetFrequency(rn);
     case SchedList::LIST_ID_REPEATS: {
-        return !is_active                                 ? L"\x2015" : // HORIZONTAL BAR
+        return !is_active                             ? L"\x2015" : // HORIZONTAL BAR
             rn.num == SchedModel::REPEAT_NUM_INFINITY ? L"\x221E" : // INFITITY
             wxString::Format("%i", rn.num).Trim();
     }
@@ -522,7 +516,7 @@ wxString SchedPanel::getItem(long item, int col_id)
         wxString repeatSTR =
             (rn.exec == SchedModel::REPEAT_EXEC_SILENT) ? _t("Automated") :
             (rn.exec == SchedModel::REPEAT_EXEC_MANUAL) ? _t("Suggested") :
-                                                              _t("Manual");
+                                                          _t("Manual");
         return repeatSTR;
     }
     case SchedList::LIST_ID_REMAINING:
@@ -586,8 +580,7 @@ void SchedList::OnListLeftClick(wxMouseEvent& event)
 {
     int Flags = wxLIST_HITTEST_ONITEM;
     long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
-    if (index == -1)
-    {
+    if (index == -1) {
         m_selected_row = -1;
         m_bdp->updateBottomPanelData(m_selected_row);
     }
@@ -618,16 +611,13 @@ int SchedList::OnGetItemImage(long item) const
 
 void SchedList::OnListKeyDown(wxListEvent& event)
 {
-    switch ( event.GetKeyCode() )
-    {
-    case WXK_DELETE:
-    {
+    switch ( event.GetKeyCode() ) {
+    case WXK_DELETE: {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED,
             MENU_TREEPOPUP_DELETE);
         OnDeleteBDSeries(evt);
+        break;
     }
-    break;
-
     default:
         event.Skip();
     }
@@ -642,7 +632,8 @@ void SchedList::OnNewBDSeries(wxCommandEvent& /*event*/)
 
 void SchedList::OnEditBDSeries(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row == -1) return;
+    if (m_selected_row == -1)
+        return;
 
     SchedDialog dlg(this, m_bdp->bills_[m_selected_row].m_id, false, false);
     if ( dlg.ShowModal() == wxID_OK )
@@ -660,8 +651,10 @@ void SchedList::OnDuplicateBDSeries(wxCommandEvent& /*event*/)
 
 void SchedList::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_bdp->bills_.empty()) return;
-    if (m_selected_row < 0) return;
+    if (m_bdp->bills_.empty())
+        return;
+    if (m_selected_row < 0)
+        return;
 
     wxMessageDialog msgDlg(this,
         _t("Do you want to delete the scheduled transaction?"),
@@ -680,12 +673,12 @@ void SchedList::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
 
 void SchedList::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row == -1) return;
+    if (m_selected_row == -1)
+        return;
 
     int64 id = m_bdp->bills_[m_selected_row].m_id;
     SchedDialog dlg(this, id, false, true);
-    if ( dlg.ShowModal() == wxID_OK )
-    {
+    if ( dlg.ShowModal() == wxID_OK ) {
         if (++m_selected_row < long(m_bdp->bills_.size()))
             id = m_bdp->bills_[m_selected_row].m_id;
         refreshVisualList(m_bdp->initVirtualListControl(id));
@@ -694,7 +687,8 @@ void SchedList::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 
 void SchedList::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row == -1) return;
+    if (m_selected_row == -1)
+        return;
 
     int64 id = m_bdp->bills_[m_selected_row].m_id;
     SchedModel::instance().completeBDInSeries(id);
@@ -705,7 +699,8 @@ void SchedList::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 
 void SchedList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row == -1) return;
+    if (m_selected_row == -1)
+        return;
 
     int64 ref_id = m_bdp->bills_[m_selected_row].m_id;
 
@@ -727,7 +722,8 @@ void SchedList::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
 
 void SchedList::OnListItemActivated(wxListEvent& WXUNUSED(event))
 {
-    if (m_selected_row == -1) return;
+    if (m_selected_row == -1)
+        return;
 
     SchedDialog dlg(this, m_bdp->bills_[m_selected_row].m_id, false, false);
     if ( dlg.ShowModal() == wxID_OK )
@@ -737,8 +733,7 @@ void SchedList::OnListItemActivated(wxListEvent& WXUNUSED(event))
 void SchedPanel::updateBottomPanelData(int selIndex)
 {
     enableEditDeleteButtons(selIndex >= 0);
-    if (selIndex != -1)
-    {
+    if (selIndex != -1) {
         m_infoTextMini->SetLabelText(CategoryModel::full_name(bills_[selIndex].m_category_id_n));
         m_infoText->SetLabelText(bills_[selIndex].m_notes);
     }
@@ -766,8 +761,7 @@ void SchedPanel::enableEditDeleteButtons(bool en)
 void SchedPanel::sortList()
 {
     std::sort(bills_.begin(), bills_.end());
-    switch (m_lc->getSortColId())
-    {
+    switch (m_lc->getSortColId()) {
     case SchedList::LIST_ID_ID:
         std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByBDID());
         break;
@@ -841,7 +835,8 @@ void SchedPanel::sortList()
     default:
         break;
     }
-    if (!m_lc->getSortAsc()) std::reverse(bills_.begin(), bills_.end());
+    if (!m_lc->getSortAsc())
+        std::reverse(bills_.begin(), bills_.end());
 }
 
 wxString SchedPanel::tips()
@@ -854,14 +849,15 @@ void SchedList::refreshVisualList(int selected_index)
 
     if (selected_index >= static_cast<long>(m_bdp->bills_.size()) || selected_index < 0)
         selected_index = - 1;
+
     if (!m_bdp->bills_.empty()) {
         RefreshItems(0, m_bdp->bills_.size() - 1);
     }
-    else
+    else {
         selected_index = -1;
+    }
 
-    if (selected_index >= 0 && !m_bdp->bills_.empty())
-    {
+    if (selected_index >= 0 && !m_bdp->bills_.empty()) {
         SetItemState(selected_index, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(selected_index, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
         EnsureVisible(selected_index);
@@ -874,8 +870,7 @@ void SchedList::RefreshList()
 {
     if (m_bdp->bills_.size() == 0) return;
     int64 id = -1;
-    if (m_selected_row != -1)
-    {
+    if (m_selected_row != -1) {
         id = m_bdp->bills_[m_selected_row].m_id;
     }
     refreshVisualList(m_bdp->initVirtualListControl(id));
@@ -883,26 +878,39 @@ void SchedList::RefreshList()
 
 wxListItemAttr* SchedList::OnGetItemAttr(long item) const
 {
-    if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size())) return 0;
+    if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size()))
+        return 0;
 
     int color_id = m_bdp->bills_[item].m_color.GetValue();
 
     static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
-    if (color_id > 0)
-    {
+    if (color_id > 0) {
         color_id = std::min(7, color_id);
         if (const auto it = cache.find(color_id); it != cache.end())
             return it->second.get();
         else {
-            switch (color_id)
-            {
-            case 1: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor1), mmColors::userDefColor1, wxNullFont); break;
-            case 2: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor2), mmColors::userDefColor2, wxNullFont); break;
-            case 3: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor3), mmColors::userDefColor3, wxNullFont); break;
-            case 4: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor4), mmColors::userDefColor4, wxNullFont); break;
-            case 5: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor5), mmColors::userDefColor5, wxNullFont); break;
-            case 6: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor6), mmColors::userDefColor6, wxNullFont); break;
-            case 7: cache[color_id] = new wxListItemAttr(*bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont); break;
+            switch (color_id) {
+            case 1: cache[color_id] = new wxListItemAttr(
+                *bestFontColour(mmColors::userDefColor1), mmColors::userDefColor1, wxNullFont
+            ); break;
+            case 2: cache[color_id] = new wxListItemAttr(
+                *bestFontColour(mmColors::userDefColor2), mmColors::userDefColor2, wxNullFont
+            ); break;
+            case 3: cache[color_id] = new wxListItemAttr(
+                *bestFontColour(mmColors::userDefColor3), mmColors::userDefColor3, wxNullFont
+            ); break;
+            case 4: cache[color_id] = new wxListItemAttr(
+                *bestFontColour(mmColors::userDefColor4), mmColors::userDefColor4, wxNullFont
+            ); break;
+            case 5: cache[color_id] = new wxListItemAttr(
+                *bestFontColour(mmColors::userDefColor5), mmColors::userDefColor5, wxNullFont
+            ); break;
+            case 6: cache[color_id] = new wxListItemAttr(
+                *bestFontColour(mmColors::userDefColor6), mmColors::userDefColor6, wxNullFont
+            ); break;
+            case 7: cache[color_id] = new wxListItemAttr(
+                *bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont
+            ); break;
             }
             return cache[color_id].get();
         }
@@ -941,13 +949,11 @@ void SchedPanel::RefreshList()
 void SchedPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
 {
 
-    if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->mmIsSomethingChecked())
-    {
+    if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->mmIsSomethingChecked()) {
         transFilterActive_ = true;
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
     }
-    else
-    {
+    else {
         transFilterActive_ = false;
         m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     }

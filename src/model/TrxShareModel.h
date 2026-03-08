@@ -30,33 +30,26 @@
 class TrxShareModel : public TableFactory<TrxShareTable, TrxShareData>
 {
 public:
-    // Initialize the global TrxShareModel table on initial call.
-    // Resets the global table on subsequent calls.
-    // Return the static instance address for TrxShareModel table
-    // Note: Assigning the address to a local variable can destroy the instance.
-    static TrxShareModel& instance(wxSQLite3Database* db);
+    TrxShareModel();
+    ~TrxShareModel();
 
-    // Return the static instance address for TrxShareModel table
-    // Note: Assigning the address to a local variable can destroy the instance.
+public:
+    static TrxShareModel& instance(wxSQLite3Database* db);
     static TrxShareModel& instance();
 
 public:
-    // Create a Share record if it does not exist.
-    // Save the share record linked to the transaction.
-    static void ShareEntry(
+    void purge_trxId(const int64 trx_id);
+
+    auto get_trxId_id(const int64 trx_id) -> int64;
+    auto unsafe_get_trxId_data_n(const int64 trx_id) -> Data*;
+    auto get_trxId_data_n(const int64 trx_id) -> const Data*;
+
+    void update_trxID(
         int64 trx_id,
         double share_number,
         double share_price,
         double share_commission,
-        const std::vector<Split>& commission_splits,
-        const wxString& share_lot
+        const wxString& share_lot,
+        const std::vector<Split>& commission_splits
     );
-
-public:
-    TrxShareModel();
-    ~TrxShareModel();
-
-    int64 find_trx_share_id(const int64 trx_id);
-    TrxShareData* unsafe_get_trx_share_n(const int64 trx_id);
-    void remove_trx_share(const int64 trx_id);
 };

@@ -277,7 +277,7 @@ table {
         bool is_time_used = PrefModel::instance().UseTransDateTime();
         const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
 
-        auto custom_fields_data = FieldValueModel::instance().find_reftype_refid_data_m(
+        auto trxId_fvA_m = FieldValueModel::instance().find_refType_mRefId(
             TrxModel::s_ref_type
         );
         while (noOfTrans--) {
@@ -384,9 +384,8 @@ table {
                     trx_xd.UDFC_value[i] = -DBL_MAX;
                 }
 
-                if (custom_fields_data.find(trx_xd.m_id) != custom_fields_data.end()) {
-                    const auto& fv_a = custom_fields_data.at(trx_xd.m_id);
-                    for (const auto& fv_d : fv_a) {
+                if (trxId_fvA_m.find(trx_xd.m_id) != trxId_fvA_m.end()) {
+                    for (const auto& fv_d : trxId_fvA_m.at(trx_xd.m_id)) {
                         for (int i = 0; i < 5; i++) {
                             if (fv_d.m_field_id == udfc_id[i]) {
                                 trx_xd.UDFC_content[i] = fv_d.m_content;
@@ -552,12 +551,12 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
 {
     trx_xa.clear();
     const auto splits = TrxSplitModel::instance().get_all_id();
-    const auto tags = TagLinkModel::instance().find_reftype_refid_data_m(
+    const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
         TrxModel::s_ref_type
     );
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        TrxModel::Full_Data trx_xd(trx_d, splits, tags);
+        TrxModel::Full_Data trx_xd(trx_d, splits, trxId_glA_m);
         trx_xd.PAYEENAME = trx_xd.real_payee_name(trx_xd.m_account_id);
         if (trx_xd.has_split()) {
             TrxModel::Full_Data single_tran = trx_xd;

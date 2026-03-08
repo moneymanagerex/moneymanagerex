@@ -200,16 +200,27 @@ wxString StockList::OnGetItemText(long item, long col_nr) const
     case LIST_ID_CURRENT:
         return CurrencyModel::toString(m_stocks[item].m_current_price, m_stock_panel->m_currency, 4);
     case LIST_ID_CURRVALUE:
-        return CurrencyModel::toString(StockModel::CurrentValue(m_stocks[item]), m_stock_panel->m_currency);
+        return CurrencyModel::toString(
+            m_stocks[item].current_value(),
+            m_stock_panel->m_currency
+        );
     case LIST_ID_PRICEDATE:
-        return mmGetDateTimeForDisplay(StockModel::instance().lastPriceDate(m_stocks[item]));
+        return mmGetDateTimeForDisplay(
+            StockModel::instance().find_last_hist_date(m_stocks[item]).isoDate()
+        );
     case LIST_ID_COMMISSION:
-        return CurrencyModel::toString(m_stocks[item].m_commission, m_stock_panel->m_currency);
+        return CurrencyModel::toString(
+            m_stocks[item].m_commission,
+            m_stock_panel->m_currency
+        );
     case LIST_ID_NOTES: {
         wxString full_notes = m_stocks[item].m_notes;
         full_notes.Replace("\n", " ");
-        if (AttachmentModel::instance().find_ref_c(StockModel::s_ref_type, m_stocks[item].m_id))
+        if (AttachmentModel::instance().find_ref_c(
+            StockModel::s_ref_type, m_stocks[item].m_id
+        )) {
             full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
+        }
         return full_notes;
     }
     default:
@@ -224,7 +235,7 @@ double StockList::GetGainLoss(long item) const
 
 double StockList::getGainLoss(const StockData& stock_d)
 {
-    return StockModel::CurrentValue(stock_d) - stock_d.m_purchase_value;
+    return stock_d.current_value() - stock_d.m_purchase_value;
 }
 
 double StockList::GetRealGainLoss(long item) const
@@ -234,7 +245,7 @@ double StockList::GetRealGainLoss(long item) const
 
 double StockList::getRealGainLoss(const StockData& stock)
 {
-    return StockModel::RealGainLoss(stock);
+    return StockModel::instance().calculate_realized_gain(stock);
 }
 
 void StockList::OnListItemSelected(wxListEvent& event)
@@ -493,7 +504,7 @@ int StockList::initVirtualListControl(int64 trx_id)
             break;
         }
         if (!stock.m_purchase_price) {
-            StockModel::UpdatePosition(&stock);
+            StockModel::instance().update_data_position(&stock);
         }
         ++cnt;
     }
@@ -550,13 +561,11 @@ void StockList::sortList()
         std::stable_sort(m_stocks.begin(), m_stocks.end(), StockData::SorterByCURRENTPRICE());
         break;
     case StockList::LIST_ID_CURRVALUE:
-        std::stable_sort(m_stocks.begin(), m_stocks.end()
-            , [](const StockData& x, const StockData& y)
-            {
-                double valueX = StockModel::CurrentValue(x);
-                double valueY = StockModel::CurrentValue(y);
-                return valueX < valueY;
-            });
+        std::stable_sort(m_stocks.begin(), m_stocks.end(),
+            [](const StockData& x, const StockData& y) {
+                return x.current_value() < y.current_value();
+            }
+        );
         break;
     case StockList::LIST_ID_PRICEDATE:
         //TODO

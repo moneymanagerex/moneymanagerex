@@ -112,7 +112,7 @@ void StockDialog::DataToControls()
     m_stock_name_ctrl->SetValue(m_stock_n->m_name);
     m_stock_symbol_ctrl->SetValue(m_stock_n->m_symbol);
     m_notes_ctrl->SetValue(m_stock_n->m_notes);
-    m_purchase_date_ctrl->SetValue(StockModel::PURCHASEDATE(*m_stock_n));
+    m_purchase_date_ctrl->SetValue(m_stock_n->m_purchase_date.getDateTime());
 
     int precision = m_stock_n->m_num_shares == floor(m_stock_n->m_num_shares)
         ? 0
@@ -141,7 +141,7 @@ void StockDialog::UpdateControls()
         if (m_stock_n) {
             m_value_investment->SetLabelText(AccountModel::instance().value_number_currency(
                 *account_n,
-                StockModel::instance().CurrentValue(*m_stock_n)
+                m_stock_n->current_value()
             ));
         }
     }
@@ -920,7 +920,7 @@ void StockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
         ));
         m_value_investment->SetLabelText(AccountModel::instance().value_number_currency(
             *account,
-            StockModel::instance().CurrentValue(*m_stock_n)
+            m_stock_n->current_value()
         ));
     }
 }
@@ -985,11 +985,13 @@ void StockDialog::ShowStockHistory()
         m_current_price_ctrl->SetValue(disp_price);
         // if the latest share price is not the current stock price, update it.
         if (m_stock_n->m_current_price != sh_d.m_price) {
-            StockModel::UpdateCurrentPrice(m_stock_n->m_symbol, sh_d.m_price);
+            StockModel::instance().update_symbol_current_price(
+                m_stock_n->m_symbol, sh_d.m_price
+            );
             m_stock_n = StockModel::instance().unsafe_get_id_data_n(m_stock_n->m_id);
             m_value_investment->SetLabelText(AccountModel::instance().value_number_currency(
                 *(AccountModel::instance().get_id_data_n(m_stock_n->m_account_id_n)),
-                StockModel::instance().CurrentValue(*m_stock_n)
+                m_stock_n->current_value()
             ));
         }
     }
