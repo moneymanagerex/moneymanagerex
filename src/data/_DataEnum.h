@@ -340,9 +340,7 @@ public:
     UpdateType(mmChoiceId id = s_choice_a.default_id_n()) :
         m_id(s_choice_a.valid_id_n(id)) {}
     static UpdateType from_code(int code) {
-        return UpdateType(static_cast<mmChoiceId>(
-            UpdateType::s_choice_a.find_code_n(code)
-        ));
+        return UpdateType(UpdateType::s_choice_a.find_code_n(code));
     }
 
     mmChoiceId id() const { return m_id; }
