@@ -34,24 +34,19 @@ public:
     ~SettingModel();
 
 public:
-    // Initialize the global SettingModel table on initial call.
-    // Resets the global table on subsequent calls.
-    // Return the static instance address for SettingModel table.
-    // Note: Assigning the address to a local variable can destroy the instance.
     static SettingModel& instance(wxSQLite3Database* db);
-
-    // Return the static instance address for SettingModel table.
-    // Note: Assigning the address to a local variable can destroy the instance.
     static SettingModel& instance();
-    void Savepoint()
+
+public:
+    void setting_savepoint()
     {
         this->m_db->Savepoint("MMEX_Setting");
     }
-    void ReleaseSavepoint()
+    void setting_release_savepoint()
     {
         this->m_db->ReleaseSavepoint("MMEX_Setting");
     }
-    void Rollback()
+    void setting_rollback()
     {
         this->m_db->Rollback("MMEX_Setting");
     }
@@ -60,40 +55,38 @@ public:
     bool contains(const wxString& key);
 
     void setRaw(const wxString& key, const wxString& newValue);
-    const wxString getRaw(const wxString& key, const wxString& defaultValue);
+    auto getRaw(const wxString& key, const wxString& defaultValue) -> const wxString;
 
     void setString(const wxString& key, const wxString& newValue);
-    const wxString getString(const wxString& key, const wxString& defaultValue);
+    auto getString(const wxString& key, const wxString& defaultValue) -> const wxString;
 
     void setBool(const wxString& key, bool newValue);
     bool getBool(const wxString& key, bool defaultValue);
 
     void setInt(const wxString& key, int newValue);
-    int getInt(const wxString& key, int defaultValue);
+    int  getInt(const wxString& key, int defaultValue);
 
     void setColour(const wxString& key, const wxColour& newValue);
-    const wxColour getColour(const wxString& key, const wxColour& defaultValue);
+    auto getColour(const wxString& key, const wxColour& defaultValue) -> const wxColour;
 
     void setJdoc(const wxString& key, Document& newValue);
     void setJdoc(const wxString& key, StringBuffer& newValue);
-    Document getJdoc(const wxString& key, const wxString& defaultValue);
+    auto getJdoc(const wxString& key, const wxString& defaultValue) -> Document;
 
     void setArrayString(const wxString& key, const wxArrayString& a);
-    const wxArrayString getArrayString(const wxString& key);
+    auto getArrayString(const wxString& key) -> const wxArrayString;
 
     void prependArrayItem(const wxString& key, const wxString& value, int limit);
 
-public:
     void setViewAccounts(const wxString& newValue);
-    wxString getViewAccounts();
+    auto getViewAccounts() -> const wxString;
     
     void setTheme(const wxString& newValue);
-    wxString getTheme();
+    auto getTheme() -> const wxString;
 
-    wxString getLastDbPath();
+    auto getLastDbPath() -> const wxString;
 
-public:
     void shrinkUsageTable();
-    static row_t to_html_row();
+    auto to_html_row() -> row_t;
 };
 

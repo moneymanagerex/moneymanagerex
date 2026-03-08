@@ -267,7 +267,7 @@ void SettingModel::setViewAccounts(const wxString& newValue)
 {
     setString("VIEWACCOUNTS", newValue);
 }
-wxString SettingModel::getViewAccounts()
+const wxString SettingModel::getViewAccounts()
 {
     return getString("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 }
@@ -277,13 +277,13 @@ void SettingModel::setTheme(const wxString& newValue)
 {
     setString("THEME", newValue);
 }
-wxString SettingModel::getTheme()
+const wxString SettingModel::getTheme()
 {
     return getString("THEME", "default");
 }
 
 // LASTFILENAME
-wxString SettingModel::getLastDbPath()
+const wxString SettingModel::getLastDbPath()
 {
     wxString path = getString("LASTFILENAME", "");
     if (!mmex::isPortableMode())
@@ -309,11 +309,12 @@ void SettingModel::shrinkUsageTable()
         return;
 
     const wxString save_point = "SETTINGS_TRIM_USAGE";
-    wxDate date(wxDate::Now());
-    date.Subtract(wxDateSpan::Months(2));
+    wxDate date = wxDate::Now().Subtract(wxDateSpan::Months(2));
     m_db->Savepoint(save_point);
     try {
-        wxString sql = wxString::Format("delete from USAGE_V1 where USAGEDATE < \"%s\";", date.FormatISODate());
+        wxString sql = wxString::Format("delete from USAGE_V1 where USAGEDATE < \"%s\";",
+            date.FormatISODate()
+        );
         m_db->ExecuteUpdate(sql);
     }
     catch (const wxSQLite3Exception& /*e*/) {
@@ -326,7 +327,7 @@ void SettingModel::shrinkUsageTable()
 row_t SettingModel::to_html_row()
 {
     row_t row;
-    for (const auto& setting_a: instance().find_all())
+    for (const auto& setting_a: find_all())
         row(setting_a.m_name.ToStdWstring()) = setting_a.m_value;
     return row;
 }
