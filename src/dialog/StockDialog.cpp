@@ -395,7 +395,7 @@ void StockDialog::OnCancel(wxCommandEvent& /*event*/)
 void StockDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
     int64 ref_id = (m_stock_id > 0) ? m_stock_id : 0;
-    AttachmentDialog dlg(this, StockModel::refTypeName, ref_id);
+    AttachmentDialog dlg(this, StockModel::s_ref_type, ref_id);
     dlg.ShowModal();
 }
 

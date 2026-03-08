@@ -526,7 +526,7 @@ void AssetDialog::OnQuit(wxCloseEvent& /*event*/)
 void AssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
     int64 ref_id = m_asset_n ? m_asset_n->m_id : 0;
-    AttachmentDialog dlg(this, AssetModel::refTypeName, ref_id);
+    AttachmentDialog dlg(this, AssetModel::s_ref_type, ref_id);
     dlg.ShowModal();
 }
 

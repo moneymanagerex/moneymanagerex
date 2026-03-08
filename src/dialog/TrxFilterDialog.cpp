@@ -424,10 +424,9 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
 
     // Custom Fields
     bool is_custom_found = false;
-    const wxString ref_type = TrxModel::refTypeName;
     int field_index = 0;
     for (const auto& field_d : FieldModel::instance().find(
-        FieldCol::REFTYPE(ref_type)
+        FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())
     )) {
         const auto entry = wxString::Format("CUSTOM%lld", field_d.m_id);
         if (j_doc.HasMember(entry.c_str())) {
@@ -1390,12 +1389,12 @@ bool TrxFilterDialog::mmIsTagMatches(RefTypeN ref_type, int64 ref_id, bool merge
     std::map<wxString, int64> tag_name_id_m;
     if (ref_type == TrxSplitModel::s_ref_type)
         tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
-            TrxModel::refTypeName,
+            TrxModel::s_ref_type,
             TrxSplitModel::instance().get_id_data_n(ref_id)->m_trx_id
         );
     else if (ref_type == SchedSplitModel::s_ref_type)
         tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
-            SchedModel::refTypeName,
+            SchedModel::s_ref_type,
             SchedSplitModel::instance().get_id_data_n(ref_id)->m_sched_id
         );
 
@@ -1919,11 +1918,11 @@ const wxString TrxFilterDialog::mmGetJsonSettings(bool i18n) const
         json_writer.Key((i18n ? _t("Tags") : "TAGS").utf8_str());
         json_writer.StartArray();
 
-        for (const auto& tag : tagTextCtrl_->GetTagStrings()) {
-            if (tag == "&" || tag == "|")
-                json_writer.String(tag.utf8_str());
+        for (const auto& tag_name : tagTextCtrl_->GetTagStrings()) {
+            if (tag_name == "&" || tag_name == "|")
+                json_writer.String(tag_name.utf8_str());
             else
-                json_writer.Int64(TagModel::instance().get_key(tag)->m_id.GetValue());
+                json_writer.Int64(TagModel::instance().get_name_data_n(tag_name)->m_id.GetValue());
         }
 
         json_writer.EndArray();

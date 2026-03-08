@@ -66,7 +66,7 @@ TrxLinkDialog::TrxLinkDialog(
         )) {
             wxArrayInt64 tag_id_a;
             for (const auto& gl_d : TagLinkModel::instance().find(
-                TagLinkCol::REFTYPE(TrxSplitModel::refTypeName),
+                TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
                 TagLinkCol::REFID(tp_d.m_id)
             )) {
                 tag_id_a.push_back(gl_d.m_tag_id);
@@ -424,13 +424,12 @@ void TrxLinkDialog::OnFrequentNotes(wxCommandEvent& WXUNUSED(event))
 
 void TrxLinkDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = TrxModel::refTypeName;
     int64 RefId = m_transaction_id;
 
     if (RefId < 0)
         RefId = 0;
 
-    AttachmentDialog dlg(this, RefType, RefId);
+    AttachmentDialog dlg(this, TrxModel::s_ref_type, RefId);
     dlg.ShowModal();
 }
 

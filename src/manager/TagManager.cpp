@@ -256,14 +256,14 @@ void TagManager::OnEdit(wxCommandEvent& WXUNUSED(event))
     if (text.IsEmpty() || old_name == text)
         return;
 
-    const TagData* tag_n = TagModel::instance().get_key(text);
+    const TagData* tag_n = TagModel::instance().get_name_data_n(text);
     if (tag_n) {
         wxString errMsg = _t("A tag with this name already exists");
         wxMessageBox(errMsg, _t("Tag Manager: Editing Error"), wxOK | wxICON_ERROR);
         return;
     }
 
-    tag_n = TagModel::instance().get_key(old_name);
+    tag_n = TagModel::instance().get_name_data_n(old_name);
     TagData tag_d = *tag_n;
     tag_d.m_name = text;
     TagModel::instance().save_data_n(tag_d);
@@ -296,20 +296,30 @@ void TagManager::OnDelete(wxCommandEvent& WXUNUSED(event))
     TrxModel::instance().db_savepoint();
     TrxSplitModel::instance().db_savepoint();
     for (const auto& selection : stringSelections) {
-        const TagData* tag_d = TagModel::instance().get_key(selection);
-        int tag_used = TagModel::instance().is_used(tag_d->m_id);
+        const TagData* tag_n = TagModel::instance().get_name_data_n(selection);
+        int tag_used = TagModel::instance().is_used(tag_n->m_id);
         if (tag_used == 1) {
-            wxMessageBox(wxString::Format(_t("Tag '%s' in use"), tag_d->m_name), _t("Tag Manager: Delete Error"), wxOK | wxICON_ERROR);
+            wxMessageBox(
+                wxString::Format(_t("Tag '%s' in use"), tag_n->m_name),
+                _t("Tag Manager: Delete Error"),
+                wxOK | wxICON_ERROR
+            );
             continue;
         }
-        wxMessageDialog msgDlg(this, wxString::Format(_t("Deleted transactions exist which use tag '%s'."), tag_d->m_name)
-                + "\n\n" + _t("Deleting the tag will also automatically purge the associated deleted transactions.")
-                + "\n\n" + _t("Do you want to continue?")
-                , _t("Confirm Tag Deletion"), wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+        wxMessageDialog msgDlg(this,
+            wxString::Format(
+                _t("Deleted transactions exist which use tag '%s'."),
+                tag_n->m_name
+            ) + "\n\n" +
+                _t("Deleting the tag will also automatically purge the associated deleted transactions.") + "\n\n" +
+                _t("Do you want to continue?"),
+            _t("Confirm Tag Deletion"),
+            wxYES_NO | wxNO_DEFAULT | wxICON_WARNING
+        );
         
         if (tag_used == 0 || (tag_used == -1 && msgDlg.ShowModal() == wxID_YES)) {
             TagLinkModel::DataA gl_a = TagLinkModel::instance().find(
-                TagLinkCol::TAGID(tag_d->m_id)
+                TagLinkCol::TAGID(tag_n->m_id)
             );
             for (const auto& gl_d : gl_a)
                 // Taglinks for deleted transactions are either TRANSACTION or TRANSACTIONSPLIT type.
@@ -322,7 +332,7 @@ void TagManager::OnDelete(wxCommandEvent& WXUNUSED(event))
                     );
                     TrxModel::instance().purge_id(tp_n->m_trx_id);
                 }
-            TagModel::instance().purge_id(tag_d->m_id);
+            TagModel::instance().purge_id(tag_n->m_id);
             tagList_.Remove(selection);
             int index = selectedTags_.Index(selection);
             if (index != wxNOT_FOUND)
@@ -355,28 +365,25 @@ void TagManager::OnListSelChanged(wxCommandEvent& WXUNUSED(event))
     buttonEdit_->Enable(false);
     buttonDelete_->Enable(false);
 
-    wxArrayInt selections;
-    wxArrayString stringSelections;
+    wxArrayInt tag_i_a;
+    wxArrayString tag_name_a;
 
-    tagListBox_->GetSelections(selections);
-    for (const auto& selection : selections)
-        stringSelections.Add(tagListBox_->GetString(selection));
+    tagListBox_->GetSelections(tag_i_a);
+    for (const auto& tag_i : tag_i_a)
+        tag_name_a.Add(tagListBox_->GetString(tag_i));
 
-    int count = selections.GetCount();
+    int count = tag_i_a.GetCount();
 
     // Can only edit one tag at a time
-    if (count == 1)
-    {
+    if (count == 1) {
         buttonEdit_->Enable();
     }
     // Can delete multiple tags at once as long as all are unused
-    if (count > 0)
-    {
+    if (count > 0) {
         bool is_used = false;
-        for (const auto& selection : stringSelections)
-        {
-            const TagData* tag = TagModel::instance().get_key(selection);
-            is_used |= TagModel::instance().is_used(tag->m_id) == 1;
+        for (const auto& tag_name : tag_name_a) {
+            const TagData* tag_n = TagModel::instance().get_name_data_n(tag_name);
+            is_used |= TagModel::instance().is_used(tag_n->m_id) == 1;
         }
         buttonDelete_->Enable(!is_used);
     }    

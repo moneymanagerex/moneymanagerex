@@ -304,7 +304,7 @@ void mmUnivCSVDialog::CreateControls()
 
     //Custom Fields
     FieldModel::DataA field_a = FieldModel::instance().find(
-        FieldCol::REFTYPE(TrxModel::refTypeName)
+        FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())
     );
     if (!field_a.empty()) {
         std::sort(field_a.begin(), field_a.end(), FieldData::SorterByDESCRIPTION());
@@ -2854,15 +2854,14 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     {
         // split the tag string at space characters
         wxStringTokenizer tokenizer = wxStringTokenizer(token, " ");
-        while (tokenizer.HasMoreTokens())
-        {
-            wxString tagname = tokenizer.GetNextToken();
+        while (tokenizer.HasMoreTokens()) {
+            wxString tag_name = tokenizer.GetNextToken();
             // check for an existing tag
-            const TagData* tag_n = TagModel::instance().get_key(tagname);
+            const TagData* tag_n = TagModel::instance().get_name_data_n(tag_name);
             if (!tag_n) {
                 // create a new tag if we didn't find one
                 TagData new_tag_d = TagData();
-                new_tag_d.m_name = tagname;
+                new_tag_d.m_name = tag_name;
                 TagModel::instance().save_data_n(new_tag_d);
                 tag_n = TagModel::instance().get_id_data_n(new_tag_d.id());
             }

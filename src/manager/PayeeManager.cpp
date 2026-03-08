@@ -843,11 +843,10 @@ void mmPayeeDialog::RemoveDefaultCategory()
 
 void mmPayeeDialog::OnOrganizeAttachments()
 {
-    wxString RefType = PayeeModel::refTypeName;
     long sel = payeeListBox_->GetFocusedItem();
     if (sel > -1) {
         RowData* rdata = reinterpret_cast<RowData*>(payeeListBox_->GetItemData(sel));
-        AttachmentDialog dlg(this, RefType, rdata->payeeId);
+        AttachmentDialog dlg(this, PayeeModel::s_ref_type, rdata->payeeId);
         dlg.ShowModal();
         refreshRequested_ = true;
     }

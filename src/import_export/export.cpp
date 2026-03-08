@@ -183,7 +183,6 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
         buffer << "M" << notes << "\n";
     }
 
-    wxString reftype = TrxSplitModel::refTypeName;
     for (const auto& tp_d : full_tran.m_splits) {
         double valueSplit = tp_d.m_amount;
         if (TrxModel::type_id(full_tran) == TrxModel::TYPE_ID_WITHDRAWAL)
@@ -192,7 +191,7 @@ const wxString mmExportTransaction::getTransactionQIF(const TrxModel::Full_Data&
         wxString split_categ = CategoryModel::full_name(tp_d.m_category_id, ":");
         split_categ.Replace("/", "-");
         TagLinkModel::DataA splitTags = TagLinkModel::instance().find(
-            TagLinkCol::REFTYPE(reftype),
+            TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
             TagLinkCol::REFID(tp_d.m_id)
         );
         if (!splitTags.empty()) {

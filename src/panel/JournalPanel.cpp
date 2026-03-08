@@ -1324,10 +1324,10 @@ void JournalPanel::onButtonRightDown(wxMouseEvent& event)
     case wxID_FILE: {
         auto selected_id = m_lc->getSelectedId();
         if (selected_id.size() == 1) {
-            const wxString refType = !selected_id[0].second ?
-                TrxModel::refTypeName :
-                SchedModel::refTypeName;
-            AttachmentDialog dlg(this, refType, selected_id[0].first);
+            RefTypeN ref_type = !selected_id[0].second ?
+                TrxModel::s_ref_type :
+                SchedModel::s_ref_type;
+            AttachmentDialog dlg(this, ref_type, selected_id[0].first);
             dlg.ShowModal();
             refreshList();
         }

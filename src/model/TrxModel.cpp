@@ -441,7 +441,7 @@ TrxModel::Full_Data::Full_Data(const Data& r) :
     m_splits(TrxSplitModel::instance().find(
         TrxSplitCol::TRANSID(r.m_id))),
     m_tags(TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(TrxModel::refTypeName),
+        TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
         TagLinkCol::REFID(r.m_id))),
     ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
     SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)

@@ -1172,7 +1172,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                         wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
                         // make tag names single-word
                         tagname.Replace(" ", "_");
-                        const TagData* tag_n = TagModel::instance().get_key(tagname);
+                        const TagData* tag_n = TagModel::instance().get_name_data_n(tagname);
                         if (!tag_n) {
                             TagData new_tag_d = TagData();
                             new_tag_d.m_name = tagname;
@@ -1529,7 +1529,7 @@ bool mmQIFImportDialog::completeTransaction(
                     wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
                     // make tag names single-word
                     tagname.Replace(" ", "_");
-                    const TagData* tag_n = TagModel::instance().get_key(tagname);
+                    const TagData* tag_n = TagModel::instance().get_name_data_n(tagname);
                     if (!tag_n) {
                         TagData new_tag_d = TagData();
                         new_tag_d.m_name = tagname;

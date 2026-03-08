@@ -657,10 +657,10 @@ bool mmWebApp::WebApp_DeleteOneTransaction(int64 WebAppTransactionId)
 wxString mmWebApp::WebApp_DownloadOneAttachment(const wxString& AttachmentName, int64 DesktopTransactionID, int AttachmentNr, wxString& Error)
 {
     wxString FileExtension = wxFileName(AttachmentName).GetExt().MakeLower();
-    wxString FileName = TrxModel::refTypeName + "_" + wxString::Format("%lld", DesktopTransactionID)
+    wxString FileName = TrxModel::s_ref_type.name_n() + "_" + wxString::Format("%lld", DesktopTransactionID)
         + "_Attach" + wxString::Format("%i", AttachmentNr) + "." + FileExtension;
     const wxString FilePath = mmex::getPathAttachment(mmAttachmentManage::InfotablePathSetting())
-        + TrxModel::refTypeName + wxFileName::GetPathSeparator() + FileName;
+        + TrxModel::s_ref_type.name_n() + wxFileName::GetPathSeparator() + FileName;
     wxString URL = mmWebApp::getServicesPageURL() + "&" + WebAppParam::DownloadAttachments + "=" + AttachmentName;
     CURLcode CurlStatus = http_download_file(URL, FilePath);
     if (CurlStatus == CURLE_OK)

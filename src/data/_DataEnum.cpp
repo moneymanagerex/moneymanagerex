@@ -96,9 +96,9 @@ mmChoiceNameA RefTypeN::s_choice_a = mmChoiceNameA({
     { e_sched_split, _n("RecurringTransactionSplit") },
 }, -1, true);
 
-mmChoiceNameA UpdateType::s_choice_a = mmChoiceNameA({
-    { e_none,   _n("None") },
-    { e_online, _n("Online") },
-    { e_manual, _n("Manual") },
+mmChoiceCodeNameA UpdateType::s_choice_a = mmChoiceCodeNameA({
+    { e_none,   0, _n("None") },
+    { e_online, 1, _n("Online") },
+    { e_manual, 2, _n("Manual") },
 }, e_none, true);
 

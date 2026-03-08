@@ -246,7 +246,7 @@ const SchedSplitModel::DataA SchedModel::split(const Data& sched_d)
 const TagLinkModel::DataA SchedModel::taglink(const Data& sched_d)
 {
     return TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(SchedModel::refTypeName),
+        TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
         TagLinkCol::REFID(sched_d.m_id)
     );
 }
@@ -365,7 +365,7 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
     Data(r),
     m_bill_splits(split(r)),
     m_tags(TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(SchedModel::refTypeName),
+        TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
         TagLinkCol::REFID(r.m_id)
     ))
 {

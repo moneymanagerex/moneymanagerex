@@ -1489,10 +1489,10 @@ void JournalList::onOrganizeAttachments(wxCommandEvent& /*event*/)
     findSelectedTransactions();
     Journal::IdRepeat id = m_selected_id[0];
 
-    const wxString refType = !id.second ?
-        TrxModel::refTypeName :
-        SchedModel::refTypeName;
-    AttachmentDialog dlg(this, refType, id.first);
+    RefTypeN ref_type = !id.second ?
+        TrxModel::s_ref_type :
+        SchedModel::s_ref_type;
+    AttachmentDialog dlg(this, ref_type, id.first);
     dlg.ShowModal();
     refreshVisualList();
 }
@@ -1724,9 +1724,8 @@ int64 JournalList::onPaste(const TrxData* tran)
 
     // Clone transaction tags
     TagLinkModel::DataA new_gl_a;
-    wxString reftype = TrxModel::refTypeName;
     for (const auto& tl_d : TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(reftype),
+        TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
         TagLinkCol::REFID(tran->m_id)
     )) {
         TagLinkData new_gl_d;
@@ -1736,7 +1735,6 @@ int64 JournalList::onPaste(const TrxData* tran)
     }
 
     // Clone split transactions
-    reftype = TrxSplitModel::refTypeName;
     for (const auto& tp_d : TrxModel::find_split(*tran)) {
         TrxSplitData new_tp_d;
         new_tp_d.clone_from(tp_d);
@@ -1745,7 +1743,7 @@ int64 JournalList::onPaste(const TrxData* tran)
 
         // Clone split tags
         for (const auto& tl_d : TagLinkModel::instance().find(
-            TagLinkCol::REFTYPE(reftype),
+            TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
             TagLinkCol::REFID(tp_d.m_id)
         )) {
             TagLinkData new_gl_d;
@@ -1874,8 +1872,8 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
     findSelectedTransactions();
     Journal::IdRepeat id = m_selected_id[0];
 
-    RefTypeN refType = !id.second ? TrxModel::s_ref_type : SchedModel::s_ref_type;
-    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, refType, id.first);
+    RefTypeN ref_type = !id.second ? TrxModel::s_ref_type : SchedModel::s_ref_type;
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, ref_type, id.first);
     refreshVisualList();
 }
 

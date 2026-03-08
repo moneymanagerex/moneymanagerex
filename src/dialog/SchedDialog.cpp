@@ -141,7 +141,7 @@ SchedDialog::SchedDialog(
 
         wxArrayInt64 tag_id_a;
         for (const auto& gl_d : TagLinkModel::instance().find(
-            TagLinkCol::REFTYPE(SchedModel::refTypeName),
+            TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
             TagLinkCol::REFID(sched_n->m_id)
         ))
             tag_id_a.push_back(gl_d.m_tag_id);
@@ -816,8 +816,7 @@ void SchedDialog::OnComboKey(wxKeyEvent& event)
 
 void SchedDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = SchedModel::refTypeName;
-    AttachmentDialog dlg(this, RefType, m_sched_xd.m_id);
+    AttachmentDialog dlg(this, SchedModel::s_ref_type, m_sched_xd.m_id);
     dlg.ShowModal();
 }
 

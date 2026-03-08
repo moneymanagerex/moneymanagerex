@@ -707,13 +707,12 @@ void SchedList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
 
-    int64 RefId = m_bdp->bills_[m_selected_row].m_id;
-    const wxString& RefType = SchedModel::refTypeName;
+    int64 ref_id = m_bdp->bills_[m_selected_row].m_id;
 
-    AttachmentDialog dlg(this, RefType, RefId);
+    AttachmentDialog dlg(this, SchedModel::s_ref_type, ref_id);
     dlg.ShowModal();
 
-    refreshVisualList(m_bdp->initVirtualListControl(RefId));
+    refreshVisualList(m_bdp->initVirtualListControl(ref_id));
 }
 
 void SchedList::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))

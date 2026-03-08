@@ -132,7 +132,6 @@ public:
     typedef std::vector<Full_Data> Full_DataA;
 
 public:
-    static const wxString refTypeName;
     static const RefTypeN s_ref_type;
 
 public:

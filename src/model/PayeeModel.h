@@ -31,7 +31,6 @@
 class PayeeModel : public TableFactory<PayeeTable, PayeeData>
 {
 public:
-    static const wxString refTypeName;
     static const RefTypeN s_ref_type;
 
 public:

@@ -67,7 +67,6 @@ public:
     bool purge_id(int64 id) override;
 
 public:
-    static const wxString refTypeName;
     static const RefTypeN s_ref_type;
 };
 

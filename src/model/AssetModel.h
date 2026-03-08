@@ -31,7 +31,6 @@
 class AssetModel : public TableFactory<AssetTable, AssetData>
 {
 public:
-    static const wxString refTypeName;
     static const RefTypeN s_ref_type;
 
 public:

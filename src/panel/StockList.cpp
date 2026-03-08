@@ -365,15 +365,15 @@ void StockList::OnEditStocks(wxCommandEvent& event)
 
 void StockList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row < 0) return;
+    if (m_selected_row < 0)
+        return;
 
-    wxString RefType = StockModel::refTypeName;
-    int64 RefId = m_stocks[m_selected_row].m_id;
+    int64 ref_id = m_stocks[m_selected_row].m_id;
 
-    AttachmentDialog dlg(this, RefType, RefId);
+    AttachmentDialog dlg(this, StockModel::s_ref_type, ref_id);
     dlg.ShowModal();
 
-    doRefreshItems(RefId);
+    doRefreshItems(ref_id);
 }
 
 void StockList::OnStockWebPage(wxCommandEvent& /*event*/)

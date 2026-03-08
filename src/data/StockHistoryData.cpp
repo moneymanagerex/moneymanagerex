@@ -35,7 +35,7 @@ StockHistoryRow StockHistoryData::to_row() const
     row.SYMBOL  = m_symbol;
     row.DATE    = m_date.isoDate();
     row.VALUE   = m_price;
-    row.UPDTYPE = m_update_type.value();
+    row.UPDTYPE = static_cast<int64>(m_update_type.code());
 
     return row;
 }
@@ -47,7 +47,9 @@ StockHistoryData& StockHistoryData::from_row(const StockHistoryRow& row)
     m_symbol      = row.SYMBOL;
     m_date        = mmDate(row.DATE);
     m_price       = row.VALUE;
-    m_update_type = UpdateType(row.UPDTYPE);
+    m_update_type = UpdateType::from_code(
+        static_cast<int>(row.UPDTYPE.GetValue())
+    );
 
     return *this;
 }

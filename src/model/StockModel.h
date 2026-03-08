@@ -30,7 +30,6 @@
 class StockModel : public TableFactory<StockTable, StockData>
 {
 public:
-    static const wxString refTypeName;
     static const RefTypeN s_ref_type;
 
 public:

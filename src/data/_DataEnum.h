@@ -297,8 +297,8 @@ public:
     static mmChoiceIdN field_id_n(mmChoiceIdN id_n) {
         switch (id_n) {
         case e_sched:
-        case e_trx_split:
-        case e_sched_split:
+        //case e_trx_split:
+        //case e_sched_split:
             return e_trx;
         default:
             return id_n;
@@ -331,7 +331,7 @@ public:
         e_manual,
         size
     };
-    static mmChoiceNameA s_choice_a;
+    static mmChoiceCodeNameA s_choice_a;
 
 private:
     mmChoiceId m_id;
@@ -339,11 +339,14 @@ private:
 public:
     UpdateType(mmChoiceId id = s_choice_a.default_id_n()) :
         m_id(s_choice_a.valid_id_n(id)) {}
-    UpdateType(int64 value) :
-        UpdateType(static_cast<mmChoiceId>(value.GetValue())) {}
+    static UpdateType from_code(int code) {
+        return UpdateType(static_cast<mmChoiceId>(
+            UpdateType::s_choice_a.find_code_n(code)
+        ));
+    }
 
     mmChoiceId id() const { return m_id; }
-    const int64 value() const { return static_cast<int64>(m_id); }
+    int code() const { return UpdateType::s_choice_a.get_code(m_id); }
     const wxString name() const { return UpdateType::s_choice_a.get_name(m_id); }
 };
 

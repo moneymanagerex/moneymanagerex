@@ -275,13 +275,12 @@ void AssetList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxString RefType = AssetModel::refTypeName;
-    int64 RefId = m_panel->m_assets[m_selected_row].m_id;
+    int64 ref_id = m_panel->m_assets[m_selected_row].m_id;
 
-    AttachmentDialog dlg(this, RefType, RefId);
+    AttachmentDialog dlg(this, AssetModel::s_ref_type, ref_id);
     dlg.ShowModal();
 
-    doRefreshItems(RefId);
+    doRefreshItems(ref_id);
 }
 
 void AssetList::OnOpenAttachment(wxCommandEvent& /*event*/)

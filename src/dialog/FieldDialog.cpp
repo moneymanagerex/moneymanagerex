@@ -46,7 +46,7 @@ wxEND_EVENT_TABLE()
 
 FieldDialog::FieldDialog(wxWindow* parent, FieldData* field) :
     m_field_n(field),
-    m_fieldRefType(TrxModel::refTypeName)
+    m_ref_type(TrxModel::s_ref_type)
 {
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -80,7 +80,7 @@ void FieldDialog::dataToControls()
     if (m_field_n) {
         m_itemDescription->SetValue(m_field_n->m_description);
         m_itemType->SetSelection(m_field_n->m_type_n.id_n());
-        m_itemReference->SetSelection(ModelBase::reftype_id(m_field_n->m_ref_type.name_n()));
+        m_itemReference->SetSelection(m_field_n->m_ref_type.id_n());
         m_itemTooltip->SetValue(FieldModel::getTooltip(m_field_n->m_properties));
         m_itemRegEx->SetValue(FieldModel::getRegEx(m_field_n->m_properties));
         m_itemAutocomplete->SetValue(FieldModel::getAutocomplete(m_field_n->m_properties));
@@ -96,7 +96,7 @@ void FieldDialog::dataToControls()
         m_itemChoices->ChangeValue(choices);
     }
     else {
-        m_itemReference->SetSelection(ModelBase::reftype_id(m_fieldRefType));
+        m_itemReference->SetSelection(m_ref_type.id_n());
         m_itemType->SetSelection(FieldTypeN::e_string);
         m_itemUDFC->SetSelection(0);
     }
@@ -125,11 +125,14 @@ void FieldDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Attribute of")), g_flagsH);
     m_itemReference = new wxChoice(itemPanel5, wxID_HIGHEST);
-    for (int i = 0; i < ModelBase::REFTYPE_ID_size; ++i) {
-        if (i != ModelBase::REFTYPE_ID_BILLSDEPOSIT) {
-            wxString reftype = ModelBase::reftype_name(i);
-            m_itemReference->Append(wxGetTranslation(reftype), new wxStringClientData(reftype));
-        }
+    for (int type_id = 0; type_id < RefTypeN::size; ++type_id) {
+        if (RefTypeN::field_id_n(type_id) != type_id)
+            continue;
+        wxString type_name = RefTypeN(type_id).name_n();
+        m_itemReference->Append(
+            wxGetTranslation(type_name),
+            new wxStringClientData(type_name)
+        );
     }
     mmToolTip(m_itemReference, _t("Select the item that the custom field is associated with"));
     itemFlexGridSizer6->Add(m_itemReference, g_flagsExpand);
@@ -144,9 +147,12 @@ void FieldDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Field Type")), g_flagsH);
     m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST);
-    for (int i = 0; i < FieldTypeN::size; ++i) {
-        wxString type_name = FieldTypeN(i).name_n();
-        m_itemType->Append(wxGetTranslation(type_name), new wxStringClientData(type_name));
+    for (int type_id = 0; type_id < FieldTypeN::size; ++type_id) {
+        wxString type_name = FieldTypeN(type_id).name_n();
+        m_itemType->Append(
+            wxGetTranslation(type_name),
+            new wxStringClientData(type_name)
+        );
     }
     mmToolTip(m_itemType, _t("Select the custom field type"));
     itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
@@ -285,7 +291,7 @@ void FieldDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return;
     }
 
-    m_field_n->m_ref_type = RefTypeN(m_fieldRefType);
+    m_field_n->m_ref_type = m_ref_type;
     m_field_n->m_description = name;
     m_field_n->m_type_n = FieldTypeN(m_itemType->GetSelection());
     m_field_n->m_properties = FieldModel::formatProperties(

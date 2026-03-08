@@ -88,40 +88,32 @@ void AttachmentDialog::Create(wxWindow* parent, const wxString& name)
 
     wxString WindowTitle;
     if (m_ref_id > 0) {
-        int refEnum = 0;
-        for (int i = 0; i < ModelBase::REFTYPE_ID_size; ++i) {
-            wxString reftype = ModelBase::reftype_name(i);
-            if (reftype == m_ref_type.name_n())
-                break;
-            refEnum++;
-        }
-        wxString RefName;
-        switch (refEnum)
-        {
-        case ModelBase::REFTYPE_ID_STOCK:
-            RefName = StockModel::get_id_name(m_ref_id);
+        wxString ref_name;
+        switch (m_ref_type.id_n()) {
+        case RefTypeN::e_stock:
+            ref_name = StockModel::get_id_name(m_ref_id);
             break;
-        case ModelBase::REFTYPE_ID_ASSET:
-            RefName = AssetModel::instance().get_id_name(m_ref_id);
+        case RefTypeN::e_asset:
+            ref_name = AssetModel::instance().get_id_name(m_ref_id);
             break;
-        case ModelBase::REFTYPE_ID_BANKACCOUNT:
-            RefName = AccountModel::instance().get_id_name(m_ref_id);
+        case RefTypeN::e_account:
+            ref_name = AccountModel::instance().get_id_name(m_ref_id);
             break;
-        case ModelBase::REFTYPE_ID_PAYEE:
-            RefName = PayeeModel::instance().get_id_name(m_ref_id);
+        case RefTypeN::e_payee:
+            ref_name = PayeeModel::instance().get_id_name(m_ref_id);
             break;
-        case ModelBase::REFTYPE_ID_TRANSACTION:
-        case ModelBase::REFTYPE_ID_BILLSDEPOSIT:
+        case RefTypeN::e_trx:
+        case RefTypeN::e_sched:
         default:
-            RefName = "";
+            ref_name = "";
         }       
-        if (RefName.IsEmpty())
+        if (ref_name.IsEmpty())
             WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$lld"),
                 wxGetTranslation(m_ref_type.name_n()), m_ref_id
             );
         else
             WindowTitle = wxString::Format(_t("Attachment Manager | %1$s | %2$s"),
-                wxGetTranslation(m_ref_type.name_n()), RefName
+                wxGetTranslation(m_ref_type.name_n()), ref_name
             );
     } else
         WindowTitle = wxString::Format(_t("Attachment Manager | New %s"),
@@ -674,7 +666,7 @@ void mmAttachmentManage::OpenAttachmentFromPanelIcon(
         mmAttachmentManage::OpenAttachment(file_path);
     }
     else {
-        AttachmentDialog dlg(parent, ref_type.name_n(), ref_id);
+        AttachmentDialog dlg(parent, ref_type, ref_id);
         dlg.ShowModal();
     }
 }

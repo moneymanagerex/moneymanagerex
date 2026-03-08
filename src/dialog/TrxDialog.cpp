@@ -119,13 +119,13 @@ TrxDialog::TrxDialog(
     if (found) {
         // a bill can only be duplicated
         m_mode = (duplicate || journal_id.second) ? MODE_DUP : MODE_EDIT;
-        const wxString& splitRefType = (m_journal_data.m_repeat_num == 0) ?
-            TrxSplitModel::refTypeName :
-            SchedSplitModel::refTypeName;
+        RefTypeN split_ref_type = (m_journal_data.m_repeat_num == 0) ?
+            TrxSplitModel::s_ref_type :
+            SchedSplitModel::s_ref_type;
         for (const auto& tp_d : Journal::split(m_journal_data)) {
             wxArrayInt64 tag_id_a;
             for (const auto& gl_d : TagLinkModel::instance().find(
-                TagLinkCol::REFTYPE(splitRefType),
+                TagLinkCol::REFTYPE(split_ref_type.name_n()),
                 TagLinkCol::REFID(tp_d.m_id))
             )
                 tag_id_a.push_back(gl_d.m_tag_id);
@@ -1171,11 +1171,11 @@ void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 
 void TrxDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& refType = (m_journal_data.m_repeat_num == 0) ?
-        TrxModel::refTypeName :
-        SchedModel::refTypeName;
+    RefTypeN ref_type = (m_journal_data.m_repeat_num == 0) ?
+        TrxModel::s_ref_type :
+        SchedModel::s_ref_type;
     int64 transID = (m_mode == MODE_DUP) ? -1 : m_journal_data.m_id;
-    AttachmentDialog dlg(this, refType, transID);
+    AttachmentDialog dlg(this, ref_type, transID);
     dlg.ShowModal();
 }
 
