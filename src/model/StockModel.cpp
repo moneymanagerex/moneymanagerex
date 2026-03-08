@@ -180,56 +180,68 @@ double StockModel::calculate_account_balance(const AccountData& account_d, const
 // to base currency.
 double StockModel::calculate_realized_gain(const Data& stock_d, bool to_base_curr)
 {
-    const CurrencyData* currency = AccountModel::instance().get_id_currency_p(
-        stock_d.m_account_id_n
-    );
-    TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
-        s_ref_type, stock_d.m_id
-    );
-    double real_gain_loss = 0;
+    // retrieve currency data only if needed
+    const CurrencyData* currency_n = nullptr;
+    if (to_base_curr)
+        currency_n = AccountModel::instance().get_id_currency_p(stock_d.m_account_id_n);
+
+    double realized_gain = 0;  // positive means gain, negative means loss
     double total_shares = 0;
     double total_initial_value = 0;
     double avg_share_price = 0;
     double conv_rate = 1;
 
     TrxModel::DataA trx_a;
-    for (const auto& tl_d : tl_a) {
-        const TrxData* trx_d = TrxModel::instance().get_id_data_n(
+    for (const auto& tl_d : TrxLinkModel::instance().find_ref_data_a(
+        s_ref_type, stock_d.m_id
+    )) {
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(
             tl_d.m_trx_id
         );
-        if (trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
-            trx_a.push_back(*trx_d);
+        if (trx_n && trx_n->m_id > -1 && trx_n->DELETEDTIME.IsEmpty())
+            trx_a.push_back(*trx_n);
     }
     std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
 
-    for (const auto& trx_d : trx_a) {
+    for (const TrxData& trx_d : trx_a) {
         const TrxShareData* ts_n = TrxShareModel::instance().get_trxId_data_n(
             trx_d.m_id
         );
-        conv_rate = to_base_curr
-            ? CurrencyHistoryModel::getDayRate(currency->m_id, trx_d.TRANSDATE)
-            : 1;
-        total_shares += ts_n->m_number;
+        if (!ts_n)
+            continue;
 
+        // only long positions are supported
+        // TODO: support short positions
+        total_shares += ts_n->m_number;
+        if (total_shares < 0)
+            total_shares = 0;
+
+        if (to_base_curr) {
+            conv_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id, trx_d.TRANSDATE);
+        }
         if (ts_n->m_number > 0) {
+            // BUY
             total_initial_value += (
                 ts_n->m_number * ts_n->m_price + ts_n->m_commission
             ) * conv_rate;
         }
         else {
+            // SELL
             total_initial_value += ts_n->m_number * avg_share_price;
-            real_gain_loss +=
-                -ts_n->m_number * (ts_n->m_price * conv_rate - avg_share_price) -
+            realized_gain +=
+                (-ts_n->m_number) * (ts_n->m_price * conv_rate - avg_share_price) -
                 ts_n->m_commission * conv_rate;
         }
 
-        if (total_shares < 0) total_shares = 0;
-        if (total_initial_value < 0) total_initial_value = 0;
-        if (total_shares > 0) avg_share_price = total_initial_value / total_shares;
-        else avg_share_price = 0;
+        if (total_initial_value < 0)
+            total_initial_value = 0;
+
+        avg_share_price = (total_shares > 0)
+            ? total_initial_value / total_shares
+            : 0.0;
     }
 
-    return real_gain_loss;
+    return realized_gain;
 }
 
 // Returns the current unrealized gain/loss.
@@ -257,7 +269,7 @@ double StockModel::calculate_unrealiazed_gain(const Data& stock_d, bool to_base_
             const TrxData* trx_d = TrxModel::instance().get_id_data_n(
                 tl_d.m_trx_id
             );
-            if (trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
+            if (trx_d && trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
                 trx_a.push_back(*trx_d);
         }
         std::stable_sort(trx_a.begin(), trx_a.end(),
@@ -336,10 +348,11 @@ void StockModel::update_data_position(StockData* stock_n)
     TrxModel::DataA trx_a;
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
-        if (trx_n->m_id > -1 && trx_n->DELETEDTIME.IsEmpty() &&
+        if (trx_n && trx_n->m_id > 0 && trx_n->DELETEDTIME.IsEmpty() &&
             TrxModel::status_id(trx_n->STATUS) != TrxModel::STATUS_ID_VOID
-        )
+        ) {
             trx_a.push_back(*trx_n);
+        }
     }
     std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
     for (const auto& trx_d : trx_a) {

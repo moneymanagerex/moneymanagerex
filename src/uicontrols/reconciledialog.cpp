@@ -265,7 +265,7 @@ void mmReconcileDialog::FillControls(bool init)
     if (init) {
         double endval;
         wxString endvalue = InfoModel::instance().getString(wxString::Format("RECONCILE_ACCOUNT_%lld_END_BALANCE", m_account->m_id), "0.00");
-        if (!endvalue.ToDouble(&endval)) {
+        if (!CurrencyModel::fromString(endvalue, endval, m_currency)) {
             endval = 0;
         }
         m_amountCtrl->SetValue(endval);

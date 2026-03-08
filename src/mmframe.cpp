@@ -1958,23 +1958,15 @@ void mmGUIFrame::createMenu()
         _t("Change user interface language")
     );
     wxMenu* menuLang = new wxMenu;
-
-    wxArrayString lang_files = wxTranslations::Get()->GetAvailableTranslations("mmex");
-    std::map<wxString, std::pair<int, wxString>> langs;
-    menuLang->AppendRadioItem(MENU_LANG + 1 + wxLANGUAGE_DEFAULT, _t("System default"))
-        ->Check(m_app->getGUILanguage() == wxLANGUAGE_DEFAULT);
-    for (auto & file : lang_files) {
-        const wxLanguageInfo* info = wxLocale::FindLanguageInfo(file);
-        if (info) {
-            //wxString label = wxGetTranslation(info->Description);
-            wxString label = info->CanonicalName + " " + info->DescriptionNative;
-            langs[label] = std::make_pair(info->Language, info->CanonicalName);
-        }
-    }
-    langs[wxGetTranslation(wxLocale::GetLanguageName(wxLANGUAGE_ENGLISH_US))] = std::make_pair(wxLANGUAGE_ENGLISH_US, "en_US");
-    for (auto const& lang : langs) {
-        menuLang->AppendRadioItem(MENU_LANG + 1 + lang.second.first, lang.first, lang.second.second)
-            ->Check(lang.second.first == m_app->getGUILanguage());
+    for (auto const& lang : g_translations()) {
+        int            lang_id    = std::get<0>(lang);
+        const wxString lang_label = std::get<1>(lang);
+        const wxString lang_help  = std::get<2>(lang);
+        menuLang->AppendRadioItem(
+            MENU_LANG + 1 + lang_id, lang_label, lang_help
+        )->Check(
+            lang_id == m_app->getGUILanguage()
+        );
     }
     menuItemLanguage->SetSubMenu(menuLang);
     menuView->Append(menuItemLanguage);

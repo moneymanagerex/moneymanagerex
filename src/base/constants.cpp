@@ -21,12 +21,15 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <wx/string.h>
 #include <wx/filefn.h>
+#include <wx/regex.h>
 #include <curl/curl.h>
 #include <rapidjson/rapidjson.h>
 
 #include "constants.h"
 #include "build.h"
 #include "table/_TableUpgrade.h"
+
+#include <algorithm>
 
 /*************************************************************************
  MMEX_VERSION
@@ -399,5 +402,53 @@ const wxArrayString g_locales()
     list.Add("zh_TW");
     list.Add("zu_ZA");
     return list;
+}
 
+const std::vector<mm_language_t> g_translations()
+{
+    // A language canonical name is of the form "^([a-z][a-z])_([A-Z][A-Z])$",
+    // where the first part is the language code and the second is the country code.
+    // The pattern below is more liberal.
+    wxRegEx lang_re("^([A-Za-z][A-Za-z0-9]*)_(.*)$");
+
+    std::vector<mm_language_t> lang_a;
+
+    // Add wxLANGUAGE_DEFAULT
+    lang_a.push_back({wxLANGUAGE_DEFAULT, _t("System default"), ""});
+
+    // Add all known languages
+    wxArrayString lang_name_a = wxTranslations::Get()->GetAvailableTranslations("mmex");
+    for (const auto& lang_name : lang_name_a) {
+        const wxLanguageInfo* lang_info = wxLocale::FindLanguageInfo(lang_name);
+        if (!lang_info)
+            continue;
+        //wxString lang_desc = wxGetTranslation(lang_info->Description);
+        wxString lang_code = lang_info->CanonicalName;
+        if (lang_re.IsValid() && lang_re.Matches(lang_code))
+            lang_re.Replace(&lang_code, "\\1(\\2)");
+        wxString lang_label = lang_code + " " + L"\x00B7" + " " + lang_info->DescriptionNative;
+        lang_a.push_back({
+            lang_info->Language,     /* id (wxLANGUAGE_*) */
+            lang_label,              /* label (canonical name and description) */
+            lang_info->CanonicalName /* help message (canonical name) */
+        });
+    }
+
+    // Ensure that wxLANGUAGE_ENGLISH_US is included
+    if (std::find_if(lang_a.begin(), lang_a.end(),
+        [](const mm_language_t& lang) {
+            return std::get<0>(lang) == wxLANGUAGE_ENGLISH_US;
+        }
+    ) == lang_a.end()) {
+        lang_a.push_back({wxLANGUAGE_ENGLISH_US, "English (US)", "en_US"});
+    }
+
+    // Sort by label, keeping wxLANGUAGE_DEFAULT first
+    std::sort(lang_a.begin() + 1, lang_a.end(),
+        [](const mm_language_t& x, const mm_language_t& y) {
+            return std::get<1>(x) < std::get<1>(y);
+        }
+    );
+
+    return lang_a;
 }
