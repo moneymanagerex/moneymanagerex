@@ -52,7 +52,7 @@ mmReconcileDialog::mmReconcileDialog(wxWindow* parent, const AccountData* accoun
     m_account = account;
     m_checkingPanel = cp;
     m_reconciledBalance = cp->GetTodayReconciledBalance();
-    m_currency = CurrencyModel::instance().get_id_data_n(account->m_currency_id_p);
+    m_currency = CurrencyModel::instance().get_id_data_n(account->m_currency_id);
     m_ignore  = false;
     this->SetFont(parent->GetFont());
 
@@ -98,6 +98,8 @@ void mmReconcileDialog::CreateControls()
     m_btnEdit = new wxButton(topPanel, wxID_ANY, _t("&Edit"));
     m_btnEdit->Bind(wxEVT_BUTTON, &mmReconcileDialog::OnEdit, this);
     m_btnEdit->SetCanFocus(false);
+    m_btnEdit->Enable(false);
+
     topSizer->Add(m_btnEdit, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 5);
 
     wxButton* btn = new wxButton(topPanel, wxID_ANY, _t("&New"));
@@ -147,6 +149,8 @@ void mmReconcileDialog::CreateControls()
     m_listLeft->Bind(wxEVT_KEY_DOWN, &mmReconcileDialog::OnListKeyDown, this);
     m_listLeft->Bind(wxEVT_SET_FOCUS, &mmReconcileDialog::OnLeftFocus, this);
     m_listLeft->Bind(wxEVT_KILL_FOCUS, &mmReconcileDialog::OnLeftFocusKill, this);
+    m_listLeft->Bind(wxEVT_LIST_ITEM_SELECTED, &mmReconcileDialog::OnListItemSelection, this);
+    m_listLeft->Bind(wxEVT_LIST_ITEM_DESELECTED, &mmReconcileDialog::OnListItemSelection, this);
 
     m_listLeft->SetSmallImages(m_images);
     m_listLeft->SetNormalImages(m_images);
@@ -169,6 +173,8 @@ void mmReconcileDialog::CreateControls()
     m_listRight->Bind(wxEVT_KEY_DOWN, &mmReconcileDialog::OnListKeyDown, this);
     m_listRight->Bind(wxEVT_SET_FOCUS, &mmReconcileDialog::OnRightFocus, this);
     m_listRight->Bind(wxEVT_KILL_FOCUS, &mmReconcileDialog::OnRightFocusKill, this);
+    m_listRight->Bind(wxEVT_LIST_ITEM_SELECTED, &mmReconcileDialog::OnListItemSelection, this);
+    m_listRight->Bind(wxEVT_LIST_ITEM_DESELECTED, &mmReconcileDialog::OnListItemSelection, this);
 
     m_listRight->SetSmallImages(m_images);
     m_listRight->SetNormalImages(m_images);
@@ -259,7 +265,7 @@ void mmReconcileDialog::FillControls(bool init)
     if (init) {
         double endval;
         wxString endvalue = InfoModel::instance().getString(wxString::Format("RECONCILE_ACCOUNT_%lld_END_BALANCE", m_account->m_id), "0.00");
-        if (!endvalue.ToDouble(&endval)) {
+        if (!CurrencyModel::fromString(endvalue, endval, m_currency)) {
             endval = 0;
         }
         m_amountCtrl->SetValue(endval);
@@ -299,10 +305,10 @@ void mmReconcileDialog::FillControls(bool init)
             continue;
         }
         if (!m_settings[SETTING_INCLUDE_DUPLICATED] && trx.STATUS == "D") {
-            m_hiddenDuplicatedBalance += trx.TRANSAMOUNT;
+            m_hiddenDuplicatedBalance += trx.m_amount;
             continue;
         }
-        if (trx.TRANSCODE == "Deposit" || (trx.TRANSCODE == "Transfer" && trx.TOACCOUNTID == m_account->m_id)) {
+        if (trx.TRANSCODE == "Deposit" || (trx.TRANSCODE == "Transfer" && trx.m_to_account_id_n == m_account->m_id)) {
             list = m_listRight;
             item = m_listRight->InsertItem(++ritemIndex, "");
         }
@@ -311,7 +317,7 @@ void mmReconcileDialog::FillControls(bool init)
             item = m_listLeft->InsertItem(++litemIndex, "");
         }
         setListItemData(&trx, list, item);
-        m_itemDataMap.push_back(trx.TRANSID);
+        m_itemDataMap.push_back(trx.m_id);
         list->SetItemData(item, mapidx++);
     }
 }
@@ -366,11 +372,24 @@ void mmReconcileDialog::UpdateAll()
     m_differenceLabel->SetFont(font);
     m_differenceCtrl->SetFont(font);
 
-    m_btnEdit->Enable(m_listLeft->GetSelectedItemCount() > 0 || m_listRight->GetSelectedItemCount() > 0);
-
     Refresh();
     Layout();
     Update();
+}
+
+void mmReconcileDialog::OnListItemSelection(wxListEvent& WXUNUSED(event))
+{
+   updateButtonState();
+}
+
+void mmReconcileDialog::updateButtonState()
+{
+    bool hasSelection = false;
+    if (m_listLeft->HasFocus() || m_listRight->HasFocus()) {
+        hasSelection = m_listLeft->GetNextItem(-1,wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED) != -1 ||
+                       m_listRight->GetNextItem(-1,wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED) != -1 ;
+    }
+    m_btnEdit->Enable(hasSelection);
 }
 
 void mmReconcileDialog::OnCalculator(wxCommandEvent& WXUNUSED(event))
@@ -492,6 +511,7 @@ void mmReconcileDialog::handleListFocus(wxListCtrl* list)
         long idx = list->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_FOCUSED);
         list->SetItemState(idx > -1 ? idx : 0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
     }
+    updateButtonState();
 }
 
 void mmReconcileDialog::OnLeftFocusKill(wxFocusEvent& event)
@@ -586,7 +606,7 @@ void mmReconcileDialog::newTransaction()
 
 void mmReconcileDialog::addTransaction2List(const TrxData* trx)
 {
-    wxListCtrl* list = (trx->TRANSCODE == "Deposit" || (trx->TRANSCODE == "Transfer" && trx->TOACCOUNTID == m_account->m_id)) ? m_listRight : m_listLeft;
+    wxListCtrl* list = (trx->TRANSCODE == "Deposit" || (trx->TRANSCODE == "Transfer" && trx->m_to_account_id_n == m_account->m_id)) ? m_listRight : m_listLeft;
     long idx = getListIndexByDate(trx, list);
     if (idx == -1) {
         idx = list->GetItemCount();
@@ -594,7 +614,7 @@ void mmReconcileDialog::addTransaction2List(const TrxData* trx)
     long item = list->InsertItem(idx, "");
     setListItemData(trx, list, item);
     list->SetItemData(item, m_itemDataMap.size());
-    m_itemDataMap.push_back(trx->TRANSID);
+    m_itemDataMap.push_back(trx->m_id);
 }
 
 void mmReconcileDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
@@ -668,12 +688,12 @@ void mmReconcileDialog::moveItemData(wxListCtrl* list, int row1, int row2)
 
 void mmReconcileDialog::setListItemData(const TrxData* trx, wxListCtrl* list, long item)
 {
-    wxString prefix = trx->TRANSCODE == "Transfer" ? (trx->TOACCOUNTID == m_account->m_id ? "< " : "> ") : "";
-    wxString payeeName = (trx->TRANSCODE == "Transfer") ? AccountModel::instance().get_id_name(trx->TOACCOUNTID == m_account->m_id ? trx->ACCOUNTID : trx->TOACCOUNTID): PayeeModel::instance().get_id_name(trx->PAYEEID);
+    wxString prefix = trx->TRANSCODE == "Transfer" ? (trx->m_to_account_id_n == m_account->m_id ? "< " : "> ") : "";
+    wxString payeeName = (trx->TRANSCODE == "Transfer") ? AccountModel::instance().get_id_name(trx->m_to_account_id_n == m_account->m_id ? trx->m_account_id : trx->m_to_account_id_n): PayeeModel::instance().get_id_name(trx->m_payee_id_n);
     list->SetItem(item, 1, mmGetDateTimeForDisplay(trx->TRANSDATE));
-    list->SetItem(item, 2, trx->TRANSACTIONNUMBER);
+    list->SetItem(item, 2, trx->m_number);
     list->SetItem(item, 3, prefix + payeeName);
-    list->SetItem(item, 4, CurrencyModel::toString(trx->TRANSAMOUNT,m_currency));
+    list->SetItem(item, 4, CurrencyModel::toString(trx->m_amount,m_currency));
     list->SetItem(item, 5, trx->STATUS);
     list->SetItemImage(item, trx->STATUS == "F" ? 1 : 0);
 }
@@ -782,7 +802,7 @@ void mmReconcileDialog::OnClose(wxCommandEvent& event)
                 trx_n->STATUS = "";
             }
         }
-        TrxModel::instance().unsafe_save_trx(trx_n);
+        TrxModel::instance().unsafe_save_trx_n(trx_n);
     };
 
     if (event.GetId() != wxID_CANCEL) {

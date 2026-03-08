@@ -21,40 +21,40 @@
 TrxData Journal::execute_bill(const SchedData& sched_d, wxString date)
 {
     TrxData trx_d;
-    trx_d.TRANSID           = 0;
-    trx_d.ACCOUNTID         = sched_d.ACCOUNTID;
-    trx_d.TOACCOUNTID       = sched_d.TOACCOUNTID;
-    trx_d.PAYEEID           = sched_d.PAYEEID;
+    trx_d.m_id              = 0;
+    trx_d.m_account_id      = sched_d.m_account_id;
+    trx_d.m_to_account_id_n = sched_d.m_to_account_id_n;
+    trx_d.m_payee_id_n      = sched_d.m_payee_id_n;
     trx_d.TRANSCODE         = sched_d.TRANSCODE;
-    trx_d.TRANSAMOUNT       = sched_d.TRANSAMOUNT;
+    trx_d.m_amount          = sched_d.m_amount;
     trx_d.STATUS            = sched_d.STATUS;
-    trx_d.TRANSACTIONNUMBER = sched_d.TRANSACTIONNUMBER;
-    trx_d.NOTES             = sched_d.NOTES;
-    trx_d.CATEGID           = sched_d.CATEGID;
+    trx_d.m_number          = sched_d.m_number;
+    trx_d.m_notes           = sched_d.m_notes;
+    trx_d.m_category_id_n   = sched_d.m_category_id_n;
     trx_d.TRANSDATE         = date;
-    trx_d.FOLLOWUPID        = sched_d.FOLLOWUPID;
-    trx_d.TOTRANSAMOUNT     = sched_d.TOTRANSAMOUNT;
-    trx_d.COLOR             = sched_d.COLOR;
+    trx_d.m_followup_id     = sched_d.m_followup_id;
+    trx_d.m_to_amount       = sched_d.m_to_amount;
+    trx_d.m_color           = sched_d.m_color;
     return trx_d;
 }
 
 TrxModel::Full_Data Journal::execute_bill_full(const SchedData& sched_d, wxString date)
 {
     TrxModel::Full_Data trx_xd;
-    trx_xd.TRANSID           = 0;
-    trx_xd.ACCOUNTID         = sched_d.ACCOUNTID;
-    trx_xd.TOACCOUNTID       = sched_d.TOACCOUNTID;
-    trx_xd.PAYEEID           = sched_d.PAYEEID;
+    trx_xd.m_id              = 0;
+    trx_xd.m_account_id      = sched_d.m_account_id;
+    trx_xd.m_to_account_id_n = sched_d.m_to_account_id_n;
+    trx_xd.m_payee_id_n      = sched_d.m_payee_id_n;
     trx_xd.TRANSCODE         = sched_d.TRANSCODE;
-    trx_xd.TRANSAMOUNT       = sched_d.TRANSAMOUNT;
+    trx_xd.m_amount          = sched_d.m_amount;
     trx_xd.STATUS            = sched_d.STATUS;
-    trx_xd.TRANSACTIONNUMBER = sched_d.TRANSACTIONNUMBER;
-    trx_xd.NOTES             = sched_d.NOTES;
-    trx_xd.CATEGID           = sched_d.CATEGID;
+    trx_xd.m_number          = sched_d.m_number;
+    trx_xd.m_notes           = sched_d.m_notes;
+    trx_xd.m_category_id_n   = sched_d.m_category_id_n;
     trx_xd.TRANSDATE         = date;
-    trx_xd.FOLLOWUPID        = sched_d.FOLLOWUPID;
-    trx_xd.TOTRANSAMOUNT     = sched_d.TOTRANSAMOUNT;
-    trx_xd.COLOR             = sched_d.COLOR;
+    trx_xd.m_followup_id     = sched_d.m_followup_id;
+    trx_xd.m_to_amount       = sched_d.m_to_amount;
+    trx_xd.m_color           = sched_d.m_color;
     return trx_xd;
 }
 
@@ -64,11 +64,11 @@ TrxSplitModel::DataA Journal::execute_splits(const SchedSplitDataA& qp_a)
     for (auto& qp_d : qp_a) {
         TrxSplitData tp_d;
         // FIXME: tp_d.m_id is invalid
-        tp_d.m_id            = qp_d.m_id;
-        tp_d.m_trx_id_p      = 0;
-        tp_d.m_category_id_p = qp_d.m_category_id_p;
-        tp_d.m_amount        = qp_d.m_amount;
-        tp_d.m_notes         = qp_d.m_notes;
+        tp_d.m_id          = qp_d.m_id;
+        tp_d.m_trx_id      = 0;
+        tp_d.m_category_id = qp_d.m_category_id;
+        tp_d.m_amount      = qp_d.m_amount;
+        tp_d.m_notes       = qp_d.m_notes;
         tp_a.push_back(tp_d);
     }
     return tp_a;
@@ -90,7 +90,7 @@ Journal::Data::Data(const SchedData& sched_d)
 }
 
 Journal::Data::Data(const SchedData& sched_d, wxString date, int repeat_num)
-    : TrxData(execute_bill(sched_d, date)), m_bdid(sched_d.BDID), m_repeat_num(repeat_num)
+    : TrxData(execute_bill(sched_d, date)), m_bdid(sched_d.m_id), m_repeat_num(repeat_num)
 {
     if (m_repeat_num < 1) {
         wxFAIL;
@@ -107,8 +107,8 @@ Journal::Full_Data::Full_Data(const TrxData& trx_d)
 }
 
 Journal::Full_Data::Full_Data(const TrxData& trx_d,
-    const std::map<int64 /* TRANSID */, TrxSplitDataA>& splits,
-    const std::map<int64 /* TRANSID */, TagLinkDataA>& tags)
+    const std::map<int64 /* m_id */, TrxSplitDataA>& splits,
+    const std::map<int64 /* m_id */, TagLinkDataA>& tags)
 :
     TrxModel::Full_Data(trx_d, splits, tags), m_bdid(0), m_repeat_num(0)
 {
@@ -123,7 +123,7 @@ Journal::Full_Data::Full_Data(const SchedData& sched_d,
     wxString date, int repeat_num)
 :
     TrxModel::Full_Data(execute_bill_full(sched_d, date), {}, {}),
-    m_bdid(sched_d.BDID), m_repeat_num(repeat_num)
+    m_bdid(sched_d.m_id), m_repeat_num(repeat_num)
 {
     if (m_repeat_num < 1) {
         wxFAIL;
@@ -139,11 +139,11 @@ Journal::Full_Data::Full_Data(const SchedData& sched_d,
 
 Journal::Full_Data::Full_Data(const SchedData& sched_d,
     wxString date, int repeat_num,
-    const std::map<int64 /* BDID */, SchedSplitDataA>& budgetsplits,
-    const std::map<int64 /* BDID */, TagLinkDataA>& tags)
+    const std::map<int64 /* m_id */, SchedSplitDataA>& budgetsplits,
+    const std::map<int64 /* m_id */, TagLinkDataA>& tags)
 :
     TrxModel::Full_Data(execute_bill_full(sched_d, date), {}, {}),
-    m_bdid(sched_d.BDID), m_repeat_num(repeat_num)
+    m_bdid(sched_d.m_id), m_repeat_num(repeat_num)
 {
     if (m_repeat_num < 1) {
         wxFAIL;
@@ -173,53 +173,53 @@ void Journal::setEmptyData(Journal::Data &data, int64 accountID)
     data.m_repeat_num = 0;
 }
 
-bool Journal::setJournalData(Journal::Data &data, Journal::IdB journal_id)
+bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
 {
     if (!journal_id.second) {
         const TrxData *trx_n = TrxModel::instance().get_id_data_n(journal_id.first);
         if (!trx_n)
             return false;
-        data.m_repeat_num = 0;
-        data.m_bdid = 0;
-        data.TRANSID           = trx_n->TRANSID;
-        data.ACCOUNTID         = trx_n->ACCOUNTID;
-        data.TOACCOUNTID       = trx_n->TOACCOUNTID;
-        data.PAYEEID           = trx_n->PAYEEID;
-        data.TRANSCODE         = trx_n->TRANSCODE;
-        data.TRANSAMOUNT       = trx_n->TRANSAMOUNT;
-        data.STATUS            = trx_n->STATUS;
-        data.TRANSACTIONNUMBER = trx_n->TRANSACTIONNUMBER;
-        data.NOTES             = trx_n->NOTES;
-        data.CATEGID           = trx_n->CATEGID;
-        data.TRANSDATE         = trx_n->TRANSDATE;
-        data.LASTUPDATEDTIME   = trx_n->LASTUPDATEDTIME;
-        data.DELETEDTIME       = trx_n->DELETEDTIME;
-        data.FOLLOWUPID        = trx_n->FOLLOWUPID;
-        data.TOTRANSAMOUNT     = trx_n->TOTRANSAMOUNT;
-        data.COLOR             = trx_n->COLOR;
+        journal_d.m_repeat_num      = 0;
+        journal_d.m_bdid            = 0;
+        journal_d.m_id              = trx_n->m_id;
+        journal_d.m_account_id      = trx_n->m_account_id;
+        journal_d.m_to_account_id_n = trx_n->m_to_account_id_n;
+        journal_d.m_payee_id_n      = trx_n->m_payee_id_n;
+        journal_d.TRANSCODE         = trx_n->TRANSCODE;
+        journal_d.m_amount          = trx_n->m_amount;
+        journal_d.STATUS            = trx_n->STATUS;
+        journal_d.m_number          = trx_n->m_number;
+        journal_d.m_notes           = trx_n->m_notes;
+        journal_d.m_category_id_n   = trx_n->m_category_id_n;
+        journal_d.TRANSDATE         = trx_n->TRANSDATE;
+        journal_d.LASTUPDATEDTIME   = trx_n->LASTUPDATEDTIME;
+        journal_d.DELETEDTIME       = trx_n->DELETEDTIME;
+        journal_d.m_followup_id     = trx_n->m_followup_id;
+        journal_d.m_to_amount       = trx_n->m_to_amount;
+        journal_d.m_color           = trx_n->m_color;
     }
     else {
         const SchedData *sched_n = SchedModel::instance().get_id_data_n(journal_id.first);
         if (!sched_n)
             return false;
-        data.m_repeat_num = 1;
-        data.TRANSID = 0;
-        data.m_bdid            = sched_n->BDID;
-        data.ACCOUNTID         = sched_n->ACCOUNTID;
-        data.TOACCOUNTID       = sched_n->TOACCOUNTID;
-        data.PAYEEID           = sched_n->PAYEEID;
-        data.TRANSCODE         = sched_n->TRANSCODE;
-        data.TRANSAMOUNT       = sched_n->TRANSAMOUNT;
-        data.STATUS            = sched_n->STATUS;
-        data.TRANSACTIONNUMBER = sched_n->TRANSACTIONNUMBER;
-        data.NOTES             = sched_n->NOTES;
-        data.CATEGID           = sched_n->CATEGID;
-        data.TRANSDATE         = sched_n->TRANSDATE;
-        data.LASTUPDATEDTIME   = "";
-        data.DELETEDTIME       = "";
-        data.FOLLOWUPID        = sched_n->FOLLOWUPID;
-        data.TOTRANSAMOUNT     = sched_n->TOTRANSAMOUNT;
-        data.COLOR             = sched_n->COLOR;
+        journal_d.m_repeat_num = 1;
+        journal_d.m_id              = 0;
+        journal_d.m_bdid            = sched_n->m_id;
+        journal_d.m_account_id      = sched_n->m_account_id;
+        journal_d.m_to_account_id_n = sched_n->m_to_account_id_n;
+        journal_d.m_payee_id_n      = sched_n->m_payee_id_n;
+        journal_d.TRANSCODE         = sched_n->TRANSCODE;
+        journal_d.m_amount          = sched_n->m_amount;
+        journal_d.STATUS            = sched_n->STATUS;
+        journal_d.m_number          = sched_n->m_number;
+        journal_d.m_notes           = sched_n->m_notes;
+        journal_d.m_category_id_n   = sched_n->m_category_id_n;
+        journal_d.TRANSDATE         = sched_n->TRANSDATE;
+        journal_d.LASTUPDATEDTIME   = "";
+        journal_d.DELETEDTIME       = "";
+        journal_d.m_followup_id     = sched_n->m_followup_id;
+        journal_d.m_to_amount       = sched_n->m_to_amount;
+        journal_d.m_color           = sched_n->m_color;
     }
     return true;
 }
@@ -228,7 +228,7 @@ const TrxSplitModel::DataA Journal::split(Journal::Data& journal_d)
 {
     return (journal_d.m_repeat_num == 0)
         ? TrxSplitModel::instance().find(
-            TrxSplitCol::TRANSID(journal_d.TRANSID)
+            TrxSplitCol::TRANSID(journal_d.m_id)
         ) : Journal::execute_splits(SchedSplitModel::instance().find(
             SchedSplitCol::TRANSID(journal_d.m_bdid)
         ));

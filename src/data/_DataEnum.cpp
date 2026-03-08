@@ -23,12 +23,12 @@
 
 mmChoiceNameA AccountStatus::s_choice_a = mmChoiceNameA({
     { e_open,   _n("Open") },
-    { e_closed, _n("Closed") }
+    { e_closed, _n("Closed") },
 }, e_open, true);
 
 mmChoiceNameA AccountFavorite::s_choice_a = mmChoiceNameA({
     { e_false, _n("FALSE") },
-    { e_true,  _n("TRUE") }
+    { e_true,  _n("TRUE") },
 }, e_false, true);
 
 mmChoiceNameA AssetType::s_choice_a = mmChoiceNameA({
@@ -43,18 +43,18 @@ mmChoiceNameA AssetType::s_choice_a = mmChoiceNameA({
 
 mmChoiceNameA AssetStatus::s_choice_a = mmChoiceNameA({
     { e_closed, _n("Closed") },
-    { e_open,   _n("Open") }
+    { e_open,   _n("Open") },
 }, e_open, true);
 
 mmChoiceNameA AssetChange::s_choice_a = mmChoiceNameA({
     { e_none,        _n("None") },
     { e_appreciates, _n("Appreciates") },
-    { e_depreciates, _n("Depreciates") }
+    { e_depreciates, _n("Depreciates") },
 }, e_none, true);
 
 mmChoiceNameA AssetChangeMode::s_choice_a = mmChoiceNameA({
     { e_percentage, _n("Percentage") },
-    { e_linear,     _n("Linear") }
+    { e_linear,     _n("Linear") },
 }, e_percentage, true);
 
 mmChoiceNameA BudgetFrequency::s_choice_a = mmChoiceNameA({
@@ -66,11 +66,28 @@ mmChoiceNameA BudgetFrequency::s_choice_a = mmChoiceNameA({
     { e_quarterly,  _n("Quarterly") },
     { e_halfyearly, _n("Half-Yearly") },
     { e_yearly,     _n("Yearly") },
-    { e_daily,      _n("Daily") }
+    { e_daily,      _n("Daily") },
 }, e_none, true);
 
 mmChoiceNameA CurrencyType::s_choice_a = mmChoiceNameA({
     { e_fiat,   _n("Fiat") },
-    { e_crypto, _n("Crypto") }
+    { e_crypto, _n("Crypto") },
 }, e_fiat, true);
+
+mmChoiceNameA RefTypeN::s_choice_a = mmChoiceNameA({
+    { e_trx,         _n("Transaction") },
+    { e_stock,       _n("Stock") },
+    { e_asset,       _n("Asset") },
+    { e_account,     _n("BankAccount") },
+    { e_sched,       _n("RecurringTransaction") },
+    { e_payee,       _n("Payee") },
+    { e_trx_split,   _n("TransactionSplit") },
+    { e_sched_split, _n("RecurringTransactionSplit") },
+}, -1, true);
+
+mmChoiceNameA UpdateType::s_choice_a = mmChoiceNameA({
+    { e_none,   _n("None") },
+    { e_online, _n("Online") },
+    { e_manual, _n("Manual") },
+}, e_none, true);
 

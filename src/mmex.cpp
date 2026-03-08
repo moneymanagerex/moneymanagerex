@@ -76,6 +76,7 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
 {
     if (lang == this->m_lang && lang != wxLANGUAGE_UNKNOWN)
         return false;
+
     wxTranslations* trans = new wxTranslations;
 
     // Add the common UI Language translation catalog
@@ -127,9 +128,11 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
         }
         if (lang == wxLANGUAGE_UNKNOWN) {
             msg += "\n\n";
-            msg += wxString::Format("Please use the Switch Application Language option in "
-                                    "View menu to select one of the following available languages:\n\n%s",
-                                    languages_list);
+            msg += wxString::Format(
+                "Please use the Switch Application Language option in "
+                "View menu to select one of the following available languages:\n\n%s",
+                languages_list
+            );
             m_lang = wxLANGUAGE_DEFAULT;
             PrefModel::instance().setLanguage(m_lang);
         }

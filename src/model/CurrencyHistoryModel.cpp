@@ -68,7 +68,7 @@ const CurrencyHistoryData* CurrencyHistoryModel::get_key(const int64& currencyID
 
 wxDate CurrencyHistoryModel::CURRDATE(const Data& ch_d)
 {
-    return parseDateTime(ch_d.m_date);
+    return ch_d.m_date.getDateTime();
 }
 
 CurrencyHistoryCol::CURRDATE CurrencyHistoryModel::CURRDATE(OP op, const wxDate& date)
@@ -86,9 +86,9 @@ int64 CurrencyHistoryModel::addUpdate(
     const Data *ch_n = get_key(currencyID, date);
     Data ch_d = ch_n ? *ch_n : Data();
     ch_d.m_currency_id     = currencyID;
-    ch_d.m_date            = date.FormatISODate();
+    ch_d.m_date            = mmDate(date);
     ch_d.m_base_conv_rate  = price;
-    ch_d.m_update_type_    = type;
+    ch_d.m_update_type     = UpdateType(type);
     save_data_n(ch_d);
     return ch_d.id();
 }
@@ -109,50 +109,55 @@ double CurrencyHistoryModel::getDayRate(int64 currencyID, const wxString& iso_da
     }
 }
 
-double CurrencyHistoryModel::getDayRate(int64 currencyID, const wxDate& date)
+double CurrencyHistoryModel::getDayRate(int64 currency_id_n, const wxDate& date)
 {
-    if (currencyID == CurrencyModel::GetBaseCurrency()->m_id || currencyID == -1)
+    if (currency_id_n == CurrencyModel::GetBaseCurrency()->m_id || currency_id_n == -1)
         return 1;
 
+    const CurrencyData* currency_n = CurrencyModel::instance().get_id_data_n(currency_id_n);
     if (!PrefModel::instance().getUseCurrencyHistory())
-        return CurrencyModel::instance().get_id_data_n(currencyID)->m_base_conv_rate;
+        return currency_n->m_base_conv_rate;
 
     CurrencyHistoryModel::DataA ch_a = CurrencyHistoryModel::instance().find(
-        CurrencyHistoryCol::CURRENCYID(OP_EQ, currencyID),
+        CurrencyHistoryCol::CURRENCYID(OP_EQ, currency_id_n),
         CurrencyHistoryModel::CURRDATE(OP_EQ, date)
     );
     if (!ch_a.empty()) {
-        //Rate found for specified day
+        // Rate found for specified day
         return ch_a.back().m_base_conv_rate;
     }
-    else if (CurrencyHistoryModel::instance().find(
-        CurrencyHistoryCol::CURRENCYID(currencyID)
-    ).size() > 0) {
-        //Rate not found for specified day, look at previous and next
-        CurrencyHistoryModel::DataA DataPrevious = CurrencyHistoryModel::instance().find(
-            CurrencyHistoryCol::CURRENCYID(currencyID),
-            CurrencyHistoryModel::CURRDATE(OP_LE, date)
-        );
-        CurrencyHistoryModel::DataA DataNext = CurrencyHistoryModel::instance().find(
-            CurrencyHistoryCol::CURRENCYID(currencyID),
-            CurrencyHistoryModel::CURRDATE(OP_GE, date)
-        );
-
-        if (!DataPrevious.empty() && !DataNext.empty()) {
-            const wxTimeSpan spanPast = date.Subtract(parseDateTime(DataPrevious.back().m_date));
-            const wxTimeSpan spanFuture = parseDateTime(DataNext[0].m_date).Subtract(date);
-
-            return spanPast <= spanFuture ? DataPrevious.back().m_base_conv_rate : DataNext[0].m_base_conv_rate;
-        }
-        else if (!DataPrevious.empty()) {
-            return DataPrevious.back().m_base_conv_rate;
-        }
-        else if (!DataNext.empty()) {
-            return DataNext[0].m_base_conv_rate;
-        }
+    if (CurrencyHistoryModel::instance().find(
+        CurrencyHistoryCol::CURRENCYID(currency_id_n)
+    ).empty()) {
+        return currency_n->m_base_conv_rate;
     }
 
-    return CurrencyModel::instance().get_id_data_n(currencyID)->m_base_conv_rate;
+    // Rate not found for specified day, look at previous and next
+    // FIXME: sort by date
+    CurrencyHistoryModel::DataA prev_ch_a = CurrencyHistoryModel::instance().find(
+        CurrencyHistoryCol::CURRENCYID(currency_id_n),
+        CurrencyHistoryModel::CURRDATE(OP_LE, date)
+    );
+    CurrencyHistoryModel::DataA next_ch_a = CurrencyHistoryModel::instance().find(
+        CurrencyHistoryCol::CURRENCYID(currency_id_n),
+        CurrencyHistoryModel::CURRDATE(OP_GE, date)
+    );
+
+    if (!prev_ch_a.empty() && !next_ch_a.empty()) {
+        const wxTimeSpan prev_span = date.Subtract(prev_ch_a.back().m_date.getDateTime());
+        const wxTimeSpan next_span = next_ch_a[0].m_date.getDateTime().Subtract(date);
+        return prev_span <= next_span
+            ? prev_ch_a.back().m_base_conv_rate
+            : next_ch_a[0].m_base_conv_rate;
+    }
+    else if (!prev_ch_a.empty()) {
+        return prev_ch_a.back().m_base_conv_rate;
+    }
+    else if (!next_ch_a.empty()) {
+        return next_ch_a[0].m_base_conv_rate;
+    }
+
+    return currency_n->m_base_conv_rate;
 }
 
 /** Return the last rate for specified currency */

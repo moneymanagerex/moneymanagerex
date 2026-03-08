@@ -26,7 +26,7 @@ mmChoiceNameA ModelBase::REFTYPE_CHOICES = mmChoiceNameA({
     { REFTYPE_ID_BANKACCOUNT,       _n("BankAccount") },
     { REFTYPE_ID_BILLSDEPOSIT,      _n("RecurringTransaction") },
     { REFTYPE_ID_PAYEE,             _n("Payee") },
-    { REFTYPE_ID_TRANSACTIONSPLIT,  _n("TrxSplit") },
+    { REFTYPE_ID_TRANSACTIONSPLIT,  _n("TransactionSplit") },
     { REFTYPE_ID_BILLSDEPOSITSPLIT, _n("RecurringTransactionSplit") },
 }, -1, true);
 

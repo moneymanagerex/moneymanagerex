@@ -42,17 +42,6 @@ class CurrencyChoiceDialog: public wxDialog
     wxDECLARE_DYNAMIC_CLASS(CurrencyChoiceDialog);
     wxDECLARE_EVENT_TABLE();
 
-public:
-    /// Constructors
-    CurrencyChoiceDialog( ) {}
-    ~CurrencyChoiceDialog();
-    CurrencyChoiceDialog(wxWindow* parent
-        , int64 currencyID = -1, bool bEnableSelect = true);
-
-    static bool Execute(wxWindow* parent, int64& currencyID);
-    // Return the base currency
-    static bool Execute(int64& currencyID);
-
 private:
     enum cols
     {
@@ -72,13 +61,51 @@ private:
         MENU_ITEM5,
     };
 
-    bool Create(wxWindow* parent
-        , wxWindowID id = wxID_ANY
-        , const wxString& caption = _n("Currency Manager")
-        , const wxString& name = "Organize Currencies"
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxDefaultSize
-        , long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX);
+private:
+    int64 m_currency_id = -1;
+    wxString m_maskStr = "";
+    bool m_static_dialog = false;
+    std::map<int, wxString> m_col_name_m;
+    bool m_history_en = false;
+    bool m_select_en = false;
+
+    wxListCtrl*         w_history_list      = nullptr;
+    wxDataViewListCtrl* w_currency_list     = nullptr;
+    wxBitmapButton*     w_download_btn      = nullptr;
+    wxBitmapButton*     w_delete_unused_btn = nullptr;
+    wxButton*           w_add_btn           = nullptr;
+    wxButton*           w_delete_btn        = nullptr;
+    wxButton*           w_select_btn        = nullptr;
+    wxSearchCtrl*       w_mask_text         = nullptr;
+    wxCheckBox*         w_show_all_cb       = nullptr;
+    mmDatePickerCtrl*   w_date_picker       = nullptr;
+    mmTextCtrl*         w_value_text        = nullptr;
+    wxStaticBox*        w_hostory_box       = nullptr;
+
+public:
+    /// Constructors
+    CurrencyChoiceDialog() {}
+    CurrencyChoiceDialog(
+        wxWindow* parent,
+        int64 currencyID = -1,
+        bool bEnableSelect = true
+    );
+    ~CurrencyChoiceDialog();
+
+public:
+    static bool Execute(wxWindow* parent, int64& currencyID);
+    // Return the base currency
+    static bool Execute(int64& currencyID);
+
+private:
+    bool Create(wxWindow* parent,
+        wxWindowID id = wxID_ANY,
+        const wxString& caption = _n("Currency Manager"),
+        const wxString& name = "Organize Currencies",
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX
+    );
 
     /// Creates the controls and sizers
 
@@ -107,26 +134,6 @@ private:
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     bool SetBaseCurrency(int64& baseCurrencyID);
-
-    wxDataViewListCtrl* currencyListBox_ = nullptr;
-    std::map<int, wxString> ColName_;
-    bool bHistoryEnabled_ = false;
-    bool bEnableSelect_ = false;
-    wxBitmapButton* buttonDownloadHistory_ = nullptr;
-    wxBitmapButton* buttonDelUnusedHistory_ = nullptr;
-    wxSearchCtrl* m_maskTextCtrl = nullptr;
-    wxCheckBox* cbShowAll_ = nullptr;
-    wxListCtrl* valueListBox_ = nullptr;
-    mmDatePickerCtrl* valueDatePicker_ = nullptr;
-    mmTextCtrl* valueTextBox_ = nullptr;
-    wxStaticBox* historyStaticBox_ = nullptr;
-    wxButton* historyButtonAdd_ = nullptr;
-    wxButton* historyButtonDelete_ = nullptr;
-    wxButton* m_select_btn = nullptr;
-
-    wxString m_maskStr = "";
-    int64 m_currency_id = -1;
-    bool m_static_dialog = false;
 
     bool ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRate, const wxString& BaseCurrencySymbol);
     bool GetOnlineHistory(const wxString &symbol, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg);

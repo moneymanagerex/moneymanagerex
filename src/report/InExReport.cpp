@@ -54,7 +54,7 @@ wxString InExReport::getHTMLText()
         if (TrxModel::is_foreignAsTransfer(transaction))
             continue;
 
-        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.ACCOUNTID);
+        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.m_account_id);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->m_name))
                 continue;
@@ -68,9 +68,9 @@ wxString InExReport::getHTMLText()
         }
 
         if (TrxModel::type_id(transaction) == TrxModel::TYPE_ID_DEPOSIT)
-            income_expenses_pair.first += transaction.TRANSAMOUNT * convRate;
+            income_expenses_pair.first += transaction.m_amount * convRate;
         else if (TrxModel::type_id(transaction) == TrxModel::TYPE_ID_WITHDRAWAL)
-            income_expenses_pair.second += transaction.TRANSAMOUNT * convRate;
+            income_expenses_pair.second += transaction.m_amount * convRate;
     }
 
     // Build the report
@@ -158,7 +158,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         if (TrxModel::is_foreignAsTransfer(transaction))
             continue;
 
-        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.ACCOUNTID);
+        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.m_account_id);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->m_name))
                 continue;
@@ -175,10 +175,10 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         int idx = year * 100 + TrxModel::getTransDateTime(transaction).GetMonth();
 
         if (TrxModel::type_id(transaction) == TrxModel::TYPE_ID_DEPOSIT) {
-            incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;
+            incomeExpensesStats[idx].first += transaction.m_amount * convRate;
         }
         else if (TrxModel::type_id(transaction) == TrxModel::TYPE_ID_WITHDRAWAL) {
-            incomeExpensesStats[idx].second += transaction.TRANSAMOUNT * convRate;
+            incomeExpensesStats[idx].second += transaction.m_amount * convRate;
         }
     }
 

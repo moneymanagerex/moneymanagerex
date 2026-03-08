@@ -25,8 +25,8 @@
 struct SchedSplitData
 {
     int64    m_id;
-    int64    m_sched_id_p;    // non-null (> 0) after initialization
-    int64    m_category_id_p; // non-null (> 0) after initialization
+    int64    m_sched_id;    // non-null (> 0) after initialization
+    int64    m_category_id; // non-null (> 0) after initialization
     double   m_amount;
     wxString m_notes;
 
@@ -64,7 +64,7 @@ struct SchedSplitData
     {
         bool operator()(const SchedSplitData& x, const SchedSplitData& y)
         {
-            return x.m_sched_id_p < y.m_sched_id_p;
+            return x.m_sched_id < y.m_sched_id;
         }
     };
 
@@ -72,7 +72,7 @@ struct SchedSplitData
     {
         bool operator()(const SchedSplitData& x, const SchedSplitData& y)
         {
-            return x.m_category_id_p < y.m_category_id_p;
+            return x.m_category_id < y.m_category_id;
         }
     };
 

@@ -80,10 +80,10 @@ void PayeeReport::loadData()
         if (type_id == TrxModel::TYPE_ID_TRANSFER)
             continue;
 
-        int64 payee_id = trx.PAYEEID;
+        int64 payee_id = trx.m_payee_id_n;
         if (payee_id < 0)
             continue;
-        auto [it, new_payee] = m_id_data.try_emplace(trx.PAYEEID, Data{});
+        auto [it, new_payee] = m_id_data.try_emplace(trx.m_payee_id_n, Data{});
         Data& data = it->second;
         if (new_payee) {
             const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(payee_id);
@@ -96,7 +96,7 @@ void PayeeReport::loadData()
         // NOTE: call to getDayRate() in every transaction is slow
         // if "Use historical currency" is enabled in settings
         const double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get_id_data_n(trx.ACCOUNTID)->m_currency_id_p,
+            AccountModel::instance().get_id_data_n(trx.m_account_id)->m_currency_id,
             trx.TRANSDATE
         );
 
@@ -104,7 +104,7 @@ void PayeeReport::loadData()
         if (all_splits.count(trx.id()))
             tp_a = all_splits.at(trx.id());
         if (tp_a.empty()) {
-            updateData(data, type_id, trx.TRANSAMOUNT * convRate);
+            updateData(data, type_id, trx.m_amount * convRate);
         }
         else {
             for (const auto& tp_d : tp_a) {

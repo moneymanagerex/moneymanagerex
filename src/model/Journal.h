@@ -82,7 +82,7 @@ public:
         bool operator()(const DATA& x, const DATA& y)
         {
             return (!x.m_repeat_num && y.m_repeat_num) ||
-                (!x.m_repeat_num && !y.m_repeat_num && x.TRANSID < y.TRANSID) ||
+                (!x.m_repeat_num && !y.m_repeat_num && x.m_id < y.m_id) ||
                 (x.m_repeat_num && y.m_repeat_num && x.m_bdid < y.m_bdid);
         }
     };

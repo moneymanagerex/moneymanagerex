@@ -16,21 +16,6 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-//
-// This is only sample code re-used from "table/SchedTable.h".
-//
-// The data structure can be refined by:
-// * using more user-frielndly filed name
-// * using stronger field types
-// * adding enumerations for fields with limited choices
-// * demultiplexing composite values in database columns
-//
-// See also an implementation in Swift:
-//   https://github.com/moneymanagerex/mmex-ios/tree/master/MMEX/Data
-// and an implementation in Java:
-//   https://github.com/moneymanagerex/android-money-manager-ex/tree/master/app/src/main/java/com/money/manager/ex/domainmodel
-
 #pragma once
 
 #include "table/_TableBase.h"
@@ -39,30 +24,30 @@
 // User-friendly representation of a record in table BILLSDEPOSITS_V1.
 struct SchedData
 {
-    int64 BDID; // primary key
-    int64 ACCOUNTID;
-    int64 TOACCOUNTID;
-    int64 PAYEEID;
-    wxString TRANSCODE;
-    double TRANSAMOUNT;
-    wxString STATUS;
-    wxString TRANSACTIONNUMBER;
-    wxString NOTES;
-    int64 CATEGID;
+    int64    m_id;
     wxString TRANSDATE;
-    int64 FOLLOWUPID;
-    double TOTRANSAMOUNT;
-    int64 REPEATS;
+    wxString TRANSCODE;
+    wxString STATUS;
+    int64    m_account_id;      // non-null (> 0) after initialization
+    int64    m_to_account_id_n; // optional (can be null)
+    int64    m_payee_id_n;      // optional (can be null)
+    int64    m_category_id_n;   // optional (can be null)
+    double   m_amount;
+    double   m_to_amount;
+    wxString m_number;
+    wxString m_notes;
+    int64    m_followup_id;
+    int64    m_color;
     wxString NEXTOCCURRENCEDATE;
-    int64 NUMOCCURRENCES;
-    int64 COLOR;
+    int64    REPEATS;
+    int64    NUMOCCURRENCES;
 
     explicit SchedData();
     explicit SchedData(wxSQLite3ResultSet& q);
     SchedData(const SchedData& other) = default;
 
-    int64 id() const { return BDID; }
-    void id(const int64 id) { BDID = id; }
+    int64 id() const { return m_id; }
+    void id(const int64 id) { m_id = id; }
     SchedRow to_row() const;
     SchedData& from_row(const SchedRow& row);
     void to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const;
@@ -83,7 +68,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.BDID < y.BDID;
+            return x.m_id < y.m_id;
         }
     };
 
@@ -91,7 +76,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.ACCOUNTID < y.ACCOUNTID;
+            return x.m_account_id < y.m_account_id;
         }
     };
 
@@ -99,7 +84,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.TOACCOUNTID < y.TOACCOUNTID;
+            return x.m_to_account_id_n < y.m_to_account_id_n;
         }
     };
 
@@ -107,7 +92,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.PAYEEID < y.PAYEEID;
+            return x.m_payee_id_n < y.m_payee_id_n;
         }
     };
 
@@ -123,7 +108,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.TRANSAMOUNT < y.TRANSAMOUNT;
+            return x.m_amount < y.m_amount;
         }
     };
 
@@ -139,7 +124,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.TRANSACTIONNUMBER < y.TRANSACTIONNUMBER;
+            return x.m_number < y.m_number;
         }
     };
 
@@ -147,7 +132,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.NOTES < y.NOTES;
+            return x.m_notes < y.m_notes;
         }
     };
 
@@ -155,7 +140,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.CATEGID < y.CATEGID;
+            return x.m_category_id_n < y.m_category_id_n;
         }
     };
 
@@ -171,7 +156,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.FOLLOWUPID < y.FOLLOWUPID;
+            return x.m_followup_id < y.m_followup_id;
         }
     };
 
@@ -179,7 +164,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.TOTRANSAMOUNT < y.TOTRANSAMOUNT;
+            return x.m_to_amount < y.m_to_amount;
         }
     };
 
@@ -211,7 +196,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.COLOR < y.COLOR;
+            return x.m_color < y.m_color;
         }
     };
 };
