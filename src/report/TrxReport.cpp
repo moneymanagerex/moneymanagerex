@@ -66,18 +66,22 @@ void TrxReport::displayTotals(const std::map<int64, double>& total, std::map<int
     hb.addTotalRow(_t("Grand Total:"), noOfCols, v);
 }
 
-void TrxReport::UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref, wxString data, double val, int scale)
+void TrxReport::UDFCFormatHelper(FieldTypeN type, int64 ref, wxString data, double val, int scale)
 {
-    if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+    if (type.id_n() == FieldTypeN::e_decimal || type.id_n() == FieldTypeN::e_integer) {
         hb.addMoneyCell(val, scale);
-    else if (ref != -1)
-    {
-        if (type == FieldModel::TYPE_ID_BOOLEAN && !data.empty())
-        {
+    }
+    else if (ref != -1) {
+        if (type.id_n() == FieldTypeN::e_boolean && !data.empty()) {
             bool v = wxString("TRUE|true|1").Contains(data);
             hb.addTableCell(v ? "&check;" : "&cross;", false, true);
-        } else
-            hb.addTableCell(type == FieldModel::TYPE_ID_DATE && !data.empty() ? mmGetDateTimeForDisplay(data) : data);
+        }
+        else {
+            hb.addTableCell(type.id_n() == FieldTypeN::e_date && !data.empty()
+                ? mmGetDateTimeForDisplay(data)
+                : data
+            );
+        }
     }
 }
 
@@ -147,16 +151,15 @@ table {
     std::map<int64, double> grand_total_in_base_curr_extrans; //Grand - Store transactions amount daily converted to base currency - excluding TRANSFERS
     std::map<wxString, double> values_chart; // Store grouped values for chart
 
-    const wxString refType = TrxModel::refTypeName;
     static wxArrayString udfc_fields = FieldModel::UDFC_FIELDS();
-    FieldModel::TYPE_ID udfc_type[5];
+    FieldTypeN udfc_type[5];
     int udfc_scale[5];
     for (int i = 0; i < 5; i++) {
         // note: udfc_fields starts with ""
         wxString field = udfc_fields[i+1];
-        udfc_type[i] = FieldModel::getUDFCType(refType, field);
+        udfc_type[i] = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, field);
         udfc_scale[i] = FieldModel::getDigitScale(
-            FieldModel::getUDFCProperties(refType, field)
+            FieldModel::instance().get_udfc_properties_n(TrxModel::s_ref_type, field)
         );
     }
 
@@ -236,21 +239,19 @@ table {
                 hb.addTableHeaderCell(_t("FX Rate"), "Rate text-right");
             if (showColumnById(TrxFilterDialog::COL_NOTES))
                 hb.addTableHeaderCell(_t("Notes"), "Notes");
-            const auto& ref_type = TrxModel::refTypeName;
             int colNo = TrxFilterDialog::COL_UDFC01;
-            for (const auto& udfc_entry : FieldModel::UDFC_FIELDS())
-            {
-                if (udfc_entry.empty()) continue;
-                const auto& name = FieldModel::getUDFCName(ref_type, udfc_entry);
-                if (showColumnById(colNo++) && name != udfc_entry)
-                {
+            for (const auto& ucfd : FieldModel::UDFC_FIELDS()) {
+                if (ucfd.empty())
+                    continue;
+                const auto& name = FieldModel::instance().get_udfc_name_n(TrxModel::s_ref_type, ucfd);
+                if (showColumnById(colNo++) && name != ucfd) {
                     wxString nameCSS = name;
-                    switch (FieldModel::getUDFCType(ref_type, udfc_entry)) {
-                    case FieldModel::TYPE_ID_DECIMAL:
-                    case FieldModel::TYPE_ID_INTEGER:
+                    switch (FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, ucfd).id_n()) {
+                    case FieldTypeN::e_decimal:
+                    case FieldTypeN::e_integer:
                         nameCSS.Append(" text-right");
                         break;
-                    case FieldModel::TYPE_ID_BOOLEAN:
+                    case FieldTypeN::e_boolean:
                         nameCSS.Append(" text-center");
                         break;
                     default: break;
@@ -379,7 +380,7 @@ table {
                 int64 udfc_id[5];
                 for (int i = 0; i < 5; i++) {
                     wxString field = udfc_fields[i+1];
-                    udfc_id[i] = FieldModel::getUDFCID(refType, field);
+                    udfc_id[i] = FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, field);
                     trx_xd.UDFC_value[i] = -DBL_MAX;
                 }
 

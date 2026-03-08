@@ -1839,7 +1839,8 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                                 );
                                 if (fv_n) {
                                     // format date fields
-                                    if (FieldModel::type_id(FieldModel::instance().get_id_data_n(fv_n->m_field_id)) == FieldModel::TYPE_ID_DATE)
+                                    const FieldData* field_n = FieldModel::instance().get_id_data_n(fv_n->m_field_id);
+                                    if (field_n->m_type_n.id_n() == FieldTypeN::e_date)
                                         entry = mmGetDateTimeForDisplay(fv_n->m_content, date_format_);
                                     else
                                         entry = fv_n->m_content;
@@ -2228,7 +2229,8 @@ void mmUnivCSVDialog::update_preview()
                                         const FieldValueData* fv_n = FieldValueModel::instance().get_key_data_n(CSVFieldName_[it].second, TrxModel::s_ref_type, trx_d.m_id);
                                         if (fv_n) {
                                             // Format date fields
-                                            if (FieldModel::type_id(FieldModel::instance().get_id_data_n(fv_n->m_field_id)) == FieldModel::TYPE_ID_DATE)
+                                            const FieldData* field_n = FieldModel::instance().get_id_data_n(fv_n->m_field_id);
+                                            if (field_n->m_type_n.id_n() == FieldTypeN::e_date)
                                                 text << inQuotes(mmGetDateTimeForDisplay(fv_n->m_content, date_format_), delimit);
                                             else
                                                 text << inQuotes(fv_n->m_content, delimit);
@@ -3141,25 +3143,24 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
 
     if (!value.IsEmpty()) {
         const FieldData* field_n = FieldModel::instance().get_id_data_n(fieldId);
-        wxString type_string = FieldModel::type_name(FieldModel::type_id(field_n));
-        switch (FieldModel::type_id(field_n))
-        {
+        wxString type_name = field_n->m_type_n.name_n();
+        switch (field_n->m_type_n.id_n()) {
             // Check if string can be read as an integer. Will fail if passed a double.
-        case FieldModel::TYPE_ID_INTEGER:
+        case FieldTypeN::e_integer:
             value = cleanseNumberString(value, true);
             if (!value.ToCLong(&int_val)) {
-                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_string);
+                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
                 is_valid = false;
             }
             else value = wxString::Format("%i", int_val);
             break;
 
             // Check if string can be read as a double
-        case FieldModel::TYPE_ID_DECIMAL:
+        case FieldTypeN::e_decimal:
             value = cleanseNumberString(value, true);
             if (!value.ToCDouble(&double_val))
             {
-                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_string);
+                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
                 is_valid = false;
             }
             else
@@ -3171,11 +3172,11 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
             break;
 
             // Check if string can be interpreted as "True" or "False" (case insensitive)    
-        case FieldModel::TYPE_ID_BOOLEAN:
+        case FieldTypeN::e_boolean:
             if (bool_true_array.Index(value, false) == wxNOT_FOUND)
                 if (bool_false_array.Index(value, false) == wxNOT_FOUND)
                 {
-                    message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_string);
+                    message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
                     is_valid = false;
                 }
                 else value = "FALSE";
@@ -3183,19 +3184,19 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
             break;
 
             // Check if string is a valid choice (case insensitive)
-        case FieldModel::TYPE_ID_SINGLECHOICE:
+        case FieldTypeN::e_single_choice:
             choices = FieldModel::getChoices(field_n->m_properties);
             index = choices.Index(value, false);
             if (index == wxNOT_FOUND)
             {
-                message << " " << wxString::Format(_t("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), value, type_string, field_n->m_description);
+                message << " " << wxString::Format(_t("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), value, type_name, field_n->m_description);
                 is_valid = false;
             }
             else value = choices[index];
             break;
 
             // Check if all of the ';' delimited strings are valid choices (case insensitive)
-        case FieldModel::TYPE_ID_MULTICHOICE:
+        case FieldTypeN::e_multi_choice:
             choices = FieldModel::getChoices(field_n->m_properties);
             tokenizer = wxStringTokenizer(value, ";");
             value.Clear();
@@ -3209,17 +3210,17 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
                     if (tokenizer.HasMoreTokens()) value.Append(";");
                 }
                 else {
-                    message << " " << wxString::Format(_t("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), token, type_string, field_n->m_description);
+                    message << " " << wxString::Format(_t("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), token, type_name, field_n->m_description);
                     is_valid = false;
                 }
             }
             break;
 
             // Parse the date using the user specified format. Convert to ISO date
-        case FieldModel::TYPE_ID_DATE:
+        case FieldTypeN::e_date:
             if (!mmParseDisplayStringToDate(date, value, date_format_))
             {
-                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_string) <<
+                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name) <<
                     " " << wxString::Format(_t("Confirm format matches selection %s."), date_format_);
                 is_valid = false;
             }
@@ -3227,10 +3228,10 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
             break;
 
             // Parse the time. Convert to ISO Format
-        case FieldModel::TYPE_ID_TIME:
+        case FieldTypeN::e_time:
             if (!time.ParseTime(value))
             {
-                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_string);
+                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
                 is_valid = false;
             }
             else value = time.FormatISOTime();

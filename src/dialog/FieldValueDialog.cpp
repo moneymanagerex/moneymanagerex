@@ -118,9 +118,8 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
 
         grid_sizer_custom->Add(Description, g_flagsH);
 
-        switch (FieldModel::type_id(field_d))
-        {
-        case FieldModel::TYPE_ID_STRING:
+        switch (field_d.m_type_n.id_n()) {
+        case FieldTypeN::e_string:
         {
             const auto& data = fv_d.m_content;
             wxTextCtrl* CustomString = new wxTextCtrl(scrolled_window, controlID, data, wxDefaultPosition, wxDefaultSize);
@@ -139,8 +138,8 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
             CustomString->Connect(controlID, wxEVT_TEXT, wxCommandEventHandler(FieldValueDialog::OnStringChanged), nullptr, this);
             break;
         }
-        case FieldModel::TYPE_ID_INTEGER:
-        case FieldModel::TYPE_ID_DECIMAL:
+        case FieldTypeN::e_integer:
+        case FieldTypeN::e_decimal:
         {
             int digitScale = FieldModel::getDigitScale(field_d.m_properties);
             wxString content = cleanseNumberString(fv_d.m_content, digitScale > 0);
@@ -170,7 +169,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case FieldModel::TYPE_ID_BOOLEAN:
+        case FieldTypeN::e_boolean:
         {
             wxRadioButton* CustomBooleanF = new wxRadioButton(scrolled_window, controlID
                 , _t("False"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
@@ -196,7 +195,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case FieldModel::TYPE_ID_DATE:
+        case FieldTypeN::e_date:
         {
             wxDate value;
             if (!value.ParseDate(fv_d.m_content)) {
@@ -215,7 +214,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case FieldModel::TYPE_ID_TIME:
+        case FieldTypeN::e_time:
         {
             wxDateTime value;
             if (!value.ParseTime(fv_d.m_content)) {
@@ -235,7 +234,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case FieldModel::TYPE_ID_SINGLECHOICE:
+        case FieldTypeN::e_single_choice:
         {
             wxArrayString Choices = FieldModel::getChoices(field_d.m_properties);
             Choices.Sort();
@@ -260,7 +259,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
             CustomChoice->Connect(controlID, wxEVT_CHOICE, wxCommandEventHandler(FieldValueDialog::OnSingleChoice), nullptr, this);
             break;
         }
-        case FieldModel::TYPE_ID_MULTICHOICE:
+        case FieldTypeN::e_multi_choice:
         {
             const auto& content = fv_d.m_content;
             const auto& name = field_d.m_description;
@@ -305,11 +304,10 @@ void FieldValueDialog::OnMultiChoice(wxCommandEvent& event)
     }
 
     const auto& name = button->GetName();
-    const wxString& type = FieldModel::type_name(FieldModel::TYPE_ID_MULTICHOICE);
 
     FieldModel::DataA field_a = FieldModel::instance().find(
         FieldCol::REFTYPE(m_ref_type.name_n()),
-        FieldCol::TYPE(type),
+        FieldCol::TYPE(FieldTypeN(FieldTypeN::e_multi_choice).name_n()),
         FieldCol::DESCRIPTION(name)
     );
     wxArrayString all_choices = FieldModel::getChoices(field_a.begin()->m_properties);
@@ -498,7 +496,7 @@ bool FieldValueDialog::SaveCustomValues(RefTypeN ref_type, int64 ref_id)
             fv_d.m_content  = data;
             wxLogDebug("Control:%i Type:%s Value:%s",
                 controlID,
-                FieldModel::type_name(FieldModel::type_id(field_d)),
+                field_d.m_type_n.name_n(),
                 data
             );
 
@@ -764,8 +762,8 @@ bool FieldValueDialog::ValidateCustomValues(int64)
         if (!cb || !cb->GetValue())
             continue;
 
-        if (GetWidgetType(controlID) == FieldModel::TYPE_ID_DECIMAL ||
-            GetWidgetType(controlID) == FieldModel::TYPE_ID_INTEGER
+        if (GetWidgetType(controlID) == FieldTypeN::e_decimal ||
+            GetWidgetType(controlID) == FieldTypeN::e_integer
         ) {
             wxWindow* w = FindWindowById(controlID, m_dialog);
             if (w) {

@@ -634,15 +634,15 @@ void JournalPanel::filterList()
 
     static wxArrayString udfc_fields = FieldModel::UDFC_FIELDS();
     int64 udfc_id[5];
-    FieldModel::TYPE_ID udfc_type[5];
+    FieldTypeN udfc_type[5];
     int udfc_scale[5];
     for (int i = 0; i < 5; i++) {
         // note: udfc_fields starts with ""
         wxString field = udfc_fields[i+1];
-        udfc_id[i] = FieldModel::getUDFCID(TrxModel::refTypeName, field);
-        udfc_type[i] = FieldModel::getUDFCType(TrxModel::refTypeName, field);
+        udfc_id[i] = FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, field);
+        udfc_type[i] = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, field);
         udfc_scale[i] = FieldModel::getDigitScale(
-            FieldModel::getUDFCProperties(TrxModel::refTypeName, field)
+            FieldModel::instance().get_udfc_properties_n(TrxModel::s_ref_type, field)
         );
     }
 
@@ -813,7 +813,7 @@ void JournalPanel::filterList()
         }
 
         for (int i = 0; i < 5; i++) {
-            journal_xd.UDFC_type[i] = FieldModel::TYPE_ID_UNKNOWN;
+            journal_xd.UDFC_type[i] = FieldTypeN();
             journal_xd.UDFC_value[i] = -DBL_MAX;
         }
 

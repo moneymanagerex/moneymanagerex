@@ -79,7 +79,7 @@ void FieldDialog::dataToControls()
 {
     if (m_field_n) {
         m_itemDescription->SetValue(m_field_n->m_description);
-        m_itemType->SetSelection(FieldModel::type_id(m_field_n));
+        m_itemType->SetSelection(m_field_n->m_type_n.id_n());
         m_itemReference->SetSelection(ModelBase::reftype_id(m_field_n->m_ref_type.name_n()));
         m_itemTooltip->SetValue(FieldModel::getTooltip(m_field_n->m_properties));
         m_itemRegEx->SetValue(FieldModel::getRegEx(m_field_n->m_properties));
@@ -97,7 +97,7 @@ void FieldDialog::dataToControls()
     }
     else {
         m_itemReference->SetSelection(ModelBase::reftype_id(m_fieldRefType));
-        m_itemType->SetSelection(FieldModel::TYPE_ID_STRING);
+        m_itemType->SetSelection(FieldTypeN::e_string);
         m_itemUDFC->SetSelection(0);
     }
     wxCommandEvent evt;
@@ -144,9 +144,9 @@ void FieldDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Field Type")), g_flagsH);
     m_itemType = new wxChoice(itemPanel5, wxID_HIGHEST);
-    for (int i = 0; i < FieldModel::TYPE_ID_size; ++i) {
-        wxString type = FieldModel::type_name(i);
-        m_itemType->Append(wxGetTranslation(type), new wxStringClientData(type));
+    for (int i = 0; i < FieldTypeN::size; ++i) {
+        wxString type_name = FieldTypeN(i).name_n();
+        m_itemType->Append(wxGetTranslation(type_name), new wxStringClientData(type_name));
     }
     mmToolTip(m_itemType, _t("Select the custom field type"));
     itemFlexGridSizer6->Add(m_itemType, g_flagsExpand);
@@ -184,8 +184,8 @@ void FieldDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _t("Panel's column")), g_flagsH);
     m_itemUDFC = new wxChoice(itemPanel5, wxID_APPLY);
-    for (const auto& type : FieldModel::getUDFCList(m_field_n)) {
-        m_itemUDFC->Append(wxGetTranslation(type), new wxStringClientData(type));
+    for (const auto& udfc : FieldModel::instance().get_data_udfc_a(m_field_n)) {
+        m_itemUDFC->Append(wxGetTranslation(udfc), new wxStringClientData(udfc));
     }
     mmToolTip(m_itemUDFC, _t("Select a value to represent the item on a panel"));
     itemFlexGridSizer6->Add(m_itemUDFC, g_flagsExpand);
@@ -220,8 +220,8 @@ void FieldDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     int itemType = m_itemType->GetSelection();
     if (ArrChoices.IsEmpty() && (
-        itemType == FieldModel::TYPE_ID_SINGLECHOICE ||
-        itemType == FieldModel::TYPE_ID_MULTICHOICE)
+        itemType == FieldTypeN::e_single_choice ||
+        itemType == FieldTypeN::e_multi_choice)
     ) {
         return mmErrorDialogs::ToolTip4Object(m_itemChoices, _t("Empty value"), _t("Choices"));
     }
@@ -230,7 +230,7 @@ void FieldDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_field_d = FieldData();
         m_field_n = &m_field_d;
     }
-    else if (m_field_n->m_type_n.name_n() != FieldModel::type_name(m_itemType->GetSelection())) {
+    else if (m_field_n->m_type_n.id_n() != m_itemType->GetSelection()) {
         auto fv_a = FieldValueModel::instance().find(
             FieldValueCol::FIELDID(m_field_n->m_id)
         );
@@ -287,7 +287,7 @@ void FieldDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     m_field_n->m_ref_type = RefTypeN(m_fieldRefType);
     m_field_n->m_description = name;
-    m_field_n->m_type_n = FieldTypeN(FieldModel::type_name(m_itemType->GetSelection()));
+    m_field_n->m_type_n = FieldTypeN(m_itemType->GetSelection());
     m_field_n->m_properties = FieldModel::formatProperties(
         m_itemTooltip->GetValue(),
         regexp,
@@ -339,31 +339,31 @@ void FieldDialog::OnChangeType(wxCommandEvent& WXUNUSED(event), bool OnDataToCon
     //Enable specific fields
     switch (m_itemType->GetSelection())
     {
-    case FieldModel::TYPE_ID_STRING:
+    case FieldTypeN::e_string:
     {
         m_itemDefault->Enable(true);
         m_itemRegEx->Enable(true);
         m_itemAutocomplete->Enable(true);
         break;
     }
-    case FieldModel::TYPE_ID_SINGLECHOICE:
+    case FieldTypeN::e_single_choice:
     {
         m_itemChoices->Enable(true);
         m_itemDefault->Enable(true);
         break;
     }
-    case FieldModel::TYPE_ID_MULTICHOICE:
+    case FieldTypeN::e_multi_choice:
     {
         m_itemChoices->Enable(true);
         break;
     }
-    case FieldModel::TYPE_ID_INTEGER:
+    case FieldTypeN::e_integer:
     {
         m_itemDefault->Enable(true);
         m_itemRegEx->Enable(true);
         break;
     }
-    case FieldModel::TYPE_ID_DECIMAL:
+    case FieldTypeN::e_decimal:
     {
         m_itemDefault->Enable(true);
         m_itemRegEx->Enable(true);

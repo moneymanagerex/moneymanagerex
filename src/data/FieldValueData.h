@@ -27,7 +27,7 @@ struct FieldValueData
 {
     int64    m_id;
     int64    m_field_id; // non-null (> 0) after initialization
-    RefTypeN m_ref_type; // one of (e_trx, e_sched) after initialization
+    RefTypeN m_ref_type; // one of [e_trx, e_sched] after initialization
     int64    m_ref_id;   // non-null (> 0) after initialization
     wxString m_content;
 

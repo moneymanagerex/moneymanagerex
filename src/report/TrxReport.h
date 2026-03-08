@@ -38,7 +38,7 @@ private:
     wxSharedPtr<TrxFilterDialog> m_transDialog;
     bool showColumnById(int num);
     void displayTotals(const std::map<int64, double>& total, std::map<int64, double>& total_in_base_curr, int noOfCols);
-    void UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref, wxString data, double val, int scale);
+    void UDFCFormatHelper(FieldTypeN type, int64 ref, wxString data, double val, int scale);
 
     mmHTMLBuilder hb;
     int m_noOfCols;

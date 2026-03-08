@@ -27,7 +27,7 @@ struct TrxLinkData
 {
     int64 m_id;
     int64 m_trx_id;      // non-null (> 0) after initialization
-    RefTypeN m_ref_type; // one of (e_asset, e_stock) after initialization
+    RefTypeN m_ref_type; // one of [e_asset, e_stock] after initialization
     int64 m_ref_id;      // non-null (> 0) after initialization
 
     explicit TrxLinkData();

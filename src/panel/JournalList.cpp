@@ -334,19 +334,19 @@ void JournalList::setColumnsInfo()
     if (m_cp->isDeletedTrans())
         m_col_id_nr.push_back(LIST_ID_DELETEDTIME);
 
-    const auto& ref_type = TrxModel::refTypeName;
     int col_id = LIST_ID_UDFC01;
-    for (const auto& udfc_entry : FieldModel::UDFC_FIELDS()) {
+    for (const auto& udfc : FieldModel::UDFC_FIELDS()) {
         if (col_id > LIST_ID_UDFC05) break;
-        if (udfc_entry.empty()) continue;
+        if (udfc.empty())
+            continue;
 
-        const auto& name = FieldModel::getUDFCName(ref_type, udfc_entry);
-        if (!name.IsEmpty() && name != udfc_entry) {
+        const auto& name = FieldModel::instance().get_udfc_name_n(TrxModel::s_ref_type, udfc);
+        if (!name.IsEmpty() && name != udfc) {
             m_col_info_id[col_id].header = name;
-            const auto& type = FieldModel::getUDFCType(ref_type, udfc_entry);
-            if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+            const auto& type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, udfc).id_n();
+            if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
                 m_col_info_id[col_id].format = _FR;
-            else if (type == FieldModel::TYPE_ID_BOOLEAN)
+            else if (type_id_n == FieldTypeN::e_boolean)
                 m_col_info_id[col_id].format = _FC;
             m_col_id_nr.push_back(col_id);
         }
@@ -457,8 +457,7 @@ void JournalList::sortBy(Compare comp, bool ascend)
 
 void JournalList::sortTransactions(int col_id, bool ascend)
 {
-    const auto& ref_type = TrxModel::refTypeName;
-    FieldModel::TYPE_ID type;
+    mmChoiceIdN type_id_n;
 
     switch (col_id) {
     case JournalList::LIST_ID_SN:
@@ -513,36 +512,36 @@ void JournalList::sortTransactions(int col_id, bool ascend)
         sortBy(TrxData::SorterByDELETEDTIME(), ascend);
         break;
     case JournalList::LIST_ID_UDFC01:
-        type = FieldModel::getUDFCType(ref_type, "UDFC01");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC01").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC01_val, ascend);
         else
             sortBy(SorterByUDFC01, ascend);
         break;
     case JournalList::LIST_ID_UDFC02:
-        type = FieldModel::getUDFCType(ref_type, "UDFC02");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC02").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC02_val, ascend);
         else
             sortBy(SorterByUDFC02, ascend);
         break;
     case JournalList::LIST_ID_UDFC03:
-        type = FieldModel::getUDFCType(ref_type, "UDFC03");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC03").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC03_val, ascend);
         else
             sortBy(SorterByUDFC03, ascend);
         break;
     case JournalList::LIST_ID_UDFC04:
-        type = FieldModel::getUDFCType(ref_type, "UDFC04");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC04").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC04_val, ascend);
         else
             sortBy(SorterByUDFC04, ascend);
         break;
     case JournalList::LIST_ID_UDFC05:
-        type = FieldModel::getUDFCType(ref_type, "UDFC05");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC05").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC05_val, ascend);
         else
             sortBy(SorterByUDFC05, ascend);
@@ -809,7 +808,6 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
     if (row < m_journal_xa.size() && (flags & wxLIST_HITTEST_ONITEM) && col_nr < getColNrSize()) {
         int col_id = getColId_Nr(col_nr);
         wxString menuItemText;
-        wxString refType = TrxModel::refTypeName;
         wxDateTime datetime;
         wxString dateFormat = PrefModel::instance().getDateFormat();
 
@@ -912,23 +910,33 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             break;
         case LIST_ID_UDFC01:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[0];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC01"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC01")
+            );
             break;
         case LIST_ID_UDFC02:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[1];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC02"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC02")
+            );
             break;
         case LIST_ID_UDFC03:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[2];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC03"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC03")
+            );
             break;
         case LIST_ID_UDFC04:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[3];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC04"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC04")
+            );
             break;
         case LIST_ID_UDFC05:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[4];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC05"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC05")
+            );
             break;
         default:
             break;
@@ -1873,16 +1881,16 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
 
 //----------------------------------------------------------------------------
 
-wxString UDFCFormatHelper(FieldModel::TYPE_ID type, wxString data)
+wxString UDFCFormatHelper(FieldTypeN type, wxString data)
 {
     wxString formattedData = data;
     bool v = false;
     if (!data.empty()) {
-        switch (type) {
-        case FieldModel::TYPE_ID_DATE:
+        switch (type.id_n()) {
+        case FieldTypeN::e_date:
             formattedData = mmGetDateTimeForDisplay(data);
             break;
-        case FieldModel::TYPE_ID_BOOLEAN:
+        case FieldTypeN::e_boolean:
             v = wxString("TRUE|true|1").Contains(data);
             formattedData = (v) ? L"\u2713" : L"\u2717";
             break;
