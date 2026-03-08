@@ -693,32 +693,32 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         std::string formattedMonth = oss.str();
 
         //get yearId from year_name
-        int64 budgetYearID = BudgetPeriodModel::instance().get_name_id(
+        int64 bp_id_n = BudgetPeriodModel::instance().get_name_id_n(
             parms[3] + "-" + formattedMonth
         );
 
-        //if budgetYearID doesn't exist then return
-        if (budgetYearID == -1) {
+        //if bp_id_n doesn't exist then return
+        if (bp_id_n < 0) {
             wxLogInfo("Monthly budget not found!");
             return;
         }
 
         //get model budget for yearID and catID
-        BudgetModel::DataA budget = BudgetModel::instance().find(
-            BudgetCol::BUDGETYEARID(budgetYearID),
+        BudgetModel::DataA budget_a = BudgetModel::instance().find(
+            BudgetCol::BUDGETYEARID(bp_id_n),
             BudgetCol::CATEGID(std::stoll(parms[2]))
         );
 
         BudgetData budget_d;
-        if (budget.empty()) {
+        if (budget_a.empty()) {
             budget_d = BudgetData();
-            budget_d.m_period_id   = budgetYearID;
+            budget_d.m_period_id   = bp_id_n;
             budget_d.m_category_id = std::stoll(parms[2]);
             budget_d.m_amount      = 0.0;
             BudgetModel::instance().add_data_n(budget_d);
         }
         else
-            budget_d = budget[0];
+            budget_d = budget_a[0];
 
         double estimated;
         CurrencyModel::fromString(parms[0], estimated, CurrencyModel::GetBaseCurrency());

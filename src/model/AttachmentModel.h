@@ -42,4 +42,3 @@ public:
     auto find_reftype_refid_data_m(RefTypeN ref_type) -> std::map<int64, DataA>;
     auto find_all_desc_a() -> wxArrayString;
 };
-

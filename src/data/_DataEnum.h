@@ -206,6 +206,9 @@ public:
         int a[size] = { 0, 52, 26, 12, 6, 4, 2, 1, 365 };
         return a[m_id];
     }
+    double times_per_month() const {
+        return double(times_per_year()) / 12.0;
+    }
 };
 
 struct CurrencyType

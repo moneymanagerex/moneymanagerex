@@ -165,28 +165,34 @@ void BudgetPanel::OnMouseLeftDown(wxCommandEvent& event)
 
 wxString BudgetPanel::GetPanelTitle() const
 {
-    wxString yearStr = BudgetPeriodModel::instance().get_id_name(budgetYearID_);
-    if ((yearStr.length() < 5)) {
+    wxString bp_name_n = BudgetPeriodModel::instance().get_id_name_n(budgetYearID_);
+    wxString title;
+    if ((bp_name_n.length() < 5)) {
         if (PrefModel::instance().getBudgetFinancialYears()) {
             long year;
-            yearStr.ToLong(&year);
+            bp_name_n.ToLong(&year);
             year++;
-            yearStr = wxString::Format(_t("Financial Year: %s - %li"), yearStr, year);
+            title = wxString::Format(_t("Financial Year: %s - %li"), bp_name_n, year);
         }
         else {
-            yearStr = wxString::Format(_t("Year: %s"), yearStr);
+            title = wxString::Format(_t("Year: %s"), bp_name_n);
         }
     }
     else {
-        yearStr = wxString::Format(_t("Month: %s"), yearStr);
-        yearStr += wxString::Format(" (%s)", m_monthName);
+        title = wxString::Format(_t("Month: %s"), bp_name_n);
+        title += wxString::Format(" (%s)", m_monthName);
     }
 
     if (PrefModel::instance().getBudgetDaysOffset() != 0) {
-        yearStr = wxString::Format(_t("%1$s    Start Date of: %2$s"), yearStr, mmGetDateTimeForDisplay(m_budget_offset_date));
+        title = wxString::Format(_t("%1$s    Start Date of: %2$s"),
+            title,
+            mmGetDateTimeForDisplay(m_budget_offset_date)
+        );
     }
 
-    return wxString::Format(_t("Budget Planner for %s"), yearStr);
+    title = wxString::Format(_t("Budget Planner for %s"), title);
+
+    return title;
 }
 
 void BudgetPanel::UpdateBudgetHeading()
@@ -349,15 +355,14 @@ void BudgetPanel::initVirtualListControl()
     mmReportBudget budgetDetails;
 
     bool evaluateTransfer = false;
-    if (PrefModel::instance().getBudgetIncludeTransfers())
-    {
+    if (PrefModel::instance().getBudgetIncludeTransfers()) {
         evaluateTransfer = true;
     }
 
     currentView_ = InfoModel::instance().getString("BUDGET_FILTER", VIEW_ALL);
-    const wxString budgetYearStr = BudgetPeriodModel::instance().get_id_name(budgetYearID_);
+    const wxString bp_name_n = BudgetPeriodModel::instance().get_id_name_n(budgetYearID_);
     long year = 0;
-    budgetYearStr.ToLong(&year);
+    bp_name_n.ToLong(&year);
 
     int startDay = 1;
     wxDate::Month startMonth = wxDateTime::Jan;
@@ -367,11 +372,10 @@ void BudgetPanel::initVirtualListControl()
     wxDateTime dtEnd = dtBegin;
     dtEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
-    monthlyBudget_ = (budgetYearStr.length() > 5);
+    monthlyBudget_ = (bp_name_n.length() > 5);
 
-    if (monthlyBudget_)
-    {
-        budgetDetails.SetBudgetMonth(budgetYearStr, dtBegin, dtEnd);
+    if (monthlyBudget_) {
+        budgetDetails.SetBudgetMonth(bp_name_n, dtBegin, dtEnd);
         m_monthName = wxGetTranslation(wxDateTime::GetEnglishMonthName(dtBegin.GetMonth()));
     }
 
@@ -385,10 +389,14 @@ void BudgetPanel::initVirtualListControl()
 
     //Get statistics
     BudgetModel::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_, budgetNotes_);
-    CategoryModel::instance().getCategoryStats(categoryStats_
-        , static_cast<wxSharedPtr<wxArrayString>>(nullptr)
-        , &date_range, PrefModel::instance().getIgnoreFutureTransactions()
-        , false, (evaluateTransfer ? &budgetAmt_ : 0));
+    CategoryModel::instance().getCategoryStats(
+        categoryStats_,
+        static_cast<wxSharedPtr<wxArrayString>>(nullptr),
+        &date_range,
+        PrefModel::instance().getIgnoreFutureTransactions(),
+        false,
+        (evaluateTransfer ? &budgetAmt_ : nullptr)
+    );
 
     //start with only the root categories
     CategoryModel::DataA category_a = CategoryModel::instance().find(
@@ -530,7 +538,9 @@ double BudgetPanel::getEstimate(int64 category_id) const
     try {
         BudgetFrequency freq = budgetPeriod_.at(category_id);
         double amt = budgetAmt_.at(category_id);
-        return BudgetModel::getEstimate(monthlyBudget_, freq, amt);
+        return monthlyBudget_
+            ? amt * freq.times_per_month()
+            : amt * freq.times_per_year();
     }
     catch (std::out_of_range const& exc) {
         wxASSERT(false);
