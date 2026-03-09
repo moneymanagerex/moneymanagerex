@@ -59,22 +59,22 @@ TrxRow TrxData::to_row() const
 // Convert TrxRow to TrxData
 TrxData& TrxData::from_row(const TrxRow& row)
 {
-    m_id              = row.TRANSID;           // int64
-    m_account_id      = row.ACCOUNTID;         // int64
-    m_to_account_id_n = row.TOACCOUNTID;       // int64
-    m_payee_id_n      = row.PAYEEID;           // int64
-    TRANSCODE         = row.TRANSCODE;         // wxString
-    m_amount          = row.TRANSAMOUNT;       // double
-    STATUS            = row.STATUS;            // wxString
-    m_number          = row.TRANSACTIONNUMBER; // wxString
-    m_notes           = row.NOTES;             // wxString
-    m_category_id_n   = row.CATEGID;           // int64
-    TRANSDATE         = row.TRANSDATE;         // wxString
-    LASTUPDATEDTIME   = row.LASTUPDATEDTIME;   // wxString
-    DELETEDTIME       = row.DELETEDTIME;       // wxString
-    m_followup_id     = row.FOLLOWUPID;        // int64
-    m_to_amount       = row.TOTRANSAMOUNT;     // double
-    m_color           = row.COLOR;             // int64
+    m_id              = row.TRANSID;
+    m_account_id      = row.ACCOUNTID;
+    m_to_account_id_n = row.TOACCOUNTID;
+    m_payee_id_n      = row.PAYEEID;
+    TRANSCODE         = row.TRANSCODE;
+    m_amount          = row.TRANSAMOUNT;
+    STATUS            = row.STATUS;
+    m_number          = row.TRANSACTIONNUMBER;
+    m_notes           = row.NOTES;
+    m_category_id_n   = row.CATEGID;
+    TRANSDATE         = row.TRANSDATE;
+    LASTUPDATEDTIME   = row.LASTUPDATEDTIME;
+    DELETEDTIME       = row.DELETEDTIME;
+    m_followup_id     = row.FOLLOWUPID;
+    m_to_amount       = row.TOTRANSAMOUNT;
+    m_color           = row.COLOR;
 
     return *this;
 }

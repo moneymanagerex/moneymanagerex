@@ -32,27 +32,11 @@ public:
     ~TagModel();
 
 public:
-    /**
-    Initialize the global TagModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for TagModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static TagModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for TagModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static TagModel& instance();
 
-    /**
-    * Return the Data record pointer for the given tag name
-    * Returns 0 when tag not found.
-    */
-    const Data* get_key(const wxString& name);
-
-    /* Returns 0 if not used, 1 if used, and -1 if used only in deleted transactions */
-    int is_used(int64 id);
+public:
+    int  is_used(int64 tag_id);
+    auto get_name_data_n(const wxString& name) -> const Data*;
 };
 

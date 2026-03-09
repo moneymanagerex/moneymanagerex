@@ -116,7 +116,7 @@ void BudgetEntryDialog::CreateControls()
     wxStaticText* itemTextActCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catActualAmountStr_);
     
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Category: ")), g_flagsH);
-    wxString categname = CategoryModel::full_name(category);
+    wxString categname = CategoryModel::instance().full_name(category);
     wxStaticText* categNameLabel = new wxStaticText(itemPanel7, wxID_STATIC,
         (categname.size() > 50 ? wxString::FromUTF8("\u2026") + categname.substr(categname.size() - 50) : categname));
     if (categname.size() > 50) categNameLabel->SetToolTip(categname);

@@ -27,13 +27,7 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include <wx/log.h>
 
 #include "util/mmSingleton.h"
-#include "util/mmChoice.h"
-
 #include "table/_TableFactory.h"
-
-class wxSQLite3Statement;
-class wxSQLite3Database;
-class wxSQLite3ResultSet;
 
 typedef wxDateTime wxDate;
 typedef std::vector<int64> wxArrayInt64;
@@ -57,40 +51,6 @@ namespace std
 class ModelBase
 {
 public:
-    enum REFTYPE_ID {
-        REFTYPE_ID_TRANSACTION = 0,
-        REFTYPE_ID_STOCK,
-        REFTYPE_ID_ASSET,
-        REFTYPE_ID_BANKACCOUNT,
-        REFTYPE_ID_BILLSDEPOSIT,
-        REFTYPE_ID_PAYEE,
-        REFTYPE_ID_TRANSACTIONSPLIT,
-        REFTYPE_ID_BILLSDEPOSITSPLIT,
-        REFTYPE_ID_size
-    };
-
-    static mmChoiceNameA REFTYPE_CHOICES;
-    static const wxString REFTYPE_NAME_TRANSACTION;
-    static const wxString REFTYPE_NAME_STOCK;
-    static const wxString REFTYPE_NAME_ASSET;
-    static const wxString REFTYPE_NAME_BANKACCOUNT;
-    static const wxString REFTYPE_NAME_BILLSDEPOSIT;
-    static const wxString REFTYPE_NAME_PAYEE;
-    static const wxString REFTYPE_NAME_TRANSACTIONSPLIT;
-    static const wxString REFTYPE_NAME_BILLSDEPOSITSPLIT;
-    static const wxString reftype_name(int id);
-    static int reftype_id(const wxString& name);
-
-public:
     ModelBase() {};
     ~ModelBase() {};
 };
-
-inline const wxString ModelBase::reftype_name(int id)
-{
-    return REFTYPE_CHOICES.get_name(id);
-}
-inline int ModelBase::reftype_id(const wxString& name)
-{
-    return REFTYPE_CHOICES.find_name_n(name);
-}

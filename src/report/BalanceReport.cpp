@@ -75,14 +75,14 @@ double BalanceReport::getCheckingBalance(const AccountData* account, const wxDat
 
 std::pair<double, double> BalanceReport::getBalance(
     const AccountData* account,
-    const wxDate& date
+    const mmDate& date
 ) {
     std::pair<double /*cash bal*/, double /*market bal*/> bal = { 0.0, 0.0 };
-    if (mmDate(date) < account->m_open_date)
+    if (date < account->m_open_date)
         return bal;
-    bal.first = getCheckingBalance(account, date);
+    bal.first = getCheckingBalance(account, date.getDateTime());
     if (AccountModel::type_id(*account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
-        bal.second = StockModel::instance().getDailyBalanceAt(*account, date);
+        bal.second = StockModel::instance().calculate_account_balance(*account, date);
     }
     return bal;
 }
@@ -147,7 +147,7 @@ wxString BalanceReport::getHTMLText()
             histItem.acctId          = account.id();
             histItem.stockId         = stock.m_id;
             histItem.purchasePrice   = stock.m_purchase_price;
-            histItem.purchaseDate    = StockModel::PURCHASEDATE(stock);
+            histItem.purchaseDate    = stock.m_purchase_date.getDateTime();
             histItem.purchaseDateStr = stock.m_purchase_date.isoDate();
             histItem.numShares       = stock.m_num_shares;
             histItem.stockHist       = StockHistoryModel::instance().find(
@@ -202,7 +202,7 @@ wxString BalanceReport::getHTMLText()
                 idx = NavigatorTypes::instance().getAccountTypeIdx(NavigatorTypes::TYPE_ID_CHECKING);
             }
             if (idx > -1) {
-                std::pair<double, double> dailybal = getBalance(&account, end_date);
+                std::pair<double, double> dailybal = getBalance(&account, mmDate(end_date));
                 balancePerDay[idx] += dailybal.first * getCurrencyDateRate(account.m_currency_id, end_date);
                 if (AccountModel::type_id(account) == NavigatorTypes::TYPE_ID_INVESTMENT) {
                     balancePerDay[idx] += dailybal.second * getCurrencyDateRate(account.m_currency_id, end_date);

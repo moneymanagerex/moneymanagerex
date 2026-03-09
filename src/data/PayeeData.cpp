@@ -45,14 +45,14 @@ PayeeRow PayeeData::to_row() const
 // Convert PayeeRow to PayeeData
 PayeeData& PayeeData::from_row(const PayeeRow& row)
 {
-    m_id            = row.PAYEEID;       // int64
-    m_name          = row.PAYEENAME;     // wxString
-    m_category_id_n = row.CATEGID;       // int64
-    m_number        = row.NUMBER;        // wxString
-    m_website       = row.WEBSITE;       // wxString
-    m_notes         = row.NOTES;         // wxString
-    m_active        = (row.ACTIVE != 0); // int64
-    m_pattern       = row.PATTERN;       // wxString
+    m_id            = row.PAYEEID;
+    m_name          = row.PAYEENAME;
+    m_category_id_n = row.CATEGID;
+    m_number        = row.NUMBER;
+    m_website       = row.WEBSITE;
+    m_notes         = row.NOTES;
+    m_active        = (row.ACTIVE != 0);
+    m_pattern       = row.PATTERN;
 
     return *this;
 }

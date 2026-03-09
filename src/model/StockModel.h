@@ -30,7 +30,7 @@
 class StockModel : public TableFactory<StockTable, StockData>
 {
 public:
-    static const wxString refTypeName;
+    static const RefTypeN s_ref_type;
 
 public:
     StockModel();
@@ -44,27 +44,14 @@ public:
     // override
     bool purge_id(int64 id) override;
 
-    static wxString get_id_name(int64 stock_id);
+    auto get_id_name(int64 stock_id) -> const wxString;
+    auto find_last_hist_date(const Data& stock_d) -> const mmDate;
 
-    static wxDate PURCHASEDATE(const Data& stock_d);
+    auto calculate_account_balance(const AccountData& account_d, const mmDate& date) -> double;
+    auto calculate_realized_gain(const Data& stock_d, bool base_curr = false) -> double;
+    auto calculate_unrealiazed_gain(const Data& stock_d, bool base_curr = false) -> double;
 
-    static double InvestmentValue(const Data& stock_d);
-    static double CurrentValue(const Data& stock_d);
-
-    static double RealGainLoss(const Data& stock_d, bool base_curr = false);
-    static double UnrealGainLoss(const Data& stock_d, bool base_curr = false);
-
-    static void UpdateCurrentPrice(const wxString& symbol, const double price = -1);
-
-    wxString lastPriceDate(const Data& stock_d);
-    double getDailyBalanceAt(const AccountData& account_d, const wxDate& date);
-
-    /*
-    stock_entry.m_purchase_price = avg price of shares purchased.
-    stock_entry.m_num_shares = total amount of shares purchased.
-    stock_entry.VALUE     = value of shares based on:
-    ... share_entry.SHARENUMBER * share_entry.SHAREPRICE
-    */
-    static void UpdatePosition(Data* stock_n);
+    void update_symbol_current_price(const wxString& symbol, double price = -1);
+    void update_data_position(Data* stock_n);
 };
 

@@ -60,7 +60,7 @@ public:
 private:
     std::map<wxDate, double> loadCheckingDateBalance(const AccountData& account);
     double getCheckingBalance(const AccountData* account, const wxDate& date);
-    std::pair<double, double> getBalance(const AccountData* account, const wxDate& date);
+    std::pair<double, double> getBalance(const AccountData* account, const mmDate& date);
     double getCurrencyDateRate(int64 currencyid, const wxDate& date);
 };
 

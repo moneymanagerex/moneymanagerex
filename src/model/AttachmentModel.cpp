@@ -30,10 +30,8 @@ AttachmentModel::~AttachmentModel()
 {
 }
 
-/**
-* Initialize the global AttachmentModel table.
-* Reset the AttachmentModel table or create the table if it does not exist.
-*/
+// Initialize the global AttachmentModel table.
+// Reset the AttachmentModel table or create the table if it does not exist.
 AttachmentModel& AttachmentModel::instance(wxSQLite3Database* db)
 {
     AttachmentModel& ins = Singleton<AttachmentModel>::instance();
@@ -44,74 +42,76 @@ AttachmentModel& AttachmentModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of AttachmentModel table */
+// Return the static instance of AttachmentModel table
 AttachmentModel& AttachmentModel::instance()
 {
     return Singleton<AttachmentModel>::instance();
 }
 
-/** Return a dataset with attachments linked to a specific object */
-const AttachmentModel::DataA AttachmentModel::FilterAttachments(const wxString& RefType, const int64 RefId)
-{
-    DataA attachments;
-    for (const Data& attachment : find_all(Col::COL_ID_DESCRIPTION)) {
-        if (attachment.REFTYPE.Lower().Matches(RefType.Lower().Append("*")) && attachment.REFID == RefId)
-            attachments.push_back(attachment);
-    }
-    return attachments;
-}
-
-/** Return the number of attachments linked to a specific object */
-int AttachmentModel::NrAttachments(const wxString& RefType, const int64 RefId)
+// Return the number of attachments linked to a specific object
+int AttachmentModel::find_ref_c(RefTypeN ref_type, const int64 ref_id)
 {
     return AttachmentModel::instance().find(
-        AttachmentCol::REFTYPE(RefType),
-        AttachmentCol::REFID(RefId)
+        AttachmentCol::REFTYPE(ref_type.name_n()),
+        AttachmentCol::REFID(ref_id)
     ).size();
 }
 
-/** Return the last attachment number linked to a specific object */
-int AttachmentModel::LastAttachmentNumber(const wxString& RefType, const int64 RefId)
-{
-    int LastAttachmentNumber = 0;
-    AttachmentModel::DataA attachments = AttachmentModel::instance().FilterAttachments(RefType, RefId);
-
-    for (auto &attachment : attachments)
-    {
-        wxString FileName = attachment.FILENAME;
-        int AttachNumb = wxAtoi(FileName.SubString(FileName.Find("Attach") + 6, FileName.Find(".") - 1));
-        if (AttachNumb > LastAttachmentNumber)
-            LastAttachmentNumber = AttachNumb;
+// Return a dataset with attachments linked to a specific object
+const AttachmentModel::DataA AttachmentModel::find_ref_data_a(
+    RefTypeN ref_type,
+    const int64 ref_id
+) {
+    DataA att_a;
+    for (const Data& att_d : find_all(Col::COL_ID_DESCRIPTION)) {
+        if (att_d.m_ref_type_n.name_n().Lower().Matches(
+            ref_type.name_n().Lower().Append("*")
+        ) && att_d.m_ref_id == ref_id)
+            att_a.push_back(att_d);
     }
-
-    return LastAttachmentNumber;
+    return att_a;
 }
 
-/** Return a dataset with attachments linked to a specific type*/
-std::map<int64, AttachmentModel::DataA> AttachmentModel::get_reftype(const wxString& reftype)
+// Return the last attachment number linked to a specific object
+int AttachmentModel::find_ref_last_num(RefTypeN ref_type, const int64 ref_id)
 {
-    std::map<int64, AttachmentModel::DataA> data;
-    for (const auto & attachment : this->find(
-        AttachmentCol::REFTYPE(reftype)
+    int max_num = 0;
+    for (const auto& att_d : find_ref_data_a(ref_type, ref_id)) {
+        wxString att_filename = att_d.m_filename;
+        int num = wxAtoi(att_filename.SubString(
+            att_filename.Find("Attach") + 6,
+            att_filename.Find(".") - 1
+        ));
+        if (max_num < num)
+            max_num = num;
+    }
+    return max_num;
+}
+
+// Return a dataset with attachments linked to a specific type
+std::map<int64, AttachmentModel::DataA> AttachmentModel::find_refType_mRefId(
+    RefTypeN ref_type
+) {
+    std::map<int64, AttachmentModel::DataA> refId_dataA_m;
+    for (const auto& att_d : find(
+        AttachmentCol::REFTYPE(ref_type.name_n())
     )) {
-        data[attachment.REFID].push_back(attachment);
+        refId_dataA_m[att_d.m_ref_id].push_back(att_d);
     }
 
-    return data;
+    return refId_dataA_m;
 }
 
-/** Return all attachments descriptions*/
-wxArrayString AttachmentModel::allDescriptions()
+// Return all attachments descriptions
+wxArrayString AttachmentModel::find_all_desc_a()
 {
-    wxArrayString descriptions;
-    wxString PreviousDescription;
-    for (const auto &attachment : this->find_all(Col::COL_ID_DESCRIPTION))
-    {
-        if (attachment.DESCRIPTION != PreviousDescription)
-        {
-            descriptions.Add(attachment.DESCRIPTION);
-            PreviousDescription = attachment.DESCRIPTION;
+    wxArrayString desc_a;
+    wxString prev_desc;
+    for (const auto& att_d : find_all(Col::COL_ID_DESCRIPTION)) {
+        if (att_d.m_description != prev_desc) {
+            desc_a.Add(att_d.m_description);
+            prev_desc = att_d.m_description;
         }
     }
-    return descriptions;
+    return desc_a;
 }

@@ -32,24 +32,14 @@ public:
     ~FieldValueModel();
 
 public:
-    /**
-    Initialize the global FieldValueModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for FieldValueModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static FieldValueModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for FieldValueModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static FieldValueModel& instance();
 
+    static FieldValueCol::REFID REFTYPEID(RefTypeN ref_type, int64 ref_id);
+
 public:
-    std::map<int64, DataA> get_all_id(const wxString& reftype);
-    const Data* get_key(int64 FieldID, int64 RefID);
-    wxArrayString allValue(const int64 FieldID);
-    static bool DeleteAllData(const wxString& RefType, int64 RefID);
+    bool purge_ref(RefTypeN ref_type, int64 ref_id);
+    auto get_key_data_n(int64 field_id, RefTypeN ref_type, int64 ref_id) -> const Data*;
+    auto find_refType_mRefId(RefTypeN ref_type) -> std::map<int64, DataA>;
 };
 

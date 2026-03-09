@@ -16,14 +16,11 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-// This is only sample code re-used from "table/FieldTable.cpp".
-
 #include "FieldData.h"
 
-FieldData::FieldData()
+FieldData::FieldData() :
+    m_id(-1)
 {
-    FIELDID = -1;
 }
 
 // Convert FieldData to FieldRow
@@ -31,11 +28,11 @@ FieldRow FieldData::to_row() const
 {
     FieldRow row;
 
-    row.FIELDID = FIELDID;
-    row.REFTYPE = REFTYPE;
-    row.DESCRIPTION = DESCRIPTION;
-    row.TYPE = TYPE;
-    row.PROPERTIES = PROPERTIES;
+    row.FIELDID     = m_id;
+    row.REFTYPE     = m_ref_type.name_n();
+    row.DESCRIPTION = m_description;
+    row.TYPE        = m_type_n.name_n();
+    row.PROPERTIES  = m_properties;
 
     return row;
 }
@@ -43,22 +40,22 @@ FieldRow FieldData::to_row() const
 // Convert FieldRow to FieldData
 FieldData& FieldData::from_row(const FieldRow& row)
 {
-    FIELDID = row.FIELDID; // int64
-    REFTYPE = row.REFTYPE; // wxString
-    DESCRIPTION = row.DESCRIPTION; // wxString
-    TYPE = row.TYPE; // wxString
-    PROPERTIES = row.PROPERTIES; // wxString
+    m_id          = row.FIELDID;
+    m_ref_type    = RefTypeN(row.REFTYPE);
+    m_description = row.DESCRIPTION;
+    m_type_n      = FieldTypeN(row.TYPE);
+    m_properties  = row.PROPERTIES;
 
     return *this;
 }
 
 bool FieldData::equals(const FieldData* other) const
 {
-    if ( FIELDID != other->FIELDID) return false;
-    if (!REFTYPE.IsSameAs(other->REFTYPE)) return false;
-    if (!DESCRIPTION.IsSameAs(other->DESCRIPTION)) return false;
-    if (!TYPE.IsSameAs(other->TYPE)) return false;
-    if (!PROPERTIES.IsSameAs(other->PROPERTIES)) return false;
+    if ( m_id                 != other->m_id)              return false;
+    if ( m_ref_type.id_n()    != other->m_ref_type.id_n()) return false;
+    if (!m_description.IsSameAs( other->m_description))    return false;
+    if ( m_type_n.id_n()      != other->m_type_n.id_n())   return false;
+    if (!m_properties.IsSameAs(  other->m_properties))     return false;
 
     return true;
 }

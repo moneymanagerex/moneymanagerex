@@ -119,16 +119,16 @@ TrxDialog::TrxDialog(
     if (found) {
         // a bill can only be duplicated
         m_mode = (duplicate || journal_id.second) ? MODE_DUP : MODE_EDIT;
-        const wxString& splitRefType = (m_journal_data.m_repeat_num == 0) ?
-            TrxSplitModel::refTypeName :
-            SchedSplitModel::refTypeName;
+        RefTypeN split_ref_type = (m_journal_data.m_repeat_num == 0) ?
+            TrxSplitModel::s_ref_type :
+            SchedSplitModel::s_ref_type;
         for (const auto& tp_d : Journal::split(m_journal_data)) {
             wxArrayInt64 tag_id_a;
             for (const auto& gl_d : TagLinkModel::instance().find(
-                TagLinkCol::REFTYPE(splitRefType),
+                TagLinkCol::REFTYPE(split_ref_type.name_n()),
                 TagLinkCol::REFID(tp_d.m_id))
             )
-                tag_id_a.push_back(gl_d.TAGID);
+                tag_id_a.push_back(gl_d.m_tag_id);
             m_local_splits.push_back(
                 {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
             );
@@ -152,15 +152,24 @@ TrxDialog::TrxDialog(
     m_transfer = TrxModel::type_id(m_journal_data.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER;
     m_advanced = m_mode != MODE_NEW && m_transfer && (m_journal_data.m_amount != m_journal_data.m_to_amount);
 
-    int64 ref_id = (m_mode == MODE_NEW) ? 0 : (m_journal_data.m_repeat_num == 0) ?
-        m_journal_data.m_id : -(m_journal_data.m_bdid);
-    m_custom_fields = new mmCustomDataTransaction(this, ref_id, ID_CUSTOMFIELDS);
+    m_custom_fields = new mmCustomDataTransaction(this,
+        (m_mode == MODE_NEW ? TrxModel::s_ref_type :
+            m_journal_data.m_repeat_num == 0 ? TrxModel::s_ref_type :
+            SchedModel::s_ref_type
+        ),
+        (m_mode == MODE_NEW ? 0 :
+            m_journal_data.m_repeat_num == 0 ? m_journal_data.m_id :
+            m_journal_data.m_bdid
+        ),
+        ID_CUSTOMFIELDS
+    );
 
     // If duplicate then we may need to copy the attachments
-    if (m_mode == MODE_DUP && InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false))
-    {
-        const wxString& refType = TrxModel::refTypeName;
-        mmAttachmentManage::CloneAllAttachments(refType, journal_id.first, -1);
+    if (m_mode == MODE_DUP && InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false)) {
+        // FIXME: id -1 does not exist in database
+        mmAttachmentManage::CloneAllAttachments(
+            TrxModel::s_ref_type, journal_id.first, -1
+        );
     }
 
     this->SetFont(parent->GetFont());
@@ -380,14 +389,14 @@ void TrxDialog::dataToControls()
             );
 
             if (!transactions.empty() &&
-                !CategoryModel::is_hidden(transactions.back().m_category_id_n)
+                !CategoryModel::instance().is_hidden(transactions.back().m_category_id_n)
             ) {
                 const int64 cat = transactions.back().m_category_id_n;
-                cbCategory_->ChangeValue(CategoryModel::full_name(cat));
+                cbCategory_->ChangeValue(CategoryModel::instance().full_name(cat));
             }
         }
         else {
-            auto fullCategoryName = CategoryModel::full_name(m_journal_data.m_category_id_n);
+            auto fullCategoryName = CategoryModel::instance().full_name(m_journal_data.m_category_id_n);
             cbCategory_->ChangeValue(fullCategoryName);
         }
         skip_category_init_ = true;
@@ -400,17 +409,19 @@ void TrxDialog::dataToControls()
 
     // Tags
     if (!skip_tag_init_) {
-        wxArrayInt64 tagIds;
-        for (const auto& tag : GL.find(
-            TagLinkCol::REFTYPE((m_journal_data.m_repeat_num == 0) ?
-                TrxModel::refTypeName :
-                SchedModel::refTypeName),
-            TagLinkCol::REFID((m_journal_data.m_repeat_num == 0) ?
-                m_journal_data.m_id :
-                m_journal_data.m_bdid))
-        )
-            tagIds.push_back(tag.TAGID);
-        tagTextCtrl_->SetTags(tagIds);
+        wxArrayInt64 tag_id_a;
+        for (const auto& gl_d : GL.find(
+            TagLinkCol::REFTYPE((m_journal_data.m_repeat_num == 0)
+                ? TrxModel::s_ref_type.name_n()
+                : SchedModel::s_ref_type.name_n()
+            ),
+            TagLinkCol::REFID((m_journal_data.m_repeat_num == 0)
+                ? m_journal_data.m_id
+                : m_journal_data.m_bdid
+            )
+        ))
+            tag_id_a.push_back(gl_d.m_tag_id);
+        tagTextCtrl_->SetTags(tag_id_a);
         skip_tag_init_ = true;
     }
 
@@ -760,7 +771,7 @@ bool TrxDialog::ValidateData()
         }
 
         if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED
-            && !CategoryModel::is_hidden(m_journal_data.m_category_id_n)
+            && !CategoryModel::instance().is_hidden(m_journal_data.m_category_id_n)
         ) {
             PayeeData payee_d = *payee_n;
             payee_d.m_category_id_n = m_journal_data.m_category_id_n;
@@ -999,7 +1010,7 @@ void TrxDialog::OnComboKey(wxKeyEvent& event)
                 int rc = dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                if (rc != wxID_CANCEL) cbCategory_->ChangeValue(CategoryModel::full_name(dlg.getCategId()));
+                if (rc != wxID_CANCEL) cbCategory_->ChangeValue(CategoryModel::instance().full_name(dlg.getCategId()));
                 return;
             }
         }
@@ -1028,7 +1039,9 @@ void TrxDialog::SetCategoryForPayee(const PayeeData *payee_n)
         && PrefModel::instance().getTransCategoryNone() == PrefModel::UNUSED
         && m_local_splits.empty()
     ) {
-        const CategoryData* category_n = CategoryModel::instance().get_key(_t("Unknown"), int64(-1));
+        const CategoryData* category_n = CategoryModel::instance().get_key_data_n(
+            _t("Unknown"), int64(-1)
+        );
         if (!category_n) {
             CategoryData new_category_d = CategoryData();
             new_category_d.m_name = _t("Unknown");
@@ -1053,13 +1066,13 @@ void TrxDialog::SetCategoryForPayee(const PayeeData *payee_n)
     if ((PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED ||
             PrefModel::instance().getTransCategoryNone() == PrefModel::DEFAULT)
         && m_mode == MODE_NEW && m_local_splits.empty()
-        && (!CategoryModel::is_hidden(payee_n->m_category_id_n))
+        && (!CategoryModel::instance().is_hidden(payee_n->m_category_id_n))
     ) {
         // if payee has memory of last category used then display last category for payee
         const CategoryData* category_n = CategoryModel::instance().get_id_data_n(payee_n->m_category_id_n);
         if (category_n) {
             m_journal_data.m_category_id_n = payee_n->m_category_id_n;
-            cbCategory_->ChangeValue(CategoryModel::full_name(payee_n->m_category_id_n));
+            cbCategory_->ChangeValue(CategoryModel::instance().full_name(payee_n->m_category_id_n));
             wxLogDebug("Category: %s = %.2f", cbCategory_->GetLabel(), m_journal_data.m_amount);
         }
         else {
@@ -1160,11 +1173,11 @@ void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 
 void TrxDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& refType = (m_journal_data.m_repeat_num == 0) ?
-        TrxModel::refTypeName :
-        SchedModel::refTypeName;
+    RefTypeN ref_type = (m_journal_data.m_repeat_num == 0) ?
+        TrxModel::s_ref_type :
+        SchedModel::s_ref_type;
     int64 transID = (m_mode == MODE_DUP) ? -1 : m_journal_data.m_id;
-    AttachmentDialog dlg(this, refType, transID);
+    AttachmentDialog dlg(this, ref_type, transID);
     dlg.ShowModal();
 }
 
@@ -1277,36 +1290,43 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     TrxSplitModel::instance().update(tp_a, m_journal_data.m_id);
 
     // Save split tags
-    const wxString& splitRefType = TrxSplitModel::refTypeName;
-
     for (unsigned int i = 0; i < m_local_splits.size(); i++) {
-        TagLinkModel::DataA splitTaglinks;
+        TagLinkModel::DataA new_tp_gl_a;
         for (const auto& tag_id : m_local_splits.at(i).TAGS) {
-            TagLinkData gl_d = TagLinkData();
-            gl_d.REFTYPE = splitRefType;
-            gl_d.REFID   = tp_a.at(i).m_id;
-            gl_d.TAGID   = tag_id;
-            splitTaglinks.push_back(gl_d);
+            TagLinkData new_gl_d = TagLinkData();
+            new_gl_d.m_tag_id   = tag_id;
+            new_gl_d.m_ref_type = TrxSplitModel::s_ref_type;
+            new_gl_d.m_ref_id   = tp_a.at(i).m_id;
+            new_tp_gl_a.push_back(new_gl_d);
         }
-        TagLinkModel::instance().update(splitTaglinks, splitRefType, tp_a.at(i).m_id);
+        TagLinkModel::instance().update(
+            TrxSplitModel::s_ref_type, tp_a.at(i).m_id,
+            new_tp_gl_a
+        );
     }
-    const wxString& ref_type = TrxModel::refTypeName;
     if (m_mode != MODE_EDIT) {
-        mmAttachmentManage::RelocateAllAttachments(ref_type, -1, ref_type, m_journal_data.m_id);
+        // FIXME
+        mmAttachmentManage::RelocateAllAttachments(
+            TrxModel::s_ref_type, -1,
+            TrxModel::s_ref_type, m_journal_data.m_id
+        );
     }
 
-    m_custom_fields->SaveCustomValues(m_journal_data.m_id);
+    m_custom_fields->SaveCustomValues(TrxModel::s_ref_type, m_journal_data.m_id);
 
     // Save base transaction tags
-    TagLinkModel::DataA taglinks;
+    TagLinkModel::DataA new_gl_a;
     for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
-        TagLinkData gl_d = TagLinkData();
-        gl_d.REFTYPE = ref_type;
-        gl_d.REFID   = m_journal_data.m_id;
-        gl_d.TAGID   = tag_id;
-        taglinks.push_back(gl_d);
+        TagLinkData new_gl_d = TagLinkData();
+        new_gl_d.m_tag_id   = tag_id;
+        new_gl_d.m_ref_type = TrxModel::s_ref_type;
+        new_gl_d.m_ref_id   = m_journal_data.m_id;
+        new_gl_a.push_back(new_gl_d);
     }
-    TagLinkModel::instance().update(taglinks, ref_type, m_journal_data.m_id);
+    TagLinkModel::instance().update(
+        TrxModel::s_ref_type.name_n(), m_journal_data.m_id,
+        new_gl_a
+    );
 
     //TrxModel::Full_Data trx(trx_d);
     //wxLogDebug("%s", trx.to_json());
@@ -1333,9 +1353,9 @@ void TrxDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 #endif
 
     if (m_mode != MODE_EDIT) {
-        const wxString& ref_type = TrxModel::refTypeName;
-        mmAttachmentManage::DeleteAllAttachments(ref_type, -1);
-        FieldValueModel::instance().DeleteAllData(ref_type, -1);
+        // FIXME: temporary records (with id -1) are not stored in database
+        mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, -1);
+        FieldValueModel::instance().purge_ref(TrxModel::s_ref_type, -1);
     }
     previousDate = wxDateTime(); // invalidate!
     EndModal(wxID_CANCEL);
@@ -1390,10 +1410,10 @@ void TrxDialog::SetTooltips()
 
 void TrxDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& ref_type = TrxModel::refTypeName;
     if (m_mode != MODE_EDIT) {
-        mmAttachmentManage::DeleteAllAttachments(ref_type, -1);
-        FieldValueModel::instance().DeleteAllData(ref_type, -1);
+        // FIXME: temporary records (with id -1) are not stored in database
+        mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, -1);
+        FieldValueModel::instance().purge_ref(TrxModel::s_ref_type, -1);
     }
     EndModal(wxID_CANCEL);
 }

@@ -18,9 +18,9 @@
 
 #include "UsageData.h"
 
-UsageData::UsageData()
+UsageData::UsageData() :
+    m_id(-1)
 {
-    m_id = -1;
 }
 
 // Convert UsageData to UsageRow
@@ -38,9 +38,9 @@ UsageRow UsageData::to_row() const
 // Convert UsageRow to UsageData
 UsageData& UsageData::from_row(const UsageRow& row)
 {
-    m_id           = row.USAGEID;     // int64
-    m_date         = row.USAGEDATE;   // wxString
-    m_json_content = row.JSONCONTENT; // wxString
+    m_id           = row.USAGEID;
+    m_date         = row.USAGEDATE;
+    m_json_content = row.JSONCONTENT;
 
     return *this;
 }

@@ -16,41 +16,27 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-//
-// This is only sample code re-used from "table/FieldTable.h".
-//
-// The data structure can be refined by:
-// * using more user-frielndly filed name
-// * using stronger field types
-// * adding enumerations for fields with limited choices
-// * demultiplexing composite values in database columns
-//
-// See also an implementation in Swift:
-//   https://github.com/moneymanagerex/mmex-ios/tree/master/MMEX/Data
-// and an implementation in Java:
-//   https://github.com/moneymanagerex/android-money-manager-ex/tree/master/app/src/main/java/com/money/manager/ex/domainmodel
-
 #pragma once
 
+#include "_DataEnum.h"
 #include "table/_TableBase.h"
 #include "table/FieldTable.h"
 
 // User-friendly representation of a record in table CUSTOMFIELD_V1.
 struct FieldData
 {
-    int64 FIELDID; // primary key
-    wxString REFTYPE;
-    wxString DESCRIPTION;
-    wxString TYPE;
-    wxString PROPERTIES;
+    int64      m_id;
+    RefTypeN   m_ref_type;    // one of [e_trx, e_sched] after initialization
+    wxString   m_description;
+    FieldTypeN m_type_n;      // can be null
+    wxString   m_properties;
 
     explicit FieldData();
     explicit FieldData(wxSQLite3ResultSet& q);
     FieldData(const FieldData& other) = default;
 
-    int64 id() const { return FIELDID; }
-    void id(const int64 id) { FIELDID = id; }
+    int64 id() const { return m_id; }
+    void id(const int64 id) { m_id = id; }
     FieldRow to_row() const;
     FieldData& from_row(const FieldRow& row);
     void to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const;
@@ -71,7 +57,7 @@ struct FieldData
     {
         bool operator()(const FieldData& x, const FieldData& y)
         {
-            return x.FIELDID < y.FIELDID;
+            return x.m_id < y.m_id;
         }
     };
 
@@ -79,7 +65,7 @@ struct FieldData
     {
         bool operator()(const FieldData& x, const FieldData& y)
         {
-            return x.REFTYPE < y.REFTYPE;
+            return x.m_ref_type.id_n() < y.m_ref_type.id_n();
         }
     };
 
@@ -87,7 +73,7 @@ struct FieldData
     {
         bool operator()(const FieldData& x, const FieldData& y)
         {
-            return x.DESCRIPTION < y.DESCRIPTION;
+            return x.m_description < y.m_description;
         }
     };
 
@@ -95,7 +81,7 @@ struct FieldData
     {
         bool operator()(const FieldData& x, const FieldData& y)
         {
-            return x.TYPE < y.TYPE;
+            return x.m_type_n.id_n() < y.m_type_n.id_n();
         }
     };
 
@@ -103,7 +89,7 @@ struct FieldData
     {
         bool operator()(const FieldData& x, const FieldData& y)
         {
-            return x.PROPERTIES < y.PROPERTIES;
+            return x.m_properties < y.m_properties;
         }
     };
 };

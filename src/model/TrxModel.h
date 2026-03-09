@@ -101,12 +101,12 @@ public:
         double ACCOUNT_FLOW;
         double ACCOUNT_BALANCE;
         wxArrayString ATTACHMENT_DESCRIPTION;
-        FieldModel::TYPE_ID UDFC_type[5] = {
-            FieldModel::TYPE_ID_UNKNOWN,
-            FieldModel::TYPE_ID_UNKNOWN,
-            FieldModel::TYPE_ID_UNKNOWN,
-            FieldModel::TYPE_ID_UNKNOWN,
-            FieldModel::TYPE_ID_UNKNOWN
+        FieldTypeN UDFC_type[5] = {
+            FieldTypeN(),
+            FieldTypeN(),
+            FieldTypeN(),
+            FieldTypeN(),
+            FieldTypeN()
         };
         wxString UDFC_content[5];
         double UDFC_value[5] = {0, 0, 0, 0, 0};
@@ -135,7 +135,7 @@ public:
     typedef std::vector<Full_Data> Full_DataA;
 
 public:
-    static const wxString refTypeName;
+    static const RefTypeN s_ref_type;
 
 public:
     // Initialize the global TrxModel table on initial call.

@@ -47,11 +47,10 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     // Grab the data 
     int startDay;
     wxDate::Month startMonth;
-    if (PrefModel::instance().getBudgetFinancialYears())
-    {
+    if (PrefModel::instance().getBudgetFinancialYears()) {
         GetFinancialYearValues(startDay, startMonth);
-    } else
-    {
+    }
+    else {
         startDay = 1;
         startMonth = wxDateTime::Jan;
     }
@@ -59,14 +58,13 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     long tmp;
     int startYear = wxDateTime::Today().GetYear();
 
-    wxString value = BudgetPeriodModel::instance().get_id_name(m_date_selection);
-    wxString budget_month, budget_year = value;
+    wxString bp_name_n = BudgetPeriodModel::instance().get_id_name_n(m_date_selection);
+    wxString budget_month, budget_year = bp_name_n;
 
     wxRegEx pattern("^([0-9]{4})(-([0-9]{2}))?$");
-    if (pattern.Matches(value))
-    {
-        budget_year = pattern.GetMatch(value, 1);
-        budget_month = pattern.GetMatch(value, 3);
+    if (pattern.Matches(bp_name_n)) {
+        budget_year = pattern.GetMatch(bp_name_n, 1);
+        budget_month = pattern.GetMatch(bp_name_n, 3);
     }
 
     if (budget_year.ToLong(&tmp))
@@ -75,8 +73,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     budget_year = wxString::Format("%d", startYear);
 
     long budgetMonth = 0;
-    if (budget_month.ToLong(&budgetMonth))
-    {
+    if (budget_month.ToLong(&budgetMonth)) {
         if (startMonth != wxDateTime::Jan)
             startMonth = wxDateTime(1, startMonth, startYear).Add(wxDateSpan::Months(--budgetMonth)).GetMonth();
         else
@@ -100,8 +97,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (PrefModel::instance().getBudgetIncludeTransfers())
-    {
+    if (PrefModel::instance().getBudgetIncludeTransfers()) {
         evaluateTransfer = true;
     }
     //Get statistics
@@ -111,14 +107,17 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     BudgetModel::instance().getBudgetEntry(m_date_selection, budgetFreq, budgetAmt, budgetNotes);
 
     std::map<int64, std::map<int, double> > categoryStats;
-    CategoryModel::instance().getCategoryStats(categoryStats
-        , static_cast<wxSharedPtr<wxArrayString>>(nullptr)
-        , &date_range, PrefModel::instance().getIgnoreFutureTransactions()
-        , false, (evaluateTransfer ? &budgetAmt : nullptr));
+    CategoryModel::instance().getCategoryStats(
+        categoryStats,
+        static_cast<wxSharedPtr<wxArrayString>>(nullptr),
+        &date_range,
+        PrefModel::instance().getIgnoreFutureTransactions(),
+        false,
+        (evaluateTransfer ? &budgetAmt : nullptr)
+    );
 
     std::map<int64, std::map<int, double> > budgetStats;
     BudgetModel::instance().getBudgetStats(budgetStats, &date_range, monthlyBudget);
-
 
     // Build the report
     mmHTMLBuilder hb;
@@ -126,7 +125,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
     bool amply = PrefModel::instance().getBudgetSummaryWithoutCategories();
     const wxString headerStartupMsg = amply
-        ? _t("Budget Categories for %s") : _t("Budget Category Summary for %s");
+        ? _t("Budget Categories for %s")
+        : _t("Budget Category Summary for %s");
 
     headingStr = wxString::Format(headerStartupMsg
         , headingStr + "<br>" + _t("(Estimated vs. Actual)"));
@@ -136,39 +136,34 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     m_filter.clear();
     m_filter.setDateRange(yearBegin, yearEnd);
 
-    CategoryModel::DataA categs = CategoryModel::instance().find(CategoryCol::PARENTID(-1));
-    std::stable_sort(categs.begin(), categs.end(), CategoryData::SorterByCATEGNAME());
+    CategoryModel::DataA cat_a = CategoryModel::instance().find(CategoryCol::PARENTID(-1));
+    std::stable_sort(cat_a.begin(), cat_a.end(), CategoryData::SorterByCATEGNAME());
 
     // Chart
-    if (getChartSelection() == 0)
-    {
+    if (getChartSelection() == 0) {
         GraphData gd;
         GraphSeries gsActual, gsEstimated;
 
-        for (const auto& category : categs)
-        {
-            wxString categName = category.m_name;
+        for (const auto& cat_d : cat_a) {
             gsEstimated.name = _t("Estimated");
             gsActual.name = _t("Actual");
-
-            gd.title = categName;
-            gd.labels.push_back(category.m_name);
-            gsActual.values.push_back(categoryStats[category.m_id][0]);
-            gsEstimated.values.push_back(budgetStats[category.m_id][budgetMonth]);
-            for(const auto& subcat : CategoryModel::sub_tree(category)){
-                gd.labels.push_back(CategoryModel::full_name(subcat.m_id));
-                gsActual.values.push_back(categoryStats[subcat.m_id][0]);
-                gsEstimated.values.push_back(budgetStats[subcat.m_id][budgetMonth]);
+            gd.title = cat_d.m_name;
+            gd.labels.push_back(cat_d.m_name);
+            gsActual.values.push_back(categoryStats[cat_d.m_id][0]);
+            gsEstimated.values.push_back(budgetStats[cat_d.m_id][budgetMonth]);
+            for (const auto& sub_d : CategoryModel::instance().find_data_subtree_a(cat_d)){
+                gd.labels.push_back(CategoryModel::instance().full_name(sub_d.m_id));
+                gsActual.values.push_back(categoryStats[sub_d.m_id][0]);
+                gsEstimated.values.push_back(budgetStats[sub_d.m_id][budgetMonth]);
             }
 
-            if (gd.labels.size() > 1) // Bar/Line are best with at least 2 items 
-            {
+            // Bar/Line are best with at least 2 items 
+            if (gd.labels.size() > 1) {
                 gd.type = GraphData::BARLINE;
                 gsEstimated.type = "column";
                 gsActual.type = "line";
             }
-            else
-            {
+            else {
                 gd.type = GraphData::BAR;
             }
             gd.series.push_back(gsActual);
@@ -200,138 +195,157 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             hb.endThead();
             hb.startTbody();
             {
-                std::map<int64, double> catTotalsEstimated, catTotalsActual;
-                std::map<int64, std::pair<int, wxString>> categLevel;
-                for (const auto& category : categs)
+
+    // -- reduce indentation by 3 tab stops to make more space
+    std::map<int64, double> catTotalsEstimated, catTotalsActual;
+    std::map<int64, std::pair<int, wxString>> categLevel;
+    for (const auto& cat_d : cat_a) {
+        categLevel[cat_d.m_id].first = 0;
+        double estimated = budgetStats[cat_d.m_id][budgetMonth];
+
+        if (estimated < 0)
+            estExpenses += estimated;
+        else
+            estIncome += estimated;
+
+        double actual = categoryStats[cat_d.m_id][0];
+        if (actual < 0)
+            actExpenses += actual;
+        else
+            actIncome += actual;
+
+        catTotalsActual[cat_d.m_id] += actual;
+        catTotalsEstimated[cat_d.m_id] += estimated;
+
+        if (amply) {
+            hb.startTableRow();
+            {
+                hb.addTableCellLink(
+                    wxString::Format("viewtrans:%lld",
+                        cat_d.m_id
+                    ),
+                    cat_d.m_name
+                );
+                hb.addMoneyCell(estimated);
+                hb.addMoneyCell(actual);
+            }
+            hb.endTableRow();
+        }
+        
+        std::vector<int> totals_stack;
+        CategoryModel::DataA sub_a = CategoryModel::instance().find_data_subtree_a(cat_d);
+        for (int i = 0; i < static_cast<int>(sub_a.size()); i++) {
+            categLevel[sub_a[i].m_id].first = 1;
+            estimated = budgetStats[sub_a[i].m_id][budgetMonth];
+
+            if (estimated < 0)
+                estExpenses += estimated;
+            else
+                estIncome += estimated;
+
+            actual = categoryStats[sub_a[i].m_id][0];
+            if (actual < 0)
+                actExpenses += actual;
+            else
+                actIncome += actual;
+
+            //save totals for this subcategory
+            catTotalsEstimated[sub_a[i].m_id] = estimated;
+            catTotalsActual[sub_a[i].m_id] = actual;
+
+            //update totals of the category
+            catTotalsEstimated[cat_d.m_id] += estimated;
+            catTotalsActual[cat_d.m_id] += actual;
+
+            //walk up the hierarchy and update all the parent totals as well
+            int64 nextParent = sub_a[i].m_parent_id_n;
+            for (int j = i; j > 0; j--) {
+                if (sub_a[j - 1].m_id == nextParent) {
+                    categLevel[sub_a[i].m_id].first++;
+                    catTotalsEstimated[sub_a[j - 1].m_id] += estimated;
+                    catTotalsActual[sub_a[j - 1].m_id] += actual;
+                    nextParent = sub_a[j - 1].m_parent_id_n;
+                    if (nextParent == cat_d.m_id)
+                        break;
+                }
+            }
+            categLevel[sub_a[i].m_id].second = "";
+            for (int j = categLevel[sub_a[i].m_id].first; j > 0; j--) {
+                categLevel[sub_a[i].m_id].second.Prepend("&nbsp;&nbsp;&nbsp;&nbsp;");
+            }
+            if (amply) {
+                hb.startTableRow();
                 {
-                    categLevel[category.m_id].first = 0;
-                    double estimated = budgetStats[category.m_id][budgetMonth];
-
-                    if (estimated < 0)
-                        estExpenses += estimated;
-                    else
-                        estIncome += estimated;
-
-                    double actual = categoryStats[category.m_id][0];
-                    if (actual < 0)
-                        actExpenses += actual;
-                    else
-                        actIncome += actual;
-
-                    catTotalsActual[category.m_id] += actual;
-                    catTotalsEstimated[category.m_id] += estimated;
-
-                    if (amply)
-                    {
-                        hb.startTableRow();
-                        {
-                            hb.addTableCellLink(wxString::Format("viewtrans:%lld"
-                                , category.m_id)
-                                , category.m_name);
-                            hb.addMoneyCell(estimated);
-                            hb.addMoneyCell(actual);
-                        }
-                        hb.endTableRow();
+                    hb.addTableCell(wxString::Format(
+                        categLevel[sub_a[i].m_id].second + "<a href=\"viewtrans:%lld\" target=\"_blank\">%s</a>",
+                        sub_a[i].m_id,
+                        sub_a[i].m_name
+                    ));
+                    hb.addMoneyCell(estimated);
+                    hb.addMoneyCell(actual);
+                }
+                hb.endTableRow();
+                
+                //not the last subcategory
+                if (i < static_cast<int>(sub_a.size()) - 1) {
+                    //if next subcategory is our child, queue the total for after the children
+                    if (sub_a[i].m_id == sub_a[i + 1].m_parent_id_n) {
+                        totals_stack.push_back(i);
                     }
-                    
-                    std::vector<int> totals_stack;
-                    CategoryModel::DataA subcats = CategoryModel::sub_tree(category);
-                    for (int i = 0; i < static_cast<int>(subcats.size()); i++) {
-                        categLevel[subcats[i].m_id].first = 1;
-                        estimated = budgetStats[subcats[i].m_id][budgetMonth];
-
-                        if (estimated < 0)
-                            estExpenses += estimated;
-                        else
-                            estIncome += estimated;
-
-                        actual = categoryStats[subcats[i].m_id][0];
-                        if (actual < 0)
-                            actExpenses += actual;
-                        else
-                            actIncome += actual;
-
-                        //save totals for this subcategory
-                        catTotalsEstimated[subcats[i].m_id] = estimated;
-                        catTotalsActual[subcats[i].m_id] = actual;
-
-                        //update totals of the category
-                        catTotalsEstimated[category.m_id] += estimated;
-                        catTotalsActual[category.m_id] += actual;
-
-                        //walk up the hierarchy and update all the parent totals as well
-                        int64 nextParent = subcats[i].m_parent_id_n;
-                        for (int j = i; j > 0; j--) {
-                            if (subcats[j - 1].m_id == nextParent) {
-                                categLevel[subcats[i].m_id].first++;
-                                catTotalsEstimated[subcats[j - 1].m_id] += estimated;
-                                catTotalsActual[subcats[j - 1].m_id] += actual;
-                                nextParent = subcats[j - 1].m_parent_id_n;
-                                if (nextParent == category.m_id)
-                                    break;
-                            }
-                        }
-                        categLevel[subcats[i].m_id].second = "";
-                        for (int j = categLevel[subcats[i].m_id].first; j > 0; j--) {
-                            categLevel[subcats[i].m_id].second.Prepend("&nbsp;&nbsp;&nbsp;&nbsp;");
-                        }
-                        if (amply) {
-                            hb.startTableRow();
+                    // last sibling -- we've exhausted this branch, so display all the totals we held on to
+                    else if (sub_a[i].m_parent_id_n != sub_a[i + 1].m_parent_id_n) {
+                        while (!totals_stack.empty() &&
+                            sub_a[totals_stack.back()].m_id != sub_a[i + 1].m_parent_id_n
+                        ) {
+                            hb.startAltTableRow();
                             {
-                                hb.addTableCell(wxString::Format(categLevel[subcats[i].m_id].second + "<a href=\"viewtrans:%lld\" target=\"_blank\">%s</a>"
-                                    , subcats[i].m_id
-                                    , subcats[i].m_name));
-                                hb.addMoneyCell(estimated);
-                                hb.addMoneyCell(actual);
+                                int index = totals_stack.back();
+                                hb.addTableCell(wxString::Format(
+                                    categLevel[sub_a[index].m_id].second + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>",
+                                    sub_a[index].m_id,
+                                    sub_a[index].m_name
+                                ));
+                                hb.addMoneyCell(catTotalsEstimated[sub_a[index].m_id]);
+                                hb.addMoneyCell(catTotalsActual[sub_a[index].m_id]);
                             }
                             hb.endTableRow();
-                            
-                            if (i < static_cast<int>(subcats.size()) - 1) { //not the last subcategory
-                                if (subcats[i].m_id == subcats[i + 1].m_parent_id_n) totals_stack.push_back(i); //if next subcategory is our child, queue the total for after the children
-                                else if (subcats[i].m_parent_id_n != subcats[i + 1].m_parent_id_n) { // last sibling -- we've exhausted this branch, so display all the totals we held on to
-                                    while (!totals_stack.empty() && subcats[totals_stack.back()].m_id != subcats[i + 1].m_parent_id_n) {
-                                        hb.startAltTableRow();
-                                        {
-                                            int index = totals_stack.back();
-                                            hb.addTableCell(wxString::Format(categLevel[subcats[index].m_id].second + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>"
-                                                , subcats[index].m_id
-                                                , subcats[index].m_name));
-                                            hb.addMoneyCell(catTotalsEstimated[subcats[index].m_id]);
-                                            hb.addMoneyCell(catTotalsActual[subcats[index].m_id]);
-                                        }
-                                        hb.endTableRow();
-                                        totals_stack.pop_back();
-                                    }
-                                }
-                            }
-                            // the very last subcategory, so show the rest of the queued totals
-                            else {
-                                while (!totals_stack.empty()) {
-                                    hb.startAltTableRow();
-                                    {
-                                        int index = totals_stack.back();
-                                        hb.addTableCell(wxString::Format(categLevel[subcats[index].m_id].second + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>"
-                                            , subcats[index].m_id
-                                            , subcats[index].m_name));
-                                        hb.addMoneyCell(catTotalsEstimated[subcats[index].m_id]);
-                                        hb.addMoneyCell(catTotalsActual[subcats[index].m_id]);
-                                    }
-                                    hb.endTableRow();
-                                    totals_stack.pop_back();
-                                }
-                            }
+                            totals_stack.pop_back();
                         }
                     }
-                    amply ? hb.startAltTableRow() : hb.startTableRow();
-                    {
-                        hb.addTableCellLink(wxString::Format("viewtrans:%lld:-2"
-                            , category.m_id)
-                            , category.m_name);
-                        hb.addMoneyCell(catTotalsEstimated[category.m_id]);
-                        hb.addMoneyCell(catTotalsActual[category.m_id]);
-                    }
-                    hb.endTableRow();
                 }
+                // the very last subcategory, so show the rest of the queued totals
+                else {
+                    while (!totals_stack.empty()) {
+                        hb.startAltTableRow();
+                        {
+                            int index = totals_stack.back();
+                            hb.addTableCell(wxString::Format(
+                                categLevel[sub_a[index].m_id].second + "<a href=\"viewtrans:%lld:-2\" target=\"_blank\">%s</a>",
+                                sub_a[index].m_id,
+                                sub_a[index].m_name
+                            ));
+                            hb.addMoneyCell(catTotalsEstimated[sub_a[index].m_id]);
+                            hb.addMoneyCell(catTotalsActual[sub_a[index].m_id]);
+                        }
+                        hb.endTableRow();
+                        totals_stack.pop_back();
+                    }
+                }
+            }
+        }
+        amply ? hb.startAltTableRow() : hb.startTableRow();
+        {
+            hb.addTableCellLink(
+                wxString::Format("viewtrans:%lld:-2", cat_d.m_id),
+                cat_d.m_name
+            );
+            hb.addMoneyCell(catTotalsEstimated[cat_d.m_id]);
+            hb.addMoneyCell(catTotalsActual[cat_d.m_id]);
+        }
+        hb.endTableRow();
+    }
+    // -- restore indentation
+
             }
             hb.endTbody();
         }

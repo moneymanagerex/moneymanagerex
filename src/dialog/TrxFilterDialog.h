@@ -133,7 +133,7 @@ private:
     bool mmIsPayeeMatches(int64 payeeid);
     bool mmIsCategoryMatches(int64 categid);
     bool mmIsNoteMatches(const wxString& note);
-    bool mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags = false);
+    bool mmIsTagMatches(RefTypeN ref_type, int64 ref_id, bool mergeSplitTags = false);
 
     void setTransferTypeCheckBoxes();
 

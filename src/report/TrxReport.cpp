@@ -66,18 +66,22 @@ void TrxReport::displayTotals(const std::map<int64, double>& total, std::map<int
     hb.addTotalRow(_t("Grand Total:"), noOfCols, v);
 }
 
-void TrxReport::UDFCFormatHelper(FieldModel::TYPE_ID type, int64 ref, wxString data, double val, int scale)
+void TrxReport::UDFCFormatHelper(FieldTypeN type, int64 ref, wxString data, double val, int scale)
 {
-    if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+    if (type.id_n() == FieldTypeN::e_decimal || type.id_n() == FieldTypeN::e_integer) {
         hb.addMoneyCell(val, scale);
-    else if (ref != -1)
-    {
-        if (type == FieldModel::TYPE_ID_BOOLEAN && !data.empty())
-        {
+    }
+    else if (ref != -1) {
+        if (type.id_n() == FieldTypeN::e_boolean && !data.empty()) {
             bool v = wxString("TRUE|true|1").Contains(data);
             hb.addTableCell(v ? "&check;" : "&cross;", false, true);
-        } else
-            hb.addTableCell(type == FieldModel::TYPE_ID_DATE && !data.empty() ? mmGetDateTimeForDisplay(data) : data);
+        }
+        else {
+            hb.addTableCell(type.id_n() == FieldTypeN::e_date && !data.empty()
+                ? mmGetDateTimeForDisplay(data)
+                : data
+            );
+        }
     }
 }
 
@@ -135,7 +139,6 @@ table {
     hb.displayFooter(_t("Accounts: ") + accounts_label);
 
     m_noOfCols = (m_transDialog->mmIsHideColumnsChecked()) ? m_transDialog->mmGetHideColumnsID().GetCount() : 11;
-    const wxString& AttRefType = TrxModel::refTypeName;
     const int groupBy = m_transDialog->mmGetGroupBy();
     const int chart = m_transDialog->mmGetChart();
     wxString lastSortLabel = "";
@@ -148,16 +151,15 @@ table {
     std::map<int64, double> grand_total_in_base_curr_extrans; //Grand - Store transactions amount daily converted to base currency - excluding TRANSFERS
     std::map<wxString, double> values_chart; // Store grouped values for chart
 
-    const wxString refType = TrxModel::refTypeName;
     static wxArrayString udfc_fields = FieldModel::UDFC_FIELDS();
-    FieldModel::TYPE_ID udfc_type[5];
+    FieldTypeN udfc_type[5];
     int udfc_scale[5];
     for (int i = 0; i < 5; i++) {
         // note: udfc_fields starts with ""
         wxString field = udfc_fields[i+1];
-        udfc_type[i] = FieldModel::getUDFCType(refType, field);
+        udfc_type[i] = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, field);
         udfc_scale[i] = FieldModel::getDigitScale(
-            FieldModel::getUDFCProperties(refType, field)
+            FieldModel::instance().get_udfc_properties_n(TrxModel::s_ref_type, field)
         );
     }
 
@@ -237,21 +239,19 @@ table {
                 hb.addTableHeaderCell(_t("FX Rate"), "Rate text-right");
             if (showColumnById(TrxFilterDialog::COL_NOTES))
                 hb.addTableHeaderCell(_t("Notes"), "Notes");
-            const auto& ref_type = TrxModel::refTypeName;
             int colNo = TrxFilterDialog::COL_UDFC01;
-            for (const auto& udfc_entry : FieldModel::UDFC_FIELDS())
-            {
-                if (udfc_entry.empty()) continue;
-                const auto& name = FieldModel::getUDFCName(ref_type, udfc_entry);
-                if (showColumnById(colNo++) && name != udfc_entry)
-                {
+            for (const auto& ucfd : FieldModel::UDFC_FIELDS()) {
+                if (ucfd.empty())
+                    continue;
+                const auto& name = FieldModel::instance().get_udfc_name_n(TrxModel::s_ref_type, ucfd);
+                if (showColumnById(colNo++) && name != ucfd) {
                     wxString nameCSS = name;
-                    switch (FieldModel::getUDFCType(ref_type, udfc_entry)) {
-                    case FieldModel::TYPE_ID_DECIMAL:
-                    case FieldModel::TYPE_ID_INTEGER:
+                    switch (FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, ucfd).id_n()) {
+                    case FieldTypeN::e_decimal:
+                    case FieldTypeN::e_integer:
                         nameCSS.Append(" text-right");
                         break;
-                    case FieldModel::TYPE_ID_BOOLEAN:
+                    case FieldTypeN::e_boolean:
                         nameCSS.Append(" text-center");
                         break;
                     default: break;
@@ -277,22 +277,21 @@ table {
         bool is_time_used = PrefModel::instance().UseTransDateTime();
         const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
 
-        auto custom_fields_data = FieldValueModel::instance().get_all_id(TrxModel::refTypeName);
-        while (noOfTrans--)
-        {
+        auto trxId_fvA_m = FieldValueModel::instance().find_refType_mRefId(
+            TrxModel::s_ref_type
+        );
+        while (noOfTrans--) {
             hb.startTableRow();
             {
                 /*  if ((TrxModel::type_id(trx_xd) == TrxModel::TYPE_ID_TRANSFER)
                     && m_transDialog->getTypeCheckBox() && */
-                if (showColumnById(TrxFilterDialog::COL_ID))
-                {
+                if (showColumnById(TrxFilterDialog::COL_ID)) {
                     hb.addTableCellLink(wxString::Format("trx:%lld", trx_xd.m_id)
                         , trx_xd.displayID, true);
                 }
                 if (showColumnById(TrxFilterDialog::COL_COLOR))
                     hb.addColorMarker(getUDColour(trx_xd.m_color.GetValue()).GetAsString(), true);
-                if (showColumnById(TrxFilterDialog::COL_DATE))
-                {
+                if (showColumnById(TrxFilterDialog::COL_DATE)) {
                     wxDateTime dt;
                     dt.ParseFormat(trx_xd.TRANSDATE, mask) || dt.ParseDate(trx_xd.TRANSDATE);
                     hb.addTableCellDate(dt.FormatISODate());
@@ -301,8 +300,7 @@ table {
                     hb.addTableCell(mmGetTimeForDisplay(trx_xd.TRANSDATE));
                 if (showColumnById(TrxFilterDialog::COL_NUMBER))
                     hb.addTableCell(trx_xd.m_number);
-                if (showColumnById(TrxFilterDialog::COL_ACCOUNT))
-                {
+                if (showColumnById(TrxFilterDialog::COL_ACCOUNT)) {
                     hb.addTableCellLink(wxString::Format("trxid:%lld", trx_xd.m_id)
                         , noOfTrans ? trx_xd.TOACCOUNTNAME : trx_xd.ACCOUNTNAME);
                 }
@@ -342,26 +340,22 @@ table {
                     grand_total[curr->m_id] += flow;
                     total_in_base_curr[curr->m_id] += flow * convRate;
                     grand_total_in_base_curr[curr->m_id] += flow * convRate;
-                    if (TrxModel::type_id(trx_xd) != TrxModel::TYPE_ID_TRANSFER)
-                    {
+                    if (TrxModel::type_id(trx_xd) != TrxModel::TYPE_ID_TRANSFER) {
                         grand_total_extrans[curr->m_id] += flow;
                         grand_total_in_base_curr_extrans[curr->m_id] += flow * convRate;
                     }
-                    if (chart > -1 && groupBy == -1)
-                    {
+                    if (chart > -1 && groupBy == -1) {
                         values_chart[trx_xd.m_id.ToString()] += (flow * convRate);
                     }
                 }
-                else
-                {
+                else {
                     wxFAIL_MSG("account for trx_xd not found");
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT))
                         hb.addEmptyTableCell();
                 }
 
                 // Exchange Rate
-                if (showColumnById(TrxFilterDialog::COL_RATE))
-                {
+                if (showColumnById(TrxFilterDialog::COL_RATE)) {
                     if ((TrxModel::type_id(trx_xd) == TrxModel::TYPE_ID_TRANSFER)
                         && (trx_xd.m_amount != trx_xd.m_to_amount))
                         hb.addMoneyCell(trx_xd.m_to_amount / trx_xd.m_amount);
@@ -371,10 +365,10 @@ table {
 
                 // Attachments
                 wxString AttachmentsLink = "";
-                if (AttachmentModel::instance().NrAttachments(AttRefType, trx_xd.m_id))
-                {
+                if (AttachmentModel::instance().find_ref_c(TrxModel::s_ref_type, trx_xd.m_id)) {
                     AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
-                        AttRefType, trx_xd.m_id, mmAttachmentManage::GetAttachmentNoteSign());
+                        TrxModel::s_ref_type.name_n(), trx_xd.m_id,
+                        mmAttachmentManage::GetAttachmentNoteSign());
                 }
 
                 // Notes
@@ -386,18 +380,17 @@ table {
                 int64 udfc_id[5];
                 for (int i = 0; i < 5; i++) {
                     wxString field = udfc_fields[i+1];
-                    udfc_id[i] = FieldModel::getUDFCID(refType, field);
+                    udfc_id[i] = FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, field);
                     trx_xd.UDFC_value[i] = -DBL_MAX;
                 }
 
-                if (custom_fields_data.find(trx_xd.m_id) != custom_fields_data.end()) {
-                    const auto& udfcs = custom_fields_data.at(trx_xd.m_id);
-                    for (const auto& udfc : udfcs) {
+                if (trxId_fvA_m.find(trx_xd.m_id) != trxId_fvA_m.end()) {
+                    for (const auto& fv_d : trxId_fvA_m.at(trx_xd.m_id)) {
                         for (int i = 0; i < 5; i++) {
-                            if (udfc.FIELDID == udfc_id[i]) {
-                                trx_xd.UDFC_content[i] = udfc.CONTENT;
+                            if (fv_d.m_field_id == udfc_id[i]) {
+                                trx_xd.UDFC_content[i] = fv_d.m_content;
                                 trx_xd.UDFC_value[i] = cleanseNumberStringToDouble(
-                                    udfc.CONTENT, udfc_scale[i] > 0
+                                    fv_d.m_content, udfc_scale[i] > 0
                                 );
                                 break;
                             }
@@ -558,10 +551,12 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
 {
     trx_xa.clear();
     const auto splits = TrxSplitModel::instance().get_all_id();
-    const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
+    const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
+        TrxModel::s_ref_type
+    );
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        TrxModel::Full_Data trx_xd(trx_d, splits, tags);
+        TrxModel::Full_Data trx_xd(trx_d, splits, trxId_glA_m);
         trx_xd.PAYEENAME = trx_xd.real_payee_name(trx_xd.m_account_id);
         if (trx_xd.has_split()) {
             TrxModel::Full_Data single_tran = trx_xd;
@@ -573,7 +568,7 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
                 trx_xd.displayID       = wxString::Format("%lld", trx_d.m_id) + "." +
                     wxString::Format("%i", splitIndex++);
                 trx_xd.m_category_id_n = tp_d.m_category_id;
-                trx_xd.CATEGNAME       = CategoryModel::full_name(tp_d.m_category_id);
+                trx_xd.CATEGNAME       = CategoryModel::instance().full_name(tp_d.m_category_id);
                 trx_xd.m_amount        = tp_d.m_amount;
                 trx_xd.m_notes         = trx_d.m_notes;
                 trx_xd.TAGNAMES        = tranTagnames;
@@ -589,8 +584,11 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
                     trx_xd.m_notes.Append((trx_d.m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
 
                     wxString tagnames;
-                    for (const auto& [tag_name, _] : TagLinkModel::instance().get_ref(TrxSplitModel::refTypeName, tp_d.m_id))
+                    for (const auto& [tag_name, _] : TagLinkModel::instance().find_ref_tag_m(
+                        TrxSplitModel::s_ref_type, tp_d.m_id
+                    )) {
                         tagnames.Append(tag_name + " ");
+                    }
                     if (!tagnames.IsEmpty())
                         trx_xd.TAGNAMES.Append((trx_xd.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
 

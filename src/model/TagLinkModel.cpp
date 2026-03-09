@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2016 Guan Lisheng
+ Copyright (C) 2026 George Ef (george.a.ef@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -30,9 +31,7 @@ TagLinkModel::~TagLinkModel()
 {
 }
 
-/**
-* Initialize the global TagLinkModel.
-*/
+// Initialize the global TagLinkModel.
 TagLinkModel& TagLinkModel::instance(wxSQLite3Database* db)
 {
     TagLinkModel& ins = Singleton<TagLinkModel>::instance();
@@ -44,91 +43,113 @@ TagLinkModel& TagLinkModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of TagLinkModel */
+// Return the static instance of TagLinkModel
 TagLinkModel& TagLinkModel::instance()
 {
     return Singleton<TagLinkModel>::instance();
 }
 
-const TagLinkData* TagLinkModel::get_key(const wxString& refType, int64 refId, int64 tagId)
+// Delete all tag links for a (REFTYPE, REFID)
+void TagLinkModel::purge_ref(RefTypeN ref_type, int64 ref_id)
+{
+    const auto& gl_a = instance().find(
+        TagLinkCol::REFTYPE(ref_type.name_n()),
+        TagLinkCol::REFID(ref_id)
+    );
+    instance().db_savepoint();
+    for (const auto& gl_d : gl_a)
+        instance().purge_id(gl_d.m_id);
+    instance().db_release_savepoint();
+}
+
+const TagLinkData* TagLinkModel::get_key_data_n(int64 tag_id, RefTypeN ref_type, int64 ref_id)
 {
     const Data* gl_n = search_cache_n(
-        TagLinkCol::REFTYPE(refType), TagLinkCol::REFID(refId), TagLinkCol::TAGID(tagId)
+        TagLinkCol::TAGID(tag_id),
+        TagLinkCol::REFTYPE(ref_type.name_n()),
+        TagLinkCol::REFID(ref_id)
     );
     if (gl_n)
         return gl_n;
 
-    DataA items = this->find(
-        TagLinkCol::REFTYPE(refType), TagLinkCol::REFID(refId), TagLinkCol::TAGID(tagId)
+    DataA gl_a = find(
+        TagLinkCol::TAGID(tag_id),
+        TagLinkCol::REFTYPE(ref_type.name_n()),
+        TagLinkCol::REFID(ref_id)
     );
-    if (!items.empty())
-        gl_n = get_id_data_n(items[0].TAGLINKID);
+    if (!gl_a.empty())
+        gl_n = get_id_data_n(gl_a[0].m_id);
     return gl_n;
 }
 
-std::map<wxString, int64> TagLinkModel::get_ref(const wxString& refType, int64 refId)
+std::map<wxString, int64> TagLinkModel::find_ref_tag_m(RefTypeN ref_type, int64 ref_id)
 {
-    std::map<wxString, int64> tags;
+    std::map<wxString, int64> tag_name_id_m;
+    for (const auto& gl_d : find(
+        TagLinkCol::REFTYPE(ref_type.name_n()),
+        TagLinkCol::REFID(ref_id)
+    )) {
+        const TagData* tag_n = TagModel::instance().get_id_data_n(gl_d.m_tag_id);
+        tag_name_id_m[tag_n->m_name] = gl_d.m_tag_id;
+    }
+    return tag_name_id_m;
+}
+
+std::map<int64, TagLinkModel::DataA> TagLinkModel::find_refType_mRefId(
+    RefTypeN ref_type
+) {
+    std::map<int64, DataA> refId_dataA_m;
     for (const auto& gl_d : instance().find(
-        TagLinkCol::REFTYPE(refType), TagLinkCol::REFID(refId)
-    ))
-        tags[TagModel::instance().get_id_data_n(gl_d.TAGID)->m_name] = gl_d.TAGID;
-
-    return tags;
+        TagLinkCol::REFTYPE(ref_type.name_n())
+    )) {
+        refId_dataA_m[gl_d.m_ref_id].push_back(gl_d);
+    }
+    return refId_dataA_m;
 }
 
-/* Delete all tags for a REFTYPE + REFID */
-void TagLinkModel::DeleteAllTags(const wxString& refType, int64 refID)
-{
-    const auto& links = instance().find(
-        TagLinkCol::REFTYPE(refType), TagLinkCol::REFID(refID)
-    );
-    instance().db_savepoint();
-    for (const auto& link : links)
-        instance().purge_id(link.TAGLINKID);
-    instance().db_release_savepoint();
-}
-
-int TagLinkModel::update(const DataA& rows, const wxString& refType, int64 ref_id)
+int TagLinkModel::update(RefTypeN ref_type, int64 ref_id, const DataA& src_gl_a)
 {
     TagLinkModel::instance().db_savepoint();
     bool save_timestamp = false;
-    std::map<int, int64> row_id_map;
+    std::map<int, int64> index_id_m;
 
-    DataA links = instance().find(
-        TagLinkCol::REFTYPE(refType), TagLinkCol::REFID(ref_id)
+    DataA old_gl_a = instance().find(
+        TagLinkCol::REFTYPE(ref_type.name_n()),
+        TagLinkCol::REFID(ref_id)
     );
-    if (links.size() != rows.size())
+    if (old_gl_a.size() != src_gl_a.size())
         save_timestamp = true;
 
-    for (const auto& link : links) {
+    for (const auto& old_gl_d : old_gl_a) {
         if (!save_timestamp) {
             bool match = false;
-            for (decltype(rows.size()) i = 0; i < rows.size(); i++) {
-                match = (rows[i].TAGID == link.TAGID && row_id_map.find(i) == row_id_map.end());
+            for (decltype(src_gl_a.size()) i = 0; i < src_gl_a.size(); i++) {
+                match = (src_gl_a[i].m_tag_id == old_gl_d.m_tag_id &&
+                    index_id_m.find(i) == index_id_m.end()
+                );
                 if (match) {
-                    row_id_map[i] = link.TAGLINKID;
+                    index_id_m[i] = old_gl_d.m_id;
                     break;
                 }
             }
             save_timestamp = save_timestamp || !match;
         }
 
-        instance().purge_id(link.TAGLINKID);
+        instance().purge_id(old_gl_d.m_id);
     }
 
-    for (const auto& item : rows) {
+    for (const auto& src_gl_d : src_gl_a) {
         Data new_gl_d = Data();
-        new_gl_d.REFTYPE = refType;
-        new_gl_d.REFID   = ref_id;
-        new_gl_d.TAGID   = item.TAGID;
+        new_gl_d.m_tag_id   = src_gl_d.m_tag_id;
+        new_gl_d.m_ref_type = ref_type;
+        new_gl_d.m_ref_id   = ref_id;
         instance().add_data_n(new_gl_d);
     }
 
     if (save_timestamp) {
-        if (refType == TrxModel::refTypeName)
+        if (ref_type == TrxModel::s_ref_type)
             TrxModel::instance().save_timestamp(ref_id);
-        else if (refType == TrxSplitModel::refTypeName)
+        else if (ref_type == TrxSplitModel::s_ref_type)
             TrxModel::instance().save_timestamp(
                 TrxSplitModel::instance().get_id_data_n(ref_id)->m_trx_id
             );
@@ -136,16 +157,5 @@ int TagLinkModel::update(const DataA& rows, const wxString& refType, int64 ref_i
 
     TagLinkModel::instance().db_release_savepoint();
 
-    return rows.size();
-}
-
-std::map<int64, TagLinkModel::DataA> TagLinkModel::get_all_id(const wxString& refType)
-{
-    DataA taglinks = instance().find(TagLinkCol::REFTYPE(refType));
-
-    std::map<int64, DataA> data;
-    for (const auto& taglink : taglinks) {
-        data[taglink.REFID].push_back(taglink);
-    }
-    return data;
+    return src_gl_a.size();
 }

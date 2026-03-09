@@ -26,6 +26,8 @@
 #include "TrxLinkModel.h"
 #include "TrxShareModel.h"
 
+const RefTypeN AccountModel::s_ref_type = RefTypeN(RefTypeN::e_account);
+
 AccountModel::AccountModel() :
     TableFactory<AccountTable, AccountData>()
 {
@@ -71,9 +73,11 @@ bool AccountModel::purge_id(int64 account_id)
         TrxCol::TOACCOUNTID(account_id)
     )) {
         if (TrxModel::is_foreign(trx_d)) {
-            TrxShareModel::instance().remove_trx_share(trx_d.m_id);
-            TrxLinkData tr = TrxLinkModel::TranslinkRecord(trx_d.m_id);
-            TrxLinkModel::instance().purge_id(tr.TRANSLINKID);
+            TrxShareModel::instance().purge_trxId(trx_d.m_id);
+            const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(trx_d.m_id);
+            if (tl_n) {
+                TrxLinkModel::instance().purge_id(tl_n->m_id);
+            }
         }
         TrxModel::instance().purge_id(trx_d.m_id);
     }
@@ -85,7 +89,7 @@ bool AccountModel::purge_id(int64 account_id)
         SchedModel::instance().purge_id(sched_d.m_id);
 
     for (const auto& stock_d : StockModel::instance().find(StockCol::HELDAT(account_id))) {
-        TrxLinkModel::RemoveTransLinkRecords<StockModel>(stock_d.m_id);
+        TrxLinkModel::instance().purge_ref(StockModel::s_ref_type, stock_d.m_id);
         StockModel::instance().purge_id(stock_d.m_id);
     }
 
@@ -126,8 +130,8 @@ std::pair<double, double> AccountModel::get_data_investment_balance(const Data& 
     for (const auto& stock_d : StockModel::instance().find(
         StockCol::HELDAT(account_d.m_id)
     )) {
-        sum.first  += StockModel::CurrentValue(stock_d);
-        sum.second += StockModel::InvestmentValue(stock_d);
+        sum.first  += stock_d.current_value();
+        sum.second += stock_d.m_purchase_value;
     }
 
     for (const auto& asset_d : AssetModel::instance().find_or(
@@ -284,7 +288,7 @@ const wxArrayString AccountModel::find_all_type_a(bool only_open)
     return usedTypes;
 }
 
-int AccountModel::find_money_type_cnt()
+int AccountModel::find_money_type_c()
 {
     return
         find(

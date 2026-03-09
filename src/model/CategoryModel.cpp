@@ -37,10 +37,8 @@ CategoryModel::~CategoryModel()
 {
 }
 
-/**
-* Initialize the global CategoryModel table.
-* Reset the CategoryModel table or create the table if it does not exist.
-*/
+// Initialize the global CategoryModel table.
+// Reset the CategoryModel table or create the table if it does not exist.
 CategoryModel& CategoryModel::instance(wxSQLite3Database* db)
 {
     CategoryModel& ins = Singleton<CategoryModel>::instance();
@@ -52,86 +50,83 @@ CategoryModel& CategoryModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of CategoryModel table */
+// Return the static instance of CategoryModel table
 CategoryModel& CategoryModel::instance()
 {
     return Singleton<CategoryModel>::instance();
 }
 
-const wxArrayString CategoryModel::FilterCategory(const wxString& category_pattern)
+const CategoryData* CategoryModel::get_key_data_n(const wxString& name, const int64 parentid)
+{
+    const Data* cat_n = search_cache_n(
+        CategoryCol::CATEGNAME(name),
+        CategoryCol::PARENTID(parentid)
+    );
+    if (cat_n)
+        return cat_n;
+
+    DataA cat_a = find(
+        CategoryCol::CATEGNAME(name),
+        CategoryCol::PARENTID(parentid)
+    );
+    if (!cat_a.empty())
+        cat_n = get_id_data_n(cat_a[0].m_id);
+    return cat_n;
+}
+
+CategoryModel::DataA CategoryModel::find_data_sub_a(const Data& cat_d)
+{
+    return find(CategoryCol::PARENTID(cat_d.m_id));
+}
+
+const wxArrayString CategoryModel::FilterCategory(const wxString& cat_pattern)
 {
     wxArrayString categories;
-    for (auto& category_d : CategoryModel::instance().find_all()) {
-        if (category_d.m_name.Lower().Matches(category_pattern.Lower().Append("*")))
-            categories.push_back(category_d.m_name);
+    for (auto& cat_d : CategoryModel::instance().find_all()) {
+        if (cat_d.m_name.Lower().Matches(cat_pattern.Lower().Append("*")))
+            categories.push_back(cat_d.m_name);
     }
     return categories;
 }
 
-const CategoryData* CategoryModel::get_name(const wxString& name, const wxString& parentname)
+// FIXME: This method is ill-defined (there can be multiple matches)
+const CategoryData* CategoryModel::get_name(const wxString& name, const wxString& parent_name)
 {
-    const Data* category_n = nullptr;
-    DataA category_a = this->find(CategoryCol::CATEGNAME(name));
-    for (const auto& category_d : category_a) {
-        if (category_d.m_parent_id_n != -1) {
-            if (instance().get_id_data_n(category_d.m_parent_id_n)->m_name.Lower() == parentname.Lower()) {
-                category_n = get_id_data_n(category_d.m_id);
+    const Data* cat_n = nullptr;
+    DataA cat_a = find(CategoryCol::CATEGNAME(name));
+    for (const auto& cat_d : cat_a) {
+        if (cat_d.m_parent_id_n != -1) {
+            const Data* parent_n = get_id_data_n(cat_d.m_parent_id_n);
+            if (parent_n->m_name.Lower() == parent_name.Lower()) {
+                cat_n = get_id_data_n(cat_d.m_id);
                 break;
             }
         }
     }
 
-    return category_n;
-}
-
-const CategoryData* CategoryModel::get_key(const wxString& name, const int64 parentid)
-{
-    const Data* category_n = search_cache_n(
-        CategoryCol::CATEGNAME(name),
-        CategoryCol::PARENTID(parentid)
-    );
-    if (category_n)
-        return category_n;
-
-    DataA category_a = this->find(
-        CategoryCol::CATEGNAME(name),
-        CategoryCol::PARENTID(parentid)
-    );
-    if (!category_a.empty())
-        category_n = get_id_data_n(category_a[0].m_id);
-    return category_n;
+    return cat_n;
 }
 
 const std::map<wxString, int64> CategoryModel::all_categories(bool excludeHidden)
 {
     std::map<wxString, int64> full_categs;
-    for (const auto& category_d : instance().find_all(Col::COL_ID_CATEGID)) {
-        if (excludeHidden && !category_d.m_active)
+    for (const auto& cat_d : instance().find_all(Col::COL_ID_CATEGID)) {
+        if (excludeHidden && !cat_d.m_active)
             continue;
 
-        full_categs[full_name(category_d.m_id)] = category_d.m_id;
+        full_categs[full_name(cat_d.m_id)] = cat_d.m_id;
     }
     return full_categs;
 }
 
-CategoryModel::DataA CategoryModel::sub_category(const Data* category_n)
-{
-    return instance().find(CategoryCol::PARENTID(category_n->m_id));
-}
-
-CategoryModel::DataA CategoryModel::sub_category(const Data& category_d)
-{
-    return instance().find(CategoryCol::PARENTID(category_d.m_id));
-}
-
-CategoryModel::DataA CategoryModel::sub_tree(const Data* category_n)
+CategoryModel::DataA CategoryModel::find_data_subtree_a(const Data& cat_d)
 {
     DataA tree;
-    DataA sub_a = instance().find(CategoryCol::PARENTID(category_n->m_id));
+    DataA sub_a = find(CategoryCol::PARENTID(cat_d.m_id));
     std::stable_sort(sub_a.begin(), sub_a.end(), CategoryData::SorterByCATEGNAME());
     for (const auto& sub_d : sub_a) {
         tree.push_back(sub_d);
-        DataA subtree_a = sub_tree(sub_d);
+        DataA subtree_a = find_data_subtree_a(sub_d);
         for (const auto& subtree_d : subtree_a) {
             tree.push_back(subtree_d);
         }
@@ -139,47 +134,45 @@ CategoryModel::DataA CategoryModel::sub_tree(const Data* category_n)
     return tree;
 }
 
-CategoryModel::DataA CategoryModel::sub_tree(const Data& category_d)
-{
-    return sub_tree(&category_d);
-}
-
-const wxString CategoryModel::full_name(const Data* category_n)
+const wxString CategoryModel::full_name(const Data* cat_n)
 {
     static wxString delimiter;
     if (delimiter.empty()) {
         delimiter = InfoModel::instance().getString("CATEG_DELIMITER", ":");
     }
-    if (!category_n) return "";
-    if (category_n->m_parent_id_n == -1)
-        return category_n->m_name;
-    else {
-        wxString name = category_n->m_name;
-        const Data* parent_n = instance().get_id_data_n(category_n->m_parent_id_n);
-        while (parent_n) {
-            name = name.Prepend(delimiter).Prepend(parent_n->m_name);
-            parent_n = instance().get_id_data_n(parent_n->m_parent_id_n);
-        }
-        return name;
-    }
-}
 
-const wxString CategoryModel::full_name(int64 category_id)
-{
-    const Data* category_n = instance().get_id_data_n(category_id);
-    return full_name(category_n);
-}
-
-const wxString CategoryModel::full_name(int64 category_id, wxString delimiter)
-{
-    const Data* category_n = instance().get_id_data_n(category_id);
-    if (!category_n)
+    if (!cat_n)
         return "";
-    if (category_n->m_parent_id_n == -1)
-        return category_n->m_name;
+
+    if (cat_n->m_parent_id_n == -1)
+        return cat_n->m_name;
     else {
-        wxString name = category_n->m_name;
-        const Data* parent_n = instance().get_id_data_n(category_n->m_parent_id_n);
+        wxString full_name = cat_n->m_name;
+        const Data* parent_n = get_id_data_n(cat_n->m_parent_id_n);
+        while (parent_n) {
+            full_name = full_name.Prepend(delimiter).Prepend(parent_n->m_name);
+            parent_n = get_id_data_n(parent_n->m_parent_id_n);
+        }
+        return full_name;
+    }
+}
+
+const wxString CategoryModel::full_name(int64 cat_id)
+{
+    const Data* cat_n = get_id_data_n(cat_id);
+    return full_name(cat_n);
+}
+
+const wxString CategoryModel::full_name(int64 cat_id, wxString delimiter)
+{
+    const Data* cat_n = instance().get_id_data_n(cat_id);
+    if (!cat_n)
+        return "";
+    if (cat_n->m_parent_id_n == -1)
+        return cat_n->m_name;
+    else {
+        wxString name = cat_n->m_name;
+        const Data* parent_n = instance().get_id_data_n(cat_n->m_parent_id_n);
         while (parent_n) {
             name = name.Prepend(delimiter).Prepend(parent_n->m_name);
             parent_n = instance().get_id_data_n(parent_n->m_parent_id_n);
@@ -188,22 +181,21 @@ const wxString CategoryModel::full_name(int64 category_id, wxString delimiter)
     }
 }
 
-// -- Check if Category should be made available for use.
-//    Hiding a category hides all sub-categories
-
-bool CategoryModel::is_hidden(int64 catID)
+// Check if Category should be made available for use.
+// Hiding a category hides all sub-categories
+bool CategoryModel::is_hidden(int64 cat_id)
 {
-    const auto category_n = CategoryModel::instance().get_id_data_n(catID);
-    return (category_n && !category_n->m_active);
+    const auto cat_n = CategoryModel::instance().get_id_data_n(cat_id);
+    return (cat_n && !cat_n->m_active);
 }
 
-bool CategoryModel::is_used(int64 id)
+bool CategoryModel::is_used(int64 cat_id)
 {
-    if (id <= 0)
+    if (cat_id <= 0)
         return false;
 
     const auto& trx_a = TrxModel::instance().find(
-        TrxCol::CATEGID(id)
+        TrxCol::CATEGID(cat_id)
     );
     // FIXME: do not exclude deleted transactions
     for (const auto& trx_d : trx_a)
@@ -211,25 +203,25 @@ bool CategoryModel::is_used(int64 id)
             return true;
 
     const auto& split_a = TrxSplitModel::instance().find(
-        TrxCol::CATEGID(id)
+        TrxCol::CATEGID(cat_id)
     );
     for (const auto& split_d : split_a)
         if (TrxModel::instance().get_id_data_n(split_d.m_trx_id)->DELETEDTIME.IsEmpty())
             return true;
 
     const auto& sched_a = SchedModel::instance().find(
-        SchedCol::CATEGID(id)
+        SchedCol::CATEGID(cat_id)
     );
     if (!sched_a.empty())
         return true;
 
     const auto& sched_split_a = SchedSplitModel::instance().find(
-        SchedCol::CATEGID(id)
+        SchedCol::CATEGID(cat_id)
     );
     if (!sched_split_a.empty())
         return true;
 
-    DataA child_a = instance().find(CategoryCol::PARENTID(id));
+    DataA child_a = find(CategoryCol::PARENTID(cat_id));
     if (!child_a.empty()){
         bool used = false;
         for(const auto& child_d : child_a){
@@ -238,41 +230,41 @@ bool CategoryModel::is_used(int64 id)
         return used;
     }
 
-    // FIXME: check if id is used in PayeeData
-    // FIXME: check if id is used in BudgetData
+    // FIXME: check if cat_id is used in PayeeData
+    // FIXME: check if cat_id is used in BudgetData
 
     return false;
 }
 
-bool CategoryModel::has_income(int64 id)
+bool CategoryModel::has_income(int64 cat_id)
 {
     double sum = 0.0;
     auto splits = TrxSplitModel::instance().get_all_id();
-    for (const auto& tran: TrxModel::instance().find(TrxCol::CATEGID(id)))
-    {
-        if (!tran.DELETEDTIME.IsEmpty()) continue;
-
-        switch (TrxModel::type_id(tran))
+    // FIXME: ignore Void transactions
+    for (const auto& trx_d : TrxModel::instance().find(
+        TrxCol::CATEGID(cat_id),
+        TrxCol::DELETEDTIME(wxEmptyString)
+    )) {
+        switch (TrxModel::type_id(trx_d))
         {
         case TrxModel::TYPE_ID_WITHDRAWAL:
-            sum -= tran.m_amount;
+            sum -= trx_d.m_amount;
             break;
         case TrxModel::TYPE_ID_DEPOSIT:
-            sum += tran.m_amount;
+            sum += trx_d.m_amount;
         case TrxModel::TYPE_ID_TRANSFER:
         default:
             break;
         }
 
-        for (const auto& split: splits[tran.id()])
-        {
-            switch (TrxModel::type_id(tran))
+        for (const auto& tp_d : splits[trx_d.m_id]) {
+            switch (TrxModel::type_id(trx_d))
             {
             case TrxModel::TYPE_ID_WITHDRAWAL:
-                sum -= split.m_amount;
+                sum -= tp_d.m_amount;
                 break;
             case TrxModel::TYPE_ID_DEPOSIT:
-                sum += split.m_amount;
+                sum += tp_d.m_amount;
             case TrxModel::TYPE_ID_TRANSFER:
             default:
                 break;

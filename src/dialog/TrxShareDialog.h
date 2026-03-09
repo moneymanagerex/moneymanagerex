@@ -31,60 +31,7 @@ class TrxShareDialog : public wxDialog
     wxDECLARE_DYNAMIC_CLASS(TrxShareDialog);
     wxDECLARE_EVENT_TABLE();
 
-public:
-    TrxShareDialog();
-    TrxShareDialog(
-        wxWindow* parent,
-        StockData* stock_n
-    );
-    TrxShareDialog(
-        wxWindow* parent,
-        const TrxLinkData* transfer_entry,
-        TrxData* checking_entry
-    );
-
-    int64 m_stock_id = -1;
-
 private:
-    bool Create(wxWindow* parent, wxWindowID id = wxID_ANY
-        , const wxString& caption = _t("Edit Share Transaction")
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxDefaultSize
-        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
-
-    void CreateControls();
-    void DataToControls();
-
-    double GetAmount(double shares, double price, double commission);
-    void OnQuit(wxCloseEvent& WXUNUSED(event));
-    void OnOk(wxCommandEvent& WXUNUSED(event));
-    void OnCancel(wxCommandEvent& WXUNUSED(event));
-    void OnStockPriceButton(wxCommandEvent& event);
-    void CalculateAmount(wxCommandEvent& event);
-    void OnDeductibleSplit(wxCommandEvent& event);
-
-private:
-    StockData* m_stock_n = nullptr;
-    wxTextCtrl* m_stock_name_ctrl = nullptr;
-    mmTextCtrl* m_share_num_ctrl = nullptr;
-    wxTextCtrl* m_stock_symbol_ctrl = nullptr;
-    mmTextCtrl* m_share_price_ctrl = nullptr;
-    wxTextCtrl* m_share_lot_ctrl = nullptr;
-    mmTextCtrl* m_share_commission_ctrl = nullptr;
-    wxBitmapButton* m_deductible_comm_split = nullptr;
-    wxTextCtrl* m_notes_ctrl = nullptr;
-    wxBitmapButton* m_attachments_btn = nullptr;
-    wxBitmapButton* web_button = nullptr;
-
-    TrxLinkDialog* m_transaction_panel = nullptr;
-    wxString m_dialog_heading;
-
-    TrxData* m_checking_entry = nullptr;
-    const TrxLinkData* m_translink_entry = nullptr;
-    TrxShareData* m_share_entry = nullptr;
-
-    std::vector<Split> m_local_deductible_splits, m_local_non_deductible_splits;
-
     enum
     {
         ID_STOCKTRANS_DATEPICKER_CHANGE = wxID_HIGHEST + 820,
@@ -96,4 +43,59 @@ private:
         ID_STOCKTRANS_SHARE_COMMISSION,
         mmID_COMM_SPLIT,
     };
+
+public:
+    int64 m_stock_id = -1;
+
+private:
+    TrxData* m_trx_n = nullptr;
+    const TrxLinkData* m_tl_n = nullptr;
+    TrxShareData* m_ts_n = nullptr;
+    StockData* m_stock_n = nullptr;
+    wxString m_dialog_heading;
+    std::vector<Split> m_local_deductible_splits, m_local_non_deductible_splits;
+
+    TrxLinkDialog*  m_transaction_panel     = nullptr;
+    wxTextCtrl*     m_stock_name_ctrl       = nullptr;
+    mmTextCtrl*     m_share_num_ctrl        = nullptr;
+    wxTextCtrl*     m_stock_symbol_ctrl     = nullptr;
+    mmTextCtrl*     m_share_price_ctrl      = nullptr;
+    wxTextCtrl*     m_share_lot_ctrl        = nullptr;
+    mmTextCtrl*     m_share_commission_ctrl = nullptr;
+    wxBitmapButton* m_deductible_comm_split = nullptr;
+    wxTextCtrl*     m_notes_ctrl            = nullptr;
+    wxBitmapButton* m_attachments_btn       = nullptr;
+    wxBitmapButton* web_button              = nullptr;
+
+public:
+    TrxShareDialog();
+    TrxShareDialog(
+        wxWindow* parent,
+        StockData* stock_n
+    );
+    TrxShareDialog(
+        wxWindow* parent,
+        const TrxLinkData* tl_n,
+        TrxData* trx_n
+    );
+
+private:
+    bool Create(
+        wxWindow* parent,
+        wxWindowID id = wxID_ANY,
+        const wxString& caption = _t("Edit Share Transaction"),
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
+    );
+    void CreateControls();
+    void DataToControls();
+
+    double GetAmount(double shares, double price, double commission);
+    void OnQuit(wxCloseEvent& WXUNUSED(event));
+    void OnOk(wxCommandEvent& WXUNUSED(event));
+    void OnCancel(wxCommandEvent& WXUNUSED(event));
+    void OnStockPriceButton(wxCommandEvent& event);
+    void CalculateAmount(wxCommandEvent& event);
+    void OnDeductibleSplit(wxCommandEvent& event);
 };

@@ -44,7 +44,7 @@ private:
 private:
     FieldData* m_field_n = nullptr;
     FieldData m_field_d;
-    wxString m_fieldRefType;
+    RefTypeN m_ref_type;
 
     wxTextCtrl* m_itemDescription  = nullptr;
     wxChoice*   m_itemType         = nullptr;

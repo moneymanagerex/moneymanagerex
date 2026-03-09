@@ -16,15 +16,13 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-// This is only sample code re-used from "table/AttachmentTable.cpp".
-
 #include "AttachmentData.h"
 
-AttachmentData::AttachmentData()
+AttachmentData::AttachmentData() :
+    m_id(-1),
+    m_ref_type_n(RefTypeN()),
+    m_ref_id(-1)
 {
-    ATTACHMENTID = -1;
-    REFID = -1;
 }
 
 // Convert AttachmentData to AttachmentRow
@@ -32,11 +30,11 @@ AttachmentRow AttachmentData::to_row() const
 {
     AttachmentRow row;
 
-    row.ATTACHMENTID = ATTACHMENTID;
-    row.REFTYPE = REFTYPE;
-    row.REFID = REFID;
-    row.DESCRIPTION = DESCRIPTION;
-    row.FILENAME = FILENAME;
+    row.ATTACHMENTID = m_id;
+    row.REFTYPE      = m_ref_type_n.name_n();
+    row.REFID        = m_ref_id;
+    row.DESCRIPTION  = m_description;
+    row.FILENAME     = m_filename;
 
     return row;
 }
@@ -44,22 +42,22 @@ AttachmentRow AttachmentData::to_row() const
 // Convert AttachmentRow to AttachmentData
 AttachmentData& AttachmentData::from_row(const AttachmentRow& row)
 {
-    ATTACHMENTID = row.ATTACHMENTID; // int64
-    REFTYPE = row.REFTYPE; // wxString
-    REFID = row.REFID; // int64
-    DESCRIPTION = row.DESCRIPTION; // wxString
-    FILENAME = row.FILENAME; // wxString
+    m_id          = row.ATTACHMENTID;
+    m_ref_type_n  = RefTypeN(row.REFTYPE);
+    m_ref_id      = row.REFID;
+    m_description = row.DESCRIPTION;
+    m_filename    = row.FILENAME;
 
     return *this;
 }
 
 bool AttachmentData::equals(const AttachmentData* other) const
 {
-    if ( ATTACHMENTID != other->ATTACHMENTID) return false;
-    if (!REFTYPE.IsSameAs(other->REFTYPE)) return false;
-    if ( REFID != other->REFID) return false;
-    if (!DESCRIPTION.IsSameAs(other->DESCRIPTION)) return false;
-    if (!FILENAME.IsSameAs(other->FILENAME)) return false;
+    if ( m_id                 != other->m_id)                return false;
+    if ( m_ref_type_n.id_n()  != other->m_ref_type_n.id_n()) return false;
+    if ( m_ref_id             != other->m_ref_id)            return false;
+    if (!m_description.IsSameAs( other->m_description))      return false;
+    if (!m_filename.IsSameAs(    other->m_filename))         return false;
 
     return true;
 }

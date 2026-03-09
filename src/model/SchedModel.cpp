@@ -29,6 +29,8 @@
  // TODO: Move attachment management outside of AttachmentDialog
 #include "dialog/AttachmentDialog.h"
 
+const RefTypeN SchedModel::s_ref_type = RefTypeN(RefTypeN::e_sched);
+
 // -- static methods --
 
 // Initialize the global SchedModel table.
@@ -244,7 +246,7 @@ const SchedSplitModel::DataA SchedModel::split(const Data& sched_d)
 const TagLinkModel::DataA SchedModel::taglink(const Data& sched_d)
 {
     return TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(SchedModel::refTypeName),
+        TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
         TagLinkCol::REFID(sched_d.m_id)
     );
 }
@@ -264,19 +266,19 @@ SchedModel::~SchedModel()
 
 // Remove the Data record instance from memory and the database
 // including any splits associated with the Data Record.
-bool SchedModel::purge_id(int64 id)
+bool SchedModel::purge_id(int64 sched_id)
 {
-    // purge SchedSplitData owned by id
-    for (auto& qp_d : SchedModel::split(*get_id_data_n(id)))
+    // purge SchedSplitData owned by sched_id
+    for (auto& qp_d : SchedModel::split(*get_id_data_n(sched_id)))
         SchedSplitModel::instance().purge_id(qp_d.m_id);
 
-    // remove TagLinkData owned by id
-    TagLinkModel::instance().DeleteAllTags(this->refTypeName, id);
+    // remove TagLinkData owned by sched_id
+    TagLinkModel::instance().purge_ref(s_ref_type, sched_id);
 
-    // FIXME: remove FieldValueData owned by id
-    // FIXME: remove AttachmentData owned by id
+    // FIXME: remove FieldValueData owned by sched_id
+    // FIXME: remove AttachmentData owned by sched_id
 
-    return unsafe_remove_id(id);
+    return unsafe_remove_id(sched_id);
 }
 
 bool SchedModel::AllowTransaction(const Data& r)
@@ -325,16 +327,16 @@ bool SchedModel::AllowTransaction(const Data& r)
     return allow_transaction;
 }
 
-void SchedModel::completeBDInSeries(int64 bdID)
+void SchedModel::completeBDInSeries(int64 sched_id)
 {
-    Data* sched_n = unsafe_get_id_data_n(bdID);
+    Data* sched_n = unsafe_get_id_data_n(sched_id);
     if (!sched_n)
         return;
 
     RepeatNum rn;
     if (!decode_repeat_num(*sched_n, rn) || rn.num == 1) {
-        mmAttachmentManage::DeleteAllAttachments(this->refTypeName, bdID);
-        purge_id(bdID);
+        mmAttachmentManage::DeleteAllAttachments(s_ref_type, sched_id);
+        purge_id(sched_id);
         return;
     }
 
@@ -363,14 +365,14 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
     Data(r),
     m_bill_splits(split(r)),
     m_tags(TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(SchedModel::refTypeName),
+        TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
         TagLinkCol::REFID(r.m_id)
     ))
 {
     if (!m_tags.empty()) {
         wxArrayString tagnames;
         for (const auto& gl_d : m_tags)
-            tagnames.Add(TagModel::instance().get_id_data_n(gl_d.TAGID)->m_name);
+            tagnames.Add(TagModel::instance().get_id_data_n(gl_d.m_tag_id)->m_name);
         // Sort TAGNAMES
         tagnames.Sort();
         for (const auto& name : tagnames)
@@ -380,17 +382,20 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
     if (!m_bill_splits.empty()) {
         for (const auto& qp_d : m_bill_splits) {
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
-                + CategoryModel::full_name(qp_d.m_category_id);
+                + CategoryModel::instance().full_name(qp_d.m_category_id);
 
             wxString splitTags;
-            for (const auto& tag : TagLinkModel::instance().get_ref(SchedSplitModel::refTypeName, qp_d.m_id))
-                splitTags.Append(tag.first + " ");
+            for (const auto& tag_name_id : TagLinkModel::instance().find_ref_tag_m(
+                SchedSplitModel::s_ref_type, qp_d.m_id
+            )) {
+                splitTags.Append(tag_name_id.first + " ");
+            }
             if (!splitTags.IsEmpty())
                 TAGNAMES.Append((TAGNAMES.IsEmpty() ? "" : ", ") + splitTags.Trim());
         }
     }
     else
-        CATEGNAME = CategoryModel::full_name(r.m_category_id_n);
+        CATEGNAME = CategoryModel::instance().full_name(r.m_category_id_n);
 
     ACCOUNTNAME = AccountModel::instance().get_id_name(r.m_account_id);
 

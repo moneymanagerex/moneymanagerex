@@ -38,7 +38,7 @@ const wxString mmChoiceNameA::get_name(mmChoiceId id) const
 
 mmChoiceIdN mmChoiceNameA::find_name_n(const wxString& name)
 {
-    if (const auto it = m_index_m.find(name); it != m_index_m.end())
+    if (const auto it = m_name_id_m.find(name); it != m_name_id_m.end())
         return it->second;
 
     mmChoiceIdN id_n = m_default_id_n;
@@ -51,7 +51,67 @@ mmChoiceIdN mmChoiceNameA::find_name_n(const wxString& name)
             break;
         }
     }
-    m_index_m.insert({name, id_n});
+    m_name_id_m.insert({name, id_n});
+    return id_n;
+}
+
+// -- mmChoiceCodeNameA --
+
+mmChoiceIdN mmChoiceCodeNameA::valid_id_n(mmChoiceIdN id_n) const
+{
+    wxASSERT(
+        (id_n >= 0 && id_n < static_cast<mmChoiceId>(m_choice_a.size())) ||
+        id_n == m_default_id_n
+    );
+    return id_n;
+}
+
+int mmChoiceCodeNameA::get_code(mmChoiceId id) const
+{
+    wxASSERT(id >= 0 && id < static_cast<mmChoiceId>(m_choice_a.size()));
+    wxASSERT(m_choice_a[id].id == id);
+    return m_choice_a[id].code;
+}
+
+const wxString mmChoiceCodeNameA::get_name(mmChoiceId id) const
+{
+    wxASSERT(id >= 0 && id < static_cast<mmChoiceId>(m_choice_a.size()));
+    wxASSERT(m_choice_a[id].id == id);
+    return m_choice_a[id].name;
+}
+
+mmChoiceIdN mmChoiceCodeNameA::find_code_n(int code)
+{
+    if (const auto it = m_code_id_m.find(code); it != m_code_id_m.end())
+        return it->second;
+
+    mmChoiceIdN id_n = m_default_id_n;
+    for (const Choice& choice : m_choice_a) {
+        if (code == choice.code) {
+            id_n = choice.id;
+            break;
+        }
+    }
+    m_code_id_m.insert({code, id_n});
+    return id_n;
+}
+
+mmChoiceIdN mmChoiceCodeNameA::find_name_n(const wxString& name)
+{
+    if (const auto it = m_name_id_m.find(name); it != m_name_id_m.end())
+        return it->second;
+
+    mmChoiceIdN id_n = m_default_id_n;
+    for (const Choice& choice : m_choice_a) {
+        bool match = m_nocase
+            ? (name.CmpNoCase(choice.name) == 0)
+            : (name == choice.name);
+        if (match) {
+            id_n = choice.id;
+            break;
+        }
+    }
+    m_name_id_m.insert({name, id_n});
     return id_n;
 }
 
@@ -82,7 +142,7 @@ const wxString mmChoiceKeyNameA::get_name(mmChoiceId id) const
 
 mmChoiceIdN mmChoiceKeyNameA::find_keyname_n(const wxString& keyname)
 {
-    if (const auto it = m_index_m.find(keyname); it != m_index_m.end())
+    if (const auto it = m_keyname_id_m.find(keyname); it != m_keyname_id_m.end())
         return it->second;
 
     mmChoiceIdN id_n = m_default_id_n;
@@ -95,6 +155,6 @@ mmChoiceIdN mmChoiceKeyNameA::find_keyname_n(const wxString& keyname)
             break;
         }
     }
-    m_index_m.insert({keyname, id_n});
+    m_keyname_id_m.insert({keyname, id_n});
     return id_n;
 }

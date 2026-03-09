@@ -21,6 +21,8 @@
 #include "TrxLinkModel.h"
 #include "CurrencyHistoryModel.h"
 
+const RefTypeN AssetModel::s_ref_type = RefTypeN(RefTypeN::e_asset);
+
 AssetModel::AssetModel() :
     TableFactory<AssetTable, AssetData>()
 {
@@ -101,12 +103,12 @@ const std::pair<double, double> AssetModel::get_data_value_date(const Data& asse
 
     TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
         TrxLinkCol::LINKRECORDID(asset_d.m_id),
-        TrxLinkCol::LINKTYPE(this->refTypeName)
+        TrxLinkCol::LINKTYPE(s_ref_type.name_n())
     );
 
     TrxModel::DataA trx_a;
     for (const auto& tl_d : tl_a) {
-        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.CHECKINGACCOUNTID);
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
         if (trx_n &&
             trx_n->DELETEDTIME.IsEmpty() &&
             // FIXME: ignore Void transactions

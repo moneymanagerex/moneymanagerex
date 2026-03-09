@@ -16,16 +16,14 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-// This is only sample code re-used from "table/TagLinkTable.cpp".
-
 #include "TagLinkData.h"
 
-TagLinkData::TagLinkData()
+TagLinkData::TagLinkData() :
+    m_id(-1),
+    m_tag_id(-1),
+    m_ref_type(RefTypeN()),
+    m_ref_id(-1)
 {
-    TAGLINKID = -1;
-    REFID = -1;
-    TAGID = -1;
 }
 
 // Convert TagLinkData to TagLinkRow
@@ -33,10 +31,10 @@ TagLinkRow TagLinkData::to_row() const
 {
     TagLinkRow row;
 
-    row.TAGLINKID = TAGLINKID;
-    row.REFTYPE = REFTYPE;
-    row.REFID = REFID;
-    row.TAGID = TAGID;
+    row.TAGLINKID = m_id;
+    row.REFTYPE   = m_ref_type.name_n();
+    row.REFID     = m_ref_id;
+    row.TAGID     = m_tag_id;
 
     return row;
 }
@@ -44,20 +42,20 @@ TagLinkRow TagLinkData::to_row() const
 // Convert TagLinkRow to TagLinkData
 TagLinkData& TagLinkData::from_row(const TagLinkRow& row)
 {
-    TAGLINKID = row.TAGLINKID; // int64
-    REFTYPE = row.REFTYPE; // wxString
-    REFID = row.REFID; // int64
-    TAGID = row.TAGID; // int64
+    m_id       = row.TAGLINKID;
+    m_tag_id   = row.TAGID;
+    m_ref_type = RefTypeN(row.REFTYPE);
+    m_ref_id   = row.REFID;
 
     return *this;
 }
 
 bool TagLinkData::equals(const TagLinkData* other) const
 {
-    if ( TAGLINKID != other->TAGLINKID) return false;
-    if (!REFTYPE.IsSameAs(other->REFTYPE)) return false;
-    if ( REFID != other->REFID) return false;
-    if ( TAGID != other->TAGID) return false;
+    if ( m_id              != other->m_id)              return false;
+    if ( m_tag_id          != other->m_tag_id)          return false;
+    if ( m_ref_type.id_n() != other->m_ref_type.id_n()) return false;
+    if ( m_ref_id          != other->m_ref_id)          return false;
 
     return true;
 }

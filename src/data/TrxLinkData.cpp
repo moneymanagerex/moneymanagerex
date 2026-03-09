@@ -16,16 +16,14 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-// This is only sample code re-used from "table/TrxLinkTable.cpp".
-
 #include "TrxLinkData.h"
 
-TrxLinkData::TrxLinkData()
+TrxLinkData::TrxLinkData() :
+    m_id(-1),
+    m_trx_id(-1),
+    m_ref_type(RefTypeN()),
+    m_ref_id(-1)
 {
-    TRANSLINKID = -1;
-    CHECKINGACCOUNTID = -1;
-    LINKRECORDID = -1;
 }
 
 // Convert TrxLinkData to TrxLinkRow
@@ -33,10 +31,10 @@ TrxLinkRow TrxLinkData::to_row() const
 {
     TrxLinkRow row;
 
-    row.TRANSLINKID = TRANSLINKID;
-    row.CHECKINGACCOUNTID = CHECKINGACCOUNTID;
-    row.LINKTYPE = LINKTYPE;
-    row.LINKRECORDID = LINKRECORDID;
+    row.TRANSLINKID       = m_id;
+    row.CHECKINGACCOUNTID = m_trx_id;
+    row.LINKTYPE          = m_ref_type.name_n();
+    row.LINKRECORDID      = m_ref_id;
 
     return row;
 }
@@ -44,20 +42,20 @@ TrxLinkRow TrxLinkData::to_row() const
 // Convert TrxLinkRow to TrxLinkData
 TrxLinkData& TrxLinkData::from_row(const TrxLinkRow& row)
 {
-    TRANSLINKID = row.TRANSLINKID; // int64
-    CHECKINGACCOUNTID = row.CHECKINGACCOUNTID; // int64
-    LINKTYPE = row.LINKTYPE; // wxString
-    LINKRECORDID = row.LINKRECORDID; // int64
+    m_id       = row.TRANSLINKID;
+    m_trx_id   = row.CHECKINGACCOUNTID;
+    m_ref_type = RefTypeN(row.LINKTYPE);
+    m_ref_id   = row.LINKRECORDID;
 
     return *this;
 }
 
 bool TrxLinkData::equals(const TrxLinkData* other) const
 {
-    if ( TRANSLINKID != other->TRANSLINKID) return false;
-    if ( CHECKINGACCOUNTID != other->CHECKINGACCOUNTID) return false;
-    if (!LINKTYPE.IsSameAs(other->LINKTYPE)) return false;
-    if ( LINKRECORDID != other->LINKRECORDID) return false;
+    if ( m_id              != other->m_id)              return false;
+    if ( m_trx_id          != other->m_trx_id)          return false;
+    if ( m_ref_type.id_n() != other->m_ref_type.id_n()) return false;
+    if ( m_ref_id          != other->m_ref_id)          return false;
 
     return true;
 }

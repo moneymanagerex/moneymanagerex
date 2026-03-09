@@ -62,23 +62,23 @@ SchedRow SchedData::to_row() const
 // Convert SchedRow to SchedData
 SchedData& SchedData::from_row(const SchedRow& row)
 {
-    m_id               = row.BDID;               // int64
-    m_account_id       = row.ACCOUNTID;          // int64
-    m_to_account_id_n  = row.TOACCOUNTID;        // int64
-    m_payee_id_n       = row.PAYEEID;            // int64
-    TRANSCODE          = row.TRANSCODE;          // wxString
-    m_amount           = row.TRANSAMOUNT;        // double
-    STATUS             = row.STATUS;             // wxString
-    m_number           = row.TRANSACTIONNUMBER;  // wxString
-    m_notes            = row.NOTES;              // wxString
-    m_category_id_n    = row.CATEGID;            // int64
-    TRANSDATE          = row.TRANSDATE;          // wxString
-    m_followup_id      = row.FOLLOWUPID;         // int64
-    m_to_amount        = row.TOTRANSAMOUNT;      // double
-    REPEATS            = row.REPEATS;            // int64
-    NEXTOCCURRENCEDATE = row.NEXTOCCURRENCEDATE; // wxString
-    NUMOCCURRENCES     = row.NUMOCCURRENCES;     // int64
-    m_color            = row.COLOR;              // int64
+    m_id               = row.BDID;
+    m_account_id       = row.ACCOUNTID;
+    m_to_account_id_n  = row.TOACCOUNTID;
+    m_payee_id_n       = row.PAYEEID;
+    TRANSCODE          = row.TRANSCODE;
+    m_amount           = row.TRANSAMOUNT;
+    STATUS             = row.STATUS;
+    m_number           = row.TRANSACTIONNUMBER;
+    m_notes            = row.NOTES;
+    m_category_id_n    = row.CATEGID;
+    TRANSDATE          = row.TRANSDATE;
+    m_followup_id      = row.FOLLOWUPID;
+    m_to_amount        = row.TOTRANSAMOUNT;
+    REPEATS            = row.REPEATS;
+    NEXTOCCURRENCEDATE = row.NEXTOCCURRENCEDATE;
+    NUMOCCURRENCES     = row.NUMOCCURRENCES;
+    m_color            = row.COLOR;
 
     return *this;
 }

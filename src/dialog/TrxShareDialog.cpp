@@ -61,9 +61,9 @@ TrxShareDialog::TrxShareDialog()
 {
 }
 
-TrxShareDialog::TrxShareDialog(wxWindow* parent, StockData* stock)
-    : m_stock_n(stock)
-    , m_dialog_heading(_t("Add Share Transaction"))
+TrxShareDialog::TrxShareDialog(wxWindow* parent, StockData* stock_n) :
+    m_stock_n(stock_n),
+    m_dialog_heading(_t("Add Share Transaction"))
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, m_dialog_heading, wxDefaultPosition, wxSize(400, 300), style);
@@ -71,34 +71,34 @@ TrxShareDialog::TrxShareDialog(wxWindow* parent, StockData* stock)
 
 TrxShareDialog::TrxShareDialog(
     wxWindow* parent,
-    const TrxLinkData* translink_entry,
-    TrxData* checking_entry
+    const TrxLinkData* tl_n,
+    TrxData* trx_n
 ) :
     m_dialog_heading(_t("Edit Share Transaction")),
-    m_checking_entry(checking_entry),
-    m_translink_entry(translink_entry)
+    m_trx_n(trx_n),
+    m_tl_n(tl_n)
 {
-    if (m_translink_entry) {
+    if (m_tl_n) {
         m_stock_n = StockModel::instance().unsafe_get_id_data_n(
-            m_translink_entry->LINKRECORDID
+            m_tl_n->m_ref_id
         );
-        if (m_translink_entry->LINKTYPE == StockModel::refTypeName) {
-            m_share_entry = TrxShareModel::instance().unsafe_get_trx_share_n(
-                m_translink_entry->CHECKINGACCOUNTID
+        if (m_tl_n->m_ref_type == StockModel::s_ref_type) {
+            m_ts_n = TrxShareModel::instance().unsafe_get_trxId_data_n(
+                m_tl_n->m_trx_id
             );
-            if (m_share_entry->m_lot.IsEmpty())
-                // FIXME: m_share_entry is changed but not saved
-                m_share_entry->m_lot = m_stock_n->m_id.ToString();
+            if (m_ts_n->m_lot.IsEmpty())
+                // FIXME: m_ts_n is changed but not saved
+                m_ts_n->m_lot = m_stock_n->m_id.ToString();
 
             for (const auto& tp_d: TrxSplitModel::instance().find(
-                TrxSplitCol::TRANSID(m_share_entry->m_id)
+                TrxSplitCol::TRANSID(m_ts_n->m_id)
             )) {
                 wxArrayInt64 tag_id_a;
                 for (const auto& gl_d : TagLinkModel::instance().find(
-                    TagLinkCol::REFTYPE(TrxSplitModel::refTypeName),
+                    TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
                     TagLinkCol::REFID(tp_d.m_id)
                 )) {
-                    tag_id_a.push_back(gl_d.TAGID);
+                    tag_id_a.push_back(gl_d.m_tag_id);
                 }
                 m_local_deductible_splits.push_back(
                     {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
@@ -107,16 +107,16 @@ TrxShareDialog::TrxShareDialog(
         }
     }
 
-    if (m_checking_entry) {
+    if (m_trx_n) {
         for (const auto& tp_d: TrxSplitModel::instance().find(
-            TrxSplitCol::TRANSID(m_checking_entry->m_id)
+            TrxSplitCol::TRANSID(m_trx_n->m_id)
         )) {
             wxArrayInt64 tag_id_a;
             for (const auto& gl_d : TagLinkModel::instance().find(
-                TagLinkCol::REFTYPE(TrxSplitModel::refTypeName),
+                TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
                 TagLinkCol::REFID(tp_d.m_id)
             )) {
-                tag_id_a.push_back(gl_d.TAGID);
+                tag_id_a.push_back(gl_d.m_tag_id);
             }
             m_local_non_deductible_splits.push_back(
                 {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
@@ -129,9 +129,11 @@ TrxShareDialog::TrxShareDialog(
     this->SetMinSize(wxSize(400, 300));
 }
 
-bool TrxShareDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style)
-{
+bool TrxShareDialog::Create(
+    wxWindow* parent, wxWindowID id,
+    const wxString& caption,
+    const wxPoint& pos, const wxSize& size, long style
+) {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
@@ -163,33 +165,55 @@ void TrxShareDialog::DataToControls()
     m_share_lot_ctrl->Enable(false);
     m_notes_ctrl->Enable(false);
 
-    TrxLinkModel::DataA translink_list = TrxLinkModel::TranslinkList<StockModel>(m_stock_n->m_id);
+    TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+        StockModel::s_ref_type, m_stock_n->m_id
+    );
 
-    if (translink_list.empty()) {
+    if (tl_a.empty()) {
         // Set up the transaction as the first entry.
-        int precision = m_stock_n->m_num_shares == floor(m_stock_n->m_num_shares) ? 0 : PrefModel::instance().getSharePrecision();
+        int precision = m_stock_n->m_num_shares == floor(m_stock_n->m_num_shares)
+            ? 0
+            : PrefModel::instance().getSharePrecision();
         m_share_num_ctrl->SetValue(m_stock_n->m_num_shares, precision);
-        m_share_price_ctrl->SetValue(m_stock_n->m_purchase_price, PrefModel::instance().getSharePrecision());
-        m_share_commission_ctrl->SetValue(m_stock_n->m_commission, PrefModel::instance().getSharePrecision());
+        m_share_price_ctrl->SetValue(
+            m_stock_n->m_purchase_price,
+            PrefModel::instance().getSharePrecision()
+        );
+        m_share_commission_ctrl->SetValue(
+            m_stock_n->m_commission,
+            PrefModel::instance().getSharePrecision()
+        );
         m_share_lot_ctrl->SetValue(m_stock_n->m_id.ToString());
-        m_transaction_panel->TransactionDate(StockModel::PURCHASEDATE(*m_stock_n));
-        m_transaction_panel->SetTransactionValue(GetAmount(m_stock_n->m_num_shares, m_stock_n->m_purchase_price
-                , m_stock_n->m_commission), true);
+        m_transaction_panel->TransactionDate(m_stock_n->m_purchase_date.getDateTime());
+        m_transaction_panel->SetTransactionValue(
+            GetAmount(m_stock_n->m_num_shares, m_stock_n->m_purchase_price, m_stock_n->m_commission),
+            true
+        );
     }
     else {
-        if (m_share_entry) {
-            int precision = m_share_entry->m_number == floor(m_share_entry->m_number) ? 0 : PrefModel::instance().getSharePrecision();
-            m_share_num_ctrl->SetValue(std::abs(m_share_entry->m_number), precision);
-            m_share_price_ctrl->SetValue(m_share_entry->m_price, PrefModel::instance().getSharePrecision());
-            m_share_commission_ctrl->SetValue(m_share_entry->m_commission, PrefModel::instance().getSharePrecision());
-            m_share_lot_ctrl->SetValue(m_share_entry->m_lot);
+        if (m_ts_n) {
+            int precision = m_ts_n->m_number == floor(m_ts_n->m_number)
+                ? 0
+                : PrefModel::instance().getSharePrecision();
+            m_share_num_ctrl->SetValue(std::abs(m_ts_n->m_number), precision);
+            m_share_price_ctrl->SetValue(
+                m_ts_n->m_price,
+                PrefModel::instance().getSharePrecision()
+            );
+            m_share_commission_ctrl->SetValue(
+                m_ts_n->m_commission,
+                PrefModel::instance().getSharePrecision()
+            );
+            m_share_lot_ctrl->SetValue(m_ts_n->m_lot);
 
-            if (m_translink_entry) {
-                const TrxData* trx_n = TrxModel::instance().get_id_data_n(m_translink_entry->CHECKINGACCOUNTID);
+            if (m_tl_n) {
+                const TrxData* trx_n = TrxModel::instance().get_id_data_n(m_tl_n->m_trx_id);
                 if (trx_n) {
                     m_transaction_panel->TransactionDate(TrxModel::getTransDateTime(*trx_n));
-                    m_transaction_panel->SetTransactionValue(GetAmount(std::abs(m_share_entry->m_number)
-                        , m_share_entry->m_price, m_share_entry->m_commission), true);
+                    m_transaction_panel->SetTransactionValue(
+                        GetAmount(std::abs(m_ts_n->m_number), m_ts_n->m_price, m_ts_n->m_commission),
+                        true
+                    );
                     m_transaction_panel->SetTransactionAccount(AccountModel::instance().get_id_name(trx_n->m_account_id));
                     m_transaction_panel->SetTransactionStatus(TrxModel::status_id(*trx_n));
                     m_transaction_panel->SetTransactionPayee(trx_n->m_payee_id_n);
@@ -203,8 +227,7 @@ void TrxShareDialog::DataToControls()
                 }
             }
         }
-        else
-        {
+        else {
             m_share_num_ctrl->SetValue(0, 0);
             m_share_price_ctrl->SetValue(0, PrefModel::instance().getSharePrecision());
             m_share_lot_ctrl->SetValue(m_stock_n->m_id.ToString());
@@ -213,8 +236,7 @@ void TrxShareDialog::DataToControls()
     }
 
     bool has_split = !(m_local_deductible_splits.size() <= 1);
-    if (has_split)
-    {
+    if (has_split) {
         m_share_commission_ctrl->Enable(!has_split);
         m_share_commission_ctrl->SetValue(TrxSplitModel::get_total(m_local_deductible_splits), PrefModel::instance().getSharePrecision());
         mmToolTip(m_deductible_comm_split, TrxSplitModel::get_tooltip(m_local_deductible_splits, nullptr /* currency */));
@@ -346,16 +368,16 @@ void TrxShareDialog::CreateControls()
     Transaction Panel
     *********************************************************************/
 
-    wxStaticBox* transaction_frame = new wxStaticBox(this, wxID_ANY, m_checking_entry ? _t("Edit Transaction Details") : _t("Add Transaction Details"));
+    wxStaticBox* transaction_frame = new wxStaticBox(this, wxID_ANY, m_trx_n ? _t("Edit Transaction Details") : _t("Add Transaction Details"));
     wxStaticBoxSizer* transaction_frame_sizer = new wxStaticBoxSizer(transaction_frame, wxVERTICAL);
     right_sizer->Add(transaction_frame_sizer, g_flagsV);
 
-    m_transaction_panel = new TrxLinkDialog(transaction_frame, m_checking_entry, false, wxID_STATIC);
+    m_transaction_panel = new TrxLinkDialog(transaction_frame, m_trx_n, false, wxID_STATIC);
     m_transaction_panel->Bind(wxEVT_CHOICE, &TrxShareDialog::CalculateAmount, this, wxID_VIEW_DETAILS);
     transaction_frame_sizer->Add(m_transaction_panel, g_flagsV);
-    if (m_translink_entry && m_checking_entry) {
+    if (m_tl_n && m_trx_n) {
         m_transaction_panel->CheckingType(
-            TrxLinkModel::type_checking(m_checking_entry->m_to_account_id_n)
+            TrxLinkModel::type_checking(m_trx_n->m_to_account_id_n)
         );
     }
     else {
@@ -387,17 +409,17 @@ void TrxShareDialog::CreateControls()
 
 void TrxShareDialog::OnQuit(wxCloseEvent& WXUNUSED(event))
 {
-    const wxString& RefType = StockModel::refTypeName;
+    // FIXME
     if (!this->m_stock_n)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(StockModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
 void TrxShareDialog::OnCancel(wxCommandEvent& WXUNUSED(event))
 {
-    const wxString& RefType = StockModel::refTypeName;
+    // FIXME
     if (m_stock_id <= 0)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(StockModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
@@ -405,8 +427,7 @@ void TrxShareDialog::OnStockPriceButton(wxCommandEvent& WXUNUSED(event))
 {
     const wxString stockSymbol = m_stock_symbol_ctrl->GetValue().Trim();
 
-    if (!stockSymbol.IsEmpty())
-    {
+    if (!stockSymbol.IsEmpty()) {
         const wxString& stockURL = InfoModel::instance().getString("STOCKURL", mmex::weblink::DefStockUrl);
         const wxString& httpString = wxString::Format(stockURL, stockSymbol);
         wxLaunchDefaultBrowser(httpString);
@@ -417,15 +438,11 @@ void TrxShareDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
     double num_shares = 0;
     if (!m_share_num_ctrl->checkValue(num_shares))
-    {
         return;
-    }
 
     double share_price = 0;
     if (!m_share_price_ctrl->checkValue(share_price))
-    {
         return;
-    }
 
     double commission = 0;
     m_share_commission_ctrl->GetDouble(commission);
@@ -453,17 +470,18 @@ void TrxShareDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         // The Shares table now maintains share_num, share_price, and commission on the
         // date of purchase, together with a record in the checking account table.
         */
-        if (!m_translink_entry) {
-             TrxLinkModel::SetStockTranslink(
-                m_stock_n->m_id, trx_id, m_transaction_panel->CheckingType()
+        if (!m_tl_n) {
+             TrxLinkModel::instance().SetStockTranslink(
+                trx_id, m_stock_n->m_id,
+                m_transaction_panel->CheckingType()
             );
         }
-        TrxShareModel::ShareEntry(
-            trx_id, num_shares, share_price, commission,
-            m_local_deductible_splits,  m_share_lot_ctrl->GetValue()
+        TrxShareModel::instance().update_trxID(trx_id,
+            num_shares, share_price, commission, m_share_lot_ctrl->GetValue(),
+            m_local_deductible_splits
         );
 
-        StockModel::UpdatePosition(m_stock_n);
+        StockModel::instance().update_data_position(m_stock_n);
         if (!loyalty_shares) {
             StockHistoryModel::instance().addUpdate(
                 m_stock_n->m_symbol,
@@ -484,25 +502,21 @@ void TrxShareDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void TrxShareDialog::CalculateAmount(wxCommandEvent& WXUNUSED(event))
 {
     double share_num = 0;
-    if (!m_share_num_ctrl->GetValue().empty())
-    {
+    if (!m_share_num_ctrl->GetValue().empty()) {
         m_share_num_ctrl->GetDouble(share_num);
     }
 
     double share_price = 0;
-    if (!m_share_price_ctrl->GetValue().empty())
-    {
+    if (!m_share_price_ctrl->GetValue().empty()) {
         m_share_price_ctrl->GetDouble(share_price);
     }
 
     double share_commission = 0;
-    if (m_share_commission_ctrl && !m_share_commission_ctrl->GetValue().empty())
-    {
+    if (m_share_commission_ctrl && !m_share_commission_ctrl->GetValue().empty()) {
         m_share_commission_ctrl->GetDouble(share_commission);
     }
 
-    if (share_num > 0)
-    {
+    if (share_num > 0) {
         m_transaction_panel->SetTransactionValue(GetAmount(share_num, share_price, share_commission));
     }
 }
@@ -513,7 +527,9 @@ void TrxShareDialog::OnDeductibleSplit(wxCommandEvent&)
         double commission = 0;
         m_share_commission_ctrl->GetDouble(commission);
 
-        const CategoryData* category_n = CategoryModel::instance().get_key(_("Investment"), int64(-1L));
+        const CategoryData* category_n = CategoryModel::instance().get_key_data_n(
+            _("Investment"), int64(-1L)
+        );
         if (!category_n) {
             CategoryData new_category_d = CategoryData();
             new_category_d.m_name = _("Investment");
@@ -525,26 +541,28 @@ void TrxShareDialog::OnDeductibleSplit(wxCommandEvent&)
 
     SplitDialog dlg(this, m_local_deductible_splits, m_stock_n->m_account_id_n);
 
-    if (dlg.ShowModal() == wxID_OK)
-    {
+    if (dlg.ShowModal() == wxID_OK) {
         m_local_deductible_splits = dlg.mmGetResult();
 
-        if (m_local_deductible_splits.size() == 1)
-        {
+        if (m_local_deductible_splits.size() == 1) {
             // TODO other informations
-            m_share_commission_ctrl->SetValue(m_local_deductible_splits[0].SPLITTRANSAMOUNT, PrefModel::instance().getSharePrecision());
+            m_share_commission_ctrl->SetValue(
+                m_local_deductible_splits[0].SPLITTRANSAMOUNT,
+                PrefModel::instance().getSharePrecision()
+            );
 
             m_local_deductible_splits.clear();
         }
 
-        if (m_local_deductible_splits.empty())
-        {
+        if (m_local_deductible_splits.empty()) {
             m_share_commission_ctrl->Enable(true);
             mmToolTip(m_deductible_comm_split, _t("Use Deductible Comm. split Categories"));
         }
-        else
-        {
-            m_share_commission_ctrl->SetValue(TrxSplitModel::get_total(m_local_deductible_splits), PrefModel::instance().getSharePrecision());
+        else {
+            m_share_commission_ctrl->SetValue(
+                TrxSplitModel::get_total(m_local_deductible_splits),
+                PrefModel::instance().getSharePrecision()
+            );
             m_share_commission_ctrl->Enable(false);
             mmToolTip(m_deductible_comm_split, TrxSplitModel::get_tooltip(m_local_deductible_splits, nullptr /* currency */));
         }

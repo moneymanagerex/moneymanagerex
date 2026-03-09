@@ -28,9 +28,12 @@
 #include "PrefModel.h"
 #include "TagModel.h"
 #include "TrxLinkModel.h"
+#include "TrxShareModel.h"
 #include "TrxModel.h"
 
 #include "dialog/AttachmentDialog.h"
+
+const RefTypeN TrxModel::s_ref_type = RefTypeN(RefTypeN::e_trx);
 
 mmChoiceNameA TrxModel::TYPE_CHOICES = mmChoiceNameA({
     { TYPE_ID_WITHDRAWAL, _n("Withdrawal") },
@@ -340,31 +343,44 @@ bool TrxModel::is_locked(const Data& trx_d)
     return trx_date_n.has_value() && account_n->is_locked_for(trx_date_n.value());
 }
 
-bool TrxModel::purge_id(int64 id)
+bool TrxModel::purge_id(int64 trx_id)
 {
     // TODO: remove all split at once
-    // TrxSplitModel::instance().purge_id(TrxSplitModel::instance().find(TrxSplitCol::TRANSID(id)));
+    // TrxSplitModel::instance().purge_id(TrxSplitModel::instance().find(TrxSplitCol::TRANSID(trx_id)));
     for (const auto& tp_d : TrxSplitModel::instance().find(
-        TrxSplitCol::TRANSID(id)
+        TrxSplitCol::TRANSID(trx_id)
     )) {
         TrxSplitModel::instance().purge_id(tp_d.m_id);
     }
-    if (is_foreign(*instance().get_id_data_n(id)))
-        TrxLinkModel::RemoveTranslinkEntry(id);
 
-    const wxString& RefType = TrxModel::refTypeName;
+    if (is_foreign(*instance().get_id_data_n(trx_id))) {
+        const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(trx_id);
+        if (tl_n) {
+            TrxShareModel::instance().purge_trxId(tl_n->m_trx_id);
+            TrxLinkModel::instance().purge_id(tl_n->m_id);
+            if (tl_n->m_ref_type == AssetModel::s_ref_type) {
+                AssetData* asset_n = AssetModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
+                TrxLinkModel::UpdateAssetValue(asset_n);
+            }
+            else if (tl_n->m_ref_type == StockModel::s_ref_type) {
+                StockData* stock_n = StockModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
+                StockModel::instance().update_data_position(stock_n);
+            }
+        }
+    }
+
     // remove all attachments
-    mmAttachmentManage::DeleteAllAttachments(RefType, id);
+    mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, trx_id);
     // remove all custom fields for the transaction
-    FieldValueModel::DeleteAllData(RefType, id);
-    TagLinkModel::instance().DeleteAllTags(RefType, id);
-    return unsafe_remove_id(id);
+    FieldValueModel::instance().purge_ref(s_ref_type, trx_id);
+    TagLinkModel::instance().purge_ref(s_ref_type, trx_id);
+    return unsafe_remove_id(trx_id);
 }
 
-void TrxModel::save_timestamp(int64 id)
+void TrxModel::save_timestamp(int64 trx_id)
 {
-    Data* trx_n = instance().unsafe_get_id_data_n(id);
-    if (trx_n && trx_n->m_id == id) {
+    Data* trx_n = instance().unsafe_get_id_data_n(trx_id);
+    if (trx_n && trx_n->m_id == trx_id) {
         trx_n->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
         unsafe_update_data_n(trx_n);
     }
@@ -425,7 +441,7 @@ TrxModel::Full_Data::Full_Data(const Data& r) :
     m_splits(TrxSplitModel::instance().find(
         TrxSplitCol::TRANSID(r.m_id))),
     m_tags(TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(TrxModel::refTypeName),
+        TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
         TagLinkCol::REFID(r.m_id))),
     ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
     SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
@@ -465,20 +481,20 @@ void TrxModel::Full_Data::fill_data()
     if (!m_splits.empty()) {
         for (const auto& tp_d : m_splits)
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
-                + CategoryModel::full_name(tp_d.m_category_id);
+                + CategoryModel::instance().full_name(tp_d.m_category_id);
     }
     else {
-        CATEGNAME = CategoryModel::full_name(m_category_id_n);
+        CATEGNAME = CategoryModel::instance().full_name(m_category_id_n);
     }
 
     if (!m_tags.empty()) {
-        wxArrayString tagnames;
+        wxArrayString tag_name_a;
         for (const auto& gl_d : m_tags)
-            tagnames.Add(TagModel::instance().get_id_data_n(gl_d.TAGID)->m_name);
+            tag_name_a.Add(TagModel::instance().get_id_data_n(gl_d.m_tag_id)->m_name);
         // Sort TAGNAMES
-        tagnames.Sort(CaseInsensitiveCmp);
-        for (const auto& name : tagnames)
-            TAGNAMES += (TAGNAMES.empty() ? "" : " ") + name;
+        tag_name_a.Sort(CaseInsensitiveCmp);
+        for (const auto& tag_name : tag_name_a)
+            TAGNAMES += (TAGNAMES.empty() ? "" : " ") + tag_name;
     }
 
     if (type_id(TRANSCODE) == TYPE_ID_WITHDRAWAL) {
@@ -588,7 +604,7 @@ const wxString TrxModel::Full_Data::to_json()
         json_writer.StartArray();
         for (const auto& tp_d : m_splits) {
             json_writer.StartObject();
-            json_writer.Key(CategoryModel::full_name(tp_d.m_category_id).utf8_str());
+            json_writer.Key(CategoryModel::instance().full_name(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
             json_writer.EndObject();
         }
@@ -599,7 +615,7 @@ const wxString TrxModel::Full_Data::to_json()
         json_writer.StartArray();
         for (const auto & tp_d : m_splits) {
             json_writer.StartObject();
-            json_writer.Key(CategoryModel::full_name(tp_d.m_category_id).utf8_str());
+            json_writer.Key(CategoryModel::instance().full_name(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
             json_writer.EndObject();
         }
@@ -607,7 +623,7 @@ const wxString TrxModel::Full_Data::to_json()
     }
     else {
         json_writer.Key("CATEG");
-        json_writer.String(CategoryModel::full_name(this->m_category_id_n).utf8_str());
+        json_writer.String(CategoryModel::instance().full_name(this->m_category_id_n).utf8_str());
     }
 
     json_writer.EndObject();

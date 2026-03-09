@@ -200,16 +200,27 @@ wxString StockList::OnGetItemText(long item, long col_nr) const
     case LIST_ID_CURRENT:
         return CurrencyModel::toString(m_stocks[item].m_current_price, m_stock_panel->m_currency, 4);
     case LIST_ID_CURRVALUE:
-        return CurrencyModel::toString(StockModel::CurrentValue(m_stocks[item]), m_stock_panel->m_currency);
+        return CurrencyModel::toString(
+            m_stocks[item].current_value(),
+            m_stock_panel->m_currency
+        );
     case LIST_ID_PRICEDATE:
-        return mmGetDateTimeForDisplay(StockModel::instance().lastPriceDate(m_stocks[item]));
+        return mmGetDateTimeForDisplay(
+            StockModel::instance().find_last_hist_date(m_stocks[item]).isoDate()
+        );
     case LIST_ID_COMMISSION:
-        return CurrencyModel::toString(m_stocks[item].m_commission, m_stock_panel->m_currency);
+        return CurrencyModel::toString(
+            m_stocks[item].m_commission,
+            m_stock_panel->m_currency
+        );
     case LIST_ID_NOTES: {
         wxString full_notes = m_stocks[item].m_notes;
         full_notes.Replace("\n", " ");
-        if (AttachmentModel::NrAttachments(StockModel::refTypeName, m_stocks[item].m_id))
+        if (AttachmentModel::instance().find_ref_c(
+            StockModel::s_ref_type, m_stocks[item].m_id
+        )) {
             full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
+        }
         return full_notes;
     }
     default:
@@ -224,7 +235,7 @@ double StockList::GetGainLoss(long item) const
 
 double StockList::getGainLoss(const StockData& stock_d)
 {
-    return StockModel::CurrentValue(stock_d) - stock_d.m_purchase_value;
+    return stock_d.current_value() - stock_d.m_purchase_value;
 }
 
 double StockList::GetRealGainLoss(long item) const
@@ -234,7 +245,7 @@ double StockList::GetRealGainLoss(long item) const
 
 double StockList::getRealGainLoss(const StockData& stock)
 {
-    return StockModel::RealGainLoss(stock);
+    return StockModel::instance().calculate_realized_gain(stock);
 }
 
 void StockList::OnListItemSelected(wxListEvent& event)
@@ -307,8 +318,10 @@ void StockList::OnDeleteStocks(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES)
     {
         StockModel::instance().purge_id(m_stocks[m_selected_row].m_id);
-        mmAttachmentManage::DeleteAllAttachments(StockModel::refTypeName, m_stocks[m_selected_row].m_id);
-        TrxLinkModel::RemoveTransLinkRecords<StockModel>(m_stocks[m_selected_row].m_id);
+        mmAttachmentManage::DeleteAllAttachments(StockModel::s_ref_type, m_stocks[m_selected_row].m_id);
+        TrxLinkModel::instance().purge_ref(
+            StockModel::s_ref_type, m_stocks[m_selected_row].m_id
+        );
         DeleteItem(m_selected_row);
         doRefreshItems(-1);
         m_stock_panel->m_frame->RefreshNavigationTree();
@@ -363,15 +376,15 @@ void StockList::OnEditStocks(wxCommandEvent& event)
 
 void StockList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row < 0) return;
+    if (m_selected_row < 0)
+        return;
 
-    wxString RefType = StockModel::refTypeName;
-    int64 RefId = m_stocks[m_selected_row].m_id;
+    int64 ref_id = m_stocks[m_selected_row].m_id;
 
-    AttachmentDialog dlg(this, RefType, RefId);
+    AttachmentDialog dlg(this, StockModel::s_ref_type, ref_id);
     dlg.ShowModal();
 
-    doRefreshItems(RefId);
+    doRefreshItems(ref_id);
 }
 
 void StockList::OnStockWebPage(wxCommandEvent& /*event*/)
@@ -389,30 +402,27 @@ void StockList::OnStockWebPage(wxCommandEvent& /*event*/)
 
 void StockList::OnOpenAttachment(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row < 0) return;
+    if (m_selected_row < 0)
+        return;
 
-    wxString RefType = StockModel::refTypeName;
-    int64 RefId = m_stocks[m_selected_row].m_id;
-
-    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
-    doRefreshItems(RefId);
+    int64 ref_id = m_stocks[m_selected_row].m_id;
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, StockModel::s_ref_type, ref_id);
+    doRefreshItems(ref_id);
 }
 
 void StockList::OnListItemActivated(wxListEvent& event)
 {
-    if ((event.GetId() == wxID_ADD) || (event.GetId() == MENU_TREEPOPUP_ADDTRANS))
-    {
-        if (m_stock_panel->AddStockTransaction(m_selected_row) == wxID_OK)
-        {
+    if ((event.GetId() == wxID_ADD) || (event.GetId() == MENU_TREEPOPUP_ADDTRANS)) {
+        if (m_stock_panel->AddStockTransaction(m_selected_row) == wxID_OK) {
             m_stock_panel->m_frame->RefreshNavigationTree();
         }
     }
-    else if ((event.GetId() == wxID_VIEW_DETAILS) || (event.GetId() == MENU_TREEPOPUP_VIEWTRANS))
-    {
+    else if ((event.GetId() == wxID_VIEW_DETAILS) ||
+        (event.GetId() == MENU_TREEPOPUP_VIEWTRANS)
+    ) {
         m_stock_panel->ViewStockTransactions(m_selected_row);
     }
-    else
-    {
+    else {
         m_stock_panel->OnListItemActivated(m_selected_row);
     }
 }
@@ -494,7 +504,7 @@ int StockList::initVirtualListControl(int64 trx_id)
             break;
         }
         if (!stock.m_purchase_price) {
-            StockModel::UpdatePosition(&stock);
+            StockModel::instance().update_data_position(&stock);
         }
         ++cnt;
     }
@@ -551,13 +561,11 @@ void StockList::sortList()
         std::stable_sort(m_stocks.begin(), m_stocks.end(), StockData::SorterByCURRENTPRICE());
         break;
     case StockList::LIST_ID_CURRVALUE:
-        std::stable_sort(m_stocks.begin(), m_stocks.end()
-            , [](const StockData& x, const StockData& y)
-            {
-                double valueX = StockModel::CurrentValue(x);
-                double valueY = StockModel::CurrentValue(y);
-                return valueX < valueY;
-            });
+        std::stable_sort(m_stocks.begin(), m_stocks.end(),
+            [](const StockData& x, const StockData& y) {
+                return x.current_value() < y.current_value();
+            }
+        );
         break;
     case StockList::LIST_ID_PRICEDATE:
         //TODO

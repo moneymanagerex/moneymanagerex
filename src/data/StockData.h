@@ -59,6 +59,8 @@ struct StockData
     bool operator< (const StockData& other) const { return id() < other.id(); }
     bool operator< (const StockData* other) const { return id() < other->id(); }
 
+    double current_value() const { return m_num_shares * m_current_price; }
+
     struct SorterBySTOCKID
     {
         bool operator()(const StockData& x, const StockData& y)

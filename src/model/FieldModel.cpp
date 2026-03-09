@@ -23,17 +23,6 @@
 #include "FieldValueModel.h"
 #include "TrxModel.h"
 
-mmChoiceNameA FieldModel::TYPE_CHOICES = mmChoiceNameA({
-    { TYPE_ID_STRING,       _n("String") },
-    { TYPE_ID_INTEGER,      _n("Integer") },
-    { TYPE_ID_DECIMAL,      _n("Decimal") },
-    { TYPE_ID_BOOLEAN,      _n("Boolean") },
-    { TYPE_ID_DATE,         _n("Date") },
-    { TYPE_ID_TIME,         _n("Time") },
-    { TYPE_ID_SINGLECHOICE, _n("SingleChoice") },
-    { TYPE_ID_MULTICHOICE,  _n("MultiChoice") }
-}, -1, true);
-
 FieldModel::FieldModel() :
     TableFactory<FieldTable, FieldData>()
 {
@@ -43,10 +32,8 @@ FieldModel::~FieldModel()
 {
 }
 
-/**
-* Initialize the global FieldModel table.
-* Reset the FieldModel table or create the table if it does not exist.
-*/
+// Initialize the global FieldModel table.
+// Reset the FieldModel table or create the table if it does not exist.
 FieldModel& FieldModel::instance(wxSQLite3Database* db)
 {
     FieldModel& ins = Singleton<FieldModel>::instance();
@@ -57,211 +44,10 @@ FieldModel& FieldModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of FieldModel table */
+// Return the static instance of FieldModel table
 FieldModel& FieldModel::instance()
 {
     return Singleton<FieldModel>::instance();
-}
-
-///** Return a dataset with fields linked to a specific object */
-//const FieldModel::DataA FieldModel::GetFields(ModelBase::REFTYPE_ID RefType)
-//{
-//    DataA fields;
-//    wxString reftype_str = ModelBase::reftype_name(RefType);
-//    for (const auto & field : this->find(FieldCol::REFTYPE(RefType)))
-//    {
-//        fields.push_back(field);
-//    }
-//    return field;
-//}
-
-/** Delete a field and all his data */
-bool FieldModel::Delete(const int64& FieldID)
-{
-    db_savepoint();
-    for (const auto& r : FieldValueModel::instance().find(FieldValueCol::FIELDID(FieldID)))
-        FieldValueModel::instance().purge_id(r.id());
-    db_release_savepoint();
-    return unsafe_remove_id(FieldID);
-}
-
-const wxString FieldModel::getTooltip(const wxString& properties)
-{
-    Document json_doc;
-    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
-    {
-        if (json_doc.HasMember("Tooltip") && json_doc["Tooltip"].IsString()) {
-            Value& s = json_doc["Tooltip"];
-            return wxString::FromUTF8Unchecked(s.GetString());
-        }
-    }
-    return "";
-}
-
-const wxString FieldModel::getRegEx(const wxString& properties)
-{
-    Document json_doc;
-    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
-    {
-        if (json_doc.HasMember("RegEx") && json_doc["RegEx"].IsString()) {
-            Value& s = json_doc["RegEx"];
-            return wxString::FromUTF8Unchecked(s.GetString());
-        }
-    }
-    return "";
-}
-
-bool FieldModel::getAutocomplete(const wxString& properties)
-{
-    Document json_doc;
-    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
-    {
-        if (json_doc.HasMember("Autocomplete") && json_doc["Autocomplete"].IsBool()) {
-            Value& b = json_doc["Autocomplete"];
-            return b.GetBool();
-        }
-    }
-    return false;
-}
-
-const wxString FieldModel::getDefault(const wxString& properties)
-{
-    Document json_doc;
-    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
-    {
-        if (json_doc.HasMember("Default") && json_doc["Default"].IsString()) {
-            Value& s = json_doc["Default"];
-            return wxString::FromUTF8Unchecked(s.GetString());
-        }
-    }
-    return "";
-}
-
-const wxArrayString FieldModel::getChoices(const wxString& properties)
-{
-    wxArrayString choices;
-    Document json_doc;
-    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
-    {
-        if (json_doc.HasMember("Choice") && json_doc["Choice"].IsArray())
-        {
-            Value& sa = json_doc["Choice"];
-            for (const auto& entry : sa.GetArray())
-            {
-                choices.Add(wxString::FromUTF8Unchecked(entry.GetString()));
-            }
-        }
-    }
-
-    return choices;
-}
-
-const wxString FieldModel::getUDFC(const wxString& properties)
-{
-    Document json_doc;
-    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
-    {
-        if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString()) {
-            Value& s = json_doc["UDFC"];
-            return s.GetString();
-        }
-    }
-    return "";
-}
-
-const std::map<wxString, int64> FieldModel::getMatrix(const wxString& reftype)
-{
-    std::map<wxString, int64> m;
-    for (const auto& entry : UDFC_FIELDS())
-    {
-        if (entry.empty()) continue;
-        m[entry] = getUDFCID(reftype, entry);
-    }
-    return m;
-}
-
-int64 FieldModel::getUDFCID(const wxString& ref_type, const wxString& name)
-{
-    Document json_doc;
-    const auto& a = FieldModel::instance().find(FieldCol::REFTYPE(ref_type));
-    for (const auto& item : a)
-    {
-        if (!json_doc.Parse(item.PROPERTIES.utf8_str()).HasParseError())
-        {
-            if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
-            {
-                Value& s = json_doc["UDFC"];
-                const wxString& desc = s.GetString();
-                if (desc == name) {
-                    return item.FIELDID;
-                }
-            }
-        }
-    }
-    return -1;
-}
-
-const wxString FieldModel::getUDFCName(const wxString& ref_type, const wxString& name)
-{
-    Document json_doc;
-    const auto& a = FieldModel::instance().find(FieldCol::REFTYPE(ref_type));
-    for (const auto& item : a)
-    {
-        if (!json_doc.Parse(item.PROPERTIES.utf8_str()).HasParseError())
-        {
-            if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
-            {
-                Value& s = json_doc["UDFC"];
-                const wxString& desc = s.GetString();
-                if (desc == name) {
-                    return item.DESCRIPTION;
-                }
-            }
-        }
-    }
-    return wxEmptyString;
-}
-
-FieldModel::TYPE_ID FieldModel::getUDFCType(const wxString& ref_type, const wxString& name)
-{
-    Document json_doc;
-    const auto& a = FieldModel::instance().find(FieldCol::REFTYPE(ref_type));
-    for (const auto& item : a)
-    {
-        if (!json_doc.Parse(item.PROPERTIES.utf8_str()).HasParseError())
-        {
-            if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
-            {
-                Value& s = json_doc["UDFC"];
-                const wxString& desc = s.GetString();
-                if (desc == name) {
-                    return static_cast<TYPE_ID>(type_id(item.TYPE));
-                }
-            }
-        }
-    }
-    return FieldModel::TYPE_ID_UNKNOWN;
-}
-
-const wxString FieldModel::getUDFCProperties(const wxString& ref_type, const wxString& name)
-{
-    Document json_doc;
-    const auto& a = FieldModel::instance().find(FieldCol::REFTYPE(ref_type));
-    for (const auto& item : a)
-    {
-        if (!json_doc.Parse(item.PROPERTIES.utf8_str()).HasParseError())
-        {
-            if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
-            {
-                Value& s = json_doc["UDFC"];
-                const wxString& desc = s.GetString();
-                if (desc == name) {
-                    return item.PROPERTIES;
-                }
-            }
-        }
-    }
-    return wxEmptyString;
 }
 
 const wxArrayString FieldModel::UDFC_FIELDS()
@@ -276,98 +62,139 @@ const wxArrayString FieldModel::UDFC_FIELDS()
     return choices;
 }
 
-const wxArrayString FieldModel::getUDFCList(const FieldData* r)
+const wxString FieldModel::getUDFC(const wxString& properties)
 {
-    const wxString& ref_type = TrxModel::refTypeName;
-    const auto& a = FieldModel::instance().find(FieldCol::REFTYPE(ref_type));
+    Document json_doc;
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError() &&
+        json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString()
+    ) {
+        Value& s = json_doc["UDFC"];
+        return s.GetString();
+    }
+    return "";
+}
 
-    wxArrayString choices = UDFC_FIELDS();
+const wxString FieldModel::getRegEx(const wxString& properties)
+{
+    Document json_doc;
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError() &&
+        json_doc.HasMember("RegEx") && json_doc["RegEx"].IsString()
+    ) {
+        Value& s = json_doc["RegEx"];
+        return wxString::FromUTF8Unchecked(s.GetString());
+    }
+    return "";
+}
 
-    for (const auto& item : a) {
-        Document json_doc;
-        if (!json_doc.Parse(item.PROPERTIES.utf8_str()).HasParseError()) {
-            if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString()) {
-                Value& s = json_doc["UDFC"];
-                if (choices.Index(s.GetString()) != wxNOT_FOUND) {
-                    choices.Remove(s.GetString());
-                }
-            }
+const wxString FieldModel::getTooltip(const wxString& properties)
+{
+    Document json_doc;
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError()) {
+        if (json_doc.HasMember("Tooltip") && json_doc["Tooltip"].IsString()) {
+            Value& s = json_doc["Tooltip"];
+            return wxString::FromUTF8Unchecked(s.GetString());
         }
     }
+    return "";
+}
 
-    if (r) {
-        Document json_doc;
-        if (!json_doc.Parse(r->PROPERTIES.utf8_str()).HasParseError())
-        {
-            if (json_doc.HasMember("UDFC") && json_doc["UDFC"].IsString())
-            {
-                Value& s = json_doc["UDFC"];
-                std::string str = s.GetString();
-                choices.Add(s.GetString());
-            }
-        }
+const wxString FieldModel::getDefault(const wxString& properties)
+{
+    Document json_doc;
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError() &&
+        json_doc.HasMember("Default") && json_doc["Default"].IsString()
+    ) {
+        Value& s = json_doc["Default"];
+        return wxString::FromUTF8Unchecked(s.GetString());
     }
-
-    choices.Sort();
-    return choices;
+    return "";
 }
 
 int FieldModel::getDigitScale(const wxString& properties)
 {
     Document json_doc;
-    if (!json_doc.Parse(properties.utf8_str()).HasParseError())
-    {
-        if (json_doc.HasMember("DigitScale") && json_doc["DigitScale"].IsInt()) {
-            Value& s = json_doc["DigitScale"];
-            return s.GetInt();
-        }
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError() &&
+        json_doc.HasMember("DigitScale") && json_doc["DigitScale"].IsInt()
+    ) {
+        Value& s = json_doc["DigitScale"];
+        return s.GetInt();
     }
     return 0;
 }
 
-const wxString FieldModel::formatProperties(const wxString& Tooltip, const wxString& RegEx
-    , bool Autocomplete, const wxString& Default, const wxArrayString& Choices
-    , const int DigitScale, const wxString& udfc_str)
+bool FieldModel::getAutocomplete(const wxString& properties)
 {
+    Document json_doc;
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError() &&
+        json_doc.HasMember("Autocomplete") && json_doc["Autocomplete"].IsBool()
+    ) {
+        Value& b = json_doc["Autocomplete"];
+        return b.GetBool();
+    }
+    return false;
+}
+
+const wxArrayString FieldModel::getChoices(const wxString& properties)
+{
+    wxArrayString choices;
+    Document json_doc;
+    if (!json_doc.Parse(properties.utf8_str()).HasParseError() &&
+        json_doc.HasMember("Choice") && json_doc["Choice"].IsArray()
+    ) {
+        Value& sa = json_doc["Choice"];
+        for (const auto& entry : sa.GetArray()) {
+            choices.Add(wxString::FromUTF8Unchecked(entry.GetString()));
+        }
+    }
+    return choices;
+}
+
+const wxString FieldModel::formatProperties(
+    const wxString& tooltip,
+    const wxString& regEx,
+    bool autocomplete,
+    const wxString& default_value,
+    const wxArrayString& choice_a,
+    const int digitScale,
+    const wxString& udfc_str
+) {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
 
     json_writer.StartObject();
 
-    if (!Tooltip.empty()) {
+    if (!tooltip.empty()) {
         json_writer.Key("Tooltip");
-        json_writer.String(Tooltip.ToUTF8());
+        json_writer.String(tooltip.ToUTF8());
     }
 
-    if (!RegEx.empty()) {
+    if (!regEx.empty()) {
         json_writer.Key("RegEx");
-        json_writer.String(RegEx.ToUTF8());
+        json_writer.String(regEx.ToUTF8());
     }
 
-    if (Autocomplete) {
+    if (autocomplete) {
         json_writer.Key("Autocomplete");
-        json_writer.Bool(Autocomplete);
+        json_writer.Bool(autocomplete);
     }
 
-    if (!Default.empty()) {
+    if (!default_value.empty()) {
         json_writer.Key("Default");
-        json_writer.String(Default.ToUTF8());
+        json_writer.String(default_value.ToUTF8());
     }
 
-    if (!Choices.empty())
-    {
+    if (!choice_a.empty()) {
         json_writer.Key("Choice");
         json_writer.StartArray();
-        for (const auto &choice : Choices)
-        {
+        for (const auto &choice : choice_a) {
             json_writer.String(choice.ToUTF8());
         }
         json_writer.EndArray();
     }
 
-    if (DigitScale) {
+    if (digitScale) {
         json_writer.Key("DigitScale");
-        json_writer.Int(DigitScale);
+        json_writer.Int(digitScale);
     }
 
     if (!udfc_str.empty()) {
@@ -378,4 +205,113 @@ const wxString FieldModel::formatProperties(const wxString& Tooltip, const wxStr
     json_writer.EndObject();
 
     return wxString::FromUTF8(json_buffer.GetString());
+}
+
+// Delete a field and all his data
+bool FieldModel::purge_id(int64 field_id)
+{
+    db_savepoint();
+    for (const auto& fv_d : FieldValueModel::instance().find(
+        FieldValueCol::FIELDID(field_id)
+    )) {
+        FieldValueModel::instance().purge_id(fv_d.m_id);
+    }
+    db_release_savepoint();
+    return unsafe_remove_id(field_id);
+}
+
+// Return all values
+// CHECK: chenge wxArrayString to std::set<wxString>
+wxArrayString FieldModel::find_id_value_a(const int64 field_id)
+{
+    wxArrayString value_a;
+    wxString prev_value;
+
+    FieldValueModel::DataA fv_a = FieldValueModel::instance().find(
+        FieldValueCol::FIELDID(field_id)
+    );
+    std::sort(fv_a.begin(), fv_a.end(), FieldValueData::SorterByCONTENT());
+
+    for (const auto& fv_d : fv_a) {
+        if (fv_d.m_content != prev_value) {
+            value_a.Add(fv_d.m_content);
+            prev_value = fv_d.m_content;
+        }
+    }
+    return value_a;
+}
+
+
+const FieldData* FieldModel::get_udfc_data_n(RefTypeN ref_type, const wxString& udfc)
+{
+    Document json_doc;
+    for (const auto& field_d : find(
+        FieldCol::REFTYPE(ref_type.name_n())
+    )) {
+        if (!json_doc.Parse(field_d.m_properties.utf8_str()).HasParseError() &&
+            json_doc.HasMember("UDFC") &&
+            json_doc["UDFC"].IsString() &&
+            json_doc["UDFC"].GetString() == udfc
+        ) {
+            return get_id_data_n(field_d.m_id);
+        }
+    }
+    return nullptr;
+}
+
+int64 FieldModel::get_udfc_id_n(RefTypeN ref_type, const wxString& udfc)
+{
+    const Data* field_n = get_udfc_data_n(ref_type, udfc);
+    return field_n ? field_n->m_id : -1;
+}
+
+const wxString FieldModel::get_udfc_name_n(RefTypeN ref_type, const wxString& udfc)
+{
+    const Data* field_n = get_udfc_data_n(ref_type, udfc);
+    return field_n ? field_n->m_description : "";
+}
+
+FieldTypeN FieldModel::get_udfc_type_n(RefTypeN ref_type, const wxString& udfc)
+{
+    const Data* field_n = get_udfc_data_n(ref_type, udfc);
+    return field_n ? field_n->m_type_n : FieldTypeN();
+}
+
+const wxString FieldModel::get_udfc_properties_n(RefTypeN ref_type, const wxString& udfc)
+{
+    const Data* field_n = get_udfc_data_n(ref_type, udfc);
+    return field_n ? field_n->m_properties : "";
+}
+
+const std::map<wxString, int64> FieldModel::get_all_ucfd_id_m(RefTypeN ref_type)
+{
+    std::map<wxString, int64> ucfd_id_m;
+    for (const auto& ucfd : UDFC_FIELDS()) {
+        if (ucfd.empty())
+            continue;
+        ucfd_id_m[ucfd] = get_udfc_id_n(ref_type, ucfd);
+    }
+    return ucfd_id_m;
+}
+
+const wxArrayString FieldModel::get_data_udfc_a(const FieldData* field_n)
+{
+    wxArrayString udfc_a = UDFC_FIELDS();
+    for (const auto& field_d : FieldModel::instance().find(
+        FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())
+    )) {
+        const wxString udfc = FieldModel::getUDFC(field_d.m_properties);
+        if (!udfc.empty() && udfc_a.Index(udfc) != wxNOT_FOUND) {
+            udfc_a.Remove(udfc);
+        }
+    }
+
+    if (field_n) {
+        const wxString udfc = FieldModel::getUDFC(field_n->m_properties);
+        if (!udfc.empty())
+            udfc_a.Add(udfc);
+    }
+
+    udfc_a.Sort();
+    return udfc_a;
 }

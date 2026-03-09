@@ -570,44 +570,43 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
     else if (uri.StartsWith("viewtrans:", &sData)) {
         wxStringTokenizer tokenizer(sData, ":");
         int i =0;
-        int64 catID = -1;
-        int64 subCatID = -1;
-        int64 payeeID = -1;
-        // categoryID, subcategoryID, payeeID
+        int64 cat_id = -1;
+        int64 sub_id = -1;
+        int64 payee_id = -1;
+        // categoryID, subcategoryID, payee_id
         //      subcategoryID = -2 means inlude all sub categories for the given category
         while ( tokenizer.HasMoreTokens() ) {
             switch (i++) {
             case 0:
-                catID = std::stoll(tokenizer.GetNextToken().ToStdString());
+                cat_id = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             case 1:
-                subCatID = std::stoll(tokenizer.GetNextToken().ToStdString());
+                sub_id = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             case 2:
-                payeeID = std::stoll(tokenizer.GetNextToken().ToStdString());
+                payee_id = std::stoll(tokenizer.GetNextToken().ToStdString());
                 break;
             default:
                 break;
             }
         }
 
-        if (catID > 0) {
-            std::vector<int64> cats;
+        if (cat_id > 0) {
+            std::vector<int64> sub_id_a;
             // include all sub categories
-            if (-2 == subCatID) {
-                for (const auto& subcat_d :
-                    CategoryModel::sub_tree(CategoryModel::instance().get_id_data_n(catID))
-                ) {
-                    cats.push_back(subcat_d.m_id);
+            if (sub_id == -2) {
+                const CategoryData* cat_n = CategoryModel::instance().get_id_data_n(cat_id);
+                for (const auto& sub_d : CategoryModel::instance().find_data_subtree_a(*cat_n)) {
+                    sub_id_a.push_back(sub_d.m_id);
                 }
             }
-            cats.push_back(catID);
-            m_rb->m_filter.setCategoryList(cats);
+            sub_id_a.push_back(cat_id);
+            m_rb->m_filter.setCategoryList(sub_id_a);
         }
 
-        if (payeeID > 0) {
+        if (payee_id > 0) {
             wxArrayInt64 payees;
-            payees.push_back(payeeID);
+            payees.push_back(payee_id);
             m_rb->m_filter.setPayeeList(payees);
         }
 
@@ -636,16 +635,18 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(transId);
             if (trx_n && trx_n->m_id > -1) {
                 if (TrxModel::is_foreign(*trx_n)) {
-                    TrxLinkData translink = TrxLinkModel::TranslinkRecord(transId);
-                    if (translink.LINKTYPE == StockModel::refTypeName) {
-                        TrxShareDialog dlg(w_frame, &translink, trx_n);
+                    const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(transId);
+                    if (tl_n && tl_n->m_ref_type == StockModel::s_ref_type) {
+                        TrxLinkData tl_d = *tl_n;
+                        TrxShareDialog dlg(w_frame, &tl_d, trx_n);
                         if (dlg.ShowModal() == wxID_OK) {
                             m_rb->getHTMLText();
                             saveReportText();
                         }
                     }
-                    else {
-                        AssetDialog dlg(w_frame, &translink, trx_n);
+                    else if (tl_n && tl_n->m_ref_type == AssetModel::s_ref_type) {
+                        TrxLinkData tl_d = *tl_n;
+                        AssetDialog dlg(w_frame, &tl_d, trx_n);
                         if (dlg.ShowModal() == wxID_OK) {
                             m_rb->getHTMLText();
                             saveReportText();
@@ -665,12 +666,12 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         }
     }
     else if (uri.StartsWith("attachment:", &sData)) {
-        const wxString RefType = sData.BeforeFirst('|');
-        long long refId;
-        sData.AfterFirst('|').ToLongLong(&refId);
+        RefTypeN ref_type = RefTypeN(sData.BeforeFirst('|'));
+        long long ref_id;
+        sData.AfterFirst('|').ToLongLong(&ref_id);
 
-        if (ModelBase::reftype_id(RefType) != -1 && refId > 0) {
-            mmAttachmentManage::OpenAttachmentFromPanelIcon(w_frame, RefType, refId);
+        if (ref_type.has_value() && ref_id > 0) {
+            mmAttachmentManage::OpenAttachmentFromPanelIcon(w_frame, ref_type, ref_id);
             const auto name = getVFname4print("rep", getReportBase()->getHTMLText());
             w_browser->LoadURL(name);
         }
@@ -680,7 +681,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         std::vector<std::string> parms;
         wxStringTokenizer tokenizer(sData, "|");
         while (tokenizer.HasMoreTokens()) {
-            //"budget: " << estimateVal << "|" << CurrencyModel::toString(actual, CurrencyModel::GetBaseCurrency()) << "|" << catID << "|" << budget_year << "|" << month + 1;
+            //"budget: " << estimateVal << "|" << CurrencyModel::toString(actual, CurrencyModel::GetBaseCurrency()) << "|" << cat_id << "|" << budget_year << "|" << month + 1;
             wxString token = tokenizer.GetNextToken();
             parms.push_back(std::string(token.mb_str()));
 
@@ -691,32 +692,32 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         std::string formattedMonth = oss.str();
 
         //get yearId from year_name
-        int64 budgetYearID = BudgetPeriodModel::instance().get_name_id(
+        int64 bp_id_n = BudgetPeriodModel::instance().get_name_id_n(
             parms[3] + "-" + formattedMonth
         );
 
-        //if budgetYearID doesn't exist then return
-        if (budgetYearID == -1) {
+        //if bp_id_n doesn't exist then return
+        if (bp_id_n < 0) {
             wxLogInfo("Monthly budget not found!");
             return;
         }
 
-        //get model budget for yearID and catID
-        BudgetModel::DataA budget = BudgetModel::instance().find(
-            BudgetCol::BUDGETYEARID(budgetYearID),
+        //get model budget for yearID and cat_id
+        BudgetModel::DataA budget_a = BudgetModel::instance().find(
+            BudgetCol::BUDGETYEARID(bp_id_n),
             BudgetCol::CATEGID(std::stoll(parms[2]))
         );
 
         BudgetData budget_d;
-        if (budget.empty()) {
+        if (budget_a.empty()) {
             budget_d = BudgetData();
-            budget_d.m_period_id   = budgetYearID;
+            budget_d.m_period_id   = bp_id_n;
             budget_d.m_category_id = std::stoll(parms[2]);
             budget_d.m_amount      = 0.0;
             BudgetModel::instance().add_data_n(budget_d);
         }
         else
-            budget_d = budget[0];
+            budget_d = budget_a[0];
 
         double estimated;
         CurrencyModel::fromString(parms[0], estimated, CurrencyModel::GetBaseCurrency());

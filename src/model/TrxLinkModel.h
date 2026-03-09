@@ -34,80 +34,47 @@
 class TrxLinkModel : public TableFactory<TrxLinkTable, TrxLinkData>
 {
 public:
-    enum CHECKING_TYPE { AS_INCOME_EXPENSE = 32701, AS_TRANSFER }; /* Transfers ignore accounting */
+    enum CHECKING_TYPE {
+        AS_INCOME_EXPENSE = 32701,
+        AS_TRANSFER
+    }; /* Transfers ignore accounting */
 
 public:
     TrxLinkModel();
     ~TrxLinkModel();
 
 public:
-    /**
-    Initialize the global TrxLinkModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for TrxLinkModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static TrxLinkModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for TrxLinkModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static TrxLinkModel& instance();
 
-public:
+    // TODO: move to *Data
     static CHECKING_TYPE type_checking(const int64 tt);
 
-public:
-    /* Create the translink record as Asset */
-    static void SetAssetTranslink(const int64 asset_id
-        , const int64 checking_id
-        , const CHECKING_TYPE checking_type = AS_INCOME_EXPENSE);
-
-    /* Create a translink record as Stock */
-    static void SetStockTranslink(const int64 stock_id
-        , const int64 checking_id
-        , const CHECKING_TYPE checking_type = AS_INCOME_EXPENSE);
-
-    /*
-    Return a list of translink records for the associated foreign table type.
-    Equivalent SQL statements:
-    select * from TRANSLINK_V1 where LINKTYPE = "Asset" AND LINKRECORDID = link_id;
-    select * from TRANSLINK_V1 where LINKTYPE = "Stock" AND LINKRECORDID = link_id;
-    */
-    template <typename T>
-    static TrxLinkModel::DataA TranslinkList(const int64 link_id);
-
-    /*
-    Return the link record for the symbol
-    Equivalent SQL statements:
-    SELECT * FROM TRANSLINK_V1 WHERE LINKRECORDID IN (SELECT STOCKID FROM STOCK_V1 WHERE SYMBOL = ?)
-    */
-    static TrxLinkModel::DataA TranslinkListBySymbol(const wxString symbol);
-
-    static bool HasShares(const int64 stock_id);
-
-    /*
-    Return the link record for the checking account
-    Equivalent SQL statements:
-    select * from TRANSLINK_V1 where CHECKINGACCOUNTID = checking_id;
-    */
-    static TrxLinkData TranslinkRecord(const int64 checking_id);
-
-    /* Remove all records associated with the Translink list */
-    template <typename T>
-    static void RemoveTransLinkRecords(const int64 entry_id);
-
-    /* Remove the checking account entry and its associated transfer transaction. */
-    static void RemoveTranslinkEntry(const int64 checking_account_id);
-
+    // TODO: move to AssetModel
     static void UpdateAssetValue(AssetData* asset_entry);
 
-    /* Return true with the account id of the first share entry in the stock translink list */
-    static bool ShareAccountId(int64& stock_entry_id);
+public:
+    void purge_ref(RefTypeN ref_type, int64 ref_id);
 
-private:
+    auto get_trx_data_n(int64 trx_id) -> const Data*;
+    auto find_ref_data_a(RefTypeN ref_type, int64 ref_id) -> DataA;
+    auto find_symbol_data_a(const wxString stock_symbol) -> DataA;
+    auto find_stock_id_c(const int64 stock_id) -> size_t;
 
-    static void SetTranslink(const int64 checking_id, const CHECKING_TYPE checking_type
-        , const wxString& link_type, const int64 link_record_id);
+    void SetTranslink(
+        int64 trx_id,
+        RefTypeN ref_type,
+        int64 ref_id,
+        const CHECKING_TYPE checking_type
+    );
+    void SetAssetTranslink(
+        int64 trx_id,
+        int64 asset_id,
+        const CHECKING_TYPE checking_type = AS_INCOME_EXPENSE
+    );
+    void SetStockTranslink(
+        int64 trx_id,
+        int64 stock_id,
+        const CHECKING_TYPE checking_type = AS_INCOME_EXPENSE
+    );
 };

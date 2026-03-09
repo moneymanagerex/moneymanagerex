@@ -18,10 +18,10 @@
 
 #include "ReportData.h"
 
-ReportData::ReportData()
+ReportData::ReportData() :
+    m_id(-1),
+    m_active(true)
 {
-    m_id     = -1;
-    m_active = true;
 }
 
 // Convert ReportData to ReportRow
@@ -44,14 +44,14 @@ ReportRow ReportData::to_row() const
 // Convert ReportRow to ReportData
 ReportData& ReportData::from_row(const ReportRow& row)
 {
-    m_id               = row.REPORTID;        // int64
-    m_name             = row.REPORTNAME;      // wxString
-    m_group_name       = row.GROUPNAME;       // wxString
-    m_active           = (row.ACTIVE != 0);   // int64
-    m_sql_content      = row.SQLCONTENT;      // wxString
-    m_lua_content      = row.LUACONTENT;      // wxString
-    m_template_content = row.TEMPLATECONTENT; // wxString
-    m_description      = row.DESCRIPTION;     // wxString
+    m_id               = row.REPORTID;
+    m_name             = row.REPORTNAME;
+    m_group_name       = row.GROUPNAME;
+    m_active           = (row.ACTIVE != 0);
+    m_sql_content      = row.SQLCONTENT;
+    m_lua_content      = row.LUACONTENT;
+    m_template_content = row.TEMPLATECONTENT;
+    m_description      = row.DESCRIPTION;
 
     return *this;
 }
