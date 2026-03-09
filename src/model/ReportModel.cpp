@@ -234,7 +234,7 @@ int ReportModel::generate_html(const Data& report_d, wxString& out)
     }
 
     wxSQLite3ResultSet q;
-    int column_cnt = 0;
+    int column_c = 0;
     std::map <wxString, wxString> label_value_m;
     try {
         ReportParam::prepare_sql(query, label_value_m);
@@ -248,7 +248,7 @@ int ReportModel::generate_html(const Data& report_d, wxString& out)
         }
         else {
             q = stmt.ExecuteQuery();
-            column_cnt = q.GetColumnCount();
+            column_c = q.GetColumnCount();
         }
     }
     catch (const wxSQLite3Exception& e) {
@@ -266,7 +266,7 @@ int ReportModel::generate_html(const Data& report_d, wxString& out)
     row_t error;
     loop_t columns;
 
-    for (int i = 0; i < column_cnt; ++i) {
+    for (int i = 0; i < column_c; ++i) {
         int column_type = q.GetColumnType(i);
         const std::wstring column_name = q.GetColumnName(i).ToStdWstring();
         column_name_type_m[column_name] = column_type;
@@ -298,7 +298,7 @@ int ReportModel::generate_html(const Data& report_d, wxString& out)
 
     while (q.NextRow()) {
         ReportRecord rec;
-        for (int i = 0; i < column_cnt; ++i) {
+        for (int i = 0; i < column_c; ++i) {
             const wxString column_name = q.GetColumnName(i);
             rec[column_name.ToStdWstring()] = q.GetAsString(i);
         }

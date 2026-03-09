@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2014 Gabriele-V
+ Copyright (C) 2026 George Ef (george.a.ef@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -19,8 +20,6 @@
 #pragma once
 
 #include "base/defs.h"
-#include "util/mmChoice.h"
-
 #include "table/AttachmentTable.h"
 #include "data/AttachmentData.h"
 
@@ -33,34 +32,13 @@ public:
     ~AttachmentModel();
 
 public:
-    /**
-    Initialize the global AttachmentModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for AttachmentModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static AttachmentModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for AttachmentModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static AttachmentModel& instance();
 
 public:
-    /** Return a dataset with attachments linked to a specific object */
-    const DataA FilterAttachments(const wxString& RefType, const int64 RefId);
-
-    /** Return the number of attachments linked to a specific object */
-    static int NrAttachments(const wxString& RefType, const int64 RefId);
-
-    /** Return the last attachment number linked to a specific object */
-    static int LastAttachmentNumber(const wxString& RefType, const int64 RefId);
-
-    /** Return a dataset with attachments linked to a specific type*/
-    std::map<int64, DataA> get_reftype(const wxString& reftype);
-
-    /** Return all attachments descriptions*/
-    wxArrayString allDescriptions();
+    int  find_ref_c(RefTypeN ref_type, const int64 ref_id);
+    auto find_ref_data_a(RefTypeN ref_type, const int64 ref_id) -> const DataA;
+    int  find_ref_last_num(RefTypeN ref_type, const int64 ref_id);
+    auto find_refType_mRefId(RefTypeN ref_type) -> std::map<int64, DataA>;
+    auto find_all_desc_a() -> wxArrayString;
 };
-

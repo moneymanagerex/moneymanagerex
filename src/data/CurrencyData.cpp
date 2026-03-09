@@ -18,12 +18,12 @@
 
 #include "CurrencyData.h"
 
-CurrencyData::CurrencyData()
+CurrencyData::CurrencyData() :
+    m_id(-1),
+    m_type(CurrencyType()),
+    m_scale(-1),
+    m_base_conv_rate(0.0)
 {
-    m_id             = -1;
-    m_type           = CurrencyType();
-    m_scale          = -1;
-    m_base_conv_rate = 0.0;
 }
 
 // Convert CurrencyData to CurrencyRow
@@ -50,18 +50,18 @@ CurrencyRow CurrencyData::to_row() const
 // Convert CurrencyRow to CurrencyData
 CurrencyData& CurrencyData::from_row(const CurrencyRow& row)
 {
-    m_id              = row.CURRENCYID;                  // int64
-    m_symbol          = row.CURRENCY_SYMBOL;             // wxString
-    m_name            = row.CURRENCYNAME;                // wxString
-    m_type            = CurrencyType(row.CURRENCY_TYPE); // wxString
-    m_prefix_symbol   = row.PFX_SYMBOL;                  // wxString
-    m_suffix_symbol   = row.SFX_SYMBOL;                  // wxString
-    m_decimal_point   = row.DECIMAL_POINT;               // wxString
-    m_group_separator = row.GROUP_SEPARATOR;             // wxString
-    m_unit_name       = row.UNIT_NAME;                   // wxString
-    m_cent_name       = row.CENT_NAME;                   // wxString
-    m_scale           = row.SCALE;                       // int64
-    m_base_conv_rate  = row.BASECONVRATE;                // double
+    m_id              = row.CURRENCYID;
+    m_symbol          = row.CURRENCY_SYMBOL;
+    m_name            = row.CURRENCYNAME;
+    m_type            = CurrencyType(row.CURRENCY_TYPE);
+    m_prefix_symbol   = row.PFX_SYMBOL;
+    m_suffix_symbol   = row.SFX_SYMBOL;
+    m_decimal_point   = row.DECIMAL_POINT;
+    m_group_separator = row.GROUP_SEPARATOR;
+    m_unit_name       = row.UNIT_NAME;
+    m_cent_name       = row.CENT_NAME;
+    m_scale           = row.SCALE;
+    m_base_conv_rate  = row.BASECONVRATE;
 
     return *this;
 }

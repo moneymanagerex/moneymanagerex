@@ -30,12 +30,27 @@ class wxDialog;
 
 class FieldValueDialog : public wxDialog
 {
+private:
+    const int FIELDMULTIPLIER = 4;
+    const int CONTROLOFFSET = FIELDMULTIPLIER - 1;
+
+    const RefTypeN m_ref_type;
+    int64 m_ref_id = -1;
+    FieldModel::DataA m_field_a;
+    std::map<wxWindowID, wxString> m_data_changed;
+
+    wxDialog* m_dialog = nullptr;
+    wxStaticBox* m_static_box = nullptr;
+    wxWindowID m_init_control_id = wxID_ANY;
+
 public:
     FieldValueDialog();
+    FieldValueDialog(wxDialog* dialog, RefTypeN ref_type, int64 ref_id);
     ~FieldValueDialog();
+
     bool FillCustomFields(wxBoxSizer* box_sizer);
-    bool SaveCustomValues(int64 ref_id);
-    void UpdateCustomValues(int64 ref_id);
+    bool SaveCustomValues(RefTypeN ref_type, int64 ref_id);
+    void UpdateCustomValues(RefTypeN ref_type, int64 ref_id);
     void SetStringValue(int fieldIndex, const wxString& value, bool hasChanged = false);
     bool ValidateCustomValues(int64);
     const wxString GetWidgetData(wxWindowID controlID) const;
@@ -56,17 +71,7 @@ public:
     void ShowHideCustomPanel() const;
     void ShowCustomPanel() const;
 
-protected:
-    FieldValueDialog(wxDialog* dialog, const wxString& ref_type, int64 ref_id);
 private:
-    const int FIELDMULTIPLIER = 4;
-    const int CONTROLOFFSET = FIELDMULTIPLIER - 1;
-    wxDialog* m_dialog = nullptr;
-    wxStaticBox* m_static_box =nullptr;
-    const wxString m_ref_type;
-    int64 m_ref_id = -1;
-    FieldModel::DataA m_fields;
-    std::map<wxWindowID, wxString> m_data_changed;
     void OnStringChanged(wxCommandEvent& event);
     void OnDateChanged(wxDateEvent& event);
     void OnTimeChanged(wxDateEvent& event);
@@ -77,18 +82,18 @@ private:
     bool IsWidgetChanged(wxWindowID id);
     void SetWidgetChanged(wxWindowID id, const wxString& data);
     void ResetWidgetChanged(wxWindowID id);
-    wxWindowID m_init_control_id = wxID_ANY;
-
 };
 
 class mmCustomDataTransaction : public FieldValueDialog
 {
 public:
-    mmCustomDataTransaction(wxDialog* dialog, int64 ref_id, wxWindowID base_id);
+    mmCustomDataTransaction(
+        wxDialog* dialog, RefTypeN ref_type, int64 ref_id, wxWindowID base_id
+    );
 };
 
-inline void       FieldValueDialog::ResetRefID() { m_ref_id = wxID_ANY; }
+inline void       FieldValueDialog::ResetRefID() { m_ref_id = -1; }
 inline void       FieldValueDialog::SetBaseID(wxWindowID id) { m_init_control_id = id; }
-inline size_t     FieldValueDialog::GetCustomFieldsCount() const { return m_fields.size(); }
+inline size_t     FieldValueDialog::GetCustomFieldsCount() const { return m_field_a.size(); }
 inline wxWindowID FieldValueDialog::GetBaseID() const { return m_init_control_id; }
 

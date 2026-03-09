@@ -18,14 +18,14 @@
 
 #include "BudgetData.h"
 
-BudgetData::BudgetData()
+BudgetData::BudgetData() :
+    m_id(-1),
+    m_period_id(-1),
+    m_category_id(-1),
+    m_frequency(BudgetFrequency()),
+    m_amount(0.0),
+    m_active(true)
 {
-    m_id          = -1;
-    m_period_id   = -1;
-    m_category_id = -1;
-    m_frequency   = BudgetFrequency();
-    m_amount      = 0.0;
-    m_active      = true;
 }
 
 // Convert BudgetData to BudgetRow
@@ -47,13 +47,13 @@ BudgetRow BudgetData::to_row() const
 // Convert BudgetRow to BudgetData
 BudgetData& BudgetData::from_row(const BudgetRow& row)
 {
-    m_id          = row.BUDGETENTRYID;           // int64
-    m_period_id   = row.BUDGETYEARID;            // int64
-    m_category_id = row.CATEGID;                 // int64
-    m_frequency   = BudgetFrequency(row.PERIOD); // wxString
-    m_amount      = row.AMOUNT;                  // double
-    m_notes       = row.NOTES;                   // wxString
-    m_active      = (row.ACTIVE != 0);           // int64
+    m_id          = row.BUDGETENTRYID;
+    m_period_id   = row.BUDGETYEARID;
+    m_category_id = row.CATEGID;
+    m_frequency   = BudgetFrequency(row.PERIOD);
+    m_amount      = row.AMOUNT;
+    m_notes       = row.NOTES;
+    m_active      = (row.ACTIVE != 0);
 
     return *this;
 }

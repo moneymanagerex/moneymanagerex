@@ -46,39 +46,39 @@ BudgetPeriodModel& BudgetPeriodModel::instance()
     return Singleton<BudgetPeriodModel>::instance();
 }
 
-bool BudgetPeriodModel::purge_id(int64 id)
+bool BudgetPeriodModel::purge_id(int64 bp_id)
 {
     for (const BudgetData& budget_d : BudgetModel::instance().find(
-        BudgetCol::BUDGETYEARID(id)
+        BudgetCol::BUDGETYEARID(bp_id)
     ))
         BudgetModel::instance().purge_id(budget_d.m_period_id);
-    return unsafe_remove_id(id);
+    return unsafe_remove_id(bp_id);
 }
 
-const wxString BudgetPeriodModel::get_id_name(int64 period_id)
+const wxString BudgetPeriodModel::get_id_name_n(int64 bp_id)
 {
-    const Data* bp_n = get_id_data_n(period_id);
+    const Data* bp_n = get_id_data_n(bp_id);
     return bp_n ? bp_n->m_name : "";
 }
 
-int64 BudgetPeriodModel::get_name_id(const wxString& period_name)
+int64 BudgetPeriodModel::get_name_id_n(const wxString& bp_name)
 {
-    // TODO: lookup period_name in cache
+    // TODO: lookup bp_name in cache
     for (const auto& bp_d : find_all()) {
-        if (bp_d.m_name == period_name)
+        if (bp_d.m_name == bp_name)
             return bp_d.m_id;
     }
     return -1;
 }
 
-int64 BudgetPeriodModel::ensure_name(const wxString& period_name)
+int64 BudgetPeriodModel::ensure_name(const wxString& bp_name)
 {
-    int64 period_id = get_name_id(period_name);
-    if (period_id < 0) {
+    int64 bp_id_n = get_name_id_n(bp_name);
+    if (bp_id_n < 0) {
         Data new_bp_d = Data();
-        new_bp_d.m_name = period_name;
+        new_bp_d.m_name = bp_name;
         add_data_n(new_bp_d);
-        period_id = new_bp_d.id();
+        bp_id_n = new_bp_d.id();
     }
-    return period_id;
+    return bp_id_n;
 }

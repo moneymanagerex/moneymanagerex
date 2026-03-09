@@ -29,84 +29,37 @@
 class FieldModel : public TableFactory<FieldTable, FieldData>
 {
 public:
-    enum TYPE_ID
-    {
-        TYPE_ID_UNKNOWN = -1,
-        TYPE_ID_STRING = 0,
-        TYPE_ID_INTEGER,
-        TYPE_ID_DECIMAL,
-        TYPE_ID_BOOLEAN,
-        TYPE_ID_DATE,
-        TYPE_ID_TIME,
-        TYPE_ID_SINGLECHOICE,
-        TYPE_ID_MULTICHOICE,
-        TYPE_ID_size
-    };
-
-private:
-    static mmChoiceNameA TYPE_CHOICES;
-
-public:
     FieldModel();
     ~FieldModel();
 
 public:
-    /**
-    Initialize the global FieldModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for FieldModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static FieldModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for FieldModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static FieldModel& instance();
 
-public:
-    static const wxString type_name(int id);
-    static int type_id(const wxString& name);
-    static TYPE_ID type_id(const Data* r);
-    static TYPE_ID type_id(const Data& r);
+    static auto UDFC_FIELDS() -> const wxArrayString;
 
-    bool Delete(const int64& FieldID);
-    static const wxString getRegEx(const wxString& properties);
-    static const wxString getTooltip(const wxString& properties);
+    // TODO: create struct FieldProperties; move to FieldProperties
+    static auto getUDFC(const wxString& properties) -> const wxString;
+    static auto getRegEx(const wxString& properties) -> const wxString;
+    static auto getTooltip(const wxString& properties) -> const wxString;
+    static auto getDefault(const wxString& properties) -> const wxString;
+    static int  getDigitScale(const wxString& Properties);
     static bool getAutocomplete(const wxString& properties);
-    static const wxString getDefault(const wxString& properties);
-    static const wxArrayString getChoices(const wxString& properties);
-    static const wxArrayString getUDFCList(const Data* r);
-    static const wxString getUDFC(const wxString& properties);
-    static const wxString getUDFCName(const wxString& ref_type, const wxString& name);
-    static TYPE_ID getUDFCType(const wxString& ref_type, const wxString& name);
-    static const wxString getUDFCProperties(const wxString& ref_type, const wxString& name);
-    static int64 getUDFCID(const wxString& ref_type, const wxString& name);
-    static const std::map<wxString, int64> getMatrix(const wxString& reftype);
-    static int getDigitScale(const wxString& Properties);
-    static const wxString formatProperties(const wxString& Tooltip, const wxString& RegEx
-        , bool Autocomplete, const wxString& Default, const wxArrayString& Choices
-        , const int DigitScale, const wxString& udfc_str);
-    static const wxArrayString UDFC_FIELDS();
+    static auto getChoices(const wxString& properties) -> const wxArrayString;
+    static auto formatProperties(
+        const wxString& Tooltip, const wxString& RegEx,
+        bool Autocomplete, const wxString& Default, const wxArrayString& Choices,
+        const int DigitScale, const wxString& udfc_str
+    ) -> const wxString;
+
+public:
+    bool purge_id(int64 field_id) override;
+    auto find_id_value_a(const int64 FieldID) -> wxArrayString;
+    auto get_udfc_data_n(RefTypeN ref_type, const wxString& udfc) -> const Data*;
+    auto get_udfc_id_n(RefTypeN ref_type, const wxString& udfc) -> int64;
+    auto get_udfc_name_n(RefTypeN ref_type, const wxString& udfc) -> const wxString;
+    auto get_udfc_type_n(RefTypeN ref_type, const wxString& udfc) -> FieldTypeN;
+    auto get_udfc_properties_n(RefTypeN ref_type, const wxString& udfc) -> const wxString;
+    auto get_all_ucfd_id_m(RefTypeN ref_type) -> const std::map<wxString, int64>;
+    auto get_data_udfc_a(const Data* field_n) -> const wxArrayString;
 };
-
-//----------------------------------------------------------------------------
-
-inline const wxString FieldModel::type_name(int id)
-{
-    return TYPE_CHOICES.get_name(id);
-}
-inline int FieldModel::type_id(const wxString& name)
-{
-    return TYPE_CHOICES.find_name_n(name);
-}
-inline FieldModel::TYPE_ID FieldModel::type_id(const Data* r)
-{
-    return static_cast<TYPE_ID>(type_id(r->TYPE));
-}
-inline FieldModel::TYPE_ID FieldModel::type_id(const Data& r)
-{
-    return type_id(&r);
-}
-

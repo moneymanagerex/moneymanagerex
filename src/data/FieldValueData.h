@@ -16,40 +16,27 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-//
-// This is only sample code re-used from "table/FieldValueTable.h".
-//
-// The data structure can be refined by:
-// * using more user-frielndly filed name
-// * using stronger field types
-// * adding enumerations for fields with limited choices
-// * demultiplexing composite values in database columns
-//
-// See also an implementation in Swift:
-//   https://github.com/moneymanagerex/mmex-ios/tree/master/MMEX/Data
-// and an implementation in Java:
-//   https://github.com/moneymanagerex/android-money-manager-ex/tree/master/app/src/main/java/com/money/manager/ex/domainmodel
-
 #pragma once
 
+#include "_DataEnum.h"
 #include "table/_TableBase.h"
 #include "table/FieldValueTable.h"
 
 // User-friendly representation of a record in table CUSTOMFIELDDATA_V1.
 struct FieldValueData
 {
-    int64 FIELDATADID; // primary key
-    int64 FIELDID;
-    int64 REFID;
-    wxString CONTENT;
+    int64    m_id;
+    int64    m_field_id; // non-null (> 0) after initialization
+    RefTypeN m_ref_type; // one of [e_trx, e_sched] after initialization
+    int64    m_ref_id;   // non-null (> 0) after initialization
+    wxString m_content;
 
     explicit FieldValueData();
     explicit FieldValueData(wxSQLite3ResultSet& q);
     FieldValueData(const FieldValueData& other) = default;
 
-    int64 id() const { return FIELDATADID; }
-    void id(const int64 id) { FIELDATADID = id; }
+    int64 id() const { return m_id; }
+    void id(const int64 id) { m_id = id; }
     FieldValueRow to_row() const;
     FieldValueData& from_row(const FieldValueRow& row);
     void to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const;
@@ -66,11 +53,21 @@ struct FieldValueData
     bool operator< (const FieldValueData& other) const { return id() < other.id(); }
     bool operator< (const FieldValueData* other) const { return id() < other->id(); }
 
+    static RefTypeN decode_ref_type(int64 row_REFID) {
+        return RefTypeN((row_REFID < 0) ? RefTypeN::e_sched : RefTypeN::e_trx);
+    }
+    static int64 decode_ref_id(int64 row_REFID) {
+        return (row_REFID < 0) ? -row_REFID : row_REFID;
+    }
+    static int64 encode_REFID(RefTypeN ref_type, int64 ref_id) {
+        return (ref_type.id_n() == RefTypeN::e_sched) ? -ref_id : ref_id;
+    }
+
     struct SorterByFIELDATADID
     {
         bool operator()(const FieldValueData& x, const FieldValueData& y)
         {
-            return x.FIELDATADID < y.FIELDATADID;
+            return x.m_id < y.m_id;
         }
     };
 
@@ -78,7 +75,15 @@ struct FieldValueData
     {
         bool operator()(const FieldValueData& x, const FieldValueData& y)
         {
-            return x.FIELDID < y.FIELDID;
+            return x.m_field_id < y.m_field_id;
+        }
+    };
+
+    struct SorterByREFTYPE
+    {
+        bool operator()(const FieldValueData& x, const FieldValueData& y)
+        {
+            return x.m_ref_type.id_n() < y.m_ref_type.id_n();
         }
     };
 
@@ -86,7 +91,7 @@ struct FieldValueData
     {
         bool operator()(const FieldValueData& x, const FieldValueData& y)
         {
-            return x.REFID < y.REFID;
+            return x.m_ref_id < y.m_ref_id;
         }
     };
 
@@ -94,7 +99,7 @@ struct FieldValueData
     {
         bool operator()(const FieldValueData& x, const FieldValueData& y)
         {
-            return x.CONTENT < y.CONTENT;
+            return x.m_content < y.m_content;
         }
     };
 };

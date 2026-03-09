@@ -22,6 +22,7 @@
 #include "base/defs.h"
 
 #include "table/TrxSplitTable.h"
+#include "data/_DataEnum.h"
 #include "data/TrxSplitData.h"
 
 #include "_ModelBase.h"
@@ -66,6 +67,6 @@ public:
     bool purge_id(int64 id) override;
 
 public:
-    static const wxString refTypeName;
+    static const RefTypeN s_ref_type;
 };
 

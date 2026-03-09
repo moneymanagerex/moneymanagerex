@@ -18,9 +18,9 @@
 
 #include "BudgetPeriodData.h"
 
-BudgetPeriodData::BudgetPeriodData()
+BudgetPeriodData::BudgetPeriodData() :
+    m_id(-1)
 {
-    m_id = -1;
 }
 
 // Convert BudgetPeriodData to BudgetPeriodRow
@@ -37,8 +37,8 @@ BudgetPeriodRow BudgetPeriodData::to_row() const
 // Convert BudgetPeriodRow to BudgetPeriodData
 BudgetPeriodData& BudgetPeriodData::from_row(const BudgetPeriodRow& row)
 {
-    m_id   = row.BUDGETYEARID;   // int64
-    m_name = row.BUDGETYEARNAME; // wxString
+    m_id   = row.BUDGETYEARID;
+    m_name = row.BUDGETYEARNAME;
 
     return *this;
 }

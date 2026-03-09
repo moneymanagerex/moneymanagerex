@@ -45,12 +45,12 @@ TrxShareRow TrxShareData::to_row() const
 // Convert TrxShareRow to TrxShareData
 TrxShareData& TrxShareData::from_row(const TrxShareRow& row)
 {
-    m_id         = row.SHAREINFOID;       // int64
-    m_trx_id     = row.CHECKINGACCOUNTID; // int64
-    m_number     = row.SHARENUMBER;       // double
-    m_price      = row.SHAREPRICE;        // double
-    m_commission = row.SHARECOMMISSION;   // double
-    m_lot        = row.SHARELOT;          // wxString
+    m_id         = row.SHAREINFOID;
+    m_trx_id     = row.CHECKINGACCOUNTID;
+    m_number     = row.SHARENUMBER;
+    m_price      = row.SHAREPRICE;
+    m_commission = row.SHARECOMMISSION;
+    m_lot        = row.SHARELOT;
 
     return *this;
 }

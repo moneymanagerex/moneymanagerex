@@ -148,16 +148,19 @@ void BudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
         currYearText << "-" << currMonthText;
     }
 
-    if (BudgetPeriodModel::instance().get_name_id(currYearText) != -1) {   
-        wxMessageBox(_t("Budget Year already exists")
-            , _t("Budget Entry Details"), wxICON_WARNING);
+    if (BudgetPeriodModel::instance().get_name_id_n(currYearText) > 0) {   
+        wxMessageBox(
+            _t("Budget Year already exists"),
+            _t("Budget Entry Details"),
+            wxICON_WARNING
+        );
         return;
     }
     else {
         BudgetPeriodModel::instance().ensure_name(currYearText);
         if (baseYear != "None" && !baseYear.empty()) {
-            int64 baseYearID = BudgetPeriodModel::instance().get_name_id(baseYear);
-            int64 newYearID  = BudgetPeriodModel::instance().get_name_id(currYearText);
+            int64 baseYearID = BudgetPeriodModel::instance().get_name_id_n(baseYear);
+            int64 newYearID  = BudgetPeriodModel::instance().get_name_id_n(currYearText);
             BudgetModel::instance().copyBudgetYear(newYearID, baseYearID);
         }
     }

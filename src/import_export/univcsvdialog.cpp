@@ -303,19 +303,19 @@ void mmUnivCSVDialog::CreateControls()
         csvFieldCandicate_->Append(wxGetTranslation(it.second.first), new mmListBoxItem(it.first, it.second.first));
 
     //Custom Fields
-    FieldModel::DataA fields = FieldModel::instance().find(
-        FieldCol::REFTYPE(TrxModel::refTypeName)
+    FieldModel::DataA field_a = FieldModel::instance().find(
+        FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())
     );
-    if (!fields.empty()) {
-        std::sort(fields.begin(), fields.end(), FieldData::SorterByDESCRIPTION());
+    if (!field_a.empty()) {
+        std::sort(field_a.begin(), field_a.end(), FieldData::SorterByDESCRIPTION());
         int customField = 1;    // Start of custom fields numbering
-        for (const FieldData& entry : fields) {
+        for (const FieldData& field_d : field_a) {
             // Can't use an enum for the field index since there can be infinite custom fields
             // Instead we offset the last enum by a custom field offset and store the custom field id
             int csvField = UNIV_CSV_LAST + customField;
-            CSVFieldName_[csvField].first = entry.DESCRIPTION;
-            CSVFieldName_[csvField].second = entry.FIELDID.GetValue();
-            csvFieldCandicate_->Append(entry.DESCRIPTION, new mmListBoxItem(csvField, entry.DESCRIPTION));
+            CSVFieldName_[csvField].first = field_d.m_description;
+            CSVFieldName_[csvField].second = field_d.m_id.GetValue();
+            csvFieldCandicate_->Append(field_d.m_description, new mmListBoxItem(csvField, field_d.m_description));
             customField++;
         }
     }
@@ -740,7 +740,7 @@ void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent&)
         wxString selectedCategname = value.GetString();
         id = m_CSVcategoryNames[selectedCategname];
         if (id == -1) {
-            std::map<wxString, int64 > categories = CategoryModel::all_categories();
+            std::map<wxString, int64 > categories = CategoryModel::instance().all_categories();
             for (const auto& category : categories)
             {
                 if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
@@ -1372,17 +1372,19 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder, wxString& message)
         }
     }
 
-    if (holder.CategoryID == -1) //The category name is missing in SCV file and not assigned for the payee
-    {
-        const CategoryData* categ = CategoryModel::instance().get_key(_t("Unknown"), int64(-1));
-        if (categ) {
-            holder.CategoryID = categ->m_id;
+    //The category name is missing in SCV file and not assigned for the payee
+    if (holder.CategoryID == -1) {
+        const CategoryData* cat_n = CategoryModel::instance().get_key_data_n(
+            _t("Unknown"), int64(-1)
+        );
+        if (cat_n) {
+            holder.CategoryID = cat_n->m_id;
         }
         else {
-            CategoryData new_category_d = CategoryData();
-            new_category_d.m_name = _t("Unknown");
-            CategoryModel::instance().add_data_n(new_category_d);
-            holder.CategoryID = new_category_d.id();
+            CategoryData new_cat_d = CategoryData();
+            new_cat_d.m_name = _t("Unknown");
+            CategoryModel::instance().add_data_n(new_cat_d);
+            holder.CategoryID = new_cat_d.id();
         }
     }
 
@@ -1458,9 +1460,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     m_reverce_sign = m_choiceAmountFieldSign->GetCurrentSelection() == PositiveIsWithdrawal;
     // A place to store all rejected rows to display after import
     wxString rejectedRows;
-    wxString reftype = TrxModel::refTypeName;
-    for (long nLines = firstRow; nLines < lastRow; nLines++)
-    {
+    for (long nLines = firstRow; nLines < lastRow; nLines++) {
         const wxString& progressMsg = wxString::Format(_t("Transactions imported to account %s: %ld")
             , "'" + acctName + "'", nImportedLines);
         if (!progressDlg.Update(nLines - firstRow, progressMsg))
@@ -1549,20 +1549,21 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         if (!holder.customFieldData.empty()) {
             for (const auto& field : holder.customFieldData) {
                 FieldValueData new_fv_d = FieldValueData();
-                new_fv_d.FIELDID = field.first;
-                new_fv_d.REFID   = new_trx_d.m_id;
-                new_fv_d.CONTENT = field.second;
+                new_fv_d.m_field_id = field.first;
+                new_fv_d.m_ref_type = TrxModel::s_ref_type;
+                new_fv_d.m_ref_id   = new_trx_d.m_id;
+                new_fv_d.m_content  = field.second;
                 FieldValueModel::instance().add_data_n(new_fv_d);
             }
         }
 
         // save tags
         if (!holder.tagIDs.empty()) {
-            for (const auto& tag : holder.tagIDs) {
+            for (const auto& tag_id : holder.tagIDs) {
                 TagLinkData new_gl_d = TagLinkData();
-                new_gl_d.REFTYPE = reftype;
-                new_gl_d.REFID   = new_trx_d.m_id;
-                new_gl_d.TAGID   = tag;
+                new_gl_d.m_tag_id   = tag_id;
+                new_gl_d.m_ref_type = TrxModel::s_ref_type;
+                new_gl_d.m_ref_id   = new_trx_d.m_id;
                 TagLinkModel::instance().add_data_n(new_gl_d);
             }
         }
@@ -1692,7 +1693,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         );
 
     const auto split = TrxSplitModel::instance().get_all_id();
-    const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
+    const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
+        TrxModel::s_ref_type
+    );
     int64 fromAccountID = from_account->m_id;
 
     long numRecords = 0;
@@ -1727,7 +1730,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             if (TrxModel::status_id(trx_d) == TrxModel::STATUS_ID_VOID || !trx_d.DELETEDTIME.IsEmpty())
                 continue;
 
-            TrxModel::Full_Data tran(trx_d, split, tags);
+            TrxModel::Full_Data tran(trx_d, split, trxId_glA_m);
             bool has_split = tran.has_split();
             double value = TrxModel::account_flow(trx_d, fromAccountID);
             account_balance += value;
@@ -1783,9 +1786,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             if (category)
                             {
                                 if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->m_parent_id_n != -1)
-                                    entry = wxGetTranslation(CategoryModel::full_name(category->m_parent_id_n, ":"));
+                                    entry = wxGetTranslation(CategoryModel::instance().full_name(category->m_parent_id_n, ":"));
                                 else
-                                    entry = wxGetTranslation(CategoryModel::full_name(category->m_id, ":"));
+                                    entry = wxGetTranslation(CategoryModel::instance().full_name(category->m_id, ":"));
                             }
                             break;
                         case UNIV_CSV_SUBCATEGORY:
@@ -1795,7 +1798,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                         case UNIV_CSV_TAGS:
                         {
                             wxString splitTags;
-                            for (const auto& tag : TagLinkModel::instance().get_ref(TrxSplitModel::refTypeName, tp_d.m_id))
+                            for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
+                                TrxSplitModel::s_ref_type, tp_d.m_id
+                            ))
                                 splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                             entry = tran.TAGNAMES;
                             if (!splitTags.IsEmpty())
@@ -1828,17 +1833,19 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             entry = wxString::Format("%lld", tran.m_id);
                             break;
                         default:
-                            if (it.first > UNIV_CSV_LAST) // Custom Fields
-                            {
+                            // Custom Fields
+                            if (it.first > UNIV_CSV_LAST) {
                                 // Get field content
-                                const FieldValueData* data = FieldValueModel::instance().get_key(CSVFieldName_[it.first].second, trx_d.m_id);
-                                if (data)
-                                {
+                                const FieldValueData* fv_n = FieldValueModel::instance().get_key_data_n(
+                                    CSVFieldName_[it.first].second, TrxModel::s_ref_type, trx_d.m_id
+                                );
+                                if (fv_n) {
                                     // format date fields
-                                    if (FieldModel::type_id(FieldModel::instance().get_id_data_n(data->FIELDID)) == FieldModel::TYPE_ID_DATE)
-                                        entry = mmGetDateTimeForDisplay(data->CONTENT, date_format_);
+                                    const FieldData* field_n = FieldModel::instance().get_id_data_n(fv_n->m_field_id);
+                                    if (field_n->m_type_n.id_n() == FieldTypeN::e_date)
+                                        entry = mmGetDateTimeForDisplay(fv_n->m_content, date_format_);
                                     else
-                                        entry = data->CONTENT;
+                                        entry = fv_n->m_content;
                                 }
                             }
                             break;
@@ -1862,7 +1869,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         const AccountData* account = AccountModel::instance().get_id_data_n(fromAccountID);
         for (const auto& stock_d : stock_a) {
             //If the transaction happened between the dates that the user selected or if the user selected to export all the transactions regardless of date then the row is added to the preview
-            if (StockModel::PURCHASEDATE(stock_d).IsBetween(
+            if (stock_d.m_purchase_date.getDateTime().IsBetween(
                 m_date_picker_start->GetValue(),
                 m_date_picker_end->GetValue()
             ) || m_haveDatesCheckBox->GetValue()==false) {
@@ -1877,10 +1884,10 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                         entry = wxString::Format("%lld", stock_d.m_id);
                         break;
                     case UNIV_CSV_DATE:
-                        entry = mmGetDateTimeForDisplay(StockModel::PURCHASEDATE(stock_d).FormatISODate(), date_format_);
+                        entry = mmGetDateTimeForDisplay(stock_d.m_purchase_date.isoDate(), date_format_);
                         break;
                     case UNIV_CSV_COMPANY_NAME:
-                        entry = StockModel::get_id_name(stock_d.m_id);
+                        entry = StockModel::instance().get_id_name(stock_d.m_id);
                         break;
                     case UNIV_CSV_SYMBOL:
                         entry = stock_d.m_symbol;
@@ -1892,19 +1899,19 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                         entry = std::to_wstring(stock_d.m_purchase_price);
                         break;
                     case UNIV_CSV_TOTAL_COST:
-                        entry = std::to_wstring(StockModel::InvestmentValue(stock_d));
+                        entry = std::to_wstring(stock_d.m_purchase_value);
                         break;
                     case UNIV_CSV_REAL_GAIN:
-                        entry = std::to_wstring(StockModel::RealGainLoss(stock_d));
+                        entry = std::to_wstring(StockModel::instance().calculate_realized_gain(stock_d));
                         break;
                     case UNIV_CSV_UNREAL_GAIN:
-                        entry = std::to_wstring(StockModel::UnrealGainLoss(stock_d));
+                        entry = std::to_wstring(StockModel::instance().calculate_unrealiazed_gain(stock_d));
                         break;
                     case UNIV_CSV_CURRENT_PRICE:
-                        entry = std::to_wstring(StockModel::CurrentValue(stock_d)/stock_d.m_num_shares);
+                        entry = std::to_wstring(stock_d.current_value()/stock_d.m_num_shares);
                         break;
                     case UNIV_CSV_CURRENT_TOTAL_VALUE:
-                        entry = std::to_wstring(StockModel::CurrentValue(stock_d));
+                        entry = std::to_wstring(stock_d.current_value());
                         break;
                     case UNIV_CSV_NOTES:
                         entry = wxString(stock_d.m_notes).Trim();
@@ -2091,7 +2098,9 @@ void mmUnivCSVDialog::update_preview()
 
         if (from_account) {
             const auto split = TrxSplitModel::instance().get_all_id();
-            const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
+            const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
+                TrxModel::s_ref_type
+            );
             int64 fromAccountID = from_account->m_id;
             size_t count = 0;
             int row = 0;
@@ -2117,7 +2126,7 @@ void mmUnivCSVDialog::update_preview()
                     if (TrxModel::getTransDateTime(trx_d).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) ||
                         m_haveDatesCheckBox->GetValue() == false
                     ) {
-                        TrxModel::Full_Data tran(trx_d, split, tags);
+                        TrxModel::Full_Data tran(trx_d, split, trxId_glA_m);
                         bool has_split = tran.has_split();
                         double value = TrxModel::account_flow(trx_d, fromAccountID);
                         account_balance += value;
@@ -2177,9 +2186,9 @@ void mmUnivCSVDialog::update_preview()
                                 case UNIV_CSV_CATEGORY:
                                     if (category) {
                                         if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->m_parent_id_n != -1)
-                                            text << inQuotes(CategoryModel::full_name(category->m_parent_id_n, ":"), delimit);
+                                            text << inQuotes(CategoryModel::instance().full_name(category->m_parent_id_n, ":"), delimit);
                                         else
-                                            text << inQuotes(CategoryModel::full_name(category->m_id, ":"), delimit);
+                                            text << inQuotes(CategoryModel::instance().full_name(category->m_id, ":"), delimit);
                                     }
                                     else text << inQuotes("", delimit);
                                     break;
@@ -2191,8 +2200,9 @@ void mmUnivCSVDialog::update_preview()
                                 case UNIV_CSV_TAGS:
                                 {
                                     wxString splitTags;
-                                    for (const auto& tag :
-                                         TagLinkModel::instance().get_ref(TrxSplitModel::refTypeName, tp_d.m_id))
+                                    for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
+                                            TrxSplitModel::s_ref_type, tp_d.m_id
+                                    ))
                                         splitTags.Append((splitTags.IsEmpty() ? "" : " ") + tag.first);
                                     text << inQuotes(tran.TAGNAMES + (tran.TAGNAMES.IsEmpty() ? "" : " ") + splitTags, delimit);
                                     break;
@@ -2216,16 +2226,16 @@ void mmUnivCSVDialog::update_preview()
                                     text << trx_d.TRANSCODE;
                                     break;
                                 default:
-                                    if (it > UNIV_CSV_LAST) // Custom Fields
-                                    {
-                                        const FieldValueData* data = FieldValueModel::instance().get_key(CSVFieldName_[it].second, trx_d.m_id);
-                                        if (data)
-                                        {
+                                    // Custom Fields
+                                    if (it > UNIV_CSV_LAST) {
+                                        const FieldValueData* fv_n = FieldValueModel::instance().get_key_data_n(CSVFieldName_[it].second, TrxModel::s_ref_type, trx_d.m_id);
+                                        if (fv_n) {
                                             // Format date fields
-                                            if (FieldModel::type_id(FieldModel::instance().get_id_data_n(data->FIELDID)) == FieldModel::TYPE_ID_DATE)
-                                                text << inQuotes(mmGetDateTimeForDisplay(data->CONTENT, date_format_), delimit);
+                                            const FieldData* field_n = FieldModel::instance().get_id_data_n(fv_n->m_field_id);
+                                            if (field_n->m_type_n.id_n() == FieldTypeN::e_date)
+                                                text << inQuotes(mmGetDateTimeForDisplay(fv_n->m_content, date_format_), delimit);
                                             else
-                                                text << inQuotes(data->CONTENT, delimit);
+                                                text << inQuotes(fv_n->m_content, delimit);
                                         }
                                     }
                                     break;
@@ -2265,7 +2275,7 @@ void mmUnivCSVDialog::update_preview()
                 const AccountData* account = AccountModel::instance().get_id_data_n(fromAccountID);
                 for (const auto& stock_d : stock_a) {
                     // If the transaction happened between the dates that the user selected or if the user selected to export all the transactions regardless of date then the row is added to the preview
-                    if (StockModel::PURCHASEDATE(stock_d).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) ||
+                    if (stock_d.m_purchase_date.getDateTime().IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) ||
                         m_haveDatesCheckBox->GetValue() == false
                     ) {
                         int col = 0;
@@ -2276,24 +2286,35 @@ void mmUnivCSVDialog::update_preview()
                         m_list_ctrl_->SetItem(itemIndex, col, buf);
                         m_list_ctrl_->SetItemData(itemIndex, row);
 
-                        const CurrencyData* currency = AccountModel::instance().get_data_currency_p(*from_account);
-                        const wxString shareTotal = CurrencyModel::toStringNoFormatting(stock_d.m_num_shares, currency);
-                        const wxString avgSharePrice = CurrencyModel::toStringNoFormatting(stock_d.m_purchase_price, currency);
-                        const wxString totalCost = CurrencyModel::toStringNoFormatting(StockModel::InvestmentValue(stock_d), currency);
-                        const wxString realGain = CurrencyModel::toStringNoFormatting(StockModel::RealGainLoss(stock_d), currency);
+                        const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(*from_account);
+                        const wxString shareTotal = CurrencyModel::toStringNoFormatting(
+                            stock_d.m_num_shares,
+                            currency_n
+                        );
+                        const wxString avgSharePrice = CurrencyModel::toStringNoFormatting(
+                            stock_d.m_purchase_price,
+                            currency_n
+                        );
+                        const wxString totalCost = CurrencyModel::toStringNoFormatting(
+                            stock_d.m_purchase_value,
+                            currency_n
+                        );
+                        const wxString realGain = CurrencyModel::toStringNoFormatting(
+                            StockModel::instance().calculate_realized_gain(stock_d),
+                             currency_n
+                        );
                         const wxString unrealGain = CurrencyModel::toStringNoFormatting(
-                            StockModel::UnrealGainLoss(stock_d), currency
+                            StockModel::instance().calculate_unrealiazed_gain(stock_d), currency_n
                         );
                         const wxString currentPrice = CurrencyModel::toStringNoFormatting(
-                            StockModel::CurrentValue(stock_d)/stock_d.m_num_shares, currency
+                            stock_d.current_value()/stock_d.m_num_shares, currency_n
                         );
                         const wxString currentTotalValue = CurrencyModel::toStringNoFormatting(
-                            StockModel::CurrentValue(stock_d), currency
+                            stock_d.current_value(), currency_n
                         );
-                        const wxString commission = CurrencyModel::toStringNoFormatting(stock_d.m_commission, currency);
+                        const wxString commission = CurrencyModel::toStringNoFormatting(stock_d.m_commission, currency_n);
 
-                        for (const auto& field : csvFieldOrder_)
-                        {
+                        for (const auto& field : csvFieldOrder_) {
                             int it = field.first;
                             wxString text;
                             switch (it)
@@ -2302,10 +2323,10 @@ void mmUnivCSVDialog::update_preview()
                                 text << wxString::Format("%lld", stock_d.m_id);
                                 break;
                             case UNIV_CSV_DATE:
-                                text << inQuotes(mmGetDateTimeForDisplay(StockModel::PURCHASEDATE(stock_d).FormatISODate(), date_format_), delimit);
+                                text << inQuotes(mmGetDateTimeForDisplay(stock_d.m_purchase_date.isoDate(), date_format_), delimit);
                                 break;
                             case UNIV_CSV_COMPANY_NAME:
-                                text << inQuotes(StockModel::get_id_name(stock_d.m_id), delimit);
+                                text << inQuotes(StockModel::instance().get_id_name(stock_d.m_id), delimit);
                                 break;
                             case UNIV_CSV_SYMBOL:
                                 text << inQuotes(stock_d.m_symbol, delimit);
@@ -2719,24 +2740,25 @@ void mmUnivCSVDialog::validatePayees() {
     }
 }
 
-void mmUnivCSVDialog::validateCategories() {
-    for(const auto& catname : m_CSVcategoryNames) {
+void mmUnivCSVDialog::validateCategories()
+{
+    for (const auto& catname : m_CSVcategoryNames) {
         wxString search_name = catname.first;
-        int64 parentID = -1;
+        int64 parent_id = -1;
         // delimit string by ":"
         wxStringTokenizer categs = wxStringTokenizer(search_name, ":");
         // check each level of category exists
-        const CategoryData* category_n = nullptr;
+        const CategoryData* cat_n = nullptr;
         while (categs.HasMoreTokens()) {
-            wxString categname = categs.GetNextToken();
-            category_n = CategoryModel::instance().get_key(categname, parentID);
-            if (!category_n)
+            wxString cat_name = categs.GetNextToken();
+            cat_n = CategoryModel::instance().get_key_data_n(cat_name, parent_id);
+            if (!cat_n)
                 break;
-            parentID = category_n->m_id;
+            parent_id = cat_n->m_id;
         }
 
-        if (category_n)
-            m_CSVcategoryNames[search_name] = category_n->m_id;
+        if (cat_n)
+            m_CSVcategoryNames[search_name] = cat_n->m_id;
     }
 }
 
@@ -2759,12 +2781,16 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         break;
     }
     case UNIV_CSV_PAYEE:
-        if (m_CSVpayeeNames.find(token) != m_CSVpayeeNames.end() && std::get<0>(m_CSVpayeeNames[token]) != -1)
-        {
+        if (m_CSVpayeeNames.find(token) != m_CSVpayeeNames.end() &&
+            std::get<0>(m_CSVpayeeNames[token]) != -1
+        ) {
             holder.PayeeID = std::get<0>(m_CSVpayeeNames[token]);
-            if (payeeMatchAddNotes_->IsChecked() && !std::get<2>(m_CSVpayeeNames[token]).IsEmpty())
-            {
-                holder.PayeeMatchNotes = wxString::Format(_t("%1$s matched by %2$s"), token, std::get<2>(m_CSVpayeeNames[token]));
+            if (payeeMatchAddNotes_->IsChecked() &&
+                !std::get<2>(m_CSVpayeeNames[token]).IsEmpty()
+            ) {
+                holder.PayeeMatchNotes = wxString::Format(_t("%1$s matched by %2$s"),
+                    token, std::get<2>(m_CSVpayeeNames[token])
+                );
             }
         }
         else {
@@ -2779,7 +2805,11 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     case UNIV_CSV_AMOUNT:
         mmTrimAmount(token, decimal_, ".").ToCDouble(&amount);
 
-        if (find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(), [](const std::pair<int, int>& element) {return element.first == UNIV_CSV_TYPE; }) == csvFieldOrder_.end()) {
+        if (find_if(csvFieldOrder_.begin(), csvFieldOrder_.end(),
+            [](const std::pair<int, int>& element) {
+                return element.first == UNIV_CSV_TYPE;
+            }
+        ) == csvFieldOrder_.end()) {
             if ((amount > 0.0 && !m_reverce_sign) || (amount <= 0.0 && m_reverce_sign)) {
                 holder.Type = TrxModel::TYPE_NAME_DEPOSIT;
             }
@@ -2794,29 +2824,31 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         wxRegEx categDelimiterRegex(" ?: ?");
         categDelimiterRegex.Replace(&token, ":");
         // check if we already have this category
-        if (m_CSVcategoryNames.find(token) != m_CSVcategoryNames.end() && m_CSVcategoryNames[token] != -1)
+        if (m_CSVcategoryNames.find(token) != m_CSVcategoryNames.end() &&
+            m_CSVcategoryNames[token] != -1
+        )
             holder.CategoryID = m_CSVcategoryNames[token];
-        else // create category and any missing parent categories
-        {
-            const CategoryData* category_n = nullptr;
+        // create category and any missing parent categories
+        else {
+            const CategoryData* cat_n = nullptr;
             int64 parentID = -1;
             wxStringTokenizer tokenizer = wxStringTokenizer(token, ":");
             while (tokenizer.HasMoreTokens()) {
-                wxString categname = tokenizer.GetNextToken().Trim().Trim(false);
-                category_n = CategoryModel::instance().get_key(categname, parentID);
-                if (!category_n) {
-                    CategoryData new_category_d = CategoryData();
-                    new_category_d.m_name        = categname;
-                    new_category_d.m_parent_id_n = parentID;
-                    CategoryModel::instance().add_data_n(new_category_d);
-                    category_n = CategoryModel::instance().get_id_data_n(new_category_d.id());
+                wxString cat_name = tokenizer.GetNextToken().Trim().Trim(false);
+                cat_n = CategoryModel::instance().get_key_data_n(cat_name, parentID);
+                if (!cat_n) {
+                    CategoryData new_cat_d = CategoryData();
+                    new_cat_d.m_name        = cat_name;
+                    new_cat_d.m_parent_id_n = parentID;
+                    CategoryModel::instance().add_data_n(new_cat_d);
+                    cat_n = CategoryModel::instance().get_id_data_n(new_cat_d.id());
                 }
-                parentID = category_n->m_id;
+                parentID = cat_n->m_id;
             }
 
-            if (category_n) {
-                holder.CategoryID = category_n->m_id;
-                m_CSVcategoryNames[token] = category_n->m_id;
+            if (cat_n) {
+                holder.CategoryID = cat_n->m_id;
+                m_CSVcategoryNames[token] = cat_n->m_id;
             }
         }
         break;
@@ -2827,18 +2859,20 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             return;
 
         token.Replace(":", "|");
-        wxString categname = CategoryModel::full_name(holder.CategoryID);
+        wxString categname = CategoryModel::instance().full_name(holder.CategoryID);
         categname.Append(":" + token);
-        if (m_CSVcategoryNames.find(categname) != m_CSVcategoryNames.end() && m_CSVcategoryNames[categname] != -1)
+        if (m_CSVcategoryNames.find(categname) != m_CSVcategoryNames.end() &&
+            m_CSVcategoryNames[categname] != -1
+        )
             holder.CategoryID = m_CSVcategoryNames[categname];
         else {
-            CategoryData new_category_d = CategoryData();
-            new_category_d.m_name        = token;
-            new_category_d.m_parent_id_n = holder.CategoryID;
-            CategoryModel::instance().add_data_n(new_category_d);
+            CategoryData new_cat_d = CategoryData();
+            new_cat_d.m_name        = token;
+            new_cat_d.m_parent_id_n = holder.CategoryID;
+            CategoryModel::instance().add_data_n(new_cat_d);
 
-            holder.CategoryID = new_category_d.m_id;
-            m_CSVcategoryNames[categname] = new_category_d.m_id;
+            holder.CategoryID = new_cat_d.m_id;
+            m_CSVcategoryNames[categname] = new_cat_d.m_id;
         }
         break;
     }
@@ -2846,15 +2880,14 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
     {
         // split the tag string at space characters
         wxStringTokenizer tokenizer = wxStringTokenizer(token, " ");
-        while (tokenizer.HasMoreTokens())
-        {
-            wxString tagname = tokenizer.GetNextToken();
+        while (tokenizer.HasMoreTokens()) {
+            wxString tag_name = tokenizer.GetNextToken();
             // check for an existing tag
-            const TagData* tag_n = TagModel::instance().get_key(tagname);
+            const TagData* tag_n = TagModel::instance().get_name_data_n(tag_name);
             if (!tag_n) {
                 // create a new tag if we didn't find one
                 TagData new_tag_d = TagData();
-                new_tag_d.m_name = tagname;
+                new_tag_d.m_name = tag_name;
                 TagModel::instance().save_data_n(new_tag_d);
                 tag_n = TagModel::instance().get_id_data_n(new_tag_d.id());
             }
@@ -3134,43 +3167,41 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
     const wxArrayString bool_false_array(4, bool_false);
 
     if (!value.IsEmpty()) {
-        const FieldData* data = FieldModel::instance().get_id_data_n(fieldId);
-        wxString type_string = FieldModel::type_name(FieldModel::type_id(data));
-        switch (FieldModel::type_id(data))
-        {
+        const FieldData* field_n = FieldModel::instance().get_id_data_n(fieldId);
+        wxString type_name = field_n->m_type_n.name_n();
+        switch (field_n->m_type_n.id_n()) {
             // Check if string can be read as an integer. Will fail if passed a double.
-        case FieldModel::TYPE_ID_INTEGER:
+        case FieldTypeN::e_integer:
             value = cleanseNumberString(value, true);
-            if (!value.ToCLong(&int_val))
-            {
-                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, data->DESCRIPTION, type_string);
+            if (!value.ToCLong(&int_val)) {
+                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
                 is_valid = false;
             }
             else value = wxString::Format("%i", int_val);
             break;
 
             // Check if string can be read as a double
-        case FieldModel::TYPE_ID_DECIMAL:
+        case FieldTypeN::e_decimal:
             value = cleanseNumberString(value, true);
             if (!value.ToCDouble(&double_val))
             {
-                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, data->DESCRIPTION, type_string);
+                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
                 is_valid = false;
             }
             else
             {
                 // round to required precision
-                int precision = FieldModel::getDigitScale(data->PROPERTIES);
+                int precision = FieldModel::getDigitScale(field_n->m_properties);
                 value = wxString::Format("%.*f", precision, double_val);
             }
             break;
 
             // Check if string can be interpreted as "True" or "False" (case insensitive)    
-        case FieldModel::TYPE_ID_BOOLEAN:
+        case FieldTypeN::e_boolean:
             if (bool_true_array.Index(value, false) == wxNOT_FOUND)
                 if (bool_false_array.Index(value, false) == wxNOT_FOUND)
                 {
-                    message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, data->DESCRIPTION, type_string);
+                    message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
                     is_valid = false;
                 }
                 else value = "FALSE";
@@ -3178,20 +3209,20 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
             break;
 
             // Check if string is a valid choice (case insensitive)
-        case FieldModel::TYPE_ID_SINGLECHOICE:
-            choices = FieldModel::getChoices(data->PROPERTIES);
+        case FieldTypeN::e_single_choice:
+            choices = FieldModel::getChoices(field_n->m_properties);
             index = choices.Index(value, false);
             if (index == wxNOT_FOUND)
             {
-                message << " " << wxString::Format(_t("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), value, type_string, data->DESCRIPTION);
+                message << " " << wxString::Format(_t("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), value, type_name, field_n->m_description);
                 is_valid = false;
             }
             else value = choices[index];
             break;
 
             // Check if all of the ';' delimited strings are valid choices (case insensitive)
-        case FieldModel::TYPE_ID_MULTICHOICE:
-            choices = FieldModel::getChoices(data->PROPERTIES);
+        case FieldTypeN::e_multi_choice:
+            choices = FieldModel::getChoices(field_n->m_properties);
             tokenizer = wxStringTokenizer(value, ";");
             value.Clear();
             while (tokenizer.HasMoreTokens())
@@ -3204,17 +3235,17 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
                     if (tokenizer.HasMoreTokens()) value.Append(";");
                 }
                 else {
-                    message << " " << wxString::Format(_t("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), token, type_string, data->DESCRIPTION);
+                    message << " " << wxString::Format(_t("Value %1$s for %2$s custom field '%3$s' is not a valid selection."), token, type_name, field_n->m_description);
                     is_valid = false;
                 }
             }
             break;
 
             // Parse the date using the user specified format. Convert to ISO date
-        case FieldModel::TYPE_ID_DATE:
+        case FieldTypeN::e_date:
             if (!mmParseDisplayStringToDate(date, value, date_format_))
             {
-                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, data->DESCRIPTION, type_string) <<
+                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name) <<
                     " " << wxString::Format(_t("Confirm format matches selection %s."), date_format_);
                 is_valid = false;
             }
@@ -3222,10 +3253,10 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
             break;
 
             // Parse the time. Convert to ISO Format
-        case FieldModel::TYPE_ID_TIME:
+        case FieldTypeN::e_time:
             if (!time.ParseTime(value))
             {
-                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, data->DESCRIPTION, type_string);
+                message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
                 is_valid = false;
             }
             else value = time.FormatISOTime();
@@ -3235,14 +3266,14 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
         }
 
         // if regex check is enabled, perform regex validation
-        const wxString regExStr = FieldModel::getRegEx(data->PROPERTIES);
+        const wxString regExStr = FieldModel::getRegEx(field_n->m_properties);
         if (!regExStr.empty())
         {
             wxRegEx regEx(regExStr, wxRE_EXTENDED);
 
             if (!regEx.Matches(value))
             {
-                message << " " << wxString::Format(_t("Value %1$s does not match regex %2$s for custom field '%3$s'."), value, regExStr, data->DESCRIPTION);
+                message << " " << wxString::Format(_t("Value %1$s does not match regex %2$s for custom field '%3$s'."), value, regExStr, field_n->m_description);
                 is_valid = false;
             }
         }

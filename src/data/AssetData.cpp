@@ -54,17 +54,17 @@ AssetRow AssetData::to_row() const
 // Convert AssetRow to AssetData
 AssetData& AssetData::from_row(const AssetRow& row)
 {
-    m_id            = row.ASSETID;                          // int64
-    m_type          = AssetType(row.ASSETTYPE);             // wxString
-    m_status        = AssetStatus(row.ASSETSTATUS);         // wxString
-    m_name          = row.ASSETNAME;                        // wxString
-    m_start_date    = mmDate(row.STARTDATE);                // wxString
-    m_currency_id_n = row.CURRENCYID;                       // int64
-    m_value         = row.VALUE;                            // double
-    m_change        = AssetChange(row.VALUECHANGE);         // wxString
-    m_change_mode   = AssetChangeMode(row.VALUECHANGEMODE); // wxString
-    m_change_rate   = row.VALUECHANGERATE;                  // double
-    m_notes         = row.NOTES;                            // wxString
+    m_id            = row.ASSETID;
+    m_type          = AssetType(row.ASSETTYPE);
+    m_status        = AssetStatus(row.ASSETSTATUS);
+    m_name          = row.ASSETNAME;
+    m_start_date    = mmDate(row.STARTDATE);
+    m_currency_id_n = row.CURRENCYID;
+    m_value         = row.VALUE;
+    m_change        = AssetChange(row.VALUECHANGE);
+    m_change_mode   = AssetChangeMode(row.VALUECHANGEMODE);
+    m_change_rate   = row.VALUECHANGERATE;
+    m_notes         = row.NOTES;
 
     return *this;
 }

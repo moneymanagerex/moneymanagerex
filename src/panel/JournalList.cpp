@@ -334,19 +334,19 @@ void JournalList::setColumnsInfo()
     if (m_cp->isDeletedTrans())
         m_col_id_nr.push_back(LIST_ID_DELETEDTIME);
 
-    const auto& ref_type = TrxModel::refTypeName;
     int col_id = LIST_ID_UDFC01;
-    for (const auto& udfc_entry : FieldModel::UDFC_FIELDS()) {
+    for (const auto& udfc : FieldModel::UDFC_FIELDS()) {
         if (col_id > LIST_ID_UDFC05) break;
-        if (udfc_entry.empty()) continue;
+        if (udfc.empty())
+            continue;
 
-        const auto& name = FieldModel::getUDFCName(ref_type, udfc_entry);
-        if (!name.IsEmpty() && name != udfc_entry) {
+        const auto& name = FieldModel::instance().get_udfc_name_n(TrxModel::s_ref_type, udfc);
+        if (!name.IsEmpty() && name != udfc) {
             m_col_info_id[col_id].header = name;
-            const auto& type = FieldModel::getUDFCType(ref_type, udfc_entry);
-            if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+            const auto& type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, udfc).id_n();
+            if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
                 m_col_info_id[col_id].format = _FR;
-            else if (type == FieldModel::TYPE_ID_BOOLEAN)
+            else if (type_id_n == FieldTypeN::e_boolean)
                 m_col_info_id[col_id].format = _FC;
             m_col_id_nr.push_back(col_id);
         }
@@ -457,8 +457,7 @@ void JournalList::sortBy(Compare comp, bool ascend)
 
 void JournalList::sortTransactions(int col_id, bool ascend)
 {
-    const auto& ref_type = TrxModel::refTypeName;
-    FieldModel::TYPE_ID type;
+    mmChoiceIdN type_id_n;
 
     switch (col_id) {
     case JournalList::LIST_ID_SN:
@@ -513,36 +512,36 @@ void JournalList::sortTransactions(int col_id, bool ascend)
         sortBy(TrxData::SorterByDELETEDTIME(), ascend);
         break;
     case JournalList::LIST_ID_UDFC01:
-        type = FieldModel::getUDFCType(ref_type, "UDFC01");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC01").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC01_val, ascend);
         else
             sortBy(SorterByUDFC01, ascend);
         break;
     case JournalList::LIST_ID_UDFC02:
-        type = FieldModel::getUDFCType(ref_type, "UDFC02");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC02").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC02_val, ascend);
         else
             sortBy(SorterByUDFC02, ascend);
         break;
     case JournalList::LIST_ID_UDFC03:
-        type = FieldModel::getUDFCType(ref_type, "UDFC03");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC03").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC03_val, ascend);
         else
             sortBy(SorterByUDFC03, ascend);
         break;
     case JournalList::LIST_ID_UDFC04:
-        type = FieldModel::getUDFCType(ref_type, "UDFC04");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC04").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC04_val, ascend);
         else
             sortBy(SorterByUDFC04, ascend);
         break;
     case JournalList::LIST_ID_UDFC05:
-        type = FieldModel::getUDFCType(ref_type, "UDFC05");
-        if (type == FieldModel::TYPE_ID_DECIMAL || type == FieldModel::TYPE_ID_INTEGER)
+        type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC05").id_n();
+        if (type_id_n == FieldTypeN::e_decimal || type_id_n == FieldTypeN::e_integer)
             sortBy(SorterByUDFC05_val, ascend);
         else
             sortBy(SorterByUDFC05, ascend);
@@ -764,7 +763,7 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 
         menu.Append(MENU_TREEPOPUP_MOVE2, (1 == selected) ? _tu("&Move Transaction…") : _tu("&Move Transactions…"));
         if (is_nothing_selected || type_transfer ||
-            AccountModel::instance().find_money_type_cnt() < 2 ||
+            AccountModel::instance().find_money_type_c() < 2 ||
             is_foreign
         )
             menu.Enable(MENU_TREEPOPUP_MOVE2, false);
@@ -809,7 +808,6 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
     if (row < m_journal_xa.size() && (flags & wxLIST_HITTEST_ONITEM) && col_nr < getColNrSize()) {
         int col_id = getColId_Nr(col_nr);
         wxString menuItemText;
-        wxString refType = TrxModel::refTypeName;
         wxDateTime datetime;
         wxString dateFormat = PrefModel::instance().getDateFormat();
 
@@ -856,8 +854,11 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             if (!m_journal_xa[row].has_split() && m_journal_xa[row].has_tags()) {
                 copyText_ = menuItemText = m_journal_xa[row].TAGNAMES;
                 // build the tag filter json
-                for (const auto& tag : m_journal_xa[row].m_tags) {
-                    rightClickFilter_ += (rightClickFilter_.IsEmpty() ? "{\n\"TAGS\": [\n" : ",\n") + wxString::Format("%lld", tag.TAGID);
+                for (const auto& gl_d : m_journal_xa[row].m_tags) {
+                    rightClickFilter_ += (rightClickFilter_.IsEmpty()
+                        ? "{\n\"TAGS\": [\n"
+                        : ",\n"
+                    ) + wxString::Format("%lld", gl_d.m_tag_id);
                 }
                 rightClickFilter_ += "\n]\n}";
             }
@@ -909,23 +910,33 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             break;
         case LIST_ID_UDFC01:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[0];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC01"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC01")
+            );
             break;
         case LIST_ID_UDFC02:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[1];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC02"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC02")
+            );
             break;
         case LIST_ID_UDFC03:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[2];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC03"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC03")
+            );
             break;
         case LIST_ID_UDFC04:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[3];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC04"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC04")
+            );
             break;
         case LIST_ID_UDFC05:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[4];
-            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}", FieldModel::getUDFCID(refType, "UDFC05"));
+            rightClickFilter_ = wxString::Format("{\n\"CUSTOM%lld\": \"" + menuItemText + "\"\n}",
+                FieldModel::instance().get_udfc_id_n(TrxModel::s_ref_type, "UDFC05")
+            );
             break;
         default:
             break;
@@ -1162,7 +1173,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
     if (msgDlg.ShowModal() == wxID_YES) {
         wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
-        std::set<std::pair<wxString, int64>> assetStockAccts;
+        std::set<std::pair<RefTypeN, int64>> assetStockAccts;
         TrxModel::instance().db_savepoint();
         AttachmentModel::instance().db_savepoint();
         TrxSplitModel::instance().db_savepoint();
@@ -1186,7 +1197,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
                 );
                 if (!tl_a.empty()) {
-                    assetStockAccts.emplace(tl_a.at(0).LINKTYPE, tl_a.at(0).LINKRECORDID);
+                    assetStockAccts.emplace(tl_a.at(0).m_ref_type, tl_a.at(0).m_ref_id);
                 }
             }
             m_selectedForCopy.erase(
@@ -1202,12 +1213,12 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
 
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
-                if (i.first == "Asset")
+                if (i.first == AssetModel::s_ref_type)
                     TrxLinkModel::UpdateAssetValue(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
-                else if (i.first == "Stock")
-                    StockModel::UpdatePosition(
+                else if (i.first == StockModel::s_ref_type)
+                    StockModel::instance().update_data_position(
                         StockModel::instance().unsafe_get_id_data_n(i.second)
                     );
             }
@@ -1242,7 +1253,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
     );
 
     if (msgDlg.ShowModal() == wxID_YES) {
-        std::set<std::pair<wxString, int64>> assetStockAccts;
+        std::set<std::pair<RefTypeN, int64>> assetStockAccts;
         for (const auto& id : m_selected_id) {
             if (!id.second) {
                 TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
@@ -1252,19 +1263,19 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
                 );
                 if (!tl_a.empty()) {
-                    assetStockAccts.emplace(tl_a.at(0).LINKTYPE, tl_a.at(0).LINKRECORDID);
+                    assetStockAccts.emplace(tl_a.at(0).m_ref_type, tl_a.at(0).m_ref_id);
                 }
             }
         }
         m_selected_id.clear();
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
-                if (i.first == "Asset")
+                if (i.first == AssetModel::s_ref_type)
                     TrxLinkModel::UpdateAssetValue(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
-                else if (i.first == "Stock")
-                    StockModel::UpdatePosition(
+                else if (i.first == StockModel::s_ref_type)
+                    StockModel::instance().update_data_position(
                         StockModel::instance().unsafe_get_id_data_n(i.second)
                     );
             }
@@ -1284,7 +1295,7 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
         wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
     );
     if (msgDlg.ShowModal() == wxID_YES) {
-        std::set<std::pair<wxString, int64>> assetStockAccts;
+        std::set<std::pair<RefTypeN, int64>> assetStockAccts;
         for (const auto& tran : this->m_journal_xa) {
             if (tran.m_repeat_num) continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(tran.m_id);
@@ -1294,17 +1305,17 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
                 TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
             );
             if (!tl_a.empty()) {
-                assetStockAccts.emplace(tl_a.at(0).LINKTYPE, tl_a.at(0).LINKRECORDID);
+                assetStockAccts.emplace(tl_a.at(0).m_ref_type, tl_a.at(0).m_ref_id);
             }
         }
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
-                if (i.first == "Asset")
+                if (i.first == AssetModel::s_ref_type)
                     TrxLinkModel::UpdateAssetValue(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
-                else if (i.first == "Stock")
-                    StockModel::UpdatePosition(
+                else if (i.first == StockModel::s_ref_type)
+                    StockModel::instance().update_data_position(
                         StockModel::instance().unsafe_get_id_data_n(i.second)
                     );
             }
@@ -1323,13 +1334,15 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
 
     // edit multiple transactions
     if (m_selected_id.size() > 1) {
-        std::vector<int64> transid;
+        std::vector<int64> trx_id_a;
         for (const auto& id : m_selected_id)
             if (!id.second)
-                transid.push_back(id.first);
-        if (transid.size() == 0) return;
-        if (!checkForClosedAccounts()) return;
-        TrxUpdateDialog dlg(this, transid);
+                trx_id_a.push_back(id.first);
+        if (trx_id_a.size() == 0)
+            return;
+        if (!checkForClosedAccounts())
+            return;
+        TrxUpdateDialog dlg(this, trx_id_a);
         if (dlg.ShowModal() == wxID_OK)
             refreshVisualList();
         return;
@@ -1338,21 +1351,23 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
     // edit single transaction
     Journal::IdRepeat id = m_selected_id[0];
     if (!id.second) {
-        TrxData* checking_entry = TrxModel::instance().unsafe_get_id_data_n(id.first);
-        if (checkTransactionLocked(checking_entry->m_account_id, checking_entry->TRANSDATE))
+        TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
+        if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE))
             return;
 
         if (!TrxLinkModel::instance().find(
             TrxLinkCol::CHECKINGACCOUNTID(id.first)
         ).empty()) {
-            TrxLinkData translink = TrxLinkModel::TranslinkRecord(id.first);
-            if (translink.LINKTYPE == StockModel::refTypeName) {
-                TrxShareDialog dlg(this, &translink, checking_entry);
+            const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(id.first);
+            if (tl_n && tl_n->m_ref_type == StockModel::s_ref_type) {
+                TrxLinkData tl_d = *tl_n;
+                TrxShareDialog dlg(this, &tl_d, trx_n);
                 if (dlg.ShowModal() == wxID_OK)
                     refreshVisualList();
             }
-            else if (translink.LINKTYPE == AssetModel::refTypeName) {
-                AssetDialog dlg(this, &translink, checking_entry);
+            else if (tl_n && tl_n->m_ref_type == AssetModel::s_ref_type) {
+                TrxLinkData tl_d = *tl_n;
+                AssetDialog dlg(this, &tl_d, trx_n);
                 if (dlg.ShowModal() == wxID_OK)
                     refreshVisualList();
             }
@@ -1474,10 +1489,10 @@ void JournalList::onOrganizeAttachments(wxCommandEvent& /*event*/)
     findSelectedTransactions();
     Journal::IdRepeat id = m_selected_id[0];
 
-    const wxString refType = !id.second ?
-        TrxModel::refTypeName :
-        SchedModel::refTypeName;
-    AttachmentDialog dlg(this, refType, id.first);
+    RefTypeN ref_type = !id.second ?
+        TrxModel::s_ref_type :
+        SchedModel::s_ref_type;
+    AttachmentDialog dlg(this, ref_type, id.first);
     dlg.ShowModal();
     refreshVisualList();
 }
@@ -1704,38 +1719,36 @@ int64 JournalList::onPaste(const TrxData* tran)
     )
     new_trx.m_account_id = m_cp->m_account_id;
     TrxModel::instance().save_trx_n(new_trx);
-    int64 transactionID = new_trx.id();
-    m_pasted_id.push_back({transactionID, 0});   // add the newly pasted transaction
+    int64 new_trx_id = new_trx.id();
+    m_pasted_id.push_back({new_trx_id, 0});   // add the newly pasted transaction
 
     // Clone transaction tags
     TagLinkModel::DataA new_gl_a;
-    wxString reftype = TrxModel::refTypeName;
     for (const auto& tl_d : TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(reftype),
+        TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
         TagLinkCol::REFID(tran->m_id)
     )) {
         TagLinkData new_gl_d;
         new_gl_d.clone_from(tl_d);
-        new_gl_d.REFID = transactionID;
+        new_gl_d.m_ref_id = new_trx_id;
         new_gl_a.push_back(new_gl_d);
     }
 
     // Clone split transactions
-    reftype = TrxSplitModel::refTypeName;
     for (const auto& tp_d : TrxModel::find_split(*tran)) {
         TrxSplitData new_tp_d;
         new_tp_d.clone_from(tp_d);
-        new_tp_d.m_trx_id = transactionID;
+        new_tp_d.m_trx_id = new_trx_id;
         TrxSplitModel::instance().add_data_n(new_tp_d);
 
         // Clone split tags
         for (const auto& tl_d : TagLinkModel::instance().find(
-            TagLinkCol::REFTYPE(reftype),
+            TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
             TagLinkCol::REFID(tp_d.m_id)
         )) {
             TagLinkData new_gl_d;
             new_gl_d.clone_from(tl_d);
-            new_gl_d.REFID = new_tp_d.id();
+            new_gl_d.m_ref_id = new_tp_d.id();
             new_gl_a.push_back(new_gl_d);
         }
     }
@@ -1749,9 +1762,10 @@ int64 JournalList::onPaste(const TrxData* tran)
         FieldValueModel::instance().db_savepoint();
         for (const auto& fv_d : fv_a) {
             FieldValueData new_fv_d = FieldValueData();
-            new_fv_d.FIELDID = fv_d.FIELDID;
-            new_fv_d.REFID   = transactionID;
-            new_fv_d.CONTENT = fv_d.CONTENT;
+            new_fv_d.m_field_id = fv_d.m_field_id;
+            new_fv_d.m_ref_type = RefTypeN(RefTypeN::e_trx);
+            new_fv_d.m_ref_id   = new_trx_id;
+            new_fv_d.m_content  = fv_d.m_content;
             FieldValueModel::instance().add_data_n(new_fv_d);
         }
         FieldValueModel::instance().db_release_savepoint();
@@ -1759,11 +1773,12 @@ int64 JournalList::onPaste(const TrxData* tran)
 
     // Clone attachments if wanted
     if (InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false)) {
-        const wxString& RefType = TrxModel::refTypeName;
-        mmAttachmentManage::CloneAllAttachments(RefType, tran->m_id, transactionID);
+        mmAttachmentManage::CloneAllAttachments(
+            TrxModel::s_ref_type, tran->m_id, new_trx_id
+        );
     }
 
-    return transactionID;
+    return new_trx_id;
 }
 
 void JournalList::onDuplicateTransaction(wxCommandEvent& WXUNUSED(event))
@@ -1857,25 +1872,23 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
     findSelectedTransactions();
     Journal::IdRepeat id = m_selected_id[0];
 
-    const wxString refType = !id.second ?
-        TrxModel::refTypeName :
-        SchedModel::refTypeName;
-    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, refType, id.first);
+    RefTypeN ref_type = !id.second ? TrxModel::s_ref_type : SchedModel::s_ref_type;
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, ref_type, id.first);
     refreshVisualList();
 }
 
 //----------------------------------------------------------------------------
 
-wxString UDFCFormatHelper(FieldModel::TYPE_ID type, wxString data)
+wxString UDFCFormatHelper(FieldTypeN type, wxString data)
 {
     wxString formattedData = data;
     bool v = false;
     if (!data.empty()) {
-        switch (type) {
-        case FieldModel::TYPE_ID_DATE:
+        switch (type.id_n()) {
+        case FieldTypeN::e_date:
             formattedData = mmGetDateTimeForDisplay(data);
             break;
-        case FieldModel::TYPE_ID_BOOLEAN:
+        case FieldTypeN::e_boolean:
             v = wxString("TRUE|true|1").Contains(data);
             formattedData = (v) ? L"\u2713" : L"\u2717";
             break;
@@ -1933,13 +1946,14 @@ const wxString JournalList::getItem(long item, int col_id) const
     case LIST_ID_TAGS:
         value = journal_xd.TAGNAMES;
         if (!journal_xd.displayID.Contains(".")) {
-            const wxString splitRefType = TrxSplitModel::refTypeName;
             for (const auto& tp_d : journal_xd.m_splits) {
                 wxString tagnames;
-                std::map<wxString, int64> tags = TagLinkModel::instance().get_ref(splitRefType, tp_d.m_id);
-                std::map<wxString, int64, caseInsensitiveComparator> sortedTags(tags.begin(), tags.end());
-                for (const auto& tag : sortedTags)
-                    tagnames.Append(tag.first + " ");
+                std::map<wxString, int64> tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
+                    TrxSplitModel::s_ref_type, tp_d.m_id
+                );
+                std::map<wxString, int64, caseInsensitiveComparator> sortedTags(tag_name_id_m.begin(), tag_name_id_m.end());
+                for (const auto& tag_name_id : sortedTags)
+                    tagnames.Append(tag_name_id.first + " ");
                 if (!tagnames.IsEmpty())
                     value.Append((value.IsEmpty() ? "" : ", ") + tagnames.Trim());
             }
@@ -2189,7 +2203,7 @@ void JournalList::deleteTransactionsByStatus(const wxString& status)
 {
     int retainDays = SettingModel::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
     wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
-    std::set<std::pair<wxString, int64>> assetStockAccts;
+    std::set<std::pair<RefTypeN, int64>> assetStockAccts;
     const auto s = TrxModel::status_key(status);
     TrxModel::instance().db_savepoint();
     AttachmentModel::instance().db_savepoint();
@@ -2210,7 +2224,7 @@ void JournalList::deleteTransactionsByStatus(const wxString& status)
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
                 );
                 if (!translink.empty()) {
-                    assetStockAccts.emplace(translink.at(0).LINKTYPE, translink.at(0).LINKRECORDID);
+                    assetStockAccts.emplace(translink.at(0).m_ref_type, translink.at(0).m_ref_id);
                 }
             }
         }
@@ -2218,12 +2232,12 @@ void JournalList::deleteTransactionsByStatus(const wxString& status)
 
     if (!assetStockAccts.empty()) {
         for (const auto& i : assetStockAccts) {
-            if (i.first == "Asset")
+            if (i.first == AssetModel::s_ref_type)
                 TrxLinkModel::UpdateAssetValue(
                     AssetModel::instance().unsafe_get_id_data_n(i.second)
                 );
-            else if (i.first == "Stock")
-                StockModel::UpdatePosition(
+            else if (i.first == StockModel::s_ref_type)
+                StockModel::instance().update_data_position(
                     StockModel::instance().unsafe_get_id_data_n(i.second)
                 );
         }

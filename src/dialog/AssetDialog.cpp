@@ -66,17 +66,17 @@ AssetDialog::AssetDialog(
 
 AssetDialog::AssetDialog(
     wxWindow* parent,
-    const TrxLinkData* transfer_entry,
+    const TrxLinkData* tl_d,
     TrxData* checking_entry
 ) :
-    m_transfer_entry(transfer_entry),
+    m_transfer_entry(tl_d),
     m_checking_entry(checking_entry),
     m_dialog_heading(_t("Add Asset Transaction")),
     m_hidden_trans_entry(false)
 {
-    if (transfer_entry) {
+    if (tl_d) {
         m_dialog_heading = _t("Edit Asset Transaction");
-        m_asset_n = AssetModel::instance().unsafe_get_id_data_n(transfer_entry->LINKRECORDID);
+        m_asset_n = AssetModel::instance().unsafe_get_id_data_n(tl_d->m_ref_id);
     }
 
     Create(parent, wxID_ANY, m_dialog_heading);
@@ -138,12 +138,14 @@ void AssetDialog::dataToControls()
 
     w_notes->SetValue(m_asset_n->m_notes);
 
-    TrxLinkModel::DataA translink = TrxLinkModel::TranslinkList<AssetModel>(m_asset_n->m_id);
-    if (!translink.empty())
+    TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+        AssetModel::s_ref_type, m_asset_n->m_id
+    );
+    if (!tl_a.empty())
         w_value->Enable(false);
 
     // Set up the transaction if this is the first entry.
-    if (translink.empty())
+    if (tl_a.empty())
         w_transaction_panel->SetTransactionValue(bal.first);
 
     if (!m_hidden_trans_entry) {
@@ -440,17 +442,20 @@ void AssetDialog::OnOk(wxCommandEvent& /*event*/)
     int64 new_asset_id = m_asset_n->id();
 
     if (old_asset_id < 0) {
-        const wxString& RefType = AssetModel::refTypeName;
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, new_asset_id);
+        mmAttachmentManage::RelocateAllAttachments(
+            AssetModel::s_ref_type, 0,
+            AssetModel::s_ref_type, new_asset_id
+        );
     }
     if (w_transaction_panel->ValidCheckingAccountEntry()) {
-        int64 checking_id = w_transaction_panel->SaveChecking();
-        if (checking_id < 0)
+        int64 trx_id = w_transaction_panel->SaveChecking();
+        if (trx_id < 0)
             return;
 
         if (!m_transfer_entry) {
-            TrxLinkModel::SetAssetTranslink(
-                new_asset_id, checking_id, w_transaction_panel->CheckingType()
+            TrxLinkModel::instance().SetAssetTranslink(
+                trx_id, new_asset_id,
+                w_transaction_panel->CheckingType()
             );
         }
         TrxLinkModel::UpdateAssetValue(m_asset_n);
@@ -504,31 +509,24 @@ void AssetDialog::OnCancel(wxCommandEvent& /*event*/)
     if (m_asset_rich_text)
         return;
 
-    const wxString& RefType = AssetModel::refTypeName;
+    // FIXME: temporary records (with id <= 0) are not stored in database
     if (!m_asset_n)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(AssetModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
 void AssetDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString& RefType = AssetModel::refTypeName;
+    // FIXME: temporary records (with id <= 0) are not stored in database
     if (!m_asset_n)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(AssetModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
 void AssetDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    const wxString& RefType = AssetModel::refTypeName;
-    int64 RefId;
-
-    if (!m_asset_n)
-        RefId = 0;
-    else
-        RefId= m_asset_n->m_id;
-
-    AttachmentDialog dlg(this, RefType, RefId);
+    int64 ref_id = m_asset_n ? m_asset_n->m_id : 0;
+    AttachmentDialog dlg(this, AssetModel::s_ref_type, ref_id);
     dlg.ShowModal();
 }
 

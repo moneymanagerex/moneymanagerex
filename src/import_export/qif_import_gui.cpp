@@ -855,7 +855,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
 
     if (tabs & CAT_TAB) {
         num = 0;
-        const auto& c(CategoryModel::all_categories());
+        const auto& c(CategoryModel::instance().all_categories());
         categoryListBox_->DeleteAllItems();
         for (const auto& categ : m_QIFcategoryNames) {
             wxVector<wxVariant> data;
@@ -899,7 +899,7 @@ void mmQIFImportDialog::OnShowCategDialog(wxMouseEvent&)
         wxString selectedCategname = value.GetString();
         id = m_QIFcategoryNames[selectedCategname];
         if (id == -1) {
-            std::map<wxString, int64 > categories = CategoryModel::all_categories();
+            std::map<wxString, int64 > categories = CategoryModel::instance().all_categories();
             for (const auto& category : categories)
             {
                 if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
@@ -1167,13 +1167,12 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 wxString tagStr = (entry.find(QIF_ID_Category) != entry.end() ? entry.at(QIF_ID_Category).AfterFirst('/') : "");
                 TagLinkModel::DataA gl_a;
                 if (!tagStr.IsEmpty()) {
-                    wxString reftype = TrxModel::refTypeName;
                     wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
                     while (tagTokens.HasMoreTokens()) {
                         wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
                         // make tag names single-word
                         tagname.Replace(" ", "_");
-                        const TagData* tag_n = TagModel::instance().get_key(tagname);
+                        const TagData* tag_n = TagModel::instance().get_name_data_n(tagname);
                         if (!tag_n) {
                             TagData new_tag_d = TagData();
                             new_tag_d.m_name = tagname;
@@ -1181,8 +1180,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                             tag_n = TagModel::instance().get_id_data_n(new_tag_d.id());
                         }
                         TagLinkData gl_d = TagLinkData();
-                        gl_d.REFTYPE = reftype;
-                        gl_d.TAGID = tag_n->m_id;
+                        gl_d.m_tag_id   = tag_n->m_id;
+                        gl_d.m_ref_type = TrxModel::s_ref_type;
                         // Just cache the new taglink since we don't know the m_id yet
                         gl_a.push_back(gl_d);
                     }
@@ -1246,10 +1245,9 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (!m_txnTaglinks[std::make_pair(0, i)].empty()) {
                 // we need to know the transid for the taglink, so save the transaction first
                 TrxModel::instance().save_trx_n(trx_a[i]);
-                int64 transid = trx_a[i].id();
                 // apply that transid to all associated tags
-                for (auto& taglink : m_txnTaglinks[std::make_pair(0, i)])
-                    taglink.REFID = transid;
+                for (auto& gl_d : m_txnTaglinks[std::make_pair(0, i)])
+                    gl_d.m_ref_id = trx_a[i].m_id;
                 // save the block of taglinks
                 TagLinkModel::instance().save_data_a(m_txnTaglinks[std::make_pair(0, i)]);
             }
@@ -1296,8 +1294,8 @@ void mmQIFImportDialog::saveSplit()
             // check if there are any taglinks for this split index in this group
             if (!m_splitTaglinks[i][j].empty()) {
                 // apply the SPLITTRANSID as the REFID for all the cached taglinks
-                for (auto& taglink : m_splitTaglinks[i][j])
-                    taglink.REFID = splitTransID;
+                for (auto& gl_d : m_splitTaglinks[i][j])
+                    gl_d.m_ref_id = splitTransID;
                 // save cached taglinks
                 TagLinkModel::instance().save_data_a(m_splitTaglinks[i][j]);
             }
@@ -1526,13 +1524,12 @@ bool mmQIFImportDialog::completeTransaction(
             // Save split tags
             if (!tagStr.IsEmpty()) {
                 TagLinkModel::DataA splitTaglinks;
-                wxString reftype = TrxSplitModel::refTypeName;
                 wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
                 while (tagTokens.HasMoreTokens()) {
                     wxString tagname = tagTokens.GetNextToken().Trim(false).Trim();
                     // make tag names single-word
                     tagname.Replace(" ", "_");
-                    const TagData* tag_n = TagModel::instance().get_key(tagname);
+                    const TagData* tag_n = TagModel::instance().get_name_data_n(tagname);
                     if (!tag_n) {
                         TagData new_tag_d = TagData();
                         new_tag_d.m_name = tagname;
@@ -1540,8 +1537,8 @@ bool mmQIFImportDialog::completeTransaction(
                         tag_n = TagModel::instance().get_id_data_n(new_tag_d.id());
                     }
                     TagLinkData gl_d = TagLinkData();
-                    gl_d.REFTYPE = reftype;
-                    gl_d.TAGID   = tag_n->m_id;
+                    gl_d.m_tag_id   = tag_n->m_id;
+                    gl_d.m_ref_type = TrxSplitModel::s_ref_type;
                     splitTaglinks.push_back(gl_d);
                 }
                 // Here we keep track of which block of splits and which split in the block
@@ -1564,7 +1561,7 @@ bool mmQIFImportDialog::completeTransaction(
             if (payee_n) {
                 trx_n->m_category_id_n = payee_n->m_category_id_n;
             }
-            categStr = CategoryModel::full_name(trx_n->m_category_id_n, ":");
+            categStr = CategoryModel::instance().full_name(trx_n->m_category_id_n, ":");
 
             if (categStr.empty()) {
                 trx_n->m_category_id_n = (m_QIFcategoryNames[_t("Unknown")]);
@@ -1734,24 +1731,26 @@ void mmQIFImportDialog::getOrCreatePayees()
 void mmQIFImportDialog::getOrCreateCategories()
 {
     wxArrayString temp;
-    for (const auto &item : m_QIFcategoryNames) {
+    for (const auto& item : m_QIFcategoryNames) {
         wxString categStr;
         wxStringTokenizer token(item.first, ":");
         int64 parentID = -1;
         while(token.HasMoreTokens()){
             categStr = token.GetNextToken().Trim(false).Trim();
-            const CategoryData* category_n = CategoryModel::instance().get_key(categStr, parentID);
+            const CategoryData* cat_n = CategoryModel::instance().get_key_data_n(
+                categStr, parentID
+            );
             if (temp.Index(categStr + wxString::Format(":%lld", parentID)) == wxNOT_FOUND) {
-                if (!category_n) {
-                    CategoryData new_category_d = CategoryData();
-                    new_category_d.m_name        = categStr;
-                    new_category_d.m_parent_id_n = parentID;
-                    CategoryModel::instance().add_data_n(new_category_d);
-                    category_n = CategoryModel::instance().get_id_data_n(new_category_d.id());
+                if (!cat_n) {
+                    CategoryData new_cat_d = CategoryData();
+                    new_cat_d.m_name        = categStr;
+                    new_cat_d.m_parent_id_n = parentID;
+                    CategoryModel::instance().add_data_n(new_cat_d);
+                    cat_n = CategoryModel::instance().get_id_data_n(new_cat_d.id());
                 }
                 temp.Add(categStr + wxString::Format(":%lld", parentID));
             }
-            parentID = category_n->m_id;
+            parentID = cat_n->m_id;
         }
         m_QIFcategoryNames[item.first] = parentID;
     }
@@ -1759,17 +1758,16 @@ void mmQIFImportDialog::getOrCreateCategories()
 
 int64 mmQIFImportDialog::get_last_imported_acc()
 {
-    int64 accID = -1;
-    const AccountData* acc = AccountModel::instance().get_name_data_n(m_accountNameStr);
-    if (acc)
-        accID = acc->m_id;
-    return accID;
+    const AccountData* account_n = AccountModel::instance().get_name_data_n(m_accountNameStr);
+    return account_n ? account_n->m_id : -1;
 }
 
 void mmQIFImportDialog::OnDecimalChange(wxCommandEvent& event)
 {
     int i = m_choiceDecimalSeparator->GetSelection();
-    wxStringClientData* type_obj = static_cast<wxStringClientData*>(m_choiceDecimalSeparator->GetClientObject(i));
+    wxStringClientData* type_obj = static_cast<wxStringClientData*>(
+        m_choiceDecimalSeparator->GetClientObject(i)
+    );
     if (type_obj) {
         decimal_ = type_obj->GetData();
     }

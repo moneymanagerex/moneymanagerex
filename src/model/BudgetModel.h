@@ -32,39 +32,26 @@
 class BudgetModel : public TableFactory<BudgetTable, BudgetData>
 {
 public:
-    /**
-    Initialize the global BudgetModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for BudgetModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static BudgetModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for BudgetModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static BudgetModel& instance();
 
 public:
     static BudgetCol::PERIOD FREQUENCY(OP op, BudgetFrequency freq);
-
-    static double getEstimate(bool is_monthly, const BudgetFrequency freq, double amount);
 
 public:
     BudgetModel();
     ~BudgetModel();
 
     void getBudgetEntry(
-        int64 budgetYearID,
+        int64 bp_id,
         std::map<int64, BudgetFrequency>& budgetFreq,
-        std::map<int64, double> &budgetAmt,
-        std::map<int64, wxString> &budgetNotes
+        std::map<int64, double>& budgetAmt,
+        std::map<int64, wxString>& budgetNotes
     );
     void getBudgetStats(
         std::map<int64, std::map<int, double>>& budgetStats,
         mmDateRange* date_range,
         bool groupByMonth
     );
-    void copyBudgetYear(int64 newYearID, int64 baseYearID);
+    void copyBudgetYear(int64 dst_bp_id, int64 src_bp_id);
 };

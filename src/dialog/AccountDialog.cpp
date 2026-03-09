@@ -425,8 +425,7 @@ void AccountDialog::OnCurrency(wxCommandEvent& /*event*/)
 
 void AccountDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    wxString RefType = AccountModel::refTypeName;
-    AttachmentDialog dlg(this, RefType, m_account_n->m_id);
+    AttachmentDialog dlg(this, AccountModel::s_ref_type, m_account_n->m_id);
     dlg.ShowModal();
 }
 

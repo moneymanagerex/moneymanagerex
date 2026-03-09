@@ -16,16 +16,14 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-// This is only sample code re-used from "table/FieldValueTable.cpp".
-
 #include "FieldValueData.h"
 
-FieldValueData::FieldValueData()
+FieldValueData::FieldValueData() :
+    m_id(-1),
+    m_field_id(-1),
+    m_ref_type(RefTypeN()),
+    m_ref_id(-1)
 {
-    FIELDATADID = -1;
-    FIELDID = -1;
-    REFID = -1;
 }
 
 // Convert FieldValueData to FieldValueRow
@@ -33,10 +31,11 @@ FieldValueRow FieldValueData::to_row() const
 {
     FieldValueRow row;
 
-    row.FIELDATADID = FIELDATADID;
-    row.FIELDID = FIELDID;
-    row.REFID = REFID;
-    row.CONTENT = CONTENT;
+
+    row.FIELDATADID = m_id;
+    row.FIELDID     = m_field_id;
+    row.REFID       = FieldValueData::encode_REFID(m_ref_type, m_ref_id);
+    row.CONTENT     = m_content;
 
     return row;
 }
@@ -44,20 +43,22 @@ FieldValueRow FieldValueData::to_row() const
 // Convert FieldValueRow to FieldValueData
 FieldValueData& FieldValueData::from_row(const FieldValueRow& row)
 {
-    FIELDATADID = row.FIELDATADID; // int64
-    FIELDID = row.FIELDID; // int64
-    REFID = row.REFID; // int64
-    CONTENT = row.CONTENT; // wxString
+    m_id       = row.FIELDATADID;
+    m_field_id = row.FIELDID;
+    m_ref_type = FieldValueData::decode_ref_type(row.REFID);
+    m_ref_id   = FieldValueData::decode_ref_id(row.REFID);
+    m_content  = row.CONTENT;
 
     return *this;
 }
 
 bool FieldValueData::equals(const FieldValueData* other) const
 {
-    if ( FIELDATADID != other->FIELDATADID) return false;
-    if ( FIELDID != other->FIELDID) return false;
-    if ( REFID != other->REFID) return false;
-    if (!CONTENT.IsSameAs(other->CONTENT)) return false;
+    if ( m_id              != other->m_id)              return false;
+    if ( m_field_id        != other->m_field_id)        return false;
+    if ( m_ref_type.id_n() != other->m_ref_type.id_n()) return false;
+    if ( m_ref_id          != other->m_ref_id)          return false;
+    if (!m_content.IsSameAs(  other->m_content))        return false;
 
     return true;
 }

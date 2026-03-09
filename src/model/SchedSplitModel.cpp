@@ -21,6 +21,8 @@
 #include "AttachmentModel.h"
 #include "TagLinkModel.h"
 
+const RefTypeN SchedSplitModel::s_ref_type = RefTypeN(RefTypeN::e_sched_split);
+
 SchedSplitModel::SchedSplitModel() :
     TableFactory<SchedSplitTable, SchedSplitData>()
 {
@@ -30,10 +32,8 @@ SchedSplitModel::~SchedSplitModel()
 {
 }
 
-/**
-* Initialize the global SchedSplitModel table.
-* Reset the SchedSplitModel table or create the table if it does not exist.
-*/
+// Initialize the global SchedSplitModel table.
+// Reset the SchedSplitModel table or create the table if it does not exist.
 SchedSplitModel& SchedSplitModel::instance(wxSQLite3Database* db)
 {
     SchedSplitModel& ins = Singleton<SchedSplitModel>::instance();
@@ -44,52 +44,49 @@ SchedSplitModel& SchedSplitModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of SchedSplitModel table */
+// Return the static instance of SchedSplitModel table
 SchedSplitModel& SchedSplitModel::instance()
 {
     return Singleton<SchedSplitModel>::instance();
 }
 
-double SchedSplitModel::get_total(const DataA& qp_a)
+bool SchedSplitModel::purge_id(int64 qp_id)
 {
-    double total = 0.0;
-    for (auto& qp_d : qp_a)
-        total += qp_d.m_amount;
-
-    return total;
+    TagLinkModel::instance().purge_ref(s_ref_type, qp_id);
+    return unsafe_remove_id(qp_id);
 }
 
-bool SchedSplitModel::purge_id(int64 id)
+double SchedSplitModel::get_data_amount(const DataA& qp_a)
 {
-    // remove TagLinkData owned by id
-    TagLinkModel::instance().DeleteAllTags(SchedSplitModel::refTypeName, id);
-
-    return unsafe_remove_id(id);
+    double amount = 0.0;
+    for (const Data& qp_d : qp_a)
+        amount += qp_d.m_amount;
+    return amount;
 }
 
-std::map<int64, SchedSplitModel::DataA> SchedSplitModel::get_all_id()
+std::map<int64, SchedSplitModel::DataA> SchedSplitModel::find_all_mSchedId()
 {
-    std::map<int64, SchedSplitModel::DataA> data;
-    for (const auto& qp_d : instance().find_all()) {
-        data[qp_d.m_sched_id].push_back(qp_d);
+    std::map<int64, SchedSplitModel::DataA> schedId_qpA_m;
+    for (const auto& qp_d : find_all()) {
+        schedId_qpA_m[qp_d.m_sched_id].push_back(qp_d);
     }
-    return data;
+    return schedId_qpA_m;
 }
 
-int SchedSplitModel::update(DataA& src_qp_a, int64 sched_id)
+int SchedSplitModel::update(int64 dst_sched_id, DataA& src_qp_a)
 {
 
-    for (const auto& qp_d : instance().find(
-        SchedSplitCol::TRANSID(sched_id)
+    for (const auto& qp_d : find(
+        SchedSplitCol::TRANSID(dst_sched_id)
     )) {
-        instance().purge_id(qp_d.id());
+        instance().purge_id(qp_d.m_id);
     }
 
     if (!src_qp_a.empty()) {
         DataA new_qp_a;
         for (const auto& src_qp_d : src_qp_a) {
             Data new_qp_d = Data();
-            new_qp_d.m_sched_id    = sched_id;
+            new_qp_d.m_sched_id    = dst_sched_id;
             new_qp_d.m_amount      = src_qp_d.m_amount;
             new_qp_d.m_category_id = src_qp_d.m_category_id;
             new_qp_d.m_notes       = src_qp_d.m_notes;

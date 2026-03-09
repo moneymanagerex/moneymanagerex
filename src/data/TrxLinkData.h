@@ -16,40 +16,26 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// PLEASE EDIT!
-//
-// This is only sample code re-used from "table/TrxLinkTable.h".
-//
-// The data structure can be refined by:
-// * using more user-frielndly filed name
-// * using stronger field types
-// * adding enumerations for fields with limited choices
-// * demultiplexing composite values in database columns
-//
-// See also an implementation in Swift:
-//   https://github.com/moneymanagerex/mmex-ios/tree/master/MMEX/Data
-// and an implementation in Java:
-//   https://github.com/moneymanagerex/android-money-manager-ex/tree/master/app/src/main/java/com/money/manager/ex/domainmodel
-
 #pragma once
 
+#include "_DataEnum.h"
 #include "table/_TableBase.h"
 #include "table/TrxLinkTable.h"
 
 // User-friendly representation of a record in table TRANSLINK_V1.
 struct TrxLinkData
 {
-    int64 TRANSLINKID; // primary key
-    int64 CHECKINGACCOUNTID;
-    wxString LINKTYPE;
-    int64 LINKRECORDID;
+    int64 m_id;
+    int64 m_trx_id;      // non-null (> 0) after initialization
+    RefTypeN m_ref_type; // one of [e_asset, e_stock] after initialization
+    int64 m_ref_id;      // non-null (> 0) after initialization
 
     explicit TrxLinkData();
     explicit TrxLinkData(wxSQLite3ResultSet& q);
     TrxLinkData(const TrxLinkData& other) = default;
 
-    int64 id() const { return TRANSLINKID; }
-    void id(const int64 id) { TRANSLINKID = id; }
+    int64 id() const { return m_id; }
+    void id(const int64 id) { m_id = id; }
     TrxLinkRow to_row() const;
     TrxLinkData& from_row(const TrxLinkRow& row);
     void to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const;
@@ -70,7 +56,7 @@ struct TrxLinkData
     {
         bool operator()(const TrxLinkData& x, const TrxLinkData& y)
         {
-            return x.TRANSLINKID < y.TRANSLINKID;
+            return x.m_id < y.m_id;
         }
     };
 
@@ -78,7 +64,7 @@ struct TrxLinkData
     {
         bool operator()(const TrxLinkData& x, const TrxLinkData& y)
         {
-            return x.CHECKINGACCOUNTID < y.CHECKINGACCOUNTID;
+            return x.m_trx_id < y.m_trx_id;
         }
     };
 
@@ -86,7 +72,7 @@ struct TrxLinkData
     {
         bool operator()(const TrxLinkData& x, const TrxLinkData& y)
         {
-            return x.LINKTYPE < y.LINKTYPE;
+            return x.m_ref_type.id_n() < y.m_ref_type.id_n();
         }
     };
 
@@ -94,7 +80,7 @@ struct TrxLinkData
     {
         bool operator()(const TrxLinkData& x, const TrxLinkData& y)
         {
-            return x.LINKRECORDID < y.LINKRECORDID;
+            return x.m_ref_id < y.m_ref_id;
         }
     };
 };

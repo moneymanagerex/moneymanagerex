@@ -18,11 +18,11 @@
 
 #include "CategoryData.h"
 
-CategoryData::CategoryData()
+CategoryData::CategoryData() :
+    m_id(-1),
+    m_parent_id_n(-1),
+    m_active(true)
 {
-    m_id          = -1;
-    m_parent_id_n = -1;
-    m_active      = true;
 }
 
 // Convert CategoryData to CategoryRow
@@ -41,10 +41,10 @@ CategoryRow CategoryData::to_row() const
 // Convert CategoryRow to CategoryData
 CategoryData& CategoryData::from_row(const CategoryRow& row)
 {
-    m_id          = row.CATEGID;       // int64
-    m_name        = row.CATEGNAME;     // wxString
-    m_active      = (row.ACTIVE != 0); // int64
-    m_parent_id_n = row.PARENTID;      // int64
+    m_id          = row.CATEGID;
+    m_name        = row.CATEGNAME;
+    m_active      = (row.ACTIVE != 0);
+    m_parent_id_n = row.PARENTID;
 
     return *this;
 }

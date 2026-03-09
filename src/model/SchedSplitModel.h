@@ -21,6 +21,7 @@
 #include "base/defs.h"
 
 #include "table/SchedSplitTable.h"
+#include "data/_DataEnum.h"
 #include "data/SchedSplitData.h"
 
 #include "_ModelBase.h"
@@ -28,31 +29,21 @@
 class SchedSplitModel : public TableFactory<SchedSplitTable, SchedSplitData>
 {
 public:
+    static const RefTypeN s_ref_type;
+
+public:
     SchedSplitModel();
     ~SchedSplitModel();
 
 public:
-    /**
-    Initialize the global SchedSplitModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for SchedSplitModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static SchedSplitModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for SchedSplitModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static SchedSplitModel& instance();
 
 public:
-    double get_total(const DataA& rows);
-    std::map<int64, DataA> get_all_id();
-    int update(DataA& rows, int64 transactionID);
-    bool purge_id(int64 id) override;
+    bool purge_id(int64 qp_id) override;
 
-public:
-    static const wxString refTypeName;
+    auto get_data_amount(const DataA& qp_a) -> double;
+    auto find_all_mSchedId() -> std::map<int64, DataA>;
+    int  update(int64 dst_sched_id, DataA& src_qp_a);
 };
 

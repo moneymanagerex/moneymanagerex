@@ -73,13 +73,13 @@ void  StocksReport::refreshData()
         )) {
             const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(a);
             const double today_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id, today);
-            m_stock_balance += today_rate * StockModel::CurrentValue(stock_d);
-            line.realgainloss = StockModel::RealGainLoss(stock_d);
+            m_stock_balance += today_rate * stock_d.current_value();
+            line.realgainloss = StockModel::instance().calculate_realized_gain(stock_d);
             account_holder.realgainloss += line.realgainloss;
-            line.unrealgainloss = StockModel::UnrealGainLoss(stock_d);
+            line.unrealgainloss = StockModel::instance().calculate_unrealiazed_gain(stock_d);
             account_holder.unrealgainloss += line.unrealgainloss;
-            m_unreal_gain_loss_sum_total += StockModel::UnrealGainLoss(stock_d, true);
-            m_real_gain_loss_sum_total += StockModel::RealGainLoss(stock_d, true);
+            m_unreal_gain_loss_sum_total += StockModel::instance().calculate_unrealiazed_gain(stock_d, true);
+            m_real_gain_loss_sum_total += StockModel::instance().calculate_realized_gain(stock_d, true);
             m_real_gain_loss_excl_forex += line.realgainloss * today_rate;
             m_unreal_gain_loss_excl_forex += line.unrealgainloss * today_rate;
 
@@ -87,10 +87,10 @@ void  StocksReport::refreshData()
             line.symbol     = stock_d.m_symbol;
             line.date       = stock_d.m_purchase_date.isoDate();
             line.qty        = stock_d.m_num_shares;
-            line.purchase   = StockModel::InvestmentValue(stock_d);
+            line.purchase   = stock_d.m_purchase_value;
             line.current    = stock_d.m_current_price;
             line.commission = stock_d.m_commission;
-            line.value      = StockModel::CurrentValue(stock_d);
+            line.value      = stock_d.current_value();
             account_holder.data.push_back(line);
         }
         m_stocks.push_back(account_holder);

@@ -30,9 +30,7 @@ TagModel::~TagModel()
 {
 }
 
-/**
-* Initialize the global TagModel.
-*/
+// Initialize the global TagModel.
 TagModel& TagModel::instance(wxSQLite3Database* db)
 {
     TagModel& ins = Singleton<TagModel>::instance();
@@ -43,28 +41,16 @@ TagModel& TagModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of TagModel */
+// Return the static instance of TagModel
 TagModel& TagModel::instance()
 {
     return Singleton<TagModel>::instance();
 }
 
-const TagData* TagModel::get_key(const wxString& name)
-{
-    const Data* tag_n = search_cache_n(TagCol::TAGNAME(name));
-    if (tag_n)
-        return tag_n;
-
-    DataA tag_a = this->find(TagCol::TAGNAME(name));
-    if (!tag_a.empty())
-        tag_n = get_id_data_n(tag_a[0].m_id);
-    return tag_n;
-}
-
-int TagModel::is_used(int64 id)
+int TagModel::is_used(int64 tag_id)
 {
     TagLinkModel::DataA gl_a = TagLinkModel::instance().find(
-        TagLinkCol::TAGID(id)
+        TagLinkCol::TAGID(tag_id)
     );
 
     if (gl_a.empty())
@@ -72,13 +58,13 @@ int TagModel::is_used(int64 id)
 
     for (const auto& gl_d : gl_a) {
         // FIXME: do not exclude deleted transactions
-        if (gl_d.REFTYPE == TrxModel::refTypeName) {
-            const TrxData* trx_n = TrxModel::instance().get_id_data_n(gl_d.REFID);
+        if (gl_d.m_ref_type == TrxModel::s_ref_type) {
+            const TrxData* trx_n = TrxModel::instance().get_id_data_n(gl_d.m_ref_id);
             if (trx_n && trx_n->DELETEDTIME.IsEmpty())
                 return 1;
         }
-        else if (gl_d.REFTYPE == TrxSplitModel::refTypeName) {
-            const TrxSplitData* tp_n = TrxSplitModel::instance().get_id_data_n(gl_d.REFID);
+        else if (gl_d.m_ref_type == TrxSplitModel::s_ref_type) {
+            const TrxSplitData* tp_n = TrxSplitModel::instance().get_id_data_n(gl_d.m_ref_id);
             if (tp_n) {
                 const TrxData* trx_n = TrxModel::instance().get_id_data_n(tp_n->m_trx_id);
                 if (trx_n && trx_n->DELETEDTIME.IsEmpty())
@@ -90,5 +76,17 @@ int TagModel::is_used(int64 id)
     }
 
     return -1;
+}
+
+const TagData* TagModel::get_name_data_n(const wxString& name)
+{
+    const Data* tag_n = search_cache_n(TagCol::TAGNAME(name));
+    if (tag_n)
+        return tag_n;
+
+    DataA tag_a = this->find(TagCol::TAGNAME(name));
+    if (!tag_a.empty())
+        tag_n = get_id_data_n(tag_a[0].m_id);
+    return tag_n;
 }
 

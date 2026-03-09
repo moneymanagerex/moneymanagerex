@@ -37,10 +37,10 @@ public:
 
 public:
     // override
-    bool purge_id(int64 id) override;
+    bool purge_id(int64 bp_id) override;
 
-    auto get_id_name(int64 period_id) -> const wxString;
-    auto get_name_id(const wxString& period_name) -> int64;
-    auto ensure_name(const wxString& period_name) -> int64;
+    auto get_id_name_n(int64 bp_id) -> const wxString;
+    auto get_name_id_n(const wxString& bp_name) -> int64;
+    auto ensure_name(const wxString& bp_name) -> int64;
 };
 

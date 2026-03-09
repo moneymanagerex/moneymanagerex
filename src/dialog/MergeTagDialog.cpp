@@ -169,8 +169,8 @@ void MergeTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     TagLinkModel::DataA gl_a = TagLinkModel::instance().find(
         TagLinkCol::TAGID(sourceTagID_)
     );
-    for (auto &gl_d : gl_a) {
-        gl_d.TAGID = destTagID_;
+    for (auto& gl_d : gl_a) {
+        gl_d.m_tag_id = destTagID_;
     }
     TagLinkModel::instance().save_data_a(gl_a);
     m_changed_records += gl_a.size();
@@ -189,27 +189,27 @@ void MergeTagDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 void MergeTagDialog::IsOkOk()
 {
     bool e = true;
-    const TagData* src_tag_n = TagModel::instance().get_key(cbSourceTag_->GetValue());
-    const TagData* dst_tag_n = TagModel::instance().get_key(cbDestTag_->GetValue());
+    const TagData* src_tag_n = TagModel::instance().get_name_data_n(cbSourceTag_->GetValue());
+    const TagData* dst_tag_n = TagModel::instance().get_name_data_n(cbDestTag_->GetValue());
     if (src_tag_n)
         sourceTagID_ = src_tag_n->m_id;
     if (dst_tag_n)
         destTagID_ = dst_tag_n->m_id;
 
     int trxs_size = (sourceTagID_ < 0) ? 0 : TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(TrxModel::refTypeName),
+        TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
         TagLinkCol::TAGID(sourceTagID_)
     ).size();
     int split_size = (sourceTagID_ < 0) ? 0 : TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(TrxSplitModel::refTypeName),
+        TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
         TagLinkCol::TAGID(sourceTagID_)
     ).size();
     int bills_size = (sourceTagID_ < 0) ? 0 : TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(SchedModel::refTypeName),
+        TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
         TagLinkCol::TAGID(sourceTagID_)
     ).size();
     int bill_split_size = (sourceTagID_ < 0) ? 0 : TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(SchedSplitModel::refTypeName),
+        TagLinkCol::REFTYPE(SchedSplitModel::s_ref_type.name_n()),
         TagLinkCol::TAGID(sourceTagID_)
     ).size();
 

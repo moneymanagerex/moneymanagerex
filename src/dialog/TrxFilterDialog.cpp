@@ -117,8 +117,11 @@ TrxFilterDialog::TrxFilterDialog(wxWindow* parent, int64 accountID, bool isRepor
     mmDoDataToControls(m_settings_json);
 }
 
-TrxFilterDialog::TrxFilterDialog(wxWindow* parent, const wxString& json)
-    : isMultiAccount_(true), accountID_(-1), isReportMode_(true), m_filter_key("TRANSACTIONS_FILTER")
+TrxFilterDialog::TrxFilterDialog(wxWindow* parent, const wxString& json) :
+    isMultiAccount_(true),
+    accountID_(-1),
+    isReportMode_(true),
+    m_filter_key("TRANSACTIONS_FILTER")
 {
     this->SetFont(parent->GetFont());
     mmDoInitVariables();
@@ -130,7 +133,11 @@ void TrxFilterDialog::mmDoInitVariables()
 {
     m_use_date_filter = isReportMode_; //|| PrefModel::instance().getUsePerAccountFilter();
 
-    m_custom_fields = new mmCustomDataTransaction(this, 0, ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0));
+    m_custom_fields = new mmCustomDataTransaction(this,
+        TrxModel::s_ref_type,
+        0,
+        ID_CUSTOMFIELDS + (isReportMode_ ? 100 : 0)
+    );
 
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmToday()));
     m_all_date_ranges.push_back(wxSharedPtr<mmDateRange>(new mmCurrentMonth()));
@@ -284,7 +291,7 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
 
     const wxString& delimiter = InfoModel::instance().getString("CATEG_DELIMITER", ":");
     if (delimiter != ":" && s_category.Contains(":")) {
-        for (const auto& category : CategoryModel::all_categories()) {
+        for (const auto& category : CategoryModel::instance().all_categories()) {
             wxString full_name = category.first;
             wxRegEx regex(delimiter);
             regex.Replace(&full_name, ":");
@@ -417,12 +424,11 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
 
     // Custom Fields
     bool is_custom_found = false;
-    const wxString ref_type = TrxModel::refTypeName;
     int field_index = 0;
-    for (const auto& i : FieldModel::instance().find(
-        FieldCol::REFTYPE(ref_type)
+    for (const auto& field_d : FieldModel::instance().find(
+        FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())
     )) {
-        const auto entry = wxString::Format("CUSTOM%lld", i.FIELDID);
+        const auto entry = wxString::Format("CUSTOM%lld", field_d.m_id);
         if (j_doc.HasMember(entry.c_str())) {
             const auto value = j_doc[const_cast<char*>(static_cast<const char*>(entry.mb_str()))].GetString();
             m_custom_fields->SetStringValue(field_index, value, true);
@@ -441,10 +447,8 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
     // Hide Columns
     Value& j_columns = GetValueByPointerWithDefault(j_doc, "/COLUMN", "");
     m_selected_columns_id.Clear();
-    if (j_columns.IsArray())
-    {
-        for (rapidjson::SizeType i = 0; i < j_columns.Size(); i++)
-        {
+    if (j_columns.IsArray()) {
+        for (rapidjson::SizeType i = 0; i < j_columns.Size(); i++) {
             wxASSERT(j_columns[i].IsInt());
             const int colID = j_columns[i].GetInt();
 
@@ -453,8 +457,7 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
         showColumnsCheckBox_->SetValue(true);
         bHideColumns_->SetLabelText("...");
     }
-    else
-    {
+    else {
         showColumnsCheckBox_->SetValue(false);
         bHideColumns_->SetLabelText("");
     }
@@ -1375,64 +1378,64 @@ bool TrxFilterDialog::mmIsCategoryMatches(int64 categid)
     return std::find(m_selected_categories_id.begin(), m_selected_categories_id.end(), categid) != m_selected_categories_id.end();
 }
 
-bool TrxFilterDialog::mmIsTagMatches(const wxString& refType, int64 refId, bool mergeSplitTags)
+bool TrxFilterDialog::mmIsTagMatches(RefTypeN ref_type, int64 ref_id, bool mergeSplitTags)
 {
-    std::map<wxString, int64> tagnames = TagLinkModel::instance().get_ref(refType, refId);
+    std::map<wxString, int64> tagnames = TagLinkModel::instance().find_ref_tag_m(
+        ref_type, ref_id
+    );
 
     // If we have a split, merge the transaciton tags so that an AND condition captures cases
     // where one tag is on the base txn and the other is on the split
-    std::map<wxString, int64> txnTagnames;
-    if (refType == TrxSplitModel::refTypeName)
-        txnTagnames = TagLinkModel::instance().get_ref(
-            TrxModel::refTypeName,
-            TrxSplitModel::instance().get_id_data_n(refId)->m_trx_id
+    std::map<wxString, int64> tag_name_id_m;
+    if (ref_type == TrxSplitModel::s_ref_type)
+        tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
+            TrxModel::s_ref_type,
+            TrxSplitModel::instance().get_id_data_n(ref_id)->m_trx_id
         );
-    else if (refType == SchedSplitModel::refTypeName)
-        txnTagnames = TagLinkModel::instance().get_ref(
-            SchedModel::refTypeName,
-            SchedSplitModel::instance().get_id_data_n(refId)->m_sched_id
+    else if (ref_type == SchedSplitModel::s_ref_type)
+        tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
+            SchedModel::s_ref_type,
+            SchedSplitModel::instance().get_id_data_n(ref_id)->m_sched_id
         );
 
-    if (mergeSplitTags)
-    {
+    if (mergeSplitTags) {
         // Merge transaction tags and split tags. This is necessary when checking
         // if a split record matches the filter since we are using mmIsRecordMatches
-        // to validate the split which gives it the wrong refType & refId
-        if (refType == TrxModel::refTypeName) {
+        // to validate the split which gives it the wrong ref_type & ref_id
+        if (ref_type == TrxModel::s_ref_type) {
             // Loop through checking splits and merge tags for each SPLITTRANSID
             for (const auto& tp_d : TrxSplitModel::instance().find(
-                TrxSplitCol::TRANSID(refId)
+                TrxSplitCol::TRANSID(ref_id)
             )) {
                 std::map<wxString, int64> splitTagnames =
-                    TagLinkModel::instance().get_ref(
-                        TrxSplitModel::refTypeName, tp_d.m_id
+                    TagLinkModel::instance().find_ref_tag_m(
+                        TrxSplitModel::s_ref_type, tp_d.m_id
                     );
-                txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
+                tag_name_id_m.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
-        else if (refType == SchedModel::refTypeName) {
+        else if (ref_type == SchedModel::s_ref_type) {
             // Loop through scheduled txn splits and merge tags for each SPLITTRANSID
             for (const auto& qp_d : SchedSplitModel::instance().find(
-                SchedSplitCol::TRANSID(refId)
+                SchedSplitCol::TRANSID(ref_id)
             )) {
                 std::map<wxString, int64> splitTagnames =
-                    TagLinkModel::instance().get_ref(
-                        SchedSplitModel::refTypeName, qp_d.m_id
+                    TagLinkModel::instance().find_ref_tag_m(
+                        SchedSplitModel::s_ref_type, qp_d.m_id
                     );
-                txnTagnames.insert(splitTagnames.begin(), splitTagnames.end());
+                tag_name_id_m.insert(splitTagnames.begin(), splitTagnames.end());
             }
         }
     }
 
-    tagnames.insert(txnTagnames.begin(), txnTagnames.end());
+    tagnames.insert(tag_name_id_m.begin(), tag_name_id_m.end());
     if (tagnames.empty())
         return false;
 
     bool match = true;
 
     wxArrayString tags = tagTextCtrl_->GetTagStrings();
-    for (int i = 0; i < static_cast<int>(tags.GetCount()); i++)
-    {
+    for (int i = 0; i < static_cast<int>(tags.GetCount()); i++) {
         // if the tag is the "OR" operator, fetch the next tag and compare with OR
         if (tags.Item(i) == "|" && i++ < static_cast<int>(tags.GetCount()) - 1)
             match |= tagnames.find(tags.Item(i)) != tagnames.end();
@@ -1478,14 +1481,13 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id()))
         ok = false;
-    else if (mmIsTagsChecked())
-    {
-        wxString refType;
+    else if (mmIsTagsChecked()) {
+        RefTypeN refType;
         // Check the Data type to determine the tag RefType
         if (typeid(tran).hash_code() == typeid(TrxData).hash_code())
-            refType = TrxModel::refTypeName;
+            refType = TrxModel::s_ref_type;
         else if (typeid(tran).hash_code() == typeid(SchedData).hash_code())
-            refType = SchedModel::refTypeName;
+            refType = SchedModel::s_ref_type;
         if (!mmIsTagMatches(refType, tran.id(), mergeSplitTags))
             ok = false;
     }
@@ -1495,13 +1497,13 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
 template <class MODEL, class DATA>
 bool TrxFilterDialog::mmIsSplitRecordMatches(const DATA& split_d)
 {
-    wxString refType;
+    RefTypeN refType;
 
     if (typeid(split_d).hash_code() == typeid(TrxSplitData).hash_code()) {
-        refType = TrxSplitModel::refTypeName;
+        refType = TrxSplitModel::s_ref_type;
     }
     else if (typeid(split_d).hash_code() == typeid(SchedSplitData).hash_code()) {
-        refType = SchedSplitModel::refTypeName;
+        refType = SchedSplitModel::s_ref_type;
     }
 
     if (mmIsTagsChecked() && !mmIsTagMatches(refType, split_d.m_id))
@@ -1850,7 +1852,7 @@ const wxString TrxFilterDialog::mmGetJsonSettings(bool i18n) const
         json_writer.Key((i18n ? _t("Category") : "CATEGORY").utf8_str());
         if (categoryComboBox_->mmIsValid()) {
             int64 categ = categoryComboBox_->mmGetCategoryId();
-            const auto& full_name = CategoryModel::full_name(categ, ":");
+            const auto& full_name = CategoryModel::instance().full_name(categ, ":");
             json_writer.String(full_name.utf8_str());
         }
         else {
@@ -1916,11 +1918,11 @@ const wxString TrxFilterDialog::mmGetJsonSettings(bool i18n) const
         json_writer.Key((i18n ? _t("Tags") : "TAGS").utf8_str());
         json_writer.StartArray();
 
-        for (const auto& tag : tagTextCtrl_->GetTagStrings()) {
-            if (tag == "&" || tag == "|")
-                json_writer.String(tag.utf8_str());
+        for (const auto& tag_name : tagTextCtrl_->GetTagStrings()) {
+            if (tag_name == "&" || tag_name == "|")
+                json_writer.String(tag_name.utf8_str());
             else
-                json_writer.Int64(TagModel::instance().get_key(tag)->m_id.GetValue());
+                json_writer.Int64(TagModel::instance().get_name_data_n(tag_name)->m_id.GetValue());
         }
 
         json_writer.EndArray();
@@ -1944,8 +1946,8 @@ const wxString TrxFilterDialog::mmGetJsonSettings(bool i18n) const
     if (cf.size() > 0) {
         for (const auto& i : cf) {
             if (!i.second.empty()) {
-                const auto field = FieldModel::instance().get_id_data_n(i.first);
-                json_writer.Key(wxString::Format("CUSTOM%lld", field->FIELDID).utf8_str());
+                const auto field_n = FieldModel::instance().get_id_data_n(i.first);
+                json_writer.Key(wxString::Format("CUSTOM%lld", field_n->m_id).utf8_str());
                 json_writer.String(i.second.utf8_str());
             }
         }
@@ -1999,14 +2001,18 @@ void TrxFilterDialog::OnCategoryChange(wxEvent& event)
     m_selected_categories_id.clear();
     if (!categoryComboBox_->GetValue().IsEmpty()) {
         wxRegEx pattern("^(" + categoryComboBox_->mmGetPattern() + ")$", wxRE_ICASE | wxRE_ADVANCED);
-        if (pattern.IsValid())
-            for (const auto& category : CategoryModel::instance().all_categories())
-                if (pattern.Matches(category.first)) {
-                    m_selected_categories_id.push_back(category.second);
-                    if (mmIsCategorySubCatChecked())
-                        for (const auto& subcat : CategoryModel::instance().sub_tree(CategoryModel::instance().get_id_data_n(category.second)))
-                            m_selected_categories_id.push_back(subcat.m_id);
-                }
+        if (pattern.IsValid()) {
+            for (const auto& category : CategoryModel::instance().all_categories()) {
+                if (!pattern.Matches(category.first))
+                    continue;
+                m_selected_categories_id.push_back(category.second);
+                if (!mmIsCategorySubCatChecked())
+                    continue;
+                const CategoryData* cat_n = CategoryModel::instance().get_id_data_n(category.second);
+                for (const auto& sub_d : CategoryModel::instance().find_data_subtree_a(*cat_n))
+                    m_selected_categories_id.push_back(sub_d.m_id);
+            }
+        }
     }
     event.Skip();
 }
@@ -2048,17 +2054,16 @@ bool TrxFilterDialog::mmIsCustomFieldChecked() const
     return (cf.size() > 0);
 }
 
-bool TrxFilterDialog::mmIsCustomFieldMatches(int64 transid) const
+bool TrxFilterDialog::mmIsCustomFieldMatches(int64 trx_id) const
 {
     const auto cf = m_custom_fields->GetActiveCustomFields();
     int matched = 0;
     for (const auto& i : cf) {
-        auto DataSet = FieldValueModel::instance().find(
-            FieldValueCol::REFID(transid)
-        );
-        for (const auto& j : DataSet) {
-            if (i.first == j.FIELDID) {
-                if (j.CONTENT.Matches(i.second))
+        for (const auto& fv_d : FieldValueModel::instance().find(
+            FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_id)
+        )) {
+            if (i.first == fv_d.m_field_id) {
+                if (fv_d.m_content.Matches(i.second))
                     matched += 1;
                 else
                     return false;
@@ -2362,7 +2367,7 @@ void TrxFilterDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     categoryComboBox_->mmDoReInitialize();
-                category = CategoryModel::full_name(dlg.getCategId());
+                category = CategoryModel::instance().full_name(dlg.getCategId());
                 categoryComboBox_->ChangeValue(category);
                 categoryComboBox_->SelectAll();
                 return;

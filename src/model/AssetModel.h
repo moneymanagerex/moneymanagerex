@@ -22,6 +22,7 @@
 #include "base/defs.h"
 
 #include "table/AssetTable.h"
+#include "data/_DataEnum.h"
 #include "data/AssetData.h"
 
 #include "_ModelBase.h"
@@ -30,7 +31,7 @@
 class AssetModel : public TableFactory<AssetTable, AssetData>
 {
 public:
-    static const wxString refTypeName;
+    static const RefTypeN s_ref_type;
 
 public:
     AssetModel();

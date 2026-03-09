@@ -129,11 +129,11 @@ wxString TrxFilter::getHTML()
     mmHTMLBuilder hb;
     m_trans.clear();
     const auto splits = TrxSplitModel::instance().get_all_id();
-    const auto tags = TagLinkModel::instance().get_all_id(TrxModel::refTypeName);
+    const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(TrxModel::s_ref_type);
     //TODO: find should be faster
     for (const auto& trx_d : TrxModel::instance().find_all()) {
         if (!mmIsRecordMatches(trx_d, splits)) continue;
-        TrxModel::Full_Data full_tran(trx_d, splits, tags);
+        TrxModel::Full_Data full_tran(trx_d, splits, trxId_glA_m);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.m_account_id);
         if (full_tran.has_split()) {
@@ -151,7 +151,7 @@ wxString TrxFilter::getHTML()
                 }
 
                 if (found) {
-                    full_tran.CATEGNAME = CategoryModel::full_name(tp_d.m_category_id);
+                    full_tran.CATEGNAME = CategoryModel::instance().full_name(tp_d.m_category_id);
                     full_tran.m_amount = tp_d.m_amount;
                     full_tran.m_notes.Append((trx_d.m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
                     m_trans.push_back(full_tran);
@@ -236,9 +236,9 @@ table {
 
         // Attachments
         wxString AttachmentsLink = "";
-        if (AttachmentModel::instance().NrAttachments(TrxModel::refTypeName, trx_xd.m_id)) {
+        if (AttachmentModel::instance().find_ref_c(TrxModel::s_ref_type, trx_xd.m_id)) {
             AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
-                TrxModel::refTypeName, trx_xd.m_id,
+                TrxModel::s_ref_type.name_n(), trx_xd.m_id,
                 mmAttachmentManage::GetAttachmentNoteSign());
         }
 

@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2016 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2026 George Ef (george.a.ef@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -32,40 +33,14 @@ public:
     ~TagLinkModel();
 
 public:
-    /**
-    Initialize the global TagLinkModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for TagLinkModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static TagLinkModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for TagLinkModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static TagLinkModel& instance();
 
-    /**
-    * Return the Data record pointer for the given payee name
-    * Returns 0 when payee not found.
-    */
-    const Data* get_key(const wxString& refType, int64 refId, int64 tagId);
+public:
+    void purge_ref(RefTypeN ref_type, int64 ref_id);
+    int  update(RefTypeN ref_type, int64 ref_id, const DataA& src_gl_a);
 
-    /**
-    * Return a map of all tags for the specified transaction
-    * Mostly useful to return a sorted list of tagnames associated with a transaction
-    */
-    std::map<wxString, int64> get_ref(const wxString& refType, int64 refId);
-
-    /**
-    * Return a map of all tags
-    */
-    std::map<int64, TagLinkModel::DataA> get_all_id(const wxString& refType);
-
-    /* Delete all tags for a REFTYPE + REFID */
-    void DeleteAllTags(const wxString& refType, int64 refID);
-
-    int update(const DataA& rows, const wxString& refType, int64 refId);
+    auto get_key_data_n(int64 tag_id, RefTypeN ref_type, int64 ref_id) -> const Data*;
+    auto find_ref_tag_m(RefTypeN ref_type, int64 ref_id) -> std::map<wxString, int64>;
+    auto find_refType_mRefId(RefTypeN ref_type) -> std::map<int64, DataA>;
 };
-

@@ -289,15 +289,15 @@ void StockPanel::LoadStockTransactions(wxListCtrl* listCtrl, wxString symbol, in
     TrxLinkModel::DataA tl_a;
     TrxModel::DataA trx_a;
     if (symbol.IsEmpty()) {
-        tl_a = TrxLinkModel::TranslinkList<StockModel>(stockId);
+        tl_a = TrxLinkModel::instance().find_ref_data_a(StockModel::s_ref_type, stockId);
     }
     else {
         // search for all
-        tl_a = TrxLinkModel::TranslinkListBySymbol(symbol);
+        tl_a = TrxLinkModel::instance().find_symbol_data_a(symbol);
     }
 
     for (const auto& tl_d : tl_a) {
-        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.CHECKINGACCOUNTID);
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
         if (trx_n && trx_n->DELETEDTIME.IsEmpty()) {
             trx_a.push_back(*trx_n);
         }
@@ -306,10 +306,9 @@ void StockPanel::LoadStockTransactions(wxListCtrl* listCtrl, wxString symbol, in
 
     int row = 0;
     for (const auto& trx_d : trx_a) {
-        auto* ts_n = TrxShareModel::instance().unsafe_get_trx_share_n(trx_d.m_id);
+        const TrxShareData* ts_n = TrxShareModel::instance().get_trxId_data_n(trx_d.m_id);
         if (!ts_n || (ts_n->m_number <= 0 && ts_n->m_price <= 0))
             continue;
-
         long index = listCtrl->InsertItem(row++, "");
         listCtrl->SetItemData(index, trx_d.m_id.GetValue());
         FillListRow(listCtrl, index, trx_d, *ts_n);
@@ -344,12 +343,13 @@ void StockPanel::BindListEvents(wxListCtrl* listCtrl)
         if (!trx_n)
             return;
 
-        auto link = TrxLinkModel::TranslinkRecord(trx_n->m_id);
-        TrxShareDialog dlg(listCtrl, &link, trx_n);
+        const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(trx_n->m_id);
+        TrxLinkData tl_d = tl_n ? *tl_n : TrxLinkData();
+        TrxShareDialog dlg(listCtrl, &tl_d, trx_n);
         dlg.ShowModal();
 
         // Update the modified row
-        auto* ts_n = TrxShareModel::instance().unsafe_get_trx_share_n(trx_n->m_id);
+        const TrxShareData* ts_n = TrxShareModel::instance().get_trxId_data_n(trx_n->m_id);
         if (ts_n) {
             this->FillListRow(listCtrl, index, *trx_n, *ts_n);
         }

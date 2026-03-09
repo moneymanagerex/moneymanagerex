@@ -36,7 +36,7 @@ CurrencyHistoryRow CurrencyHistoryData::to_row() const
     row.CURRENCYID  = m_currency_id;
     row.CURRDATE    = m_date.isoDate();
     row.CURRVALUE   = m_base_conv_rate;
-    row.CURRUPDTYPE = m_update_type.value();
+    row.CURRUPDTYPE = static_cast<int64>(m_update_type.code());
 
     return row;
 }
@@ -44,11 +44,13 @@ CurrencyHistoryRow CurrencyHistoryData::to_row() const
 // Convert CurrencyHistoryRow to CurrencyHistoryData
 CurrencyHistoryData& CurrencyHistoryData::from_row(const CurrencyHistoryRow& row)
 {
-    m_id             = row.CURRHISTID;              // int64
-    m_currency_id    = row.CURRENCYID;              // int64
-    m_date           = mmDate(row.CURRDATE);        // wxString
-    m_base_conv_rate = row.CURRVALUE;               // double
-    m_update_type    = UpdateType(row.CURRUPDTYPE); // int64
+    m_id             = row.CURRHISTID;
+    m_currency_id    = row.CURRENCYID;
+    m_date           = mmDate(row.CURRDATE);
+    m_base_conv_rate = row.CURRVALUE;
+    m_update_type    = UpdateType::from_code(
+        static_cast<int>(row.CURRUPDTYPE.GetValue())
+    );
 
     return *this;
 }

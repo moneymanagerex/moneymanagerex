@@ -68,27 +68,27 @@ AccountRow AccountData::to_row() const
 // Convert AccountRow to AccountData
 AccountData& AccountData::from_row(const AccountRow& row)
 {
-    m_id                 = row.ACCOUNTID;                     // int64
-    m_name               = row.ACCOUNTNAME;                   // wxString
-    m_type_              = row.ACCOUNTTYPE;                   // wxString
-    m_currency_id        = row.CURRENCYID;                    // int64
-    m_status             = AccountStatus(row.STATUS);         // wxString
-    m_favorite           = AccountFavorite(row.FAVORITEACCT); // wxString
-    m_num                = row.ACCOUNTNUM;                    // wxString
-    m_notes              = row.NOTES;                         // wxString
-    m_held_at            = row.HELDAT;                        // wxString
-    m_website            = row.WEBSITE;                       // wxString
-    m_contact_info       = row.CONTACTINFO;                   // wxString
-    m_access_info        = row.ACCESSINFO;                    // wxString
-    m_open_date          = mmDate(row.INITIALDATE);           // wxString
-    m_open_balance       = row.INITIALBAL;                    // double
-    m_stmt_locked        = (row.STATEMENTLOCKED > 0);         // int64
-    m_stmt_date_n        = mmDateN(row.STATEMENTDATE);        // wxString
-    m_min_balance        = row.MINIMUMBALANCE;                // double
-    m_credit_limit       = row.CREDITLIMIT;                   // double
-    m_interest_rate      = row.INTERESTRATE;                  // double
-    m_payment_due_date_n = mmDateN(row.PAYMENTDUEDATE);       // wxString
-    m_min_payment        = row.MINIMUMPAYMENT;                // double
+    m_id                 = row.ACCOUNTID;
+    m_name               = row.ACCOUNTNAME;
+    m_type_              = row.ACCOUNTTYPE;
+    m_currency_id        = row.CURRENCYID;
+    m_status             = AccountStatus(row.STATUS);
+    m_favorite           = AccountFavorite(row.FAVORITEACCT);
+    m_num                = row.ACCOUNTNUM;
+    m_notes              = row.NOTES;
+    m_held_at            = row.HELDAT;
+    m_website            = row.WEBSITE;
+    m_contact_info       = row.CONTACTINFO;
+    m_access_info        = row.ACCESSINFO;
+    m_open_date          = mmDate(row.INITIALDATE);
+    m_open_balance       = row.INITIALBAL;
+    m_stmt_locked        = (row.STATEMENTLOCKED > 0);
+    m_stmt_date_n        = mmDateN(row.STATEMENTDATE);
+    m_min_balance        = row.MINIMUMBALANCE;
+    m_credit_limit       = row.CREDITLIMIT;
+    m_interest_rate      = row.INTERESTRATE;
+    m_payment_due_date_n = mmDateN(row.PAYMENTDUEDATE);
+    m_min_payment        = row.MINIMUMPAYMENT;
 
     return *this;
 }

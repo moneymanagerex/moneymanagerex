@@ -21,6 +21,8 @@
 #include "CategoryModel.h"
 #include "TrxModel.h"
 
+const RefTypeN TrxSplitModel::s_ref_type = RefTypeN(RefTypeN::e_trx_split);
+
 TrxSplitModel::TrxSplitModel() :
     TableFactory<TrxSplitTable, TrxSplitData>()
 {
@@ -50,12 +52,10 @@ TrxSplitModel& TrxSplitModel::instance()
     return Singleton<TrxSplitModel>::instance();
 }
 
-bool TrxSplitModel::purge_id(int64 id)
+bool TrxSplitModel::purge_id(int64 tp_id)
 {
-    // remove TagLinkData owned by id
-    TagLinkModel::instance().DeleteAllTags(TrxSplitModel::refTypeName, id);
-
-    return unsafe_remove_id(id);
+    TagLinkModel::instance().purge_ref(s_ref_type, tp_id);
+    return unsafe_remove_id(tp_id);
 }
 
 double TrxSplitModel::get_total(const DataA& tp_a)
@@ -150,7 +150,7 @@ const wxString TrxSplitModel::get_tooltip(
     wxString split_tooltip = "";
     for (const auto& entry : split_a) {
         split_tooltip += wxString::Format("%s = %s",
-            CategoryModel::full_name(entry.CATEGID),
+            CategoryModel::instance().full_name(entry.CATEGID),
             CurrencyModel::toCurrency(entry.SPLITTRANSAMOUNT, currency)
         );
         if (!entry.NOTES.IsEmpty()) {

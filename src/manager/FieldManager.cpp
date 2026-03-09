@@ -104,25 +104,27 @@ void FieldManager::fillControls()
 {
     fieldListBox_->DeleteAllItems();
 
-    FieldModel::DataA fields = FieldModel::instance().find_all();
-    if (fields.empty()) return;
+    FieldModel::DataA field_a = FieldModel::instance().find_all();
+    if (field_a.empty())
+        return;
 
-    std::sort(fields.begin(), fields.end(), FieldData::SorterByDESCRIPTION());
+    std::sort(field_a.begin(), field_a.end(), FieldData::SorterByDESCRIPTION());
     int64 firstInTheListID = -1;
-    for (const auto& entry : fields)
-    {
-        if (firstInTheListID == -1) firstInTheListID = entry.FIELDID;
+    for (const auto& field_d : field_a) {
+        if (firstInTheListID == -1)
+            firstInTheListID = field_d.m_id;
         wxVector<wxVariant> data;
-        if (debug_) data.push_back(wxVariant(wxString::Format("%lld", entry.FIELDID)));
-        data.push_back(wxVariant(wxGetTranslation(entry.REFTYPE)));
-        data.push_back(wxVariant(entry.DESCRIPTION));
-        data.push_back(wxVariant(wxGetTranslation(entry.TYPE)));
+        if (debug_)
+            data.push_back(wxVariant(wxString::Format("%lld", field_d.m_id)));
+        data.push_back(wxVariant(wxGetTranslation(field_d.m_ref_type.name_n())));
+        data.push_back(wxVariant(field_d.m_description));
+        data.push_back(wxVariant(wxGetTranslation(field_d.m_type_n.name_n())));
 
-        wxString Properties = entry.PROPERTIES;
+        wxString Properties = field_d.m_properties;
         Properties.Replace("\n", "", true);
         data.push_back(wxVariant(Properties));
 
-        fieldListBox_->AppendItem(data, static_cast<wxUIntPtr>(entry.FIELDID.GetValue()));
+        fieldListBox_->AppendItem(data, static_cast<wxUIntPtr>(field_d.m_id.GetValue()));
     }
 
     m_field_id = firstInTheListID;
@@ -171,7 +173,7 @@ void FieldManager::DeleteField()
         wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
     );
     if (DeleteResponse == wxYES) {
-        FieldModel::instance().Delete(m_field_id);
+        FieldModel::instance().purge_id(m_field_id);
         m_field_id = -1;
         fillControls();
     }
@@ -179,14 +181,14 @@ void FieldManager::DeleteField()
 
 void FieldManager::UpdateField()
 {
-    const FieldData *field = FieldModel::instance().get_id_data_n(m_field_id);
-    if (!field)
+    const FieldData* field_n = FieldModel::instance().get_id_data_n(m_field_id);
+    if (!field_n)
         return;
 
     int UpdateResponse = wxMessageBox(
         wxString::Format(_t("This function will bulk search & replace for \"%s\" custom field values\n"
             "It will match & replace only complete field value, no partial or middle-value replaces allowed\n"
-            "Please consider that there isn't any validation!"),field->DESCRIPTION)
+            "Please consider that there isn't any validation!"), field_n->m_description)
         , _t("Confirm Custom Field Content Update")
         , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
     if (UpdateResponse != wxYES)
@@ -227,7 +229,7 @@ void FieldManager::UpdateField()
         FieldValueCol::CONTENT(txtSearch)
     );
     for (auto& fv_d : fv_a) {
-        fv_d.CONTENT = txtReplace;
+        fv_d.m_content = txtReplace;
     }
     FieldValueModel::instance().save_data_a(fv_a);
 
@@ -268,7 +270,7 @@ void FieldManager::OnItemRightClick(wxDataViewEvent& event)
 
     wxMenu* mainMenu = new wxMenu;
     if (field_n)
-        mainMenu->SetTitle(field_n->DESCRIPTION);
+        mainMenu->SetTitle(field_n->m_description);
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_NEW_FIELD, _t("&Add ")));
     mainMenu->AppendSeparator();
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_FIELD, _t("&Edit ")));

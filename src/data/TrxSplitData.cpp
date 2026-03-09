@@ -18,12 +18,12 @@
 
 #include "TrxSplitData.h"
 
-TrxSplitData::TrxSplitData()
+TrxSplitData::TrxSplitData() :
+    m_id(-1),
+    m_trx_id(-1),
+    m_category_id(-1),
+    m_amount(0.0)
 {
-    m_id          = -1;
-    m_trx_id      = -1;
-    m_category_id = -1;
-    m_amount      = 0.0;
 }
 
 // Convert TrxSplitData to TrxSplitRow
@@ -43,11 +43,11 @@ TrxSplitRow TrxSplitData::to_row() const
 // Convert TrxSplitRow to TrxSplitData
 TrxSplitData& TrxSplitData::from_row(const TrxSplitRow& row)
 {
-    m_id          = row.SPLITTRANSID;     // int64
-    m_trx_id      = row.TRANSID;          // int64
-    m_category_id = row.CATEGID;          // int64
-    m_amount      = row.SPLITTRANSAMOUNT; // double
-    m_notes       = row.NOTES;            // wxString
+    m_id          = row.SPLITTRANSID;
+    m_trx_id      = row.TRANSID;
+    m_category_id = row.CATEGID;
+    m_amount      = row.SPLITTRANSAMOUNT;
+    m_notes       = row.NOTES;
 
     return *this;
 }

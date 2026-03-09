@@ -299,9 +299,9 @@ auto TableFactory<T, D>::stat_json() const -> const wxString
     json_writer.Key("cache_max_size");
     json_writer.Int(cache_stat.max_size);
     json_writer.Key("cache_hit");
-    json_writer.Int(cache_stat.hit_cnt);
+    json_writer.Int(cache_stat.hit_c);
     json_writer.Key("cache_miss");
-    json_writer.Int(cache_stat.miss_cnt);
+    json_writer.Int(cache_stat.miss_c);
     json_writer.EndObject();
 
     wxLogDebug("======== TableFactory::stat_json =======");
@@ -317,7 +317,7 @@ void TableFactory<T, D>::debug_stat() const
     const mmCacheStat& cache_stat = m_cache.get_stat();
     wxLogDebug("%s : (cap %zu, max_size %zu, hit %zu, miss %zu)",
         this->m_table_name,
-        cache_stat.capacity, cache_stat.max_size, cache_stat.hit_cnt, cache_stat.miss_cnt
+        cache_stat.capacity, cache_stat.max_size, cache_stat.hit_c, cache_stat.miss_c
     );
 }
 

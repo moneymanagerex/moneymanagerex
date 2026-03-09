@@ -112,7 +112,7 @@ void StockDialog::DataToControls()
     m_stock_name_ctrl->SetValue(m_stock_n->m_name);
     m_stock_symbol_ctrl->SetValue(m_stock_n->m_symbol);
     m_notes_ctrl->SetValue(m_stock_n->m_notes);
-    m_purchase_date_ctrl->SetValue(StockModel::PURCHASEDATE(*m_stock_n));
+    m_purchase_date_ctrl->SetValue(m_stock_n->m_purchase_date.getDateTime());
 
     int precision = m_stock_n->m_num_shares == floor(m_stock_n->m_num_shares)
         ? 0
@@ -141,7 +141,7 @@ void StockDialog::UpdateControls()
         if (m_stock_n) {
             m_value_investment->SetLabelText(AccountModel::instance().value_number_currency(
                 *account_n,
-                StockModel::instance().CurrentValue(*m_stock_n)
+                m_stock_n->current_value()
             ));
         }
     }
@@ -162,7 +162,7 @@ void StockDialog::UpdateControls()
     wxBitmapButton* buttonAdd = static_cast<wxBitmapButton*>(FindWindow(wxID_ADD));
     buttonAdd->Enable(m_edit);
 
-    bool initial_shares = !TrxLinkModel::HasShares(m_stock_id);
+    bool initial_shares = (TrxLinkModel::instance().find_stock_id_c(m_stock_id) == 0);
     m_num_shares_ctrl->Enable(!m_edit || initial_shares);
     m_purchase_date_ctrl->Enable(!m_edit || initial_shares);
     m_purchase_price_ctrl->Enable(!m_edit || initial_shares);
@@ -187,7 +187,9 @@ void StockDialog::CreateControls()
 {
     bool initial_stock_transaction = true;
     if (m_stock_n) {
-        if (!TrxLinkModel::TranslinkList<StockModel>(m_stock_n->m_id).empty()) {
+        if (!TrxLinkModel::instance().find_ref_data_a(
+            StockModel::s_ref_type, m_stock_n->m_id
+        ).empty()) {
             initial_stock_transaction = false;
         }
     }
@@ -378,29 +380,22 @@ void StockDialog::CreateControls()
 
 void StockDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-    const wxString& RefType = StockModel::refTypeName;
     if (!m_edit)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(StockModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
 void StockDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-    const wxString& RefType = StockModel::refTypeName;
     if (m_stock_id <= 0)
-        mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+        mmAttachmentManage::DeleteAllAttachments(StockModel::s_ref_type, 0);
     EndModal(wxID_CANCEL);
 }
 
 void StockDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
-    const wxString RefType = StockModel::refTypeName;
-    int64 RefId = m_stock_id;
-
-    if (RefId < 0)
-        RefId = 0;
-
-    AttachmentDialog dlg(this, RefType, RefId);
+    int64 ref_id = (m_stock_id > 0) ? m_stock_id : 0;
+    AttachmentDialog dlg(this, StockModel::s_ref_type, ref_id);
     dlg.ShowModal();
 }
 
@@ -501,8 +496,11 @@ void StockDialog::OnSave(wxCommandEvent & /*event*/)
     m_stock_id = m_stock_n->id();
 
     if (!m_edit) {
-        const wxString RefType = StockModel::refTypeName;
-        mmAttachmentManage::RelocateAllAttachments(RefType, 0, RefType, m_stock_n->m_id);
+        // FIXME
+        mmAttachmentManage::RelocateAllAttachments(
+            StockModel::s_ref_type, 0,
+            StockModel::s_ref_type, m_stock_n->m_id
+        );
         TrxShareDialog share_dialog(this, m_stock_n);
         share_dialog.ShowModal();
     }
@@ -922,7 +920,7 @@ void StockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
         ));
         m_value_investment->SetLabelText(AccountModel::instance().value_number_currency(
             *account,
-            StockModel::instance().CurrentValue(*m_stock_n)
+            m_stock_n->current_value()
         ));
     }
 }
@@ -987,11 +985,13 @@ void StockDialog::ShowStockHistory()
         m_current_price_ctrl->SetValue(disp_price);
         // if the latest share price is not the current stock price, update it.
         if (m_stock_n->m_current_price != sh_d.m_price) {
-            StockModel::UpdateCurrentPrice(m_stock_n->m_symbol, sh_d.m_price);
+            StockModel::instance().update_symbol_current_price(
+                m_stock_n->m_symbol, sh_d.m_price
+            );
             m_stock_n = StockModel::instance().unsafe_get_id_data_n(m_stock_n->m_id);
             m_value_investment->SetLabelText(AccountModel::instance().value_number_currency(
                 *(AccountModel::instance().get_id_data_n(m_stock_n->m_account_id_n)),
-                StockModel::instance().CurrentValue(*m_stock_n)
+                m_stock_n->current_value()
             ));
         }
     }

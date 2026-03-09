@@ -86,7 +86,7 @@ void mmEditSplitOther::CreateControls()
 
     // Split Category
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _t("Category")), g_flagsH);
-    wxString catName = CategoryModel::full_name(m_split->CATEGID);
+    wxString catName = CategoryModel::instance().full_name(m_split->CATEGID);
     wxTextCtrl* category = new wxTextCtrl(this, wxID_ANY, catName);
     category->Disable();
     fgSizer1->Add(category, g_flagsExpand);
@@ -310,7 +310,7 @@ void SplitDialog::FillControls(const int focusRow)
         if (row < static_cast<int>(m_splits.size()))
         {
             m_splits_widgets.at(row).category->ChangeValue(
-                    CategoryModel::full_name(m_splits.at(row).CATEGID));
+                    CategoryModel::instance().full_name(m_splits.at(row).CATEGID));
             if (m_splits.at(row).CATEGID == -1)
                 m_splits_widgets.at(row).amount->SetValue("");
             else
@@ -531,13 +531,13 @@ void SplitDialog::OnComboKey(wxKeyEvent& event)
                         auto cbcUpdate = m_splits_widgets.at(i).category;
                         if (cbc != cbcUpdate)
                         {
-                            category = CategoryModel::full_name(cbcUpdate->mmGetCategoryId());
+                            category = CategoryModel::instance().full_name(cbcUpdate->mmGetCategoryId());
                             cbcUpdate->mmDoReInitialize();
                             cbcUpdate->ChangeValue(category);
                         }
                     }
                 }
-                category = CategoryModel::full_name(dlg.getCategId());
+                category = CategoryModel::instance().full_name(dlg.getCategId());
                 if (dlg.getRefreshRequested())
                     cbc->mmDoReInitialize();
                 cbc->ChangeValue(category);

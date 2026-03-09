@@ -22,14 +22,14 @@
 
 struct mmCacheStat
 {
-    size_t capacity, max_size, lock_cnt, hit_cnt, miss_cnt;
+    size_t capacity, max_size, lock_c, hit_c, miss_c;
 
     mmCacheStat(size_t capacity_ = 0) :
-        capacity(capacity_), max_size(0), lock_cnt(0), hit_cnt(0), miss_cnt(0)
+        capacity(capacity_), max_size(0), lock_c(0), hit_c(0), miss_c(0)
     {
     }
 
-    void reset() { max_size = 0; lock_cnt = 0; hit_cnt = 0; miss_cnt = 0; }
+    void reset() { max_size = 0; lock_c = 0; hit_c = 0; miss_c = 0; }
 };
 
 template<typename KeyType, typename ValueType>
