@@ -472,6 +472,7 @@ endif()
 ## Subdirectories with targets ##
 add_subdirectory(3rd)
 add_subdirectory(po)
+add_subdirectory(po_wxstd)
 add_subdirectory(src)
 
 
