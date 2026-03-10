@@ -240,13 +240,15 @@ public:
     mmColorButton(wxWindow* parent
         , wxWindowID id
         , wxSize size = wxDefaultSize
+        , bool noColorAllowed = false
     );
-    void SetBackgroundColor(int color_id);
+    void SetColor(int color_id);
     int GetColorId() const;
 private:
     void OnMenuSelected(wxCommandEvent& event);
     void OnColourButton(wxCommandEvent& event);
     int m_color_value;
+    bool m_noColorAllowed;
     wxDECLARE_EVENT_TABLE();
 };
 

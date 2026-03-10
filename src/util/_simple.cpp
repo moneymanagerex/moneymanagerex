@@ -110,7 +110,7 @@ void mmCalendarPopup::OnEndSelection(wxCalendarEvent& event)
 // mmCalculatorPopup
 //----------------------------------------------------------------------------
 
-mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target, bool trigger) : 
+mmCalculatorPopup::mmCalculatorPopup(wxWindow* parent, mmTextCtrl* target, bool trigger) :
     wxPopupTransientWindow(parent, wxBORDER_THEME | wxPU_CONTAINS_CONTROLS), target_(target), trigger_(trigger)
 {
     panel = new wxWindow(this, wxID_ANY);
@@ -258,8 +258,8 @@ void mmCalculatorPopup::OnDismiss()
         valueTextCtrl_->Calculate();
         if (trigger_) {
             target_->SetValue(valueTextCtrl_->GetValue());
-        } 
-        else { 
+        }
+        else {
             target_->ChangeValue(valueTextCtrl_->GetValue());
         }
         //target_->ChangeValue(valueTextCtrl_->GetValue());
@@ -759,33 +759,22 @@ wxBEGIN_EVENT_TABLE(mmColorButton, wxButton)
 EVT_MENU(wxID_ANY, mmColorButton::OnMenuSelected)
 EVT_BUTTON(wxID_ANY, mmColorButton::OnColourButton)
 wxEND_EVENT_TABLE()
-mmColorButton::mmColorButton(wxWindow* parent, wxWindowID id, wxSize size)
+mmColorButton::mmColorButton(wxWindow* parent, wxWindowID id, wxSize size, bool noColorAllowed)
     :wxButton(parent, id, " ", wxDefaultPosition, size)
-    , m_color_value(-1)
+    , m_color_value(-1), m_noColorAllowed(noColorAllowed)
 {
 }
 
 void mmColorButton::OnMenuSelected(wxCommandEvent& event)
 {
-    m_color_value = event.GetId() - wxID_HIGHEST;
-    SetBackgroundColour(getUDColour(m_color_value));
-    SetForegroundColour(m_color_value <= 0 ? getUDColour(m_color_value) : *bestFontColour(getUDColour(m_color_value)));
-    if (GetSize().GetX() > 40)
-    {
-        if (m_color_value <= 0) {
-            SetLabel(wxString::Format(_t("&Clear color")));
-        }
-        else {
-            SetLabel(wxString::Format(_t("Color #&%i"), m_color_value));
-        }
-    }
+    SetColor(event.GetId() - wxID_HIGHEST);
     event.Skip();
 }
 
 void mmColorButton::OnColourButton(wxCommandEvent& event)
 {
     wxMenu mainMenu;
-    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST, wxString::Format(_t("&Clear color"), 0));
+    wxMenuItem* menuItem = new wxMenuItem(&mainMenu, wxID_HIGHEST, m_noColorAllowed ? wxString::Format(_t("&Without color")) : wxString::Format(_t("&Clear color"), 0));
     mainMenu.Append(menuItem);
 
     for (int i = 1; i <= 7; ++i)
@@ -816,10 +805,24 @@ int mmColorButton::GetColorId() const
     return m_color_value;
 }
 
-void mmColorButton::SetBackgroundColor(int color_id)
+void mmColorButton::SetColor(int color_id)
 {
-    SetBackgroundColour(getUDColour(color_id));
     m_color_value = color_id;
+    SetBackgroundColour(getUDColour(m_color_value));
+    SetForegroundColour(m_color_value <= 0 ? getUDColour(m_color_value) : *bestFontColour(getUDColour(m_color_value)));
+    if (GetSize().GetX() > 40) {
+        if (m_color_value <= 0) {
+            if (m_noColorAllowed) {
+                SetLabel(m_color_value == 0 ? wxString::Format(_t("&Without color")) : "");
+            }
+            else {
+                SetLabel(wxString::Format(_t("&Clear color")));
+            }
+        }
+        else {
+            SetLabel(wxString::Format(_t("Color #&%i"), m_color_value));
+        }
+    }
 }
 
 /*/////////////////////////////////////////////////////////////*/
@@ -1303,7 +1306,7 @@ void mmTagTextCtrl::createDropButton(wxSize btnSize)
     btn_dropdown_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxPoint(-1, 0), btnSize, wxBORDER_NONE, wxDefaultValidator, "btn_dropdown_");
     btn_dropdown_->Bind(wxEVT_PAINT, &mmTagTextCtrl::OnPaintButton, this);
 
-    // Recreate the Native windows-style drop arrow    
+    // Recreate the Native windows-style drop arrow
     wxImage img(btnSize);
     img.InitAlpha();
     wxBitmap bg = wxBitmap(img);

@@ -269,7 +269,7 @@ void mmUnivCSVDialog::CreateControls()
 
     wxBoxSizer* preset_box_sizer = new wxBoxSizer(wxHORIZONTAL);
     preset_box_sizer->Add(m_choice_preset_name, g_flagsH);
-    
+
 
     if (!init_preset_name.IsEmpty())
         m_choice_preset_name->SetStringSelection(init_preset_name);
@@ -727,7 +727,7 @@ void mmUnivCSVDialog::OnShowPayeeDialog(wxMouseEvent&)
     {
         payeeRegExInitialized_ = false;
         refreshTabs(PAYEE_TAB);
-    } 
+    }
 }
 
 void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent&)
@@ -753,7 +753,7 @@ void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent&)
     if (dlg.getRefreshRequested())
     {
         refreshTabs(CAT_TAB);
-    }   
+    }
 }
 
 void mmUnivCSVDialog::OnColumnResize(wxListEvent& event)
@@ -992,9 +992,9 @@ void mmUnivCSVDialog::SetSettings(const wxString &json_data)
         }
 
         if (json_doc.HasMember("COLOR_SELECTION"))
-            colorButton_->SetBackgroundColor(json_doc["COLOR_SELECTION"].GetInt());
+            colorButton_->SetColor(json_doc["COLOR_SELECTION"].GetInt());
         else
-            colorButton_->SetBackgroundColor(-1);
+            colorButton_->SetColor(-1);
     }
     else
     {
@@ -2018,7 +2018,7 @@ void mmUnivCSVDialog::update_preview()
                 }
 
                 auto content = pImporter->GetItem(row, col).Trim().Trim(false);
-                
+
                 // add payee names to list
                 if (row >= firstRow
                     && row < lastRow
@@ -2048,7 +2048,7 @@ void mmUnivCSVDialog::update_preview()
                         categ_name = content;
                     } else
                         m_CSVcategoryNames[_t("Unknown")] = -1;
-                }                    
+                }
 
                 if (row >= firstRow
                     && row < lastRow
@@ -2942,7 +2942,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
         holder.Type = TrxModel::TYPE_NAME_DEPOSIT;
         break;
 
-        // A number of type options are supported to make amount positive 
+        // A number of type options are supported to make amount positive
         // ('debit' seems odd but is there for backwards compatability!)
     case UNIV_CSV_TYPE:
         if (m_choiceAmountFieldSign->GetSelection() == DefindByType)
@@ -3196,7 +3196,7 @@ bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wx
             }
             break;
 
-            // Check if string can be interpreted as "True" or "False" (case insensitive)    
+            // Check if string can be interpreted as "True" or "False" (case insensitive)
         case FieldTypeN::e_boolean:
             if (bool_true_array.Index(value, false) == wxNOT_FOUND)
                 if (bool_false_array.Index(value, false) == wxNOT_FOUND)

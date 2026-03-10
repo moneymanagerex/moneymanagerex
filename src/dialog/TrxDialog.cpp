@@ -624,10 +624,10 @@ void TrxDialog::CreateControls()
         , wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(TrxDialog::OnFrequentUsedNotes), nullptr, this);
 
-    // Colours
+    // Colors
     bColours_ = new mmColorButton(static_box, wxID_LOWEST, bAuto->GetSize());
     mmToolTip(bColours_, _t("User Colors"));
-    bColours_->SetBackgroundColor(m_journal_data.m_color.GetValue());
+    bColours_->SetColor(m_journal_data.m_color.GetValue());
 
     // Attachments
     bAttachments_ = new wxBitmapButton(static_box, wxID_FILE, mmBitmapBundle(png::CLIP, mmBitmapButtonSize));

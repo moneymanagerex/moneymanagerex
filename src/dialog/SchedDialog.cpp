@@ -218,7 +218,7 @@ void SchedDialog::dataToControls()
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
 
-    bColours_->SetBackgroundColor(m_sched_xd.m_color.GetValue());
+    bColours_->SetColor(m_sched_xd.m_color.GetValue());
 
     for (const auto& entry : BILLSDEPOSITS_REPEATS)
     {
@@ -987,7 +987,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     SchedModel::RepeatNum rn;
-    rn.exec = 
+    rn.exec =
         autoExecuteSilent_  ? SchedModel::REPEAT_EXEC_SILENT :
         autoExecuteUserAck_ ? SchedModel::REPEAT_EXEC_MANUAL :
                               SchedModel::REPEAT_EXEC_NONE;

@@ -419,7 +419,10 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
         m_color_value = j_doc["COLOR"].GetInt();
     }
     colorButton_->Enable(colorCheckBox_->IsChecked());
-    colorButton_->SetBackgroundColor(m_color_value);
+    colorButton_->SetColor(m_color_value);
+    if (m_color_value == 0) {
+        m_color_value = -1;
+    }
     colorButton_->Refresh(); // Needed as setting the background color does not cause an immediate refresh
 
     // Custom Fields
@@ -709,9 +712,10 @@ void TrxFilterDialog::mmDoCreateControls()
 
     // Colour
     colorCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _t("Color"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    colorCheckBox_->Bind(wxEVT_CHECKBOX, &TrxFilterDialog::OnColorChecked, this);
     itemPanelSizer->Add(colorCheckBox_, g_flagsH);
 
-    colorButton_ = new mmColorButton(itemPanel, wxID_HIGHEST);
+    colorButton_ = new mmColorButton(itemPanel, wxID_HIGHEST, wxDefaultSize, true);
     itemPanelSizer->Add(colorButton_, g_flagsExpand);
 
     itemPanel->SetSizerAndFit(itemPanelSizer);
@@ -1085,12 +1089,12 @@ bool TrxFilterDialog::mmIsValuesCorrect() const
         }
     }
 
-    if (mmIsColorChecked()) {
-        if (m_color_value < 1 || m_color_value > 7) {
+   /* if (mmIsColorChecked()) {
+        if (m_color_value != -1 || m_color_value < 1 || m_color_value > 7) {
             mmErrorDialogs::ToolTip4Object(colorButton_, _t("Invalid value"), _t("Color"), wxICON_ERROR);
             return false;
         }
-    }
+    }*/
 
     if (showColumnsCheckBox_->IsChecked())
     {
@@ -2326,9 +2330,10 @@ void TrxFilterDialog::OnMenuSelected(wxCommandEvent&)
     m_color_value = colorButton_->GetColorId();
     if (!m_color_value)
     {
-        colorButton_->Enable(false);
-        colorCheckBox_->SetValue(false);
-        colorButton_->SetLabel("");
+        //colorButton_->Enable(false);
+        //colorCheckBox_->SetValue(false);
+        //colorButton_->SetLabel(_t("Without color"));
+        m_color_value = 0;
     }
 }
 
@@ -2388,4 +2393,20 @@ void TrxFilterDialog::OnComboKey(wxKeyEvent& event)
     }
 
     event.Skip();
+}
+
+void TrxFilterDialog::OnColorChecked(wxCommandEvent& WXUNUSED(event))
+{
+    if (mmIsColorChecked()) {
+        m_color_value = colorButton_->GetColorId();
+        if (m_color_value == -1) {
+            m_color_value = 0;
+            colorButton_->SetColor(m_color_value);
+        }
+    }
+    else {
+        colorButton_->SetLabel(_t(""));
+        m_color_value = -1;
+    }
+    colorButton_->Enable(mmIsColorChecked());
 }
