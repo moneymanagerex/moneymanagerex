@@ -553,41 +553,22 @@ htmlWidgetStatistics::~htmlWidgetStatistics()
 
 const wxString htmlWidgetGrandTotals::getHTMLText(double tBalance, double tReconciled, double tAssets, double tStocks)
 {
+    wxString output = "<th>" + _t("Total Net Worth") + "</th>";
 
-    const wxString tReconciledStr  = wxString::Format("%s: <span class='money'>%s</span>"
+    output += wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , ( PrefModel::instance().getShowReconciledInHomePage() ? _t("Reconciled") : _t("Accounts"))
                                         , CurrencyModel::toCurrency(tReconciled));
-    const wxString tAssetStr  = wxString::Format("%s: <span class='money'>%s</span>"
+    output +=  wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Assets")
                                         , CurrencyModel::toCurrency(tAssets));
-    const wxString tStockStr  = wxString::Format("%s: <span class='money'>%s</span>"
+    output +=  wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Stock")
                                         , CurrencyModel::toCurrency(tStocks));
-    const wxString tBalanceStr  = wxString::Format("%s: <span class='money'>%s</span>"
+    output += wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Balance")
                                         , CurrencyModel::toCurrency(tBalance));
 
-    StringBuffer json_buffer;
-    PrettyWriter<StringBuffer> json_writer(json_buffer);
-    json_writer.StartObject();
-    json_writer.Key("NAME");
-    json_writer.String(_t("Total Net Worth").utf8_str());
-    json_writer.Key("RECONVALUE");
-    json_writer.String(tReconciledStr.utf8_str());
-    json_writer.Key("ASSETVALUE");
-    json_writer.String(tAssetStr.utf8_str());
-    json_writer.Key("STOCKVALUE");
-    json_writer.String(tStockStr.utf8_str());
-    json_writer.Key("BALVALUE");
-    json_writer.String(tBalanceStr.utf8_str());
-
-
-    json_writer.EndObject();
-
-    wxLogDebug("======= DashboardPanel::getGrandTotalsJSON =======");
-    wxLogDebug("RapidJson\n%s", wxString::FromUTF8(json_buffer.GetString()));
-
-    return wxString::FromUTF8(json_buffer.GetString());
+    return output;
 }
 
 htmlWidgetGrandTotals::~htmlWidgetGrandTotals()
