@@ -49,7 +49,7 @@
 
 wxBEGIN_EVENT_TABLE(JournalList, ListBase)
     EVT_CHAR(JournalList::onChar)
-    EVT_LEFT_DOWN(JournalList::onListLeftClick)
+    //EVT_LEFT_DOWN(JournalList::onListLeftClick)
     EVT_RIGHT_DOWN(JournalList::onMouseRightClick)
 
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,  JournalList::onListItemActivated)
@@ -367,7 +367,7 @@ int JournalList::getSortIcon(bool asc) const
 
 void JournalList::refreshVisualList(bool filter)
 {
-    wxLogDebug("refreshVisualList: %i selected, filter: %d", GetSelectedItemCount(), filter);
+    //wxLogDebug("refreshVisualList: %i selected, filter: %d", GetSelectedItemCount(), filter);
 
     // Grab the selected transactions unless we have freshly pasted transactions in which case use them
     if (m_pasted_id.empty()) {
@@ -696,17 +696,17 @@ void JournalList::onChar(wxKeyEvent& event)
     }
 }
 
-void JournalList::onListLeftClick(wxMouseEvent& event)
+/*void JournalList::onListLeftClick(wxMouseEvent& event)
 {
-    wxLogDebug("onListLeftClick: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListLeftClick: %i selected", GetSelectedItemCount());
     event.Skip();
-}
+}*/
 
 void JournalList::onMouseRightClick(wxMouseEvent& event)
 {
     rightClickFilter_ = "";
     copyText_ = "";
-    wxLogDebug("onMouseRightClick: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onMouseRightClick: %i selected", GetSelectedItemCount());
     int selected = GetSelectedItemCount();
 
     bool is_nothing_selected = (selected < 1);
@@ -1024,28 +1024,28 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 
 void JournalList::onListItemActivated(wxListEvent& /*event*/)
 {
-    wxLogDebug("onListItemActivated: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListItemActivated: %i selected", GetSelectedItemCount());
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_EDIT2);
     AddPendingEvent(evt);
 }
 
 void JournalList::onListItemSelected(wxListEvent&)
 {
-    wxLogDebug("onListItemSelected: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListItemSelected: %i selected", GetSelectedItemCount());
     findSelectedTransactions();
     setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void JournalList::onListItemDeSelected(wxListEvent&)
 {
-    wxLogDebug("onListItemDeSelected: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListItemDeSelected: %i selected", GetSelectedItemCount());
     findSelectedTransactions();
     setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void JournalList::onListItemFocused(wxListEvent& WXUNUSED(event))
 {
-    wxLogDebug("onListItemFocused: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListItemFocused: %i selected", GetSelectedItemCount());
     findSelectedTransactions();
     setExtraTransactionData(GetSelectedItemCount() == 1);
 }
@@ -1839,7 +1839,7 @@ void JournalList::onSetUserColour(wxCommandEvent& event)
     findSelectedTransactions();
     int user_color_id = event.GetId();
     user_color_id -= MENU_ON_SET_UDC0;
-    wxLogDebug("id: %i", user_color_id);
+    //wxLogDebug("id: %i", user_color_id);
 
     TrxModel::instance().db_savepoint();
     SchedModel::instance().db_savepoint();
@@ -1912,7 +1912,6 @@ void JournalList::setAutomaticColumnSize()
     int diff = this->GetSize().GetWidth() - twidth;
     if (abs(diff) > 5) {
         int diffdelta = diff / resizable_ids.size();
-        wxLogDebug("Fensterbreite %d - Spaltenbreite: %d  = %d (Änderbare spalten: %d, Delta: %d, Gesamt %d)", this->GetSize().GetWidth(), twidth, diff, static_cast<int>(resizable_ids.size()), diffdelta, rwidth);
         for (colInfo col: resizable_ids) {
             this->SetColumnWidth(col.id, col.width + diffdelta);
         }
@@ -1924,7 +1923,6 @@ void JournalList::OnSize(wxSizeEvent& event)
     setAutomaticColumnSize();
     event.Skip();
 }
-
 
 
 //----------------------------------------------------------------------------
@@ -2210,7 +2208,7 @@ void JournalList::doSearchText(const wxString& value)
 
     }
 
-    wxLogDebug("Searching finished");
+    //wxLogDebug("Searching finished");
     selectedItem = getSortAsc(0) ? last : 0;
     long cursel = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
     SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);

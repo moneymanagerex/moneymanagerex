@@ -177,7 +177,7 @@ protected:
 
 private:
     void onChar(wxKeyEvent& event);
-    void onListLeftClick(wxMouseEvent& event);
+    //void onListLeftClick(wxMouseEvent& event);
     void onMouseRightClick(wxMouseEvent& event);
 
     void onListItemActivated(wxListEvent& event);
