@@ -123,6 +123,18 @@ double AccountModel::get_data_balance(const Data& account_d)
     return sum;
 }
 
+double AccountModel::get_data_balance_to_date(const Data& account_d, mmDate date)
+{
+    double sum = account_d.m_open_balance;
+    // FIXME: skip Void and deleted transactions
+    for (const auto& trx_a: find_id_trx_aBySN(account_d.m_id)) {
+        if (trx_a.TRANSDATE <= date.isoEnd()) {
+            sum += TrxModel::account_flow(trx_a, account_d.m_id);
+        }
+    }
+    return sum;
+}
+
 std::pair<double, double> AccountModel::get_data_investment_balance(const Data& account_d)
 {
     std::pair<double /*market value*/, double /*invest value*/> sum;

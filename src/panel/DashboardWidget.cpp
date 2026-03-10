@@ -101,13 +101,22 @@ const wxString htmlWidgetStocks::getHTMLText()
         , "INVEST", "INVEST", "INVEST");
     output += "</tr></thead><tbody id='INVEST'>\n";
     wxString body = "";
+
+    bool btoday = PrefModel::instance().getIgnoreFutureTransactionsHomePage();
+    double cash_bal;
+
     for (const auto& account_d : account_a) {
         if (!account_d.is_open())
             continue;
 
         double conv_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id, today);
         auto inv_bal = AccountModel::instance().get_data_investment_balance(account_d);
-        double cash_bal = AccountModel::instance().get_data_balance(account_d);
+        if (btoday) {
+            cash_bal = AccountModel::instance().get_data_balance_to_date(account_d, mmDate::today());
+        }
+        else {
+            cash_bal = AccountModel::instance().get_data_balance(account_d);
+        }
 
         grand_gain_lost    += (inv_bal.first - inv_bal.second) * conv_rate;
         grand_market_value += inv_bal.first * conv_rate;

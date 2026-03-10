@@ -428,6 +428,7 @@ void StockPanel::updateHeader()
     double cashBalance = 0;
     double marketValue = 0;
     double InvestedVal = 0;
+    bool today = PrefModel::instance().getIgnoreFutureTransactionsHomePage();
     // + Transfered from other accounts - Transfered to other accounts
 
     //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
@@ -437,7 +438,13 @@ void StockPanel::updateHeader()
         const AccountData* account_n = AccountModel::instance().get_id_data_n(m_account_id);
         if (account_n) {
             header_text_->SetLabelText(GetPanelTitle(*account_n));
-            cashBalance = AccountModel::instance().get_data_balance(*account_n);
+
+            if (today) {
+                cashBalance = AccountModel::instance().get_data_balance_to_date(*account_n, mmDate::today());
+            }
+            else {
+                cashBalance = AccountModel::instance().get_data_balance(*account_n);
+            }
             std::pair<double, double> investment_balance = AccountModel::instance().get_data_investment_balance(*account_n);
             marketValue = investment_balance.first;
             InvestedVal = investment_balance.second;
