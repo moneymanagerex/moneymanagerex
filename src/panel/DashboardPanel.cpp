@@ -146,7 +146,7 @@ void DashboardPanel::insertDataIntoTemplate()
     locale.Replace("_", "-");
     m_frames["LOCALE"] = locale;
 
-    double tBalance = 0.0, tReconciled = 0.0;
+    double tBalance = 0.0, tAccountBalance = 0.0, tReconciled = 0.0;
 
     // Accounts
     htmlWidgetStocks stocks_widget;
@@ -165,7 +165,7 @@ void DashboardPanel::insertDataIntoTemplate()
                 AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
                 m_frames[AccountsInfo] = R"(<div class="shadow">)";
             }
-            m_frames[AccountsInfo] += account_stats.displayAccounts(tBalance, tReconciled, navinfo->type);
+            m_frames[AccountsInfo] += account_stats.displayAccounts(tAccountBalance, tReconciled, navinfo->type);
         }
         else if (navinfo->type == NavigatorTypes::TYPE_ID_INVESTMENT) {
             if (isAccount) {
@@ -202,7 +202,8 @@ void DashboardPanel::insertDataIntoTemplate()
 
     htmlWidgetGrandTotals grand_totals;
     m_frames["GRAND_TOTAL"] = grand_totals.getHTMLText(
-        tBalance, tReconciled,
+        tBalance + tAccountBalance,
+        PrefModel::instance().getShowReconciledInHomePage() ? tReconciled : tAccountBalance,
         AssetModel::instance().find_all_balance(),
         stocks_widget.get_total()
     );

@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 - 2021 Nikolay Akimov
 Copyright (C) 2021-2023 Mark Whalley (mark@ipx.co.uk)
-Copyright (C) 2025 Klaus Wich
+Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -555,7 +555,7 @@ const wxString htmlWidgetGrandTotals::getHTMLText(double tBalance, double tRecon
 {
 
     const wxString tReconciledStr  = wxString::Format("%s: <span class='money'>%s</span>"
-                                        , _t("Reconciled")
+                                        , ( PrefModel::instance().getShowReconciledInHomePage() ? _t("Reconciled") : _t("Accounts"))
                                         , CurrencyModel::toCurrency(tReconciled));
     const wxString tAssetStr  = wxString::Format("%s: <span class='money'>%s</span>"
                                         , _t("Assets")
@@ -729,14 +729,21 @@ void htmlWidgetAccounts::get_account_stats()
 const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tReconciled, int type = NavigatorTypes::TYPE_ID_CHECKING)
 {
     NavigatorTypesInfo* ninfo = NavigatorTypes::instance().FindEntry(type);
+    bool showReconciled = PrefModel::instance().getShowReconciledInHomePage();
 
     wxString idStr = ninfo->choice;
     wxString output = "<table class = 'sortable table'>\n";
-    output += R"(<col style="width:50%"><col style="width:25%"><col style="width:25%">)";
+    if (showReconciled) {
+        output += R"(<col style="width:50%"><col style="width:25%"><col style="width:25%">)";
+    }
+    else {
+        output += R"(<col style="width:67%"><col style="width:33%">)";
+    }
     output += "<thead><tr><th nowrap>\n";
     output += wxGetTranslation(ninfo->name);
-
-    output += "</th><th class = 'text-right'>" + _t("Reconciled") + "</th>\n";
+    if (showReconciled) {
+        output += "</th><th class = 'text-right'>" + _t("Reconciled") + "</th>\n";
+    }
     output += "<th class = 'text-right'>" + _t("Balance") + "</th>\n";
     output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th>\n"
         , idStr, idStr, idStr);
@@ -773,17 +780,22 @@ const wxString htmlWidgetAccounts::displayAccounts(double& tBalance, double& tRe
                     account_d.m_website
                 )
             );
-            body += wxString::Format("\n<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n",
-                reconciledBal,
-                CurrencyModel::toCurrency(reconciledBal, currency)
-            );
+            if (showReconciled) {
+                body += wxString::Format("\n<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n",
+                    reconciledBal,
+                    CurrencyModel::toCurrency(reconciledBal, currency)
+                );
+            }
             body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, CurrencyModel::toCurrency(bal, currency));
             body += "</tr>\n";
         }
     }
     output += body;
     output += "</tbody><tfoot><tr class ='total'><td>" + _t("Total:") + "</td>\n";
-    output += "<td class='money'>" + CurrencyModel::toCurrency(tabReconciled) + "</td>\n";
+
+    if (showReconciled) {
+        output += "<td class='money'>" + CurrencyModel::toCurrency(tabReconciled) + "</td>\n";
+    }
     output += "<td class='money' colspan='2'>" + CurrencyModel::toCurrency(tabBalance) + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
 

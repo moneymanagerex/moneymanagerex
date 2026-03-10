@@ -5407,7 +5407,8 @@ msgstr ""
 msgid "Ignore F&uture Transactions"
 msgstr ""
 
-#: mmframe.cpp:1900
+#: mmframe.cpp:1897
+#: pref/DashboardPref.cpp:118 pref/TrxPref.cpp:230
 msgid "Ignore Future transactions"
 msgstr ""
 
@@ -7547,8 +7548,8 @@ msgstr ""
 msgid "Miscellaneous"
 msgstr ""
 
-#: pref/DashboardPref.cpp:118 pref/TrxPref.cpp:230
-msgid "Ignore Future Transactions"
+#: pref/DashboardPref.cpp:127
+msgid "Show reconciled values"
 msgstr ""
 
 #: pref/GeneralPref.cpp:78
