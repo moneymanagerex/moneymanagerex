@@ -948,8 +948,8 @@ void AssetPanel::GotoAssetAccount(const int selected_index)
         TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
             AssetModel::s_ref_type, asset_n->m_id
         );
-        for (const auto& tl_a : tl_a) {
-            const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_a.m_trx_id);
+        for (const auto& _tl_a : tl_a) {
+            const TrxData* trx_n = TrxModel::instance().get_id_data_n(_tl_a.m_trx_id);
             if (trx_n) {
                 account_n = AccountModel::instance().get_id_data_n(trx_n->m_account_id);
                 SetAccountParameters(account_n);
