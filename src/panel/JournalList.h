@@ -226,6 +226,9 @@ private:
     void deleteTransactionsByStatus(const wxString& status);
     bool checkForClosedAccounts();
     bool checkTransactionLocked(int64 AccountID, const wxString& transdate);
+
+    void OnSize(wxSizeEvent& event);
+    void setAutomaticColumnSize();
 };
 
 //----------------------------------------------------------------------------

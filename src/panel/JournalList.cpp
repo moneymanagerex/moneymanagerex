@@ -100,7 +100,7 @@ wxEND_EVENT_TABLE();
 const std::vector<ListColumnInfo> JournalList::LIST_INFO = {
     { LIST_ID_ICON,        true, _n("Icon"),         25,  _FC, false },
     { LIST_ID_ID,          true, _n("ID"),           _WA, _FR, true },
-    { LIST_ID_DATE,        true, _n("Date"),         112, _FL, true },
+    { LIST_ID_DATE,        true, _n("Date"),         80,  _FC, true },
     { LIST_ID_TIME,        true, _n("Time"),         70,  _FL, true },
     { LIST_ID_NUMBER,      true, _n("Number"),       70,  _FL, true },
     { LIST_ID_ACCOUNT,     true, _n("Account"),      100, _FL, true },
@@ -273,6 +273,8 @@ JournalList::JournalList(
         wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
     SetSingleStyle(wxLC_SINGLE_SEL, false);
+
+    this->Bind(wxEVT_SIZE, &JournalList::OnSize, this);
 }
 
 JournalList::~JournalList()
@@ -1876,6 +1878,54 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, ref_type, id.first);
     refreshVisualList();
 }
+
+void JournalList::setAutomaticColumnSize()
+{
+    struct colInfo {
+        int id;
+        int width;
+    };
+
+    // get total column width:
+    int twidth = 0;
+    int rwidth = 0;
+    std::vector<colInfo> resizable_ids;
+    for (int i = 0; i < GetColumnCount(); i++) {
+        int col_id = getColId_Nr(i);
+        if (!isHiddenColId(col_id)) {
+            int cw = GetColumnWidth(i);
+            twidth += cw;
+
+            switch (col_id) {
+                case LIST_ID_PAYEE_STR:
+                case LIST_ID_TAGS:
+                case LIST_ID_NOTES:
+                case LIST_ID_CATEGORY:
+                    resizable_ids.push_back({i, cw});
+                    rwidth += cw;
+                    break;
+            }
+        }
+    }
+
+    // calculate and apply diff:
+    int diff = this->GetSize().GetWidth() - twidth;
+    if (abs(diff) > 5) {
+        int diffdelta = diff / resizable_ids.size();
+        wxLogDebug("Fensterbreite %d - Spaltenbreite: %d  = %d (Änderbare spalten: %d, Delta: %d, Gesamt %d)", this->GetSize().GetWidth(), twidth, diff, static_cast<int>(resizable_ids.size()), diffdelta, rwidth);
+        for (colInfo col: resizable_ids) {
+            this->SetColumnWidth(col.id, col.width + diffdelta);
+        }
+    }
+}
+
+void JournalList::OnSize(wxSizeEvent& event)
+{
+    setAutomaticColumnSize();
+    event.Skip();
+}
+
+
 
 //----------------------------------------------------------------------------
 

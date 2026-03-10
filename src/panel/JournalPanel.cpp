@@ -1500,4 +1500,3 @@ void JournalPanel::loadDateRanges(
         *date_range_m = date_range_a->size();
     }
 }
-
