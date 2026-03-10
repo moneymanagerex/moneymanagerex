@@ -58,18 +58,10 @@ set(WXSTD_MAP_vi_VN "vi")
 set(WXSTD_MAP_zh_CN "zh_CN")
 set(WXSTD_MAP_zh_TW "zh_TW")
 
-execute_process(
-    COMMAND sh "${wxWidgets_CONFIG_EXECUTABLE}" --prefix
-    OUTPUT_VARIABLE wxWidgets_prefix
-    RESULT_VARIABLE wxWidgets_prefix_result
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    ERROR_QUIET
-)
-
 set(MMEX_PO_DIRECTORY "${CMAKE_SOURCE_DIR}/po")
-set(WXSTD_PO_DIRECTORY "${wxWidgets_prefix}/locale")
-message(STATUS "MMEX_PO_DIRECTORY: ${MMEX_PO_DIRECTORY}")
-message(STATUS "WXSTD_PO_DIRECTORY: ${WXSTD_PO_DIRECTORY}")
+set(WXSTD_PO_DIRECTORY "${CMAKE_SOURCE_DIR}/po_wxstd")
+#message(STATUS "MMEX_PO_DIRECTORY: ${MMEX_PO_DIRECTORY}")
+#message(STATUS "WXSTD_PO_DIRECTORY: ${WXSTD_PO_DIRECTORY}")
 
 file(GLOB MMEX_PO_FILES RELATIVE "${MMEX_PO_DIRECTORY}" ${MMEX_PO_DIRECTORY}/*.po)
 foreach(mmex_po_file ${MMEX_PO_FILES})
@@ -109,7 +101,7 @@ foreach(mmex_po_file ${MMEX_PO_FILES})
         DESTINATION ${WXSTD_MO_DIRECTORY}
         RENAME ${WXSTD}.mo
     )
-    message(STATUS "wxstd map: ${mmex_basename} -> ${wxstd_basename}")
+    #message(STATUS "wxstd map: ${mmex_basename} -> ${wxstd_basename}")
 
     list(APPEND WXSTD_MO_FILES "${CMAKE_CURRENT_BINARY_DIR}/${wxstd_basename}.mo")
 endforeach()
