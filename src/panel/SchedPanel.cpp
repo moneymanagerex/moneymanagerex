@@ -458,7 +458,7 @@ wxString SchedPanel::getItem(long item, int col_id)
     case SchedList::LIST_ID_PAYEE:
         return sched_xd.real_payee_name();
     case SchedList::LIST_ID_STATUS:
-        return sched_xd.STATUS;
+        return sched_xd.m_status.key();
     case SchedList::LIST_ID_CATEGORY:
         return sched_xd.CATEGNAME;
     case SchedList::LIST_ID_TAGS:
@@ -467,10 +467,10 @@ wxString SchedPanel::getItem(long item, int col_id)
         wxString value = wxEmptyString;
         int64 accountid;
         double transamount;
-        if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
+        if (sched_xd.is_withdrawal()) {
             accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
         }
-        else if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+        else if (sched_xd.is_transfer()) {
             accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
         }
         else
@@ -480,7 +480,7 @@ wxString SchedPanel::getItem(long item, int col_id)
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
             value = CurrencyModel::toCurrency(transamount, currency);
-        if (!value.IsEmpty() && TrxModel::status_id(sched_xd.STATUS) == TrxModel::STATUS_ID_VOID)
+        if (!value.IsEmpty() && sched_xd.is_void())
             value = "* " + value;
         return value;
     }
@@ -488,10 +488,10 @@ wxString SchedPanel::getItem(long item, int col_id)
         wxString value = wxEmptyString;
         int64 accountid;
         double transamount;
-        if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
+        if (sched_xd.is_deposit()) {
             accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
         }
-        else if (TrxModel::type_id(sched_xd.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+        else if (sched_xd.is_transfer()) {
             accountid = sched_xd.m_to_account_id_n; transamount = sched_xd.m_to_amount;
         }
         else
@@ -501,7 +501,7 @@ wxString SchedPanel::getItem(long item, int col_id)
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
             value = CurrencyModel::toCurrency(transamount, currency);
-        if (!value.IsEmpty() && TrxModel::status_id(sched_xd.STATUS) == TrxModel::STATUS_ID_VOID)
+        if (!value.IsEmpty() && sched_xd.is_void())
             value = "* " + value;
         return value;
     }

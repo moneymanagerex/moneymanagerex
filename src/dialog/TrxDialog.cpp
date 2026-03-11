@@ -58,24 +58,23 @@
 wxIMPLEMENT_DYNAMIC_CLASS(TrxDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(TrxDialog, wxDialog)
-EVT_CHAR_HOOK(TrxDialog::OnComboKey)
-EVT_CHILD_FOCUS(TrxDialog::OnFocusChange)
-EVT_COMBOBOX(mmID_PAYEE, TrxDialog::OnPayeeChanged)
-EVT_TEXT(mmID_PAYEE, TrxDialog::OnPayeeChanged)
-EVT_BUTTON(mmID_CATEGORY_SPLIT, TrxDialog::OnCategs)
-EVT_CHOICE(ID_DIALOG_TRANS_TYPE, TrxDialog::OnTransTypeChanged)
-EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, TrxDialog::OnAdvanceChecked)
-EVT_BUTTON(wxID_FILE, TrxDialog::OnAttachments)
-EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS, TrxDialog::OnMoreFields)
-EVT_BUTTON(wxID_OK, TrxDialog::OnOk)
-EVT_BUTTON(ID_BTN_OK_NEW, TrxDialog::OnOk)
-EVT_BUTTON(wxID_CANCEL, TrxDialog::OnCancel)
-EVT_BUTTON(ID_DIALOG_TRANS_TODAY, TrxDialog::OnToday)
-EVT_CLOSE(TrxDialog::OnQuit)
-
-EVT_MENU(wxID_SAVE, TrxDialog::TrxDialog::OnOk)
-EVT_MENU(ID_BTN_OK_NEW, TrxDialog::TrxDialog::OnOk)
-EVT_MENU(ID_DIALOG_TRANS_TODAY, TrxDialog::OnToday)
+    EVT_CHAR_HOOK(                                  TrxDialog::OnComboKey)
+    EVT_CHILD_FOCUS(                                TrxDialog::OnFocusChange)
+    EVT_COMBOBOX(mmID_PAYEE,                        TrxDialog::OnPayeeChanged)
+    EVT_TEXT(mmID_PAYEE,                            TrxDialog::OnPayeeChanged)
+    EVT_BUTTON(mmID_CATEGORY_SPLIT,                 TrxDialog::OnCategs)
+    EVT_CHOICE(ID_DIALOG_TRANS_TYPE,                TrxDialog::OnTransTypeChanged)
+    EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, TrxDialog::OnAdvanceChecked)
+    EVT_BUTTON(wxID_FILE,                           TrxDialog::OnAttachments)
+    EVT_BUTTON(ID_DIALOG_TRANS_CUSTOMFIELDS,        TrxDialog::OnMoreFields)
+    EVT_BUTTON(wxID_OK,                             TrxDialog::OnOk)
+    EVT_BUTTON(ID_BTN_OK_NEW,                       TrxDialog::OnOk)
+    EVT_BUTTON(wxID_CANCEL,                         TrxDialog::OnCancel)
+    EVT_BUTTON(ID_DIALOG_TRANS_TODAY,               TrxDialog::OnToday)
+    EVT_CLOSE(                                      TrxDialog::OnQuit)
+    EVT_MENU(wxID_SAVE,                             TrxDialog::TrxDialog::OnOk)
+    EVT_MENU(ID_BTN_OK_NEW,                         TrxDialog::TrxDialog::OnOk)
+    EVT_MENU(ID_DIALOG_TRANS_TODAY,                 TrxDialog::OnToday)
 wxEND_EVENT_TABLE()
 
 TrxDialog::~TrxDialog()
@@ -110,7 +109,7 @@ TrxDialog::TrxDialog(
     int64 account_id,
     Journal::IdB journal_id,
     bool duplicate,
-    int type
+    TrxType type
 ) :
     m_account_id(account_id)
 {
@@ -146,11 +145,12 @@ TrxDialog::TrxDialog(
     else {
         m_mode = MODE_NEW;
         TrxModel::setEmptyData(m_journal_data, account_id);
-        m_journal_data.TRANSCODE = TrxModel::type_name(type);
+        m_journal_data.m_type = type;
     }
 
-    m_transfer = TrxModel::type_id(m_journal_data.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER;
-    m_advanced = m_mode != MODE_NEW && m_transfer && (m_journal_data.m_amount != m_journal_data.m_to_amount);
+    m_transfer = m_journal_data.is_transfer();
+    m_advanced = m_mode != MODE_NEW && m_transfer &&
+        (m_journal_data.m_amount != m_journal_data.m_to_amount);
 
     m_custom_fields = new mmCustomDataTransaction(this,
         (m_mode == MODE_NEW ? TrxModel::s_ref_type :
@@ -257,14 +257,14 @@ void TrxDialog::dataToControls()
         bool useOriginalState = m_mode != MODE_DUP ||
             SettingModel::instance().getBool(INIDB_USE_ORG_STATE_DUPLICATE_PASTE, false);
         m_status = useOriginalState
-            ? m_journal_data.STATUS
-            : TrxModel::status_key(PrefModel::instance().getTransStatusReconciled());
-        choiceStatus_->SetSelection(TrxModel::status_id(m_status));
+            ? m_journal_data.m_status.key()
+            : TrxStatus(PrefModel::instance().getTransStatusReconciled()).key();
+        choiceStatus_->SetSelection(TrxStatus(m_status).id());
         skip_status_init_ = true;
     }
 
     //Type
-    transaction_type_->SetSelection(TrxModel::type_id(m_journal_data.TRANSCODE));
+    transaction_type_->SetSelection(m_journal_data.m_type.id());
 
     //Account
     if (!skip_account_init_) {
@@ -287,7 +287,7 @@ void TrxDialog::dataToControls()
         account_label_->SetLabelText(_t("From"));
         payee_label_->SetLabelText(_t("To"));
     }
-    else if (!TrxModel::is_deposit(m_journal_data.TRANSCODE)) {
+    else if (!m_journal_data.is_deposit()) {
         account_label_->SetLabelText(_t("Account"));
         payee_label_->SetLabelText(_t("Payee"));
     }
@@ -332,7 +332,7 @@ void TrxDialog::dataToControls()
                 && (accountID != -1)
             ) {
                 TrxModel::DataA transactions = T.find(
-                    TrxModel::TRANSCODE(OP_NE, TrxModel::TYPE_ID_TRANSFER),
+                    TrxModel::TRANSCODE(OP_NE, TrxType(TrxType::e_transfer)),
                     TrxCol::ACCOUNTID(OP_EQ, accountID));
 
                 if (!transactions.empty()) {
@@ -385,7 +385,7 @@ void TrxDialog::dataToControls()
             PrefModel::instance().getTransCategoryTransferNone() == PrefModel::LASTUSED
         ) {
             TrxModel::DataA transactions = T.find(
-                TrxModel::TRANSCODE(OP_EQ, TrxModel::TYPE_ID_TRANSFER)
+                TrxModel::TRANSCODE(OP_EQ, TrxType(TrxType::e_transfer))
             );
 
             if (!transactions.empty() &&
@@ -496,18 +496,18 @@ void TrxDialog::CreateControls()
     // Type --------------------------------------------
     transaction_type_ = new wxChoice(static_box, ID_DIALOG_TRANS_TYPE);
 
-    for (int i = 0; i < TrxModel::TYPE_ID_size; ++i) {
-        if (i != TrxModel::TYPE_ID_TRANSFER ||
-            AccountModel::instance().find_all().size() > 1
-        ) {
-            wxString type = TrxModel::type_name(i);
+    for (int i = 0; i < TrxType::size; ++i) {
+        if (i != TrxType::e_transfer || AccountModel::instance().find_all().size() > 1) {
+            wxString type = TrxType(i).name();
             transaction_type_->Append(wxGetTranslation(type), new wxStringClientData(type));
         }
     }
 
-    cAdvanced_ = new wxCheckBox(static_box
-        , ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _t("&Advanced")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+    cAdvanced_ = new wxCheckBox(static_box,
+        ID_DIALOG_TRANS_ADVANCED_CHECKBOX,
+        _t("&Advanced"),
+        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
+    );
 
     wxBoxSizer* typeSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -596,8 +596,8 @@ void TrxDialog::CreateControls()
     // Status --------------------------------------------
     choiceStatus_ = new wxChoice(static_box, ID_DIALOG_TRANS_STATUS);
 
-    for (int i = 0; i < TrxModel::STATUS_ID_size; ++i) {
-        wxString status = TrxModel::status_name(i);
+    for (int i = 0; i < TrxStatus::size; ++i) {
+        wxString status = TrxStatus(i).name();
         choiceStatus_->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
 
@@ -715,9 +715,9 @@ bool TrxDialog::ValidateData()
         return false;
     }
     m_journal_data.m_account_id = cbAccount_->mmGetId();
-    const AccountData* account = AccountModel::instance().get_id_data_n(m_journal_data.m_account_id);
+    const AccountData* account_n = AccountModel::instance().get_id_data_n(m_journal_data.m_account_id);
 
-    if (mmDate(m_journal_data.TRANSDATE) < account->m_open_date) {
+    if (mmDate(m_journal_data.TRANSDATE) < account_n->m_open_date) {
         mmErrorDialogs::ToolTip4Object(
             cbAccount_,
             _t("The opening date for the account is later than the date of this transaction"),
@@ -802,10 +802,10 @@ bool TrxDialog::ValidateData()
     }
 
     /* Check if transaction is to proceed.*/
-    if (account->is_locked_for(mmDate(dpc_->GetValue()))) {
+    if (account_n->is_locked_for(mmDate(dpc_->GetValue()))) {
         if (wxMessageBox(wxString::Format(
             _t("Lock transaction to date: %s") + "\n\n" + _t("Do you want to continue?"),
-            mmGetDateTimeForDisplay(account->m_stmt_date_n.value().isoDate())),
+            mmGetDateTimeForDisplay(account_n->m_stmt_date_n.value().isoDate())),
             _t("MMEX Transaction Check"),
             wxYES_NO | wxICON_WARNING
         ) == wxNO) {
@@ -813,24 +813,25 @@ bool TrxDialog::ValidateData()
         }
     }
 
-    //Checking account does not exceed limits
+    // Checking account does not exceed limits
     if (m_mode != MODE_EDIT) {
-        if (m_journal_data.STATUS != TrxModel::STATUS_KEY_VOID &&
-            (m_journal_data.TRANSCODE == TrxModel::TYPE_NAME_WITHDRAWAL ||
-             m_journal_data.TRANSCODE == TrxModel::TYPE_NAME_TRANSFER) &&
-            (account->m_min_balance != 0 || account->m_credit_limit != 0))
-        {
-            const double fromAccountBalance = AccountModel::instance().get_data_balance(*account);
-            const double new_value = fromAccountBalance - m_journal_data.m_amount;
+        if (!m_journal_data.is_void() &&
+            (m_journal_data.is_withdrawal() || m_journal_data.is_transfer()) &&
+            (account_n->m_min_balance != 0 || account_n->m_credit_limit != 0)
+        ) {
+            const double balance = AccountModel::instance().get_data_balance(*account_n);
+            const double new_value = balance - m_journal_data.m_amount;
 
             bool abort_transaction =
-                (account->m_min_balance != 0 && new_value < account->m_min_balance) ||
-                (account->m_credit_limit != 0 && new_value < -(account->m_credit_limit));
+                (account_n->m_min_balance != 0 && new_value < account_n->m_min_balance) ||
+                (account_n->m_credit_limit != 0 && new_value < -(account_n->m_credit_limit));
 
             if (abort_transaction && wxMessageBox(
-                _t("The transaction will exceed the account limit.") + "\n\n" + _t("Do you want to continue?")
-                , _t("MMEX Transaction Check"), wxYES_NO | wxICON_WARNING) == wxNO)
-            {
+                _t("The transaction will exceed the account limit.") + "\n\n" +
+                    _t("Do you want to continue?"),
+                _t("MMEX Transaction Check"),
+                wxYES_NO | wxICON_WARNING
+            ) == wxNO) {
                 return false;
             }
         }
@@ -951,13 +952,13 @@ void TrxDialog::OnPayeeChanged(wxCommandEvent& /*event*/)
 
 void TrxDialog::OnTransTypeChanged(wxCommandEvent& event)
 {
-    const wxString old_type = m_journal_data.TRANSCODE;
+    const TrxType old_type = m_journal_data.m_type;
     wxStringClientData *client_obj = static_cast<wxStringClientData*>(event.GetClientObject());
-    if (client_obj) m_journal_data.TRANSCODE = client_obj->GetData();
-    if (old_type != m_journal_data.TRANSCODE)
-    {
-        m_transfer = TrxModel::is_transfer(m_journal_data.TRANSCODE);
-        if (m_transfer || TrxModel::is_transfer(old_type))
+    if (client_obj)
+        m_journal_data.m_type = TrxType(client_obj->GetData());
+    if (old_type.id() != m_journal_data.m_type.id()) {
+        m_transfer = m_journal_data.is_transfer();
+        if (m_transfer || old_type.id() == TrxType::e_transfer)
             skip_payee_init_ = false;
         else
             skip_payee_init_ = true;
@@ -1235,10 +1236,9 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     m_journal_data.m_number = textNumber_->GetValue();
     m_journal_data.TRANSDATE = dpc_->GetValue().FormatISOCombined();
     wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
-    if (status_obj)
-    {
-        m_status = TrxModel::status_key(status_obj->GetData());
-        m_journal_data.STATUS = m_status;
+    if (status_obj) {
+        m_status = TrxStatus(status_obj->GetData()).key();
+        m_journal_data.m_status = TrxStatus(m_status);
     }
 
     if (!ValidateData()) return;
@@ -1393,7 +1393,7 @@ void TrxDialog::SetTooltips()
     else {
         mmToolTip(m_textAmount, _t("Specify the amount for this transaction"));
         mmToolTip(cbAccount_, _t("Specify account for the transaction"));
-        if (!TrxModel::is_deposit(m_journal_data.TRANSCODE))
+        if (!m_journal_data.is_deposit())
             mmToolTip(cbPayee_, _t("Specify to whom the transaction is going to"));
         else
             mmToolTip(cbPayee_, _t("Specify where the transaction is coming from"));

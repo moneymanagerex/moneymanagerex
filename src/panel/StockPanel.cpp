@@ -327,7 +327,7 @@ void StockPanel::FillListRow(
 
     int precision = ts_d.m_number == floor(ts_d.m_number) ? 0 : PrefModel::instance().getSharePrecision();
     listCtrl->SetItem(index, 2, wxString::FromDouble(ts_d.m_number, precision));
-    listCtrl->SetItem(index, 3, wxGetTranslation(TrxModel::trade_type_name(TrxModel::type_id(trx_d.TRANSCODE))));
+    listCtrl->SetItem(index, 3, wxGetTranslation(trx_d.m_type.trade_name()));
     listCtrl->SetItem(index, 4, wxString::FromDouble(ts_d.m_price, PrefModel::instance().getSharePrecision()));
     listCtrl->SetItem(index, 5, wxString::FromDouble(ts_d.m_commission, 2));
     double total = ts_d.m_number * ts_d.m_price + ts_d.m_commission;

@@ -125,16 +125,14 @@ bool TrxLinkDialog::Create(
 
     // Type --------------------------------------------
     m_type_selector = new wxChoice(this, ID_TRANS_TYPE, wxDefaultPosition, std_half_size);
-    for (int i = 0; i < TrxModel::TYPE_ID_size; ++i)
-    {
-        if (i != TrxModel::TYPE_ID_TRANSFER || this->m_enable_revalue)
-        {
-            wxString type = TrxModel::trade_type_name(i);
+    for (int i = 0; i < TrxType::size; ++i) {
+        if (i != TrxType::e_transfer || this->m_enable_revalue) {
+            wxString type = TrxType(i).trade_name();
             m_type_selector->Append(wxGetTranslation(type), new wxStringClientData(type));
         }
     }
 
-    m_type_selector->SetSelection(TrxModel::TYPE_ID_WITHDRAWAL);
+    m_type_selector->SetSelection(TrxType::e_withdrawal);
     mmToolTip(m_type_selector, _t("Withdraw funds from or deposit funds to this Account."));
 
     // transfer indicator (refined)
@@ -176,13 +174,12 @@ bool TrxLinkDialog::Create(
     m_status_selector = new wxChoice(this, ID_TRANS_STATUS_SELECTOR
         , wxDefaultPosition, std_half_size);
 
-    for (int i = 0; i < TrxModel::STATUS_ID_size; ++i)
-    {
-        wxString status = TrxModel::status_name(i);
+    for (int i = 0; i < TrxStatus::size; ++i) {
+        wxString status = TrxStatus(i).name();
         m_status_selector->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
 
-    m_status_selector->SetSelection(TrxModel::STATUS_ID_RECONCILED);
+    m_status_selector->SetSelection(TrxStatus::e_reconciled);
     mmToolTip(m_status_selector, _t("Specify the status for this transaction"));
 
     transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Status")), g_flagsH);
@@ -258,7 +255,7 @@ void TrxLinkDialog::DataToControls()
     m_transaction_id = m_transaction_n->m_id;
     m_account_id = m_transaction_n->m_account_id;
     m_account->SetLabelText(AccountModel::instance().get_id_name(m_account_id));
-    m_type_selector->SetSelection(TrxModel::type_id(m_transaction_n->TRANSCODE));
+    m_type_selector->SetSelection(m_transaction_n->m_type.id());
 
     if (m_account_id > 0) {
         const CurrencyData* currency = AccountModel::instance().get_id_currency_p(m_account_id);
@@ -267,7 +264,7 @@ void TrxLinkDialog::DataToControls()
     }
 
     SetTransactionValue(m_transaction_n->m_amount);
-    m_status_selector->SetSelection(TrxModel::status_id(m_transaction_n->STATUS));
+    m_status_selector->SetSelection(m_transaction_n->m_status.id());
 
     m_payee_id = m_transaction_n->m_payee_id_n;
     m_payee->SetLabelText(PayeeModel::instance().get_id_name(m_payee_id));
@@ -308,8 +305,8 @@ void TrxLinkDialog::BindEventsAndTrigger()
     m_type_selector->Bind(wxEVT_CHOICE, [this](wxCommandEvent&)
     {
         int selection = m_type_selector->GetSelection();
-        m_payee_text->Show(selection != TrxModel::TYPE_ID_TRANSFER);
-        m_payee->Show(selection != TrxModel::TYPE_ID_TRANSFER);
+        m_payee_text->Show(selection != TrxType::e_transfer);
+        m_payee->Show(selection != TrxType::e_transfer);
 
         this->Layout();
     });
@@ -324,7 +321,7 @@ void TrxLinkDialog::SetLastPayeeAndCategory(const int64 account_id)
     if (PrefModel::instance().getTransPayeeNone() == PrefModel::LASTUSED) {
         TrxModel::DataA trans_list = TrxModel::instance().find(
             TrxCol::ACCOUNTID(account_id),
-            TrxModel::TRANSCODE(OP_NE, TrxModel::TYPE_ID_TRANSFER)
+            TrxModel::TRANSCODE(OP_NE, TrxType(TrxType::e_transfer))
         );
         if (!trans_list.empty()) {
             int last_trans_pos = trans_list.size() - 1;
@@ -436,7 +433,10 @@ void TrxLinkDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 bool TrxLinkDialog::ValidCheckingAccountEntry()
 {
     m_category_id = m_category->mmGetCategoryId();  // update from selection
-    return (m_account_id != -1) && (m_payee_id != -1 || TransactionType() == TrxModel::TYPE_ID_TRANSFER) && (m_category_id != -1) && (!m_entered_amount->GetValue().IsEmpty());
+    return m_account_id != -1 &&
+        (m_payee_id != -1 || TransactionType() == TrxType::e_transfer) &&
+        m_category_id != -1 &&
+        !m_entered_amount->GetValue().IsEmpty();
 }
 
 wxDateTime TrxLinkDialog::TransactionDate()
@@ -535,19 +535,19 @@ int64 TrxLinkDialog::SaveChecking()
 
     m_transaction_n->m_account_id = m_account_id;
     m_transaction_n->m_to_account_id_n = (
-        TransactionType() == TrxModel::TYPE_ID_TRANSFER ||
+        TransactionType() == TrxType::e_transfer ||
         CheckingType() == TrxLinkModel::AS_TRANSFER
     ) ? m_account_id : -1; // Self Transfer as Revaluation
 
+    m_transaction_n->TRANSDATE       = trx_datetime.FormatISOCombined();
+    m_transaction_n->m_type          = TrxType(TransactionType());
+    m_transaction_n->m_status        = TrxStatus(m_status_selector->GetStringSelection().Mid(0, 1));
     m_transaction_n->m_payee_id_n    = m_payee_id;
-    m_transaction_n->TRANSCODE       = TrxModel::type_name(TransactionType());
+    m_transaction_n->m_category_id_n = m_category_id;
     m_transaction_n->m_amount        = initial_amount;
-    m_transaction_n->STATUS          = m_status_selector->GetStringSelection().Mid(0, 1);
+    m_transaction_n->m_to_amount     = m_transaction_n->m_amount;
     m_transaction_n->m_number        = m_entered_number->GetValue();
     m_transaction_n->m_notes         = m_entered_notes->GetValue();
-    m_transaction_n->m_category_id_n = m_category_id;
-    m_transaction_n->TRANSDATE       = trx_datetime.FormatISOCombined();
-    m_transaction_n->m_to_amount     = m_transaction_n->m_amount;
 
     TrxModel::instance().unsafe_save_trx_n(m_transaction_n);
     return m_transaction_n->id();

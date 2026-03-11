@@ -40,46 +40,6 @@ public:
     using TagLinkDataA  = TagLinkModel::DataA;
 
 public:
-    enum TYPE_ID
-    {
-        TYPE_ID_WITHDRAWAL = 0,
-        TYPE_ID_DEPOSIT,
-        TYPE_ID_TRANSFER,
-        TYPE_ID_size
-    };
-    enum STATUS_ID
-    {
-        STATUS_ID_NONE = 0,
-        STATUS_ID_RECONCILED,
-        STATUS_ID_VOID,
-        STATUS_ID_FOLLOWUP,
-        STATUS_ID_DUPLICATE,
-        STATUS_ID_size
-    };
-    static const wxString TYPE_NAME_WITHDRAWAL;
-    static const wxString TYPE_NAME_DEPOSIT;
-    static const wxString TYPE_NAME_TRANSFER;
-    static const wxString STATUS_KEY_NONE;
-    static const wxString STATUS_KEY_RECONCILED;
-    static const wxString STATUS_KEY_VOID;
-    static const wxString STATUS_KEY_FOLLOWUP;
-    static const wxString STATUS_KEY_DUPLICATE;
-    static const wxString STATUS_NAME_NONE;
-    static const wxString STATUS_NAME_RECONCILED;
-    static const wxString STATUS_NAME_VOID;
-    static const wxString STATUS_NAME_FOLLOWUP;
-    static const wxString STATUS_NAME_DUPLICATE;
-
-private:
-    static mmChoiceNameA TYPE_CHOICES;
-    static mmChoiceNameA TRADE_TYPE_CHOICES;
-    static mmChoiceKeyNameA STATUS_CHOICES;
-
-public:
-    static const wxString type_name(int id);
-    static const wxString trade_type_name(int id);
-
-public:
     struct Full_Data: public Data
     {
         // filled-in by constructor
@@ -152,21 +112,6 @@ public:
     // Data properties (do not require access to Model)
     // TODO: move to TrxData
     static void copy_from_trx(Data* this_n, const Data& other_d);
-
-    static int type_id(const wxString& name);
-    static TYPE_ID type_id(const Data& this_d);
-    static bool is_transfer(const wxString& r);
-    static bool is_transfer(const Data& this_d);
-    static bool is_deposit(const wxString& r);
-    static bool is_deposit(const Data& this_d);
-
-    static const wxString status_key(int id);
-    static const wxString status_key(const wxString& keyOrName);
-    static const wxString status_name(int id);
-    static const wxString status_name(const wxString& keyOrName);
-    static int status_id(const wxString& keyOrName);
-    static STATUS_ID status_id(const Data& this_d);
-
     static wxDateTime getTransDateTime(const Data& this_d);
     static double account_flow(const Data& this_d, int64 account_id);
     static double account_outflow(const Data& this_d, int64 account_id);
@@ -179,10 +124,10 @@ public:
     static TrxCol::TRANSDATE TRANSDATE(OP op, const wxString& date_iso_str);
     static TrxCol::TRANSDATE TRANSDATE(OP op, const mmDate& date);
     static TrxCol::TRANSDATE TRANSDATE(OP op, const wxDateTime& date);
-    static TrxCol::DELETEDTIME DELETEDTIME(OP op, const wxString& date);
-    static TrxCol::STATUS STATUS(OP op, STATUS_ID status);
-    static TrxCol::TRANSCODE TRANSCODE(OP op, TYPE_ID type);
+    static TrxCol::TRANSCODE TRANSCODE(OP op, TrxType trx_type);
+    static TrxCol::STATUS STATUS(OP op, TrxStatus trx_status);
     static TrxCol::TRANSACTIONNUMBER TRANSACTIONNUMBER(OP op, const wxString& num);
+    static TrxCol::DELETEDTIME DELETEDTIME(OP op, const wxString& date);
 
 public:
     static const TrxModel::DataA find_allByDateTimeId();
@@ -296,48 +241,6 @@ public:
 };
 
 //----------------------------------------------------------------------------
-
-inline const wxString TrxModel::type_name(int id)
-{
-    return TYPE_CHOICES.get_name(id);
-}
-inline const wxString TrxModel::trade_type_name(int id)
-{
-    return TRADE_TYPE_CHOICES.get_name(id);
-}
-inline int TrxModel::type_id(const wxString& name)
-{
-    return TYPE_CHOICES.find_name_n(name);
-}
-inline TrxModel::TYPE_ID TrxModel::type_id(const Data& trx_d)
-{
-    return static_cast<TYPE_ID>(type_id(trx_d.TRANSCODE));
-}
-
-inline const wxString TrxModel::status_key(int id)
-{
-    return STATUS_CHOICES.get_key(id);
-}
-inline const wxString TrxModel::status_key(const wxString& keyOrName)
-{
-    return status_key(status_id(keyOrName));
-}
-inline const wxString TrxModel::status_name(int id)
-{
-    return STATUS_CHOICES.get_name(id);
-}
-inline const wxString TrxModel::status_name(const wxString& keyOrName)
-{
-    return status_name(status_id(keyOrName));
-}
-inline int TrxModel::status_id(const wxString& keyOrName)
-{
-    return STATUS_CHOICES.find_keyname_n(keyOrName);
-}
-inline TrxModel::STATUS_ID TrxModel::status_id(const Data& trx_d)
-{
-    return static_cast<STATUS_ID>(status_id(trx_d.STATUS));
-}
 
 inline bool TrxModel::Full_Data::has_split() const
 {

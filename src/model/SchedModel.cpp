@@ -51,20 +51,6 @@ SchedModel& SchedModel::instance()
     return Singleton<SchedModel>::instance();
 }
 
-TrxModel::TYPE_ID SchedModel::type_id(const Data& this_d)
-{
-    return static_cast<TrxModel::TYPE_ID>(
-        TrxModel::type_id(this_d.TRANSCODE)
-    );
-}
-
-TrxModel::STATUS_ID SchedModel::status_id(const Data& this_d)
-{
-    return static_cast<TrxModel::STATUS_ID>(
-        TrxModel::status_id(this_d.STATUS)
-    );
-}
-
 wxDate SchedModel::getTransDateTime(const Data& this_d)
 {
     return parseDateTime(this_d.TRANSDATE);
@@ -226,14 +212,14 @@ wxArrayString SchedModel::unroll(const Data& sched_d, const wxString end_date, i
     return dates;
 }
 
-SchedCol::STATUS SchedModel::STATUS(OP op, TrxModel::STATUS_ID status)
+SchedCol::STATUS SchedModel::STATUS(OP op, TrxStatus sched_status)
 {
-    return SchedCol::STATUS(op, TrxModel::status_key(status));
+    return SchedCol::STATUS(op, sched_status.key());
 }
 
-SchedCol::TRANSCODE SchedModel::TRANSCODE(OP op, TrxModel::TYPE_ID type)
+SchedCol::TRANSCODE SchedModel::TRANSCODE(OP op, TrxType sched_type)
 {
-    return SchedCol::TRANSCODE(op, TrxModel::type_name(type));
+    return SchedCol::TRANSCODE(op, sched_type.name());
 }
 
 const SchedSplitModel::DataA SchedModel::split(const Data& sched_d)
@@ -281,21 +267,21 @@ bool SchedModel::purge_id(int64 sched_id)
     return unsafe_remove_id(sched_id);
 }
 
-bool SchedModel::AllowTransaction(const Data& r)
+bool SchedModel::AllowTransaction(const Data& sched_d)
 {
-    if (r.STATUS == TrxModel::STATUS_KEY_VOID)
+    if (sched_d.is_void())
         return true;
-    if (r.TRANSCODE != TrxModel::TYPE_NAME_WITHDRAWAL && r.TRANSCODE != TrxModel::TYPE_NAME_TRANSFER)
+    if (!sched_d.is_withdrawal() && !sched_d.is_transfer())
         return true;
 
-    const int64 acct_id = r.m_account_id;
+    const int64 acct_id = sched_d.m_account_id;
     const AccountData* account_n = AccountModel::instance().get_id_data_n(acct_id);
 
     if (account_n->m_min_balance == 0 && account_n->m_credit_limit == 0)
         return true;
 
     double current_balance = AccountModel::instance().get_data_balance(*account_n);
-    double new_balance = current_balance - r.m_amount;
+    double new_balance = current_balance - sched_d.m_amount;
 
     bool allow_transaction = true;
     wxString limitDescription;
@@ -318,10 +304,17 @@ bool SchedModel::AllowTransaction(const Data& r)
             "Transaction amount: %3$6.2f\n"
             "%4$s: %5$6.2f") + "\n\n" +
             _t("Do you want to continue?");
-        message.Printf(message, account_n->m_name, current_balance, r.m_amount, limitDescription, limitAmount);
+        message.Printf(message,
+            account_n->m_name, current_balance, sched_d.m_amount,
+            limitDescription, limitAmount
+        );
 
-        if (wxMessageBox(message, _t("MMEX Scheduled Transaction Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+        if (wxMessageBox(message,
+            _t("MMEX Scheduled Transaction Check"),
+            wxYES_NO | wxICON_WARNING
+        ) == wxYES) {
             allow_transaction = true;
+        }
     }
 
     return allow_transaction;
@@ -361,12 +354,12 @@ void SchedModel::completeBDInSeries(int64 sched_id)
 SchedModel::Full_Data::Full_Data()
 {}
 
-SchedModel::Full_Data::Full_Data(const Data& r) :
-    Data(r),
-    m_bill_splits(split(r)),
+SchedModel::Full_Data::Full_Data(const Data& sched_d) :
+    Data(sched_d),
+    m_bill_splits(split(sched_d)),
     m_tags(TagLinkModel::instance().find(
         TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
-        TagLinkCol::REFID(r.m_id)
+        TagLinkCol::REFID(sched_d.m_id)
     ))
 {
     if (!m_tags.empty()) {
@@ -395,19 +388,17 @@ SchedModel::Full_Data::Full_Data(const Data& r) :
         }
     }
     else
-        CATEGNAME = CategoryModel::instance().full_name(r.m_category_id_n);
+        CATEGNAME = CategoryModel::instance().full_name(sched_d.m_category_id_n);
 
-    ACCOUNTNAME = AccountModel::instance().get_id_name(r.m_account_id);
+    ACCOUNTNAME = AccountModel::instance().get_id_name(sched_d.m_account_id);
 
-    PAYEENAME = PayeeModel::instance().get_id_name(r.m_payee_id_n);
-    if (SchedModel::type_id(r) == TrxModel::TYPE_ID_TRANSFER) {
-        PAYEENAME = AccountModel::instance().get_id_name(r.m_to_account_id_n);
+    PAYEENAME = PayeeModel::instance().get_id_name(sched_d.m_payee_id_n);
+    if (sched_d.is_transfer()) {
+        PAYEENAME = AccountModel::instance().get_id_name(sched_d.m_to_account_id_n);
     }
 }
 
 wxString SchedModel::Full_Data::real_payee_name() const
 {
-    return (TrxModel::type_id(this->TRANSCODE) == TrxModel::TYPE_ID_TRANSFER)
-        ? ("> " + this->PAYEENAME)
-        : this->PAYEENAME;
+    return is_transfer() ? ("> " + this->PAYEENAME) : this->PAYEENAME;
 }

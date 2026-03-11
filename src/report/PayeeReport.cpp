@@ -49,9 +49,9 @@ PayeeReport::~PayeeReport()
 {
 }
 
-void PayeeReport::updateData(Data& data, TrxModel::TYPE_ID type_id, double amount)
+void PayeeReport::updateData(Data& data, TrxType trx_type, double amount)
 {
-    double flow = (type_id == TrxModel::TYPE_ID_DEPOSIT) ? amount : -amount;
+    double flow = (trx_type.id() == TrxType::e_deposit) ? amount : -amount;
     if (flow > 0.0)
         data.flow_pos += flow;
     else if (flow < 0.0)
@@ -64,26 +64,24 @@ void PayeeReport::loadData()
     m_id_data.clear();
 
     const auto all_splits = TrxSplitModel::instance().get_all_id();
-    const auto &trx_a = TrxModel::instance().find(
+    for (const auto& trx_d : TrxModel::instance().find(
         TrxModel::TRANSDATE(OP_GE, m_date_range2.rangeStart().value()),
         TrxModel::TRANSDATE(OP_LE, m_date_range2.rangeEnd().value()),
         TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::STATUS(OP_NE, TrxModel::STATUS_ID_VOID)
-    );
-    for (const auto& trx: trx_a) {
+        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
+    )) {
         // Do not include asset or stock transfers
-        if (TrxModel::is_foreignAsTransfer(trx))
+        if (TrxModel::is_foreignAsTransfer(trx_d))
             continue;
 
-        TrxModel::TYPE_ID type_id = TrxModel::type_id(trx);
         // Transfer transactions do not have a payee
-        if (type_id == TrxModel::TYPE_ID_TRANSFER)
+        if (trx_d.is_transfer())
             continue;
 
-        int64 payee_id = trx.m_payee_id_n;
+        int64 payee_id = trx_d.m_payee_id_n;
         if (payee_id < 0)
             continue;
-        auto [it, new_payee] = m_id_data.try_emplace(trx.m_payee_id_n, Data{});
+        auto [it, new_payee] = m_id_data.try_emplace(trx_d.m_payee_id_n, Data{});
         Data& data = it->second;
         if (new_payee) {
             const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(payee_id);
@@ -96,19 +94,19 @@ void PayeeReport::loadData()
         // NOTE: call to getDayRate() in every transaction is slow
         // if "Use historical currency" is enabled in settings
         const double convRate = CurrencyHistoryModel::getDayRate(
-            AccountModel::instance().get_id_data_n(trx.m_account_id)->m_currency_id,
-            trx.TRANSDATE
+            AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
+            trx_d.TRANSDATE
         );
 
         TrxSplitModel::DataA tp_a;
-        if (all_splits.count(trx.id()))
-            tp_a = all_splits.at(trx.id());
+        if (all_splits.count(trx_d.id()))
+            tp_a = all_splits.at(trx_d.id());
         if (tp_a.empty()) {
-            updateData(data, type_id, trx.m_amount * convRate);
+            updateData(data, trx_d.m_type, trx_d.m_amount * convRate);
         }
         else {
             for (const auto& tp_d : tp_a) {
-                updateData(data, type_id, tp_d.m_amount * convRate);
+                updateData(data, trx_d.m_type, tp_d.m_amount * convRate);
             }
         }
     }

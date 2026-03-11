@@ -123,21 +123,21 @@ SchedDialog::SchedDialog(
         if (!m_dup_bill)
             m_sched_xd.m_id = sched_id;
         m_sched_xd.TRANSDATE          = sched_n->TRANSDATE;
+        m_sched_xd.m_type             = sched_n->m_type;
+        m_sched_xd.m_status           = sched_n->m_status;
         m_sched_xd.m_account_id       = sched_n->m_account_id;
         m_sched_xd.m_to_account_id_n  = sched_n->m_to_account_id_n;
         m_sched_xd.m_payee_id_n       = sched_n->m_payee_id_n;
         m_sched_xd.m_category_id_n    = sched_n->m_category_id_n;
-        m_sched_xd.m_to_amount        = sched_n->m_to_amount;
         m_sched_xd.m_amount           = sched_n->m_amount;
+        m_sched_xd.m_to_amount        = sched_n->m_to_amount;
+        m_sched_xd.m_notes            = sched_n->m_notes;
+        m_sched_xd.m_number           = sched_n->m_number;
+        m_sched_xd.m_followup_id      = sched_n->m_followup_id;
+        m_sched_xd.m_color            = sched_n->m_color;
         m_sched_xd.NEXTOCCURRENCEDATE = sched_n->NEXTOCCURRENCEDATE;
         m_sched_xd.REPEATS            = sched_n->REPEATS;
         m_sched_xd.NUMOCCURRENCES     = sched_n->NUMOCCURRENCES;
-        m_sched_xd.m_notes            = sched_n->m_notes;
-        m_sched_xd.STATUS             = sched_n->STATUS;
-        m_sched_xd.m_number           = sched_n->m_number;
-        m_sched_xd.TRANSCODE          = sched_n->TRANSCODE;
-        m_sched_xd.m_followup_id      = sched_n->m_followup_id;
-        m_sched_xd.m_color            = sched_n->m_color;
 
         wxArrayInt64 tag_id_a;
         for (const auto& gl_d : TagLinkModel::instance().find(
@@ -168,7 +168,7 @@ SchedDialog::SchedDialog(
         }
     }
 
-    m_transfer = (m_sched_xd.TRANSCODE == TrxModel::TYPE_NAME_TRANSFER);
+    m_transfer = m_sched_xd.is_transfer();
 
     m_custom_fields = new mmCustomDataTransaction(this,
         SchedModel::s_ref_type,
@@ -215,24 +215,25 @@ bool SchedDialog::Create(wxWindow* parent, wxWindowID id, const wxString& captio
 void SchedDialog::dataToControls()
 {
     TrxModel::getFrequentUsedNotes(frequentNotes_);
-    wxButton* bFrequentUsedNotes = static_cast<wxButton*>(FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES));
+    wxButton* bFrequentUsedNotes = static_cast<wxButton*>(
+        FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES)
+    );
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
 
     bColours_->SetBackgroundColor(m_sched_xd.m_color.GetValue());
 
-    for (const auto& entry : BILLSDEPOSITS_REPEATS)
-    {
+    for (const auto& entry : BILLSDEPOSITS_REPEATS) {
         m_choice_repeat->Append(wxGetTranslation(entry.second));
     }
     setRepeatType(SchedModel::REPEAT_FREQ_MONTHLY);
 
-    for (int i = 0; i < TrxModel::TYPE_ID_size; ++i) {
-        if (i == TrxModel::TYPE_ID_TRANSFER && AccountModel::instance().find_all().size() < 2)
+    for (int i = 0; i < TrxType::size; ++i) {
+        if (i == TrxType::e_transfer && AccountModel::instance().find_all().size() < 2)
             break;
-        wxString type = TrxModel::type_name(i);
+        wxString type = TrxType(i).name();
         m_choice_transaction_type->Append(wxGetTranslation(type), new wxStringClientData(type));
     }
-    m_choice_transaction_type->SetSelection(TrxModel::TYPE_ID_WITHDRAWAL);
+    m_choice_transaction_type->SetSelection(TrxType::e_withdrawal);
 
     SetTransferControls();  // hide appropriate fields
     setCategoryLabel();
@@ -241,7 +242,7 @@ void SchedDialog::dataToControls()
         return;
     }
 
-    m_choice_status->SetSelection(TrxModel::status_id(m_sched_xd.STATUS));
+    m_choice_status->SetSelection(m_sched_xd.m_status.id());
 
     // Set the date paid
     wxDateTime field_date;
@@ -285,7 +286,7 @@ void SchedDialog::dataToControls()
     }
     setRepeatDetails();
 
-    m_choice_transaction_type->SetSelection(TrxModel::type_id(m_sched_xd.TRANSCODE));
+    m_choice_transaction_type->SetSelection(m_sched_xd.m_type.id());
     updateControlsForTransType();
 
     const AccountData* account_n = AccountModel::instance().get_id_data_n(m_sched_xd.m_account_id);
@@ -355,9 +356,9 @@ void SchedDialog::SetDialogParameters(int64 trx_id)
     m_sched_xd.m_account_id = trx_xd.m_account_id;
     cbAccount_->SetValue(trx_xd.ACCOUNTNAME);
 
-    m_sched_xd.TRANSCODE = trx_xd.TRANSCODE;
-    m_choice_transaction_type->SetSelection(TrxModel::type_id(trx_xd.TRANSCODE));
-    m_transfer = (m_sched_xd.TRANSCODE == TrxModel::TYPE_NAME_TRANSFER);
+    m_sched_xd.m_type = trx_xd.m_type;
+    m_choice_transaction_type->SetSelection(trx_xd.m_type.id());
+    m_transfer = m_sched_xd.is_transfer();
     updateControlsForTransType();
 
     m_sched_xd.m_amount = trx_xd.m_amount;
@@ -500,8 +501,8 @@ void SchedDialog::CreateControls()
     // Status --------------------------------------------
     m_choice_status = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
 
-    for (int i = 0; i < TrxModel::STATUS_ID_size; ++i) {
-        wxString status = TrxModel::status_name(i);
+    for (int i = 0; i < TrxStatus::size; ++i) {
+        wxString status = TrxStatus(i).name();
         m_choice_status->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
     m_choice_status->SetSelection(PrefModel::instance().getTransStatusReconciled());
@@ -821,7 +822,7 @@ void SchedDialog::updateControlsForTransType()
     m_transfer = false;
     switch (m_choice_transaction_type->GetSelection())
     {
-    case TrxModel::TYPE_ID_TRANSFER: {
+    case TrxType::e_transfer: {
         m_transfer = true;
         mmToolTip(textAmount_, amountTransferTip_);
         accountLabel->SetLabelText(_t("From"));
@@ -830,7 +831,7 @@ void SchedDialog::updateControlsForTransType()
         m_sched_xd.m_payee_id_n = -1;
         break;
     }
-    case TrxModel::TYPE_ID_WITHDRAWAL: {
+    case TrxType::e_withdrawal: {
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_t("Account"));
         stp->SetLabelText(_t("Payee"));
@@ -842,7 +843,7 @@ void SchedDialog::updateControlsForTransType()
         OnPayee(evt);
         break;
     }
-    case TrxModel::TYPE_ID_DEPOSIT: {
+    case TrxType::e_deposit: {
         mmToolTip(textAmount_, amountNormalTip_);
         accountLabel->SetLabelText(_t("Account"));
         stp->SetLabelText(_t("From"));
@@ -1014,7 +1015,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_choice_status->GetClientObject(m_choice_status->GetSelection())
     );
     if (status_obj) {
-        m_sched_xd.STATUS = TrxModel::status_key(status_obj->GetData());
+        m_sched_xd.m_status = TrxStatus(status_obj->GetData());
     }
 
     m_sched_xd.m_number = textNumber_->GetValue();
@@ -1046,22 +1047,22 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         SchedData sched_d = (!m_new_bill && !m_dup_bill)
             ? *(SchedModel::instance().get_id_data_n(m_sched_xd.m_id))
             : SchedData();
+        sched_d.TRANSDATE          = m_sched_xd.TRANSDATE;
+        sched_d.m_type             = TrxType(m_choice_transaction_type->GetSelection());
+        sched_d.m_status           = m_sched_xd.m_status;
         sched_d.m_account_id       = m_sched_xd.m_account_id;
         sched_d.m_to_account_id_n  = m_sched_xd.m_to_account_id_n;
         sched_d.m_payee_id_n       = m_sched_xd.m_payee_id_n;
-        sched_d.TRANSCODE          = TrxModel::type_name(m_choice_transaction_type->GetSelection());
+        sched_d.m_category_id_n    = m_sched_xd.m_category_id_n;
         sched_d.m_amount           = m_sched_xd.m_amount;
-        sched_d.STATUS             = m_sched_xd.STATUS;
+        sched_d.m_to_amount        = m_sched_xd.m_to_amount;
         sched_d.m_number           = m_sched_xd.m_number;
         sched_d.m_notes            = m_sched_xd.m_notes;
-        sched_d.m_category_id_n    = m_sched_xd.m_category_id_n;
-        sched_d.TRANSDATE          = m_sched_xd.TRANSDATE;
-        sched_d.m_to_amount        = m_sched_xd.m_to_amount;
-        sched_d.REPEATS            = m_sched_xd.REPEATS;
-        sched_d.NEXTOCCURRENCEDATE = m_sched_xd.NEXTOCCURRENCEDATE;
-        sched_d.NUMOCCURRENCES     = m_sched_xd.NUMOCCURRENCES;
         sched_d.m_followup_id      = m_sched_xd.m_followup_id;
         sched_d.m_color            = m_sched_xd.m_color;
+        sched_d.NEXTOCCURRENCEDATE = m_sched_xd.NEXTOCCURRENCEDATE;
+        sched_d.REPEATS            = m_sched_xd.REPEATS;
+        sched_d.NUMOCCURRENCES     = m_sched_xd.NUMOCCURRENCES;
         SchedModel::instance().save_data_n(sched_d);
         m_trans_id = sched_d.id();
 
@@ -1124,23 +1125,23 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             // FIXME: use m_sched_xd directly
             SchedData sched_d;
             sched_d.m_account_id = m_sched_xd.m_account_id;
-            sched_d.TRANSCODE    = m_sched_xd.TRANSCODE;
+            sched_d.m_type       = m_sched_xd.m_type;
             sched_d.m_amount     = m_sched_xd.m_amount;
             if (!SchedModel::instance().AllowTransaction(sched_d))
                 return;
 
             TrxData new_trx_d = TrxData();
+            new_trx_d.m_type            = TrxType(m_choice_transaction_type->GetSelection());
+            new_trx_d.TRANSDATE         = m_sched_xd.TRANSDATE;
+            new_trx_d.m_status          = m_sched_xd.m_status;
             new_trx_d.m_account_id      = m_sched_xd.m_account_id;
             new_trx_d.m_to_account_id_n = m_sched_xd.m_to_account_id_n;
             new_trx_d.m_payee_id_n      = m_sched_xd.m_payee_id_n;
-            new_trx_d.TRANSCODE         = TrxModel::type_name(m_choice_transaction_type->GetSelection());
+            new_trx_d.m_category_id_n   = m_sched_xd.m_category_id_n;
             new_trx_d.m_amount          = m_sched_xd.m_amount;
-            new_trx_d.STATUS            = m_sched_xd.STATUS;
+            new_trx_d.m_to_amount       = m_sched_xd.m_to_amount;
             new_trx_d.m_number          = m_sched_xd.m_number;
             new_trx_d.m_notes           = m_sched_xd.m_notes;
-            new_trx_d.m_category_id_n   = m_sched_xd.m_category_id_n;
-            new_trx_d.TRANSDATE         = m_sched_xd.TRANSDATE;
-            new_trx_d.m_to_amount       = m_sched_xd.m_to_amount;
             new_trx_d.m_followup_id     = m_sched_xd.m_followup_id;
             new_trx_d.m_color           = m_sched_xd.m_color;
             TrxModel::instance().save_trx_n(new_trx_d);
@@ -1413,7 +1414,9 @@ void SchedDialog::activateSplitTransactionsDlg()
         m_sched_xd.local_splits    = dlg.mmGetResult();
         m_sched_xd.m_amount        = TrxSplitModel::get_total(m_sched_xd.local_splits);
         m_sched_xd.m_category_id_n = -1;
-        if (m_choice_transaction_type->GetSelection() == TrxModel::TYPE_ID_TRANSFER && m_sched_xd.m_amount < 0) {
+        if (m_choice_transaction_type->GetSelection() == TrxType::e_transfer &&
+            m_sched_xd.m_amount < 0
+        ) {
             m_sched_xd.m_amount = -m_sched_xd.m_amount;
         }
         textAmount_->SetValue(m_sched_xd.m_amount);
@@ -1457,7 +1460,7 @@ void SchedDialog::setCategoryLabel()
         && PrefModel::instance().getTransCategoryTransferNone() == PrefModel::LASTUSED
     ) {
         TrxModel::DataA transactions = TrxModel::instance().find(
-            TrxModel::TRANSCODE(OP_EQ, TrxModel::TYPE_ID_TRANSFER),
+            TrxModel::TRANSCODE(OP_EQ, TrxType(TrxType::e_transfer)),
             TrxModel::TRANSDATE(OP_LE, mmDate::today())
         );
 

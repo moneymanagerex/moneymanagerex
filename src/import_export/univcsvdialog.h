@@ -145,8 +145,8 @@ private:
     struct tran_holder
     {
         wxDateTime Date;
-        wxString Type = TrxModel::TYPE_NAME_WITHDRAWAL;
-        wxString Status = "";
+        wxString Type = TrxType(TrxType::e_withdrawal).name();
+        wxString Status = TrxStatus(TrxStatus::e_unreconciled).key();
         int64 ToAccountID = -1;
         double ToAmount = 0.0;
         int64 PayeeID = -1;

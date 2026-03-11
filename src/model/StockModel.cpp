@@ -349,7 +349,7 @@ void StockModel::update_data_position(StockData* stock_n)
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
         if (trx_n && trx_n->m_id > 0 && trx_n->DELETEDTIME.IsEmpty() &&
-            TrxModel::status_id(trx_n->STATUS) != TrxModel::STATUS_ID_VOID
+            !trx_n->is_void()
         ) {
             trx_a.push_back(*trx_n);
         }

@@ -85,6 +85,20 @@ mmChoiceNameA FieldTypeN::s_choice_a = mmChoiceNameA({
     { e_multi_choice,  _n("MultiChoice") },
 }, -1, true);
 
+mmChoiceNameA TrxType::s_choice_a = mmChoiceNameA({
+    { e_withdrawal, _n("Withdrawal") },
+    { e_deposit,    _n("Deposit") },
+    { e_transfer,   _n("Transfer") }
+}, e_withdrawal, true);
+
+mmChoiceKeyNameA TrxStatus::s_choice_a = mmChoiceKeyNameA({
+    { e_unreconciled, "",  _n("Unreconciled") },
+    { e_reconciled,   "R", _n("Reconciled") },
+    { e_void,         "V", _n("Void") },
+    { e_followup,     "F", _n("Follow Up") },
+    { e_duplicate,    "D", _n("Duplicate") }
+}, e_unreconciled, true);
+
 mmChoiceNameA RefTypeN::s_choice_a = mmChoiceNameA({
     { e_trx,         _n("Transaction") },
     { e_stock,       _n("Stock") },

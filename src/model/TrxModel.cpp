@@ -35,42 +35,6 @@
 
 const RefTypeN TrxModel::s_ref_type = RefTypeN(RefTypeN::e_trx);
 
-mmChoiceNameA TrxModel::TYPE_CHOICES = mmChoiceNameA({
-    { TYPE_ID_WITHDRAWAL, _n("Withdrawal") },
-    { TYPE_ID_DEPOSIT,    _n("Deposit") },
-    { TYPE_ID_TRANSFER,   _n("Transfer") }
-}, TYPE_ID_WITHDRAWAL, true);
-
-mmChoiceNameA TrxModel::TRADE_TYPE_CHOICES = mmChoiceNameA({
-    { TYPE_ID_WITHDRAWAL, _n("Buy") },
-    { TYPE_ID_DEPOSIT,    _n("Sell") },
-    { TYPE_ID_TRANSFER,   _n("Revalue") }
-}, TYPE_ID_WITHDRAWAL, true);
-
-mmChoiceKeyNameA TrxModel::STATUS_CHOICES = mmChoiceKeyNameA({
-    { STATUS_ID_NONE,       "",  _n("Unreconciled") },
-    { STATUS_ID_RECONCILED, "R", _n("Reconciled") },
-    { STATUS_ID_VOID,       "V", _n("Void") },
-    { STATUS_ID_FOLLOWUP,   "F", _n("Follow Up") },
-    { STATUS_ID_DUPLICATE,  "D", _n("Duplicate") }
-}, STATUS_ID_NONE, true);
-
-const wxString TrxModel::TYPE_NAME_WITHDRAWAL = type_name(TYPE_ID_WITHDRAWAL);
-const wxString TrxModel::TYPE_NAME_DEPOSIT    = type_name(TYPE_ID_DEPOSIT);
-const wxString TrxModel::TYPE_NAME_TRANSFER   = type_name(TYPE_ID_TRANSFER);
-
-const wxString TrxModel::STATUS_KEY_NONE       = status_key(STATUS_ID_NONE);
-const wxString TrxModel::STATUS_KEY_RECONCILED = status_key(STATUS_ID_RECONCILED);
-const wxString TrxModel::STATUS_KEY_VOID       = status_key(STATUS_ID_VOID);
-const wxString TrxModel::STATUS_KEY_FOLLOWUP   = status_key(STATUS_ID_FOLLOWUP);
-const wxString TrxModel::STATUS_KEY_DUPLICATE  = status_key(STATUS_ID_DUPLICATE);
-
-const wxString TrxModel::STATUS_NAME_NONE       = status_name(STATUS_ID_NONE);
-const wxString TrxModel::STATUS_NAME_RECONCILED = status_name(STATUS_ID_RECONCILED);
-const wxString TrxModel::STATUS_NAME_VOID       = status_name(STATUS_ID_VOID);
-const wxString TrxModel::STATUS_NAME_FOLLOWUP   = status_name(STATUS_ID_FOLLOWUP);
-const wxString TrxModel::STATUS_NAME_DUPLICATE  = status_name(STATUS_ID_DUPLICATE);
-
 TrxModel::TrxModel() :
     TableFactory<TrxTable, TrxData>()
 {
@@ -100,37 +64,19 @@ TrxModel& TrxModel::instance()
 
 void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
 {
-    this_n->STATUS            = other_d.STATUS;
-    this_n->TRANSCODE         = other_d.TRANSCODE;
     this_n->TRANSDATE         = other_d.TRANSDATE;
-    this_n->m_payee_id_n      = other_d.m_payee_id_n;
+    this_n->m_type            = other_d.m_type;
+    this_n->m_status          = other_d.m_status;
     this_n->m_account_id      = other_d.m_account_id;
-    this_n->m_amount          = other_d.m_amount;
-    this_n->m_category_id_n   = other_d.m_category_id_n;
     this_n->m_to_account_id_n = other_d.m_to_account_id_n;
+    this_n->m_payee_id_n      = other_d.m_payee_id_n;
+    this_n->m_category_id_n   = other_d.m_category_id_n;
+    this_n->m_amount          = other_d.m_amount;
     this_n->m_to_amount       = other_d.m_to_amount;
     this_n->m_notes           = other_d.m_notes;
     this_n->m_number          = other_d.m_number;
     this_n->m_followup_id     = other_d.m_followup_id;
     this_n->m_color           = other_d.m_color;
-}
-
-bool TrxModel::is_transfer(const wxString& r)
-{
-    return type_id(r) == TrxModel::TYPE_ID_TRANSFER;
-}
-bool TrxModel::is_transfer(const Data& this_d)
-{
-    return type_id(this_d.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER;
-}
-
-bool TrxModel::is_deposit(const wxString& r)
-{
-    return type_id(r) == TrxModel::TYPE_ID_DEPOSIT;
-}
-bool TrxModel::is_deposit(const Data& this_d)
-{
-    return type_id(this_d.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT;
 }
 
 wxDateTime TrxModel::getTransDateTime(const Data& this_d)
@@ -140,17 +86,20 @@ wxDateTime TrxModel::getTransDateTime(const Data& this_d)
 
 double TrxModel::account_flow(const Data& this_d, int64 account_id)
 {
-    if (this_d.m_account_id == this_d.m_to_account_id_n && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
-        return 0.0;  // Self Transfer as Revaluation
-    if (TrxModel::status_id(this_d.STATUS) == TrxModel::STATUS_ID_VOID || !this_d.DELETEDTIME.IsEmpty())
+    // Self Transfer as Revaluation
+    if (this_d.m_account_id == this_d.m_to_account_id_n && this_d.is_transfer())
         return 0.0;
-    if (account_id == this_d.m_account_id && type_id(this_d.TRANSCODE) == TYPE_ID_WITHDRAWAL)
+
+    if (this_d.is_void() || !this_d.DELETEDTIME.IsEmpty())
+        return 0.0;
+
+    if (account_id == this_d.m_account_id && this_d.is_withdrawal())
         return -(this_d.m_amount);
-    if (account_id == this_d.m_account_id && type_id(this_d.TRANSCODE) == TYPE_ID_DEPOSIT)
+    if (account_id == this_d.m_account_id && this_d.is_deposit())
         return this_d.m_amount;
-    if (account_id == this_d.m_account_id && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
+    if (account_id == this_d.m_account_id && this_d.is_transfer())
         return -(this_d.m_amount);
-    if (account_id == this_d.m_to_account_id_n && type_id(this_d.TRANSCODE) == TYPE_ID_TRANSFER)
+    if (account_id == this_d.m_to_account_id_n && this_d.is_transfer())
         return this_d.m_to_amount;
     return 0.0;
 }
@@ -169,7 +118,7 @@ double TrxModel::account_inflow(const Data& this_d, int64 account_id)
 
 double TrxModel::account_recflow(const Data& this_d, int64 account_id)
 {
-    return (TrxModel::status_id(this_d.STATUS) == TrxModel::STATUS_ID_RECONCILED)
+    return (this_d.is_reconciled())
         ? account_flow(this_d, account_id)
         : 0;
 }
@@ -177,9 +126,7 @@ double TrxModel::account_recflow(const Data& this_d, int64 account_id)
 // same as TrxModel::Full_Data::is_foreign()
 bool TrxModel::is_foreign(const Data& this_d)
 {
-    return (this_d.m_to_account_id_n > 0) && (
-        this_d.TRANSCODE == TYPE_NAME_DEPOSIT || this_d.TRANSCODE == TYPE_NAME_WITHDRAWAL
-    );
+    return (!this_d.is_transfer() && this_d.m_to_account_id_n > 0);
 }
 
 // see also TrxModel::Full_Data::is_foreign_transfer()
@@ -218,14 +165,14 @@ TrxCol::DELETEDTIME TrxModel::DELETEDTIME(OP op, const wxString& date)
     return TrxCol::DELETEDTIME(op, date);
 }
 
-TrxCol::STATUS TrxModel::STATUS(OP op, STATUS_ID status)
+TrxCol::STATUS TrxModel::STATUS(OP op, TrxStatus trx_status)
 {
-    return TrxCol::STATUS(op, status_key(status));
+    return TrxCol::STATUS(op, trx_status.key());
 }
 
-TrxCol::TRANSCODE TrxModel::TRANSCODE(OP op, TYPE_ID type)
+TrxCol::TRANSCODE TrxModel::TRANSCODE(OP op, TrxType trx_type)
 {
-    return TrxCol::TRANSCODE(op, type_name(type));
+    return TrxCol::TRANSCODE(op, trx_type.name());
 }
 
 TrxCol::TRANSACTIONNUMBER TrxModel::TRANSACTIONNUMBER(OP op, const wxString& num)
@@ -324,14 +271,14 @@ void TrxModel::setEmptyData(Data &trx_d, int64 accountID)
     }
 
     trx_d.TRANSDATE       = max_trx_date;
+    trx_d.m_type          = TrxType(TrxType::e_withdrawal);
+    trx_d.m_status        = TrxStatus(PrefModel::instance().getTransStatusReconciled());
     trx_d.m_account_id    = accountID;
-    trx_d.STATUS          = status_key(PrefModel::instance().getTransStatusReconciled());
-    trx_d.TRANSCODE       = TYPE_NAME_WITHDRAWAL;
     trx_d.m_category_id_n = -1;
-    trx_d.m_followup_id   = -1;
     trx_d.m_amount        = 0;
     trx_d.m_to_amount     = 0;
     trx_d.m_number        = "";
+    trx_d.m_followup_id   = -1;
     trx_d.m_color         = -1;
 }
 
@@ -470,7 +417,7 @@ void TrxModel::Full_Data::fill_data()
     displayID = wxString::Format("%lld", m_id);
     ACCOUNTNAME = AccountModel::instance().get_id_name(m_account_id);
 
-    if (TrxModel::type_id(TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+    if (is_transfer()) {
         TOACCOUNTNAME = AccountModel::instance().get_id_name(m_to_account_id_n);
         PAYEENAME = TOACCOUNTNAME;
     }
@@ -497,13 +444,13 @@ void TrxModel::Full_Data::fill_data()
             TAGNAMES += (TAGNAMES.empty() ? "" : " ") + tag_name;
     }
 
-    if (type_id(TRANSCODE) == TYPE_ID_WITHDRAWAL) {
+    if (is_withdrawal()) {
         ACCOUNTID_W = m_account_id; TRANSAMOUNT_W = m_amount;
     }
-    else if (type_id(TRANSCODE) == TYPE_ID_DEPOSIT) {
+    else if (is_deposit()) {
         ACCOUNTID_D = m_account_id; TRANSAMOUNT_D = m_amount;
     }
-    else if (type_id(TRANSCODE) == TYPE_ID_TRANSFER) {
+    else if (is_transfer()) {
         ACCOUNTID_W = m_account_id; TRANSAMOUNT_W = m_amount;
         ACCOUNTID_D = m_to_account_id_n; TRANSAMOUNT_D = m_to_amount;
     }
@@ -515,8 +462,7 @@ TrxModel::Full_Data::~Full_Data()
 
 wxString TrxModel::Full_Data::real_payee_name(int64 account_id) const
 {
-    if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
-    {
+    if (is_transfer()) {
         if (this->m_account_id == account_id || account_id < 0)
             return ("> " + this->TOACCOUNTNAME);
         else
@@ -528,8 +474,7 @@ wxString TrxModel::Full_Data::real_payee_name(int64 account_id) const
 
 const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
 {
-    if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE))
-    {
+    if (is_transfer()) {
         if (this->m_account_id == account_id || account_id == -1)
             account_id = this->m_account_id;
         else
@@ -544,26 +489,23 @@ const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
 
 const wxString TrxModel::Full_Data::get_account_name(int64 account_id) const
 {
-    if (TYPE_ID_TRANSFER == type_id(this->TRANSCODE)) {
-        if (this->m_account_id == account_id || account_id == -1) {
-            return this->ACCOUNTNAME;
-        }
-        else {
-            const AccountData* account_n = AccountModel::instance().get_id_data_n(m_to_account_id_n);
-            return account_n ? account_n->m_name : "";
-        }
+    if (!is_transfer())
+        return ACCOUNTNAME;
+    else if (m_account_id == account_id || account_id == -1) {
+        return ACCOUNTNAME;
     }
-
-    return this->ACCOUNTNAME;
+    else {
+        const AccountData* account_n = AccountModel::instance().get_id_data_n(
+            m_to_account_id_n
+        );
+        return account_n ? account_n->m_name : "";
+    }
 }
 
 // same as TrxModel::is_foreign()
 bool TrxModel::Full_Data::is_foreign() const
 {
-    return (this->m_to_account_id_n > 0) && (
-        type_id(this->TRANSCODE) == TYPE_ID_DEPOSIT ||
-        type_id(this->TRANSCODE) == TYPE_ID_WITHDRAWAL
-    );
+    return (!is_transfer() && m_to_account_id_n > 0);
 }
 
 // see also TrxModel::is_foreignAsTransfer()
@@ -591,7 +533,7 @@ const wxString TrxModel::Full_Data::to_json()
     json_writer.Key("ACCOUNTNAME");
     json_writer.String(this->ACCOUNTNAME.utf8_str());
 
-    if (is_transfer(*this)) {
+    if (is_transfer()) {
         json_writer.Key("TOACCOUNTNAME");
         json_writer.String(this->TOACCOUNTNAME.utf8_str());
     }
