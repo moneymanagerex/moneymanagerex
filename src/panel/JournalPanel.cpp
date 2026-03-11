@@ -139,12 +139,10 @@ bool JournalPanel::create(
         return false;
 
     this->windowsFreezeThaw();
-    createControls();
-    loadFilterSettings();
-    updateFilter(true);
-    updateFilterTooltip();
 
-    refreshList();
+    createControls();
+    setFilterAdvanced(true);
+
     this->windowsFreezeThaw();
     UsageModel::instance().pageview(this);
     return true;
@@ -221,9 +219,13 @@ void JournalPanel::createControls()
 
     // Filter for transaction details
     m_btnTransDetailFilter = new wxButton(this, ID_FILTER_TRANS, _tu("Filter…"));
-    m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     m_btnTransDetailFilter->SetMinSize(wxSize(150 + PrefModel::instance().getIconSize() * 2, -1));
-    sizerHCtrl->Add(m_btnTransDetailFilter, g_flagsH);
+    sizerHCtrl->Add(m_btnTransDetailFilter, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxUP | wxDOWN | wxLEFT, 5);
+
+    m_btnTransDetailFilterCancel = new wxBitmapButton(this, wxID_ANY, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
+    mmToolTip(m_btnTransDetailFilterCancel, _t("Reset filter"));
+    m_btnTransDetailFilterCancel->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &JournalPanel::onFilterAdvancedCancel, this);
+    sizerHCtrl->Add(m_btnTransDetailFilterCancel, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
 
     if (!isDeletedTrans()) {
         sizerHCtrl->AddSpacer(15);
@@ -478,6 +480,8 @@ void JournalPanel::updateFilter(bool firstinit)
     m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(m_filter_advanced ?
                                 png::TRANSFILTER_ACTIVE : png::TRANSFILTER, mmBitmapButtonSize));
 
+    m_btnTransDetailFilterCancel->Enable(m_filter_advanced);
+
     if (!isDeletedTrans()) {
         m_header_scheduled->SetValue(m_scheduled_selected);
         m_header_scheduled->Enable(m_scheduled_enable);
@@ -508,10 +512,10 @@ void JournalPanel::setFilterDate(mmDateRange2::Range& range)
     updateFilter();
 }
 
-void JournalPanel::setFilterAdvanced()
+void JournalPanel::setFilterAdvanced(bool firstinit)
 {
     loadFilterSettings();
-    updateFilter();
+    updateFilter(firstinit);
     updateFilterTooltip();
     refreshList();
 }
@@ -582,7 +586,7 @@ void JournalPanel::loadFilterSettings()
     wxString j_str = InfoModel::instance().getString(
             wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),"{}");
     m_trans_filter_dlg.reset(new TrxFilterDialog(this, m_account_id, false, j_str));
-    m_filter_advanced = m_trans_filter_dlg->mmIsSomethingChecked() ? true : false;
+    m_filter_advanced = m_trans_filter_dlg->mmIsSomethingChecked();
     updateScheduledEnable();
 }
 
@@ -1207,18 +1211,24 @@ void JournalPanel::datePickProceed() {
 
 void JournalPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
 {
-        wxString j_str = InfoModel::instance().getString(
-            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
-            "{}"
-        );
-        m_trans_filter_dlg.reset(
-            new TrxFilterDialog(this, m_checking_id, false, j_str)
-        );
+    wxString j_str = InfoModel::instance().getString(
+        wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
+        "{}"
+    );
+    m_trans_filter_dlg.reset(
+        new TrxFilterDialog(this, m_checking_id, false, j_str)
+    );
     m_trans_filter_dlg->ShowModal();
-    loadFilterSettings();
-    updateFilter();
-    updateFilterTooltip();
-    refreshList();
+    setFilterAdvanced();
+}
+
+void JournalPanel::onFilterAdvancedCancel(wxCommandEvent& WXUNUSED(event))
+{
+    InfoModel::instance().setString(
+        wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
+        ""
+    );
+    setFilterAdvanced();
 }
 
 void JournalPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
@@ -1486,4 +1496,3 @@ void JournalPanel::loadDateRanges(
         *date_range_m = date_range_a->size();
     }
 }
-

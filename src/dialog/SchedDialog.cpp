@@ -220,7 +220,7 @@ void SchedDialog::dataToControls()
     );
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
 
-    bColours_->SetBackgroundColor(m_sched_xd.m_color.GetValue());
+    bColours_->SetColor(m_sched_xd.m_color.GetValue());
 
     for (const auto& entry : BILLSDEPOSITS_REPEATS) {
         m_choice_repeat->Append(wxGetTranslation(entry.second));
@@ -988,7 +988,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     SchedModel::RepeatNum rn;
-    rn.exec = 
+    rn.exec =
         autoExecuteSilent_  ? SchedModel::REPEAT_EXEC_SILENT :
         autoExecuteUserAck_ ? SchedModel::REPEAT_EXEC_MANUAL :
                               SchedModel::REPEAT_EXEC_NONE;

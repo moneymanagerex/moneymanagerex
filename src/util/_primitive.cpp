@@ -160,10 +160,10 @@ const wxColor* bestFontColour(const wxColour& background)
     int g = static_cast<int>(background.Green());
     int b = static_cast<int>(background.Blue());
     int k = (r * 299 + g * 587 + b * 114);
-    wxLogDebug(
+    /*wxLogDebug(
         "best FontColour: [%s] -> r=%d, g=%d, b=%d | k: %d",
         background.GetAsString(wxC2S_HTML_SYNTAX), r, g, b, k
-    );
+    );*/
     return (k > 149000) ? wxBLACK : wxWHITE;
 }
 
@@ -180,4 +180,3 @@ wxColour getUDColour(const int c)
     }
     return wxNullColour;
 }
-

@@ -6990,6 +6990,10 @@ msgstr ""
 msgid "Filter…"
 msgstr ""
 
+#: panel/JournalPanel.cpp:227
+msgid "Reset filter"
+msgstr ""
+
 #: panel/JournalPanel.cpp:246
 msgid "Reconcile"
 msgstr ""
