@@ -113,13 +113,22 @@ void DashboardPref::Create()
     wxStaticBox* sBox = new wxStaticBox(home_panel, wxID_STATIC, _t("Miscellaneous"));
     wxStaticBoxSizer* trxSizer = new wxStaticBoxSizer(sBox, wxVERTICAL);
     homePanelSizer->Add(trxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+
     m_ignore_future_transactions_home = new wxCheckBox(
-    sBox, wxID_ANY,
-    _t("Ignore Future Transactions"),
-    wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
-    );
+                                                        sBox, wxID_ANY,
+                                                        _t("Ignore Future Transactions"),
+                                                        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
+                                                      );
     m_ignore_future_transactions_home->SetValue(PrefModel::instance().getIgnoreFutureTransactionsHomePage());
     trxSizer->Add(m_ignore_future_transactions_home, g_flagsV);
+
+    m_show_reconciled = new wxCheckBox(
+                                        sBox, wxID_ANY,
+                                        _t("Show reconciled values"),
+                                        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
+                                      );
+    m_show_reconciled->SetValue(PrefModel::instance().getShowReconciledInHomePage());
+    trxSizer->Add(m_show_reconciled, g_flagsV);
 
     SetBoldFontToStaticBoxHeader(totalsStaticBox);
     SetBoldFontToStaticBoxHeader(sBox);
@@ -137,6 +146,7 @@ bool DashboardPref::SaveSettings()
     if (sel_id == static_cast<int>(m_all_date_ranges.size() - 1))
         InfoModel::instance().setInt("HOMEPAGE_INCEXP_DAYS", nDays_->GetValue());
     PrefModel::instance().setIgnoreFutureTransactionsHomePage(m_ignore_future_transactions_home->GetValue());
+    PrefModel::instance().setShowReconciledInHomePage(m_show_reconciled->GetValue());
     return true;
 }
 
@@ -144,4 +154,3 @@ const wxSharedPtr<mmDateRange> DashboardPref::get_inc_vs_exp_date_range() const
 {
     return m_inc_vs_exp_date_range;
 }
-

@@ -49,7 +49,7 @@
 
 wxBEGIN_EVENT_TABLE(JournalList, ListBase)
     EVT_CHAR(JournalList::onChar)
-    EVT_LEFT_DOWN(JournalList::onListLeftClick)
+    //EVT_LEFT_DOWN(JournalList::onListLeftClick)
     EVT_RIGHT_DOWN(JournalList::onMouseRightClick)
 
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,  JournalList::onListItemActivated)
@@ -100,7 +100,7 @@ wxEND_EVENT_TABLE();
 const std::vector<ListColumnInfo> JournalList::LIST_INFO = {
     { LIST_ID_ICON,        true, _n("Icon"),         25,  _FC, false },
     { LIST_ID_ID,          true, _n("ID"),           _WA, _FR, true },
-    { LIST_ID_DATE,        true, _n("Date"),         112, _FL, true },
+    { LIST_ID_DATE,        true, _n("Date"),         80,  _FC, true },
     { LIST_ID_TIME,        true, _n("Time"),         70,  _FL, true },
     { LIST_ID_NUMBER,      true, _n("Number"),       70,  _FL, true },
     { LIST_ID_ACCOUNT,     true, _n("Account"),      100, _FL, true },
@@ -273,6 +273,8 @@ JournalList::JournalList(
         wxDateTime(23, 59, 59, 999).FormatISOCombined();
 
     SetSingleStyle(wxLC_SINGLE_SEL, false);
+
+    this->Bind(wxEVT_SIZE, &JournalList::OnSize, this);
 }
 
 JournalList::~JournalList()
@@ -365,7 +367,7 @@ int JournalList::getSortIcon(bool asc) const
 
 void JournalList::refreshVisualList(bool filter)
 {
-    wxLogDebug("refreshVisualList: %i selected, filter: %d", GetSelectedItemCount(), filter);
+    //wxLogDebug("refreshVisualList: %i selected, filter: %d", GetSelectedItemCount(), filter);
 
     // Grab the selected transactions unless we have freshly pasted transactions in which case use them
     if (m_pasted_id.empty()) {
@@ -699,17 +701,17 @@ void JournalList::onChar(wxKeyEvent& event)
     }
 }
 
-void JournalList::onListLeftClick(wxMouseEvent& event)
+/*void JournalList::onListLeftClick(wxMouseEvent& event)
 {
-    wxLogDebug("onListLeftClick: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListLeftClick: %i selected", GetSelectedItemCount());
     event.Skip();
-}
+}*/
 
 void JournalList::onMouseRightClick(wxMouseEvent& event)
 {
     rightClickFilter_ = "";
     copyText_ = "";
-    wxLogDebug("onMouseRightClick: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onMouseRightClick: %i selected", GetSelectedItemCount());
     int selected = GetSelectedItemCount();
 
     bool is_nothing_selected = (selected < 1);
@@ -1027,28 +1029,28 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 
 void JournalList::onListItemActivated(wxListEvent& /*event*/)
 {
-    wxLogDebug("onListItemActivated: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListItemActivated: %i selected", GetSelectedItemCount());
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_EDIT2);
     AddPendingEvent(evt);
 }
 
 void JournalList::onListItemSelected(wxListEvent&)
 {
-    wxLogDebug("onListItemSelected: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListItemSelected: %i selected", GetSelectedItemCount());
     findSelectedTransactions();
     setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void JournalList::onListItemDeSelected(wxListEvent&)
 {
-    wxLogDebug("onListItemDeSelected: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListItemDeSelected: %i selected", GetSelectedItemCount());
     findSelectedTransactions();
     setExtraTransactionData(GetSelectedItemCount() == 1);
 }
 
 void JournalList::onListItemFocused(wxListEvent& WXUNUSED(event))
 {
-    wxLogDebug("onListItemFocused: %i selected", GetSelectedItemCount());
+    //wxLogDebug("onListItemFocused: %i selected", GetSelectedItemCount());
     findSelectedTransactions();
     setExtraTransactionData(GetSelectedItemCount() == 1);
 }
@@ -1851,7 +1853,7 @@ void JournalList::onSetUserColour(wxCommandEvent& event)
     findSelectedTransactions();
     int user_color_id = event.GetId();
     user_color_id -= MENU_ON_SET_UDC0;
-    wxLogDebug("id: %i", user_color_id);
+    //wxLogDebug("id: %i", user_color_id);
 
     TrxModel::instance().db_savepoint();
     SchedModel::instance().db_savepoint();
@@ -1890,6 +1892,52 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, ref_type, id.first);
     refreshVisualList();
 }
+
+void JournalList::setAutomaticColumnSize()
+{
+    struct colInfo {
+        int id;
+        int width;
+    };
+
+    // get total column width:
+    int twidth = 0;
+    int rwidth = 0;
+    std::vector<colInfo> resizable_ids;
+    for (int i = 0; i < GetColumnCount(); i++) {
+        int col_id = getColId_Nr(i);
+        if (!isHiddenColId(col_id)) {
+            int cw = GetColumnWidth(i);
+            twidth += cw;
+
+            switch (col_id) {
+                case LIST_ID_PAYEE_STR:
+                case LIST_ID_TAGS:
+                case LIST_ID_NOTES:
+                case LIST_ID_CATEGORY:
+                    resizable_ids.push_back({i, cw});
+                    rwidth += cw;
+                    break;
+            }
+        }
+    }
+
+    // calculate and apply diff:
+    int diff = this->GetSize().GetWidth() - twidth;
+    if (abs(diff) > 5) {
+        int diffdelta = diff / resizable_ids.size();
+        for (colInfo col: resizable_ids) {
+            this->SetColumnWidth(col.id, col.width + diffdelta);
+        }
+    }
+}
+
+void JournalList::OnSize(wxSizeEvent& event)
+{
+    setAutomaticColumnSize();
+    event.Skip();
+}
+
 
 //----------------------------------------------------------------------------
 
@@ -2176,7 +2224,7 @@ void JournalList::doSearchText(const wxString& value)
 
     }
 
-    wxLogDebug("Searching finished");
+    //wxLogDebug("Searching finished");
     selectedItem = getSortAsc(0) ? last : 0;
     long cursel = GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
     SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);

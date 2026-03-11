@@ -145,6 +145,7 @@ private:
     wxDatePickerCtrl* fromDateCtrl = nullptr;
     wxDatePickerCtrl* toDateCtrl = nullptr;
     wxButton* m_btnTransDetailFilter = nullptr;
+    wxBitmapButton* m_btnTransDetailFilterCancel = nullptr;
     wxButton* m_btnNew = nullptr;
     wxButton* m_btnEdit = nullptr;
     wxButton* m_btnDuplicate = nullptr;
@@ -179,7 +180,7 @@ private:
     void updateFilter(bool firstinit = false);
     void updateFilterTooltip();
     void setFilterDate(mmDateRange2::Range& range);
-    void setFilterAdvanced();
+    void setFilterAdvanced(bool firstinit = false);
     void loadFilterSettings();
     void saveFilterSettings();
     void filterList();
@@ -197,6 +198,7 @@ private:
     void onDatePickLow(wxDateEvent& event);
     void onDatePickHigh(wxDateEvent& event);
     void onFilterAdvanced(wxCommandEvent& event);
+    void onFilterAdvancedCancel(wxCommandEvent& event);
     void onEditDateRanges(wxCommandEvent& event);
     void onScheduled(wxCommandEvent& event);
     void onNewTransaction(wxCommandEvent& event);
@@ -222,4 +224,3 @@ inline bool JournalPanel::isDeletedTrans() const { return m_checking_id == -2; }
 inline bool JournalPanel::isGroup() const { return m_checking_id <= -3; }
 inline bool JournalPanel::isAccount() const { return m_checking_id >= 1; }
 inline double JournalPanel::GetTodayReconciledBalance() const { return m_today_reconciled_balance; }
-

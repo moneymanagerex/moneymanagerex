@@ -178,7 +178,7 @@ protected:
 
 private:
     void onChar(wxKeyEvent& event);
-    void onListLeftClick(wxMouseEvent& event);
+    //void onListLeftClick(wxMouseEvent& event);
     void onMouseRightClick(wxMouseEvent& event);
 
     void onListItemActivated(wxListEvent& event);
@@ -227,6 +227,9 @@ private:
     void deleteTransactionsByStatus(std::optional<TrxStatus> status_n);
     bool checkForClosedAccounts();
     bool checkTransactionLocked(int64 AccountID, const wxString& transdate);
+
+    void OnSize(wxSizeEvent& event);
+    void setAutomaticColumnSize();
 };
 
 //----------------------------------------------------------------------------

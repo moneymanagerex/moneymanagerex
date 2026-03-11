@@ -58,6 +58,7 @@ public:
     // lookup for given Data
     auto get_data_currency_p(const Data& account_d) -> const CurrencyData*;
     auto get_data_balance(const Data& account_d) -> double;
+    auto get_data_balance_to_date(const Data& account_d, mmDate date) -> double;   // get balance up to given date
     auto get_data_investment_balance(const Data& account_d) -> std::pair<double, double>;
 
     // lookup for given id
@@ -94,4 +95,3 @@ inline NavigatorTypes::TYPE_ID AccountModel::type_id(const Data& account)
 {
     return static_cast<NavigatorTypes::TYPE_ID>(NavigatorTypes::instance().getTypeIdFromDBName(account.m_type_));
 }
-

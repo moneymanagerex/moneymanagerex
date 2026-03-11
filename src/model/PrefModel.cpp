@@ -164,6 +164,7 @@ void PrefModel::load(bool include_infotable)
     loadBudgetDeductMonthly();
     loadIgnoreFutureTransactions();
     loadIgnoreFutureTransactionsHomePage();
+    loadShowReconciledInHomePage();
     loadUseTransDateTime();
     loadTreatDateAsSN();
     loadDoNotColorFuture();
@@ -462,6 +463,16 @@ void PrefModel::setIgnoreFutureTransactionsHomePage(const bool value)
 {
     SettingModel::instance().setBool("IGNORE_FUTURE_TRANSACTIONS_HOMEPAGE", value);
     m_ignore_future_transactions_home = value;
+}
+
+void PrefModel::loadShowReconciledInHomePage()
+{
+    m_show_reconciled_in_home_page = SettingModel::instance().getBool("SHOW_RECONCILED_IN_HOME_PAGE", true);
+}
+void PrefModel::setShowReconciledInHomePage(const bool value)
+{
+    SettingModel::instance().setBool("SHOW_RECONCILED_IN_HOME_PAGE", value);
+    m_show_reconciled_in_home_page = value;
 }
 
 void PrefModel::loadUseTransDateTime()

@@ -194,6 +194,7 @@ private:
     void OnChoice(wxCommandEvent& event);
     void OnMenuSelected(wxCommandEvent&);
     void OnQuit(wxCloseEvent& event);
+    void OnColorChecked(wxCommandEvent& event);
 
 private:
     bool mmIsValuesCorrect() const;
@@ -299,4 +300,3 @@ inline const wxString TrxFilterDialog::mmGetLabelString() const { return  m_sett
 inline const wxString TrxFilterDialog::mmGetCategoryPattern() const { return categoryComboBox_->mmGetPattern(); }
 inline bool TrxFilterDialog::mmIsCombineSplitsChecked() const { return combineSplitsCheckBox_->IsChecked(); }
 inline bool TrxFilterDialog::mmIsTagsChecked() const { return tagCheckBox_->IsChecked(); }
-
