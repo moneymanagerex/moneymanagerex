@@ -22,18 +22,18 @@ TrxData Journal::execute_bill(const SchedData& sched_d, wxString date)
 {
     TrxData trx_d;
     trx_d.m_id              = 0;
+    trx_d.TRANSDATE         = date;
+    trx_d.m_type            = sched_d.m_type;
+    trx_d.m_status          = sched_d.m_status;
     trx_d.m_account_id      = sched_d.m_account_id;
     trx_d.m_to_account_id_n = sched_d.m_to_account_id_n;
     trx_d.m_payee_id_n      = sched_d.m_payee_id_n;
-    trx_d.TRANSCODE         = sched_d.TRANSCODE;
+    trx_d.m_category_id_n   = sched_d.m_category_id_n;
     trx_d.m_amount          = sched_d.m_amount;
-    trx_d.STATUS            = sched_d.STATUS;
+    trx_d.m_to_amount       = sched_d.m_to_amount;
     trx_d.m_number          = sched_d.m_number;
     trx_d.m_notes           = sched_d.m_notes;
-    trx_d.m_category_id_n   = sched_d.m_category_id_n;
-    trx_d.TRANSDATE         = date;
     trx_d.m_followup_id     = sched_d.m_followup_id;
-    trx_d.m_to_amount       = sched_d.m_to_amount;
     trx_d.m_color           = sched_d.m_color;
     return trx_d;
 }
@@ -42,18 +42,18 @@ TrxModel::Full_Data Journal::execute_bill_full(const SchedData& sched_d, wxStrin
 {
     TrxModel::Full_Data trx_xd;
     trx_xd.m_id              = 0;
+    trx_xd.TRANSDATE         = date;
+    trx_xd.m_type            = sched_d.m_type;
+    trx_xd.m_status          = sched_d.m_status;
     trx_xd.m_account_id      = sched_d.m_account_id;
     trx_xd.m_to_account_id_n = sched_d.m_to_account_id_n;
     trx_xd.m_payee_id_n      = sched_d.m_payee_id_n;
-    trx_xd.TRANSCODE         = sched_d.TRANSCODE;
+    trx_xd.m_category_id_n   = sched_d.m_category_id_n;
     trx_xd.m_amount          = sched_d.m_amount;
-    trx_xd.STATUS            = sched_d.STATUS;
+    trx_xd.m_to_amount       = sched_d.m_to_amount;
     trx_xd.m_number          = sched_d.m_number;
     trx_xd.m_notes           = sched_d.m_notes;
-    trx_xd.m_category_id_n   = sched_d.m_category_id_n;
-    trx_xd.TRANSDATE         = date;
     trx_xd.m_followup_id     = sched_d.m_followup_id;
-    trx_xd.m_to_amount       = sched_d.m_to_amount;
     trx_xd.m_color           = sched_d.m_color;
     return trx_xd;
 }
@@ -182,21 +182,21 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         journal_d.m_repeat_num      = 0;
         journal_d.m_bdid            = 0;
         journal_d.m_id              = trx_n->m_id;
+        journal_d.TRANSDATE         = trx_n->TRANSDATE;
+        journal_d.m_type            = trx_n->m_type;
+        journal_d.m_status          = trx_n->m_status;
         journal_d.m_account_id      = trx_n->m_account_id;
         journal_d.m_to_account_id_n = trx_n->m_to_account_id_n;
         journal_d.m_payee_id_n      = trx_n->m_payee_id_n;
-        journal_d.TRANSCODE         = trx_n->TRANSCODE;
+        journal_d.m_category_id_n   = trx_n->m_category_id_n;
         journal_d.m_amount          = trx_n->m_amount;
-        journal_d.STATUS            = trx_n->STATUS;
+        journal_d.m_to_amount       = trx_n->m_to_amount;
         journal_d.m_number          = trx_n->m_number;
         journal_d.m_notes           = trx_n->m_notes;
-        journal_d.m_category_id_n   = trx_n->m_category_id_n;
-        journal_d.TRANSDATE         = trx_n->TRANSDATE;
+        journal_d.m_followup_id     = trx_n->m_followup_id;
+        journal_d.m_color           = trx_n->m_color;
         journal_d.LASTUPDATEDTIME   = trx_n->LASTUPDATEDTIME;
         journal_d.DELETEDTIME       = trx_n->DELETEDTIME;
-        journal_d.m_followup_id     = trx_n->m_followup_id;
-        journal_d.m_to_amount       = trx_n->m_to_amount;
-        journal_d.m_color           = trx_n->m_color;
     }
     else {
         const SchedData *sched_n = SchedModel::instance().get_id_data_n(journal_id.first);
@@ -205,21 +205,21 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         journal_d.m_repeat_num = 1;
         journal_d.m_id              = 0;
         journal_d.m_bdid            = sched_n->m_id;
+        journal_d.TRANSDATE         = sched_n->TRANSDATE;
+        journal_d.m_type            = sched_n->m_type;
+        journal_d.m_status          = sched_n->m_status;
         journal_d.m_account_id      = sched_n->m_account_id;
         journal_d.m_to_account_id_n = sched_n->m_to_account_id_n;
         journal_d.m_payee_id_n      = sched_n->m_payee_id_n;
-        journal_d.TRANSCODE         = sched_n->TRANSCODE;
+        journal_d.m_category_id_n   = sched_n->m_category_id_n;
         journal_d.m_amount          = sched_n->m_amount;
-        journal_d.STATUS            = sched_n->STATUS;
+        journal_d.m_to_amount       = sched_n->m_to_amount;
         journal_d.m_number          = sched_n->m_number;
         journal_d.m_notes           = sched_n->m_notes;
-        journal_d.m_category_id_n   = sched_n->m_category_id_n;
-        journal_d.TRANSDATE         = sched_n->TRANSDATE;
+        journal_d.m_followup_id     = sched_n->m_followup_id;
+        journal_d.m_color           = sched_n->m_color;
         journal_d.LASTUPDATEDTIME   = "";
         journal_d.DELETEDTIME       = "";
-        journal_d.m_followup_id     = sched_n->m_followup_id;
-        journal_d.m_to_amount       = sched_n->m_to_amount;
-        journal_d.m_color           = sched_n->m_color;
     }
     return true;
 }

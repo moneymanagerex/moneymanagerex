@@ -175,7 +175,7 @@ table {
         else if (groupBy == TrxFilterDialog::GROUPBY_CATEGORY)
             sortLabel = trx_xd.CATEGNAME;
         else if (groupBy == TrxFilterDialog::GROUPBY_TYPE)
-            sortLabel = wxGetTranslation(trx_xd.TRANSCODE);
+            sortLabel = wxGetTranslation(trx_xd.m_type.name());
         else if (groupBy == TrxFilterDialog::GROUPBY_DAY)
             sortLabel = mmGetDateTimeForDisplay(trx_xd.TRANSDATE);
         else if (groupBy == TrxFilterDialog::GROUPBY_MONTH)
@@ -268,10 +268,14 @@ table {
         // If a transfer between two accounts in the list of accounts being reported then we
         // should report both the transfer in and transfer out, i.e. two transactions
         int noOfTrans = 1;
-        if ((TrxModel::type_id(trx_xd) == TrxModel::TYPE_ID_TRANSFER) &&
-            (allAccounts ||
-                (std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_account_id) != selected_accounts.end()
-                    && std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_to_account_id_n) != selected_accounts.end())))
+        if (trx_xd.is_transfer() && (allAccounts || (
+            std::find(selected_accounts.begin(), selected_accounts.end(),
+                trx_xd.m_account_id
+            ) != selected_accounts.end() &&
+            std::find(selected_accounts.begin(), selected_accounts.end(),
+                trx_xd.m_to_account_id_n
+            ) != selected_accounts.end()
+        )))
             noOfTrans = 2;
 
         bool is_time_used = PrefModel::instance().UseTransDateTime();
@@ -307,7 +311,7 @@ table {
                 if (showColumnById(TrxFilterDialog::COL_PAYEE))
                     hb.addTableCell(noOfTrans ? "< " + trx_xd.ACCOUNTNAME : trx_xd.PAYEENAME);
                 if (showColumnById(TrxFilterDialog::COL_STATUS))
-                    hb.addTableCell(trx_xd.STATUS, false, true);
+                    hb.addTableCell(trx_xd.m_status.key(), false, true);
                 if (showColumnById(TrxFilterDialog::COL_CATEGORY))
                     hb.addTableCell(trx_xd.CATEGNAME);
                 // Tags
@@ -315,9 +319,9 @@ table {
                     hb.addTableCell(trx_xd.TAGNAMES);
                 if (showColumnById(TrxFilterDialog::COL_TYPE)) {
                     if (TrxModel::is_foreignAsTransfer(trx_xd))
-                        hb.addTableCell("< " + wxGetTranslation(trx_xd.TRANSCODE));
+                        hb.addTableCell("< " + wxGetTranslation(trx_xd.m_type.name()));
                     else
-                        hb.addTableCell(wxGetTranslation(trx_xd.TRANSCODE));
+                        hb.addTableCell(wxGetTranslation(trx_xd.m_type.name()));
                 }
 
                 const AccountData* acc = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
@@ -329,8 +333,8 @@ table {
                         flow = -flow;
                     const double convRate = CurrencyHistoryModel::getDayRate(curr->m_id, trx_xd.TRANSDATE);
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT)) {
-                        if (TrxModel::status_id(trx_xd.STATUS) == TrxModel::STATUS_ID_VOID) {
-                            double void_flow = TrxModel::type_id(trx_xd.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT ? trx_xd.m_amount : -trx_xd.m_amount;
+                        if (trx_xd.is_void()) {
+                            double void_flow = trx_xd.is_deposit() ? trx_xd.m_amount : -trx_xd.m_amount;
                             hb.addCurrencyCell(void_flow, curr, -1, true);
                         }
                         else if (trx_xd.DELETEDTIME.IsEmpty())
@@ -340,7 +344,7 @@ table {
                     grand_total[curr->m_id] += flow;
                     total_in_base_curr[curr->m_id] += flow * convRate;
                     grand_total_in_base_curr[curr->m_id] += flow * convRate;
-                    if (TrxModel::type_id(trx_xd) != TrxModel::TYPE_ID_TRANSFER) {
+                    if (!trx_xd.is_transfer()) {
                         grand_total_extrans[curr->m_id] += flow;
                         grand_total_in_base_curr_extrans[curr->m_id] += flow * convRate;
                     }
@@ -356,19 +360,23 @@ table {
 
                 // Exchange Rate
                 if (showColumnById(TrxFilterDialog::COL_RATE)) {
-                    if ((TrxModel::type_id(trx_xd) == TrxModel::TYPE_ID_TRANSFER)
-                        && (trx_xd.m_amount != trx_xd.m_to_amount))
+                    if (trx_xd.is_transfer() && trx_xd.m_amount != trx_xd.m_to_amount) {
                         hb.addMoneyCell(trx_xd.m_to_amount / trx_xd.m_amount);
-                    else
+                    }
+                    else {
                         hb.addEmptyTableCell();
+                    }
                 }
 
                 // Attachments
                 wxString AttachmentsLink = "";
-                if (AttachmentModel::instance().find_ref_c(TrxModel::s_ref_type, trx_xd.m_id)) {
+                if (AttachmentModel::instance().find_ref_c(
+                    TrxModel::s_ref_type, trx_xd.m_id
+                )) {
                     AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
                         TrxModel::s_ref_type.name_n(), trx_xd.m_id,
-                        mmAttachmentManage::GetAttachmentNoteSign());
+                        mmAttachmentManage::GetAttachmentNoteSign()
+                    );
                 }
 
                 // Notes

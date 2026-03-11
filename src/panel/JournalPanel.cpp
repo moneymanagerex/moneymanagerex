@@ -84,8 +84,8 @@ wxBEGIN_EVENT_TABLE(JournalPanel, wxPanel)
         ID_DATE_RANGE_MAX,
         JournalPanel::onFilterDate)
     EVT_MENU_RANGE(
-        TrxModel::TYPE_ID_WITHDRAWAL,
-        TrxModel::TYPE_ID_TRANSFER,
+        TrxType::e_withdrawal,
+        TrxType::e_transfer,
         JournalPanel::onNewTransaction
     )
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND,  JournalPanel::onSearchTxtEntered)
@@ -96,10 +96,10 @@ wxBEGIN_EVENT_TABLE(JournalPanel, wxPanel)
 //----------------------------------------------------------------------------
 
 JournalPanel::JournalPanel(
-    mmGUIFrame *frame,
-    wxWindow *parent,
+    mmGUIFrame* frame,
+    wxWindow* parent,
     int64 checking_id,
-    const std::vector<int64> &group_ids // = {}
+    const std::vector<int64>& group_ids // = {}
 ) :
     m_checking_id(checking_id),
     m_frame(frame)
@@ -764,7 +764,7 @@ void JournalPanel::filterList()
             // assertion: trx_n->DELETEDTIME.IsEmpty()
             account_flow = TrxModel::account_flow(*trx_n, m_account_id);
             m_balance += account_flow;
-            if (TrxModel::status_id(trx_n->STATUS) == TrxModel::STATUS_ID_RECONCILED) {
+            if (trx_n->is_reconciled()) {
                 m_reconciled_balance += account_flow;
                 if (tran_date <= today_date)
                     m_today_reconciled_balance += account_flow;
@@ -1010,7 +1010,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 const CurrencyData* curr = AccountModel::instance().get_id_currency_p(
                     m_lc->m_journal_xa[item].m_account_id
                 );
-                if ((m_account_id < 0) && TrxModel::is_transfer(m_lc->m_journal_xa[item].TRANSCODE))
+                if (m_account_id < 0 && m_lc->m_journal_xa[item].is_transfer())
                     continue;
                 double convrate = (curr != m_currency_n)
                     ? CurrencyHistoryModel::getDayRate(curr->m_id, m_lc->m_journal_xa[item].TRANSDATE)
@@ -1335,9 +1335,9 @@ void JournalPanel::onButtonRightDown(wxMouseEvent& event)
     }
     case wxID_NEW: {
         wxMenu menu;
-        menu.Append(TrxModel::TYPE_ID_WITHDRAWAL, _tu("&New Withdrawal…"));
-        menu.Append(TrxModel::TYPE_ID_DEPOSIT, _tu("&New Deposit…"));
-        menu.Append(TrxModel::TYPE_ID_TRANSFER, _tu("&New Transfer…"));
+        menu.Append(TrxType::e_withdrawal, _tu("&New Withdrawal…"));
+        menu.Append(TrxType::e_deposit,    _tu("&New Deposit…"));
+        menu.Append(TrxType::e_transfer,   _tu("&New Transfer…"));
         PopupMenu(&menu);
     }
     default:
@@ -1348,19 +1348,15 @@ void JournalPanel::onButtonRightDown(wxMouseEvent& event)
 void JournalPanel::onInfoPanelClick(wxMouseEvent& event, wxStaticText* infoPanel)
 {
     wxString clipboardValue = "";
-    if (!m_info_panel_selectedbal.IsEmpty())
-    {
+    if (!m_info_panel_selectedbal.IsEmpty()) {
         clipboardValue = m_info_panel_selectedbal;
     }
-    else
-    {
+    else {
         clipboardValue = infoPanel->GetLabel();
     }
-    if (!clipboardValue.IsEmpty())
-    {
+    if (!clipboardValue.IsEmpty()) {
         // Copy to clipboard
-        if (wxTheClipboard->Open())
-        {
+        if (wxTheClipboard->Open()) {
             wxTheClipboard->SetData(new wxTextDataObject(clipboardValue));
             wxTheClipboard->Close();
             this->Layout();

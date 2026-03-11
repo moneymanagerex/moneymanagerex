@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-03-11 10:35+0000\n"
+"POT-Creation-Date: 2026-03-09 00:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: base/constants.cpp:78
+msgid "Cancel"
+msgstr ""
+
+#: base/constants.cpp:80 dialog/AssetDialog.cpp:330
+#: dialog/TrxShareDialog.cpp:401 uicontrols/navigatoreditdialog.cpp:127
+#: uicontrols/reconciledialog.cpp:232
+msgid "&Cancel "
+msgstr ""
+
+#: base/constants.cpp:84
+msgid "Close"
+msgstr ""
+
+#: base/constants.cpp:86
+msgid "&Close "
+msgstr ""
 
 #: base/constants.cpp:90 import_export/qif_import_gui.cpp:814
 #: import_export/qif_import_gui.cpp:843 import_export/qif_import_gui.cpp:867
@@ -40,68 +58,50 @@ msgid "&OK "
 msgstr ""
 
 #: base/constants.cpp:96
-msgid "Cancel"
-msgstr ""
-
-#: base/constants.cpp:98 dialog/AssetDialog.cpp:330
-#: dialog/TrxShareDialog.cpp:401 uicontrols/navigatoreditdialog.cpp:127
-#: uicontrols/reconciledialog.cpp:232
-msgid "&Cancel "
-msgstr ""
-
-#: base/constants.cpp:102
-msgid "Close"
-msgstr ""
-
-#: base/constants.cpp:104
-msgid "&Close "
-msgstr ""
-
-#: base/constants.cpp:108
 msgid "Undo"
 msgstr ""
 
-#: base/constants.cpp:109
+#: base/constants.cpp:97
 msgid "Redo"
 msgstr ""
 
-#: base/constants.cpp:110
+#: base/constants.cpp:98
 msgid "Cut"
 msgstr ""
 
-#: base/constants.cpp:111
+#: base/constants.cpp:99
 msgid "Copy"
 msgstr ""
 
-#: base/constants.cpp:112
+#: base/constants.cpp:100
 msgid "Paste"
 msgstr ""
 
-#: base/constants.cpp:113
+#: base/constants.cpp:101
 msgid "Select All"
 msgstr ""
 
-#: base/constants.cpp:129
+#: base/constants.cpp:117
 msgid "64-bit"
 msgstr ""
 
-#: base/constants.cpp:213
+#: base/constants.cpp:201
 msgid "ALL"
 msgstr ""
 
-#: base/constants.cpp:214 data/_DataEnum.cpp:25 data/_DataEnum.cpp:46
+#: base/constants.cpp:202 data/_DataEnum.cpp:25 data/_DataEnum.cpp:46
 msgid "Open"
 msgstr ""
 
-#: base/constants.cpp:215 data/_DataEnum.cpp:26 data/_DataEnum.cpp:45
+#: base/constants.cpp:203 data/_DataEnum.cpp:26 data/_DataEnum.cpp:45
 msgid "Closed"
 msgstr ""
 
-#: base/constants.cpp:216 panel/JournalPanel.cpp:1392
+#: base/constants.cpp:204 panel/JournalPanel.cpp:1392
 msgid "Favorites"
 msgstr ""
 
-#: base/constants.cpp:429 pref/GeneralPref.cpp:94
+#: base/constants.cpp:417 pref/GeneralPref.cpp:94
 msgid "System default"
 msgstr ""
 
@@ -5089,7 +5089,7 @@ msgstr ""
 msgid "Do you want to use the theme? Please note that this will only take effect when MMEX is re-started."
 msgstr ""
 
-#: mmex.cpp:178
+#: mmex.cpp:177
 msgid ""
 "Fatal error occured.\n"
 "Application will be terminated."

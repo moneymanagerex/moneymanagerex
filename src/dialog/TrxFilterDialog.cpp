@@ -1255,36 +1255,44 @@ const wxString TrxFilterDialog::mmGetStatus() const
 bool TrxFilterDialog::mmIsStatusMatches(const wxString& itemStatus) const
 {
     wxString filterStatus = mmGetStatus();
-    if (itemStatus == filterStatus)
-    {
+    if (itemStatus == filterStatus) {
         return true;
     }
-    else if ("A" == filterStatus) // All Except Reconciled
-    {
-        return TrxModel::STATUS_KEY_RECONCILED != itemStatus;
+    // All Except Reconciled
+    else if (filterStatus == "A") {
+        return itemStatus != TrxStatus(TrxStatus::e_reconciled).key();
     }
     return false;
 }
 
-bool TrxFilterDialog::mmIsTypeMaches(const wxString& typeState, int64 accountid, int64 toaccountid) const
+bool TrxFilterDialog::mmIsTypeMaches(
+    const wxString& typeState,
+    int64 accountid,
+    int64 toaccountid
+) const
 {
+    TrxType type = TrxType(typeState);
     bool result = false;
-    if (typeState == TrxModel::TYPE_NAME_TRANSFER && cbTypeTransferTo_->GetValue() &&
-        (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), accountid) != m_selected_accounts_id.end()))
-    {
+    if (type.id() == TrxType::e_transfer && cbTypeTransferTo_->GetValue() && (
+        !mmIsAccountChecked() ||
+        std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(),
+            accountid
+        ) != m_selected_accounts_id.end()
+    )) {
         result = true;
     }
-    else if (typeState == TrxModel::TYPE_NAME_TRANSFER && cbTypeTransferFrom_->GetValue() &&
-             (!mmIsAccountChecked() || std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), toaccountid) != m_selected_accounts_id.end()))
-    {
+    else if (type.id() == TrxType::e_transfer && cbTypeTransferFrom_->GetValue() && (
+        !mmIsAccountChecked() ||
+        std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(),
+            toaccountid
+        ) != m_selected_accounts_id.end()
+    )) {
         result = true;
     }
-    else if (typeState == TrxModel::TYPE_NAME_WITHDRAWAL && cbTypeWithdrawal_->IsChecked())
-    {
+    else if (type.id() == TrxType::e_withdrawal && cbTypeWithdrawal_->IsChecked()) {
         result = true;
     }
-    else if (typeState == TrxModel::TYPE_NAME_DEPOSIT && cbTypeDeposit_->IsChecked())
-    {
+    else if (type.id() == TrxType::e_deposit && cbTypeDeposit_->IsChecked()) {
         result = true;
     }
 
@@ -1464,9 +1472,9 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
         ok = false;
     else if (mmIsCategoryChecked() && !mmIsCategoryMatches(tran.m_category_id_n))
         ok = false;
-    else if (mmIsStatusChecked() && !mmIsStatusMatches(tran.STATUS))
+    else if (mmIsStatusChecked() && !mmIsStatusMatches(tran.m_status.key()))
         ok = false;
-    else if (mmIsTypeChecked() && !mmIsTypeMaches(tran.TRANSCODE, tran.m_account_id, tran.m_to_account_id_n))
+    else if (mmIsTypeChecked() && !mmIsTypeMaches(tran.m_type.name(), tran.m_account_id, tran.m_to_account_id_n))
         ok = false;
     else if (mmIsAmountRangeMinChecked() && mmGetAmountMin() > tran.m_amount)
         ok = false;
@@ -1870,9 +1878,9 @@ const wxString TrxFilterDialog::mmGetJsonSettings(bool i18n) const
     if (statusCheckBox_->IsChecked()) {
         int item = choiceStatus_->GetSelection();
         wxString status;
-        if (0 <= item && item < TrxModel::STATUS_ID_size)
-            status = TrxModel::status_name(item);
-        else if (item == TrxModel::STATUS_ID_size)
+        if (0 <= item && item < TrxStatus::size)
+            status = TrxStatus(item).name();
+        else if (item == TrxStatus::size)
             status = _n("All Except Reconciled");
         if (!status.empty()) {
             json_writer.Key((i18n ? _t("Status") : "STATUS").utf8_str());

@@ -1544,7 +1544,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
         if (!allExistingTrans.empty()) {
             for (auto& existing_trx_d : allExistingTrans) {
                 // Check if this FITID is already a transfer involving the current account
-                if (existing_trx_d.TRANSCODE == "Transfer" &&
+                if (existing_trx_d.is_transfer() &&
                     (existing_trx_d.m_account_id == account->m_id || existing_trx_d.m_to_account_id_n == account->m_id)) {
                     result.imported      = false;
                     result.transType     = "";
@@ -1563,12 +1563,12 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                     double existingAmount = existing_trx_d.m_amount;
                     wxDateTime existingDate;
                     existingDate.ParseISODate(existing_trx_d.TRANSDATE);
-                    double adjustedExistingAmount = (existing_trx_d.TRANSCODE == "Withdrawal") ? -existingAmount : existingAmount;
+                    double adjustedExistingAmount = existing_trx_d.is_withdrawal() ? -existingAmount : existingAmount;
 
                     double compAmt = fabs(adjustedExistingAmount + amount);
                     int compDate = abs((date - existingDate).GetDays());
                     if (compAmt < 0.01 && compDate <= 7) {
-                        if (existing_trx_d.TRANSCODE == "Transfer") {
+                        if (existing_trx_d.is_transfer()) {
                             wxLogWarning("FITID='%s' is a transfer from %lld to %lld, not updating", fitid, existing_trx_d.m_account_id,
                                          existing_trx_d.m_to_account_id_n);
                             stats.skippedErrors++;
@@ -1577,21 +1577,21 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                             isTransfer = true;
                         }
                         else {
-                            if (existing_trx_d.TRANSCODE == "Withdrawal" && amount > 0) {
-                                existing_trx_d.TRANSCODE = "Transfer";
+                            if (existing_trx_d.is_withdrawal() && amount > 0) {
+                                existing_trx_d.m_type = TrxType(TrxType::e_transfer);
                                 existing_trx_d.m_to_account_id_n = account->m_id;
                                 existing_trx_d.m_amount = existingAmount;
                                 existing_trx_d.m_to_amount = amount;
                             }
-                            else if (existing_trx_d.TRANSCODE == "Deposit" && amount < 0) {
-                                existing_trx_d.TRANSCODE = "Transfer";
+                            else if (existing_trx_d.is_deposit() && amount < 0) {
+                                existing_trx_d.m_type = TrxType(TrxType::e_transfer);
                                 existing_trx_d.m_to_account_id_n = existing_trx_d.m_account_id;
                                 existing_trx_d.m_account_id = account->m_id;
                                 existing_trx_d.m_amount = fabs(amount);
                                 existing_trx_d.m_to_amount = existingAmount;
                             }
                             else {
-                                wxLogWarning("FITID='%s' incompatible (Existing=%s, New=%.2f), skipping", fitid, existing_trx_d.TRANSCODE, amount);
+                                wxLogWarning("FITID='%s' incompatible (Existing=%s, New=%.2f), skipping", fitid, existing_trx_d.m_type.name(), amount);
                                 stats.skippedErrors++;
                                 result.imported = false;
                                 result.importedPayee = "TRANSFER ERROR";
@@ -1633,8 +1633,11 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
         }
 
         if (!isTransfer) {
-            new_trx_d.TRANSCODE = (amount >= 0) ? "Deposit" : "Withdrawal";
-            result.transType = new_trx_d.TRANSCODE;
+            new_trx_d.m_type = TrxType((amount >= 0)
+                ? TrxType::e_deposit
+                : TrxType::e_withdrawal
+            );
+            result.transType = new_trx_d.m_type.name();
 
             double matchConfidence = 0.0;
             wxString matchMethod;
@@ -1667,7 +1670,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                 mmPayeeSelectionDialog payeeDlg(this,
                     memo, payeeName, fitid, date.FormatISODate(),
                     wxString::Format("%.2f", amount),
-                    new_trx_d.TRANSCODE,
+                    new_trx_d.m_type.name(),
                     transactionIndex, newTransactions,
                     importStartTime_, matchConfidence, matchMethod, totalTransactions
                 );
@@ -1722,7 +1725,10 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                 if (payee_n) {
                     new_trx_d.m_payee_id_n = payee_n->m_id;
                     new_trx_d.m_category_id_n = payee_n->m_category_id_n;
-                    new_trx_d.STATUS = (matchMethod == "Fuzzy" && markFuzzyFollowUp) ? "F" : "";
+                    new_trx_d.m_status = TrxStatus((matchMethod == "Fuzzy" && markFuzzyFollowUp)
+                        ? TrxStatus::e_followup
+                        : TrxStatus::e_unreconciled
+                    );
                     const CategoryData* category = CategoryModel::instance().get_id_data_n(new_trx_d.m_category_id_n);
                     result.category = category ? category->m_name : "Uncategorized";
                     stats.autoImportedCount++;

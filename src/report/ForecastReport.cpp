@@ -54,16 +54,16 @@ wxString ForecastReport::getHTMLText()
     }
 
     for (const auto& trx_d : trx_a) {
-        if (TrxModel::type_id(trx_d) == TrxModel::TYPE_ID_TRANSFER ||
-            TrxModel::is_foreignAsTransfer(trx_d)
-        )
+        if (trx_d.is_transfer() || TrxModel::is_foreignAsTransfer(trx_d))
             continue;
         const double convRate = CurrencyHistoryModel::getDayRate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
             trx_d.TRANSDATE
         );
-        amount_by_day[trx_d.TRANSDATE].first += TrxModel::account_outflow(trx_d, trx_d.m_account_id) * convRate;
-        amount_by_day[trx_d.TRANSDATE].second += TrxModel::account_inflow(trx_d, trx_d.m_account_id) * convRate;
+        amount_by_day[trx_d.TRANSDATE].first +=
+            TrxModel::account_outflow(trx_d, trx_d.m_account_id) * convRate;
+        amount_by_day[trx_d.TRANSDATE].second +=
+            TrxModel::account_inflow(trx_d, trx_d.m_account_id) * convRate;
     }
 
     // Build the report

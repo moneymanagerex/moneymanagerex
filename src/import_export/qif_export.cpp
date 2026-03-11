@@ -473,7 +473,7 @@ void mmQIFExportDialog::mmExportQIF()
     wxArrayInt64 allCustomFields4Export;
     wxArrayInt64 allTags4Export;
     const auto trx_a = TrxModel::instance().find(
-        TrxModel::STATUS(OP_NE, TrxModel::STATUS_ID_VOID)
+        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
     );
 
     if (exp_transactions && !trx_a.empty()) {
@@ -503,17 +503,27 @@ void mmQIFExportDialog::mmExportQIF()
                 continue;
             if (dateToCheckBox_->IsChecked() && strDate > end_date)
                 continue;
-            if (!TrxModel::is_transfer(trx_d.TRANSCODE)
-                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), trx_d.m_account_id) == selected_accounts_id_.end()))
+            if (!trx_d.is_transfer() &&
+                std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(),
+                    trx_d.m_account_id
+                ) == selected_accounts_id_.end()
+            )
                 continue;
-            if (TrxModel::is_transfer(trx_d.TRANSCODE)
-                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), trx_d.m_account_id) == selected_accounts_id_.end())
-                && (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), trx_d.m_to_account_id_n) == selected_accounts_id_.end()))
+            if (trx_d.is_transfer() &&
+                std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(),
+                    trx_d.m_account_id
+                ) == selected_accounts_id_.end() &&
+                std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(),
+                    trx_d.m_to_account_id_n
+                ) == selected_accounts_id_.end()
+            )
                 continue;
             //
 
             // if Cancel clicked
-            if (!progressDlg.Pulse(wxString::Format(_t("Exporting transaction %zu"), ++numRecords)))
+            if (!progressDlg.Pulse(wxString::Format(_t("Exporting transaction %zu"),
+                ++numRecords
+            )))
                 break; // abort processing
 
             bool is_reverce = false;
@@ -526,8 +536,12 @@ void mmQIFExportDialog::mmExportQIF()
             case JSON:
                 mmExportTransaction::getTransactionJSON(json_writer, full_tran);
                 allAccounts4Export[account_id] = "";
-                if (std::find(allPayees4Export.begin(), allPayees4Export.begin(), full_tran.m_payee_id_n) == allPayees4Export.end()
-                    && full_tran.TRANSCODE != TrxModel::TYPE_NAME_TRANSFER) {
+                if (
+                    std::find(allPayees4Export.begin(), allPayees4Export.begin(),
+                        full_tran.m_payee_id_n
+                    ) == allPayees4Export.end() &&
+                    !full_tran.is_transfer()
+                ) {
                     allPayees4Export.push_back(full_tran.m_payee_id_n);
                 }
 
@@ -571,7 +585,7 @@ void mmQIFExportDialog::mmExportQIF()
 
             case QIF:
 
-                if (TrxModel::is_transfer(trx_d.TRANSCODE)) {
+                if (trx_d.is_transfer()) {
                     if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(),
                         trx_d.m_account_id) == selected_accounts_id_.end()
                     ) {
@@ -591,8 +605,10 @@ void mmQIFExportDialog::mmExportQIF()
 
             case CSV:
 
-                if (TrxModel::is_transfer(trx_d.TRANSCODE)) {
-                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(), trx_d.m_account_id) == selected_accounts_id_.end()) {
+                if (trx_d.is_transfer()) {
+                    if (std::find(selected_accounts_id_.begin(), selected_accounts_id_.end(),
+                        trx_d.m_account_id
+                    ) == selected_accounts_id_.end()) {
                         is_reverce = true;
                         account_id = trx_d.m_to_account_id_n;
                     }

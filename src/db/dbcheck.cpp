@@ -42,7 +42,7 @@ bool dbCheck::checkAccounts()
     const auto& trx_a = TrxModel::instance().find_all();
     for (const auto& trx_d : trx_a)
         if (!AccountModel::instance().get_id_data_n(trx_d.m_account_id) || (
-            TrxModel::type_id(trx_d) == TrxModel::TYPE_ID_TRANSFER &&
+            trx_d.is_transfer() &&
             !AccountModel::instance().get_id_data_n(trx_d.m_to_account_id_n)
         )) {
             result = false;
@@ -52,7 +52,7 @@ bool dbCheck::checkAccounts()
     const auto& sched_a = SchedModel::instance().find_all();
     for (const auto& sched_d : sched_a)
         if (!AccountModel::instance().get_id_data_n(sched_d.m_account_id) || (
-            SchedModel::type_id(sched_d) == TrxModel::TYPE_ID_TRANSFER &&
+            sched_d.is_transfer() &&
             !AccountModel::instance().get_id_data_n(sched_d.m_to_account_id_n)
         )) {
             result = false;

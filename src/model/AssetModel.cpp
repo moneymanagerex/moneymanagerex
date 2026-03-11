@@ -152,9 +152,7 @@ const std::pair<double, double> AssetModel::get_data_value_date(const Data& asse
 
             // Self Transfer as Revaluation
             // FIXME: missing currency conversion
-            if (trx_d.m_account_id == trx_d.m_to_account_id_n &&
-                TrxModel::type_id(trx_d.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER
-            ) {
+            if (trx_d.m_account_id == trx_d.m_to_account_id_n && trx_d.is_transfer()) {
                 // TODO honor m_amount => m_to_amount
                 balance.second = trx_d.m_to_amount;
             }

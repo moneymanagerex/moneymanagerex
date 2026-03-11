@@ -70,8 +70,8 @@ TrxUpdateDialog::TrxUpdateDialog(
 
     // Determine the mix of transaction that have been selected
     for (const auto& trx_id : m_trx_id_a) {
-        const TrxData *trx = TrxModel::instance().get_id_data_n(trx_id);
-        const bool isTransfer = TrxModel::is_transfer(*trx);
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(trx_id);
+        const bool isTransfer = trx_n->is_transfer();
 
         if (!m_hasSplits) {
             TrxSplitModel::DataA split = TrxSplitModel::instance().find(
@@ -159,8 +159,8 @@ void TrxUpdateDialog::CreateControls()
 
     m_status_choice = new wxChoice(this, wxID_ANY
         , wxDefaultPosition, wxDefaultSize);
-    for (int i = 0; i < TrxModel::STATUS_ID_size; ++i) {
-        wxString status = TrxModel::status_name(i);
+    for (int i = 0; i < TrxStatus::size; ++i) {
+        wxString status = TrxStatus(i).name();
         m_status_choice->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
 
@@ -176,9 +176,9 @@ void TrxUpdateDialog::CreateControls()
 
     m_type_choice = new wxChoice(this, ID_TRANS_TYPE
         , wxDefaultPosition, wxDefaultSize);
-    for (int i = 0; i < TrxModel::TYPE_ID_size; ++i) {
-        if (!(m_hasSplits && i == TrxModel::TYPE_ID_TRANSFER)) {
-            wxString type = TrxModel::type_name(i);
+    for (int i = 0; i < TrxType::size; ++i) {
+        if (!(m_hasSplits && i == TrxType::e_transfer)) {
+            wxString type = TrxType(i).name();
             m_type_choice->Append(wxGetTranslation(type), new wxStringClientData(type));
         }
     }
@@ -326,18 +326,18 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             m_status_choice->GetClientObject(m_status_choice->GetSelection())
         );
         if (status_obj)
-            status = TrxModel::status_key(status_obj->GetData());
+            status = TrxStatus(status_obj->GetData()).key();
         else
             return;
     }
 
-    wxString type = "";
+    TrxType trx_type = TrxType();
     if (m_type_checkbox->IsChecked()) {
         wxStringClientData* type_obj = static_cast<wxStringClientData*>(
             m_type_choice->GetClientObject(m_type_choice->GetSelection())
         );
-        type = type_obj->GetData();
-        if (TrxModel::TYPE_NAME_TRANSFER == type) {
+        trx_type = TrxType(type_obj->GetData());
+        if (trx_type.id() == TrxType::e_transfer) {
             if  (m_hasNonTransfers && !m_transferAcc_checkbox->IsChecked())
                 return mmErrorDialogs::InvalidAccount(m_transferAcc_checkbox, true);
         } else {
@@ -372,7 +372,11 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
 
     if (tag_checkbox_->IsChecked() && !tagTextCtrl_->IsValid())
-        return  mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _t("Invalid value"), _t("Tags"), wxICON_ERROR);
+        return mmErrorDialogs::ToolTip4Object(tagTextCtrl_,
+            _t("Invalid value"),
+            _t("Tags"),
+            wxICON_ERROR
+        );
 
     if (m_transferAcc_checkbox->IsChecked()) {
         if (!cbAccount_->mmIsValid())
@@ -400,7 +404,7 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         if (m_status_checkbox->IsChecked()) {
-            trx_n->STATUS = status;
+            trx_n->m_status = TrxStatus(status);
         }
 
         if (m_payee_checkbox->IsChecked()) {
@@ -498,12 +502,12 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         if (m_type_checkbox->IsChecked()) {
-            trx_n->TRANSCODE = type;
+            trx_n->m_type = trx_type;
         }
 
         // Need to consider m_to_amount if material transaction change
         if (m_amount_checkbox->IsChecked() || m_type_checkbox->IsChecked() || m_transferAcc_checkbox->IsChecked()) {
-            if (!TrxModel::is_transfer(*trx_n)) {
+            if (!trx_n->is_transfer()) {
                 trx_n->m_to_amount = trx_n->m_amount;
             }
             else {
@@ -554,7 +558,7 @@ void TrxUpdateDialog::SetPayeeTransferControls()
     wxStringClientData* trans_obj = static_cast<wxStringClientData*>(
         m_type_choice->GetClientObject(m_type_choice->GetSelection())
     );
-    bool transfer = (TrxModel::TYPE_NAME_TRANSFER == trans_obj->GetData());
+    bool transfer = (TrxType(trans_obj->GetData()).id() == TrxType::e_transfer);
 
     m_payee_checkbox->Enable(!transfer);
     m_transferAcc_checkbox->Enable(transfer);

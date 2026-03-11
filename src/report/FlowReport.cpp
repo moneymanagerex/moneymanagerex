@@ -55,14 +55,14 @@ double FlowReport::trueAmount(const TrxData& trx)
             AccountModel::instance().get_id_data_n(trx.m_account_id)->m_currency_id,
             trx.TRANSDATE
         );
-        switch (TrxModel::type_id(trx.TRANSCODE)) {
-        case TrxModel::TYPE_ID_WITHDRAWAL:
+        switch (trx.m_type.id()) {
+        case TrxType::e_withdrawal:
             amount = -trx.m_amount * convRate;
             break;
-        case TrxModel::TYPE_ID_DEPOSIT:
+        case TrxType::e_deposit:
             amount = +trx.m_amount * convRate;
             break;
-        case TrxModel::TYPE_ID_TRANSFER:
+        case TrxType::e_transfer:
             if (isAccountFound)
                 amount = -trx.m_amount * convRate;
             else {
@@ -117,7 +117,7 @@ void FlowReport::getTransactions()
     TrxModel::DataA transactions = TrxModel::instance().find(
         TrxModel::TRANSDATE(OP_GT, endOfToday),
         TrxModel::TRANSDATE(OP_LT, endDate),
-        TrxModel::STATUS(OP_NE, TrxModel::STATUS_ID_VOID)
+        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
     );
     for (auto& trx_d : transactions) {
         if (!trx_d.DELETEDTIME.IsEmpty())
@@ -147,7 +147,7 @@ void FlowReport::getTransactions()
 
     // Now we gather the recurring transaction list
     for (const auto& sched_d : SchedModel::instance().find(
-        SchedModel::STATUS(OP_NE, TrxModel::STATUS_ID_VOID)
+        SchedModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
     )) {
         wxDateTime next_date = SchedModel::NEXTOCCURRENCEDATE(sched_d);
         if (next_date > endDate)
@@ -173,10 +173,10 @@ void FlowReport::getTransactions()
 
             TrxData trx_d;
             trx_d.TRANSDATE         = next_date.FormatISODate();
+            trx_d.m_type            = sched_d.m_type;
             trx_d.m_account_id      = sched_d.m_account_id;
             trx_d.m_to_account_id_n = sched_d.m_to_account_id_n;
             trx_d.m_payee_id_n      = sched_d.m_payee_id_n;
-            trx_d.TRANSCODE         = sched_d.TRANSCODE;
             trx_d.m_amount          = sched_d.m_amount;
             trx_d.m_to_amount       = sched_d.m_to_amount;
 

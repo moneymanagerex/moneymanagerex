@@ -44,17 +44,17 @@ wxString InExReport::getHTMLText()
 {
     // Grab the data
     std::pair<double, double> income_expenses_pair;
-    for (const auto& transaction : TrxModel::instance().find(
+    for (const auto& trx_d : TrxModel::instance().find(
         TrxModel::TRANSDATE(OP_GE, mmDate(m_date_range->start_date())),
         TrxModel::TRANSDATE(OP_LE, mmDate(m_date_range->end_date())),
         TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::STATUS(OP_NE, TrxModel::STATUS_ID_VOID)
+        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
     )) {
         // Do not include asset or stock transfers
-        if (TrxModel::is_foreignAsTransfer(transaction))
+        if (TrxModel::is_foreignAsTransfer(trx_d))
             continue;
 
-        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.m_account_id);
+        const AccountData *account = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->m_name))
                 continue;
@@ -63,14 +63,14 @@ wxString InExReport::getHTMLText()
         // We got this far, get the currency conversion rate for this account
         if (account) {
             convRate = CurrencyHistoryModel::getDayRate(
-                AccountModel::instance().get_data_currency_p(*account)->m_id, transaction.TRANSDATE
+                AccountModel::instance().get_data_currency_p(*account)->m_id, trx_d.TRANSDATE
             );
         }
 
-        if (TrxModel::type_id(transaction) == TrxModel::TYPE_ID_DEPOSIT)
-            income_expenses_pair.first += transaction.m_amount * convRate;
-        else if (TrxModel::type_id(transaction) == TrxModel::TYPE_ID_WITHDRAWAL)
-            income_expenses_pair.second += transaction.m_amount * convRate;
+        if (trx_d.is_deposit())
+            income_expenses_pair.first += trx_d.m_amount * convRate;
+        else if (trx_d.is_withdrawal())
+            income_expenses_pair.second += trx_d.m_amount * convRate;
     }
 
     // Build the report
@@ -148,17 +148,17 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     const wxDateTime start_date = m_date_range->start_date();
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     // TODO: init all the map values with 0.0
-    for (const auto& transaction : TrxModel::instance().find(
+    for (const auto& trx_d : TrxModel::instance().find(
         TrxModel::TRANSDATE(OP_GE, mmDate(start_date)),
         TrxModel::TRANSDATE(OP_LE, mmDate(m_date_range->end_date())),
         TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::STATUS(OP_NE, TrxModel::STATUS_ID_VOID)
+        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
     )) {
         // Do not include asset or stock transfers
-        if (TrxModel::is_foreignAsTransfer(transaction))
+        if (TrxModel::is_foreignAsTransfer(trx_d))
             continue;
 
-        const AccountData *account = AccountModel::instance().get_id_data_n(transaction.m_account_id);
+        const AccountData *account = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
         if (m_account_a) {
             if (!account || wxNOT_FOUND == m_account_a->Index(account->m_name))
                 continue;
@@ -167,18 +167,18 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         // We got this far, get the currency conversion rate for this account
         if (account) {
             convRate = CurrencyHistoryModel::getDayRate(
-                AccountModel::instance().get_data_currency_p(*account)->m_id, transaction.TRANSDATE
+                AccountModel::instance().get_data_currency_p(*account)->m_id, trx_d.TRANSDATE
             );
         }
-        int year = TrxModel::getTransDateTime(transaction).GetYear();
+        int year = TrxModel::getTransDateTime(trx_d).GetYear();
 
-        int idx = year * 100 + TrxModel::getTransDateTime(transaction).GetMonth();
+        int idx = year * 100 + TrxModel::getTransDateTime(trx_d).GetMonth();
 
-        if (TrxModel::type_id(transaction) == TrxModel::TYPE_ID_DEPOSIT) {
-            incomeExpensesStats[idx].first += transaction.m_amount * convRate;
+        if (trx_d.is_deposit()) {
+            incomeExpensesStats[idx].first += trx_d.m_amount * convRate;
         }
-        else if (TrxModel::type_id(transaction) == TrxModel::TYPE_ID_WITHDRAWAL) {
-            incomeExpensesStats[idx].second += transaction.m_amount * convRate;
+        else if (trx_d.is_withdrawal()) {
+            incomeExpensesStats[idx].second += trx_d.m_amount * convRate;
         }
     }
 

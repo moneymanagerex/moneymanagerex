@@ -459,7 +459,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     int64 ToAccountID = -1;
     int64 payeeID = -1;
     int64 category_id = -1;
-    wxString TrStatus;
+    TrxStatus trx_status = TrxStatus();
 
     //Search Account
     const AccountData* account_n = AccountModel::instance().get_name_data_n(WebAppTrans.Account);
@@ -469,10 +469,10 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         AccountID = account_n->m_id;
         accountName = account_n->m_name;
         accountInitialDate = account_n->m_open_date;
-        TrStatus = WebAppTrans.Status;
+        trx_status = TrxStatus(WebAppTrans.Status);
     }
     else {
-        TrStatus = TrxModel::STATUS_KEY_FOLLOWUP;
+        trx_status = TrxStatus(TrxStatus::e_followup);
 
         // Search first bank account
         for (const auto& first_account_d : AccountModel::instance().find_all(
@@ -564,17 +564,17 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     }
 
     new_trx_d.TRANSDATE         = trx_datetime.FormatISOCombined();
-    new_trx_d.STATUS            = TrStatus;
-    new_trx_d.TRANSCODE         = WebAppTrans.Type;
-    new_trx_d.m_amount          = WebAppTrans.Amount;
+    new_trx_d.m_type            = TrxType(WebAppTrans.Type);
+    new_trx_d.m_status          = trx_status;
     new_trx_d.m_account_id      = AccountID;
     new_trx_d.m_to_account_id_n = ToAccountID;
     new_trx_d.m_payee_id_n      = payeeID;
     new_trx_d.m_category_id_n   = category_id;
+    new_trx_d.m_amount          = WebAppTrans.Amount;
+    new_trx_d.m_to_amount       = WebAppTrans.Amount;
     new_trx_d.m_number          = "";
     new_trx_d.m_notes           = WebAppTrans.Notes;
     new_trx_d.m_followup_id     = -1;
-    new_trx_d.m_to_amount       = WebAppTrans.Amount;
     new_trx_d.m_color           = -1;
     TrxModel::instance().add_data_n(new_trx_d);
     DeskNewTrID = new_trx_d.id();

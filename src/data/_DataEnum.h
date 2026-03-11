@@ -268,6 +268,65 @@ public:
     }
 };
 
+struct TrxType
+{
+public:
+    enum
+    {
+        e_withdrawal = 0,
+        e_deposit,
+        e_transfer,
+        size
+    };
+    static mmChoiceNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    TrxType(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    TrxType(const wxString& name) :
+        m_id(TrxType::s_choice_a.find_name_n(name)) {}
+
+    mmChoiceId id() const { return m_id; }
+    const wxString name() const { return TrxType::s_choice_a.get_name(m_id); }
+    const wxString trade_name() const {
+        static const wxArrayString trade_name_a = {
+            _n("Buy"), _n("Sell"), _n("Revalue")
+        };
+        return trade_name_a[m_id];
+    }
+};
+
+struct TrxStatus
+{
+public:
+    enum
+    {
+        e_unreconciled = 0,
+        e_reconciled,
+        e_void,
+        e_followup,
+        e_duplicate,
+        size
+    };
+    static mmChoiceKeyNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    TrxStatus(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    TrxStatus(const wxString& keyname) :
+        m_id(TrxStatus::s_choice_a.find_keyname_n(keyname)) {}
+
+    mmChoiceId id() const { return m_id; }
+    const wxString key() const { return TrxStatus::s_choice_a.get_key(m_id); }
+    const wxString name() const { return TrxStatus::s_choice_a.get_name(m_id); }
+};
+
 struct RefTypeN
 {
 public:

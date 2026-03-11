@@ -157,7 +157,7 @@ void TrxLinkModel::UpdateAssetValue(AssetData* asset_n)
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
         if (trx_n && trx_n->DELETEDTIME.IsEmpty() &&
-            TrxModel::status_id(trx_n->STATUS) != TrxModel::STATUS_ID_VOID
+            !trx_n->is_void()
         ) {
             const CurrencyData* currency_n = AccountModel::instance().get_id_currency_p(
                 trx_n->m_account_id
@@ -167,7 +167,7 @@ void TrxLinkModel::UpdateAssetValue(AssetData* asset_n)
                 trx_n->TRANSDATE
             );
 
-            if (trx_n->TRANSCODE == TrxModel::TYPE_NAME_DEPOSIT) {
+            if (trx_n->is_deposit()) {
                 new_value -= trx_n->m_amount * conv_rate; // Withdrawal from asset value
             }
             else {
