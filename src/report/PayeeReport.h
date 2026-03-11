@@ -51,7 +51,7 @@ public:
     virtual wxString getHTMLText();
 
 private:
-    static void updateData(Data& data, TrxModel::TYPE_ID type_id, double amount);
+    static void updateData(Data& data, TrxType trx_type, double amount);
 
 private:
     void loadData();

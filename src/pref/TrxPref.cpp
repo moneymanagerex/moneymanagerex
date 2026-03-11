@@ -92,8 +92,8 @@ void TrxPref::Create()
 
     wxChoice* default_status = new wxChoice(transSettingsStaticBox
         , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
-    for (int i = 0; i < TrxModel::STATUS_ID_size; ++i) {
-        wxString status = TrxModel::status_name(i);
+    for (int i = 0; i < TrxStatus::size; ++i) {
+        wxString status = TrxStatus(i).name();
         default_status->Append(wxGetTranslation(status), new wxStringClientData(status));
     }
     default_status->SetSelection(PrefModel::instance().getTransStatusReconciled());

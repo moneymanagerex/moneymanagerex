@@ -51,7 +51,7 @@ public:
         int64 account_id,
         Journal::IdB journal_id,
         bool duplicate = false,
-        int type = TrxModel::TYPE_ID_WITHDRAWAL
+        TrxType type = TrxType(TrxType::e_withdrawal)
     );
 
     bool Create(wxWindow* parent

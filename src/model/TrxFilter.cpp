@@ -216,12 +216,12 @@ table {
         hb.addTableCellLink(wxString::Format("trxid:%lld", trx_xd.m_id)
             , trx_xd.ACCOUNTNAME);
         hb.addTableCell(trx_xd.PAYEENAME);
-        hb.addTableCell(trx_xd.STATUS, false, true);
+        hb.addTableCell(trx_xd.m_status.key(), false, true);
         hb.addTableCell(trx_xd.CATEGNAME);
         if (TrxModel::is_foreignAsTransfer(trx_xd))
-            hb.addTableCell("< " + wxGetTranslation(trx_xd.TRANSCODE));
+            hb.addTableCell("< " + wxGetTranslation(trx_xd.m_type.name()));
         else
-            hb.addTableCell(wxGetTranslation(trx_xd.TRANSCODE));
+            hb.addTableCell(wxGetTranslation(trx_xd.m_type.name()));
 
         const AccountData* acc = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
         if (acc) {

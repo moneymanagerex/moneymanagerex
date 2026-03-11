@@ -51,7 +51,7 @@ wxEND_EVENT_TABLE()
 
 double TrxShareDialog::GetAmount(double shares, double price, double commission)
 {
-    if (m_transaction_panel->TransactionType() == TrxModel::TYPE_ID_DEPOSIT)
+    if (m_transaction_panel->TransactionType() == TrxType::e_deposit)
         return (shares * price - commission);
     else
         return (shares * price + commission);
@@ -215,7 +215,7 @@ void TrxShareDialog::DataToControls()
                         true
                     );
                     m_transaction_panel->SetTransactionAccount(AccountModel::instance().get_id_name(trx_n->m_account_id));
-                    m_transaction_panel->SetTransactionStatus(TrxModel::status_id(*trx_n));
+                    m_transaction_panel->SetTransactionStatus(trx_n->m_status.id());
                     m_transaction_panel->SetTransactionPayee(trx_n->m_payee_id_n);
                     m_transaction_panel->SetTransactionCategory(trx_n->m_category_id_n);
                     if (!trx_n->DELETEDTIME.IsEmpty()) {
@@ -453,7 +453,7 @@ void TrxShareDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     if (m_transaction_panel->ValidCheckingAccountEntry()) {
         // addition or removal shares
         if (num_shares > 0 &&
-            m_transaction_panel->TransactionType() == TrxModel::TYPE_ID_DEPOSIT
+            m_transaction_panel->TransactionType() == TrxType::e_deposit
         ) {
             // we need to subtract the number of shares for a sale
             num_shares = num_shares * -1;

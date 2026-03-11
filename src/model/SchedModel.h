@@ -95,23 +95,22 @@ public:
 
         Bill_Data() {
             m_id               = 0;
+            TRANSDATE          = wxDateTime::Now().FormatISOCombined();
+            m_type             = TrxType(TrxType::e_withdrawal);
+            m_status           = TrxStatus(TrxStatus::e_unreconciled);
             m_account_id       = -1;
             m_to_account_id_n  = -1;
             m_payee_id_n       = -1;
-            TRANSCODE          = TrxModel::TYPE_NAME_WITHDRAWAL;
+            m_category_id_n    = -1;
             m_amount           = 0;
-            STATUS             = TrxModel::STATUS_NAME_NONE;
+            m_to_amount        = 0;
             m_number           = "";
             m_notes            = "";
-            m_category_id_n    = -1;
-            TRANSDATE          = wxDateTime::Now().FormatISOCombined();
             m_followup_id      = -1;
-            m_to_amount        = 0;
-            REPEATS            = 0;
-            NEXTOCCURRENCEDATE = "";
-            NUMOCCURRENCES     = 0;
             m_color            = -1;
-
+            NEXTOCCURRENCEDATE = "";
+            REPEATS            = 0;
+            NUMOCCURRENCES     = 0;
         }
     };
 
@@ -148,8 +147,6 @@ public:
 public:
     // Data properties (do not require access to Model)
     // TODO: move to SchedData
-    static TrxModel::TYPE_ID type_id(const Data& this_d);
-    static TrxModel::STATUS_ID status_id(const Data& this_d);
     static wxDate getTransDateTime(const Data& this_d);
     static wxDate NEXTOCCURRENCEDATE(const Data& this_d);
     static bool encode_repeat_num(Data& this_d, const RepeatNum& rn);
@@ -162,8 +159,8 @@ public:
     static wxArrayString unroll(const Data& sched_d, const wxString end_date, int limit = -1);
 
 public:
-    static SchedCol::STATUS STATUS(OP op, TrxModel::STATUS_ID status);
-    static SchedCol::TRANSCODE TRANSCODE(OP op, TrxModel::TYPE_ID type);
+    static SchedCol::TRANSCODE TRANSCODE(OP op, TrxType sched_type);
+    static SchedCol::STATUS STATUS(OP op, TrxStatus sched_status);
 
 public:
     static const SchedSplitModel::DataA split(const Data& sched_d);
@@ -211,16 +208,16 @@ public:
         {
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
-            if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
+            if (x.is_withdrawal()) {
                 x_accountid = x.m_account_id; x_transamount = x.m_amount;
             }
-            else if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+            else if (x.is_transfer()) {
                 x_accountid = x.m_account_id; x_transamount = x.m_amount;
             }
-            if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_WITHDRAWAL) {
+            if (y.is_withdrawal()) {
                 y_accountid = y.m_account_id; y_transamount = y.m_amount;
             }
-            else if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+            else if (y.is_transfer()) {
                 y_accountid = y.m_account_id; y_transamount = y.m_amount;
             }
             return x_accountid != -1 && (y_accountid == -1 || x_transamount < y_transamount);
@@ -233,16 +230,16 @@ public:
         {
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
-            if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
+            if (x.is_deposit()) {
                 x_accountid = x.m_account_id; x_transamount = x.m_amount;
             }
-            else if (TrxModel::type_id(x.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+            else if (x.is_transfer()) {
                 x_accountid = x.m_to_account_id_n; x_transamount = x.m_to_amount;
             }
-            if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_DEPOSIT) {
+            if (y.is_deposit()) {
                 y_accountid = y.m_account_id; y_transamount = y.m_amount;
             }
-            else if (TrxModel::type_id(y.TRANSCODE) == TrxModel::TYPE_ID_TRANSFER) {
+            else if (y.is_transfer()) {
                 y_accountid = y.m_to_account_id_n; y_transamount = y.m_to_amount;
             }
             return x_accountid != -1 && (y_accountid == -1 || x_transamount < y_transamount);
