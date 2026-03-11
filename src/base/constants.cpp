@@ -73,6 +73,24 @@ const wxSizerFlags g_flagsCenter = wxSizerFlags().Align(wxALIGN_CENTER).Border(w
 const wxSizerFlags g_flagsExpand = wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 5).Proportion(1);
 const wxSizerFlags g_flagsExpandBorder1 = wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 1).Proportion(1);
 
+// Labels used in 3rd party libraries are listed here in order to be translated.
+// Notice that wxWidgets labels are translated in ${wxWidgets_ROOT_DIR}/locate/ .
+const wxArrayString g_default_labels = {
+/*
+    _n("&Next >"),
+    _n("< &Back"),
+    _n("&Finish"),
+    _n("Yes"),
+    _n("No"),
+*/
+};
+
+const wxString g_OkLabel =
+#if defined(__APPLE__)
+_n("OK");
+#else
+_n("&OK ");
+#endif
 const wxString g_CancelLabel =
 #if defined(__APPLE__)
     _n("Cancel");
@@ -84,12 +102,6 @@ const wxString g_CloseLabel =
     _n("Close");
 #else
     _n("&Close ");
-#endif
-const wxString g_OkLabel =
-#if defined(__APPLE__)
-_n("OK");
-#else
-_n("&OK ");
 #endif
 
 //bug #5590

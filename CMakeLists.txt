@@ -472,6 +472,7 @@ endif()
 ## Subdirectories with targets ##
 add_subdirectory(3rd)
 add_subdirectory(po)
+add_subdirectory(po_wxstd)
 add_subdirectory(src)
 
 
@@ -506,6 +507,7 @@ ENDFOREACH()
 add_custom_target(generate_theme_files ALL DEPENDS ${THEMEFILES})
 
 # Generate Reports
+MAKE_DIRECTORY("${CMAKE_CURRENT_BINARY_DIR}/grm")
 GETSUBDIRS(GRMGROUPDIR "${PROJECT_SOURCE_DIR}/general-reports/packages/")
 FOREACH(GRMGROUP ${GRMGROUPDIR})
     GETSUBDIRS(GRMDIR "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/")
@@ -515,8 +517,8 @@ FOREACH(GRMGROUP ${GRMGROUPDIR})
                                 "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/sqlcontent.sql"
                                 "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/template.htt"
         )
-        create_zip("${CMAKE_CURRENT_BINARY_DIR}/${GRMGROUP}-${GRMNAME}.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/")
-        list(APPEND GRMFILES "${CMAKE_CURRENT_BINARY_DIR}/${GRMGROUP}-${GRMNAME}.grm")
+        create_zip("${CMAKE_CURRENT_BINARY_DIR}/grm/${GRMGROUP}-${GRMNAME}.grm" "${GRM_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/general-reports/packages/${GRMGROUP}/${GRMNAME}/")
+        list(APPEND GRMFILES "${CMAKE_CURRENT_BINARY_DIR}/grm/${GRMGROUP}-${GRMNAME}.grm")
     ENDFOREACH()
 ENDFOREACH()
 add_custom_target(generate_grm_files ALL DEPENDS ${GRMFILES})

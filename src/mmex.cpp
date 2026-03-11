@@ -84,7 +84,9 @@ bool mmGUIApp::setGUILanguage(wxLanguage lang)
     trans->AddCatalog("common", wxLANGUAGE_ENGLISH_US);
 
     trans->SetLanguage(lang);
-    trans->AddStdCatalog();
+    if (!trans->AddStdCatalog()) {
+        wxLogDebug("ERROR: mmGUIApp::setGUILanguage(): cannot add std catalog");
+    }
     if (trans->AddCatalog("mmex", wxLANGUAGE_ENGLISH_US) ||
         lang == wxLANGUAGE_ENGLISH_US || lang == wxLANGUAGE_DEFAULT
     ) {
@@ -155,8 +157,7 @@ bool mmGUIApp::OnCmdLineParsed(wxCmdLineParser& parser)
     if (parser.GetParamCount() > 0)
         m_optParam1 = parser.GetParam(0);
 
-    if (parser.FoundSwitch("s"))
-    {
+    if (parser.FoundSwitch("s")) {
         m_optParamSilent = true;
     }
 
