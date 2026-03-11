@@ -249,6 +249,11 @@ public:
     void setIgnoreFutureTransactionsHomePage(const bool value);
     bool getIgnoreFutureTransactionsHomePage() const noexcept;
 
+    // m_show_reconciled_in_home_page
+    void loadShowReconciledInHomePage();
+    void setShowReconciledInHomePage(const bool value);
+    bool getShowReconciledInHomePage() const noexcept;
+
     // m_doNotColorFuture
     void loadDoNotColorFuture();
     void setDoNotColorFuture(const bool value);
@@ -295,7 +300,7 @@ public:
     void setShowNavigatorCashLedger(const bool value);
     bool getShowNavigatorCashLedger() const noexcept;
 
-    
+
 private:
     bool m_database_updated = false;
     wxLanguage m_language = wxLANGUAGE_UNKNOWN;
@@ -326,6 +331,7 @@ private:
     bool m_budget_deduct_monthly = false;               // BUDGET_DEDUCT_MONTH_FROM_YEAR
     bool m_ignore_future_transactions = false;          // IGNORE_FUTURE_TRANSACTIONS
     bool m_ignore_future_transactions_home = false;     // IGNORE_FUTURE_TRANSACTIONS_HOMEPAGE
+    bool m_show_reconciled_in_home_page = true;         // SHOW_RECONCILED_IN_HOME_PAGE
     bool m_do_not_color_future = true;                  // DO_NOT_COLOR_FUTURE_TRANSACTIONS
     bool m_do_special_color_reconciled = true;          // SPECIAL_COLOR_RECONCILED_TRANSACTIONS
     bool m_store_account_specific_filter = false;       // USE_PER_ACCOUNT_FILTER
@@ -342,7 +348,7 @@ private:
     int m_trans_date_default = 0;                       // TRANSACTION_DATE_DEFAULT
     bool m_send_usage_stats = true;                     // SENDUSAGESTATS
     bool m_check_news = true;                           // CHECKNEWS
-    int m_theme_mode = PrefModel::AUTO;          // THEMEMODE
+    int m_theme_mode = PrefModel::AUTO;                 // THEMEMODE
     int m_html_scale = 100;                             // HTMLSCALE
     int m_icon_size = 16;                               // ICONSIZE
     int m_font_size = 0;                                // UI_FONT_SIZE
@@ -553,6 +559,11 @@ inline bool PrefModel::getIgnoreFutureTransactions() const noexcept
 inline bool PrefModel::getIgnoreFutureTransactionsHomePage() const noexcept
 {
     return m_ignore_future_transactions_home;
+}
+
+inline bool PrefModel::getShowReconciledInHomePage() const noexcept
+{
+    return m_show_reconciled_in_home_page;
 }
 
 inline bool PrefModel::getDoNotColorFuture() const noexcept

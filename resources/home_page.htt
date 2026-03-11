@@ -29,23 +29,11 @@
                 <thead>
                     <tr>
                         <th width="5%"></th>
-                        <th id='grand_name'></th>
-                        <th id='recon_value'></th>
-                        <th id='asset_value'></th>
-                        <th id='stock_value'></th>
-                        <th id='bal_value'></th>
+                        <TMPL_VAR GRAND_TOTAL>
                         <th width="5%"></th>
                     </tr>
                 </thead>
             </table>
-            <script>
-                var grand_json = <TMPL_VAR GRAND_TOTAL>;
-                document.getElementById('grand_name').innerHTML=grand_json['NAME'];
-                document.getElementById('recon_value').innerHTML=grand_json['RECONVALUE'];
-                document.getElementById('asset_value').innerHTML=grand_json['ASSETVALUE'];
-                document.getElementById('stock_value').innerHTML=grand_json['STOCKVALUE'];
-                document.getElementById('bal_value').innerHTML=grand_json['BALVALUE'];
-            </script>
         </td>
         <tr height='25px'></tr>
         </tr>

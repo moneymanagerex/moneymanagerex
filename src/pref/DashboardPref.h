@@ -51,6 +51,7 @@ private:
     wxSharedPtr<mmDateRange> m_inc_vs_exp_date_range;
     std::vector<wxSharedPtr<mmDateRange>> m_all_date_ranges;
     wxCheckBox* m_ignore_future_transactions_home = nullptr;
+    wxCheckBox* m_show_reconciled = nullptr;
 
 private:
     wxChoice* m_incExpChoice = nullptr;

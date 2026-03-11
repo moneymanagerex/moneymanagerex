@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 - 2021 Nikolay Akimov
 Copyright (C) 2021-2023 Mark Whalley (mark@ipx.co.uk)
-Copyright (C) 2025 Klaus Wich
+Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -101,13 +101,22 @@ const wxString htmlWidgetStocks::getHTMLText()
         , "INVEST", "INVEST", "INVEST");
     output += "</tr></thead><tbody id='INVEST'>\n";
     wxString body = "";
+
+    bool btoday = PrefModel::instance().getIgnoreFutureTransactionsHomePage();
+    double cash_bal;
+
     for (const auto& account_d : account_a) {
         if (!account_d.is_open())
             continue;
 
         double conv_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id, today);
         auto inv_bal = AccountModel::instance().get_data_investment_balance(account_d);
-        double cash_bal = AccountModel::instance().get_data_balance(account_d);
+        if (btoday) {
+            cash_bal = AccountModel::instance().get_data_balance_to_date(account_d, mmDate::today());
+        }
+        else {
+            cash_bal = AccountModel::instance().get_data_balance(account_d);
+        }
 
         grand_gain_lost    += (inv_bal.first - inv_bal.second) * conv_rate;
         grand_market_value += inv_bal.first * conv_rate;
@@ -548,41 +557,22 @@ htmlWidgetStatistics::~htmlWidgetStatistics()
 
 const wxString htmlWidgetGrandTotals::getHTMLText(double tBalance, double tReconciled, double tAssets, double tStocks)
 {
+    wxString output = "<th>" + _t("Total Net Worth") + "</th>";
 
-    const wxString tReconciledStr  = wxString::Format("%s: <span class='money'>%s</span>"
-                                        , _t("Reconciled")
+    output += wxString::Format("<th>%s: <span class='money'>%s</span></th>"
+                                        , ( PrefModel::instance().getShowReconciledInHomePage() ? _t("Reconciled") : _t("Accounts"))
                                         , CurrencyModel::toCurrency(tReconciled));
-    const wxString tAssetStr  = wxString::Format("%s: <span class='money'>%s</span>"
+    output +=  wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Assets")
                                         , CurrencyModel::toCurrency(tAssets));
-    const wxString tStockStr  = wxString::Format("%s: <span class='money'>%s</span>"
+    output +=  wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Stock")
                                         , CurrencyModel::toCurrency(tStocks));
-    const wxString tBalanceStr  = wxString::Format("%s: <span class='money'>%s</span>"
+    output += wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Balance")
                                         , CurrencyModel::toCurrency(tBalance));
 
-    StringBuffer json_buffer;
-    PrettyWriter<StringBuffer> json_writer(json_buffer);
-    json_writer.StartObject();
-    json_writer.Key("NAME");
-    json_writer.String(_t("Total Net Worth").utf8_str());
-    json_writer.Key("RECONVALUE");
-    json_writer.String(tReconciledStr.utf8_str());
-    json_writer.Key("ASSETVALUE");
-    json_writer.String(tAssetStr.utf8_str());
-    json_writer.Key("STOCKVALUE");
-    json_writer.String(tStockStr.utf8_str());
-    json_writer.Key("BALVALUE");
-    json_writer.String(tBalanceStr.utf8_str());
-
-
-    json_writer.EndObject();
-
-    wxLogDebug("======= DashboardPanel::getGrandTotalsJSON =======");
-    wxLogDebug("RapidJson\n%s", wxString::FromUTF8(json_buffer.GetString()));
-
-    return wxString::FromUTF8(json_buffer.GetString());
+    return output;
 }
 
 htmlWidgetGrandTotals::~htmlWidgetGrandTotals()
@@ -728,14 +718,21 @@ const wxString htmlWidgetAccounts::displayAccounts(
     int type = NavigatorTypes::TYPE_ID_CHECKING
 ) {
     NavigatorTypesInfo* ninfo = NavigatorTypes::instance().FindEntry(type);
+    bool showReconciled = PrefModel::instance().getShowReconciledInHomePage();
 
     wxString idStr = ninfo->choice;
     wxString output = "<table class = 'sortable table'>\n";
-    output += R"(<col style="width:50%"><col style="width:25%"><col style="width:25%">)";
+    if (showReconciled) {
+        output += R"(<col style="width:50%"><col style="width:25%"><col style="width:25%">)";
+    }
+    else {
+        output += R"(<col style="width:67%"><col style="width:33%">)";
+    }
     output += "<thead><tr><th nowrap>\n";
     output += wxGetTranslation(ninfo->name);
-
-    output += "</th><th class = 'text-right'>" + _t("Reconciled") + "</th>\n";
+    if (showReconciled) {
+        output += "</th><th class = 'text-right'>" + _t("Reconciled") + "</th>\n";
+    }
     output += "<th class = 'text-right'>" + _t("Balance") + "</th>\n";
     output += wxString::Format("<th nowrap class='text-right sorttable_nosort'><a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th>\n"
         , idStr, idStr, idStr);
@@ -772,17 +769,22 @@ const wxString htmlWidgetAccounts::displayAccounts(
                     account_d.m_website
                 )
             );
-            body += wxString::Format("\n<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n",
-                reconciledBal,
-                CurrencyModel::toCurrency(reconciledBal, currency)
-            );
+            if (showReconciled) {
+                body += wxString::Format("\n<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n",
+                    reconciledBal,
+                    CurrencyModel::toCurrency(reconciledBal, currency)
+                );
+            }
             body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, CurrencyModel::toCurrency(bal, currency));
             body += "</tr>\n";
         }
     }
     output += body;
     output += "</tbody><tfoot><tr class ='total'><td>" + _t("Total:") + "</td>\n";
-    output += "<td class='money'>" + CurrencyModel::toCurrency(tabReconciled) + "</td>\n";
+
+    if (showReconciled) {
+        output += "<td class='money'>" + CurrencyModel::toCurrency(tabReconciled) + "</td>\n";
+    }
     output += "<td class='money' colspan='2'>" + CurrencyModel::toCurrency(tabBalance) + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
 
