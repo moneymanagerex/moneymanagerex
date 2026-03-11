@@ -110,12 +110,12 @@ double StockModel::calculate_account_balance(const AccountData& account_d, const
         std::reverse(sh_a.begin(), sh_a.end());
 
         mmDateN prev_date; double prev_price = 0.0;
-        mmDateN next_date; double next_price = 0.0;
+        mmDateN next_date; //double next_price = 0.0;
         for (const StockHistoryData& sh_d : sh_a) {
             // stop if the exact date is found
             if (sh_d.m_date == date) {
                 prev_date = sh_d.m_date; prev_price = sh_d.m_price;
-                next_date = sh_d.m_date; next_price = sh_d.m_price;
+                next_date = sh_d.m_date; //next_price = sh_d.m_price;
                 break;
             }
             // stop at the first past date
@@ -125,7 +125,7 @@ double StockModel::calculate_account_balance(const AccountData& account_d, const
             }
             // scan all future dates
             if (sh_d.m_date > date) {
-                next_date = sh_d.m_date; next_price = sh_d.m_price;
+                next_date = sh_d.m_date; //next_price = sh_d.m_price;
             }
         }
         // if no previous date is found, fallback to purchase date and price
@@ -135,7 +135,7 @@ double StockModel::calculate_account_balance(const AccountData& account_d, const
         }
         //  if no next date is found and the account is open, fallback to previous
         if (!next_date.has_value() && account_d.is_open()) {
-            next_date = prev_date; next_price = prev_price;
+            next_date = prev_date; //next_price = prev_price;
         }
         // if previous and next date is still not found, skip this stock
         if (!prev_date.has_value() || prev_date.value() < stock_d.m_purchase_date ||
@@ -386,7 +386,7 @@ void StockModel::update_data_position(StockData* stock_n)
         stock_n->m_purchase_price = stock_n->m_current_price;
     }
     else {
-        wxDateTime purchasedate;
+        //wxDateTime purchasedate;
         stock_n->m_purchase_date  = min_trx_date;
         stock_n->m_purchase_price = avg_share_price;
         stock_n->m_num_shares     = total_shares;

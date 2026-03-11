@@ -74,9 +74,9 @@ TrxShareDialog::TrxShareDialog(
     const TrxLinkData* tl_n,
     TrxData* trx_n
 ) :
-    m_dialog_heading(_t("Edit Share Transaction")),
     m_trx_n(trx_n),
-    m_tl_n(tl_n)
+    m_tl_n(tl_n),
+    m_dialog_heading(_t("Edit Share Transaction"))
 {
     if (m_tl_n) {
         m_stock_n = StockModel::instance().unsafe_get_id_data_n(
