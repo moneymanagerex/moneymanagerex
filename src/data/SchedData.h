@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include "util/mmDate.h"
 #include "_DataEnum.h"
 #include "table/_TableBase.h"
 #include "table/SchedTable.h"
@@ -39,7 +40,7 @@ struct SchedData
     wxString  m_notes;
     int64     m_followup_id;
     int64     m_color;
-    wxString  NEXTOCCURRENCEDATE;
+    mmDate    m_due_date;
     int64     REPEATS;
     int64     NUMOCCURRENCES;
 
@@ -187,7 +188,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.NEXTOCCURRENCEDATE < y.NEXTOCCURRENCEDATE;
+            return x.m_due_date < y.m_due_date;
         }
     };
 

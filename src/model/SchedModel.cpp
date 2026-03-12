@@ -56,11 +56,6 @@ wxDate SchedModel::getTransDateTime(const Data& this_d)
     return parseDateTime(this_d.TRANSDATE);
 }
 
-wxDate SchedModel::NEXTOCCURRENCEDATE(const Data& this_d)
-{
-    return parseDateTime(this_d.NEXTOCCURRENCEDATE);
-}
-
 bool SchedModel::encode_repeat_num(Data& this_d, const RepeatNum& rn)
 {
     if (rn.freq == REPEAT_FREQ_INVALID)
@@ -123,8 +118,8 @@ bool SchedModel::next_repeat_num(RepeatNum& rn)
 bool SchedModel::requires_execution(const Data& this_d)
 {
     return (
-        SchedModel::NEXTOCCURRENCEDATE(this_d)
-            .Subtract(wxDate::Today()).GetSeconds().GetValue()
+        this_d.m_due_date.getDateTime().
+            Subtract(wxDate::Today()).GetSeconds().GetValue()
         / 86400 < 1
     );
 }
@@ -339,9 +334,9 @@ void SchedModel::completeBDInSeries(int64 sched_id)
     const wxDateTime& payment_date_update = nextOccurDate(payment_date_current, rn);
     sched_n->TRANSDATE = payment_date_update.FormatISOCombined();
 
-    const wxDateTime& due_date_current = NEXTOCCURRENCEDATE(*sched_n);
+    const wxDateTime& due_date_current = sched_n->m_due_date.getDateTime();
     const wxDateTime& due_date_update = nextOccurDate(due_date_current, rn);
-    sched_n->NEXTOCCURRENCEDATE = due_date_update.FormatISODate();
+    sched_n->m_due_date = mmDate(due_date_update);
 
     next_repeat_num(rn);
     encode_repeat_num(*sched_n, rn);
