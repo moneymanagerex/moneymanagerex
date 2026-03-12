@@ -149,7 +149,7 @@ void FlowReport::getTransactions()
     for (const auto& sched_d : SchedModel::instance().find(
         SchedModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
     )) {
-        wxDateTime next_date = SchedModel::NEXTOCCURRENCEDATE(sched_d);
+        wxDateTime next_date = sched_d.m_due_date.getDateTime();
         if (next_date > endDate)
             continue;
 

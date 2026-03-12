@@ -452,7 +452,7 @@ wxString SchedPanel::getItem(long item, int col_id)
     case SchedList::LIST_ID_PAYMENT_DATE:
         return mmGetDateTimeForDisplay(sched_xd.TRANSDATE);
     case SchedList::LIST_ID_DUE_DATE:
-        return mmGetDateTimeForDisplay(sched_xd.NEXTOCCURRENCEDATE);
+        return mmGetDateTimeForDisplay(sched_xd.m_due_date.isoDate());
     case SchedList::LIST_ID_ACCOUNT:
         return sched_xd.ACCOUNTNAME;
     case SchedList::LIST_ID_PAYEE:
@@ -545,12 +545,12 @@ const wxString SchedPanel::GetFrequency(const SchedModel::RepeatNum& rn) const
     return text;
 }
 
-const wxString SchedPanel::GetRemainingDays(const SchedData& item) const
+const wxString SchedPanel::GetRemainingDays(const SchedData& sched_d) const
 {
-    int daysRemaining = SchedModel::getTransDateTime(item)
-        .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
-    int daysOverdue = SchedModel::NEXTOCCURRENCEDATE(item)
-        .Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
+    int daysRemaining = SchedModel::getTransDateTime(sched_d).
+        Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
+    int daysOverdue = sched_d.m_due_date.getDateTime().
+        Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
 
     // add a warning marker (*) in front, such that it is visible
     // to the user even when the Remaining column is too narrow.
@@ -596,8 +596,9 @@ int SchedList::OnGetItemImage(long item) const
         return -1;
     }
 
-    int daysRemaining = SchedModel::NEXTOCCURRENCEDATE(m_bdp->bills_[item])
-        .Subtract(m_bdp->getToday()).GetSeconds().GetValue() / 86400;
+    int daysRemaining = m_bdp->bills_[item].m_due_date.getDateTime().
+        Subtract(m_bdp->getToday()).GetSeconds().GetValue()
+    / 86400;
 
     /* Returns the icon to be shown for each entry */
     if (daysRemaining < 0)

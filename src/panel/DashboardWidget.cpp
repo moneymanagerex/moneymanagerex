@@ -319,8 +319,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (!SchedModel::decode_repeat_num(sched_d, rn))
             continue;
 
-        int daysOverdue = SchedModel::NEXTOCCURRENCEDATE(sched_d)
-            .Subtract(today).GetDays();
+        int daysOverdue = sched_d.m_due_date.getDateTime().Subtract(today).GetDays();
         wxString daysRemainingStr = (daysPayment > 0
             ? wxString::Format(wxPLURAL("%d day", "%d days", daysPayment), daysPayment)
             : "*" + wxString::Format(wxPLURAL("%d day delay", "%d days delay", -daysPayment), -daysPayment));

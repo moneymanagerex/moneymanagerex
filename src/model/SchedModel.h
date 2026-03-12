@@ -94,23 +94,23 @@ public:
         wxArrayInt64 TAGS;
 
         Bill_Data() {
-            m_id               = 0;
-            TRANSDATE          = wxDateTime::Now().FormatISOCombined();
-            m_type             = TrxType(TrxType::e_withdrawal);
-            m_status           = TrxStatus(TrxStatus::e_unreconciled);
-            m_account_id       = -1;
-            m_to_account_id_n  = -1;
-            m_payee_id_n       = -1;
-            m_category_id_n    = -1;
-            m_amount           = 0;
-            m_to_amount        = 0;
-            m_number           = "";
-            m_notes            = "";
-            m_followup_id      = -1;
-            m_color            = -1;
-            NEXTOCCURRENCEDATE = "";
-            REPEATS            = 0;
-            NUMOCCURRENCES     = 0;
+            m_id              = 0;
+            TRANSDATE         = wxDateTime::Now().FormatISOCombined();
+            m_type            = TrxType(TrxType::e_withdrawal);
+            m_status          = TrxStatus(TrxStatus::e_unreconciled);
+            m_account_id      = -1;
+            m_to_account_id_n = -1;
+            m_payee_id_n      = -1;
+            m_category_id_n   = -1;
+            m_amount          = 0;
+            m_to_amount       = 0;
+            m_number          = "";
+            m_notes           = "";
+            m_followup_id     = -1;
+            m_color           = -1;
+            m_due_date        = mmDate::today();
+            REPEATS           = 0;
+            NUMOCCURRENCES    = 0;
         }
     };
 
@@ -148,7 +148,6 @@ public:
     // Data properties (do not require access to Model)
     // TODO: move to SchedData
     static wxDate getTransDateTime(const Data& this_d);
-    static wxDate NEXTOCCURRENCEDATE(const Data& this_d);
     static bool encode_repeat_num(Data& this_d, const RepeatNum& rn);
     static bool decode_repeat_num(const Data& this_d, RepeatNum& rn);
     static bool next_repeat_num(RepeatNum& rn);
