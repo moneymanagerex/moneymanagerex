@@ -30,6 +30,7 @@ SchedData::SchedData() :
     m_to_amount(0.0),
     m_followup_id(-1),
     m_color(-1),
+    m_due_date(mmDate::today()),
     REPEATS(-1),
     NUMOCCURRENCES(-1)
 {
@@ -54,7 +55,7 @@ SchedRow SchedData::to_row() const
     row.FOLLOWUPID         = m_followup_id;
     row.TOTRANSAMOUNT      = m_to_amount;
     row.REPEATS            = REPEATS;
-    row.NEXTOCCURRENCEDATE = NEXTOCCURRENCEDATE;
+    row.NEXTOCCURRENCEDATE = m_due_date.isoDate();
     row.NUMOCCURRENCES     = NUMOCCURRENCES;
     row.COLOR              = m_color;
 
@@ -78,7 +79,7 @@ SchedData& SchedData::from_row(const SchedRow& row)
     m_notes            = row.NOTES;
     m_followup_id      = row.FOLLOWUPID;
     m_color            = row.COLOR;
-    NEXTOCCURRENCEDATE = row.NEXTOCCURRENCEDATE;
+    m_due_date         = mmDate(row.NEXTOCCURRENCEDATE);
     REPEATS            = row.REPEATS;
     NUMOCCURRENCES     = row.NUMOCCURRENCES;
 
@@ -101,7 +102,7 @@ bool SchedData::equals(const SchedData* other) const
     if (!m_notes.IsSameAs(other->m_notes)) return false;
     if ( m_followup_id != other->m_followup_id) return false;
     if ( m_color != other->m_color) return false;
-    if (!NEXTOCCURRENCEDATE.IsSameAs(other->NEXTOCCURRENCEDATE)) return false;
+    if ( m_due_date != other->m_due_date) return false;
     if ( REPEATS != other->REPEATS) return false;
     if ( NUMOCCURRENCES != other->NUMOCCURRENCES) return false;
 

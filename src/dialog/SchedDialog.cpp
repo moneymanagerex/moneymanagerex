@@ -122,22 +122,22 @@ SchedDialog::SchedDialog(
         // If duplicate then we will be creating a new identity
         if (!m_dup_bill)
             m_sched_xd.m_id = sched_id;
-        m_sched_xd.TRANSDATE          = sched_n->TRANSDATE;
-        m_sched_xd.m_type             = sched_n->m_type;
-        m_sched_xd.m_status           = sched_n->m_status;
-        m_sched_xd.m_account_id       = sched_n->m_account_id;
-        m_sched_xd.m_to_account_id_n  = sched_n->m_to_account_id_n;
-        m_sched_xd.m_payee_id_n       = sched_n->m_payee_id_n;
-        m_sched_xd.m_category_id_n    = sched_n->m_category_id_n;
-        m_sched_xd.m_amount           = sched_n->m_amount;
-        m_sched_xd.m_to_amount        = sched_n->m_to_amount;
-        m_sched_xd.m_notes            = sched_n->m_notes;
-        m_sched_xd.m_number           = sched_n->m_number;
-        m_sched_xd.m_followup_id      = sched_n->m_followup_id;
-        m_sched_xd.m_color            = sched_n->m_color;
-        m_sched_xd.NEXTOCCURRENCEDATE = sched_n->NEXTOCCURRENCEDATE;
-        m_sched_xd.REPEATS            = sched_n->REPEATS;
-        m_sched_xd.NUMOCCURRENCES     = sched_n->NUMOCCURRENCES;
+        m_sched_xd.TRANSDATE         = sched_n->TRANSDATE;
+        m_sched_xd.m_type            = sched_n->m_type;
+        m_sched_xd.m_status          = sched_n->m_status;
+        m_sched_xd.m_account_id      = sched_n->m_account_id;
+        m_sched_xd.m_to_account_id_n = sched_n->m_to_account_id_n;
+        m_sched_xd.m_payee_id_n      = sched_n->m_payee_id_n;
+        m_sched_xd.m_category_id_n   = sched_n->m_category_id_n;
+        m_sched_xd.m_amount          = sched_n->m_amount;
+        m_sched_xd.m_to_amount       = sched_n->m_to_amount;
+        m_sched_xd.m_notes           = sched_n->m_notes;
+        m_sched_xd.m_number          = sched_n->m_number;
+        m_sched_xd.m_followup_id     = sched_n->m_followup_id;
+        m_sched_xd.m_color           = sched_n->m_color;
+        m_sched_xd.m_due_date        = sched_n->m_due_date;
+        m_sched_xd.REPEATS           = sched_n->REPEATS;
+        m_sched_xd.NUMOCCURRENCES    = sched_n->NUMOCCURRENCES;
 
         wxArrayInt64 tag_id_a;
         for (const auto& gl_d : TagLinkModel::instance().find(
@@ -250,8 +250,7 @@ void SchedDialog::dataToControls()
     m_date_paid->SetValue(field_date);
 
     // Set the due Date
-    field_date.ParseDate(m_sched_xd.NEXTOCCURRENCEDATE);
-    m_date_due->SetValue(field_date);
+    m_date_due->SetValue(m_sched_xd.m_due_date.getDateTime());
 
     // demultiplex REPEATS and NUMOCCURRENCES
     SchedModel::RepeatNum rn;
@@ -1008,7 +1007,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
     SchedModel::encode_repeat_num(m_sched_xd, rn);
 
-    m_sched_xd.NEXTOCCURRENCEDATE = m_date_due->GetValue().FormatISODate();
+    m_sched_xd.m_due_date = mmDate(m_date_due->GetValue());
     m_sched_xd.TRANSDATE = m_date_paid->GetValue().FormatISOCombined();
 
     wxStringClientData* status_obj = static_cast<wxStringClientData *>(
@@ -1047,22 +1046,22 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         SchedData sched_d = (!m_new_bill && !m_dup_bill)
             ? *(SchedModel::instance().get_id_data_n(m_sched_xd.m_id))
             : SchedData();
-        sched_d.TRANSDATE          = m_sched_xd.TRANSDATE;
-        sched_d.m_type             = TrxType(m_choice_transaction_type->GetSelection());
-        sched_d.m_status           = m_sched_xd.m_status;
-        sched_d.m_account_id       = m_sched_xd.m_account_id;
-        sched_d.m_to_account_id_n  = m_sched_xd.m_to_account_id_n;
-        sched_d.m_payee_id_n       = m_sched_xd.m_payee_id_n;
-        sched_d.m_category_id_n    = m_sched_xd.m_category_id_n;
-        sched_d.m_amount           = m_sched_xd.m_amount;
-        sched_d.m_to_amount        = m_sched_xd.m_to_amount;
-        sched_d.m_number           = m_sched_xd.m_number;
-        sched_d.m_notes            = m_sched_xd.m_notes;
-        sched_d.m_followup_id      = m_sched_xd.m_followup_id;
-        sched_d.m_color            = m_sched_xd.m_color;
-        sched_d.NEXTOCCURRENCEDATE = m_sched_xd.NEXTOCCURRENCEDATE;
-        sched_d.REPEATS            = m_sched_xd.REPEATS;
-        sched_d.NUMOCCURRENCES     = m_sched_xd.NUMOCCURRENCES;
+        sched_d.TRANSDATE         = m_sched_xd.TRANSDATE;
+        sched_d.m_type            = TrxType(m_choice_transaction_type->GetSelection());
+        sched_d.m_status          = m_sched_xd.m_status;
+        sched_d.m_account_id      = m_sched_xd.m_account_id;
+        sched_d.m_to_account_id_n = m_sched_xd.m_to_account_id_n;
+        sched_d.m_payee_id_n      = m_sched_xd.m_payee_id_n;
+        sched_d.m_category_id_n   = m_sched_xd.m_category_id_n;
+        sched_d.m_amount          = m_sched_xd.m_amount;
+        sched_d.m_to_amount       = m_sched_xd.m_to_amount;
+        sched_d.m_number          = m_sched_xd.m_number;
+        sched_d.m_notes           = m_sched_xd.m_notes;
+        sched_d.m_followup_id     = m_sched_xd.m_followup_id;
+        sched_d.m_color           = m_sched_xd.m_color;
+        sched_d.m_due_date        = m_sched_xd.m_due_date;
+        sched_d.REPEATS           = m_sched_xd.REPEATS;
+        sched_d.NUMOCCURRENCES    = m_sched_xd.NUMOCCURRENCES;
         SchedModel::instance().save_data_n(sched_d);
         m_trans_id = sched_d.id();
 
