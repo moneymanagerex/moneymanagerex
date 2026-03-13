@@ -1897,7 +1897,7 @@ void mmGUIFrame::createMenu()
         menuView,
         MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
         _t("Ignore F&uture Transactions"),
-        _t("Ignore Future transactions"),
+        _t("Ignore Future Transactions"),
         wxITEM_CHECK
     );
     wxMenuItem* menuItemShowToolTips = new wxMenuItem(

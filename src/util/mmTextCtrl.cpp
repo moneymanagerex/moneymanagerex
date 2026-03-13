@@ -116,7 +116,7 @@ bool mmTextCtrl::checkValue(double &amount, bool positive_value)
     if (!GetDouble(amount) || (positive_value && amount < 0))
     {
         mmErrorDialogs::ToolTip4Object(this
-            , wxString(positive_value ? _t("Please enter a positive or calculated value.") : _t("Please enter a calculated value."))
+            , positive_value ? _t("Please enter a positive or calculated value.") : _t("Please enter a calculated value.")
             + "\n\n"
             + _t("Tip: For calculations, enter expressions like (2+2)*(2+2)\nCalculations will be evaluated and the result used as the entry.")
             , _t("Invalid Amount.")
