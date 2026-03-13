@@ -861,7 +861,7 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
             double coincap_price_usd;
             if (getCoincapInfoFromSymbol(item.first, coincap_id, coincap_price_usd, coincap_msg) && coincap_price_usd > 0) {
                 if (usd_conv_rate < 0) {
-                    auto usd = CurrencyModel::instance().GetCurrencyRecord("USD");
+                    auto usd = CurrencyModel::instance().get_symbol_data_n("USD");
                     if (usd == nullptr) {
                         break; // can't use coincap without USD, since all prices are in USD so give up
                     }
@@ -1191,7 +1191,7 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
     // prices in USD are multiplied by this value to convert them to the base currency
     double multiplier = 1.0;
     if (baseCurrencySymbol != _t("USD")) {
-        auto usd = CurrencyModel::instance().GetCurrencyRecord("USD");
+        auto usd = CurrencyModel::instance().get_symbol_data_n("USD");
         if (usd == nullptr) {
             msg = _t("Unable to find currency 'USD', required for converting historical prices");
             return false;

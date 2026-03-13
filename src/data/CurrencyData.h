@@ -60,6 +60,10 @@ struct CurrencyData
     bool operator< (const CurrencyData& other) const { return id() < other.id(); }
     bool operator< (const CurrencyData* other) const { return id() < other->id(); }
 
+    int precision() const {
+        return static_cast<int>(log10(static_cast<double>(m_scale.GetValue())));
+    }
+
     struct SorterByCURRENCYID
     {
         bool operator()(const CurrencyData& x, const CurrencyData& y)

@@ -107,8 +107,11 @@ bool CurrencyManager::Create(wxWindow* parent, wxWindowID id
     CreateControls();
 
     if (!m_currency_n) {
-        mmSingleChoiceDialog select_currency_name(this, _t("Currency name"), _t("Select Currency")
-            , CurrencyModel::instance().all_currency_names());
+        mmSingleChoiceDialog select_currency_name(this,
+            _t("Currency name"),
+            _t("Select Currency"),
+            CurrencyModel::instance().find_all_name_a()
+        );
         if (select_currency_name.ShowModal() == wxID_OK) {
             const wxString currencyname = select_currency_name.GetStringSelection();
             m_currency_n = CurrencyModel::instance().unsafe_search_cache_n(

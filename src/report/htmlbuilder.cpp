@@ -361,7 +361,7 @@ void mmHTMLBuilder::addCurrencyTotalRow(const wxString& caption, int cols, const
 void mmHTMLBuilder::addMoneyTotalRow(const wxString& caption, int cols, const std::vector<double>& data)
 {
     std::vector<wxString> data_str;
-    int precision = CurrencyModel::precision(CurrencyModel::GetBaseCurrency());
+    int precision = CurrencyModel::GetBaseCurrency()->precision();
 
     for (const auto& value : data)
         data_str.push_back(CurrencyModel::toString(value, CurrencyModel::GetBaseCurrency(), precision));
@@ -379,11 +379,15 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const wxString& cs
     html_ += tags::TABLE_HEADER_END;
 }
 
-void mmHTMLBuilder::addCurrencyCell(double amount, const CurrencyData* currency, int precision, bool isVoid)
-{
+void mmHTMLBuilder::addCurrencyCell(
+    double amount,
+    const CurrencyData* currency_n,
+    int precision,
+    bool isVoid
+) {
     if (precision == -1)
-        precision = CurrencyModel::precision(currency);
-    wxString s = CurrencyModel::toCurrency(amount, currency, precision);
+        precision = currency_n->precision();
+    wxString s = CurrencyModel::toCurrency(amount, currency_n, precision);
     if (isVoid)
         s = wxString::Format("<s>%s</s>", s);
     const wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
@@ -395,7 +399,7 @@ void mmHTMLBuilder::addCurrencyCell(double amount, const CurrencyData* currency,
 void mmHTMLBuilder::addMoneyCell(double amount, int precision)
 {
     if (precision == -1)
-        precision = CurrencyModel::precision(CurrencyModel::GetBaseCurrency());
+        precision = CurrencyModel::GetBaseCurrency()->precision();
     const wxString s = CurrencyModel::toString(amount, CurrencyModel::GetBaseCurrency(), precision);
     wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
@@ -606,7 +610,7 @@ void mmHTMLBuilder::endTableCell()
 
 void mmHTMLBuilder::addChart(const GraphData& gd)
 {
-    int precision = CurrencyModel::precision(CurrencyModel::GetBaseCurrency());
+    int precision = CurrencyModel::GetBaseCurrency()->precision();
     int k = pow10(precision);
     wxString htmlChart, htmlPieData;
     wxString divid = wxString::Format("apex%i", rand()); // Generate unique identifier for each graph
@@ -617,40 +621,40 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     wxString gSeriesType = "category";
     switch (gd.type)
     {
-        case GraphData::STACKEDAREA:
-            gtype = "area";
-            if (gd.labels.size() < 5)
-                chartWidth = 70;
-            break;
-        case GraphData::BAR:
-            gtype = "bar";
-            if (gd.labels.size() < 5)
-                chartWidth = 70;
-            break;
-        case GraphData::LINE:
-            gtype = "line";
-            break;
-        case GraphData::LINE_DATETIME:
-            gtype = "line";
-            gSeriesType = "datetime";
-            break;
-        case GraphData::PIE:
-            gtype = "pie";
-            chartWidth = 100;
-            break;
-        case GraphData::DONUT:
-            gtype = "donut";
+    case GraphData::STACKEDAREA:
+        gtype = "area";
+        if (gd.labels.size() < 5)
             chartWidth = 70;
-            break;
-        case GraphData::RADAR:
-            gtype = "radar";
+        break;
+    case GraphData::BAR:
+        gtype = "bar";
+        if (gd.labels.size() < 5)
             chartWidth = 70;
-            break;
-        case GraphData::BARLINE:
-        case GraphData::STACKEDBARLINE:
-            gtype = "line";
-            if (gd.labels.size() < 5)
-                chartWidth = 70;
+        break;
+    case GraphData::LINE:
+        gtype = "line";
+        break;
+    case GraphData::LINE_DATETIME:
+        gtype = "line";
+        gSeriesType = "datetime";
+        break;
+    case GraphData::PIE:
+        gtype = "pie";
+        chartWidth = 100;
+        break;
+    case GraphData::DONUT:
+        gtype = "donut";
+        chartWidth = 70;
+        break;
+    case GraphData::RADAR:
+        gtype = "radar";
+        chartWidth = 70;
+        break;
+    case GraphData::BARLINE:
+    case GraphData::STACKEDBARLINE:
+        gtype = "line";
+        if (gd.labels.size() < 5)
+            chartWidth = 70;
     }
 
     addDivContainer("shadowGraph");

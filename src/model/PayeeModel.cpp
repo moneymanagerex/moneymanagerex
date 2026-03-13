@@ -124,16 +124,16 @@ const std::map<wxString, int64> PayeeModel::find_all_name_id_m(bool only_active)
     return name_id_m;
 }
 
-const std::set<int64> PayeeModel::find_used_id_s()
+const std::set<int64> PayeeModel::find_used_id_m()
 {
-    std::set<int64> used_id_s;
+    std::set<int64> used_id_m;
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        used_id_s.insert(trx_d.m_payee_id_n);
+        used_id_m.insert(trx_d.m_payee_id_n);
     }
     for (const auto& sched_d : SchedModel::instance().find_all()) {
-        used_id_s.insert(sched_d.m_payee_id_n);
+        used_id_m.insert(sched_d.m_payee_id_n);
     }
-    return used_id_s;
+    return used_id_m;
 }
 
 const PayeeModel::DataA PayeeModel::find_pattern_data_a(

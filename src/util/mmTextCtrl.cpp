@@ -27,17 +27,21 @@ EVT_TEXT_ENTER(wxID_ANY, mmTextCtrl::OnTextEntered)
 EVT_KILL_FOCUS(mmTextCtrl::OnKillFocus)
 wxEND_EVENT_TABLE()
 
-void mmTextCtrl::OnTextEntered(wxCommandEvent& )
+void mmTextCtrl::OnTextEntered(wxCommandEvent&)
 {
-    Calculate( (m_alt_precision != -1) ? m_alt_precision 
-                            : CurrencyModel::precision(m_currency));
+    Calculate((m_alt_precision != -1)
+        ? m_alt_precision
+        : m_currency->precision()
+    );
 }
 
 void mmTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
     if (!ignore_focus_)
-        Calculate( (m_alt_precision != -1) ? m_alt_precision 
-                            : CurrencyModel::precision(m_currency));
+        Calculate((m_alt_precision != -1)
+            ? m_alt_precision 
+            : m_currency->precision()
+        );
     event.Skip();
 }
 

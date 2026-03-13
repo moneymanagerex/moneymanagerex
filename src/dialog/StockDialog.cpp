@@ -119,10 +119,10 @@ void StockDialog::DataToControls()
         : PrefModel::instance().getSharePrecision();
     m_num_shares_ctrl->SetValue(m_stock_n->m_num_shares, precision);
     const AccountData* account_n = AccountModel::instance().get_id_data_n(m_stock_n->m_account_id_n);
-    const CurrencyData *currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency_n = CurrencyModel::GetBaseCurrency();
     if (account_n)
-        currency = AccountModel::instance().get_data_currency_p(*account_n);
-    int currency_precision = CurrencyModel::precision(currency);
+        currency_n = AccountModel::instance().get_data_currency_p(*account_n);
+    int currency_precision = currency_n->precision();
     if (currency_precision < PrefModel::instance().getSharePrecision())
         currency_precision = PrefModel::instance().getSharePrecision();
     m_purchase_price_ctrl->SetValue(m_stock_n->m_purchase_price, account_n, currency_precision);

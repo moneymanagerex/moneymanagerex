@@ -486,16 +486,16 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
 
 void mmComboBoxUsedPayee::init()
 {
-    std::set<int64> used_id_s = PayeeModel::instance().find_used_id_s();
+    std::set<int64> used_id_m = PayeeModel::instance().find_used_id_m();
     all_elements_.clear();
-    for (int64 id : used_id_s) {
-        wxString name = PayeeModel::instance().get_id_name(id);
-        all_elements_[name] = id;
+    for (int64 payee_id : used_id_m) {
+        wxString name = PayeeModel::instance().get_id_name(payee_id);
+        all_elements_[name] = payee_id;
     }
 }
 
-mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize size)
-    : mmComboBox(parent, id, size)
+mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize size) :
+    mmComboBox(parent, id, size)
 {
     init();
     wxArrayString choices;
@@ -511,11 +511,11 @@ mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize
 
 void mmComboBoxCurrency::init()
 {
-    all_elements_ = CurrencyModel::instance().all_currency();
+    all_elements_ = CurrencyModel::instance().find_all_name_id_m();
 }
 
-mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize size)
-    : mmComboBox(parent, id, size)
+mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize size) :
+    mmComboBox(parent, id, size)
 {
     init();
     wxArrayString choices;
