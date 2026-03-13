@@ -2413,7 +2413,7 @@ void TrxFilterDialog::OnColorChecked(wxCommandEvent& WXUNUSED(event))
         }
     }
     else {
-        colorButton_->SetLabel(_t(""));
+        colorButton_->SetLabel("");
         m_color_value = -1;
     }
     colorButton_->Enable(mmIsColorChecked());

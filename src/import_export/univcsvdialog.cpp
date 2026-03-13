@@ -376,7 +376,7 @@ void mmUnivCSVDialog::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(m_staticline2, flagsExpand);
 
-    wxStaticText* itemStaticText66 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_t("Date Format: ")));
+    wxStaticText* itemStaticText66 = new wxStaticText(itemPanel7, wxID_STATIC, _t("Date Format: "));
     flex_sizer->Add(itemStaticText66, g_flagsH);
     itemStaticText66->SetFont(staticBoxFontSetting);
 
@@ -391,7 +391,7 @@ void mmUnivCSVDialog::CreateControls()
     // CSV Delimiter
     if (IsCSV())
     {
-        wxStaticText* itemStaticText77 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_t("CSV Delimiter:")));
+        wxStaticText* itemStaticText77 = new wxStaticText(itemPanel7, wxID_STATIC, _t("CSV Delimiter:"));
         itemStaticText77->SetFont(staticBoxFontSetting);
         flex_sizer->Add(itemStaticText77, g_flagsH);
 
@@ -427,7 +427,7 @@ void mmUnivCSVDialog::CreateControls()
         wxGridSizer* grid_sizer72 = new wxGridSizer(2,0, 0, 0);
         itemPanel72->SetSizer(grid_sizer72);
         // 2 Date Pickers, one for the date from which the exported transactions will begin and one for the date in which the exported transactions will end
-        wxStaticText* itemStaticText7771 = new wxStaticText(itemPanel72, wxID_STATIC, wxString(_t("Start Date:")));
+        wxStaticText* itemStaticText7771 = new wxStaticText(itemPanel72, wxID_STATIC, _t("Start Date:"));
         itemStaticText7771->SetFont(staticBoxFontSetting);
         grid_sizer72->Add(itemStaticText7771, g_flagsH);
 
@@ -441,7 +441,7 @@ void mmUnivCSVDialog::CreateControls()
         // In the beginning the date pickers are disabled since the checkbox is not checked
         m_date_picker_start->Enable(false);
 
-        wxStaticText* itemStaticText7772 = new wxStaticText(itemPanel72, wxID_STATIC, wxString(_t("End Date:")));
+        wxStaticText* itemStaticText7772 = new wxStaticText(itemPanel72, wxID_STATIC, _t("End Date:"));
         itemStaticText7772->SetFont(staticBoxFontSetting);
         grid_sizer72->Add(itemStaticText7772, g_flagsH);
 
@@ -465,7 +465,7 @@ void mmUnivCSVDialog::CreateControls()
         wxFlexGridSizer* flex_sizer73 = new wxFlexGridSizer(1,0, 0, 0);
         itemPanel73->SetSizer(flex_sizer73);
 
-        wxStaticText* itemStaticText88 = new wxStaticText(itemPanel73, wxID_STATIC, wxString(_t("Encoding:")));
+        wxStaticText* itemStaticText88 = new wxStaticText(itemPanel73, wxID_STATIC, _t("Encoding:"));
         itemStaticText88->SetFont(staticBoxFontSetting);
         flex_sizer73->Add(itemStaticText88, g_flagsH);
 
@@ -478,7 +478,7 @@ void mmUnivCSVDialog::CreateControls()
     }
     else
     {
-        wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, wxString(_t("Encoding:")));
+        wxStaticText* itemStaticText88 = new wxStaticText(itemPanel7, wxID_STATIC, _t("Encoding:"));
         itemStaticText88->SetFont(staticBoxFontSetting);
         flex_sizer->Add(itemStaticText88, g_flagsH);
 

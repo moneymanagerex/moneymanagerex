@@ -159,7 +159,7 @@ void mmQIFImportDialog::CreateControls()
     left_sizer->Add(flex_sizer, g_flagsExpand);
 
     //Encoding
-    wxStaticText* itemStaticText88 = new wxStaticText(this, wxID_STATIC, wxString(_t("Encoding:")));
+    wxStaticText* itemStaticText88 = new wxStaticText(this, wxID_STATIC, _t("Encoding:"));
     //itemStaticText88->SetFont(staticBoxFontSetting);
     flex_sizer->Add(itemStaticText88, g_flagsH);
 
