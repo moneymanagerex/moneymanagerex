@@ -1433,7 +1433,7 @@ void SchedDialog::activateSplitTransactionsDlg()
 void SchedDialog::setTooltips()
 {
     if (!this->m_sched_xd.local_splits.empty()) {
-        const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
+        const CurrencyData* currency = CurrencyModel::instance().get_base_data_n();
         const AccountData* account = AccountModel::instance().get_id_data_n(m_sched_xd.m_account_id);
         if (account) {
             currency = AccountModel::instance().get_data_currency_p(*account);

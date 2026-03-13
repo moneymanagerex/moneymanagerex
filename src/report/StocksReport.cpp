@@ -183,7 +183,7 @@ wxString StocksReport::getHTMLText()
             hb.startTfoot();
             {
                 // Round FX gain/loss to the scale of the base currency for display
-                int scale = pow(10, log10(CurrencyModel::instance().GetBaseCurrency()->m_scale.GetValue()));
+                int scale = pow(10, log10(CurrencyModel::instance().instance().get_base_data_n()->m_scale.GetValue()));
                 double forex_real_gain_loss = std::round((m_real_gain_loss_sum_total - m_real_gain_loss_excl_forex) * scale) / scale;
                 double forex_unreal_gain_loss = std::round((m_unreal_gain_loss_sum_total - m_unreal_gain_loss_excl_forex) * scale) / scale;
 
@@ -193,19 +193,19 @@ wxString StocksReport::getHTMLText()
 
                 hb.startTableCell(" style='text-align:right;' nowrap");
                 if (forex_real_gain_loss != 0) {
-                    hb.startSpan(CurrencyModel::toCurrency(m_real_gain_loss_excl_forex), wxString::Format(" style='text-align:right;%s' nowrap"
+                    hb.startSpan(CurrencyModel::instance().toCurrency(m_real_gain_loss_excl_forex), wxString::Format(" style='text-align:right;%s' nowrap"
                         , m_real_gain_loss_excl_forex < 0 ? "color:red;" : ""));
                     hb.endSpan();
                     hb.startSpan(" + ", "");
                     hb.endSpan();
-                    hb.startSpan(CurrencyModel::toCurrency(forex_real_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
+                    hb.startSpan(CurrencyModel::instance().toCurrency(forex_real_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
                         , forex_real_gain_loss < 0 ? "color:red;" : ""));
                     hb.endSpan();
                     hb.startSpan(" FX", "");
                     hb.endSpan();
                     hb.addLineBreak();
                 }
-                hb.startSpan(CurrencyModel::toCurrency(m_real_gain_loss_sum_total), wxString::Format(" style='text-align:right;%s' nowrap"
+                hb.startSpan(CurrencyModel::instance().toCurrency(m_real_gain_loss_sum_total), wxString::Format(" style='text-align:right;%s' nowrap"
                     , m_real_gain_loss_sum_total < 0 ? "color:red;" : ""));
                 hb.endSpan();
 
@@ -213,26 +213,26 @@ wxString StocksReport::getHTMLText()
 
                 hb.startTableCell(" style='text-align:right;' nowrap");
                 if (forex_unreal_gain_loss != 0) {
-                    hb.startSpan(CurrencyModel::toCurrency(m_unreal_gain_loss_excl_forex), wxString::Format(" style='text-align:right;%s' nowrap"
+                    hb.startSpan(CurrencyModel::instance().toCurrency(m_unreal_gain_loss_excl_forex), wxString::Format(" style='text-align:right;%s' nowrap"
                         , m_unreal_gain_loss_excl_forex < 0 ? "color:red;" : ""));
                     hb.endSpan();
                     hb.startSpan(" + ", "");
                     hb.endSpan();
-                    hb.startSpan(CurrencyModel::toCurrency(forex_unreal_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
+                    hb.startSpan(CurrencyModel::instance().toCurrency(forex_unreal_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
                         , forex_unreal_gain_loss < 0 ? "color:red;" : ""));
                     hb.endSpan();
                     hb.startSpan(" FX", "");
                     hb.endSpan();
                     hb.addLineBreak();
                 }
-                hb.startSpan(CurrencyModel::toCurrency(m_unreal_gain_loss_sum_total), wxString::Format(" style='text-align:right;%s' nowrap"
+                hb.startSpan(CurrencyModel::instance().toCurrency(m_unreal_gain_loss_sum_total), wxString::Format(" style='text-align:right;%s' nowrap"
                     , m_unreal_gain_loss_sum_total < 0 ? "color:red;" : ""));
                 hb.endSpan();
 
                 hb.endTableCell();
                 
                 hb.startTableCell(" style='text-align:right;' nowrap");
-                hb.startSpan(CurrencyModel::toCurrency(m_stock_balance), "");
+                hb.startSpan(CurrencyModel::instance().toCurrency(m_stock_balance), "");
                 hb.endSpan();
 
                 hb.endTableCell();

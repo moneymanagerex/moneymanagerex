@@ -332,7 +332,10 @@ void CurrencyManager::OnDataChanged(wxCommandEvent& WXUNUSED(event))
     wxString dispAmount = "";
     double base_amount = 1234567.89;
 
-    dispAmount = wxString::Format(_t("%.2f Shown As: %s"), base_amount, CurrencyModel::toCurrency(base_amount, m_currency_n, scale));
+    dispAmount = wxString::Format(_t("%.2f Shown As: %s"),
+        base_amount,
+        CurrencyModel::instance().toCurrency(base_amount, m_currency_n, scale)
+    );
     if (m_locale_used)
         dispAmount = dispAmount + "  " + _t("(Using Locale)");
     w_sampleText->SetLabelText(dispAmount);

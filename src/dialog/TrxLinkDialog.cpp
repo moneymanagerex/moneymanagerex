@@ -155,7 +155,7 @@ bool TrxLinkDialog::Create(
         , mmCalcValidator());
     mmToolTip(m_entered_amount, _t("Specify the amount for this transaction"));
 
-    const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency = CurrencyModel::instance().get_base_data_n();
     if (m_account_id > 0) {
         currency = AccountModel::instance().get_id_currency_p(m_account_id);
     }

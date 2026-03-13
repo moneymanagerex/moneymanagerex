@@ -111,10 +111,10 @@ JournalPanel::JournalPanel(
     }
     else if (isGroup()) {
         m_group_ids = std::set<int64>(group_ids.begin(), group_ids.end());
-        m_currency_n = CurrencyModel::GetBaseCurrency();
+        m_currency_n = CurrencyModel::instance().get_base_data_n();
     }
     else {
-        m_currency_n = CurrencyModel::GetBaseCurrency();
+        m_currency_n = CurrencyModel::instance().get_base_data_n();
     }
     m_use_account_specific_filter = PrefModel::instance().getUsePerAccountFilter();
     loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
@@ -1031,7 +1031,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
             int days = max_date.Subtract(min_date).GetDays();
 
             wxString msg;
-            wxString selectedBal = CurrencyModel::toCurrency(flow, m_currency_n);
+            wxString selectedBal = CurrencyModel::instance().toCurrency(flow, m_currency_n);
             m_info_panel_selectedbal = selectedBal;
             msg = wxString::Format(_t("Transactions selected: %zu"), selected.size());
             msg += "\n";

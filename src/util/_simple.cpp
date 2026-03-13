@@ -840,7 +840,7 @@ mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
         this->Append(wxGetTranslation(entry.first), new wxStringClientData(entry.second));
     }
 
-    const CurrencyData* base_currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* base_currency = CurrencyModel::instance().get_base_data_n();
     const auto decimal_point = base_currency->m_decimal_point;
 
     SetDecimalChar(decimal_point);

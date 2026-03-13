@@ -584,7 +584,10 @@ int AssetPanel::initVirtualListControl(int64 id)
         initial += bal.first;
         balance += bal.second;
     }
-    header_text_->SetLabelText(wxString::Format("%s, %s", wxString::Format(_t("Total: %s"), CurrencyModel::toCurrency(balance)),  wxString::Format(_t("Initial: %s"), CurrencyModel::toCurrency(initial)))); // balance
+    header_text_->SetLabelText(wxString::Format("%s, %s",
+        wxString::Format(_t("Total: %s"), CurrencyModel::instance().toCurrency(balance)),
+        wxString::Format(_t("Initial: %s"), CurrencyModel::instance().toCurrency(initial))
+    )); // balance
 
     int selected_item = 0;
     for (const auto& asset: this->m_assets)
@@ -638,9 +641,9 @@ wxString AssetPanel::getItem(long item, int col_id)
     case AssetList::LIST_ID_TYPE:
         return wxGetTranslation(asset.m_type.name());
     case AssetList::LIST_ID_VALUE_INITIAL:
-        return CurrencyModel::toCurrency(AssetModel::instance().get_data_value(asset).first);
+        return CurrencyModel::instance().toCurrency(AssetModel::instance().get_data_value(asset).first);
     case AssetList::LIST_ID_VALUE_CURRENT:
-        return CurrencyModel::toCurrency(AssetModel::instance().get_data_value(asset).second);
+        return CurrencyModel::instance().toCurrency(AssetModel::instance().get_data_value(asset).second);
     case AssetList::LIST_ID_DATE:
         return mmGetDateTimeForDisplay(asset.m_start_date.isoDate());
     case AssetList::LIST_ID_NOTES: {
@@ -878,8 +881,8 @@ void AssetPanel::FillAssetListRow(wxListCtrl* listCtrl, long index, const TrxDat
     listCtrl->SetItem(index, 0, AccountModel::instance().get_id_name(trx_d.m_account_id));
     listCtrl->SetItem(index, 1, mmGetDateTimeForDisplay(trx_d.TRANSDATE));
     listCtrl->SetItem(index, 2, trx_d.m_type.trade_name());
-    listCtrl->SetItem(index, 3, CurrencyModel::toString(trx_d.m_amount));
-//    listCtrl->SetItem(index, 3, CurrencyModel::get_currency_symbol(trx_d.CURRENCYID));
+    listCtrl->SetItem(index, 3, CurrencyModel::instance().toString(trx_d.m_amount));
+//    listCtrl->SetItem(index, 3, CurrencyModel::instance().get_currency_symbol(trx_d.CURRENCYID));
 }
 
 void AssetPanel::BindAssetListEvents(wxListCtrl* listCtrl)

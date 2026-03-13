@@ -69,7 +69,7 @@ mmQIFImportDialog::mmQIFImportDialog(
     m_today(wxDate::Today()),
     m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
 {
-    decimal_ = CurrencyModel::GetBaseCurrency()->m_decimal_point;
+    decimal_ = CurrencyModel::instance().get_base_data_n()->m_decimal_point;
     payeeIsNotes_ = false;
     const AccountData* account_n = AccountModel::instance().get_id_data_n(account_id);
     if (account_n)
@@ -663,7 +663,7 @@ bool mmQIFImportDialog::completeTransaction(
                 trx[QIF_ID_Memo] += (trx[QIF_ID_Memo].empty() ? "" : "\n") + trx[QIF_ID_Payee];
                 if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end()) {
                     std::unordered_map<int, wxString> a;
-                    a[QIF_ID_Description] = "[" + CurrencyModel::GetBaseCurrency()->m_symbol + "]";
+                    a[QIF_ID_Description] = "[" + CurrencyModel::instance().get_base_data_n()->m_symbol + "]";
                     a[QIF_ID_AccountType] = (trx.find(QIF_ID_Description) != trx.end() ? trx.at(QIF_ID_Description) : "");
                     m_QIFaccounts[toAccName] = a;
                 }
@@ -1659,7 +1659,7 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
             account_d.m_name         = item.first;
             account_d.m_open_balance = 0;
             account_d.m_open_date    = mmDate::today();
-            account_d.m_currency_id  = CurrencyModel::GetBaseCurrency()->m_id;
+            account_d.m_currency_id  = CurrencyModel::instance().get_base_data_n()->m_id;
             const wxString c = (item.second.find(QIF_ID_Description) == item.second.end()
                 ? ""
                 : item.second.at(QIF_ID_Description)

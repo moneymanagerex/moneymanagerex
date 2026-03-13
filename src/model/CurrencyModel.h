@@ -43,38 +43,38 @@ public:
     static CurrencyCol::CURRENCY_TYPE CURRENCY_TYPE(OP op, CurrencyType currency_type);
 
 public:
+    // TODO: add to virtual methods in TableFactory
+    int  find_id_dep_c(int64 currency_id);
+
+    // override
     bool purge_id(int64 currency_id) override;
 
+    auto get_base_data_n() -> const Data*;
+    bool get_base_symbol(wxString& symbol);
     auto get_symbol_data_n(const wxString& symbol) -> const Data*;
-
+    auto find_id_date_m(int64 CurrencyID) -> std::map<wxDateTime, int>;
     auto find_all_name_a() -> const wxArrayString;
     auto find_all_symbol_a() -> const wxArrayString;
     auto find_all_name_id_m() -> const std::map<wxString, int64>;
 
+    const wxString toStringNoFormatting(
+        double value, const Data* currency_n = nullptr, int precision = -1
+    );
+    const wxString toString(
+        double value, const Data* currency_n = nullptr, int precision = -1
+    );
+    const wxString toCurrency(
+        double value, const Data* currency_n = CurrencyModel::instance().get_base_data_n(), int precision = -1
+    );
+    const wxString fromString2CLocale(
+        const wxString &s, const Data* currency_n = CurrencyModel::instance().get_base_data_n()
+    );
+    bool fromString(
+        wxString s, double& val, const Data* currency_n = CurrencyModel::instance().get_base_data_n()
+    );
+
+    void resetBaseConversionRates();
+
     // TODO: move to AccountModel
     int  precision(int64 account_id);
-
-    static bool is_used(int64 currency_id);
-    static auto GetBaseCurrency() -> const Data*;
-    static bool GetBaseCurrencySymbol(wxString& symbol);
-
-    static auto DateUsed(int64 CurrencyID) -> std::map<wxDateTime, int>;
-
-    static const wxString toStringNoFormatting(
-        double value, const Data* currency_n = GetBaseCurrency(), int precision = -1
-    );
-    static const wxString toString(
-        double value, const Data* currency_n = GetBaseCurrency(), int precision = -1
-    );
-    static const wxString toCurrency(
-        double value, const Data* currency_n = GetBaseCurrency(), int precision = -1
-    );
-    static const wxString fromString2CLocale(
-        const wxString &s, const Data* currency_n = CurrencyModel::GetBaseCurrency()
-    );
-    static bool fromString(
-        wxString s, double& val, const Data* currency_n = GetBaseCurrency()
-    );
-
-    static void ResetBaseConversionRates();
 };

@@ -875,7 +875,7 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             const AccountData* account = AccountModel::instance().get_id_data_n(m_journal_xa[row].ACCOUNTID_W);
             const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency) {
-                copyText_ = CurrencyModel::toString(m_journal_xa[row].TRANSAMOUNT_W, currency);
+                copyText_ = CurrencyModel::instance().toString(m_journal_xa[row].TRANSAMOUNT_W, currency);
                 menuItemText = wxString::Format("%.2f", m_journal_xa[row].TRANSAMOUNT_W);
                 rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
             }
@@ -886,17 +886,17 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             const AccountData* account = AccountModel::instance().get_id_data_n(m_journal_xa[row].ACCOUNTID_D);
             const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency) {
-                copyText_ = CurrencyModel::toString(m_journal_xa[row].TRANSAMOUNT_D, currency);
+                copyText_ = CurrencyModel::instance().toString(m_journal_xa[row].TRANSAMOUNT_D, currency);
                 menuItemText = wxString::Format("%.2f", m_journal_xa[row].TRANSAMOUNT_D);
                 rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
             }
             break;
         }
         case LIST_ID_BALANCE:
-            copyText_ = CurrencyModel::toString(m_journal_xa[row].ACCOUNT_BALANCE, m_cp->m_currency_n);
+            copyText_ = CurrencyModel::instance().toString(m_journal_xa[row].ACCOUNT_BALANCE, m_cp->m_currency_n);
             break;
         case LIST_ID_CREDIT:
-            copyText_ = CurrencyModel::toString(
+            copyText_ = CurrencyModel::instance().toString(
                 m_cp->m_account_n->m_credit_limit + m_journal_xa[row].ACCOUNT_BALANCE,
                 m_cp->m_currency_n
             );
@@ -2052,10 +2052,10 @@ const wxString JournalList::getItem(long item, int col_id) const
             const CurrencyData* currency = account ?
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
-                value = CurrencyModel::toCurrency(journal_xd.TRANSAMOUNT_W, currency);
+                value = CurrencyModel::instance().toCurrency(journal_xd.TRANSAMOUNT_W, currency);
         }
         else if (journal_xd.ACCOUNTID_W == m_cp->m_account_id) {
-            value = CurrencyModel::toString(journal_xd.TRANSAMOUNT_W, m_cp->m_currency_n);
+            value = CurrencyModel::instance().toString(journal_xd.TRANSAMOUNT_W, m_cp->m_currency_n);
         }
         if (!value.IsEmpty() && journal_xd.is_void())
             value = "* " + value;
@@ -2066,20 +2066,20 @@ const wxString JournalList::getItem(long item, int col_id) const
             const CurrencyData* currency = account ?
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
-                value = CurrencyModel::toCurrency(journal_xd.TRANSAMOUNT_D, currency);
+                value = CurrencyModel::instance().toCurrency(journal_xd.TRANSAMOUNT_D, currency);
         }
         else if (journal_xd.ACCOUNTID_D == m_cp->m_account_id) {
-            value = CurrencyModel::toString(journal_xd.TRANSAMOUNT_D, m_cp->m_currency_n);
+            value = CurrencyModel::instance().toString(journal_xd.TRANSAMOUNT_D, m_cp->m_currency_n);
         }
         if (!value.IsEmpty() && journal_xd.is_void())
             value = "* " + value;
         return value;
     case LIST_ID_BALANCE:
         if (m_balance_valid)
-            value = CurrencyModel::toString(journal_xd.ACCOUNT_BALANCE, m_cp->m_currency_n);
+            value = CurrencyModel::instance().toString(journal_xd.ACCOUNT_BALANCE, m_cp->m_currency_n);
         return value;
     case LIST_ID_CREDIT:
-        return CurrencyModel::toString(
+        return CurrencyModel::instance().toString(
             m_cp->m_account_n->m_credit_limit + journal_xd.ACCOUNT_BALANCE,
             m_cp->m_currency_n
         );
@@ -2186,7 +2186,7 @@ void JournalList::doSearchText(const wxString& value)
         if (selectedItem < 0 || selectedItem >= static_cast<long>(m_journal_xa.size()))
             break;
 
-        wxString test1 = CurrencyModel::fromString2CLocale(value);
+        wxString test1 = CurrencyModel::instance().fromString2CLocale(value);
         double v;
         if (test1.ToCDouble(&v)) {
             try {

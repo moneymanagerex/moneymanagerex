@@ -1073,7 +1073,7 @@ bool TrxFilterDialog::mmIsValuesCorrect() const
     }
 
     if (amountRangeCheckBox_->IsChecked()) {
-        const CurrencyData* currency_n = CurrencyModel::GetBaseCurrency();
+        const CurrencyData* currency_n = CurrencyModel::instance().get_base_data_n();
         int currency_precision = currency_n->precision();
         double min_amount = 0;
 
@@ -1316,11 +1316,11 @@ bool TrxFilterDialog::mmIsTypeMaches(
 
 double TrxFilterDialog::mmGetAmountMin() const
 {
-    const CurrencyData* currency_n = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency_n = CurrencyModel::instance().get_base_data_n();
 
     wxString amountStr = amountMinEdit_->GetValue().Trim();
     double amount = 0;
-    if (!CurrencyModel::fromString(amountStr, amount, currency_n) || amount < 0)
+    if (!CurrencyModel::instance().fromString(amountStr, amount, currency_n) || amount < 0)
         amount = 0;
 
     return amount;
@@ -1328,11 +1328,11 @@ double TrxFilterDialog::mmGetAmountMin() const
 
 double TrxFilterDialog::mmGetAmountMax() const
 {
-    const CurrencyData* currency_n = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency_n = CurrencyModel::instance().get_base_data_n();
 
     wxString amountStr = amountMaxEdit_->GetValue().Trim();
     double amount = 0;
-    if (!CurrencyModel::fromString(amountStr, amount, currency_n) || amount < 0)
+    if (!CurrencyModel::instance().fromString(amountStr, amount, currency_n) || amount < 0)
         amount = 0;
 
     return amount;

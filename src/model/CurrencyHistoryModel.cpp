@@ -111,7 +111,9 @@ double CurrencyHistoryModel::getDayRate(int64 currencyID, const wxString& iso_da
 
 double CurrencyHistoryModel::getDayRate(int64 currency_id_n, const wxDate& date)
 {
-    if (currency_id_n == CurrencyModel::GetBaseCurrency()->m_id || currency_id_n == -1)
+    if (currency_id_n == CurrencyModel::instance().get_base_data_n()->m_id ||
+        currency_id_n == -1
+    )
         return 1;
 
     const CurrencyData* currency_n = CurrencyModel::instance().get_id_data_n(currency_id_n);

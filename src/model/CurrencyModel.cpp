@@ -71,6 +71,24 @@ CurrencyCol::CURRENCY_TYPE CurrencyModel::CURRENCY_TYPE(OP op, CurrencyType curr
     return CurrencyCol::CURRENCY_TYPE(op, currency_type.name());
 }
 
+int CurrencyModel::find_id_dep_c(int64 currency_id)
+{
+    int dep_c = 0;
+
+    if (PrefModel::instance().getBaseCurrencyID() == currency_id)
+        dep_c += 1;
+
+    // FIXME: do not exclude closed accounts
+    dep_c += AccountModel::instance().find(
+        AccountCol::CURRENCYID(currency_id),
+        AccountModel::STATUS(OP_NE, AccountStatus(AccountStatus::e_closed))
+    ).size();
+
+    // FIXME: search for currency_id in AssetModel
+
+    return dep_c;
+}
+
 // Remove the Data record from memory and the database.
 // Delete also all currency history
 bool CurrencyModel::purge_id(int64 currency_id)
@@ -86,6 +104,23 @@ bool CurrencyModel::purge_id(int64 currency_id)
     return unsafe_remove_id(currency_id);
 }
 
+// Return the Data record of the base currency.
+const CurrencyData* CurrencyModel::get_base_data_n()
+{
+    int64 currency_id = PrefModel::instance().getBaseCurrencyID();
+    return get_id_data_n(currency_id);
+}
+
+bool CurrencyModel::get_base_symbol(wxString& symbol)
+{
+    const Data* currency_n = get_base_data_n();
+    if (currency_n) {
+        symbol = currency_n->m_symbol;
+        return true;
+    }
+    return false;
+}
+
 // Return the currency Data record for the given symbol
 const CurrencyData* CurrencyModel::get_symbol_data_n(const wxString& symbol)
 {
@@ -95,13 +130,42 @@ const CurrencyData* CurrencyModel::get_symbol_data_n(const wxString& symbol)
     if (currency_n)
         return currency_n;
 
-    CurrencyModel::DataA currency_a = CurrencyModel::instance().find(
+    const DataA currency_a = CurrencyModel::instance().find(
         CurrencyCol::CURRENCY_SYMBOL(symbol)
     );
     if (currency_a.empty())
         currency_n = get_id_data_n(currency_a[0].id());
 
     return currency_n;
+}
+
+// TODO: return an ordered set (std::set)
+std::map<wxDateTime, int> CurrencyModel::find_id_date_m(int64 currency_id)
+{
+    wxDateTime dt;
+    std::map<wxDateTime, int> datesList;
+    for (const auto& account_d : AccountModel::instance().find(
+        CurrencyCol::CURRENCYID(currency_id)
+    )) {
+        if (AccountModel::type_id(account_d) == NavigatorTypes::TYPE_ID_INVESTMENT) {
+            for (const auto& stock_d : StockModel::instance().find(
+                StockCol::HELDAT(account_d.m_id)
+            )) {
+                dt = stock_d.m_purchase_date.getDateTime();
+                datesList[dt] = 1;
+            }
+        }
+        else {
+            for (const auto& trx_d : TrxModel::instance().find_or(
+                TrxCol::ACCOUNTID(account_d.m_id),
+                TrxCol::TOACCOUNTID(account_d.m_id)
+            )) {
+                dt.ParseDate(trx_d.TRANSDATE);
+                datesList[dt] = 1;
+            }
+        }
+    }
+    return datesList;
 }
 
 const wxArrayString CurrencyModel::find_all_name_a()
@@ -131,57 +195,12 @@ const std::map<wxString, int64> CurrencyModel::find_all_name_id_m()
     return name_id_m;
 }
 
-// Return the Data record of the base currency.
-const CurrencyData* CurrencyModel::GetBaseCurrency()
-{
-    int64 currency_id = PrefModel::instance().getBaseCurrencyID();
-    return CurrencyModel::instance().get_id_data_n(currency_id);
-}
-
-bool CurrencyModel::GetBaseCurrencySymbol(wxString& symbol)
-{
-    const Data* currency_n = GetBaseCurrency();
-    if (currency_n) {
-        symbol = currency_n->m_symbol;
-        return true;
-    }
-    return false;
-}
-
-std::map<wxDateTime, int> CurrencyModel::DateUsed(int64 currency_id)
-{
-    wxDateTime dt;
-    std::map<wxDateTime, int> datesList;
-    for (const auto& account_d : AccountModel::instance().find(
-        CurrencyCol::CURRENCYID(currency_id)
-    )) {
-        if (AccountModel::type_id(account_d) == NavigatorTypes::TYPE_ID_INVESTMENT) {
-            for (const auto& stock_d : StockModel::instance().find(
-                StockCol::HELDAT(account_d.m_id)
-            )) {
-                dt = stock_d.m_purchase_date.getDateTime();
-                datesList[dt] = 1;
-            }
-        }
-        else {
-            for (const auto& trx_d : TrxModel::instance().find_or(
-                TrxCol::ACCOUNTID(account_d.m_id),
-                TrxCol::TOACCOUNTID(account_d.m_id)
-            )) {
-                dt.ParseDate(trx_d.TRANSDATE);
-                datesList[dt] = 1;
-            }
-        }
-    }
-    return datesList;
-}
-
 // convert value to a string with required precision. Currency is used only for percision
 const wxString CurrencyModel::toStringNoFormatting(
     double value, const Data* currency_n, int precision
 ) {
     if (!currency_n)
-        currency_n = GetBaseCurrency();
+        currency_n = get_base_data_n();
     if (precision < 0)
         precision = currency_n->precision();
     wxString value_str = wxString::FromCDouble(value, precision);
@@ -195,7 +214,7 @@ const wxString CurrencyModel::toString(
     double value, const Data* currency_n, int precision
 ) {
     if (!currency_n)
-        currency_n = GetBaseCurrency();
+        currency_n = get_base_data_n();
     if (precision < 0)
         precision = currency_n->precision();
 
@@ -354,6 +373,17 @@ bool CurrencyModel::fromString(wxString s, double& val, const Data* currency_n)
     return done;
 }
 
+// Resets all BASECONVRATE to 1
+void CurrencyModel::resetBaseConversionRates()
+{
+    db_savepoint();
+    for (auto currency_d : find_all()) {
+        currency_d.m_base_conv_rate = 1;
+        save_data_n(currency_d);
+    }
+    db_release_savepoint();
+}
+
 int CurrencyModel::precision(int64 account_id)
 {
     const AccountData* account_n = AccountModel::instance().get_id_data_n(account_id);
@@ -361,24 +391,4 @@ int CurrencyModel::precision(int64 account_id)
         return AccountModel::instance().get_data_currency_p(*account_n)->precision();
     }
     else return 2;
-}
-
-bool CurrencyModel::is_used(int64 currency_id)
-{
-    const auto& account_a = AccountModel::instance().find(
-        AccountCol::CURRENCYID(currency_id),
-        AccountModel::STATUS(OP_NE, AccountStatus(AccountStatus::e_closed))
-    );
-    return !account_a.empty();
-}
-
-// Resets all BASECONVRATE to 1
-void CurrencyModel::ResetBaseConversionRates()
-{
-    CurrencyModel::instance().db_savepoint();
-    for (auto currency_d : CurrencyModel::instance().find_all()) {
-        currency_d.m_base_conv_rate = 1;
-        CurrencyModel::instance().save_data_n(currency_d);
-    }
-    CurrencyModel::instance().db_release_savepoint();
 }

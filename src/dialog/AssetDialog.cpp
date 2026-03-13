@@ -495,7 +495,7 @@ void AssetDialog::CreateAssetAccount()
     new_account_d.m_type_        = NavigatorTypes::instance().getAssetAccountStr();
     new_account_d.m_open_balance = 0;
     new_account_d.m_open_date    = m_asset_n->m_start_date;
-    new_account_d.m_currency_id  = CurrencyModel::GetBaseCurrency()->m_id;
+    new_account_d.m_currency_id  = CurrencyModel::instance().get_base_data_n()->m_id;
     AccountModel::instance().add_data_n(new_account_d);
 
     AssetDialog dlg(this, m_asset_n, true);

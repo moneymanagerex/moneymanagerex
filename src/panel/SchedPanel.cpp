@@ -479,7 +479,7 @@ wxString SchedPanel::getItem(long item, int col_id)
         const CurrencyData* currency = account ?
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
-            value = CurrencyModel::toCurrency(transamount, currency);
+            value = CurrencyModel::instance().toCurrency(transamount, currency);
         if (!value.IsEmpty() && sched_xd.is_void())
             value = "* " + value;
         return value;
@@ -500,7 +500,7 @@ wxString SchedPanel::getItem(long item, int col_id)
         const CurrencyData* currency = account ?
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
-            value = CurrencyModel::toCurrency(transamount, currency);
+            value = CurrencyModel::instance().toCurrency(transamount, currency);
         if (!value.IsEmpty() && sched_xd.is_void())
             value = "* " + value;
         return value;

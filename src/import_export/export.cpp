@@ -224,7 +224,7 @@ const wxString mmExportTransaction::getTransactionQIF(
 const wxString mmExportTransaction::getAccountHeaderQIF(int64 accountID)
 {
     wxString buffer = "";
-    wxString currency_symbol = CurrencyModel::GetBaseCurrency()->m_symbol;
+    wxString currency_symbol = CurrencyModel::instance().get_base_data_n()->m_symbol;
     const AccountData *account_n = AccountModel::instance().get_id_data_n(accountID);
     if (account_n) {
         double dInitBalance = account_n->m_open_balance;
@@ -234,7 +234,7 @@ const wxString mmExportTransaction::getAccountHeaderQIF(int64 accountID)
         }
 
         const wxString currency_code = "[" + currency_symbol + "]";
-        const wxString sInitBalance = CurrencyModel::toString(dInitBalance, currency);
+        const wxString sInitBalance = CurrencyModel::instance().toString(dInitBalance, currency);
 
         buffer = wxString("!Account") << "\n"
             << "N" << account_n->m_name << "\n"

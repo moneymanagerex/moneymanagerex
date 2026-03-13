@@ -66,7 +66,7 @@ TrxUpdateDialog::TrxUpdateDialog(
 ) :
     m_trx_id_a(trx_id_a)
 {
-    m_currency_n = CurrencyModel::GetBaseCurrency(); // base currency if we need it
+    m_currency_n = CurrencyModel::instance().get_base_data_n(); // base currency if we need it
 
     // Determine the mix of transaction that have been selected
     for (const auto& trx_id : m_trx_id_a) {

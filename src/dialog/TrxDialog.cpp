@@ -1368,7 +1368,7 @@ void TrxDialog::SetTooltips()
     if (this->m_local_splits.empty())
         mmToolTip(bSplit_, _t("Use split Categories"));
     else {
-        const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
+        const CurrencyData* currency = CurrencyModel::instance().get_base_data_n();
         const AccountData* account_n = AccountModel::instance().get_id_data_n(m_journal_data.m_account_id);
         if (account_n)
             currency = AccountModel::instance().get_data_currency_p(*account_n);

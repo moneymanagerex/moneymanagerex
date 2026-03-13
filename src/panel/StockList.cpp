@@ -187,20 +187,20 @@ wxString StockList::OnGetItemText(long item, long col_nr) const
         return m_stocks[item].m_symbol;
     case LIST_ID_NUMBER: {
         int precision = m_stocks[item].m_num_shares == floor(m_stocks[item].m_num_shares) ? 0 : 4;
-        return CurrencyModel::toString(m_stocks[item].m_num_shares, m_stock_panel->m_currency, precision);
+        return CurrencyModel::instance().toString(m_stocks[item].m_num_shares, m_stock_panel->m_currency, precision);
     }
     case LIST_ID_PRICE:
-        return CurrencyModel::toString(m_stocks[item].m_purchase_price, m_stock_panel->m_currency, 4);
+        return CurrencyModel::instance().toString(m_stocks[item].m_purchase_price, m_stock_panel->m_currency, 4);
     case LIST_ID_VALUE:
-        return CurrencyModel::toString(m_stocks[item].m_purchase_value, m_stock_panel->m_currency);
+        return CurrencyModel::instance().toString(m_stocks[item].m_purchase_value, m_stock_panel->m_currency);
     case LIST_ID_REAL_GAIN_LOSS:
-        return CurrencyModel::toString(GetRealGainLoss(item), m_stock_panel->m_currency);
+        return CurrencyModel::instance().toString(GetRealGainLoss(item), m_stock_panel->m_currency);
     case LIST_ID_GAIN_LOSS:
-        return CurrencyModel::toString(GetGainLoss(item), m_stock_panel->m_currency);
+        return CurrencyModel::instance().toString(GetGainLoss(item), m_stock_panel->m_currency);
     case LIST_ID_CURRENT:
-        return CurrencyModel::toString(m_stocks[item].m_current_price, m_stock_panel->m_currency, 4);
+        return CurrencyModel::instance().toString(m_stocks[item].m_current_price, m_stock_panel->m_currency, 4);
     case LIST_ID_CURRVALUE:
-        return CurrencyModel::toString(
+        return CurrencyModel::instance().toString(
             m_stocks[item].current_value(),
             m_stock_panel->m_currency
         );
@@ -209,7 +209,7 @@ wxString StockList::OnGetItemText(long item, long col_nr) const
             StockModel::instance().find_last_hist_date(m_stocks[item]).isoDate()
         );
     case LIST_ID_COMMISSION:
-        return CurrencyModel::toString(
+        return CurrencyModel::instance().toString(
             m_stocks[item].m_commission,
             m_stock_panel->m_currency
         );

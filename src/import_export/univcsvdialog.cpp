@@ -96,7 +96,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     dialogType_(dialogType),
     m_account_id(account_id),
     m_file_path(file_path),
-    decimal_(CurrencyModel::GetBaseCurrency()->m_decimal_point),
+    decimal_(CurrencyModel::instance().get_base_data_n()->m_decimal_point),
     depositType_(TrxType(TrxType::e_deposit).name())
 {
     CSVFieldName_[UNIV_CSV_ID].first                    = _n("ID");
@@ -1760,8 +1760,8 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                     if (trx_d.is_withdrawal() && has_split) {
                         amt = -amt;
                     }
-                    const wxString amount = CurrencyModel::toStringNoFormatting(amt, currency);
-                    const wxString amount_abs = CurrencyModel::toStringNoFormatting(fabs(amt), currency);
+                    const wxString amount = CurrencyModel::instance().toStringNoFormatting(amt, currency);
+                    const wxString amount_abs = CurrencyModel::instance().toStringNoFormatting(fabs(amt), currency);
 
                     for (const auto& it : csvFieldOrder_) {
                         wxString entry = "";
@@ -1825,7 +1825,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             itemType = ITransactionsFile::TYPE_NUMBER;
                             break;
                         case UNIV_CSV_BALANCE:
-                            entry = CurrencyModel::toStringNoFormatting(account_balance, currency);
+                            entry = CurrencyModel::instance().toStringNoFormatting(account_balance, currency);
                             itemType = ITransactionsFile::TYPE_NUMBER;
                             break;
                         case UNIV_CSV_TYPE:
@@ -2155,8 +2155,8 @@ void mmUnivCSVDialog::update_preview()
                             if (trx_d.is_withdrawal() && has_split) {
                                 amt = -amt;
                             }
-                            const wxString amount = CurrencyModel::toStringNoFormatting(amt, currency);
-                            const wxString amount_abs = CurrencyModel::toStringNoFormatting(fabs(amt), currency);
+                            const wxString amount = CurrencyModel::instance().toStringNoFormatting(amt, currency);
+                            const wxString amount_abs = CurrencyModel::instance().toStringNoFormatting(fabs(amt), currency);
 
                             for (const auto& field : csvFieldOrder_) {
                                 int it = field.first;
@@ -2218,7 +2218,7 @@ void mmUnivCSVDialog::update_preview()
                                     text << inQuotes(value >= 0.0 ? "" : amount_abs, delimit);
                                     break;
                                 case UNIV_CSV_BALANCE:
-                                    text << inQuotes(CurrencyModel::toString(account_balance, currency), delimit);
+                                    text << inQuotes(CurrencyModel::instance().toString(account_balance, currency), delimit);
                                     break;
                                 case UNIV_CSV_TYPE:
                                     text << trx_d.m_type.name();
@@ -2285,32 +2285,32 @@ void mmUnivCSVDialog::update_preview()
                         m_list_ctrl_->SetItemData(itemIndex, row);
 
                         const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(*from_account);
-                        const wxString shareTotal = CurrencyModel::toStringNoFormatting(
+                        const wxString shareTotal = CurrencyModel::instance().toStringNoFormatting(
                             stock_d.m_num_shares,
                             currency_n
                         );
-                        const wxString avgSharePrice = CurrencyModel::toStringNoFormatting(
+                        const wxString avgSharePrice = CurrencyModel::instance().toStringNoFormatting(
                             stock_d.m_purchase_price,
                             currency_n
                         );
-                        const wxString totalCost = CurrencyModel::toStringNoFormatting(
+                        const wxString totalCost = CurrencyModel::instance().toStringNoFormatting(
                             stock_d.m_purchase_value,
                             currency_n
                         );
-                        const wxString realGain = CurrencyModel::toStringNoFormatting(
+                        const wxString realGain = CurrencyModel::instance().toStringNoFormatting(
                             StockModel::instance().calculate_realized_gain(stock_d),
                              currency_n
                         );
-                        const wxString unrealGain = CurrencyModel::toStringNoFormatting(
+                        const wxString unrealGain = CurrencyModel::instance().toStringNoFormatting(
                             StockModel::instance().calculate_unrealiazed_gain(stock_d), currency_n
                         );
-                        const wxString currentPrice = CurrencyModel::toStringNoFormatting(
+                        const wxString currentPrice = CurrencyModel::instance().toStringNoFormatting(
                             stock_d.current_value()/stock_d.m_num_shares, currency_n
                         );
-                        const wxString currentTotalValue = CurrencyModel::toStringNoFormatting(
+                        const wxString currentTotalValue = CurrencyModel::instance().toStringNoFormatting(
                             stock_d.current_value(), currency_n
                         );
-                        const wxString commission = CurrencyModel::toStringNoFormatting(stock_d.m_commission, currency_n);
+                        const wxString commission = CurrencyModel::instance().toStringNoFormatting(stock_d.m_commission, currency_n);
 
                         for (const auto& field : csvFieldOrder_) {
                             int it = field.first;

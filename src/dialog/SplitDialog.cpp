@@ -93,7 +93,7 @@ void mmEditSplitOther::CreateControls()
 
     // Split Amount
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _t("Amount")), g_flagsH);
-    wxString amountStr = CurrencyModel::toCurrency(m_split->SPLITTRANSAMOUNT, m_currency_n);
+    wxString amountStr = CurrencyModel::instance().toCurrency(m_split->SPLITTRANSAMOUNT, m_currency_n);
     wxTextCtrl* amount = new wxTextCtrl(this, wxID_ANY, amountStr);
     amount->Disable();
     fgSizer1->Add(amount, g_flagsExpand);
@@ -172,7 +172,7 @@ SplitDialog::SplitDialog(wxWindow* parent
     const AccountData* account_n = AccountModel::instance().get_id_data_n(accountID);
     m_currency_n = account_n
         ? AccountModel::instance().get_data_currency_p(*account_n)
-        : CurrencyModel::GetBaseCurrency();
+        : CurrencyModel::instance().get_base_data_n();
     m_splits = m_orig_splits;
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -568,7 +568,7 @@ void SplitDialog::UpdateSplitTotal()
             total += amount;
     }
 
-    wxString total_text = CurrencyModel::toCurrency(total, m_currency_n);
+    wxString total_text = CurrencyModel::instance().toCurrency(total, m_currency_n);
     transAmount_->SetLabelText(total_text);
     Layout();
 }

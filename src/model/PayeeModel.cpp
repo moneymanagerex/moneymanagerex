@@ -62,15 +62,15 @@ int PayeeModel::find_id_dep_c(int64 payee_id)
 {
     // FIX (2026-03-01): Do not exclude deleted transactions. Deleted transactions
     // are shown in a panel and they can be restored; they must have a valid payee id.
-    int cnt_trx = TrxModel::instance().find(
+    int dep_c = TrxModel::instance().find(
         TrxCol::PAYEEID(payee_id)
     ).size();
 
-    int cnt_sched = SchedModel::instance().find(
+    dep_c += SchedModel::instance().find(
         SchedCol::PAYEEID(payee_id)
     ).size();
 
-    return cnt_trx + cnt_sched;
+    return dep_c;
 }
 
 bool PayeeModel::purge_id(int64 payee_id)

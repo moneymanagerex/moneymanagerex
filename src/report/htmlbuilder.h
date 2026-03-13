@@ -95,7 +95,12 @@ public:
     //void addTableHeaderCell(const wxString& value, bool numeric = false, bool sortable = true, int cols = 1, bool center = false);
     void addTableHeaderCell(const wxString& value, const wxString& css_class = "", int cols = 1);
 
-    void addCurrencyCell(double amount, const CurrencyData *currency = CurrencyModel::instance().GetBaseCurrency(), int precision = -1, bool isVoid = false);
+    void addCurrencyCell(
+        double amount,
+        const CurrencyData *currency = CurrencyModel::instance().get_base_data_n(),
+        int precision = -1,
+        bool isVoid = false
+    );
     void addMoneyCell(double amount, int precision = -1);
     void addTableCellMonth(int month, int year = 0);
     void addColorMarker(const wxString& color, bool center = false);

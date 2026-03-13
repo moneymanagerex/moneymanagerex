@@ -52,16 +52,16 @@ void TrxReport::displayTotals(const std::map<int64, double>& total, std::map<int
     for (const auto& [curr_id, curr_total]: total)
     {
         const CurrencyData* curr = CurrencyModel::instance().get_id_data_n(curr_id);
-        const bool isBaseCurr = (curr->m_symbol == CurrencyModel::GetBaseCurrency()->m_symbol);
+        const bool isBaseCurr = (curr->m_symbol == CurrencyModel::instance().get_base_data_n()->m_symbol);
         grand_total += total_in_base_curr[curr_id];
         if (total.size() > 1 || !isBaseCurr)
         {
-            const wxString totalStr_curr = isBaseCurr ? "" : CurrencyModel::toCurrency(curr_total, curr);
-            const wxString totalStr = CurrencyModel::toCurrency(total_in_base_curr[curr_id], CurrencyModel::GetBaseCurrency());
+            const wxString totalStr_curr = isBaseCurr ? "" : CurrencyModel::instance().toCurrency(curr_total, curr);
+            const wxString totalStr = CurrencyModel::instance().toCurrency(total_in_base_curr[curr_id], CurrencyModel::instance().get_base_data_n());
             hb.addTotalRow(curr->m_symbol, noOfCols, { totalStr_curr,  totalStr });
         }
     }
-    const wxString totalStr = CurrencyModel::toCurrency(grand_total, CurrencyModel::GetBaseCurrency());
+    const wxString totalStr = CurrencyModel::instance().toCurrency(grand_total, CurrencyModel::instance().get_base_data_n());
     const std::vector<wxString> v{ "", totalStr };
     hb.addTotalRow(_t("Grand Total:"), noOfCols, v);
 }
@@ -528,11 +528,11 @@ table {
                         [](double previous, const auto & p) { return previous + p.second; });
                     statsAvg = values_chart.size() > 0 ? statsAvg / values_chart.size() : 0;
                     hb.addTotalRow(_t("Minimum") + " >> " + statsMin->first, 2,
-                        std::vector<wxString>{ CurrencyModel::toCurrency(statsMin->second, CurrencyModel::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::instance().toCurrency(statsMin->second, CurrencyModel::instance().get_base_data_n()) });
                     hb.addTotalRow(_t("Maximum") + " >> " + statsMax->first, 2,
-                        std::vector<wxString>{ CurrencyModel::toCurrency(statsMax->second, CurrencyModel::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::instance().toCurrency(statsMax->second, CurrencyModel::instance().get_base_data_n()) });
                     hb.addTotalRow(_t("Average"), 2,
-                        std::vector<wxString>{ CurrencyModel::toCurrency(statsAvg, CurrencyModel::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::instance().toCurrency(statsAvg, CurrencyModel::instance().get_base_data_n()) });
                 }
                 hb.endTbody();
             }
