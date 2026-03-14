@@ -47,21 +47,22 @@
 #include "uicontrols/navigatortypes.h"
 
 wxBEGIN_EVENT_TABLE(ReportPanel, wxPanel)
-    EVT_CHOICE(ID_YEAR_CHOICE,              ReportPanel::onYearChanged)
-    EVT_CHOICE(ID_BUDGET_CHOICE,            ReportPanel::onBudgetChanged)
-    EVT_CHOICE(ID_ACCOUNT_CHOICE,           ReportPanel::onAccountChanged)
-    EVT_CHOICE(ID_STOCK_CHOICE,            ReportPanel::OnStockChanged)
-    EVT_DATE_CHANGED(ID_START_DATE_PICKER,  ReportPanel::onStartEndDateChanged)
-    EVT_TIME_CHANGED(ID_START_DATE_PICKER,  ReportPanel::onStartEndDateChanged)
-    EVT_DATE_CHANGED(ID_END_DATE_PICKER,    ReportPanel::onStartEndDateChanged)
-    EVT_TIME_CHANGED(ID_END_DATE_PICKER,    ReportPanel::onStartEndDateChanged)
-    EVT_DATE_CHANGED(ID_SINGLE_DATE_PICKER, ReportPanel::onSingleDateChanged)
-    EVT_TIME_CHANGED(ID_SINGLE_DATE_PICKER, ReportPanel::onSingleDateChanged)
-    EVT_CHOICE(ID_CHART_CHOICE,             ReportPanel::onChartChanged)
-    EVT_SPINCTRL(ID_FORWARD_MONTHS,         ReportPanel::onForwardMonthsChangedSpin)
-    EVT_TEXT_ENTER(ID_FORWARD_MONTHS,       ReportPanel::onForwardMonthsChangedText)
-    EVT_BUTTON(ID_DATE_RANGE_BUTTON,        ReportPanel::onDateRangePopup)
-    EVT_MENU(ID_DATE_RANGE_EDIT,            ReportPanel::onDateRangeEdit)
+    EVT_CHOICE(ID_YEAR_CHOICE,               ReportPanel::onYearChanged)
+    EVT_CHOICE(ID_BUDGET_CHOICE,             ReportPanel::onBudgetChanged)
+    EVT_CHOICE(ID_ACCOUNT_CHOICE,            ReportPanel::onAccountChanged)
+    EVT_CHOICE(ID_STOCK_CHOICE,              ReportPanel::OnStockChanged)
+    EVT_TEXT_ENTER(ID_FILTER_GENERIC_CHOICE, ReportPanel::OnFilterChanged)
+    EVT_DATE_CHANGED(ID_START_DATE_PICKER,   ReportPanel::onStartEndDateChanged)
+    EVT_TIME_CHANGED(ID_START_DATE_PICKER,   ReportPanel::onStartEndDateChanged)
+    EVT_DATE_CHANGED(ID_END_DATE_PICKER,     ReportPanel::onStartEndDateChanged)
+    EVT_TIME_CHANGED(ID_END_DATE_PICKER,     ReportPanel::onStartEndDateChanged)
+    EVT_DATE_CHANGED(ID_SINGLE_DATE_PICKER,  ReportPanel::onSingleDateChanged)
+    EVT_TIME_CHANGED(ID_SINGLE_DATE_PICKER,  ReportPanel::onSingleDateChanged)
+    EVT_CHOICE(ID_CHART_CHOICE,              ReportPanel::onChartChanged)
+    EVT_SPINCTRL(ID_FORWARD_MONTHS,          ReportPanel::onForwardMonthsChangedSpin)
+    EVT_TEXT_ENTER(ID_FORWARD_MONTHS,        ReportPanel::onForwardMonthsChangedText)
+    EVT_BUTTON(ID_DATE_RANGE_BUTTON,         ReportPanel::onDateRangePopup)
+    EVT_MENU(ID_DATE_RANGE_EDIT,             ReportPanel::onDateRangeEdit)
     EVT_MENU_RANGE(
         ID_DATE_RANGE_MIN,
         ID_DATE_RANGE_MAX,
@@ -101,10 +102,12 @@ bool ReportPanel::Create(
 
     m_use_account_specific_filter = PrefModel::instance().getUsePerAccountFilter();
 
+    m_rb->extractParameters();
     m_rb->restoreReportSettings();
 
     CreateControls();
-    if (m_rb->getParameters() & ReportBase::M_DATE_RANGE) {
+
+    if (m_rb->getParameters() > 0) {
         loadFilterSettings();
         updateFilter();
     }
@@ -241,6 +244,13 @@ void ReportPanel::loadFilterSettings() {
             }
         }
     }
+
+    if (w_filter) {
+        wxString filter_str;
+        if (JSON_GetStringValue(j_doc, "FILTER_STRING_VALUE", filter_str)) {
+            w_filter->SetValue(filter_str);
+        }
+    }
 }
 
 void ReportPanel::saveFilterSettings() {
@@ -287,11 +297,19 @@ void ReportPanel::saveFilterSettings() {
         InfoModel::saveFilterInt(j_doc, "FILTER_STOCK_NAME_IDX", w_stocks_choice->GetSelection());
     }
 
+    if (w_filter) {
+        InfoModel::saveFilterString(j_doc, "FILTER_STRING_VALUE", w_filter->GetValue());
+    }
+
     InfoModel::instance().setJdoc(key, j_doc);
 }
 
 void ReportPanel::updateFilter()
 {
+    if (!w_date_range_button) {
+        return;
+    }
+
     wxLogDebug("ReportPanel::updateFilter(): m_filter_id=%d", int(m_filter_id));
     if (m_filter_id == JournalPanel::FILTER_ID_DATE_RANGE) {
         w_date_range_button->SetLabel(m_date_range.rangeName());
@@ -576,6 +594,22 @@ void ReportPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(30);
         }
 
+        if (rp & ReportBase::M_GENERIC_FILTER)
+        {
+            auto map = m_rb->getFilterMap();
+            wxString name = map.count("name") > 0 ? map["name"] : _t("Filter:");
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, name);
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
+            w_filter = new wxTextCtrl(itemPanel3, ID_FILTER_GENERIC_CHOICE, m_rb->getFilterValue(), wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+            if (map.count("default") > 0) {
+                w_filter->SetValue(removeQuotes(map["default"]));
+            }
+            itemBoxSizerHeader->Add(w_filter, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+        }
+
         itemBoxSizerHeader->AddStretchSpacer(1);
     }
 
@@ -822,6 +856,15 @@ void ReportPanel::OnStockChanged(wxCommandEvent& WXUNUSED(event))
             saveFilterSettings();
             m_rb->saveReportSettings();
         }
+    }
+}
+
+void ReportPanel::OnFilterChanged(wxCommandEvent& WXUNUSED(event))
+{
+    if (m_rb) {
+        saveReportText();
+        saveFilterSettings();
+        m_rb->saveReportSettings();
     }
 }
 

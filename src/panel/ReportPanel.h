@@ -49,6 +49,7 @@ public:
         ID_BUDGET_CHOICE,
         ID_CHART_CHOICE,
         ID_FORWARD_MONTHS,
+        ID_FILTER_GENERIC_CHOICE,
         ID_DATE_RANGE_BUTTON,
         ID_DATE_RANGE_MIN,
         ID_DATE_RANGE_MAX = ID_DATE_RANGE_MIN + 99,
@@ -60,7 +61,7 @@ private:
     std::vector<mmDateRange2::Range> m_date_range_a = {};
     int m_date_range_m = -1;
     mmDateRange2 m_date_range = mmDateRange2();
-    JournalPanel::FILTER_ID m_filter_id;
+    JournalPanel::FILTER_ID m_filter_id = JournalPanel::FILTER_ID_DATE;
     bool m_cleanup;
     int m_shift = 0;
     bool m_use_account_specific_filter;
@@ -80,6 +81,8 @@ private:
     wxChoice*         w_account_choice     = nullptr;
     wxChoice*         w_stocks_choice      = nullptr;
     wxChoice*         w_chart_choice       = nullptr;
+    wxTextCtrl*       w_filter             = nullptr;
+
 
 public:
     ReportPanel(
@@ -129,6 +132,7 @@ private:
     void onDateRangePopup(wxCommandEvent& event);
     void onDateRangeSelect(wxCommandEvent& event);
     void onDateRangeEdit(wxCommandEvent& event);
+    void OnFilterChanged(wxCommandEvent& event);
 
     void updateFilter();
 };

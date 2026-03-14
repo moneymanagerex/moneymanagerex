@@ -70,7 +70,8 @@ public:
         M_ACCOUNT        = 64,
         M_CHART          = 128,
         M_FORWARD_MONTHS = 256,
-        M_STOCK_NAMES    = 512
+        M_STOCK_NAMES    = 512,
+        M_GENERIC_FILTER = 1024,
     };
 
 protected:
@@ -89,6 +90,8 @@ protected:
     int m_chart_selection = 0;
     int m_stock_selection = 0;
     wxString m_stock_name = "";
+    wxString m_generic_filter = "";
+    std::map<wxString, wxString> m_filter_map;
 
 public:
     TrxFilter m_filter;
@@ -101,6 +104,7 @@ public:
 public:
     virtual const wxString getTitle(bool translate = true) const;
     virtual int getParameters();
+    virtual int extractParameters();
     virtual void refreshData() {}
     virtual wxString getHTMLText() = 0;
 
@@ -120,16 +124,19 @@ public:
     int getForwardMonths() const;
     int getAccountSelection() const;
     const wxString getAccountNames() const;
+    wxString getFilterValue() const;
     int getChartSelection() const;
     int getStockSelection() const;
     void setStockName(const wxString& name);
 
     void saveReportSettings();
     void restoreReportSettings();
+    std::map<wxString, wxString> getFilterMap() const;
 };
 
 // virtual
 inline int ReportBase::getParameters() { return m_parameters; }
+inline int ReportBase::extractParameters() { return m_parameters; }
 
 // set
 inline void ReportBase::setReportSettings(const wxString & settings) { m_settings = settings; }
@@ -160,6 +167,8 @@ inline int ReportBase::getForwardMonths() const { return this->m_forward_months;
 inline int ReportBase::getAccountSelection() const { return this->m_account_selection; }
 inline int ReportBase::getChartSelection() const { return this->m_chart_selection; }
 inline int ReportBase::getStockSelection() const { return this->m_stock_selection; }
+inline wxString ReportBase::getFilterValue() const { return this->m_generic_filter; }
+inline std::map<wxString, wxString> ReportBase::getFilterMap() const { return this->m_filter_map; }
 
 
 class mmGeneralReport : public ReportBase
@@ -169,7 +178,8 @@ public:
 
 public:
     wxString getHTMLText();
-    virtual int getParameters();
+    virtual int extractParameters();
+    std::map<wxString, wxString> extractFilterDetails(const wxString& input, const wxString& marker);
 
 private:
     const ReportData* m_report;
