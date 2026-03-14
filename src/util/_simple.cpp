@@ -486,16 +486,16 @@ mmComboBoxPayee::mmComboBoxPayee(wxWindow* parent, wxWindowID id
 
 void mmComboBoxUsedPayee::init()
 {
-    std::set<int64> used_id_s = PayeeModel::instance().find_used_id_s();
+    std::set<int64> used_id_m = PayeeModel::instance().find_used_id_m();
     all_elements_.clear();
-    for (int64 id : used_id_s) {
-        wxString name = PayeeModel::instance().get_id_name(id);
-        all_elements_[name] = id;
+    for (int64 payee_id : used_id_m) {
+        wxString name = PayeeModel::instance().get_id_name(payee_id);
+        all_elements_[name] = payee_id;
     }
 }
 
-mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize size)
-    : mmComboBox(parent, id, size)
+mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize size) :
+    mmComboBox(parent, id, size)
 {
     init();
     wxArrayString choices;
@@ -511,11 +511,11 @@ mmComboBoxUsedPayee::mmComboBoxUsedPayee(wxWindow* parent, wxWindowID id, wxSize
 
 void mmComboBoxCurrency::init()
 {
-    all_elements_ = CurrencyModel::instance().all_currency();
+    all_elements_ = CurrencyModel::instance().find_all_name_id_m();
 }
 
-mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize size)
-    : mmComboBox(parent, id, size)
+mmComboBoxCurrency::mmComboBoxCurrency(wxWindow* parent, wxWindowID id, wxSize size) :
+    mmComboBox(parent, id, size)
 {
     init();
     wxArrayString choices;
@@ -532,12 +532,13 @@ void mmComboBoxCategory::init()
 {
     int i = 0;
     all_elements_.clear();
-    all_categories_ = CategoryModel::instance().all_categories(excludeHidden_);
+    all_categories_ = CategoryModel::instance().find_all_id_mFullname(excludeHidden_);
     if (catID_ > -1)
-        all_categories_.insert(std::make_pair(CategoryModel::instance().full_name(catID_)
-            , catID_));
-    for (const auto& item : all_categories_)
-    {
+        all_categories_.insert(std::make_pair(
+            CategoryModel::instance().get_id_fullname(catID_),
+            catID_
+        ));
+    for (const auto& item : all_categories_) {
         all_elements_[item.first] = i++;
     }
 }
@@ -840,7 +841,7 @@ mmChoiceAmountMask::mmChoiceAmountMask(wxWindow* parent, wxWindowID id)
         this->Append(wxGetTranslation(entry.first), new wxStringClientData(entry.second));
     }
 
-    const CurrencyData* base_currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* base_currency = CurrencyModel::instance().get_base_data_n();
     const auto decimal_point = base_currency->m_decimal_point;
 
     SetDecimalChar(decimal_point);

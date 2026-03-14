@@ -80,7 +80,6 @@ const wxString htmlWidgetStocks::getHTMLText()
     double grand_gain_lost    = 0;
     double grand_market_value = 0;  // Track the grand total of market values
     double grand_cash_balance = 0;  // Track the grand total of cash balances
-    const wxDate today = wxDate::Today();
 
     wxString output = "";
     AccountModel::DataA account_a = AccountModel::instance().find(
@@ -109,10 +108,14 @@ const wxString htmlWidgetStocks::getHTMLText()
         if (!account_d.is_open())
             continue;
 
-        double conv_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id, today);
+        double conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+            account_d.m_currency_id
+        );
         auto inv_bal = AccountModel::instance().get_data_investment_balance(account_d);
         if (btoday) {
-            cash_bal = AccountModel::instance().get_data_balance_to_date(account_d, mmDate::today());
+            cash_bal = AccountModel::instance().get_data_balance_to_date(
+                account_d, mmDate::today()
+            );
         }
         else {
             cash_bal = AccountModel::instance().get_data_balance(account_d);
@@ -155,16 +158,16 @@ const wxString htmlWidgetStocks::getHTMLText()
         output += body;
         output += "</tbody><tfoot><tr class = 'total'><td>" + _t("Total:") + "</td>";
         output += wxString::Format("<td class='money'>%s</td>",
-            CurrencyModel::toCurrency(grand_gain_lost)
+            CurrencyModel::instance().toCurrency(grand_gain_lost)
         );
         output += wxString::Format("<td class='money'>%s</td>",
-            CurrencyModel::toCurrency(grand_market_value)
+            CurrencyModel::instance().toCurrency(grand_market_value)
         );
         output += wxString::Format("<td class='money'>%s</td>",
-            CurrencyModel::toCurrency(grand_cash_balance)
+            CurrencyModel::instance().toCurrency(grand_cash_balance)
         );
         output += wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>\n",
-            CurrencyModel::toCurrency(grand_total_)
+            CurrencyModel::instance().toCurrency(grand_total_)
         );
         output += "</div>";
     }
@@ -206,7 +209,7 @@ const wxString htmlWidgetTop7Categories::getHTMLText()
             data += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? wxString::FromUTF8Unchecked("…") : i.first));
             data += wxString::Format("<td class='money' sorttable_customkey='%f'>%s</td>\n"
                 , i.second
-                , CurrencyModel::toCurrency(i.second));
+                , CurrencyModel::instance().toCurrency(i.second));
             data += "</tr>\n";
         }
         const wxString idStr = "TOP_CATEGORIES";
@@ -221,10 +224,10 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
     , const mmDateRange* date_range) const
 {
-    //Temporary map
-    std::map<int64 /*category*/, double> stat;
+    // Temporary map
+    std::map<int64 /*category_id*/, double> stat;
 
-    const auto split = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto& trx_a = TrxModel::instance().find(
         TrxModel::TRANSDATE(OP_GE, date_range->start_date()),
         TrxCol::TRANSDATE(OP_LE, date_range->end_date().FormatISOCombined()),
@@ -238,23 +241,23 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
             continue;
 
         bool withdrawal = (trx_d.is_withdrawal());
-        double convRate = CurrencyHistoryModel::getDayRate(
+        double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            trx_d.TRANSDATE
+            mmDate(trx_d.TRANSDATE)
         );
 
-        if (const auto it = split.find(trx_d.m_id); it == split.end()) {
-            int64 category = trx_d.m_category_id_n;
+        if (const auto trxId_tpA = trxId_tpA_m.find(trx_d.m_id); trxId_tpA == trxId_tpA_m.end()) {
+            int64 category_id = trx_d.m_category_id_n;
             if (withdrawal)
-                stat[category] -= trx_d.m_amount * convRate;
+                stat[category_id] -= trx_d.m_amount * convRate;
             else
-                stat[category] += trx_d.m_amount * convRate;
+                stat[category_id] += trx_d.m_amount * convRate;
         }
         else {
-            for (const auto& tp_d : it->second) {
-                int64 category = tp_d.m_category_id;
+            for (const auto& tp_d : trxId_tpA->second) {
+                int64 category_id = tp_d.m_category_id;
                 double val = tp_d.m_amount * convRate * (withdrawal ? -1 : 1);
-                stat[category] += val;
+                stat[category_id] += val;
             }
         }
     }
@@ -263,7 +266,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     for (const auto& i : stat) {
         if (i.second < 0) {
             std::pair <wxString, double> stat_pair;
-            stat_pair.first = CategoryModel::instance().full_name(i.first);
+            stat_pair.first = CategoryModel::instance().get_id_fullname(i.first);
             stat_pair.second = i.second;
             categoryStats.push_back(stat_pair);
         }
@@ -419,9 +422,9 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         if (TrxModel::is_foreignAsTransfer(trx_d) || !trx_d.DELETEDTIME.IsEmpty())
             continue;
 
-        double convRate = CurrencyHistoryModel::getDayRate(
+        double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            trx_d.TRANSDATE
+            mmDate(trx_d.TRANSDATE)
         );
 
         int64 idx = trx_d.m_account_id;
@@ -452,15 +455,15 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     json_writer.Key("3");
     json_writer.String(_t("Income").utf8_str());
     json_writer.Key("4");
-    json_writer.String(CurrencyModel::toCurrency(tIncome).utf8_str());
+    json_writer.String(CurrencyModel::instance().toCurrency(tIncome).utf8_str());
     json_writer.Key("5");
     json_writer.String(_t("Expenses").utf8_str());
     json_writer.Key("6");
-    json_writer.String(CurrencyModel::toCurrency(tExpenses).utf8_str());
+    json_writer.String(CurrencyModel::instance().toCurrency(tExpenses).utf8_str());
     json_writer.Key("7");
     json_writer.String(_t("Difference:").utf8_str());
     json_writer.Key("8");
-    json_writer.String(CurrencyModel::toCurrency(tIncome - tExpenses).utf8_str());
+    json_writer.String(CurrencyModel::instance().toCurrency(tIncome - tExpenses).utf8_str());
     json_writer.Key("9");
     json_writer.String(_t("Income/Expenses").utf8_str());
     json_writer.Key("10");
@@ -560,16 +563,16 @@ const wxString htmlWidgetGrandTotals::getHTMLText(double tBalance, double tRecon
 
     output += wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , ( PrefModel::instance().getShowReconciledInHomePage() ? _t("Reconciled") : _t("Accounts"))
-                                        , CurrencyModel::toCurrency(tReconciled));
+                                        , CurrencyModel::instance().toCurrency(tReconciled));
     output +=  wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Assets")
-                                        , CurrencyModel::toCurrency(tAssets));
+                                        , CurrencyModel::instance().toCurrency(tAssets));
     output +=  wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Stock")
-                                        , CurrencyModel::toCurrency(tStocks));
+                                        , CurrencyModel::instance().toCurrency(tStocks));
     output += wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Balance")
-                                        , CurrencyModel::toCurrency(tBalance));
+                                        , CurrencyModel::instance().toCurrency(tBalance));
 
     return output;
 }
@@ -613,10 +616,18 @@ const wxString htmlWidgetAssets::getHTMLText()
         wxString row;
         row << "<tr>";
         row << wxString::Format("<td sorttable_customkey='*%s*'>%s</td>\n", name, name);
-        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n", initial, CurrencyModel::toCurrency(initial));
-        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n", current, CurrencyModel::toCurrency(current));
-        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n", cash, CurrencyModel::toCurrency(cash));
-        row << wxString::Format("<td colspan='2' class='money' sorttable_customkey='%.2f'>%s</td>\n", current + cash, CurrencyModel::toCurrency(current + cash));
+        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n",
+            initial, CurrencyModel::instance().toCurrency(initial)
+        );
+        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n",
+            current, CurrencyModel::instance().toCurrency(current)
+        );
+        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n",
+            cash, CurrencyModel::instance().toCurrency(cash)
+        );
+        row << wxString::Format("<td colspan='2' class='money' sorttable_customkey='%.2f'>%s</td>\n",
+            current + cash, CurrencyModel::instance().toCurrency(current + cash)
+        );
         row << "</tr>\n";
         return row;
     };
@@ -644,18 +655,20 @@ const wxString htmlWidgetAssets::getHTMLText()
 
     if (rows > MAX_ASSETS) {
         wxString otherAssets = _t("Other Assets");
-        output << renderRow(wxString::Format("%s (%d)", otherAssets, rows - MAX_ASSETS),
-                            initialTotal - initialDisplayed,
-                            currentTotal - currentDisplayed,
-                            cashTotal - cashDisplayed);
+        output << renderRow(
+            wxString::Format("%s (%d)", otherAssets, rows - MAX_ASSETS),
+            initialTotal - initialDisplayed,
+            currentTotal - currentDisplayed,
+            cashTotal - cashDisplayed
+        );
     }
 
     output << "<tfoot><tr class='total'><td>" << _t("Total:") << "</td>\n"
-           << wxString::Format("<td class='money'>%s</td>\n", CurrencyModel::toCurrency(initialTotal))
-           << wxString::Format("<td class='money'>%s</td>\n", CurrencyModel::toCurrency(currentTotal))
-           << wxString::Format("<td class='money'>%s</td>\n", CurrencyModel::toCurrency(cashTotal))
+           << wxString::Format("<td class='money'>%s</td>\n", CurrencyModel::instance().toCurrency(initialTotal))
+           << wxString::Format("<td class='money'>%s</td>\n", CurrencyModel::instance().toCurrency(currentTotal))
+           << wxString::Format("<td class='money'>%s</td>\n", CurrencyModel::instance().toCurrency(cashTotal))
            << wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>\n",
-                               CurrencyModel::toCurrency(currentTotal + cashTotal))
+                               CurrencyModel::instance().toCurrency(currentTotal + cashTotal))
            << "</div>";
 
     return output;
@@ -739,7 +752,6 @@ const wxString htmlWidgetAccounts::displayAccounts(
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
     wxString body = "";
-    const wxDate today = wxDate::Today();
     double tabBalance = 0.0, tabReconciled = 0.0;
     wxString vAccts = SettingModel::instance().getViewAccounts();
     auto account_a = AccountModel::instance().find(
@@ -750,7 +762,9 @@ const wxString htmlWidgetAccounts::displayAccounts(
     for (const auto& account_d : account_a) {
         const CurrencyData* currency = AccountModel::instance().get_data_currency_p(account_d);
 
-        double currency_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id, today);
+        double currency_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+            account_d.m_currency_id
+        );
         double bal = account_d.m_open_balance + accountStats_[account_d.m_id].second; //AccountModel::instance().get_data_balance(account_d);
         double reconciledBal = account_d.m_open_balance + accountStats_[account_d.m_id].first;
         tabBalance += bal * currency_rate;
@@ -771,10 +785,10 @@ const wxString htmlWidgetAccounts::displayAccounts(
             if (showReconciled) {
                 body += wxString::Format("\n<td class='money' sorttable_customkey='%f' nowrap>%s</td>\n",
                     reconciledBal,
-                    CurrencyModel::toCurrency(reconciledBal, currency)
+                    CurrencyModel::instance().toCurrency(reconciledBal, currency)
                 );
             }
-            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, CurrencyModel::toCurrency(bal, currency));
+            body += wxString::Format("<td class='money' sorttable_customkey='%f' colspan='2' nowrap>%s</td>\n", bal, CurrencyModel::instance().toCurrency(bal, currency));
             body += "</tr>\n";
         }
     }
@@ -782,9 +796,9 @@ const wxString htmlWidgetAccounts::displayAccounts(
     output += "</tbody><tfoot><tr class ='total'><td>" + _t("Total:") + "</td>\n";
 
     if (showReconciled) {
-        output += "<td class='money'>" + CurrencyModel::toCurrency(tabReconciled) + "</td>\n";
+        output += "<td class='money'>" + CurrencyModel::instance().toCurrency(tabReconciled) + "</td>\n";
     }
-    output += "<td class='money' colspan='2'>" + CurrencyModel::toCurrency(tabBalance) + "</td></tr></tfoot></table>\n";
+    output += "<td class='money' colspan='2'>" + CurrencyModel::instance().toCurrency(tabBalance) + "</td></tr></tfoot></table>\n";
     if (body.empty()) output.clear();
 
     tBalance += tabBalance;
@@ -832,16 +846,15 @@ const wxString htmlWidgetCurrency::getHtmlText()
 )";
 
 
-    const wxString today = wxDate::Today().FormatISODate();
     std::map<wxString, double> usedRates;
-    const auto currencies = CurrencyModel::instance().find_all();
 
-    for (const auto &currency : currencies) {
-        if (CurrencyModel::is_used(currency.m_id)) {
+    for (const auto& currency_d : CurrencyModel::instance().find_all()) {
+        if (CurrencyModel::instance().find_id_dep_c(currency_d.m_id) > 0) {
 
-            double convertionRate = CurrencyHistoryModel::getDayRate(currency.m_id
-                , today);
-            usedRates[currency.m_symbol] = convertionRate;
+            double convertionRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                currency_d.m_id
+            );
+            usedRates[currency_d.m_symbol] = convertionRate;
 
             if (usedRates.size() >= 10) {
                 break;
@@ -854,17 +867,15 @@ const wxString htmlWidgetCurrency::getHtmlText()
     }
     wxString header;
     loop_t contents;
-    for (const auto& i : usedRates)
-    {
+    for (const auto& i : usedRates) {
         row_t r;
         r(L"CURRENCY_SYMBOL") = i.first;
         wxString row;
-        for (const auto& j : usedRates)
-        {
+        for (const auto& j : usedRates) {
             double value = j.second / i.second;
             row += wxString::Format("<td %s>%s</td>"
                 , j.first == i.first ? "class ='active'" : "class='money'"
-                , j.first == i.first ? "" : CurrencyModel::toString(value, nullptr, 4)
+                , j.first == i.first ? "" : CurrencyModel::instance().toString(value, nullptr, 4)
             );
         }
         header += wxString::Format("<th class='text-center'>%s</th>", i.first);
@@ -878,16 +889,13 @@ const wxString htmlWidgetCurrency::getHtmlText()
     report(L"HEADER") = header;
 
     wxString out = wxEmptyString;
-    try
-    {
+    try {
         out = report.Process();
     }
-    catch (const syntax_ex& e)
-    {
+    catch (const syntax_ex& e) {
         return e.what();
     }
-    catch (...)
-    {
+    catch (...) {
         return _t("Caught exception");
     }
 

@@ -109,7 +109,7 @@ const CurrencyData* AccountModel::get_data_currency_p(const Data& account_d)
         return currency_n;
     else {
         wxASSERT(false);
-        return CurrencyModel::GetBaseCurrency();
+        return CurrencyModel::instance().get_base_data_n();
     }
 }
 
@@ -176,7 +176,7 @@ const CurrencyData* AccountModel::get_id_currency_p(int64 account_id)
         return AccountModel::get_data_currency_p(*account_n);
     else {
         wxASSERT(false);
-        return CurrencyModel::GetBaseCurrency();
+        return CurrencyModel::instance().get_base_data_n();
     }
 }
 
@@ -351,10 +351,17 @@ void AccountModel::dangerous_reset_unknown_types()
 
 const wxString AccountModel::value_number(const Data& account_d, double value, int precision)
 {
-    return CurrencyModel::toString(value, AccountModel::get_data_currency_p(account_d), precision);
+    return CurrencyModel::instance().toString(
+        value,
+        AccountModel::get_data_currency_p(account_d),
+        precision
+    );
 }
 
 const wxString AccountModel::value_number_currency(const Data& account_d, double value)
 {
-    return CurrencyModel::toCurrency(value, AccountModel::get_data_currency_p(account_d));
+    return CurrencyModel::instance().toCurrency(
+        value,
+        AccountModel::get_data_currency_p(account_d)
+    );
 }

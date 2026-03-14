@@ -307,7 +307,7 @@ bool TrxModel::purge_id(int64 trx_id)
             TrxLinkModel::instance().purge_id(tl_n->m_id);
             if (tl_n->m_ref_type == AssetModel::s_ref_type) {
                 AssetData* asset_n = AssetModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
-                TrxLinkModel::UpdateAssetValue(asset_n);
+                TrxLinkModel::instance().update_asset_value(asset_n);
             }
             else if (tl_n->m_ref_type == StockModel::s_ref_type) {
                 StockData* stock_n = StockModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
@@ -364,7 +364,7 @@ bool TrxModel::save_trx_a(DataA& trx_a)
 
     db_savepoint();
     for (auto& trx_d : trx_a) {
-        if (trx_d.id() < 0)
+        if (trx_d.m_id < 0)
             wxLogDebug("Incorrect function call to save %s", trx_d.to_json().utf8_str());
         if (!save_trx_n(trx_d)) {
             ok = false;
@@ -428,10 +428,10 @@ void TrxModel::Full_Data::fill_data()
     if (!m_splits.empty()) {
         for (const auto& tp_d : m_splits)
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
-                + CategoryModel::instance().full_name(tp_d.m_category_id);
+                + CategoryModel::instance().get_id_fullname(tp_d.m_category_id);
     }
     else {
-        CATEGNAME = CategoryModel::instance().full_name(m_category_id_n);
+        CATEGNAME = CategoryModel::instance().get_id_fullname(m_category_id_n);
     }
 
     if (!m_tags.empty()) {
@@ -546,7 +546,7 @@ const wxString TrxModel::Full_Data::to_json()
         json_writer.StartArray();
         for (const auto& tp_d : m_splits) {
             json_writer.StartObject();
-            json_writer.Key(CategoryModel::instance().full_name(tp_d.m_category_id).utf8_str());
+            json_writer.Key(CategoryModel::instance().get_id_fullname(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
             json_writer.EndObject();
         }
@@ -557,7 +557,7 @@ const wxString TrxModel::Full_Data::to_json()
         json_writer.StartArray();
         for (const auto & tp_d : m_splits) {
             json_writer.StartObject();
-            json_writer.Key(CategoryModel::instance().full_name(tp_d.m_category_id).utf8_str());
+            json_writer.Key(CategoryModel::instance().get_id_fullname(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
             json_writer.EndObject();
         }
@@ -565,7 +565,7 @@ const wxString TrxModel::Full_Data::to_json()
     }
     else {
         json_writer.Key("CATEG");
-        json_writer.String(CategoryModel::instance().full_name(this->m_category_id_n).utf8_str());
+        json_writer.String(CategoryModel::instance().get_id_fullname(this->m_category_id_n).utf8_str());
     }
 
     json_writer.EndObject();

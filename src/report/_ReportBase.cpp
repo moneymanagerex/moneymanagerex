@@ -344,6 +344,6 @@ void mm_html_template::load_context()
         (*this)(info_d.m_name.ToStdWstring()) = info_d.m_value;
     (*this)(L"INFOTABLE") = InfoModel::to_loop_t();
 
-    const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency = CurrencyModel::instance().get_base_data_n();
     if (currency) currency->to_html_template(*this);
 }

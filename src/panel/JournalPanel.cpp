@@ -111,10 +111,10 @@ JournalPanel::JournalPanel(
     }
     else if (isGroup()) {
         m_group_ids = std::set<int64>(group_ids.begin(), group_ids.end());
-        m_currency_n = CurrencyModel::GetBaseCurrency();
+        m_currency_n = CurrencyModel::instance().get_base_data_n();
     }
     else {
-        m_currency_n = CurrencyModel::GetBaseCurrency();
+        m_currency_n = CurrencyModel::instance().get_base_data_n();
     }
     m_use_account_specific_filter = PrefModel::instance().getUsePerAccountFilter();
     loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
@@ -661,7 +661,7 @@ void JournalPanel::filterList()
     const auto trans = m_account_n
         ? AccountModel::instance().find_id_trx_aBySN(m_account_n->m_id)
         : TrxModel::instance().find_allByDateTimeId();
-    const auto trans_splits = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
         TrxModel::s_ref_type
     );
@@ -781,7 +781,7 @@ void JournalPanel::filterList()
             continue;
 
         Journal::Full_Data journal_xd = (repeat_num == 0) ?
-            Journal::Full_Data(*trx_n, trans_splits, trxId_glA_m) :
+            Journal::Full_Data(*trx_n, trxId_tpA_m, trxId_glA_m) :
             Journal::Full_Data(bills[bill_i], tran_date, repeat_num, schedId_qpA_m, schedId_glA_m);
 
         bool expandSplits = false;
@@ -876,7 +876,7 @@ void JournalPanel::filterList()
             journal_xd.displayID = tranDisplayID + "." + wxString::Format("%i", splitIndex);
             splitIndex++;
             journal_xd.m_category_id_n = tp_d.m_category_id;
-            journal_xd.CATEGNAME       = CategoryModel::instance().full_name(tp_d.m_category_id);
+            journal_xd.CATEGNAME       = CategoryModel::instance().get_id_fullname(tp_d.m_category_id);
             journal_xd.m_amount        = tp_d.m_amount;
             journal_xd.m_notes         = trx_n->m_notes;
             journal_xd.TAGNAMES        = tranTagnames;
@@ -1017,7 +1017,10 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 if (m_account_id < 0 && m_lc->m_journal_xa[item].is_transfer())
                     continue;
                 double convrate = (curr != m_currency_n)
-                    ? CurrencyHistoryModel::getDayRate(curr->m_id, m_lc->m_journal_xa[item].TRANSDATE)
+                    ? CurrencyHistoryModel::instance().get_id_date_rate(
+                        curr->m_id,
+                        mmDate(m_lc->m_journal_xa[item].TRANSDATE)
+                    )
                     : 1.0;
                 flow += convrate * TrxModel::account_flow(m_lc->m_journal_xa[item], (m_account_id < 0) ? m_lc->m_journal_xa[item].m_account_id : m_account_id);
                 wxString transdate = m_lc->m_journal_xa[item].TRANSDATE;
@@ -1031,7 +1034,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
             int days = max_date.Subtract(min_date).GetDays();
 
             wxString msg;
-            wxString selectedBal = CurrencyModel::toCurrency(flow, m_currency_n);
+            wxString selectedBal = CurrencyModel::instance().toCurrency(flow, m_currency_n);
             m_info_panel_selectedbal = selectedBal;
             msg = wxString::Format(_t("Transactions selected: %zu"), selected.size());
             msg += "\n";
@@ -1438,9 +1441,9 @@ void JournalPanel::displaySplitCategories(Journal::IdB journal_id)
     std::vector<Split> splits;
     for (const auto& tp_d : Journal::split(journal)) {
         Split split_d;
-        split_d.CATEGID          = tp_d.m_category_id;
-        split_d.SPLITTRANSAMOUNT = tp_d.m_amount;
-        split_d.NOTES            = tp_d.m_notes;
+        split_d.m_category_id = tp_d.m_category_id;
+        split_d.m_amount      = tp_d.m_amount;
+        split_d.m_notes       = tp_d.m_notes;
         splits.push_back(split_d);
     }
     if (splits.empty()) return;

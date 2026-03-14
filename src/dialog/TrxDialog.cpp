@@ -128,9 +128,9 @@ TrxDialog::TrxDialog(
                 TagLinkCol::REFID(tp_d.m_id))
             )
                 tag_id_a.push_back(gl_d.m_tag_id);
-            m_local_splits.push_back(
-                {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
-            );
+            m_local_splits.push_back({
+                tp_d.m_category_id, tp_d.m_amount, tp_d.m_notes, tag_id_a
+            });
         }
 
         if (m_mode == MODE_DUP &&
@@ -378,7 +378,7 @@ void TrxDialog::dataToControls()
         {
             cbCategory_->ChangeValue(_t("Split Transaction"));
             cbCategory_->Disable();
-            m_textAmount->SetValue(TrxSplitModel::get_total(m_local_splits));
+            m_textAmount->SetValue(TrxSplitModel::instance().get_total(m_local_splits));
             m_journal_data.m_category_id_n = -1;
         }
         else if (m_mode == MODE_NEW && m_transfer &&
@@ -389,15 +389,17 @@ void TrxDialog::dataToControls()
             );
 
             if (!transactions.empty() &&
-                !CategoryModel::instance().is_hidden(transactions.back().m_category_id_n)
+                CategoryModel::instance().get_id_active(transactions.back().m_category_id_n)
             ) {
-                const int64 cat = transactions.back().m_category_id_n;
-                cbCategory_->ChangeValue(CategoryModel::instance().full_name(cat));
+                int64 cat_id = transactions.back().m_category_id_n;
+                const wxString cat_fullname = CategoryModel::instance().get_id_fullname(cat_id);
+                cbCategory_->ChangeValue(cat_fullname);
             }
         }
         else {
-            auto fullCategoryName = CategoryModel::instance().full_name(m_journal_data.m_category_id_n);
-            cbCategory_->ChangeValue(fullCategoryName);
+            int64 cat_id = m_journal_data.m_category_id_n;
+            const wxString cat_fullname = CategoryModel::instance().get_id_fullname(cat_id);
+            cbCategory_->ChangeValue(cat_fullname);
         }
         skip_category_init_ = true;
     }
@@ -758,7 +760,7 @@ bool TrxDialog::ValidateData()
                 PayeeData new_payee_d = PayeeData();
                 new_payee_d.m_name = payee_name;
                 PayeeModel::instance().add_data_n(new_payee_d);
-                payee_n = PayeeModel::instance().get_id_data_n(new_payee_d.id());
+                payee_n = PayeeModel::instance().get_id_data_n(new_payee_d.m_id);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }
             else
@@ -771,7 +773,7 @@ bool TrxDialog::ValidateData()
         }
 
         if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED
-            && !CategoryModel::instance().is_hidden(m_journal_data.m_category_id_n)
+            && CategoryModel::instance().get_id_active(m_journal_data.m_category_id_n)
         ) {
             PayeeData payee_d = *payee_n;
             payee_d.m_category_id_n = m_journal_data.m_category_id_n;
@@ -1011,7 +1013,8 @@ void TrxDialog::OnComboKey(wxKeyEvent& event)
                 int rc = dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                if (rc != wxID_CANCEL) cbCategory_->ChangeValue(CategoryModel::instance().full_name(dlg.getCategId()));
+                if (rc != wxID_CANCEL)
+                    cbCategory_->ChangeValue(CategoryModel::instance().get_id_fullname(dlg.getCategId()));
                 return;
             }
         }
@@ -1047,7 +1050,7 @@ void TrxDialog::SetCategoryForPayee(const PayeeData *payee_n)
             CategoryData new_category_d = CategoryData();
             new_category_d.m_name = _t("Unknown");
             CategoryModel::instance().add_data_n(new_category_d);
-            category_n = CategoryModel::instance().get_id_data_n(new_category_d.id());
+            category_n = CategoryModel::instance().get_id_data_n(new_category_d.m_id);
             cbCategory_->mmDoReInitialize();
         }
 
@@ -1065,15 +1068,16 @@ void TrxDialog::SetCategoryForPayee(const PayeeData *payee_n)
     // Only for new transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
     if ((PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED ||
-            PrefModel::instance().getTransCategoryNone() == PrefModel::DEFAULT)
-        && m_mode == MODE_NEW && m_local_splits.empty()
-        && (!CategoryModel::instance().is_hidden(payee_n->m_category_id_n))
+            PrefModel::instance().getTransCategoryNone() == PrefModel::DEFAULT
+        ) &&
+        m_mode == MODE_NEW && m_local_splits.empty() &&
+        CategoryModel::instance().get_id_active(payee_n->m_category_id_n)
     ) {
         // if payee has memory of last category used then display last category for payee
         const CategoryData* category_n = CategoryModel::instance().get_id_data_n(payee_n->m_category_id_n);
         if (category_n) {
             m_journal_data.m_category_id_n = payee_n->m_category_id_n;
-            cbCategory_->ChangeValue(CategoryModel::instance().full_name(payee_n->m_category_id_n));
+            cbCategory_->ChangeValue(CategoryModel::instance().get_id_fullname(payee_n->m_category_id_n));
             wxLogDebug("Category: %s = %.2f", cbCategory_->GetLabel(), m_journal_data.m_amount);
         }
         else {
@@ -1141,9 +1145,9 @@ void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     wxLogDebug("Cat Valid %d, Cat Is Empty %d, Cat value [%s]", cbCategory_->mmIsValid(), cbCategory_->GetValue().IsEmpty(), cbCategory_->GetValue());
     if (m_local_splits.empty()) {
         Split split_d;
-        split_d.SPLITTRANSAMOUNT = m_journal_data.m_amount;
+        split_d.m_amount = m_journal_data.m_amount;
         if (cbCategory_->mmIsValid())
-            split_d.CATEGID = cbCategory_->mmGetCategoryId();
+            split_d.m_category_id = cbCategory_->mmGetCategoryId();
         m_local_splits.push_back(split_d);
     }
 
@@ -1154,8 +1158,8 @@ void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_local_splits = dlg.mmGetResult();
 
         if (m_local_splits.size() == 1) {
-            m_journal_data.m_category_id_n = m_local_splits[0].CATEGID;
-            m_journal_data.m_amount = m_local_splits[0].SPLITTRANSAMOUNT;
+            m_journal_data.m_category_id_n = m_local_splits[0].m_category_id;
+            m_journal_data.m_amount = m_local_splits[0].m_amount;
             m_textAmount->SetValue(m_journal_data.m_amount);
             m_local_splits.clear();
         }
@@ -1282,17 +1286,17 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     TrxSplitModel::DataA tp_a;
     for (const auto& split_d : m_local_splits) {
         TrxSplitData tp_d = TrxSplitData();
-        tp_d.m_category_id = split_d.CATEGID;
-        tp_d.m_amount      = split_d.SPLITTRANSAMOUNT;
-        tp_d.m_notes       = split_d.NOTES;
+        tp_d.m_category_id = split_d.m_category_id;
+        tp_d.m_amount      = split_d.m_amount;
+        tp_d.m_notes       = split_d.m_notes;
         tp_a.push_back(tp_d);
     }
-    TrxSplitModel::instance().update(tp_a, m_journal_data.m_id);
+    TrxSplitModel::instance().update_trx(m_journal_data.m_id, tp_a);
 
     // Save split tags
     for (unsigned int i = 0; i < m_local_splits.size(); i++) {
         TagLinkModel::DataA new_tp_gl_a;
-        for (const auto& tag_id : m_local_splits.at(i).TAGS) {
+        for (const auto& tag_id : m_local_splits.at(i).m_tag_id_a) {
             TagLinkData new_gl_d = TagLinkData();
             new_gl_d.m_tag_id   = tag_id;
             new_gl_d.m_ref_type = TrxSplitModel::s_ref_type;
@@ -1368,12 +1372,12 @@ void TrxDialog::SetTooltips()
     if (this->m_local_splits.empty())
         mmToolTip(bSplit_, _t("Use split Categories"));
     else {
-        const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
+        const CurrencyData* currency = CurrencyModel::instance().get_base_data_n();
         const AccountData* account_n = AccountModel::instance().get_id_data_n(m_journal_data.m_account_id);
         if (account_n)
             currency = AccountModel::instance().get_data_currency_p(*account_n);
 
-        bSplit_->SetToolTip(TrxSplitModel::get_tooltip(m_local_splits, currency));
+        bSplit_->SetToolTip(TrxSplitModel::instance().get_tooltip(m_local_splits, currency));
     }
     if (m_mode != MODE_NEW) return;
 

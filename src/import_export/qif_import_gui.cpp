@@ -69,7 +69,7 @@ mmQIFImportDialog::mmQIFImportDialog(
     m_today(wxDate::Today()),
     m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
 {
-    decimal_ = CurrencyModel::GetBaseCurrency()->m_decimal_point;
+    decimal_ = CurrencyModel::instance().get_base_data_n()->m_decimal_point;
     payeeIsNotes_ = false;
     const AccountData* account_n = AccountModel::instance().get_id_data_n(account_id);
     if (account_n)
@@ -663,7 +663,7 @@ bool mmQIFImportDialog::completeTransaction(
                 trx[QIF_ID_Memo] += (trx[QIF_ID_Memo].empty() ? "" : "\n") + trx[QIF_ID_Payee];
                 if (m_QIFaccounts.find(toAccName) == m_QIFaccounts.end()) {
                     std::unordered_map<int, wxString> a;
-                    a[QIF_ID_Description] = "[" + CurrencyModel::GetBaseCurrency()->m_symbol + "]";
+                    a[QIF_ID_Description] = "[" + CurrencyModel::instance().get_base_data_n()->m_symbol + "]";
                     a[QIF_ID_AccountType] = (trx.find(QIF_ID_Description) != trx.end() ? trx.at(QIF_ID_Description) : "");
                     m_QIFaccounts[toAccName] = a;
                 }
@@ -841,12 +841,12 @@ void mmQIFImportDialog::refreshTabs(int tabs)
 
     if (tabs & CAT_TAB) {
         num = 0;
-        const auto& c(CategoryModel::instance().all_categories());
+        const auto& cat_fullname_id_m = CategoryModel::instance().find_all_id_mFullname();
         categoryListBox_->DeleteAllItems();
         for (const auto& categ : m_QIFcategoryNames) {
             wxVector<wxVariant> data;
             data.push_back(wxVariant(categ.first));
-            if (c.find(categ.first) == c.end() &&
+            if (cat_fullname_id_m.find(categ.first) == cat_fullname_id_m.end() &&
                 !(categ.first.Left(1) == '[' && categ.first.Last() == ']'))
                 data.push_back(wxVariant("Missing"));
             else
@@ -885,7 +885,7 @@ void mmQIFImportDialog::OnShowCategDialog(wxMouseEvent&)
         wxString selectedCategname = value.GetString();
         id = m_QIFcategoryNames[selectedCategname];
         if (id == -1) {
-            std::map<wxString, int64 > categories = CategoryModel::instance().all_categories();
+            std::map<wxString, int64 > categories = CategoryModel::instance().find_all_id_mFullname();
             for (const auto& category : categories)
             {
                 if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
@@ -1162,7 +1162,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                             TagData new_tag_d = TagData();
                             new_tag_d.m_name = tagname;
                             TagModel::instance().add_data_n(new_tag_d);
-                            tag_n = TagModel::instance().get_id_data_n(new_tag_d.id());
+                            tag_n = TagModel::instance().get_id_data_n(new_tag_d.m_id);
                         }
                         TagLinkData gl_d = TagLinkData();
                         gl_d.m_tag_id   = tag_n->m_id;
@@ -1240,7 +1240,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         TagLinkModel::instance().db_release_savepoint();
         TrxModel::instance().save_trx_a(trx_a);
         progressDlg.Update(count, _t("Importing Split transactions"));
-        joinSplit(trx_a, m_splitDataSets);
+        joinSplit(trx_a, m_tp_a_a);
         saveSplit();
 
         sMsg = _t("Import finished successfully.") + "\n" +
@@ -1264,25 +1264,25 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
 void mmQIFImportDialog::saveSplit()
 {
-    if (m_splitDataSets.empty())
+    if (m_tp_a_a.empty())
         return;
 
     TrxSplitModel::instance().db_savepoint();
     TagLinkModel::instance().db_savepoint();
     // Work through each group of splits
-    for (int i = 0; i < static_cast<int>(m_splitDataSets.size()); i++) {
+    for (int i = 0; i < static_cast<int>(m_tp_a_a.size()); i++) {
         // and each split in the group
-        for (int j = 0; j < static_cast<int>(m_splitDataSets[i].size()); j++) {
+        for (int j = 0; j < static_cast<int>(m_tp_a_a[i].size()); j++) {
             // save the split
-            TrxSplitModel::instance().save_data_n(m_splitDataSets[i][j]);
-            int64 splitTransID = m_splitDataSets[i][j].id();
+            TrxSplitModel::instance().save_data_n(m_tp_a_a[i][j]);
+            int64 tp_id = m_tp_a_a[i][j].m_id;
             // check if there are any taglinks for this split index in this group
-            if (!m_splitTaglinks[i][j].empty()) {
+            if (!m_gl_a_a[i][j].empty()) {
                 // apply the SPLITTRANSID as the REFID for all the cached taglinks
-                for (auto& gl_d : m_splitTaglinks[i][j])
-                    gl_d.m_ref_id = splitTransID;
+                for (auto& gl_d : m_gl_a_a[i][j])
+                    gl_d.m_ref_id = tp_id;
                 // save cached taglinks
-                TagLinkModel::instance().save_data_a(m_splitTaglinks[i][j]);
+                TagLinkModel::instance().save_data_a(m_gl_a_a[i][j]);
             }
         }
     }
@@ -1519,7 +1519,7 @@ bool mmQIFImportDialog::completeTransaction(
                         TagData new_tag_d = TagData();
                         new_tag_d.m_name = tagname;
                         TagModel::instance().add_data_n(new_tag_d);
-                        tag_n = TagModel::instance().get_id_data_n(new_tag_d.id());
+                        tag_n = TagModel::instance().get_id_data_n(new_tag_d.m_id);
                     }
                     TagLinkData gl_d = TagLinkData();
                     gl_d.m_tag_id   = tag_n->m_id;
@@ -1529,12 +1529,12 @@ bool mmQIFImportDialog::completeTransaction(
                 // Here we keep track of which block of splits and which split in the block
                 // each group of taglinks is associated with. Once we save the splits we can
                 // record the SPLITTRANSID on the taglink
-                m_splitTaglinks[m_splitDataSets.size()][split_id - 1] = splitTaglinks;
+                m_gl_a_a[m_tp_a_a.size()][split_id - 1] = splitTaglinks;
             }
             split_id++;
         }
-        trx_n->m_category_id_n = -1 * static_cast<int>(m_splitDataSets.size());
-        m_splitDataSets.push_back(tp_a);
+        trx_n->m_category_id_n = -1 * static_cast<int>(m_tp_a_a.size());
+        m_tp_a_a.push_back(tp_a);
     }
     else {
         wxString categStr = (t.find(QIF_ID_Category) != t.end()
@@ -1546,7 +1546,7 @@ bool mmQIFImportDialog::completeTransaction(
             if (payee_n) {
                 trx_n->m_category_id_n = payee_n->m_category_id_n;
             }
-            categStr = CategoryModel::instance().full_name(trx_n->m_category_id_n, ":");
+            categStr = CategoryModel::instance().get_id_fullname(trx_n->m_category_id_n, ":");
 
             if (categStr.empty()) {
                 trx_n->m_category_id_n = (m_QIFcategoryNames[_t("Unknown")]);
@@ -1643,13 +1643,13 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
 {
     m_QIFaccountsID.clear();
 
-    for (auto &item : m_QIFaccounts) {
-        int64 accountID = -1;
-        const AccountData* acc = (accountNumberCheckBox_->IsChecked())
+    for (auto& item : m_QIFaccounts) {
+        int64 account_id = -1;
+        const AccountData* account_n = (accountNumberCheckBox_->IsChecked())
             ? AccountModel::instance().get_num_data_n(item.first)
             : AccountModel::instance().get_name_data_n(item.first);
 
-        if (!acc) {
+        if (!account_n) {
             AccountData account_d = AccountData();
             account_d.m_favorite = AccountFavorite(true);
 
@@ -1659,7 +1659,7 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
             account_d.m_name         = item.first;
             account_d.m_open_balance = 0;
             account_d.m_open_date    = mmDate::today();
-            account_d.m_currency_id  = CurrencyModel::GetBaseCurrency()->m_id;
+            account_d.m_currency_id  = CurrencyModel::instance().get_base_data_n()->m_id;
             const wxString c = (item.second.find(QIF_ID_Description) == item.second.end()
                 ? ""
                 : item.second.at(QIF_ID_Description)
@@ -1672,19 +1672,19 @@ int64 mmQIFImportDialog::getOrCreateAccounts()
             }
 
             AccountModel::instance().add_data_n(account_d);
-            accountID = account_d.id();
+            account_id = account_d.m_id;
             wxString sMsg = wxString::Format(_t("Added account: %s"), item.first);
             *log_field_ << sMsg << "\n";
         }
         else
-            accountID = acc->m_id;
+            account_id = account_n->m_id;
 
-        m_QIFaccountsID[item.first] = accountID;
+        m_QIFaccountsID[item.first] = account_id;
     }
 
-    const AccountData* acc = AccountModel::instance().get_name_data_n(m_accountNameStr);
-    if (acc) {
-        m_QIFaccountsID[m_accountNameStr] = acc->m_id;
+    const AccountData* account_n = AccountModel::instance().get_name_data_n(m_accountNameStr);
+    if (account_n) {
+        m_QIFaccountsID[m_accountNameStr] = account_n->m_id;
     }
 
     return m_QIFaccountsID.size();
@@ -1707,7 +1707,7 @@ void mmQIFImportDialog::getOrCreatePayees()
         PayeeModel::instance().save_data_n(new_payee_d);
         wxString sMsg = wxString::Format(_t("Added payee: %s"), item);
         log_field_->AppendText(wxString() << sMsg << "\n");
-        m_QIFpayeeNames[item] = std::make_tuple(new_payee_d.id(), new_payee_d.m_name, "");
+        m_QIFpayeeNames[item] = std::make_tuple(new_payee_d.m_id, new_payee_d.m_name, "");
     }
 
     PayeeModel::instance().db_release_savepoint();
@@ -1731,7 +1731,7 @@ void mmQIFImportDialog::getOrCreateCategories()
                     new_cat_d.m_name        = categStr;
                     new_cat_d.m_parent_id_n = parentID;
                     CategoryModel::instance().add_data_n(new_cat_d);
-                    cat_n = CategoryModel::instance().get_id_data_n(new_cat_d.id());
+                    cat_n = CategoryModel::instance().get_id_data_n(new_cat_d.m_id);
                 }
                 temp.Add(categStr + wxString::Format(":%lld", parentID));
             }

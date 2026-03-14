@@ -30,43 +30,37 @@
 
 struct Split
 {
-    int64 CATEGID;
-    double SPLITTRANSAMOUNT;
-    wxArrayInt64 TAGS;
-    wxString NOTES;
+    int64        m_category_id;
+    double       m_amount;
+    wxString     m_notes;
+    wxArrayInt64 m_tag_id_a;
 };
 
 class TrxSplitModel : public TableFactory<TrxSplitTable, TrxSplitData>
 {
 public:
+    static const RefTypeN s_ref_type;
+
+public:
     TrxSplitModel();
     ~TrxSplitModel();
 
 public:
-    /**
-    Initialize the global TrxSplitModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for TrxSplitModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static TrxSplitModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for TrxSplitModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static TrxSplitModel& instance();
 
 public:
-    static double get_total(const DataA& rows);
-    static double get_total(const std::vector<Split>& local_splits);
-    static const wxString get_tooltip(const std::vector<Split>& local_splits, const CurrencyData* currency);
-    std::map<int64, TrxSplitModel::DataA> get_all_id();
-    int update(DataA& rows, int64 transactionID);
-    int update(const std::vector<Split>& rows, int64 transactionID);
-    bool purge_id(int64 id) override;
+    // override
+    bool purge_id(int64 tp_id) override;
 
-public:
-    static const RefTypeN s_ref_type;
+    auto find_all_mTrxId() -> std::map<int64, DataA>;
+
+    auto get_total(const DataA& tp_a) -> double;
+    auto get_total(const std::vector<Split>& split_a) -> double;
+    auto get_tooltip(
+        const std::vector<Split>& split_a, const CurrencyData* currency_n
+    ) -> const wxString;
+
+    int  update_trx(int64 trx_id, DataA& src_tp_a);
+    int  update_trx(int64 trx_id, const std::vector<Split>& split_a);
 };
-

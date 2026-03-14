@@ -28,16 +28,19 @@ public:
     using wxTextCtrl::SetValue;
 
     mmTextCtrl() {}
-    mmTextCtrl(wxWindow *parent, wxWindowID id
-        , const wxString &value = wxEmptyString
-        , const wxPoint &pos = wxDefaultPosition
-        , const wxSize &size = wxDefaultSize
-        , long style = wxTE_PROCESS_ENTER | wxALIGN_RIGHT
-        , const wxValidator &validator = wxDefaultValidator
-        , const CurrencyData* currency = CurrencyModel::GetBaseCurrency()
-        , const wxString &name = "mmTextCtrl")
-    : wxTextCtrl(parent, id, value, pos, size, style, validator, name)
-        , m_currency(currency)
+    mmTextCtrl(
+        wxWindow *parent,
+        wxWindowID id,
+        const wxString &value = wxEmptyString,
+        const wxPoint &pos = wxDefaultPosition,
+        const wxSize &size = wxDefaultSize,
+        long style = wxTE_PROCESS_ENTER | wxALIGN_RIGHT,
+        const wxValidator &validator = wxDefaultValidator,
+        const CurrencyData* currency = CurrencyModel::instance().get_base_data_n(),
+        const wxString &name = "mmTextCtrl"
+    ) :
+        wxTextCtrl(parent, id, value, pos, size, style, validator, name),
+        m_currency(currency)
     {}
 
     void SetValue(double value);

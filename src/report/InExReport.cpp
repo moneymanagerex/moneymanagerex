@@ -62,8 +62,9 @@ wxString InExReport::getHTMLText()
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
         if (account) {
-            convRate = CurrencyHistoryModel::getDayRate(
-                AccountModel::instance().get_data_currency_p(*account)->m_id, trx_d.TRANSDATE
+            convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                AccountModel::instance().get_data_currency_p(*account)->m_id,
+                mmDate(trx_d.TRANSDATE)
             );
         }
 
@@ -166,8 +167,9 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
         if (account) {
-            convRate = CurrencyHistoryModel::getDayRate(
-                AccountModel::instance().get_data_currency_p(*account)->m_id, trx_d.TRANSDATE
+            convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                AccountModel::instance().get_data_currency_p(*account)->m_id,
+                mmDate(trx_d.TRANSDATE)
             );
         }
         int year = TrxModel::getTransDateTime(trx_d).GetYear();

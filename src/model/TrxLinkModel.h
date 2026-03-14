@@ -34,10 +34,11 @@
 class TrxLinkModel : public TableFactory<TrxLinkTable, TrxLinkData>
 {
 public:
+    // TODO: move to *Data
     enum CHECKING_TYPE {
         AS_INCOME_EXPENSE = 32701,
-        AS_TRANSFER
-    }; /* Transfers ignore accounting */
+        AS_TRANSFER /* Transfers ignore accounting */
+    };
 
 public:
     TrxLinkModel();
@@ -50,9 +51,6 @@ public:
     // TODO: move to *Data
     static CHECKING_TYPE type_checking(const int64 tt);
 
-    // TODO: move to AssetModel
-    static void UpdateAssetValue(AssetData* asset_entry);
-
 public:
     void purge_ref(RefTypeN ref_type, int64 ref_id);
 
@@ -61,18 +59,20 @@ public:
     auto find_symbol_data_a(const wxString stock_symbol) -> DataA;
     auto find_stock_id_c(const int64 stock_id) -> size_t;
 
-    void SetTranslink(
+    void update_asset_value(AssetData* asset_n);
+
+    void save_record(
         int64 trx_id,
         RefTypeN ref_type,
         int64 ref_id,
         const CHECKING_TYPE checking_type
     );
-    void SetAssetTranslink(
+    void save_asset_record(
         int64 trx_id,
         int64 asset_id,
         const CHECKING_TYPE checking_type = AS_INCOME_EXPENSE
     );
-    void SetStockTranslink(
+    void save_stock_record(
         int64 trx_id,
         int64 stock_id,
         const CHECKING_TYPE checking_type = AS_INCOME_EXPENSE

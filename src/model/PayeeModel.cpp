@@ -62,15 +62,15 @@ int PayeeModel::find_id_dep_c(int64 payee_id)
 {
     // FIX (2026-03-01): Do not exclude deleted transactions. Deleted transactions
     // are shown in a panel and they can be restored; they must have a valid payee id.
-    int cnt_trx = TrxModel::instance().find(
+    int dep_c = TrxModel::instance().find(
         TrxCol::PAYEEID(payee_id)
     ).size();
 
-    int cnt_sched = SchedModel::instance().find(
+    dep_c += SchedModel::instance().find(
         SchedCol::PAYEEID(payee_id)
     ).size();
 
-    return cnt_trx + cnt_sched;
+    return dep_c;
 }
 
 bool PayeeModel::purge_id(int64 payee_id)
@@ -124,16 +124,16 @@ const std::map<wxString, int64> PayeeModel::find_all_name_id_m(bool only_active)
     return name_id_m;
 }
 
-const std::set<int64> PayeeModel::find_used_id_s()
+const std::set<int64> PayeeModel::find_used_id_m()
 {
-    std::set<int64> used_id_s;
+    std::set<int64> used_id_m;
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        used_id_s.insert(trx_d.m_payee_id_n);
+        used_id_m.insert(trx_d.m_payee_id_n);
     }
     for (const auto& sched_d : SchedModel::instance().find_all()) {
-        used_id_s.insert(sched_d.m_payee_id_n);
+        used_id_m.insert(sched_d.m_payee_id_n);
     }
-    return used_id_s;
+    return used_id_m;
 }
 
 const PayeeModel::DataA PayeeModel::find_pattern_data_a(

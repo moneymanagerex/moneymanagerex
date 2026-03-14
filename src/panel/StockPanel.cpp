@@ -70,7 +70,7 @@ bool StockPanel::Create(wxWindow *parent
     if (account_n)
         m_currency = AccountModel::instance().get_data_currency_p(*account_n);
     else
-        m_currency = CurrencyModel::GetBaseCurrency();
+        m_currency = CurrencyModel::instance().get_base_data_n();
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -420,7 +420,7 @@ const wxString StockPanel::Total_Shares()
     }
 
     int precision = (total_shares - static_cast<int>(total_shares) != 0) ? 4 : 0;
-    return CurrencyModel::toString(total_shares, m_currency, precision);
+    return CurrencyModel::instance().toString(total_shares, m_currency, precision);
 }
 
 void StockPanel::updateHeader()
@@ -457,17 +457,17 @@ void StockPanel::updateHeader()
         }
     }
 
-    const wxString& diffStr = CurrencyModel::toCurrency(marketValue > InvestedVal ? marketValue - InvestedVal : InvestedVal - marketValue, m_currency);
+    const wxString& diffStr = CurrencyModel::instance().toCurrency(marketValue > InvestedVal ? marketValue - InvestedVal : InvestedVal - marketValue, m_currency);
     double diffPercents = InvestedVal != 0.0
         ? (marketValue > InvestedVal ? marketValue / InvestedVal*100.0 - 100.0 : -(marketValue / InvestedVal*100.0 - 100.0))
         : 0.0;
     lbl = wxString::Format("%s     %s     %s     %s     %s (%s %%)"
-        , wxString::Format(_t("Total: %s"), CurrencyModel::toCurrency(marketValue + cashBalance, m_currency))
-        , wxString::Format(_t("Cash Balance: %s"), CurrencyModel::toCurrency(cashBalance, m_currency))
-        , wxString::Format(_t("Market Value: %s"), CurrencyModel::toCurrency(marketValue, m_currency))
-        , wxString::Format(_t("Invested: %s"), CurrencyModel::toCurrency(InvestedVal, m_currency))
+        , wxString::Format(_t("Total: %s"), CurrencyModel::instance().toCurrency(marketValue + cashBalance, m_currency))
+        , wxString::Format(_t("Cash Balance: %s"), CurrencyModel::instance().toCurrency(cashBalance, m_currency))
+        , wxString::Format(_t("Market Value: %s"), CurrencyModel::instance().toCurrency(marketValue, m_currency))
+        , wxString::Format(_t("Invested: %s"), CurrencyModel::instance().toCurrency(InvestedVal, m_currency))
         , wxString::Format(marketValue > InvestedVal ? _t("Gain: %s") : _t("Loss: %s"), diffStr)
-        , CurrencyModel::toString(diffPercents, m_currency, 2));
+        , CurrencyModel::instance().toString(diffPercents, m_currency, 2));
 
     header_total_->SetLabelText(lbl);
     this->Layout();
@@ -524,7 +524,7 @@ void StockPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
 bool StockPanel::onlineQuoteRefresh(wxString& msg)
 {
     wxString base_currency_symbol;
-    if (!CurrencyModel::GetBaseCurrencySymbol(base_currency_symbol)) {
+    if (!CurrencyModel::instance().get_base_symbol(base_currency_symbol)) {
         msg = _t("Unable to find base currency symbol!");
         return false;
     }
@@ -571,8 +571,11 @@ bool StockPanel::onlineQuoteRefresh(wxString& msg)
             );
             stock_d.m_current_price = dPrice;
             StockModel::instance().save_data_n(stock_d);
-            StockHistoryModel::instance().addUpdate(
-                stock_d.m_symbol, wxDate::Now(), dPrice, StockHistoryModel::ONLINE
+            StockHistoryModel::instance().save_record(
+                stock_d.m_symbol,
+                mmDate::today(),
+                dPrice,
+                UpdateType(UpdateType::e_online)
             );
         }
     }
@@ -636,18 +639,18 @@ wxString StockList::getStockInfo(int selectedIndex, bool with_symbol) const
     wxString stock_pur_n_str = wxString::Format("%i", static_cast<int>(stock_pur_n));
     if (stock_pur_n - static_cast<long>(stock_pur_n) != 0.0)
         stock_pur_n_str = wxString::Format("%.4f", stock_pur_n);
-    const wxString& stock_pur_p_str = CurrencyModel::toCurrency(
+    const wxString& stock_pur_p_str = CurrencyModel::instance().toCurrency(
         stock_pur_p, m_stock_panel->m_currency, 4
     );
-    const wxString& stock_cur_p_str = CurrencyModel::toCurrency(
+    const wxString& stock_cur_p_str = CurrencyModel::instance().toCurrency(
         stock_cur_p, m_stock_panel->m_currency, 4
     );
-    const wxString& stock_diff_p_str = CurrencyModel::toCurrency(
+    const wxString& stock_diff_p_str = CurrencyModel::instance().toCurrency(
         stock_diff_p, m_stock_panel->m_currency, 4
     );
     const wxString& stock_gain_p_str = (stock_d.m_purchase_price != 0.0)
         ? wxString::Format("(%s %%)",
-            CurrencyModel::toStringNoFormatting(stock_gain_p, nullptr, 2)
+            CurrencyModel::instance().toStringNoFormatting(stock_gain_p, nullptr, 2)
         ) : "";
 
     // Summary for selected symbol
@@ -670,10 +673,10 @@ wxString StockList::getStockInfo(int selectedIndex, bool with_symbol) const
     wxString symbol_pur_n_str = wxString::Format("%i", static_cast<int>(symbol_pur_n));
     if (symbol_pur_n - static_cast<long>(symbol_pur_n) != 0.0)
         symbol_pur_n_str = wxString::Format("%.4f", symbol_pur_n);
-    const wxString& symbol_pur_q_str = CurrencyModel::toCurrency(
+    const wxString& symbol_pur_q_str = CurrencyModel::instance().toCurrency(
         symbol_pur_q, m_stock_panel->m_currency, 4
     );
-    const wxString& symbol_diff_q_str = CurrencyModel::toCurrency(symbol_diff_q);
+    const wxString& symbol_diff_q_str = CurrencyModel::instance().toCurrency(symbol_diff_q);
 
     wxString miniInfo = "";
     if (stock_d.m_symbol != "")
@@ -686,7 +689,7 @@ wxString StockList::getStockInfo(int selectedIndex, bool with_symbol) const
         stock_cur_p_str, stock_pur_p_str, stock_diff_p_str,
         stock_diff_p_str, stock_pur_n_str,
         // CHECK: stock_diff_v includes commission; all other do not include commission
-        CurrencyModel::toCurrency(stock_diff_v, m_stock_panel->m_currency),
+        CurrencyModel::instance().toCurrency(stock_diff_v, m_stock_panel->m_currency),
         stock_gain_p_str
     );
 
@@ -695,8 +698,8 @@ wxString StockList::getStockInfo(int selectedIndex, bool with_symbol) const
         info_str += wxString::Format("All Accounts: |%s - %s| = %s, %s * %s = %s ( %s %% )\n%s",
             stock_cur_p_str, symbol_pur_q_str, symbol_diff_q_str,
             symbol_diff_q_str, symbol_pur_n_str,
-            CurrencyModel::toCurrency(symbol_diff_v),
-            CurrencyModel::toStringNoFormatting(symbol_gain_q, nullptr, 2),
+            CurrencyModel::instance().toCurrency(symbol_diff_v),
+            CurrencyModel::instance().toStringNoFormatting(symbol_gain_q, nullptr, 2),
             OnGetItemText(selectedIndex, static_cast<long>(LIST_ID_NOTES))
         );
     }

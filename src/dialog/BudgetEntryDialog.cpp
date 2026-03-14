@@ -109,18 +109,22 @@ void BudgetEntryDialog::CreateControls()
     wxFlexGridSizer* itemGridSizer2 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel7->SetSizer(itemGridSizer2);
     
-    const CategoryData* category = CategoryModel::instance().get_id_data_n(m_budget_n->m_category_id);
-    wxASSERT(category);
+    const CategoryData* cat_n = CategoryModel::instance().get_id_data_n(m_budget_n->m_category_id);
+    wxASSERT(cat_n);
     
     wxStaticText* itemTextEstCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catEstimateAmountStr_);
     wxStaticText* itemTextActCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catActualAmountStr_);
     
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Category: ")), g_flagsH);
-    wxString categname = CategoryModel::instance().full_name(category);
-    wxStaticText* categNameLabel = new wxStaticText(itemPanel7, wxID_STATIC,
-        (categname.size() > 50 ? wxString::FromUTF8("\u2026") + categname.substr(categname.size() - 50) : categname));
-    if (categname.size() > 50) categNameLabel->SetToolTip(categname);
-    itemGridSizer2->Add(categNameLabel, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
+    wxString cat_fullname = CategoryModel::instance().get_data_fullname(cat_n);
+    wxStaticText* w_cat_label = new wxStaticText(itemPanel7, wxID_STATIC,
+        cat_fullname.size() > 50
+            ? wxString::FromUTF8("\u2026") + cat_fullname.substr(cat_fullname.size() - 50)
+            : cat_fullname
+        );
+    if (cat_fullname.size() > 50)
+        w_cat_label->SetToolTip(cat_fullname);
+    itemGridSizer2->Add(w_cat_label, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Estimated:")), g_flagsH);
     itemGridSizer2->Add(itemTextEstCatAmt, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Actual:")), g_flagsH);

@@ -71,9 +71,9 @@ TrxLinkDialog::TrxLinkDialog(
             )) {
                 tag_id_a.push_back(gl_d.m_tag_id);
             }
-            m_local_splits.push_back(
-                {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
-            );
+            m_local_splits.push_back({
+                tp_d.m_category_id, tp_d.m_amount, tp_d.m_notes, tag_id_a
+            });
         }
     }
 
@@ -155,7 +155,7 @@ bool TrxLinkDialog::Create(
         , mmCalcValidator());
     mmToolTip(m_entered_amount, _t("Specify the amount for this transaction"));
 
-    const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency = CurrencyModel::instance().get_base_data_n();
     if (m_account_id > 0) {
         currency = AccountModel::instance().get_id_currency_p(m_account_id);
     }
@@ -270,7 +270,7 @@ void TrxLinkDialog::DataToControls()
     m_payee->SetLabelText(PayeeModel::instance().get_id_name(m_payee_id));
 
     m_category_id = m_transaction_n->m_category_id_n;
-    m_category->SetValue(CategoryModel::instance().full_name(m_category_id));
+    m_category->SetValue(CategoryModel::instance().get_id_fullname(m_category_id));
 
     m_entered_number->SetValue(m_transaction_n->m_number);
     m_entered_notes->SetValue(m_transaction_n->m_notes);
@@ -280,7 +280,7 @@ void TrxLinkDialog::DataToControls()
         m_category->Enable(!has_split);
         m_category->SetLabelText(_t("Split Transaction"));
 
-        SetTransactionValue(TrxSplitModel::get_total(m_local_splits));
+        SetTransactionValue(TrxSplitModel::instance().get_total(m_local_splits));
     }
 
     if (!m_transaction_n->DELETEDTIME.IsEmpty()) {
@@ -332,11 +332,11 @@ void TrxLinkDialog::SetLastPayeeAndCategory(const int64 account_id)
             if (last_payee_n) {
                 m_payee->SetLabelText(last_payee_n->m_name);
                 m_payee_id = last_payee_n->m_id;
-                if ((PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED)
-                    && !CategoryModel::instance().is_hidden(last_payee_n->m_category_id_n)
+                if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED &&
+                    CategoryModel::instance().get_id_active(last_payee_n->m_category_id_n)
                 ) {
                     m_category_id = last_payee_n->m_category_id_n;
-                    m_category->SetLabelText(CategoryModel::instance().full_name(last_payee_n->m_category_id_n));
+                    m_category->SetLabelText(CategoryModel::instance().get_id_fullname(last_payee_n->m_category_id_n));
                 }
             }
         }
@@ -368,14 +368,14 @@ void TrxLinkDialog::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
             m_payee->SetLabelText(payee_n->m_name);
 
             // Only for new transactions: if user want to autofill last category used for payee and category has not been set.
-            if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED
-                && m_category_id < 0
-                && m_subcategory_id < 0
-                && !CategoryModel::instance().is_hidden(payee_n->m_category_id_n)
+            if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED &&
+                m_category_id < 0 &&
+                m_subcategory_id < 0 &&
+                CategoryModel::instance().get_id_active(payee_n->m_category_id_n)
             ) {
                 if (payee_n->m_category_id_n > 0) {
                     m_category_id = payee_n->m_category_id_n;
-                    m_category->SetLabelText(CategoryModel::instance().full_name(m_category_id));
+                    m_category->SetLabelText(CategoryModel::instance().get_id_fullname(m_category_id));
                 }
             }
         }
@@ -393,7 +393,7 @@ void TrxLinkDialog::OnTransCategoryCombobox(wxCommandEvent& WXUNUSED(event))
     if (dlg.ShowModal() == wxID_OK)
     {
         m_category_id = dlg.getCategId();
-        m_category->SetLabelText(CategoryModel::instance().full_name(m_category_id));
+        m_category->SetLabelText(CategoryModel::instance().get_id_fullname(m_category_id));
     }
 }
 
@@ -478,7 +478,7 @@ void TrxLinkDialog::SetTransactionPayee(const int64 payeeid)
 void TrxLinkDialog::SetTransactionCategory(const int64 categid)
 {
     m_category_id = categid;
-    m_category->SetLabelText(CategoryModel::instance().full_name(m_category_id));
+    m_category->SetLabelText(CategoryModel::instance().get_id_fullname(m_category_id));
 }
 
 void TrxLinkDialog::SetTransactionAccount(const wxString& trans_account)
@@ -564,10 +564,10 @@ void TrxLinkDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     if (m_local_splits.empty() && m_category->mmIsValid()) {
         Split split_d;
 
-        m_entered_amount->GetDouble(split_d.SPLITTRANSAMOUNT);
+        m_entered_amount->GetDouble(split_d.m_amount);
 
-        split_d.CATEGID = m_category->mmGetCategoryId();
-        split_d.NOTES   = m_entered_notes->GetValue();
+        split_d.m_category_id = m_category->mmGetCategoryId();
+        split_d.m_notes       = m_entered_notes->GetValue();
         m_local_splits.push_back(split_d);
     }
 
@@ -577,9 +577,9 @@ void TrxLinkDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_local_splits = dlg.mmGetResult();
 
         if (m_local_splits.size() == 1) {
-            m_category->SetLabelText(CategoryModel::instance().full_name(m_local_splits[0].CATEGID));
-            m_entered_amount->SetValue(m_local_splits[0].SPLITTRANSAMOUNT);
-            m_entered_notes->SetValue(m_local_splits[0].NOTES);
+            m_category->SetLabelText(CategoryModel::instance().get_id_fullname(m_local_splits[0].m_category_id));
+            m_entered_amount->SetValue(m_local_splits[0].m_amount);
+            m_entered_notes->SetValue(m_local_splits[0].m_notes);
 
             m_local_splits.clear();
         }
@@ -588,7 +588,7 @@ void TrxLinkDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
             m_category->Enable(true);
         }
         else {
-            m_entered_amount->SetValue(TrxSplitModel::get_total(m_local_splits));
+            m_entered_amount->SetValue(TrxSplitModel::instance().get_total(m_local_splits));
 
             m_category->Enable(false);
             m_category->SetLabelText(_t("Split Transaction"));

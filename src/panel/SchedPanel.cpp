@@ -479,7 +479,7 @@ wxString SchedPanel::getItem(long item, int col_id)
         const CurrencyData* currency = account ?
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
-            value = CurrencyModel::toCurrency(transamount, currency);
+            value = CurrencyModel::instance().toCurrency(transamount, currency);
         if (!value.IsEmpty() && sched_xd.is_void())
             value = "* " + value;
         return value;
@@ -500,7 +500,7 @@ wxString SchedPanel::getItem(long item, int col_id)
         const CurrencyData* currency = account ?
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
-            value = CurrencyModel::toCurrency(transamount, currency);
+            value = CurrencyModel::instance().toCurrency(transamount, currency);
         if (!value.IsEmpty() && sched_xd.is_void())
             value = "* " + value;
         return value;
@@ -735,7 +735,9 @@ void SchedPanel::updateBottomPanelData(int selIndex)
 {
     enableEditDeleteButtons(selIndex >= 0);
     if (selIndex != -1) {
-        m_infoTextMini->SetLabelText(CategoryModel::instance().full_name(bills_[selIndex].m_category_id_n));
+        m_infoTextMini->SetLabelText(CategoryModel::instance().get_id_fullname(
+            bills_[selIndex].m_category_id_n
+        ));
         m_infoText->SetLabelText(bills_[selIndex].m_notes);
     }
 }

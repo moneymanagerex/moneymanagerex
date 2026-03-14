@@ -86,7 +86,7 @@ bool TrxFilter::checkCategory(
     const DATA& tran,
     const std::map<int64, typename MODEL::TrxSplitDataA> & splits
 ) {
-    const auto it = splits.find(tran.id());
+    const auto it = splits.find(tran.m_id);
     if (it == splits.end()) {
         for (auto it2 : m_category_a) {
             if (it2 == tran.m_category_id_n)
@@ -128,12 +128,14 @@ wxString TrxFilter::getHTML()
 {
     mmHTMLBuilder hb;
     m_trans.clear();
-    const auto splits = TrxSplitModel::instance().get_all_id();
-    const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(TrxModel::s_ref_type);
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
+    const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
+        TrxModel::s_ref_type
+    );
     //TODO: find should be faster
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        if (!mmIsRecordMatches(trx_d, splits)) continue;
-        TrxModel::Full_Data full_tran(trx_d, splits, trxId_glA_m);
+        if (!mmIsRecordMatches(trx_d, trxId_tpA_m)) continue;
+        TrxModel::Full_Data full_tran(trx_d, trxId_tpA_m, trxId_glA_m);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.m_account_id);
         if (full_tran.has_split()) {
@@ -151,7 +153,7 @@ wxString TrxFilter::getHTML()
                 }
 
                 if (found) {
-                    full_tran.CATEGNAME = CategoryModel::instance().full_name(tp_d.m_category_id);
+                    full_tran.CATEGNAME = CategoryModel::instance().get_id_fullname(tp_d.m_category_id);
                     full_tran.m_amount = tp_d.m_amount;
                     full_tran.m_notes.Append((trx_d.m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
                     m_trans.push_back(full_tran);

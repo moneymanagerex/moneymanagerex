@@ -52,16 +52,16 @@ void TrxReport::displayTotals(const std::map<int64, double>& total, std::map<int
     for (const auto& [curr_id, curr_total]: total)
     {
         const CurrencyData* curr = CurrencyModel::instance().get_id_data_n(curr_id);
-        const bool isBaseCurr = (curr->m_symbol == CurrencyModel::GetBaseCurrency()->m_symbol);
+        const bool isBaseCurr = (curr->m_symbol == CurrencyModel::instance().get_base_data_n()->m_symbol);
         grand_total += total_in_base_curr[curr_id];
         if (total.size() > 1 || !isBaseCurr)
         {
-            const wxString totalStr_curr = isBaseCurr ? "" : CurrencyModel::toCurrency(curr_total, curr);
-            const wxString totalStr = CurrencyModel::toCurrency(total_in_base_curr[curr_id], CurrencyModel::GetBaseCurrency());
+            const wxString totalStr_curr = isBaseCurr ? "" : CurrencyModel::instance().toCurrency(curr_total, curr);
+            const wxString totalStr = CurrencyModel::instance().toCurrency(total_in_base_curr[curr_id], CurrencyModel::instance().get_base_data_n());
             hb.addTotalRow(curr->m_symbol, noOfCols, { totalStr_curr,  totalStr });
         }
     }
-    const wxString totalStr = CurrencyModel::toCurrency(grand_total, CurrencyModel::GetBaseCurrency());
+    const wxString totalStr = CurrencyModel::instance().toCurrency(grand_total, CurrencyModel::instance().get_base_data_n());
     const std::vector<wxString> v{ "", totalStr };
     hb.addTotalRow(_t("Grand Total:"), noOfCols, v);
 }
@@ -327,26 +327,29 @@ table {
                 const AccountData* acc = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
 
                 if (acc) {
-                    const CurrencyData* curr = AccountModel::instance().get_data_currency_p(*acc);
+                    const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(*acc);
                     double flow = TrxModel::account_flow(trx_xd, acc->m_id);
                     if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_account_id) == selected_accounts.end())))
                         flow = -flow;
-                    const double convRate = CurrencyHistoryModel::getDayRate(curr->m_id, trx_xd.TRANSDATE);
+                    const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                        currency_n->m_id,
+                        mmDate(trx_xd.TRANSDATE)
+                    );
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT)) {
                         if (trx_xd.is_void()) {
                             double void_flow = trx_xd.is_deposit() ? trx_xd.m_amount : -trx_xd.m_amount;
-                            hb.addCurrencyCell(void_flow, curr, -1, true);
+                            hb.addCurrencyCell(void_flow, currency_n, -1, true);
                         }
                         else if (trx_xd.DELETEDTIME.IsEmpty())
-                            hb.addCurrencyCell(flow, curr);
+                            hb.addCurrencyCell(flow, currency_n);
                     }
-                    total[curr->m_id] += flow;
-                    grand_total[curr->m_id] += flow;
-                    total_in_base_curr[curr->m_id] += flow * convRate;
-                    grand_total_in_base_curr[curr->m_id] += flow * convRate;
+                    total[currency_n->m_id] += flow;
+                    grand_total[currency_n->m_id] += flow;
+                    total_in_base_curr[currency_n->m_id] += flow * convRate;
+                    grand_total_in_base_curr[currency_n->m_id] += flow * convRate;
                     if (!trx_xd.is_transfer()) {
-                        grand_total_extrans[curr->m_id] += flow;
-                        grand_total_in_base_curr_extrans[curr->m_id] += flow * convRate;
+                        grand_total_extrans[currency_n->m_id] += flow;
+                        grand_total_in_base_curr_extrans[currency_n->m_id] += flow * convRate;
                     }
                     if (chart > -1 && groupBy == -1) {
                         values_chart[trx_xd.m_id.ToString()] += (flow * convRate);
@@ -528,11 +531,11 @@ table {
                         [](double previous, const auto & p) { return previous + p.second; });
                     statsAvg = values_chart.size() > 0 ? statsAvg / values_chart.size() : 0;
                     hb.addTotalRow(_t("Minimum") + " >> " + statsMin->first, 2,
-                        std::vector<wxString>{ CurrencyModel::toCurrency(statsMin->second, CurrencyModel::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::instance().toCurrency(statsMin->second, CurrencyModel::instance().get_base_data_n()) });
                     hb.addTotalRow(_t("Maximum") + " >> " + statsMax->first, 2,
-                        std::vector<wxString>{ CurrencyModel::toCurrency(statsMax->second, CurrencyModel::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::instance().toCurrency(statsMax->second, CurrencyModel::instance().get_base_data_n()) });
                     hb.addTotalRow(_t("Average"), 2,
-                        std::vector<wxString>{ CurrencyModel::toCurrency(statsAvg, CurrencyModel::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::instance().toCurrency(statsAvg, CurrencyModel::instance().get_base_data_n()) });
                 }
                 hb.endTbody();
             }
@@ -558,13 +561,13 @@ table {
 void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
 {
     trx_xa.clear();
-    const auto splits = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
         TrxModel::s_ref_type
     );
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        TrxModel::Full_Data trx_xd(trx_d, splits, trxId_glA_m);
+        TrxModel::Full_Data trx_xd(trx_d, trxId_tpA_m, trxId_glA_m);
         trx_xd.PAYEENAME = trx_xd.real_payee_name(trx_xd.m_account_id);
         if (trx_xd.has_split()) {
             TrxModel::Full_Data single_tran = trx_xd;
@@ -576,7 +579,7 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
                 trx_xd.displayID       = wxString::Format("%lld", trx_d.m_id) + "." +
                     wxString::Format("%i", splitIndex++);
                 trx_xd.m_category_id_n = tp_d.m_category_id;
-                trx_xd.CATEGNAME       = CategoryModel::instance().full_name(tp_d.m_category_id);
+                trx_xd.CATEGNAME       = CategoryModel::instance().get_id_fullname(tp_d.m_category_id);
                 trx_xd.m_amount        = tp_d.m_amount;
                 trx_xd.m_notes         = trx_d.m_notes;
                 trx_xd.TAGNAMES        = tranTagnames;

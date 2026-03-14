@@ -51,9 +51,9 @@ double FlowReport::trueAmount(const TrxData& trx)
         trx.m_to_account_id_n
     ) != m_account_id.end();
     if (!(isAccountFound && isToAccountFound)) {
-        const double convRate = CurrencyHistoryModel::getDayRate(
+        const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx.m_account_id)->m_currency_id,
-            trx.TRANSDATE
+            mmDate(trx.TRANSDATE)
         );
         switch (trx.m_type.id()) {
         case TrxType::e_withdrawal:
@@ -66,9 +66,9 @@ double FlowReport::trueAmount(const TrxData& trx)
             if (isAccountFound)
                 amount = -trx.m_amount * convRate;
             else {
-                const double toConvRate = CurrencyHistoryModel::getDayRate(
+                const double toConvRate = CurrencyHistoryModel::instance().get_id_date_rate(
                     AccountModel::instance().get_id_data_n(trx.m_to_account_id_n)->m_currency_id,
-                    trx.TRANSDATE
+                    mmDate(trx.TRANSDATE)
                 );
                 amount = +trx.m_to_amount * toConvRate;
             }
@@ -99,7 +99,10 @@ void FlowReport::getTransactions()
             continue;
         }
 
-        double convRate = CurrencyHistoryModel::getDayRate(account.m_currency_id, todayString);
+        double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+            account.m_currency_id,
+            mmDate(todayString)
+        );
         m_balance += account.m_open_balance * convRate;
 
         m_account_id.push_back(account.m_id);
@@ -445,7 +448,7 @@ wxString mmReportCashFlowTransactions::getHTMLText()
         hb.addTableCell(AccountModel::instance().get_id_name(trx.m_account_id));
         hb.addTableCell((trx.m_to_account_id_n == -1) ? PayeeModel::instance().get_id_name(trx.m_payee_id_n)
             : "> " + AccountModel::instance().get_id_name(trx.m_to_account_id_n));
-        hb.addTableCell(CategoryModel::instance().full_name(trx.m_category_id_n));
+        hb.addTableCell(CategoryModel::instance().get_id_fullname(trx.m_category_id_n));
         double amount = trx.m_amount;
         hb.addMoneyCell(amount);
         runningBalance += amount;

@@ -53,7 +53,9 @@ public:
     ) -> const wxString;
 
 public:
+    // override
     bool purge_id(int64 field_id) override;
+
     auto find_id_value_a(const int64 FieldID) -> wxArrayString;
     auto get_udfc_data_n(RefTypeN ref_type, const wxString& udfc) -> const Data*;
     auto get_udfc_id_n(RefTypeN ref_type, const wxString& udfc) -> int64;

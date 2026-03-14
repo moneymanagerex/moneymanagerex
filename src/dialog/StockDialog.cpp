@@ -119,10 +119,10 @@ void StockDialog::DataToControls()
         : PrefModel::instance().getSharePrecision();
     m_num_shares_ctrl->SetValue(m_stock_n->m_num_shares, precision);
     const AccountData* account_n = AccountModel::instance().get_id_data_n(m_stock_n->m_account_id_n);
-    const CurrencyData *currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency_n = CurrencyModel::instance().get_base_data_n();
     if (account_n)
-        currency = AccountModel::instance().get_data_currency_p(*account_n);
-    int currency_precision = CurrencyModel::precision(currency);
+        currency_n = AccountModel::instance().get_data_currency_p(*account_n);
+    int currency_precision = currency_n->precision();
     if (currency_precision < PrefModel::instance().getSharePrecision())
         currency_precision = PrefModel::instance().getSharePrecision();
     m_purchase_price_ctrl->SetValue(m_stock_n->m_purchase_price, account_n, currency_precision);
@@ -505,11 +505,11 @@ void StockDialog::OnSave(wxCommandEvent & /*event*/)
         share_dialog.ShowModal();
     }
 
-    StockHistoryModel::instance().addUpdate(
+    StockHistoryModel::instance().save_record(
         m_stock_n->m_symbol,
-        wxDate::Today(),
+        mmDate::today(),
         m_stock_n->m_current_price,
-        StockHistoryModel::MANUAL
+        UpdateType(UpdateType::e_manual)
     );
     ShowStockHistory();
 
@@ -547,7 +547,7 @@ void StockDialog::OnListItemSelected(wxListEvent& event)
     const StockHistoryData* sh_n = StockHistoryModel::instance().get_id_data_n(histId);
 
     if (sh_n->m_id > 0) {
-        m_history_date_ctrl->SetValue(StockHistoryModel::DATE(*sh_n));
+        m_history_date_ctrl->SetValue(sh_n->m_date.getDateTime());
         m_history_price_ctrl->SetValue(AccountModel::instance().value_number(
             *account_n, sh_n->m_price, PrefModel::instance().getSharePrecision()
         ));
@@ -628,7 +628,7 @@ void StockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
         // price
         priceStr = tokens[1];
         priceStr.Replace(" ", wxEmptyString);
-        if (!CurrencyModel::fromString(priceStr, price, currency_p) || price <= 0.0)
+        if (!CurrencyModel::instance().fromString(priceStr, price, currency_p) || price <= 0.0)
             continue;
 
         StockHistoryData new_sh_d = StockHistoryData();
@@ -877,10 +877,15 @@ void StockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     );
     const CurrencyData* currency = AccountModel::instance().get_data_currency_p(*account);
     wxString currentPriceStr = m_history_price_ctrl->GetValue().Trim();
-    if (!CurrencyModel::fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
+    if (!CurrencyModel::instance().fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
         return;
 
-    int64 histID = StockHistoryModel::instance().addUpdate(m_stock_n->m_symbol, m_history_date_ctrl->GetValue(), dPrice, StockHistoryModel::MANUAL);
+    int64 histID = StockHistoryModel::instance().save_record(
+        m_stock_n->m_symbol,
+        mmDate(m_history_date_ctrl->GetValue()),
+        dPrice,
+        UpdateType(UpdateType::e_manual)
+    );
     long i;
     for (i = 0; i < m_price_listbox->GetItemCount(); i++) {
         listStr = m_price_listbox->GetItemText(i, 0);

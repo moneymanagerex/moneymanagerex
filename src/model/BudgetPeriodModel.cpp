@@ -78,7 +78,7 @@ int64 BudgetPeriodModel::ensure_name(const wxString& bp_name)
         Data new_bp_d = Data();
         new_bp_d.m_name = bp_name;
         add_data_n(new_bp_d);
-        bp_id_n = new_bp_d.id();
+        bp_id_n = new_bp_d.m_id;
     }
     return bp_id_n;
 }

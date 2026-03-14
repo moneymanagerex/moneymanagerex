@@ -43,9 +43,9 @@ wxBEGIN_EVENT_TABLE(TrxUpdateDialog, wxDialog)
     EVT_BUTTON(wxID_OK,             TrxUpdateDialog::OnOk)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, TrxUpdateDialog::OnMoreFields)
     EVT_CHECKBOX(wxID_ANY,          TrxUpdateDialog::OnCheckboxClick)
-    EVT_CHILD_FOCUS(TrxUpdateDialog::onFocusChange)
-    EVT_CHAR_HOOK(TrxUpdateDialog::OnComboKey)
-    EVT_CHOICE(ID_TRANS_TYPE, TrxUpdateDialog::OnTransTypeChanged)
+    EVT_CHILD_FOCUS(                TrxUpdateDialog::onFocusChange)
+    EVT_CHAR_HOOK(                  TrxUpdateDialog::OnComboKey)
+    EVT_CHOICE(ID_TRANS_TYPE,       TrxUpdateDialog::OnTransTypeChanged)
 wxEND_EVENT_TABLE()
 
 TrxUpdateDialog::TrxUpdateDialog()
@@ -66,7 +66,7 @@ TrxUpdateDialog::TrxUpdateDialog(
 ) :
     m_trx_id_a(trx_id_a)
 {
-    m_currency_n = CurrencyModel::GetBaseCurrency(); // base currency if we need it
+    m_currency_n = CurrencyModel::instance().get_base_data_n(); // base currency if we need it
 
     // Determine the mix of transaction that have been selected
     for (const auto& trx_id : m_trx_id_a) {
@@ -74,10 +74,10 @@ TrxUpdateDialog::TrxUpdateDialog(
         const bool isTransfer = trx_n->is_transfer();
 
         if (!m_hasSplits) {
-            TrxSplitModel::DataA split = TrxSplitModel::instance().find(
+            TrxSplitModel::DataA tp_a = TrxSplitModel::instance().find(
                 TrxSplitCol::TRANSID(trx_id)
             );
-            if (!split.empty())
+            if (!tp_a.empty())
                 m_hasSplits = true;
         }
 
@@ -389,7 +389,7 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
     int64 categ_id = cbCategory_->mmGetCategoryId();
 
-    const auto split = TrxSplitModel::instance().get_all_id();
+    // const auto split = TrxSplitModel::instance().find_all_mTrxId();
 
     std::vector<int64> skip_trx;
     TrxModel::instance().db_savepoint();
@@ -520,9 +520,15 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 }
                 else {
                     double exch = 1;
-                    const double convRateTo = CurrencyHistoryModel::getDayRate(to_curr->m_id, trx_n->TRANSDATE);
+                    const double convRateTo = CurrencyHistoryModel::instance().get_id_date_rate(
+                        to_curr->m_id,
+                        mmDate(trx_n->TRANSDATE)
+                    );
                     if (convRateTo > 0) {
-                        const double convRate = CurrencyHistoryModel::getDayRate(curr->m_id, trx_n->TRANSDATE);
+                        const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                            curr->m_id,
+                            mmDate(trx_n->TRANSDATE)
+                        );
                         exch = convRate / convRateTo;
                     }
                     trx_n->m_to_amount = trx_n->m_amount * exch;
@@ -675,7 +681,7 @@ void TrxUpdateDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                category = CategoryModel::instance().full_name(dlg.getCategId());
+                category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
                 cbCategory_->ChangeValue(category);
                 cbCategory_->SelectAll();
                 return;

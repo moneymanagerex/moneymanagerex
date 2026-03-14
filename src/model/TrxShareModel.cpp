@@ -97,7 +97,7 @@ void TrxShareModel::update_trxID(
     new_ts_d.m_lot        = share_lot;
     save_data_n(new_ts_d);
 
-    TrxSplitModel::instance().update(commission_splits, new_ts_d.m_id);
+    TrxSplitModel::instance().update_trx(new_ts_d.m_id, commission_splits);
     if (!old_ts_n || !new_ts_d.equals(old_ts_n))
         TrxModel::instance().save_timestamp(trx_id);
 }

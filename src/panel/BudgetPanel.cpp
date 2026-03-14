@@ -509,9 +509,9 @@ void BudgetPanel::initVirtualListControl()
     m_lc->SetItemCount(budget_.size());
 
     wxString est_amount, act_amount, diff_amount;
-    est_amount = CurrencyModel::toCurrency(estIncome);
-    act_amount = CurrencyModel::toCurrency(actIncome);
-    diff_amount = CurrencyModel::toCurrency(actIncome - estIncome);
+    est_amount = CurrencyModel::instance().toCurrency(estIncome);
+    act_amount = CurrencyModel::instance().toCurrency(actIncome);
+    diff_amount = CurrencyModel::instance().toCurrency(actIncome - estIncome);
 
     income_estimated_->SetLabelText(est_amount);
     income_actual_->SetLabelText(act_amount);
@@ -519,9 +519,9 @@ void BudgetPanel::initVirtualListControl()
 
     if (estExpenses < 0.0) estExpenses = -estExpenses;
     if (actExpenses < 0.0) actExpenses = -actExpenses;
-    est_amount = CurrencyModel::toCurrency(estExpenses);
-    act_amount = CurrencyModel::toCurrency(actExpenses);
-    diff_amount = CurrencyModel::toCurrency(estExpenses - actExpenses);
+    est_amount = CurrencyModel::instance().toCurrency(estExpenses);
+    act_amount = CurrencyModel::instance().toCurrency(actExpenses);
+    diff_amount = CurrencyModel::instance().toCurrency(estExpenses - actExpenses);
 
     expenses_estimated_->SetLabelText(est_amount);
     expenses_actual_->SetLabelText(act_amount);
@@ -586,30 +586,30 @@ wxString BudgetPanel::getItem(long item, int col_id)
     case BudgetList::LIST_ID_AMOUNT: {
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
             double amt = budgetAmt_[budget_[item].first];
-            return CurrencyModel::toCurrency(amt);
+            return CurrencyModel::instance().toCurrency(amt);
         }
         return wxEmptyString;
     }
     case BudgetList::LIST_ID_ESTIMATED: {
         if (budget_[item].first < 0) {
             double estimated = budgetTotals_[budget_[item].second].first;
-            return CurrencyModel::toCurrency(estimated);
+            return CurrencyModel::instance().toCurrency(estimated);
         }
         else if (displayDetails_[budget_[item].first].second) {
             double estimated = getEstimate(budget_[item].first);
-            return CurrencyModel::toCurrency(estimated);
+            return CurrencyModel::instance().toCurrency(estimated);
         }
         return wxEmptyString;
     }
     case BudgetList::LIST_ID_ACTUAL: {
         if (budget_[item].first < 0) {
             double actual = budgetTotals_[budget_[item].second].second;
-            return CurrencyModel::toCurrency(actual);
+            return CurrencyModel::instance().toCurrency(actual);
         }
         else if (displayDetails_[budget_[item].first].second) {
             double actual = categoryStats_[budget_[item].second >= 0 ? budget_[item].second
                 : budget_[item].first][0];
-            return CurrencyModel::toCurrency(actual);
+            return CurrencyModel::instance().toCurrency(actual);
         }
         return wxEmptyString;
     }
@@ -725,8 +725,8 @@ void BudgetPanel::OnListItemActivated(int selectedIndex)
     ][0];
 
     BudgetEntryDialog dlg(this, &budget_d,
-        CurrencyModel::toCurrency(estimated),
-        CurrencyModel::toCurrency(actual)
+        CurrencyModel::instance().toCurrency(estimated),
+        CurrencyModel::instance().toCurrency(actual)
     );
     if (dlg.ShowModal() == wxID_OK) {
         initVirtualListControl();

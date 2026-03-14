@@ -150,7 +150,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 if (nonDefaultData) 
-                    SetWidgetChanged(controlID, CurrencyModel::toString(value, nullptr, digitScale));
+                    SetWidgetChanged(controlID, CurrencyModel::instance().toString(value, nullptr, digitScale));
             }
             
             mmTextCtrl* CustomDecimal = new mmTextCtrl(scrolled_window, controlID,
@@ -771,7 +771,7 @@ bool FieldValueDialog::ValidateCustomValues(int64)
                 double value;
                 if (d->checkValue(value, false))
                     SetWidgetChanged(controlID,
-                        CurrencyModel::toString(value, nullptr,
+                        CurrencyModel::instance().toString(value, nullptr,
                             FieldModel::getDigitScale(field_d.m_properties)
                         )
                     );

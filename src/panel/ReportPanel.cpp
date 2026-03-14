@@ -158,7 +158,7 @@ bool ReportPanel::saveReportText()
 
     const auto t = wxString::FromUTF8(json_buffer.GetString());
     wxLogDebug("%s", t);
-    UsageModel::instance().AppendToUsage(t);
+    UsageModel::instance().append_usage(t);
     UsageModel::instance().pageview(this, m_rb, (wxDateTime::UNow() - time).GetMilliseconds().ToLong());
 
     return true;
@@ -681,7 +681,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         std::vector<std::string> parms;
         wxStringTokenizer tokenizer(sData, "|");
         while (tokenizer.HasMoreTokens()) {
-            //"budget: " << estimateVal << "|" << CurrencyModel::toString(actual, CurrencyModel::GetBaseCurrency()) << "|" << cat_id << "|" << budget_year << "|" << month + 1;
+            //"budget: " << estimateVal << "|" << CurrencyModel::instance().toString(actual, CurrencyModel::instance().get_base_data_n()) << "|" << cat_id << "|" << budget_year << "|" << month + 1;
             wxString token = tokenizer.GetNextToken();
             parms.push_back(std::string(token.mb_str()));
 
@@ -720,14 +720,14 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
             budget_d = budget_a[0];
 
         double estimated;
-        CurrencyModel::fromString(parms[0], estimated, CurrencyModel::GetBaseCurrency());
+        CurrencyModel::instance().fromString(parms[0], estimated, CurrencyModel::instance().get_base_data_n());
         double actual;
-        CurrencyModel::fromString(parms[1], actual, CurrencyModel::GetBaseCurrency());
+        CurrencyModel::instance().fromString(parms[1], actual, CurrencyModel::instance().get_base_data_n());
 
         //open budgetEntry dialog
         BudgetEntryDialog dlg(w_frame, &budget_d,
-            CurrencyModel::toCurrency(estimated),
-            CurrencyModel::toCurrency(actual)
+            CurrencyModel::instance().toCurrency(estimated),
+            CurrencyModel::instance().toCurrency(actual)
         );
         if (dlg.ShowModal() == wxID_OK) {
             //refresh report

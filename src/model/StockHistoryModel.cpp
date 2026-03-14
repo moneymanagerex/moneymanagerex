@@ -28,10 +28,8 @@ StockHistoryModel::~StockHistoryModel()
 {
 }
 
-/**
-* Initialize the global StockHistoryModel table.
-* Reset the StockHistoryModel table or create the table if it does not exist.
-*/
+// Initialize the global StockHistoryModel table.
+// Reset the StockHistoryModel table or create the table if it does not exist.
 StockHistoryModel& StockHistoryModel::instance(wxSQLite3Database* db)
 {
     StockHistoryModel& ins = Singleton<StockHistoryModel>::instance();
@@ -41,55 +39,52 @@ StockHistoryModel& StockHistoryModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of StockHistoryModel table */
+// Return the static instance of StockHistoryModel table
 StockHistoryModel& StockHistoryModel::instance()
 {
     return Singleton<StockHistoryModel>::instance();
 }
 
-const StockHistoryData* StockHistoryModel::get_key(const wxString& symbol, const wxDate& date)
+StockHistoryCol::DATE StockHistoryModel::DATE(OP op, const mmDate& date)
 {
+    return StockHistoryCol::DATE(op, date.isoDate());
+}
+
+const StockHistoryData* StockHistoryModel::get_key_data_n(
+    const wxString& symbol,
+    const mmDate& date
+) {
     const Data* sh_n = search_cache_n(
         StockHistoryCol::SYMBOL(symbol),
-        StockHistoryCol::DATE(date.FormatISODate())
+        StockHistoryModel::DATE(OP_EQ, date)
     );
     if (sh_n)
         return sh_n;
 
-    DataA items = this->find(
+    const DataA sh_a = this->find(
         StockHistoryCol::SYMBOL(symbol),
-        StockHistoryCol::DATE(date.FormatISODate())
+        StockHistoryModel::DATE(OP_EQ, date)
     );
-    if (!items.empty())
-        sh_n = get_id_data_n(items[0].id());
+    if (!sh_a.empty())
+        sh_n = get_id_data_n(sh_a[0].m_id);
     return sh_n;
 }
 
-wxDate StockHistoryModel::DATE(const Data& sh_d)
-{
-    return sh_d.m_date.getDateTime();
-}
-
-StockHistoryCol::DATE StockHistoryModel::DATE(OP op, const wxDate& date)
-{
-    return StockHistoryCol::DATE(op, date.FormatISODate());
-}
-
 // Add or update an element in stock history
-int64 StockHistoryModel::addUpdate(
+int64 StockHistoryModel::save_record(
     const wxString& symbol,
-    const wxDate& date,
+    const mmDate& date,
     double price,
-    UPDTYPE type
+    UpdateType update_type
 ) {
-    const Data* sh_n = get_key(symbol, date);
+    const Data* sh_n = get_key_data_n(symbol, date);
     Data sh_d = sh_n ? *sh_n : Data();
     sh_d.m_symbol      = symbol;
-    sh_d.m_date        = mmDate(date);
+    sh_d.m_date        = date;
     sh_d.m_price       = price;
-    sh_d.m_update_type = UpdateType(type);
+    sh_d.m_update_type = update_type;
 
-    if (StockHistoryModel::instance().find(
+    if (find(
         StockHistoryCol::SYMBOL(symbol),
         StockHistoryModel::DATE(OP_GT, date)
     ).size() == 0) {
@@ -97,5 +92,5 @@ int64 StockHistoryModel::addUpdate(
     }
 
     save_data_n(sh_d);
-    return sh_d.id();
+    return sh_d.m_id;
 }

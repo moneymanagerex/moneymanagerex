@@ -171,7 +171,8 @@ bool CategoryManager::AppendSubcategoryItems(wxTreeItemId parent, const Category
     bool catDisplayed = false;
     for (auto& subcat : m_categ_children[category->m_id]) {
         // Check if the subcategory should be shown
-        bool subcatDisplayed = (show_hidden_categs || subcat.m_active || subcat.m_id == m_init_selected_categ_id) && CategoryModel::instance().full_name(subcat.m_id).Lower().Matches(m_maskStr + "*");
+        bool subcatDisplayed = (show_hidden_categs || subcat.m_active || subcat.m_id == m_init_selected_categ_id) &&
+            CategoryModel::instance().get_id_fullname(subcat.m_id).Lower().Matches(m_maskStr + "*");
         // Append it to get the item ID
         wxTreeItemId newId = m_treeCtrl->AppendItem(parent, subcat.m_name);
         // Check if any subcategories are not filtered out
@@ -210,7 +211,8 @@ void CategoryManager::fillControls()
     for (auto& category : m_categ_children[-1])
     {
         bool cat_bShow = categShowStatus(category.m_id);
-        bool catDisplayed = (show_hidden_categs || cat_bShow || category.m_id == m_init_selected_categ_id) && CategoryModel::instance().full_name(category.m_id).Lower().Matches(match);
+        bool catDisplayed = (show_hidden_categs || cat_bShow || category.m_id == m_init_selected_categ_id) &&
+            CategoryModel::instance().get_id_fullname(category.m_id).Lower().Matches(match);
 
         // Append top level category to root_ to get the item ID
         maincat = m_treeCtrl->AppendItem(root_, category.m_name);
@@ -481,8 +483,8 @@ void CategoryManager::OnEndDrag(wxTreeEvent& event)
 
     wxString moveMessage = wxString::Format(
         _tu("Do you want to move\n“%1$s”\nto:\n“%2$s”?"),
-        CategoryModel::instance().full_name(m_dragSourceCATEGID),
-        cat_id != -1 ? CategoryModel::instance().full_name(cat_id) : _t("Top level")
+        CategoryModel::instance().get_id_fullname(m_dragSourceCATEGID),
+        cat_id > 0 ? CategoryModel::instance().get_id_fullname(cat_id) : _t("Top level")
     );
     wxMessageDialog msgDlg(this,
         moveMessage, _t("Confirm Move"),
@@ -641,7 +643,10 @@ void CategoryManager::OnSelChanged(wxTreeEvent& event)
         m_categ_id = iData->getCategData()->m_id;
 
         m_buttonDelete->Enable(!mmIsUsed());
-        m_buttonSelect->Enable(m_IsSelection && !bRootSelected && !CategoryModel::instance().is_hidden(m_categ_id));
+        m_buttonSelect->Enable(m_IsSelection &&
+            !bRootSelected &&
+            CategoryModel::instance().get_id_active(m_categ_id)
+        );
     }
 
     m_buttonAdd->Enable(true);
@@ -867,15 +872,12 @@ void CategoryManager::OnItemCollapseOrExpand(wxTreeEvent& event)
 
 bool CategoryManager::categShowStatus(int64 categId)
 {
-    if (CategoryModel::instance().is_hidden(categId))
-        return false;
-
-    return true;
+    return CategoryModel::instance().get_id_active(categId);
 }
 
 wxString CategoryManager::getFullCategName()
 {
-    return CategoryModel::instance().full_name(m_categ_id);
+    return CategoryModel::instance().get_id_fullname(m_categ_id);
 }
 
 bool CategoryManager::mmIsUsed() const

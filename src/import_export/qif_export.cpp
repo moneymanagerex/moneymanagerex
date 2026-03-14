@@ -486,7 +486,7 @@ void mmQIFExportDialog::mmExportQIF()
         wxProgressDialog progressDlg(_tu("Please wait…"), _t("Exporting")
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
-        const auto splits = TrxSplitModel::instance().get_all_id();
+        const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
         const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
             TrxModel::s_ref_type
         );
@@ -528,7 +528,7 @@ void mmQIFExportDialog::mmExportQIF()
 
             bool is_reverce = false;
             wxString trx_str;
-            TrxModel::Full_Data full_tran(trx_d, splits, trxId_glA_m);
+            TrxModel::Full_Data full_tran(trx_d, trxId_tpA_m, trxId_glA_m);
             int64 account_id = trx_d.m_account_id;
 
             switch (m_type)
@@ -547,7 +547,7 @@ void mmQIFExportDialog::mmExportQIF()
 
                 if (
                     !AttachmentModel::instance().find_ref_data_a(
-                        TrxModel::s_ref_type, full_tran.id()
+                        TrxModel::s_ref_type, full_tran.m_id
                     ).empty() &&
                     std::find(
                         allAttachments4Export.begin(), allAttachments4Export.end(), full_tran.m_id
@@ -557,7 +557,7 @@ void mmQIFExportDialog::mmExportQIF()
                 }
 
                 for (const auto & fv_d : FieldValueModel::instance().find(
-                    FieldValueModel::REFTYPEID(TrxModel::s_ref_type, full_tran.id())
+                    FieldValueModel::REFTYPEID(TrxModel::s_ref_type, full_tran.m_id)
                 )) {
                     if (std::find(allCustomFields4Export.begin(), allCustomFields4Export.end(),
                         fv_d.m_id) == allCustomFields4Export.end()
