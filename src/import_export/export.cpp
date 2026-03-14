@@ -50,7 +50,7 @@ const wxString mmExportTransaction::getTransactionCSV(
     const wxString delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
     wxString categ = trx_xd.m_splits.empty()
-        ? CategoryModel::instance().full_name(trx_xd.m_category_id_n, ":")
+        ? CategoryModel::instance().get_id_fullname(trx_xd.m_category_id_n, ":")
         : "";
     wxString transNum = trx_xd.m_number;
     wxString notes = trx_xd.m_notes;
@@ -83,7 +83,7 @@ const wxString mmExportTransaction::getTransactionCSV(
             if (trx_xd.is_withdrawal())
                 valueSplit = -valueSplit;
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-            const wxString split_categ = CategoryModel::instance().full_name(tp_d.m_category_id, ":");
+            const wxString split_categ = CategoryModel::instance().get_id_fullname(tp_d.m_category_id, ":");
 
             buffer << inQuotes(wxString::Format("%lld", trx_xd.m_id), delimiter) << delimiter;
             buffer << inQuotes(mmGetDateTimeForDisplay(trx_xd.TRANSDATE, dateMask), delimiter) << delimiter;
@@ -133,7 +133,7 @@ const wxString mmExportTransaction::getTransactionQIF(
 ) {
     wxString buffer = "";
     wxString categ = trx_xd.m_splits.empty()
-        ? CategoryModel::instance().full_name(trx_xd.m_category_id_n, ":")
+        ? CategoryModel::instance().get_id_fullname(trx_xd.m_category_id_n, ":")
         : "";
     // Replace square brackets which are used to denote transfers in QIF
     categ.Replace("[", "(");
@@ -193,7 +193,7 @@ const wxString mmExportTransaction::getTransactionQIF(
         if (trx_xd.is_withdrawal())
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-        wxString split_categ = CategoryModel::instance().full_name(tp_d.m_category_id, ":");
+        wxString split_categ = CategoryModel::instance().get_id_fullname(tp_d.m_category_id, ":");
         split_categ.Replace("/", "-");
         TagLinkModel::DataA splitTags = TagLinkModel::instance().find(
             TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
@@ -254,10 +254,10 @@ const wxString mmExportTransaction::getCategoriesQIF()
 
     buffer_qif << "!Type:Cat" << "\n";
     for (const auto& cat_d : CategoryModel::instance().find_all()) {
-        const wxString& full_name = CategoryModel::instance().full_name(cat_d.m_id, ":");
-        bool bIncome = CategoryModel::instance().has_income(cat_d.m_id);
+        const wxString& full_name = CategoryModel::instance().get_id_fullname(cat_d.m_id, ":");
+        double cat_income = CategoryModel::instance().get_id_income(cat_d.m_id);
         buffer_qif << "N" << full_name << "\n"
-            << (bIncome ? "I" : "E") << "\n"
+            << (cat_income > 0.0 ? "I" : "E") << "\n"
             << "^" << "\n";
     }
     return buffer_qif;
@@ -363,7 +363,7 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
         json_writer.Key("ID");
         json_writer.Int64(category.m_id.GetValue());
         json_writer.Key("NAME");
-        json_writer.String(CategoryModel::instance().full_name(category.m_id, ":").utf8_str());
+        json_writer.String(CategoryModel::instance().get_id_fullname(category.m_id, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();
@@ -400,7 +400,7 @@ void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json
         json_writer.Key("ID");
         json_writer.Int64(category.m_id.GetValue());
         json_writer.Key("NAME");
-        json_writer.String(CategoryModel::instance().full_name(category.m_id, ":").utf8_str());
+        json_writer.String(CategoryModel::instance().get_id_fullname(category.m_id, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();

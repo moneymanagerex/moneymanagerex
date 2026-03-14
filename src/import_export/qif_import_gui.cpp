@@ -841,12 +841,12 @@ void mmQIFImportDialog::refreshTabs(int tabs)
 
     if (tabs & CAT_TAB) {
         num = 0;
-        const auto& c(CategoryModel::instance().all_categories());
+        const auto& cat_fullname_id_m = CategoryModel::instance().find_all_id_mFullname();
         categoryListBox_->DeleteAllItems();
         for (const auto& categ : m_QIFcategoryNames) {
             wxVector<wxVariant> data;
             data.push_back(wxVariant(categ.first));
-            if (c.find(categ.first) == c.end() &&
+            if (cat_fullname_id_m.find(categ.first) == cat_fullname_id_m.end() &&
                 !(categ.first.Left(1) == '[' && categ.first.Last() == ']'))
                 data.push_back(wxVariant("Missing"));
             else
@@ -885,7 +885,7 @@ void mmQIFImportDialog::OnShowCategDialog(wxMouseEvent&)
         wxString selectedCategname = value.GetString();
         id = m_QIFcategoryNames[selectedCategname];
         if (id == -1) {
-            std::map<wxString, int64 > categories = CategoryModel::instance().all_categories();
+            std::map<wxString, int64 > categories = CategoryModel::instance().find_all_id_mFullname();
             for (const auto& category : categories)
             {
                 if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
@@ -1546,7 +1546,7 @@ bool mmQIFImportDialog::completeTransaction(
             if (payee_n) {
                 trx_n->m_category_id_n = payee_n->m_category_id_n;
             }
-            categStr = CategoryModel::instance().full_name(trx_n->m_category_id_n, ":");
+            categStr = CategoryModel::instance().get_id_fullname(trx_n->m_category_id_n, ":");
 
             if (categStr.empty()) {
                 trx_n->m_category_id_n = (m_QIFcategoryNames[_t("Unknown")]);

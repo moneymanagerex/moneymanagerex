@@ -876,7 +876,7 @@ void JournalPanel::filterList()
             journal_xd.displayID = tranDisplayID + "." + wxString::Format("%i", splitIndex);
             splitIndex++;
             journal_xd.m_category_id_n = tp_d.m_category_id;
-            journal_xd.CATEGNAME       = CategoryModel::instance().full_name(tp_d.m_category_id);
+            journal_xd.CATEGNAME       = CategoryModel::instance().get_id_fullname(tp_d.m_category_id);
             journal_xd.m_amount        = tp_d.m_amount;
             journal_xd.m_notes         = trx_n->m_notes;
             journal_xd.TAGNAMES        = tranTagnames;

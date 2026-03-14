@@ -448,7 +448,7 @@ wxString mmReportCashFlowTransactions::getHTMLText()
         hb.addTableCell(AccountModel::instance().get_id_name(trx.m_account_id));
         hb.addTableCell((trx.m_to_account_id_n == -1) ? PayeeModel::instance().get_id_name(trx.m_payee_id_n)
             : "> " + AccountModel::instance().get_id_name(trx.m_to_account_id_n));
-        hb.addTableCell(CategoryModel::instance().full_name(trx.m_category_id_n));
+        hb.addTableCell(CategoryModel::instance().get_id_fullname(trx.m_category_id_n));
         double amount = trx.m_amount;
         hb.addMoneyCell(amount);
         runningBalance += amount;

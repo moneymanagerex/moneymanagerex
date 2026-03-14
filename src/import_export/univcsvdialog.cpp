@@ -733,25 +733,22 @@ void mmUnivCSVDialog::OnShowPayeeDialog(wxMouseEvent&)
 void mmUnivCSVDialog::OnShowCategDialog(wxMouseEvent&)
 {
     int64 id = -1;
-    if (categoryListBox_->GetSelectedRow() >= 0)
-    {
+    if (categoryListBox_->GetSelectedRow() >= 0) {
         wxVariant value;
         categoryListBox_->GetValue(value, categoryListBox_->GetSelectedRow(), 0);
         wxString selectedCategname = value.GetString();
         id = m_CSVcategoryNames[selectedCategname];
         if (id == -1) {
-            std::map<wxString, int64 > categories = CategoryModel::instance().all_categories();
-            for (const auto& category : categories)
-            {
-                if (category.first.CmpNoCase(selectedCategname) <= 0) id = category.second;
+            for (const auto& cat_fullname_id : CategoryModel::instance().find_all_id_mFullname()) {
+                if (cat_fullname_id.first.CmpNoCase(selectedCategname) <= 0)
+                    id = cat_fullname_id.second;
                 else break;
             }
         }
     }
     CategoryManager dlg(this, false, id);
     dlg.ShowModal();
-    if (dlg.getRefreshRequested())
-    {
+    if (dlg.getRefreshRequested()) {
         refreshTabs(CAT_TAB);
     }
 }
@@ -1788,9 +1785,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                             if (category)
                             {
                                 if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->m_parent_id_n != -1)
-                                    entry = wxGetTranslation(CategoryModel::instance().full_name(category->m_parent_id_n, ":"));
+                                    entry = wxGetTranslation(CategoryModel::instance().get_id_fullname(category->m_parent_id_n, ":"));
                                 else
-                                    entry = wxGetTranslation(CategoryModel::instance().full_name(category->m_id, ":"));
+                                    entry = wxGetTranslation(CategoryModel::instance().get_id_fullname(category->m_id, ":"));
                             }
                             break;
                         case UNIV_CSV_SUBCATEGORY:
@@ -2184,9 +2181,9 @@ void mmUnivCSVDialog::update_preview()
                                 case UNIV_CSV_CATEGORY:
                                     if (category) {
                                         if (isIndexPresent(UNIV_CSV_SUBCATEGORY) && category->m_parent_id_n != -1)
-                                            text << inQuotes(CategoryModel::instance().full_name(category->m_parent_id_n, ":"), delimit);
+                                            text << inQuotes(CategoryModel::instance().get_id_fullname(category->m_parent_id_n, ":"), delimit);
                                         else
-                                            text << inQuotes(CategoryModel::instance().full_name(category->m_id, ":"), delimit);
+                                            text << inQuotes(CategoryModel::instance().get_id_fullname(category->m_id, ":"), delimit);
                                     }
                                     else text << inQuotes("", delimit);
                                     break;
@@ -2398,16 +2395,17 @@ void mmUnivCSVDialog::refreshTabs(int tabs) {
     int num = 0;
     if (tabs & DATA_TAB)
         update_preview();
-    if (tabs & PAYEE_TAB)
-    {
+    if (tabs & PAYEE_TAB) {
         validatePayees();
         payeeListBox_->DeleteAllItems();
-        for (const auto& payee : m_payee_names)
-        {
+        for (const auto& payee : m_payee_names) {
             wxVector<wxVariant> data;
             data.push_back(wxVariant(payee));
-            if (payee == _t("Unknown") || (m_CSVpayeeNames.find(payee) != m_CSVpayeeNames.end() && std::get<0>(m_CSVpayeeNames[payee]) != -1))
-            {
+            if (payee == _t("Unknown") ||
+                (m_CSVpayeeNames.find(payee) != m_CSVpayeeNames.end() &&
+                    std::get<0>(m_CSVpayeeNames[payee]) != -1
+                )
+            ) {
                 if (std::get<2>(m_CSVpayeeNames[payee]) == wxEmptyString)
                     data.push_back(wxVariant(_t("OK")));
                 else
@@ -2421,13 +2419,11 @@ void mmUnivCSVDialog::refreshTabs(int tabs) {
             payeeListBox_->AppendItem(data, static_cast<wxUIntPtr>(num++));
         }
     }
-    if (tabs & CAT_TAB)
-    {
+    if (tabs & CAT_TAB) {
         validateCategories();
         num = 0;
         categoryListBox_->DeleteAllItems();
-        for (const auto& categ : m_CSVcategoryNames)
-        {
+        for (const auto& categ : m_CSVcategoryNames) {
             wxVector<wxVariant> data;
             data.push_back(wxVariant(categ.first));
             if (categ.second == -1)
@@ -2442,8 +2438,7 @@ void mmUnivCSVDialog::refreshTabs(int tabs) {
 void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvListBox_->GetSelection();
-    if (index != wxNOT_FOUND && index != 0)
-    {
+    if (index != wxNOT_FOUND && index != 0) {
         mmListBoxItem* item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
         int item_index = item->getIndex().GetValue();
         const wxString item_name = item->getName();
@@ -2461,8 +2456,7 @@ void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& WXUNUSED(event))
 void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& WXUNUSED(event))
 {
     int index = csvListBox_->GetSelection();
-    if (index != wxNOT_FOUND && static_cast<size_t>(index) != csvListBox_->GetCount() - 1)
-    {
+    if (index != wxNOT_FOUND && static_cast<size_t>(index) != csvListBox_->GetCount() - 1) {
         mmListBoxItem* item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
         int item_index = item->getIndex().GetValue();
         wxString item_name = item->getName();
@@ -2483,16 +2477,14 @@ void mmUnivCSVDialog::OnStandard(wxCommandEvent& WXUNUSED(event))
     csvFieldOrder_.clear();
     int standard[] = { UNIV_CSV_ID, UNIV_CSV_DATE, UNIV_CSV_STATUS, UNIV_CSV_TYPE, UNIV_CSV_ACCOUNT, UNIV_CSV_PAYEE
                      , UNIV_CSV_CATEGORY, UNIV_CSV_SUBCATEGORY, UNIV_CSV_AMOUNT, UNIV_CSV_CURRENCY, UNIV_CSV_TRANSNUM, UNIV_CSV_NOTES };
-    for (const auto i : standard)
-    {
+    for (const auto i : standard) {
         csvListBox_->Append(wxGetTranslation(CSVFieldName_[i].first), new mmListBoxItem(i, CSVFieldName_[i].first));
         csvFieldOrder_.push_back(std::make_pair(i, -1));
     }
 
     csvFieldCandicate_->Clear();
     int rest[] = { UNIV_CSV_NOTES, UNIV_CSV_DONTCARE, UNIV_CSV_WITHDRAWAL, UNIV_CSV_DEPOSIT, UNIV_CSV_BALANCE };
-    for (const auto i : rest)
-    {
+    for (const auto i : rest) {
         csvFieldCandicate_->Append(wxGetTranslation(CSVFieldName_[i].first), new mmListBoxItem(i, CSVFieldName_[i].first));
     }
 
@@ -2503,14 +2495,14 @@ void mmUnivCSVDialog::OnButtonClearClick(wxCommandEvent& WXUNUSED(event))
 {
     int sel = m_choice_preset_name->GetSelection();
     int size = m_choice_preset_name->GetCount();
-    if (sel >= 0 && size > 0)
-    {
+    if (sel >= 0 && size > 0) {
         wxString preset_name = m_choice_preset_name->GetStringSelection();
         if (wxMessageBox(
             wxString::Format(_t("Preset '%s' will be deleted"), preset_name) + "\n\n" +
-            _t("Do you want to continue?")
-            , _t("Delete Preset"), wxYES_NO | wxICON_WARNING) == wxNO)
-        {
+                _t("Do you want to continue?"),
+            _t("Delete Preset"),
+            wxYES_NO | wxICON_WARNING
+        ) == wxNO) {
             return;
         }
         wxString preset_id = m_preset_id[preset_name];
@@ -2857,7 +2849,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             return;
 
         token.Replace(":", "|");
-        wxString categname = CategoryModel::instance().full_name(holder.CategoryID);
+        wxString categname = CategoryModel::instance().get_id_fullname(holder.CategoryID);
         categname.Append(":" + token);
         if (m_CSVcategoryNames.find(categname) != m_CSVcategoryNames.end() &&
             m_CSVcategoryNames[categname] != -1

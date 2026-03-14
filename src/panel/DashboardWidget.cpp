@@ -224,8 +224,8 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
     , const mmDateRange* date_range) const
 {
-    //Temporary map
-    std::map<int64 /*category*/, double> stat;
+    // Temporary map
+    std::map<int64 /*category_id*/, double> stat;
 
     const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto& trx_a = TrxModel::instance().find(
@@ -247,17 +247,17 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         );
 
         if (const auto trxId_tpA = trxId_tpA_m.find(trx_d.m_id); trxId_tpA == trxId_tpA_m.end()) {
-            int64 category = trx_d.m_category_id_n;
+            int64 category_id = trx_d.m_category_id_n;
             if (withdrawal)
-                stat[category] -= trx_d.m_amount * convRate;
+                stat[category_id] -= trx_d.m_amount * convRate;
             else
-                stat[category] += trx_d.m_amount * convRate;
+                stat[category_id] += trx_d.m_amount * convRate;
         }
         else {
             for (const auto& tp_d : trxId_tpA->second) {
-                int64 category = tp_d.m_category_id;
+                int64 category_id = tp_d.m_category_id;
                 double val = tp_d.m_amount * convRate * (withdrawal ? -1 : 1);
-                stat[category] += val;
+                stat[category_id] += val;
             }
         }
     }
@@ -266,7 +266,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     for (const auto& i : stat) {
         if (i.second < 0) {
             std::pair <wxString, double> stat_pair;
-            stat_pair.first = CategoryModel::instance().full_name(i.first);
+            stat_pair.first = CategoryModel::instance().get_id_fullname(i.first);
             stat_pair.second = i.second;
             categoryStats.push_back(stat_pair);
         }
@@ -616,10 +616,18 @@ const wxString htmlWidgetAssets::getHTMLText()
         wxString row;
         row << "<tr>";
         row << wxString::Format("<td sorttable_customkey='*%s*'>%s</td>\n", name, name);
-        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n", initial, CurrencyModel::instance().toCurrency(initial));
-        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n", current, CurrencyModel::instance().toCurrency(current));
-        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n", cash, CurrencyModel::instance().toCurrency(cash));
-        row << wxString::Format("<td colspan='2' class='money' sorttable_customkey='%.2f'>%s</td>\n", current + cash, CurrencyModel::instance().toCurrency(current + cash));
+        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n",
+            initial, CurrencyModel::instance().toCurrency(initial)
+        );
+        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n",
+            current, CurrencyModel::instance().toCurrency(current)
+        );
+        row << wxString::Format("<td class='money' sorttable_customkey='%.2f'>%s</td>\n",
+            cash, CurrencyModel::instance().toCurrency(cash)
+        );
+        row << wxString::Format("<td colspan='2' class='money' sorttable_customkey='%.2f'>%s</td>\n",
+            current + cash, CurrencyModel::instance().toCurrency(current + cash)
+        );
         row << "</tr>\n";
         return row;
     };
@@ -647,10 +655,12 @@ const wxString htmlWidgetAssets::getHTMLText()
 
     if (rows > MAX_ASSETS) {
         wxString otherAssets = _t("Other Assets");
-        output << renderRow(wxString::Format("%s (%d)", otherAssets, rows - MAX_ASSETS),
-                            initialTotal - initialDisplayed,
-                            currentTotal - currentDisplayed,
-                            cashTotal - cashDisplayed);
+        output << renderRow(
+            wxString::Format("%s (%d)", otherAssets, rows - MAX_ASSETS),
+            initialTotal - initialDisplayed,
+            currentTotal - currentDisplayed,
+            cashTotal - cashDisplayed
+        );
     }
 
     output << "<tfoot><tr class='total'><td>" << _t("Total:") << "</td>\n"

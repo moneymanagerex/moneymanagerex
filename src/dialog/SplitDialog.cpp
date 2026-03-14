@@ -86,7 +86,7 @@ void mmEditSplitOther::CreateControls()
 
     // Split Category
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _t("Category")), g_flagsH);
-    wxString catName = CategoryModel::instance().full_name(m_split->m_category_id);
+    wxString catName = CategoryModel::instance().get_id_fullname(m_split->m_category_id);
     wxTextCtrl* category = new wxTextCtrl(this, wxID_ANY, catName);
     category->Disable();
     fgSizer1->Add(category, g_flagsExpand);
@@ -305,12 +305,11 @@ void SplitDialog::CreateControls()
 void SplitDialog::FillControls(const int focusRow)
 {
     DoWindowsFreezeThaw(this);
-    for (int row = (focusRow == -1 ? 0 : focusRow); row < static_cast<int>(m_splits_widgets.size()); row++)
-    {
-        if (row < static_cast<int>(m_splits.size()))
-        {
+    for (int row = (focusRow == -1 ? 0 : focusRow); row < static_cast<int>(m_splits_widgets.size()); row++) {
+        if (row < static_cast<int>(m_splits.size())) {
             m_splits_widgets.at(row).category->ChangeValue(
-                    CategoryModel::instance().full_name(m_splits.at(row).m_category_id));
+                CategoryModel::instance().get_id_fullname(m_splits.at(row).m_category_id)
+            );
             if (m_splits.at(row).m_category_id == -1)
                 m_splits_widgets.at(row).amount->SetValue("");
             else
@@ -514,30 +513,25 @@ void SplitDialog::OnOtherButton(wxCommandEvent& event)
 
 void SplitDialog::OnComboKey(wxKeyEvent& event)
 {
-    if (event.GetKeyCode() == WXK_RETURN)
-    {
+    if (event.GetKeyCode() == WXK_RETURN) {
         auto cbc = static_cast<mmComboBoxCategory*>(event.GetEventObject());
         if (cbc) {
             auto category = cbc->GetValue();
-            if (category.empty())
-            {
+            if (category.empty()) {
                 CategoryManager dlg(this, true, -1);
                 dlg.ShowModal();
                 DoWindowsFreezeThaw(this);
-                if (dlg.getRefreshRequested())
-                {
-                    for (int i=0; i<static_cast<int>(m_splits_widgets.size()); i++)
-                    {
+                if (dlg.getRefreshRequested()) {
+                    for (int i=0; i<static_cast<int>(m_splits_widgets.size()); i++) {
                         auto cbcUpdate = m_splits_widgets.at(i).category;
-                        if (cbc != cbcUpdate)
-                        {
-                            category = CategoryModel::instance().full_name(cbcUpdate->mmGetCategoryId());
+                        if (cbc != cbcUpdate) {
+                            category = CategoryModel::instance().get_id_fullname(cbcUpdate->mmGetCategoryId());
                             cbcUpdate->mmDoReInitialize();
                             cbcUpdate->ChangeValue(category);
                         }
                     }
                 }
-                category = CategoryModel::instance().full_name(dlg.getCategId());
+                category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
                 if (dlg.getRefreshRequested())
                     cbc->mmDoReInitialize();
                 cbc->ChangeValue(category);
@@ -548,8 +542,7 @@ void SplitDialog::OnComboKey(wxKeyEvent& event)
 
     // The first time the ALT key is pressed accelerator hints are drawn, but custom painting on the tags button
     // is not applied. We need to refresh the tag ctrls to redraw the drop buttons with the correct images.
-    if (event.AltDown() && !altRefreshDone)
-    {
+    if (event.AltDown() && !altRefreshDone) {
         for (int row = 0; row < static_cast<int>(m_splits_widgets.size()); row++)
             m_splits_widgets.at(row).tags->Refresh();
         altRefreshDone = true;
@@ -561,8 +554,7 @@ void SplitDialog::OnComboKey(wxKeyEvent& event)
 void SplitDialog::UpdateSplitTotal()
 {
     double total = 0;
-    for (int i=0; i<static_cast<int>(m_splits.size()); i++)
-    {
+    for (int i=0; i<static_cast<int>(m_splits.size()); i++) {
         double amount = 0.0;
         if (m_splits_widgets.at(i).amount->GetDouble(amount))
             total += amount;

@@ -291,12 +291,12 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
 
     const wxString& delimiter = InfoModel::instance().getString("CATEG_DELIMITER", ":");
     if (delimiter != ":" && s_category.Contains(":")) {
-        for (const auto& category : CategoryModel::instance().all_categories()) {
-            wxString full_name = category.first;
+        for (const auto& cat_fullname_id : CategoryModel::instance().find_all_id_mFullname()) {
+            wxString full_name = cat_fullname_id.first;
             wxRegEx regex(delimiter);
             regex.Replace(&full_name, ":");
             if (s_category == full_name) {
-                s_category = category.first;
+                s_category = cat_fullname_id.first;
                 break;
             }
         }
@@ -1875,8 +1875,8 @@ const wxString TrxFilterDialog::mmGetJsonSettings(bool i18n) const
     if (categoryCheckBox_->IsChecked()) {
         json_writer.Key((i18n ? _t("Category") : "CATEGORY").utf8_str());
         if (categoryComboBox_->mmIsValid()) {
-            int64 categ = categoryComboBox_->mmGetCategoryId();
-            const auto& full_name = CategoryModel::instance().full_name(categ, ":");
+            int64 cat_id = categoryComboBox_->mmGetCategoryId();
+            const auto& full_name = CategoryModel::instance().get_id_fullname(cat_id, ":");
             json_writer.String(full_name.utf8_str());
         }
         else {
@@ -2026,13 +2026,13 @@ void TrxFilterDialog::OnCategoryChange(wxEvent& event)
     if (!categoryComboBox_->GetValue().IsEmpty()) {
         wxRegEx pattern("^(" + categoryComboBox_->mmGetPattern() + ")$", wxRE_ICASE | wxRE_ADVANCED);
         if (pattern.IsValid()) {
-            for (const auto& category : CategoryModel::instance().all_categories()) {
-                if (!pattern.Matches(category.first))
+            for (const auto& cat_fullname_id : CategoryModel::instance().find_all_id_mFullname()) {
+                if (!pattern.Matches(cat_fullname_id.first))
                     continue;
-                m_selected_categories_id.push_back(category.second);
+                m_selected_categories_id.push_back(cat_fullname_id.second);
                 if (!mmIsCategorySubCatChecked())
                     continue;
-                const CategoryData* cat_n = CategoryModel::instance().get_id_data_n(category.second);
+                const CategoryData* cat_n = CategoryModel::instance().get_id_data_n(cat_fullname_id.second);
                 for (const auto& sub_d : CategoryModel::instance().find_data_subtree_a(*cat_n))
                     m_selected_categories_id.push_back(sub_d.m_id);
             }
@@ -2392,7 +2392,7 @@ void TrxFilterDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     categoryComboBox_->mmDoReInitialize();
-                category = CategoryModel::instance().full_name(dlg.getCategId());
+                category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
                 categoryComboBox_->ChangeValue(category);
                 categoryComboBox_->SelectAll();
                 return;

@@ -96,7 +96,7 @@ void MergeCategoryDialog::CreateControls()
     cbSourceCategory_->SetMinSize(wxSize(200, -1));
     const CategoryData* category_n = CategoryModel::instance().get_id_data_n(m_sourceCatID);
     if (category_n)
-        cbSourceCategory_->SetValue(CategoryModel::instance().full_name(m_sourceCatID));
+        cbSourceCategory_->SetValue(CategoryModel::instance().get_id_fullname(m_sourceCatID));
 
     cbDestCategory_ = new mmComboBoxCategory(this, wxID_NEW, wxDefaultSize, -1, true);
     cbDestCategory_->SetMinSize(wxSize(200, -1));
@@ -291,7 +291,7 @@ void MergeCategoryDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbSourceCategory_->mmDoReInitialize();
-                category = CategoryModel::instance().full_name(dlg.getCategId());
+                category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
                 cbSourceCategory_->ChangeValue(category);
                 return;
             }
@@ -301,13 +301,12 @@ void MergeCategoryDialog::OnComboKey(wxKeyEvent& event)
         case wxID_NEW:
         {
             auto category = cbDestCategory_->GetValue();
-            if (category.empty())
-            {
+            if (category.empty()) {
                 CategoryManager dlg(this, true, -1);
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbDestCategory_->mmDoReInitialize();
-                category = CategoryModel::instance().full_name(dlg.getCategId());
+                category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
                 cbDestCategory_->ChangeValue(category);
                 return;
             }

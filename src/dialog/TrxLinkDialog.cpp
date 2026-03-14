@@ -270,7 +270,7 @@ void TrxLinkDialog::DataToControls()
     m_payee->SetLabelText(PayeeModel::instance().get_id_name(m_payee_id));
 
     m_category_id = m_transaction_n->m_category_id_n;
-    m_category->SetValue(CategoryModel::instance().full_name(m_category_id));
+    m_category->SetValue(CategoryModel::instance().get_id_fullname(m_category_id));
 
     m_entered_number->SetValue(m_transaction_n->m_number);
     m_entered_notes->SetValue(m_transaction_n->m_notes);
@@ -332,11 +332,11 @@ void TrxLinkDialog::SetLastPayeeAndCategory(const int64 account_id)
             if (last_payee_n) {
                 m_payee->SetLabelText(last_payee_n->m_name);
                 m_payee_id = last_payee_n->m_id;
-                if ((PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED)
-                    && !CategoryModel::instance().is_hidden(last_payee_n->m_category_id_n)
+                if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED &&
+                    CategoryModel::instance().get_id_active(last_payee_n->m_category_id_n)
                 ) {
                     m_category_id = last_payee_n->m_category_id_n;
-                    m_category->SetLabelText(CategoryModel::instance().full_name(last_payee_n->m_category_id_n));
+                    m_category->SetLabelText(CategoryModel::instance().get_id_fullname(last_payee_n->m_category_id_n));
                 }
             }
         }
@@ -368,14 +368,14 @@ void TrxLinkDialog::OnTransPayeeButton(wxCommandEvent& WXUNUSED(event))
             m_payee->SetLabelText(payee_n->m_name);
 
             // Only for new transactions: if user want to autofill last category used for payee and category has not been set.
-            if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED
-                && m_category_id < 0
-                && m_subcategory_id < 0
-                && !CategoryModel::instance().is_hidden(payee_n->m_category_id_n)
+            if (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED &&
+                m_category_id < 0 &&
+                m_subcategory_id < 0 &&
+                CategoryModel::instance().get_id_active(payee_n->m_category_id_n)
             ) {
                 if (payee_n->m_category_id_n > 0) {
                     m_category_id = payee_n->m_category_id_n;
-                    m_category->SetLabelText(CategoryModel::instance().full_name(m_category_id));
+                    m_category->SetLabelText(CategoryModel::instance().get_id_fullname(m_category_id));
                 }
             }
         }
@@ -393,7 +393,7 @@ void TrxLinkDialog::OnTransCategoryCombobox(wxCommandEvent& WXUNUSED(event))
     if (dlg.ShowModal() == wxID_OK)
     {
         m_category_id = dlg.getCategId();
-        m_category->SetLabelText(CategoryModel::instance().full_name(m_category_id));
+        m_category->SetLabelText(CategoryModel::instance().get_id_fullname(m_category_id));
     }
 }
 
@@ -478,7 +478,7 @@ void TrxLinkDialog::SetTransactionPayee(const int64 payeeid)
 void TrxLinkDialog::SetTransactionCategory(const int64 categid)
 {
     m_category_id = categid;
-    m_category->SetLabelText(CategoryModel::instance().full_name(m_category_id));
+    m_category->SetLabelText(CategoryModel::instance().get_id_fullname(m_category_id));
 }
 
 void TrxLinkDialog::SetTransactionAccount(const wxString& trans_account)
@@ -577,7 +577,7 @@ void TrxLinkDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_local_splits = dlg.mmGetResult();
 
         if (m_local_splits.size() == 1) {
-            m_category->SetLabelText(CategoryModel::instance().full_name(m_local_splits[0].m_category_id));
+            m_category->SetLabelText(CategoryModel::instance().get_id_fullname(m_local_splits[0].m_category_id));
             m_entered_amount->SetValue(m_local_splits[0].m_amount);
             m_entered_notes->SetValue(m_local_splits[0].m_notes);
 

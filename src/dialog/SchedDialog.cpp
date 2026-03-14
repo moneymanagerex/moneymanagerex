@@ -722,14 +722,16 @@ void SchedDialog::OnPayee(wxCommandEvent& WXUNUSED(event))
 
     // Only for new/duplicate transactions: if user want to autofill last category used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
-    if (m_sched_xd.local_splits.empty()
-        && (PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED ||
-            PrefModel::instance().getTransCategoryNone() == PrefModel::DEFAULT)
-        && (!CategoryModel::instance().is_hidden(payee_n->m_category_id_n) && !CategoryModel::instance().is_hidden(payee_n->m_category_id_n)))
-    {
+    if (m_sched_xd.local_splits.empty() &&
+        ( PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED ||
+            PrefModel::instance().getTransCategoryNone() == PrefModel::DEFAULT
+        ) &&
+        CategoryModel::instance().get_id_active(payee_n->m_category_id_n) &&
+        CategoryModel::instance().get_id_active(payee_n->m_category_id_n)
+    ) {
         m_sched_xd.m_category_id_n = payee_n->m_category_id_n;
 
-        cbCategory_->ChangeValue(CategoryModel::instance().full_name(m_sched_xd.m_category_id_n));
+        cbCategory_->ChangeValue(CategoryModel::instance().get_id_fullname(m_sched_xd.m_category_id_n));
     }
 }
 
@@ -785,7 +787,7 @@ void SchedDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                category = CategoryModel::instance().full_name(dlg.getCategId());
+                category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
                 cbCategory_->ChangeValue(category);
                 cbCategory_->SelectAll();
                 return;
@@ -1470,13 +1472,13 @@ void SchedDialog::setCategoryLabel()
         );
 
         if (!transactions.empty()) {
-            const int64 cat = transactions.back().m_category_id_n;
-            cbCategory_->ChangeValue(CategoryModel::instance().full_name(cat));
+            int64 cat_id = transactions.back().m_category_id_n;
+            cbCategory_->ChangeValue(CategoryModel::instance().get_id_fullname(cat_id));
         }
     }
     else {
-        const auto fullCategoryName = CategoryModel::instance().full_name(m_sched_xd.m_category_id_n);
-        cbCategory_->ChangeValue(fullCategoryName);
+        const auto cat_fullname = CategoryModel::instance().get_id_fullname(m_sched_xd.m_category_id_n);
+        cbCategory_->ChangeValue(cat_fullname);
     }
 
     setTooltips();
