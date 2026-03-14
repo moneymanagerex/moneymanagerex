@@ -420,7 +420,7 @@ mmGUIFrame::~mmGUIFrame()
     // Report database statistics
     for (const auto & model : this->m_all_models) {
         model->debug_stat();
-        UsageModel::instance().AppendToCache(model->stat_json());
+        UsageModel::instance().append_cache(model->stat_json());
     }
 }
 //----------------------------------------------------------------------------
@@ -3555,7 +3555,7 @@ void mmGUIFrame::createHomePage()
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    UsageModel::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
 }
 //----------------------------------------------------------------------------
 
@@ -3629,7 +3629,7 @@ void mmGUIFrame::createBillsDeposits()
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    UsageModel::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
     m_nav_tree_ctrl->SetFocus();
     setNavTreeSection(_t("Scheduled Transactions"));
 }
@@ -3664,7 +3664,7 @@ void mmGUIFrame::createBudgetingPage(int64 budgetYearID)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    UsageModel::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
 
     menuPrintingEnable(true);
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
@@ -3724,7 +3724,7 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    UsageModel::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
 
     menuPrintingEnable(true);
     if (checking_id >= 1 && gotoTransID_.first > 0) {
@@ -3764,7 +3764,7 @@ void mmGUIFrame::createStocksAccountPage(int64 accountID)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    UsageModel::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
     menuPrintingEnable(true);
 }
 
@@ -3849,7 +3849,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
     json_writer.Double((wxDateTime::UNow() - time).GetMilliseconds().ToDouble() / 1000);
     json_writer.EndObject();
 
-    UsageModel::instance().AppendToUsage(wxString::FromUTF8(json_buffer.GetString()));
+    UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
 }
 //----------------------------------------------------------------------------
 

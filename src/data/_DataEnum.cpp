@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-// The enumeration strings listed are written in the database.
+// The enumeration strings listed below are written in the database.
 // DO NOT CHANGE THEM!
 
 #include "_DataEnum.h"

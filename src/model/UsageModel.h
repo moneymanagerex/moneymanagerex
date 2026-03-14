@@ -29,40 +29,23 @@ class ReportBase;
 
 class UsageModel : public TableFactory<UsageTable, UsageData>
 {
-public:
-    UsageModel();
-    ~UsageModel();
-
-public:
-    /**
-    Initialize the global UsageModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for UsageModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
-    static UsageModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for UsageModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
-    static UsageModel& instance();
-
 private:
     wxDateTime m_start;
     wxArrayString m_json_usage, m_json_cache;
 
 public:
-    // Appends to usage array
-    void AppendToUsage(const wxString& json_string);
-
-    // Appends to cache array
-    void AppendToCache(const wxString& json_string);
-
-    //Return a json string
-    wxString To_JSON_String() const;
+    UsageModel();
+    ~UsageModel();
 
 public:
+    static UsageModel& instance(wxSQLite3Database* db);
+    static UsageModel& instance();
+
+public:
+    void append_usage(const wxString& json_string);
+    void append_cache(const wxString& json_string);
+    auto to_json() const -> const wxString;
+
     void pageview(const wxString& documentPath, const wxString& documentTitle, long plt = 0 /*msec*/);
     void pageview(const wxWindow* window, long plt = 0 /*msec*/);
     void pageview(const wxWindow* window, const ReportBase* rb, long plt = 0 /*msec*/);

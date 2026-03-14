@@ -35,14 +35,7 @@ public:
     ~InfoModel();
 
 public:
-    // Initialize the global InfoModel table on initial call.
-    // Resets the global table on subsequent calls.
-    // Return the static instance address for InfoModel table.
-    // Note: Assigning the address to a local variable can destroy the instance.
     static InfoModel& instance(wxSQLite3Database* db);
-
-    // Return the static instance address for InfoModel table.
-    // Note: Assigning the address to a local variable can destroy the instance.
     static InfoModel& instance();
 
 public:

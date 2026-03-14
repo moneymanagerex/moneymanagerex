@@ -158,7 +158,7 @@ bool ReportPanel::saveReportText()
 
     const auto t = wxString::FromUTF8(json_buffer.GetString());
     wxLogDebug("%s", t);
-    UsageModel::instance().AppendToUsage(t);
+    UsageModel::instance().append_usage(t);
     UsageModel::instance().pageview(this, m_rb, (wxDateTime::UNow() - time).GetMilliseconds().ToLong());
 
     return true;
