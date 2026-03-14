@@ -571,8 +571,11 @@ bool StockPanel::onlineQuoteRefresh(wxString& msg)
             );
             stock_d.m_current_price = dPrice;
             StockModel::instance().save_data_n(stock_d);
-            StockHistoryModel::instance().addUpdate(
-                stock_d.m_symbol, wxDate::Now(), dPrice, StockHistoryModel::ONLINE
+            StockHistoryModel::instance().save_record(
+                stock_d.m_symbol,
+                mmDate::today(),
+                dPrice,
+                UpdateType(UpdateType::e_online)
             );
         }
     }

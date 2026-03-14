@@ -483,11 +483,11 @@ void TrxShareDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
         StockModel::instance().update_data_position(m_stock_n);
         if (!loyalty_shares) {
-            StockHistoryModel::instance().addUpdate(
+            StockHistoryModel::instance().save_record(
                 m_stock_n->m_symbol,
-                m_transaction_panel->TransactionDate(),
+                mmDate(m_transaction_panel->TransactionDate()),
                 share_price,
-                StockHistoryModel::MANUAL
+                UpdateType(UpdateType::e_manual)
             );
         }
     }

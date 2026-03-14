@@ -505,11 +505,11 @@ void StockDialog::OnSave(wxCommandEvent & /*event*/)
         share_dialog.ShowModal();
     }
 
-    StockHistoryModel::instance().addUpdate(
+    StockHistoryModel::instance().save_record(
         m_stock_n->m_symbol,
-        wxDate::Today(),
+        mmDate::today(),
         m_stock_n->m_current_price,
-        StockHistoryModel::MANUAL
+        UpdateType(UpdateType::e_manual)
     );
     ShowStockHistory();
 
@@ -547,7 +547,7 @@ void StockDialog::OnListItemSelected(wxListEvent& event)
     const StockHistoryData* sh_n = StockHistoryModel::instance().get_id_data_n(histId);
 
     if (sh_n->m_id > 0) {
-        m_history_date_ctrl->SetValue(StockHistoryModel::DATE(*sh_n));
+        m_history_date_ctrl->SetValue(sh_n->m_date.getDateTime());
         m_history_price_ctrl->SetValue(AccountModel::instance().value_number(
             *account_n, sh_n->m_price, PrefModel::instance().getSharePrecision()
         ));
@@ -880,7 +880,12 @@ void StockDialog::OnHistoryAddButton(wxCommandEvent& /*event*/)
     if (!CurrencyModel::instance().fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
         return;
 
-    int64 histID = StockHistoryModel::instance().addUpdate(m_stock_n->m_symbol, m_history_date_ctrl->GetValue(), dPrice, StockHistoryModel::MANUAL);
+    int64 histID = StockHistoryModel::instance().save_record(
+        m_stock_n->m_symbol,
+        mmDate(m_history_date_ctrl->GetValue()),
+        dPrice,
+        UpdateType(UpdateType::e_manual)
+    );
     long i;
     for (i = 0; i < m_price_listbox->GetItemCount(); i++) {
         listStr = m_price_listbox->GetItemText(i, 0);

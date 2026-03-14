@@ -3907,8 +3907,11 @@ void mmGUIFrame::OnRates(wxCommandEvent& WXUNUSED(event))
                     if (stock_d.m_name.empty())
                         stock_d.m_name = stock_d.m_symbol;
                     StockModel::instance().save_data_n(stock_d);
-                    StockHistoryModel::instance().addUpdate(
-                        stock_d.m_symbol, wxDate::Now(), dPrice, StockHistoryModel::ONLINE
+                    StockHistoryModel::instance().save_record(
+                        stock_d.m_symbol,
+                        mmDate::today(),
+                        dPrice,
+                        UpdateType(UpdateType::e_online)
                     );
                 }
             }
