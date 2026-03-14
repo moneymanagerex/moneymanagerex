@@ -50,6 +50,7 @@ public:
         ID_CHART_CHOICE,
         ID_FORWARD_MONTHS,
         ID_FILTER_GENERIC_CHOICE,
+        ID_SELECTION_GENERIC_CHOICE,
         ID_DATE_RANGE_BUTTON,
         ID_DATE_RANGE_MIN,
         ID_DATE_RANGE_MAX = ID_DATE_RANGE_MIN + 99,
@@ -82,6 +83,7 @@ private:
     wxChoice*         w_stocks_choice      = nullptr;
     wxChoice*         w_chart_choice       = nullptr;
     wxTextCtrl*       w_filter             = nullptr;
+    wxChoice*         w_selection_choice   = nullptr;
 
 
 public:
@@ -124,7 +126,7 @@ private:
     void onStartEndDateChanged(wxDateEvent& event);
     void onSingleDateChanged(wxDateEvent& event);
     void onAccountChanged(wxCommandEvent& event);
-    void OnStockChanged(wxCommandEvent& event);
+    void onStockChanged(wxCommandEvent& event);
     void onChartChanged(wxCommandEvent& event);
     void onForwardMonthsChangedSpin(wxSpinEvent& event);
     void onForwardMonthsChangedText(wxCommandEvent& event);
@@ -132,7 +134,8 @@ private:
     void onDateRangePopup(wxCommandEvent& event);
     void onDateRangeSelect(wxCommandEvent& event);
     void onDateRangeEdit(wxCommandEvent& event);
-    void OnFilterChanged(wxCommandEvent& event);
+    void onFilterChanged(wxCommandEvent& event);
+    void onSelectionChanged(wxCommandEvent& event);
 
     void updateFilter();
 };

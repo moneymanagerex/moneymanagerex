@@ -72,6 +72,7 @@ public:
         M_FORWARD_MONTHS = 256,
         M_STOCK_NAMES    = 512,
         M_GENERIC_FILTER = 1024,
+        M_GENERIC_SELECTION = 2048
     };
 
 protected:
@@ -92,6 +93,8 @@ protected:
     wxString m_stock_name = "";
     wxString m_generic_filter = "";
     std::map<wxString, wxString> m_filter_map;
+    std::map<wxString, wxString> m_selection_map;
+    wxArrayString m_selections;
 
 public:
     TrxFilter m_filter;
@@ -132,6 +135,7 @@ public:
     void saveReportSettings();
     void restoreReportSettings();
     std::map<wxString, wxString> getFilterMap() const;
+    std::map<wxString, wxString>getSelectionMap() const;
 };
 
 // virtual
@@ -169,6 +173,7 @@ inline int ReportBase::getChartSelection() const { return this->m_chart_selectio
 inline int ReportBase::getStockSelection() const { return this->m_stock_selection; }
 inline wxString ReportBase::getFilterValue() const { return this->m_generic_filter; }
 inline std::map<wxString, wxString> ReportBase::getFilterMap() const { return this->m_filter_map; }
+inline std::map<wxString, wxString> ReportBase::getSelectionMap() const { return this->m_selection_map; }
 
 
 class mmGeneralReport : public ReportBase
@@ -179,7 +184,7 @@ public:
 public:
     wxString getHTMLText();
     virtual int extractParameters();
-    std::map<wxString, wxString> extractFilterDetails(const wxString& input, const wxString& marker);
+    std::map<wxString, wxString> extractVarDetails(const wxString& input, const wxString& marker);
 
 private:
     const ReportData* m_report;

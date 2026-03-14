@@ -50,8 +50,9 @@ wxBEGIN_EVENT_TABLE(ReportPanel, wxPanel)
     EVT_CHOICE(ID_YEAR_CHOICE,               ReportPanel::onYearChanged)
     EVT_CHOICE(ID_BUDGET_CHOICE,             ReportPanel::onBudgetChanged)
     EVT_CHOICE(ID_ACCOUNT_CHOICE,            ReportPanel::onAccountChanged)
-    EVT_CHOICE(ID_STOCK_CHOICE,              ReportPanel::OnStockChanged)
-    EVT_TEXT_ENTER(ID_FILTER_GENERIC_CHOICE, ReportPanel::OnFilterChanged)
+    EVT_CHOICE(ID_STOCK_CHOICE,              ReportPanel::onStockChanged)
+    EVT_TEXT_ENTER(ID_FILTER_GENERIC_CHOICE, ReportPanel::onFilterChanged)
+    EVT_CHOICE(ID_SELECTION_GENERIC_CHOICE,  ReportPanel::onSelectionChanged)
     EVT_DATE_CHANGED(ID_START_DATE_PICKER,   ReportPanel::onStartEndDateChanged)
     EVT_TIME_CHANGED(ID_START_DATE_PICKER,   ReportPanel::onStartEndDateChanged)
     EVT_DATE_CHANGED(ID_END_DATE_PICKER,     ReportPanel::onStartEndDateChanged)
@@ -101,6 +102,8 @@ bool ReportPanel::Create(
     wxPanel::Create(parent, winid, pos, size, style, name);
 
     m_use_account_specific_filter = PrefModel::instance().getUsePerAccountFilter();
+
+    m_filter_id = JournalPanel::FILTER_ID_DATE;
 
     m_rb->extractParameters();
     m_rb->restoreReportSettings();
@@ -222,18 +225,23 @@ void ReportPanel::loadFilterSettings() {
     else if (m_filter_id == JournalPanel::FILTER_ID_DATE_PICKER) {
         // Load start/end date pickers from settings.
         // The date range is configured later in updateFilter().
-        wxString date_str;
-        wxString::const_iterator end;
-        wxDateTime start_dateTime, end_dateTime;
-        if (JSON_GetStringValue(j_doc, "FILTER_DATE_BEGIN", date_str)) {
-            start_dateTime.ParseFormat(date_str, "%Y-%m-%d", &end);
+        if (w_start_date_picker) {
+            wxString date_str;
+            wxString::const_iterator end;
+            wxDateTime start_dateTime, end_dateTime;
+            if (JSON_GetStringValue(j_doc, "FILTER_DATE_BEGIN", date_str)) {
+                start_dateTime.ParseFormat(date_str, "%Y-%m-%d", &end);
+            }
+            if (JSON_GetStringValue(j_doc, "FILTER_DATE_END", date_str)) {
+                end_dateTime.ParseFormat(date_str, "%Y-%m-%d", &end);
+            }
+            // initialize pickers (also when start/end dates are undefined)
+            w_start_date_picker->SetValue(start_dateTime);
+            w_end_date_picker->SetValue(end_dateTime);
         }
-        if (JSON_GetStringValue(j_doc, "FILTER_DATE_END", date_str)) {
-            end_dateTime.ParseFormat(date_str, "%Y-%m-%d", &end);
+        else {
+            wxLogDebug("ReportPanel warning: Date Pickers are not available");
         }
-        // initialize pickers (also when start/end dates are undefined)
-        w_start_date_picker->SetValue(start_dateTime);
-        w_end_date_picker->SetValue(end_dateTime);
     }
 
     if (w_stocks_choice) {
@@ -246,8 +254,10 @@ void ReportPanel::loadFilterSettings() {
     }
 
     if (w_filter) {
+        auto map = m_rb->getFilterMap();
+        wxString token = map.count("name") > 0 ? "FILTER_STRING_" + removeQuotes(map["name"]) : "FILTER_STRING_VALUE";
         wxString filter_str;
-        if (JSON_GetStringValue(j_doc, "FILTER_STRING_VALUE", filter_str)) {
+        if (JSON_GetStringValue(j_doc, token.ToUTF8(), filter_str)) {
             w_filter->SetValue(filter_str);
         }
     }
@@ -280,7 +290,7 @@ void ReportPanel::saveFilterSettings() {
             );
         }
         else {
-            wxLogError("ReportPanel::saveFilterSettings(): w_start_date_picker is null");
+            wxLogDebug("ReportPanel::saveFilterSettings(): w_start_date_picker is null");
         }
         if (w_end_date_picker) {
             InfoModel::saveFilterString(j_doc, "FILTER_DATE_END",
@@ -288,7 +298,7 @@ void ReportPanel::saveFilterSettings() {
             );
         }
         else {
-            wxLogError("ReportPanel::saveFilterSettings(): w_end_date_picker is null");
+            wxLogDebug("ReportPanel::saveFilterSettings(): w_end_date_picker is null");
         }
         InfoModel::saveFilterString(j_doc, "FILTER_DATE", "");
     }
@@ -298,7 +308,9 @@ void ReportPanel::saveFilterSettings() {
     }
 
     if (w_filter) {
-        InfoModel::saveFilterString(j_doc, "FILTER_STRING_VALUE", w_filter->GetValue());
+        auto map = m_rb->getFilterMap();
+        wxString token = map.count("name") > 0 ? "FILTER_STRING_" + removeQuotes(map["name"]) : "FILTER_STRING_VALUE";
+        InfoModel::saveFilterString(j_doc, token.ToUTF8(), w_filter->GetValue());
     }
 
     InfoModel::instance().setJdoc(key, j_doc);
@@ -359,10 +371,7 @@ void ReportPanel::CreateControls()
     wxWrapSizer* itemBoxSizerHeader = new wxWrapSizer();
     itemPanel3->SetSizer(itemBoxSizerHeader);
 
-    wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3, wxID_ANY, "");
-    itemBoxSizerHeader->Add(itemStaticText9, 0, wxALL | wxALIGN_CENTER_VERTICAL, 2);
-
-    //int sel_id = -1;
+    itemBoxSizerHeader->Add(new wxStaticText(itemPanel3, wxID_ANY, ""), 0, wxALL | wxALIGN_CENTER_VERTICAL, 2); // Placeholder
 
     if (m_rb) {
         int rp = m_rb->getParameters();
@@ -597,11 +606,12 @@ void ReportPanel::CreateControls()
         if (rp & ReportBase::M_GENERIC_FILTER)
         {
             auto map = m_rb->getFilterMap();
-            wxString name = map.count("name") > 0 ? map["name"] : _t("Filter:");
+            wxString name = map.count("name") > 0 ? removeQuotes(map["name"]) : _t("Filter:");
             wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, name);
             mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
             itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(5);
+
             w_filter = new wxTextCtrl(itemPanel3, ID_FILTER_GENERIC_CHOICE, m_rb->getFilterValue(), wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
             if (map.count("default") > 0) {
                 w_filter->SetValue(removeQuotes(map["default"]));
@@ -610,8 +620,32 @@ void ReportPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(30);
         }
 
-        itemBoxSizerHeader->AddStretchSpacer(1);
+        if (rp & ReportBase::M_GENERIC_SELECTION)
+        {
+            auto map = m_rb->getSelectionMap();
+            wxString name = map.count("name") > 0 ? removeQuotes(map["name"]) : _t("Selection:");
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, name);
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
+
+            w_selection_choice = new wxChoice(itemPanel3, ID_SELECTION_GENERIC_CHOICE);
+            if (map.count("values") > 0) {
+                wxStringTokenizer tokenizer(map["values"], ",");
+                while (tokenizer.HasMoreTokens()) {
+                    w_selection_choice->Append(removeQuotes(tokenizer.GetNextToken()));
+                }
+            }
+            if (map.count("default") > 0) {
+                int idx = w_selection_choice->FindString(removeQuotes(map["default"]));
+                w_selection_choice->SetSelection(idx != wxNOT_FOUND ? idx : 0);
+            }
+            itemBoxSizerHeader->Add(w_selection_choice, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+        }
     }
+
+    itemBoxSizerHeader->Add(new wxStaticText(itemPanel3, wxID_ANY, ""), 0, wxALL | wxALIGN_CENTER_VERTICAL, 2); // Placeholder
 
     w_browser = wxWebView::New();
 #ifdef __WXMAC__
@@ -845,7 +879,7 @@ void ReportPanel::onAccountChanged(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void ReportPanel::OnStockChanged(wxCommandEvent& WXUNUSED(event))
+void ReportPanel::onStockChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (m_rb) {
         int sel = w_stocks_choice->GetSelection();
@@ -859,11 +893,19 @@ void ReportPanel::OnStockChanged(wxCommandEvent& WXUNUSED(event))
     }
 }
 
-void ReportPanel::OnFilterChanged(wxCommandEvent& WXUNUSED(event))
+void ReportPanel::onFilterChanged(wxCommandEvent& WXUNUSED(event))
 {
     if (m_rb) {
         saveReportText();
         saveFilterSettings();
+        m_rb->saveReportSettings();
+    }
+}
+
+void ReportPanel::onSelectionChanged(wxCommandEvent& WXUNUSED(event))
+{
+    if (m_rb) {
+        saveReportText();
         m_rb->saveReportSettings();
     }
 }

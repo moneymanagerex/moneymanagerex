@@ -59,6 +59,8 @@ const std::vector<ReportParam> ReportParam::get_param_a()
             ReportPanel::ID_STOCK_CHOICE, _t("Stock name:")},
         { "&filter", "wxTextCtrl", "",
             ReportPanel::ID_FILTER_GENERIC_CHOICE, _t("Filter")},
+        { "&selection", "wxChoice", "",
+            ReportPanel::ID_SELECTION_GENERIC_CHOICE, _t("Selection")}
     };
     return param_a;
 }
@@ -106,7 +108,7 @@ bool ReportParam::prepare_sql(wxString& query, std::map<wxString, wxString>& lab
         }
         else if (w && param.type == "wxTextCtrl") {
             wxTextCtrl* txt_c = static_cast<wxTextCtrl*>(w);
-            value =  txt_c->GetValue();
+            value = txt_c->GetValue();
         }
 
         label_value_m[param.label.Mid(1)] = value;

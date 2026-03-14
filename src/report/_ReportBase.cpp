@@ -364,17 +364,19 @@ int mmGeneralReport::extractParameters()
 
     if (content.Contains("&filter")) {
         params |= M_GENERIC_FILTER;
-        m_filter_map = extractFilterDetails(m_report->m_sql_content, "&filter");
-        for (const auto& [k,v] : m_filter_map) {
-            wxLogDebug("%s -> %s\n", k, v);
-        }
+        m_filter_map = extractVarDetails(m_report->m_sql_content, "&filter");
+    }
+
+    if (content.Contains("&selection")) {
+        params |= M_GENERIC_SELECTION;
+        m_selection_map = extractVarDetails(m_report->m_sql_content, "&selection");
     }
 
     m_parameters = params;
     return params;
 }
 
-std::map<wxString, wxString> mmGeneralReport::extractFilterDetails(const wxString& input, const wxString& marker)
+std::map<wxString, wxString> mmGeneralReport::extractVarDetails(const wxString& input, const wxString& marker)
 {
     std::map<wxString, wxString> result;
 
@@ -414,15 +416,15 @@ std::map<wxString, wxString> mmGeneralReport::extractFilterDetails(const wxStrin
         if (!filterPart.IsEmpty()) {
             size_t pos = 0;
             while (pos < filterPart.Length()) {
-                size_t comma = filterPart.find(',', pos);
-                if (comma == wxString::npos)
-                    comma = filterPart.Length();
+                size_t sep_pos = filterPart.find('&', pos);
+                if (sep_pos == wxString::npos)
+                    sep_pos = filterPart.Length();
 
-                wxString pair = filterPart.Mid(pos, comma - pos);
+                wxString pair = filterPart.Mid(pos, sep_pos - pos);
                 int eq = pair.Find('=');
                 if (eq != wxNOT_FOUND) {
                     wxString key = pair.Left(eq);
-                    wxString value = removeQuotes(pair.Mid(eq + 1));
+                    wxString value = pair.Mid(eq + 1);
 
                     if (!key.IsEmpty() && !value.IsEmpty()) {
                         if (result.find(key) == result.end()) {
@@ -430,7 +432,7 @@ std::map<wxString, wxString> mmGeneralReport::extractFilterDetails(const wxStrin
                         }
                     }
                 }
-                pos = comma + 1;
+                pos = sep_pos + 1;
             }
         }
         searchPos = end;
@@ -438,7 +440,6 @@ std::map<wxString, wxString> mmGeneralReport::extractFilterDetails(const wxStrin
 
     return result;
 }
-
 
 
 mm_html_template::mm_html_template(const wxString& arg_template): html_template(arg_template.ToStdWstring())
