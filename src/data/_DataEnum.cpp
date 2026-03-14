@@ -81,8 +81,8 @@ mmChoiceNameA FieldTypeN::s_choice_a = mmChoiceNameA({
     { e_boolean,       _n("Boolean") },
     { e_date,          _n("Date") },
     { e_time,          _n("Time") },
-    { e_single_choice, _n("SingleChoice") },
-    { e_multi_choice,  _n("MultiChoice") },
+    { e_single_choice, _n("Single Choice") },
+    { e_multi_choice,  _n("Multi Choice") },
 }, -1, true);
 
 mmChoiceNameA TrxType::s_choice_a = mmChoiceNameA({
@@ -103,11 +103,11 @@ mmChoiceNameA RefTypeN::s_choice_a = mmChoiceNameA({
     { e_trx,         _n("Transaction") },
     { e_stock,       _n("Stock") },
     { e_asset,       _n("Asset") },
-    { e_account,     _n("BankAccount") },
-    { e_sched,       _n("RecurringTransaction") },
+    { e_account,     _n("Bank Account") },
+    { e_sched,       _n("Recurring Transaction") },
     { e_payee,       _n("Payee") },
-    { e_trx_split,   _n("TransactionSplit") },
-    { e_sched_split, _n("RecurringTransactionSplit") },
+    { e_trx_split,   _n("Transaction Split") },
+    { e_sched_split, _n("Recurring Transaction Split") },
 }, -1, true);
 
 mmChoiceCodeNameA UpdateType::s_choice_a = mmChoiceCodeNameA({
