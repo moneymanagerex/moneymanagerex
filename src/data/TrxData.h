@@ -26,22 +26,22 @@
 // User-friendly representation of a record in table CHECKINGACCOUNT_V1.
 struct TrxData
 {
-    int64      m_id;
-    wxString   TRANSDATE;
-    TrxType    m_type;
-    TrxStatus  m_status;
-    int64      m_account_id;      // non-null (> 0) after initialization
-    int64      m_to_account_id_n; // optional (can be null)
-    int64      m_payee_id_n;      // optional (can be null)
-    int64      m_category_id_n;   // optional (can be null)
-    double     m_amount;
-    double     m_to_amount;
-    wxString   m_number;
-    wxString   m_notes;
-    int64      m_followup_id;     // this is not a database id
-    int64      m_color;
-    mmDateTime m_updated_time;    // non-null after initialization
-    wxString   DELETEDTIME;
+    int64       m_id;
+    wxString    TRANSDATE;
+    TrxType     m_type;
+    TrxStatus   m_status;
+    int64       m_account_id;      // non-null (> 0) after initialization
+    int64       m_to_account_id_n; // optional (can be null)
+    int64       m_payee_id_n;      // optional (can be null)
+    int64       m_category_id_n;   // optional (can be null)
+    double      m_amount;
+    double      m_to_amount;
+    wxString    m_number;
+    wxString    m_notes;
+    int64       m_followup_id;     // this is not a database id
+    int64       m_color;
+    mmDateTimeN m_updated_time_n;  // non-null for TrxData; null for SchedData in Journal
+    mmDateTimeN m_deleted_time_n;  // non-null for deleted transactions, null otherwise
 
     explicit TrxData();
     explicit TrxData(wxSQLite3ResultSet& q);
@@ -70,6 +70,8 @@ struct TrxData
     bool is_transfer()   const { return m_type.id() == TrxType::e_transfer; }
     bool is_reconciled() const { return m_status.id() == TrxStatus::e_reconciled; }
     bool is_void()       const { return m_status.id() == TrxStatus::e_void; }
+    bool is_deleted()    const { return m_deleted_time_n.has_value(); }
+    bool is_valid()      const { return !is_void() && !is_deleted(); }
 
     struct SorterByTRANSID
     {
@@ -163,7 +165,10 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.m_updated_time < y.m_updated_time;
+            return x.m_updated_time_n.has_value() && (
+                !y.m_updated_time_n.has_value() ||
+                x.m_updated_time_n.value() < y.m_updated_time_n.value()
+            );
         }
     };
 
@@ -171,7 +176,10 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.DELETEDTIME < y.DELETEDTIME;
+            return x.m_deleted_time_n.has_value() && (
+                !y.m_deleted_time_n.has_value() ||
+                x.m_deleted_time_n.value() < y.m_deleted_time_n.value()
+            );
         }
     };
 

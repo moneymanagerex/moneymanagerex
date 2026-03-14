@@ -165,7 +165,8 @@ table {
 
     // Display the data for each row
     for (auto& trx_xd : trx_xa) {
-        if (!trx_xd.DELETEDTIME.IsEmpty()) continue;
+        if (trx_xd.is_deleted())
+            continue;
 
         wxString sortLabel = "ALL";
         if (groupBy == TrxFilterDialog::GROUPBY_ACCOUNT)
@@ -183,10 +184,8 @@ table {
         else if (groupBy == TrxFilterDialog::GROUPBY_YEAR)
             sortLabel = TrxModel::getTransDateTime(trx_xd).Format("%Y");
 
-        if (sortLabel != lastSortLabel)
-        {
-            if (lastSortLabel != "")
-            {
+        if (sortLabel != lastSortLabel) {
+            if (lastSortLabel != "") {
                 hb.endTbody();
                 hb.endTable();
                 hb.startTable();
@@ -196,10 +195,12 @@ table {
                 hb.endTable();
                 hb.endDiv();
 
-                if (chart > -1)
-                {
-                    double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), static_cast<double>(0),
-                                                         [](double previous, const auto& p) { return previous + p.second; });
+                if (chart > -1) {
+                    double value_chart = std::accumulate(
+                        total_in_base_curr.begin(), total_in_base_curr.end(),
+                        static_cast<double>(0),
+                        [](double previous, const auto& p) { return previous + p.second; }
+                    );
                     values_chart[lastSortLabel] += value_chart;
                 }
                 total.clear();
@@ -340,7 +341,7 @@ table {
                             double void_flow = trx_xd.is_deposit() ? trx_xd.m_amount : -trx_xd.m_amount;
                             hb.addCurrencyCell(void_flow, currency_n, -1, true);
                         }
-                        else if (trx_xd.DELETEDTIME.IsEmpty())
+                        else if (!trx_xd.is_deleted())
                             hb.addCurrencyCell(flow, currency_n);
                     }
                     total[currency_n->m_id] += flow;

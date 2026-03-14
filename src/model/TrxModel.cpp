@@ -90,7 +90,7 @@ double TrxModel::account_flow(const Data& this_d, int64 account_id)
     if (this_d.m_account_id == this_d.m_to_account_id_n && this_d.is_transfer())
         return 0.0;
 
-    if (this_d.is_void() || !this_d.DELETEDTIME.IsEmpty())
+    if (!this_d.is_valid())
         return 0.0;
 
     if (account_id == this_d.m_account_id && this_d.is_withdrawal())
@@ -247,21 +247,22 @@ void TrxModel::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 
     }
 }
 
-void TrxModel::setEmptyData(Data &trx_d, int64 accountID)
+void TrxModel::setEmptyData(Data& dst_trx_d, int64 account_id)
 {
-    trx_d.m_id = -1;
-    trx_d.m_payee_id_n = -1;
+    dst_trx_d.m_id = -1;
+    dst_trx_d.m_payee_id_n = -1;
     const wxString today_date = wxDate::Now().FormatISOCombined();
     wxString max_trx_date;
     if (PrefModel::instance().getTransDateDefault() != PrefModel::NONE) {
-        auto trx_a = instance().find_or(
-            TrxCol::ACCOUNTID(accountID),
-            TrxCol::TOACCOUNTID(accountID)
-        );
-
-        for (const auto& t_d: trx_a) {
-            if (t_d.DELETEDTIME.IsNull() && max_trx_date < t_d.TRANSDATE && today_date >= t_d.TRANSDATE) {
-                max_trx_date = t_d.TRANSDATE;
+        for (const auto& trx_d : instance().find_or(
+            TrxCol::ACCOUNTID(account_id),
+            TrxCol::TOACCOUNTID(account_id)
+        )) {
+            if (!trx_d.is_deleted() &&
+                max_trx_date < trx_d.TRANSDATE &&
+                today_date >= trx_d.TRANSDATE
+            ) {
+                max_trx_date = trx_d.TRANSDATE;
             }
         }
     }
@@ -270,16 +271,16 @@ void TrxModel::setEmptyData(Data &trx_d, int64 accountID)
         max_trx_date = today_date;
     }
 
-    trx_d.TRANSDATE       = max_trx_date;
-    trx_d.m_type          = TrxType(TrxType::e_withdrawal);
-    trx_d.m_status        = TrxStatus(PrefModel::instance().getTransStatusReconciled());
-    trx_d.m_account_id    = accountID;
-    trx_d.m_category_id_n = -1;
-    trx_d.m_amount        = 0;
-    trx_d.m_to_amount     = 0;
-    trx_d.m_number        = "";
-    trx_d.m_followup_id   = -1;
-    trx_d.m_color         = -1;
+    dst_trx_d.TRANSDATE       = max_trx_date;
+    dst_trx_d.m_type          = TrxType(TrxType::e_withdrawal);
+    dst_trx_d.m_status        = TrxStatus(PrefModel::instance().getTransStatusReconciled());
+    dst_trx_d.m_account_id    = account_id;
+    dst_trx_d.m_category_id_n = -1;
+    dst_trx_d.m_amount        = 0;
+    dst_trx_d.m_to_amount     = 0;
+    dst_trx_d.m_number        = "";
+    dst_trx_d.m_followup_id   = -1;
+    dst_trx_d.m_color         = -1;
 }
 
 bool TrxModel::is_locked(const Data& trx_d)
@@ -328,7 +329,7 @@ void TrxModel::save_timestamp(int64 trx_id)
 {
     Data* trx_n = instance().unsafe_get_id_data_n(trx_id);
     if (trx_n && trx_n->m_id == trx_id) {
-        trx_n->m_updated_time = mmDateTime::now();
+        trx_n->m_updated_time_n = mmDateTime::now();
         unsafe_update_data_n(trx_n);
     }
 }
@@ -339,10 +340,10 @@ void TrxModel::update_timestamp(Data& trx_d)
     TrxModel::DataA trx_a = TrxModel::instance().find(
         TrxCol::TRANSID(trx_d.m_id)
     );
-    if (trx_a.size() == 0 || (!trx_a[0].equals(&trx_d)
-        && trx_a[0].DELETEDTIME.IsEmpty() && trx_d.DELETEDTIME.IsEmpty()
+    if (trx_a.size() == 0 || (!trx_a[0].equals(&trx_d) &&
+        !trx_a[0].is_deleted() && !trx_d.is_deleted()
     )) {
-        trx_d.m_updated_time = mmDateTime::now();
+        trx_d.m_updated_time_n = mmDateTime::now();
     }
 }
 

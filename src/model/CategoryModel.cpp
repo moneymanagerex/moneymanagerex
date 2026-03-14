@@ -66,15 +66,17 @@ bool CategoryModel::is_used(int64 cat_id)
     );
     // FIXME: do not exclude deleted transactions
     for (const auto& trx_d : trx_a)
-        if (trx_d.DELETEDTIME.IsEmpty())
+        if (!trx_d.is_deleted())
             return true;
 
-    const auto& split_a = TrxSplitModel::instance().find(
+    const auto& tp_a = TrxSplitModel::instance().find(
         TrxSplitCol::CATEGID(cat_id)
     );
-    for (const auto& split_d : split_a)
-        if (TrxModel::instance().get_id_data_n(split_d.m_trx_id)->DELETEDTIME.IsEmpty())
+    for (const auto& tp_d : tp_a) {
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tp_d.m_trx_id);
+        if (!trx_n->is_deleted())
             return true;
+    }
 
     const auto& sched_a = SchedModel::instance().find(
         SchedCol::CATEGID(cat_id)
@@ -272,29 +274,27 @@ void CategoryModel::getCategoryStats(
     const wxDateTime start_date(date_range->start_date());
 
     std::vector<std::pair<wxDateTime, int>> monthMap;
-    for (int m = 0; m < columns; m++)
-    {
+    for (int m = 0; m < columns; m++) {
         const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
         monthMap.emplace_back(d, m);
     }
     std::reverse(monthMap.begin(), monthMap.end());
 
-    for (const auto& category : allcategories)
-    {
-        for (int m = 0; m < columns; m++)
-        {
+    for (const auto& category : allcategories) {
+        for (int m = 0; m < columns; m++) {
             int month = group_by_month ? m : 0;
             categoryStats[category.m_id][month] = value;
         }
     }
-    //Calculations
+    // Calculations
     auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     for (const auto& trx_d : TrxModel::instance().find(
         TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void)),
         TrxModel::TRANSDATE(OP_GE, date_range->start_date()),
         TrxCol::TRANSDATE(OP_LE, date_range->end_date().FormatISOCombined())
     )) {
-        if (!trx_d.DELETEDTIME.IsEmpty()) continue;
+        if (trx_d.is_deleted())
+            continue;
 
         if (accountArray) {
             const auto account = AccountModel::instance().get_id_data_n(trx_d.m_account_id);

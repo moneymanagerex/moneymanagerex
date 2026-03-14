@@ -495,7 +495,7 @@ void mmQIFExportDialog::mmExportQIF()
         const wxString end_date = toDateCtrl_->GetValue().FormatISODate();
 
         for (const auto& trx_d : trx_a) {
-            if (!trx_d.DELETEDTIME.IsEmpty())
+            if (trx_d.is_deleted())
                 continue;
             wxString strDate = TrxModel::getTransDateTime(trx_d).FormatISODate();
             //Filtering

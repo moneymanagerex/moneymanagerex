@@ -154,9 +154,9 @@ double StockModel::calculate_account_balance(const AccountData& account_d, const
             const TrxData* trx_n = TrxModel::instance().get_id_data_n(
                 tl_d.m_trx_id
             );
-            // CHECK: ignore Void transactions
             if (trx_n && trx_n->m_id > 0 &&
-                trx_n->DELETEDTIME.IsEmpty() &&
+                // CHECK: ignore Void transactions
+                !trx_n->is_deleted() &&
                 mmDate(TrxModel::getTransDateTime(*trx_n)) <= date
             ) {
                 const TrxShareData* ts_n = TrxShareModel::instance().get_trxId_data_n(
@@ -198,7 +198,10 @@ double StockModel::calculate_realized_gain(const Data& stock_d, bool to_base_cur
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(
             tl_d.m_trx_id
         );
-        if (trx_n && trx_n->m_id > -1 && trx_n->DELETEDTIME.IsEmpty())
+        if (trx_n && trx_n->m_id > 0 &&
+            // FIXME: ignore void transactions
+            !trx_n->is_deleted()
+        )
             trx_a.push_back(*trx_n);
     }
     std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
@@ -272,7 +275,10 @@ double StockModel::calculate_unrealiazed_gain(const Data& stock_d, bool to_base_
             const TrxData* trx_d = TrxModel::instance().get_id_data_n(
                 tl_d.m_trx_id
             );
-            if (trx_d && trx_d->m_id > -1 && trx_d->DELETEDTIME.IsEmpty())
+            if (trx_d && trx_d->m_id > 0 &&
+                // FIXME: ignore void transactions
+                !trx_d->is_deleted()
+            )
                 trx_a.push_back(*trx_d);
         }
         std::stable_sort(trx_a.begin(), trx_a.end(),
@@ -354,9 +360,7 @@ void StockModel::update_data_position(StockData* stock_n)
     TrxModel::DataA trx_a;
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
-        if (trx_n && trx_n->m_id > 0 && trx_n->DELETEDTIME.IsEmpty() &&
-            !trx_n->is_void()
-        ) {
+        if (trx_n && trx_n->m_id > 0 && trx_n->is_valid()) {
             trx_a.push_back(*trx_n);
         }
     }

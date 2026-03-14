@@ -283,7 +283,7 @@ void TrxLinkDialog::DataToControls()
         SetTransactionValue(TrxSplitModel::instance().get_total(m_local_splits));
     }
 
-    if (!m_transaction_n->DELETEDTIME.IsEmpty()) {
+    if (m_transaction_n->is_deleted()) {
         m_date_selector->Enable(false);
         m_account->Enable(false);
         m_type_selector->Enable(false);

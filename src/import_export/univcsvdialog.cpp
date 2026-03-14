@@ -1727,7 +1727,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
         std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
 
         for (const auto& trx_d : trx_a) {
-            if (trx_d.is_void() || !trx_d.DELETEDTIME.IsEmpty())
+            if (!trx_d.is_valid())
                 continue;
 
             TrxModel::Full_Data tran(trx_d, trxId_tpA_m, trxId_glA_m);
@@ -2116,7 +2116,7 @@ void mmUnivCSVDialog::update_preview()
                 std::sort(trx_a.begin(), trx_a.end());
                 std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
                 for (const auto& trx_d : trx_a) {
-                    if (trx_d.is_void() || !trx_d.DELETEDTIME.IsEmpty())
+                    if (!trx_d.is_valid())
                         continue;
 
                     //If the transaction happened between the dates that the user selected or if the user selected to export all the transactions regardless of date then the row is added to the preview

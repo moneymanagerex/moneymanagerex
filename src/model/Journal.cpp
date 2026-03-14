@@ -195,8 +195,8 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         journal_d.m_notes           = trx_n->m_notes;
         journal_d.m_followup_id     = trx_n->m_followup_id;
         journal_d.m_color           = trx_n->m_color;
-        journal_d.m_updated_time    = trx_n->m_updated_time;
-        journal_d.DELETEDTIME       = trx_n->DELETEDTIME;
+        journal_d.m_updated_time_n  = trx_n->m_updated_time_n;
+        journal_d.m_deleted_time_n  = trx_n->m_deleted_time_n;
     }
     else {
         const SchedData *sched_n = SchedModel::instance().get_id_data_n(journal_id.first);
@@ -218,8 +218,8 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         journal_d.m_notes           = sched_n->m_notes;
         journal_d.m_followup_id     = sched_n->m_followup_id;
         journal_d.m_color           = sched_n->m_color;
-        journal_d.m_updated_time    = mmDateTime::now();
-        journal_d.DELETEDTIME       = "";
+        journal_d.m_updated_time_n  = mmDateTimeN();
+        journal_d.m_deleted_time_n  = mmDateTimeN();
     }
     return true;
 }

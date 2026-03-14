@@ -298,7 +298,7 @@ void StockPanel::LoadStockTransactions(wxListCtrl* listCtrl, wxString symbol, in
 
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
-        if (trx_n && trx_n->DELETEDTIME.IsEmpty()) {
+        if (trx_n && !trx_n->is_deleted()) {
             trx_a.push_back(*trx_n);
         }
     }

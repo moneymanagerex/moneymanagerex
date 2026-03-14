@@ -815,7 +815,7 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
     if (row < m_journal_xa.size() && (flags & wxLIST_HITTEST_ONITEM) && col_nr < getColNrSize()) {
         int col_id = getColId_Nr(col_nr);
         wxString menuItemText;
-        wxDateTime datetime;
+        mmDateTimeN dateTimeN;
         wxString dateFormat = PrefModel::instance().getDateFormat();
 
         switch (col_id) {
@@ -906,17 +906,18 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             rightClickFilter_ = "{\n\"NOTES\": \"" + menuItemText + "\"\n}";
             break;
         case LIST_ID_DELETEDTIME:
-            datetime.ParseISOCombined(m_journal_xa[row].DELETEDTIME);
-            if (datetime.IsValid())
+            dateTimeN = m_journal_xa[row].m_deleted_time_n;
+            if (dateTimeN.has_value())
                 copyText_ = mmGetDateTimeForDisplay(
-                    datetime.FromUTC().FormatISOCombined(),
+                    dateTimeN.value().isoDateTime(),
                     dateFormat + " %H:%M:%S"
                 );
             break;
         case LIST_ID_UPDATEDTIME:
-            if (m_journal_xa[row].m_repeat_num == 0)
+            dateTimeN = m_journal_xa[row].m_updated_time_n;
+            if (dateTimeN.has_value())
                 copyText_ = mmGetDateTimeForDisplay(
-                    m_journal_xa[row].m_updated_time.isoDateTime(),
+                    dateTimeN.value().isoDateTime(),
                     dateFormat + " %H:%M:%S"
                 );
             break;
@@ -1185,7 +1186,6 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
         , wxYES_NO | wxYES_DEFAULT | (m_cp->isDeletedTrans() ? wxICON_ERROR : wxICON_WARNING));
 
     if (msgDlg.ShowModal() == wxID_YES) {
-        wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
         std::set<std::pair<RefTypeN, int64>> assetStockAccts;
         TrxModel::instance().db_savepoint();
         AttachmentModel::instance().db_savepoint();
@@ -1204,7 +1204,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                 TrxModel::instance().purge_id(id.first);
             }
             else {
-                trx_n->DELETEDTIME = deletionTime;
+                trx_n->m_deleted_time_n = mmDateTime::now();
                 TrxModel::instance().unsafe_save_trx_n(trx_n);
                 TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
@@ -1270,7 +1270,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
         for (const auto& id : m_selected_id) {
             if (!id.second) {
                 TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-                trx_n->DELETEDTIME.Clear();
+                trx_n->m_deleted_time_n = mmDateTimeN();
                 TrxModel::instance().unsafe_save_trx_n(trx_n);
                 TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
@@ -1301,8 +1301,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
 
 void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
 {
-    wxMessageDialog msgDlg(
-        this,
+    wxMessageDialog msgDlg(this,
         _t("Do you want to restore all of the transactions shown?"),
         _t("Confirm Transaction Restore"),
         wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
@@ -1312,7 +1311,7 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
         for (const auto& tran : this->m_journal_xa) {
             if (tran.m_repeat_num) continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(tran.m_id);
-            trx_n->DELETEDTIME.Clear();
+            trx_n->m_deleted_time_n = mmDateTimeN();
             TrxModel::instance().unsafe_save_trx_n(trx_n);
             TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
                 TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
@@ -1976,7 +1975,7 @@ const wxString JournalList::getItem(long item, int col_id) const
     const Journal::Full_Data& journal_xd = m_journal_xa.at(item);
 
     wxString value = wxEmptyString;
-    wxDateTime datetime;
+    mmDateTimeN dateTimeN;
     wxString dateFormat = PrefModel::instance().getDateFormat();
     switch (col_id) {
     case LIST_ID_SN:
@@ -2029,13 +2028,13 @@ const wxString JournalList::getItem(long item, int col_id) const
         }
         return value.Trim();
     case LIST_ID_DELETEDTIME:
-        datetime.ParseISOCombined(journal_xd.DELETEDTIME);
-        if (!datetime.IsValid())
-            return wxString("");
-        return mmGetDateTimeForDisplay(
-            datetime.FromUTC().FormatISOCombined(),
-            dateFormat + " %H:%M:%S"
-        );
+        dateTimeN = journal_xd.m_deleted_time_n;
+        return dateTimeN.has_value()
+            ? mmGetDateTimeForDisplay(
+                dateTimeN.value().isoDateTime(),
+                dateFormat + " %H:%M:%S"
+            )
+            : wxString("");
     case LIST_ID_UDFC01:
         return UDFCFormatHelper(journal_xd.UDFC_type[0], journal_xd.UDFC_content[0]);
     case LIST_ID_UDFC02:
@@ -2047,9 +2046,9 @@ const wxString JournalList::getItem(long item, int col_id) const
     case LIST_ID_UDFC05:
         return UDFCFormatHelper(journal_xd.UDFC_type[4], journal_xd.UDFC_content[4]);
     case LIST_ID_UPDATEDTIME:
-        return (journal_xd.m_repeat_num == 0)
+        return journal_xd.m_updated_time_n.has_value()
             ? mmGetDateTimeForDisplay(
-                journal_xd.m_updated_time.isoDateTime(),
+                journal_xd.m_updated_time_n.value().isoDateTime(),
                 dateFormat + " %H:%M:%S"
             )
             : wxString("");
@@ -2276,7 +2275,6 @@ void JournalList::markSelectedTransaction()
 void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
 {
     int retainDays = SettingModel::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
-    wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
     std::set<std::pair<RefTypeN, int64>> assetStockAccts;
     TrxModel::instance().db_savepoint();
     AttachmentModel::instance().db_savepoint();
@@ -2294,7 +2292,7 @@ void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
         }
         else {
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_xd.m_id);
-            trx_n->DELETEDTIME = deletionTime;
+            trx_n->m_deleted_time_n = mmDateTime::now();
             TrxModel::instance().unsafe_save_trx_n(trx_n);
             TrxLinkModel::DataA translink = TrxLinkModel::instance().find(
                 TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)

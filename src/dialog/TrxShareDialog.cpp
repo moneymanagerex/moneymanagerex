@@ -218,7 +218,7 @@ void TrxShareDialog::DataToControls()
                     m_transaction_panel->SetTransactionStatus(trx_n->m_status.id());
                     m_transaction_panel->SetTransactionPayee(trx_n->m_payee_id_n);
                     m_transaction_panel->SetTransactionCategory(trx_n->m_category_id_n);
-                    if (!trx_n->DELETEDTIME.IsEmpty()) {
+                    if (trx_n->is_deleted()) {
                         m_share_num_ctrl->Enable(false);
                         m_share_price_ctrl->Enable(false);
                         m_share_commission_ctrl->Enable(false);

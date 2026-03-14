@@ -208,7 +208,7 @@ bool TrxDialog::Create(
 
     wxString header = (m_mode == MODE_NEW) ? _t("New Transaction") :
         (m_mode == MODE_DUP) ? _t("Duplicate Transaction") :
-        m_journal_data.DELETEDTIME.IsEmpty() ? _t("Edit Transaction") :
+        !m_journal_data.is_deleted() ? _t("Edit Transaction") :
         "";  //_t("View Deleted Transaction");
     SetDialogTitle(header);
 
@@ -437,7 +437,7 @@ void TrxDialog::dataToControls()
     if (!skip_tooltips_init_)
         SetTooltips();
 
-    if (!m_journal_data.DELETEDTIME.IsEmpty()) {
+    if (m_journal_data.is_deleted()) {
         dpc_->Enable(false);
         transaction_type_->Enable(false);
         cbAccount_->Enable(false);

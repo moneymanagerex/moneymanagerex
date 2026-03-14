@@ -116,14 +116,14 @@ void FlowReport::getTransactions()
         }
     }
 
-    // Now gather all transations posted after today
-    TrxModel::DataA transactions = TrxModel::instance().find(
+    // Process all transations posted after today
+    TrxModel::DataA trx_a = TrxModel::instance().find(
         TrxModel::TRANSDATE(OP_GT, endOfToday),
         TrxModel::TRANSDATE(OP_LT, endDate),
         TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
     );
-    for (auto& trx_d : transactions) {
-        if (!trx_d.DELETEDTIME.IsEmpty())
+    for (TrxData& trx_d : trx_a) {
+        if (trx_d.is_deleted())
             continue;
         bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
             trx_d.m_account_id
@@ -148,7 +148,7 @@ void FlowReport::getTransactions()
         }
     }
 
-    // Now we gather the recurring transaction list
+    // Gather the recurring transaction list
     for (const auto& sched_d : SchedModel::instance().find(
         SchedModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
     )) {

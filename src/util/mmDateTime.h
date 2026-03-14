@@ -77,6 +77,9 @@ public:
     mmDateTimeN(const wxString& isoDateTimeN);
 
 public:
+    static mmDateTimeN from_utc(const wxString& utcDateTimeN);
+
+public:
     bool has_value() const;
     auto value() const -> mmDateTime;
     auto value_or(mmDateTime defDateTime) const -> mmDateTime;
@@ -84,6 +87,7 @@ public:
 public:
     auto getDateTimeN() const -> wxDateTime;
     auto isoDateTimeN() const -> const wxString;
+    auto utcDateTimeN() const -> const wxString;
 
 public:
     bool operator== (const mmDateTimeN& other) const;
@@ -152,6 +156,12 @@ inline bool mmDateTime::operator>= (const mmDateTime& other) const
     return (m_dateTime + htol >= other.m_dateTime);
 }
 
+inline mmDateTimeN mmDateTimeN::from_utc(const wxString& utcDateTimeN)
+{
+    wxDateTime dateTimeN = parseDateTime(utcDateTimeN);
+    return dateTimeN.IsValid() ? mmDateTimeN(dateTimeN.FromUTC()) : mmDateTimeN();
+}
+
 inline bool mmDateTimeN::has_value() const
 {
     return m_dateTimeN.IsValid();
@@ -172,6 +182,10 @@ inline wxDateTime mmDateTimeN::getDateTimeN() const
 inline const wxString mmDateTimeN::isoDateTimeN() const
 {
     return has_value() ? value().isoDateTime() : "";
+}
+inline const wxString mmDateTimeN::utcDateTimeN() const
+{
+    return has_value() ? value().utcDateTime() : "";
 }
 
 inline bool mmDateTimeN::operator== (const mmDateTimeN& other) const

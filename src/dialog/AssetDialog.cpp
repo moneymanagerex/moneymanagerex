@@ -157,7 +157,7 @@ void AssetDialog::dataToControls()
         w_valueChange->Enable(false);
     }
 
-    if (m_checking_entry && !m_checking_entry->DELETEDTIME.IsEmpty()) {
+    if (m_checking_entry && m_checking_entry->is_deleted()) {
         w_valueChange->Enable(false);
         w_compoundingChoice->Enable(false);
         w_valueChangeRate->Enable(false);

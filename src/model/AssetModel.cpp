@@ -110,8 +110,8 @@ const std::pair<double, double> AssetModel::get_data_value_date(const Data& asse
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
         if (trx_n &&
-            trx_n->DELETEDTIME.IsEmpty() &&
             // FIXME: ignore Void transactions
+            !trx_n->is_deleted() &&
             trx_n->m_account_id >= 0 &&
             date < mmDate(TrxModel::getTransDateTime(*trx_n))
         ) {

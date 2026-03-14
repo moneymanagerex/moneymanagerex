@@ -681,7 +681,7 @@ void JournalPanel::filterList()
         // find last un-deleted transaction and use that if later than current date + 30 days
         for (auto it = trans.rbegin(); it != trans.rend(); ++it) {
             const TrxData* trx_n = &(*it);
-            if (trx_n && (isDeletedTrans() || trx_n->DELETEDTIME.IsEmpty())) {
+            if (trx_n && (isDeletedTrans() || !trx_n->is_deleted())) {
                 if (date_end < TrxModel::getTransDateTime(*trx_n))
                     date_end = TrxModel::getTransDateTime(*trx_n);
                 // FIXME: early break
@@ -757,7 +757,7 @@ void JournalPanel::filterList()
             m_group_ids.find(trx_n->m_to_account_id_n) == m_group_ids.end()
         )
             continue;
-        if (isDeletedTrans() != !trx_n->DELETEDTIME.IsEmpty())
+        if (isDeletedTrans() != trx_n->is_deleted())
             continue;
         if (ignore_future && tran_date > today_date)
             break;
@@ -765,7 +765,7 @@ void JournalPanel::filterList()
         // update m_balance even if tran is filtered out
         double account_flow = 0.0;
         if (isAccount()) {
-            // assertion: trx_n->DELETEDTIME.IsEmpty()
+            // assertion: !trx_n->is_deleted()
             account_flow = TrxModel::account_flow(*trx_n, m_account_id);
             m_balance += account_flow;
             if (trx_n->is_reconciled()) {

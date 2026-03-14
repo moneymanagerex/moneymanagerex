@@ -536,7 +536,7 @@ void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
 
     // Calculate payee usage
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        if (trx_d.DELETEDTIME.IsEmpty()) {
+        if (!trx_d.is_deleted()) {
             m_payeeUsage[trx_d.m_payee_id_n]++;
         }
     }

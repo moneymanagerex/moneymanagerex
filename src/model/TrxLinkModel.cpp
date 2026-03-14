@@ -117,23 +117,22 @@ void TrxLinkModel::update_asset_value(AssetData* asset_n)
     double new_value = 0;
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
-        if (trx_n && trx_n->DELETEDTIME.IsEmpty() &&
-            !trx_n->is_void()
-        ) {
-            const CurrencyData* currency_n = AccountModel::instance().get_id_currency_p(
-                trx_n->m_account_id
-            );
-            const double conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
-                currency_n->m_id,
-                mmDate(trx_n->TRANSDATE)
-            );
+        if (!trx_n || !trx_n->is_valid())
+            continue;
 
-            if (trx_n->is_deposit()) {
-                new_value -= trx_n->m_amount * conv_rate; // Withdrawal from asset value
-            }
-            else {
-                new_value += trx_n->m_amount * conv_rate;  // Deposit to asset value
-            }
+        const CurrencyData* currency_n = AccountModel::instance().get_id_currency_p(
+            trx_n->m_account_id
+        );
+        const double conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+            currency_n->m_id,
+            mmDate(trx_n->TRANSDATE)
+        );
+
+        if (trx_n->is_deposit()) {
+            new_value -= trx_n->m_amount * conv_rate; // Withdrawal from asset value
+        }
+        else {
+            new_value += trx_n->m_amount * conv_rate;  // Deposit to asset value
         }
     }
 

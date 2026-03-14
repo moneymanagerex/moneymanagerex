@@ -287,7 +287,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
     scrolled_window->SetScrollRate(6, 6);
     box_sizer_right->Add(scrolled_window, g_flagsExpand);
     const TrxData* ref_trx_n = TrxModel::instance().get_id_data_n(m_ref_id);
-    if (ref_trx_n && !ref_trx_n->DELETEDTIME.IsEmpty())
+    if (ref_trx_n && ref_trx_n->is_deleted())
         scrolled_window->Disable();
     m_static_box->Hide();
     mmThemeAutoColour(scrolled_window);

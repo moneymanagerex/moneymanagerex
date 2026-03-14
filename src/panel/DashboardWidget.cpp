@@ -237,7 +237,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
     for (const auto& trx_d : trx_a) {
         // Do not include asset or stock transfers or deleted transactions in income expense calculations.
-        if (TrxModel::is_foreignAsTransfer(trx_d) || !trx_d.DELETEDTIME.IsEmpty())
+        if (TrxModel::is_foreignAsTransfer(trx_d) || trx_d.is_deleted())
             continue;
 
         bool withdrawal = (trx_d.is_withdrawal());
@@ -419,7 +419,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
     )) {
         // Do not include asset or stock transfers or deleted transactions
         // in income expense calculations.
-        if (TrxModel::is_foreignAsTransfer(trx_d) || !trx_d.DELETEDTIME.IsEmpty())
+        if (TrxModel::is_foreignAsTransfer(trx_d) || trx_d.is_deleted())
             continue;
 
         double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
@@ -512,7 +512,7 @@ const wxString htmlWidgetStatistics::getHTMLText()
 
     std::map<int64, std::pair<double, double> > accountStats;
     for (const auto& trx_d : trx_a) {
-        if (!trx_d.DELETEDTIME.IsEmpty())
+        if (trx_d.is_deleted())
             continue;
 
         total_transactions++;
