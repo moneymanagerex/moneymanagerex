@@ -3278,8 +3278,12 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         menuBar_->FindItem(MENU_VIEW_SHOW_MONEYTIPS)->Check(PrefModel::instance().getShowMoneyTips());
         menuBar_->Refresh();
         menuBar_->Update();
-        refreshPanelData();
+
         RefreshNavigationTree();
+        if (panelCurrent_  && panelCurrent_->GetId() == mmID_REPORTS) { // Workaround to prevent crash in report page
+            panelCurrent_ = nullptr;
+        }
+        refreshPanelData();
 
         // Reset columns of the checking panel in case the time columns was added/removed
         int id = panelCurrent_->GetId();
