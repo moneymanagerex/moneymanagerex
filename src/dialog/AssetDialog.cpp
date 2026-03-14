@@ -453,12 +453,12 @@ void AssetDialog::OnOk(wxCommandEvent& /*event*/)
             return;
 
         if (!m_transfer_entry) {
-            TrxLinkModel::instance().SetAssetTranslink(
+            TrxLinkModel::instance().save_asset_record(
                 trx_id, new_asset_id,
                 w_transaction_panel->CheckingType()
             );
         }
-        TrxLinkModel::UpdateAssetValue(m_asset_n);
+        TrxLinkModel::instance().update_asset_value(m_asset_n);
     }
     else if (!m_hidden_trans_entry) {
         mmErrorDialogs::MessageWarning(this, _t("Invalid Transaction"), m_dialog_heading);

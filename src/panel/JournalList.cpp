@@ -1222,7 +1222,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
                 if (i.first == AssetModel::s_ref_type)
-                    TrxLinkModel::UpdateAssetValue(
+                    TrxLinkModel::instance().update_asset_value(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
                 else if (i.first == StockModel::s_ref_type)
@@ -1279,7 +1279,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
                 if (i.first == AssetModel::s_ref_type)
-                    TrxLinkModel::UpdateAssetValue(
+                    TrxLinkModel::instance().update_asset_value(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
                 else if (i.first == StockModel::s_ref_type)
@@ -1319,7 +1319,7 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
                 if (i.first == AssetModel::s_ref_type)
-                    TrxLinkModel::UpdateAssetValue(
+                    TrxLinkModel::instance().update_asset_value(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
                 else if (i.first == StockModel::s_ref_type)
@@ -2298,7 +2298,7 @@ void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
     if (!assetStockAccts.empty()) {
         for (const auto& i : assetStockAccts) {
             if (i.first == AssetModel::s_ref_type)
-                TrxLinkModel::UpdateAssetValue(
+                TrxLinkModel::instance().update_asset_value(
                     AssetModel::instance().unsafe_get_id_data_n(i.second)
                 );
             else if (i.first == StockModel::s_ref_type)

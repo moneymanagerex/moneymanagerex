@@ -476,7 +476,7 @@ void TrxShareDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         // date of purchase, together with a record in the checking account table.
         */
         if (!m_tl_n) {
-             TrxLinkModel::instance().SetStockTranslink(
+             TrxLinkModel::instance().save_stock_record(
                 trx_id, m_stock_n->m_id,
                 m_transaction_panel->CheckingType()
             );

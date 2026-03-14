@@ -307,7 +307,7 @@ bool TrxModel::purge_id(int64 trx_id)
             TrxLinkModel::instance().purge_id(tl_n->m_id);
             if (tl_n->m_ref_type == AssetModel::s_ref_type) {
                 AssetData* asset_n = AssetModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
-                TrxLinkModel::UpdateAssetValue(asset_n);
+                TrxLinkModel::instance().update_asset_value(asset_n);
             }
             else if (tl_n->m_ref_type == StockModel::s_ref_type) {
                 StockData* stock_n = StockModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
