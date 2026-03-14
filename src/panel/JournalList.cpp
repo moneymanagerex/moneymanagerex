@@ -1735,7 +1735,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     ))
     new_trx.m_account_id = m_cp->m_account_id;
     TrxModel::instance().save_trx_n(new_trx);
-    int64 new_trx_id = new_trx.id();
+    int64 new_trx_id = new_trx.m_id;
     m_pasted_id.push_back({new_trx_id, 0});   // add the newly pasted transaction
 
     // Clone transaction tags
@@ -1764,7 +1764,7 @@ int64 JournalList::onPaste(const TrxData* tran)
         )) {
             TagLinkData new_gl_d;
             new_gl_d.clone_from(tl_d);
-            new_gl_d.m_ref_id = new_tp_d.id();
+            new_gl_d.m_ref_id = new_tp_d.m_id;
             new_gl_a.push_back(new_gl_d);
         }
     }

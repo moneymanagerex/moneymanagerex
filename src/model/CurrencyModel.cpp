@@ -134,7 +134,7 @@ const CurrencyData* CurrencyModel::get_symbol_data_n(const wxString& symbol)
         CurrencyCol::CURRENCY_SYMBOL(symbol)
     );
     if (currency_a.empty())
-        currency_n = get_id_data_n(currency_a[0].id());
+        currency_n = get_id_data_n(currency_a[0].m_id);
 
     return currency_n;
 }

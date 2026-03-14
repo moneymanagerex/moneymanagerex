@@ -417,7 +417,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
                 new_payee_d.m_category_id_n = selectedCategoryId;
                 new_payee_d.m_pattern       = regexPattern_;
                 PayeeModel::instance().add_data_n(new_payee_d);
-                payee_n = PayeeModel::instance().unsafe_get_id_data_n(new_payee_d.id());
+                payee_n = PayeeModel::instance().unsafe_get_id_data_n(new_payee_d.m_id);
                 wxLogDebug("Saved regex pattern for payee '%s'", selectedPayee_);
             }
             else if (payee_n) {
@@ -439,7 +439,7 @@ void mmPayeeSelectionDialog::OnOK(wxCommandEvent& WXUNUSED(event))
         new_payee_d.m_name          = selectedPayee_;
         new_payee_d.m_category_id_n = selectedCategoryId;
         PayeeModel::instance().add_data_n(new_payee_d);
-        payee_n = PayeeModel::instance().unsafe_get_id_data_n(new_payee_d.id());
+        payee_n = PayeeModel::instance().unsafe_get_id_data_n(new_payee_d.m_id);
         wxLogDebug("Created new payee '%s' with category ID=%lld", selectedPayee_, selectedCategoryId);
     }
 

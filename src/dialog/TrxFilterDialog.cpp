@@ -1503,7 +1503,7 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
         ok = false;
     else if (mmIsColorChecked() && (m_color_value != tran.m_color))
         ok = false;
-    else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id()))
+    else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.m_id))
         ok = false;
     else if (mmIsTagsChecked()) {
         RefTypeN refType;
@@ -1512,7 +1512,7 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
             refType = TrxModel::s_ref_type;
         else if (typeid(tran).hash_code() == typeid(SchedData).hash_code())
             refType = SchedModel::s_ref_type;
-        if (!mmIsTagMatches(refType, tran.id(), mergeSplitTags))
+        if (!mmIsTagMatches(refType, tran.m_id, mergeSplitTags))
             ok = false;
     }
     return ok;
@@ -1559,25 +1559,25 @@ int TrxFilterDialog::mmIsRecordMatches(const TrxData& trx_d, const TrxSplitModel
 
 int TrxFilterDialog::mmIsRecordMatches(
     const TrxData& trx_d,
-    const std::map<int64, TrxSplitModel::DataA>& splits
+    const std::map<int64, TrxSplitModel::DataA>& trxId_tpA_m
 ) {
-    const TrxSplitModel::DataA* split = nullptr;
-    const auto& it = splits.find(trx_d.id());
-    if (it != splits.end())
-        split = &(it->second);
-    return mmIsRecordMatches(trx_d, *split);
+    const auto& trxId_tpA = trxId_tpA_m.find(trx_d.m_id);
+    if (trxId_tpA != trxId_tpA_m.end())
+        return mmIsRecordMatches(trx_d, trxId_tpA->second);
+    else
+        return mmIsRecordMatches<TrxModel>(trx_d);
 }
 
 int TrxFilterDialog::mmIsRecordMatches(
     const SchedData& sched_d,
-    const std::map<int64, SchedSplitModel::DataA>& splits
+    const std::map<int64, SchedSplitModel::DataA>& schedId_qpA_m
 ) {
     int ok = mmIsRecordMatches<SchedModel>(sched_d);
-    const auto& it = splits.find(sched_d.id());
-    if (it == splits.end())
+    const auto& schedId_qpA = schedId_qpA_m.find(sched_d.m_id);
+    if (schedId_qpA == schedId_qpA_m.end())
         return ok;
 
-    for (const auto& qp_d : it->second) {
+    for (const auto& qp_d : schedId_qpA->second) {
         SchedData sched_sched_d = sched_d;
         sched_sched_d.m_category_id_n = qp_d.m_category_id;
         sched_sched_d.m_amount        = qp_d.m_amount;

@@ -66,7 +66,7 @@ const StockHistoryData* StockHistoryModel::get_key_data_n(
         StockHistoryModel::DATE(OP_EQ, date)
     );
     if (!sh_a.empty())
-        sh_n = get_id_data_n(sh_a[0].id());
+        sh_n = get_id_data_n(sh_a[0].m_id);
     return sh_n;
 }
 

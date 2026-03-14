@@ -139,7 +139,7 @@ int TrxSplitModel::update_trx(int64 trx_id, DataA& src_tp_a)
         new_tp_d.m_category_id = src_tp_d.m_category_id;
         new_tp_d.m_notes       = src_tp_d.m_notes;
         add_data_n(new_tp_d);
-        src_tp_d.m_id = new_tp_d.id();
+        src_tp_d.m_id = new_tp_d.m_id;
     }
 
     if (save_timestamp)

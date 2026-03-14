@@ -338,7 +338,7 @@ void CategoryModel::getCategoryStats(
 
         int64 categID = trx_d.m_category_id_n;
 
-        if (trxId_tpA_m[trx_d.id()].empty()) {
+        if (trxId_tpA_m[trx_d.m_id].empty()) {
             if (!trx_d.is_transfer()) {
                 // Do not include asset or stock transfers in income expense calculations.
                 if (TrxModel::is_foreignAsTransfer(trx_d))

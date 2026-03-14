@@ -73,7 +73,7 @@ const wxString mmExportTransaction::getTransactionCSV(
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty()) {
-            transNum = wxString::Format("#%lld", trx_xd.id());
+            transNum = wxString::Format("#%lld", trx_xd.m_id);
         }
     }
 
@@ -155,7 +155,7 @@ const wxString mmExportTransaction::getTransactionQIF(
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
-            transNum = wxString::Format("#%lld", trx_xd.id());
+            transNum = wxString::Format("#%lld", trx_xd.m_id);
     }
 
     // don't allow '/' in category name as it is reserved for the class/tag separator
@@ -447,7 +447,7 @@ void mmExportTransaction::getTransactionJSON(
     }
 
     AttachmentModel::DataA att_a = AttachmentModel::instance().find_ref_data_a(
-        TrxModel::s_ref_type, trx_xd.id()
+        TrxModel::s_ref_type, trx_xd.m_id
     );
 
     if (!att_a.empty()) {
@@ -461,7 +461,7 @@ void mmExportTransaction::getTransactionJSON(
     }
 
     auto fv_a = FieldValueModel::instance().find(
-        FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_xd.id())
+        FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_xd.m_id)
     );
     auto f = FieldModel::instance().find(
         FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())

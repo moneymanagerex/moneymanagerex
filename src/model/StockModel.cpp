@@ -65,7 +65,7 @@ bool StockModel::purge_id(int64 id)
         for (const auto& sh_d : StockHistoryModel::instance().find(
             StockHistoryCol::SYMBOL(stock_n->m_symbol)
         ))
-            StockHistoryModel::instance().purge_id(sh_d.id());
+            StockHistoryModel::instance().purge_id(sh_d.m_id);
         db_release_savepoint();
     }
 

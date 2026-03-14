@@ -99,8 +99,8 @@ void PayeeReport::loadData()
         );
 
         TrxSplitModel::DataA tp_a;
-        if (trxId_tpA_m.count(trx_d.id()))
-            tp_a = trxId_tpA_m.at(trx_d.id());
+        if (trxId_tpA_m.count(trx_d.m_id))
+            tp_a = trxId_tpA_m.at(trx_d.m_id);
         if (tp_a.empty()) {
             updateData(data, trx_d.m_type, trx_d.m_amount * convRate);
         }

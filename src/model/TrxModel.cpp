@@ -364,7 +364,7 @@ bool TrxModel::save_trx_a(DataA& trx_a)
 
     db_savepoint();
     for (auto& trx_d : trx_a) {
-        if (trx_d.id() < 0)
+        if (trx_d.m_id < 0)
             wxLogDebug("Incorrect function call to save %s", trx_d.to_json().utf8_str());
         if (!save_trx_n(trx_d)) {
             ok = false;

@@ -758,7 +758,7 @@ bool TrxDialog::ValidateData()
                 PayeeData new_payee_d = PayeeData();
                 new_payee_d.m_name = payee_name;
                 PayeeModel::instance().add_data_n(new_payee_d);
-                payee_n = PayeeModel::instance().get_id_data_n(new_payee_d.id());
+                payee_n = PayeeModel::instance().get_id_data_n(new_payee_d.m_id);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }
             else
@@ -1047,7 +1047,7 @@ void TrxDialog::SetCategoryForPayee(const PayeeData *payee_n)
             CategoryData new_category_d = CategoryData();
             new_category_d.m_name = _t("Unknown");
             CategoryModel::instance().add_data_n(new_category_d);
-            category_n = CategoryModel::instance().get_id_data_n(new_category_d.id());
+            category_n = CategoryModel::instance().get_id_data_n(new_category_d.m_id);
             cbCategory_->mmDoReInitialize();
         }
 

@@ -77,7 +77,7 @@ void TrxLinkModel::SetTranslink(
     // FIXME
     // trx_n->m_to_account_id_n = checking_type;
     TrxModel::instance().unsafe_save_trx_n(trx_n);
-    //TrxLinkModel::instance().get_id_data_n(new_tl_d.id());
+    //TrxLinkModel::instance().get_id_data_n(new_tl_d.m_id);
 }
 
 // Create the translink record as Asset

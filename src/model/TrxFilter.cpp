@@ -86,7 +86,7 @@ bool TrxFilter::checkCategory(
     const DATA& tran,
     const std::map<int64, typename MODEL::TrxSplitDataA> & splits
 ) {
-    const auto it = splits.find(tran.id());
+    const auto it = splits.find(tran.m_id);
     if (it == splits.end()) {
         for (auto it2 : m_category_a) {
             if (it2 == tran.m_category_id_n)

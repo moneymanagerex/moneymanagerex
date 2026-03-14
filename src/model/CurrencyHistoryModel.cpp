@@ -67,7 +67,7 @@ const CurrencyHistoryData* CurrencyHistoryModel::get_key_data_n(
         CurrencyHistoryModel::CURRDATE(OP_EQ, date)
     );
     if (!uh_a.empty())
-        uh_n = get_id_data_n(uh_a[0].id());
+        uh_n = get_id_data_n(uh_a[0].m_id);
     return uh_n;
 }
 

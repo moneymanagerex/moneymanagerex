@@ -52,25 +52,25 @@ void  StocksReport::refreshData()
     DataHolder line;
     AccountHolder account_holder;
 
-    for (const auto& a : AccountModel::instance().find_all(
+    for (const auto& account_d : AccountModel::instance().find_all(
         AccountCol::COL_ID_ACCOUNTNAME
     )) {
-        if (AccountModel::type_id(a) != NavigatorTypes::TYPE_ID_INVESTMENT)
+        if (AccountModel::type_id(account_d) != NavigatorTypes::TYPE_ID_INVESTMENT)
             continue;
-        if (!a.is_open())
+        if (!account_d.is_open())
             continue;
 
-        account_holder.id = a.id();
-        account_holder.name = a.m_name;
+        account_holder.id = account_d.m_id;
+        account_holder.name = account_d.m_name;
         account_holder.realgainloss = 0.0;
         account_holder.unrealgainloss = 0.0;
-        account_holder.total = AccountModel::instance().get_data_investment_balance(a).first;
+        account_holder.total = AccountModel::instance().get_data_investment_balance(account_d).first;
         account_holder.data.clear();
 
         for (const auto& stock_d : StockModel::instance().find(
-            StockCol::HELDAT(a.m_id)
+            StockCol::HELDAT(account_d.m_id)
         )) {
-            const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(a);
+            const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(account_d);
             const double today_rate = CurrencyHistoryModel::instance().get_id_date_rate(
                 currency_n->m_id
             );

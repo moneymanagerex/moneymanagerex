@@ -1361,7 +1361,7 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder, wxString& message)
             PayeeData new_payee_d = PayeeData();
             new_payee_d.m_name = _t("Unknown");
             PayeeModel::instance().add_data_n(new_payee_d);
-            holder.PayeeID = new_payee_d.id();
+            holder.PayeeID = new_payee_d.m_id;
             const wxString& sMsg = wxString::Format(_t("Added payee: %s"), new_payee_d.m_name);
             log_field_->AppendText(wxString() << sMsg << "\n");
         }
@@ -1387,7 +1387,7 @@ bool mmUnivCSVDialog::validateData(tran_holder & holder, wxString& message)
             CategoryData new_cat_d = CategoryData();
             new_cat_d.m_name = _t("Unknown");
             CategoryModel::instance().add_data_n(new_cat_d);
-            holder.CategoryID = new_cat_d.id();
+            holder.CategoryID = new_cat_d.m_id;
         }
     }
 
@@ -2795,7 +2795,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
             PayeeData new_payee_d = PayeeData();
             new_payee_d.m_name = token;
             PayeeModel::instance().add_data_n(new_payee_d);
-            holder.PayeeID = new_payee_d.id();
+            holder.PayeeID = new_payee_d.m_id;
             m_CSVpayeeNames[token] = std::make_tuple(holder.PayeeID, token, wxEmptyString);
         }
         break;
@@ -2839,7 +2839,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
                     new_cat_d.m_name        = cat_name;
                     new_cat_d.m_parent_id_n = parentID;
                     CategoryModel::instance().add_data_n(new_cat_d);
-                    cat_n = CategoryModel::instance().get_id_data_n(new_cat_d.id());
+                    cat_n = CategoryModel::instance().get_id_data_n(new_cat_d.m_id);
                 }
                 parentID = cat_n->m_id;
             }
@@ -2887,7 +2887,7 @@ void mmUnivCSVDialog::parseToken(int index, const wxString& orig_token, tran_hol
                 TagData new_tag_d = TagData();
                 new_tag_d.m_name = tag_name;
                 TagModel::instance().save_data_n(new_tag_d);
-                tag_n = TagModel::instance().get_id_data_n(new_tag_d.id());
+                tag_n = TagModel::instance().get_id_data_n(new_tag_d.m_id);
             }
             // add the tagID to the transaction if it isn't already there
             if (std::find(holder.tagIDs.begin(), holder.tagIDs.end(), tag_n->m_id) == holder.tagIDs.end())

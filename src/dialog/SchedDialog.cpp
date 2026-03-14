@@ -940,7 +940,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 PayeeData new_payee_d = PayeeData();
                 new_payee_d.m_name = payee_name;
                 PayeeModel::instance().add_data_n(new_payee_d);
-                payee_n = PayeeModel::instance().get_id_data_n(new_payee_d.id());
+                payee_n = PayeeModel::instance().get_id_data_n(new_payee_d.m_id);
                 mmWebApp::MMEX_WebApp_UpdatePayee();
             }
             else
@@ -1069,7 +1069,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         sched_d.REPEATS           = m_sched_xd.REPEATS;
         sched_d.NUMOCCURRENCES    = m_sched_xd.NUMOCCURRENCES;
         SchedModel::instance().save_data_n(sched_d);
-        m_trans_id = sched_d.id();
+        m_trans_id = sched_d.m_id;
 
         SchedSplitModel::DataA new_qp_a;
         for (const auto& split_d : m_sched_xd.local_splits) {
@@ -1150,7 +1150,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             new_trx_d.m_followup_id     = m_sched_xd.m_followup_id;
             new_trx_d.m_color           = m_sched_xd.m_color;
             TrxModel::instance().save_trx_n(new_trx_d);
-            int64 new_trx_id = new_trx_d.id();
+            int64 new_trx_id = new_trx_d.m_id;
 
             TrxSplitModel::DataA new_tp_a;
             for (auto& split_d : m_sched_xd.local_splits) {

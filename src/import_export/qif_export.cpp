@@ -547,7 +547,7 @@ void mmQIFExportDialog::mmExportQIF()
 
                 if (
                     !AttachmentModel::instance().find_ref_data_a(
-                        TrxModel::s_ref_type, full_tran.id()
+                        TrxModel::s_ref_type, full_tran.m_id
                     ).empty() &&
                     std::find(
                         allAttachments4Export.begin(), allAttachments4Export.end(), full_tran.m_id
@@ -557,7 +557,7 @@ void mmQIFExportDialog::mmExportQIF()
                 }
 
                 for (const auto & fv_d : FieldValueModel::instance().find(
-                    FieldValueModel::REFTYPEID(TrxModel::s_ref_type, full_tran.id())
+                    FieldValueModel::REFTYPEID(TrxModel::s_ref_type, full_tran.m_id)
                 )) {
                     if (std::find(allCustomFields4Export.begin(), allCustomFields4Export.end(),
                         fv_d.m_id) == allCustomFields4Export.end()
