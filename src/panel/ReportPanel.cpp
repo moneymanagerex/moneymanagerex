@@ -50,6 +50,7 @@ wxBEGIN_EVENT_TABLE(ReportPanel, wxPanel)
     EVT_CHOICE(ID_YEAR_CHOICE,              ReportPanel::onYearChanged)
     EVT_CHOICE(ID_BUDGET_CHOICE,            ReportPanel::onBudgetChanged)
     EVT_CHOICE(ID_ACCOUNT_CHOICE,           ReportPanel::onAccountChanged)
+    EVT_CHOICE(ID_STOCK_CHOICE,            ReportPanel::OnStockChanged)
     EVT_DATE_CHANGED(ID_START_DATE_PICKER,  ReportPanel::onStartEndDateChanged)
     EVT_TIME_CHANGED(ID_START_DATE_PICKER,  ReportPanel::onStartEndDateChanged)
     EVT_DATE_CHANGED(ID_END_DATE_PICKER,    ReportPanel::onStartEndDateChanged)
@@ -231,6 +232,15 @@ void ReportPanel::loadFilterSettings() {
         w_start_date_picker->SetValue(start_dateTime);
         w_end_date_picker->SetValue(end_dateTime);
     }
+
+    if (w_stocks_choice) {
+        int idx = -1;
+        if (JSON_GetIntValue(j_doc, "FILTER_STOCK_NAME_IDX", idx)) {
+            if (idx > -1 && static_cast<unsigned int>(idx) < w_stocks_choice->GetCount()) {
+                w_stocks_choice->SetSelection(idx);
+            }
+        }
+    }
 }
 
 void ReportPanel::saveFilterSettings() {
@@ -271,6 +281,10 @@ void ReportPanel::saveFilterSettings() {
             wxLogError("ReportPanel::saveFilterSettings(): w_end_date_picker is null");
         }
         InfoModel::saveFilterString(j_doc, "FILTER_DATE", "");
+    }
+
+    if (w_stocks_choice) {
+        InfoModel::saveFilterInt(j_doc, "FILTER_STOCK_NAME_IDX", w_stocks_choice->GetSelection());
     }
 
     InfoModel::instance().setJdoc(key, j_doc);
@@ -433,12 +447,14 @@ void ReportPanel::CreateControls()
             );
 
             const int y = wxDateTime::Today().GetYear();
-            for (int i = y - 100; i <= y + 100; ++i) {
+            for (int i = y - 100; i <= y + 10; ++i) {
                 const wxString name = wxString::Format("%i", i);
                 w_year_choice->Append(name, new wxStringClientData(name));
             }
 
             w_year_choice->SetStringSelection(wxString::Format("%i", y));
+            w_year_choice->SetMaxSize(wxSize(120, -1));
+
 
             itemBoxSizerHeader->Add(w_year_choice, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
@@ -532,6 +548,35 @@ void ReportPanel::CreateControls()
             itemBoxSizerHeader->Add(w_chart_choice, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
             itemBoxSizerHeader->AddSpacer(30);
         }
+
+        if (rp & ReportBase::M_STOCK_NAMES)
+        {
+            wxStaticText* itemStaticTextH1 = new wxStaticText(itemPanel3, wxID_ANY, _t("Stock name:"));
+            mmSetOwnFont(itemStaticTextH1, GetFont().Larger());
+            itemBoxSizerHeader->Add(itemStaticTextH1, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(5);
+
+            StockModel::DataA stock_a = StockModel::instance().find_all();
+            std::stable_sort(stock_a.begin(), stock_a.end(), StockData::SorterBySTOCKNAME());
+
+            wxString prevSymbol = "";
+            w_stocks_choice = new wxChoice(itemPanel3, ID_STOCK_CHOICE);
+            for (StockModel::Data stock : stock_a) {
+                const AccountModel::Data* account = AccountModel::instance().get_id_data_n(stock.m_account_id_n);
+                if (account->is_open()) {
+                    if (stock.m_symbol != prevSymbol) {
+                        w_stocks_choice->Append(stock.m_name);
+                        prevSymbol = stock.m_symbol;
+                    }
+                }
+            }
+            w_stocks_choice->SetSelection(m_rb->getStockSelection());
+
+            itemBoxSizerHeader->Add(w_stocks_choice, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+            itemBoxSizerHeader->AddSpacer(30);
+        }
+
+        itemBoxSizerHeader->AddStretchSpacer(1);
     }
 
     w_browser = wxWebView::New();
@@ -766,6 +811,20 @@ void ReportPanel::onAccountChanged(wxCommandEvent& WXUNUSED(event))
     }
 }
 
+void ReportPanel::OnStockChanged(wxCommandEvent& WXUNUSED(event))
+{
+    if (m_rb) {
+        int sel = w_stocks_choice->GetSelection();
+        if ((sel == 1) || (sel != m_rb->getStockSelection())) {
+            m_rb->setStockName(w_stocks_choice->GetStringSelection());
+            m_rb->setStockSelection(sel);
+            saveReportText();
+            saveFilterSettings();
+            m_rb->saveReportSettings();
+        }
+    }
+}
+
 void ReportPanel::onSingleDateChanged(wxDateEvent& WXUNUSED(event))
 {
     if (m_rb) {
@@ -950,4 +1009,3 @@ void ReportPanel::loadDateRanges(
         *date_range_m = date_range_a->size();
     }
 }
-

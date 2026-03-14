@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025,2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -40,6 +40,7 @@ public:
     {
         ID_UNUSED = wxID_HIGHEST + 555,
         ID_ACCOUNT_CHOICE,
+        ID_STOCK_CHOICE,
         ID_SINGLE_DATE_PICKER,
         ID_START_DATE_PICKER,
         ID_END_DATE_PICKER,
@@ -77,6 +78,7 @@ private:
     wxChoice*         w_year_choice        = nullptr;
     wxSpinCtrl*       w_forward_months     = nullptr;
     wxChoice*         w_account_choice     = nullptr;
+    wxChoice*         w_stocks_choice      = nullptr;
     wxChoice*         w_chart_choice       = nullptr;
 
 public:
@@ -119,6 +121,7 @@ private:
     void onStartEndDateChanged(wxDateEvent& event);
     void onSingleDateChanged(wxDateEvent& event);
     void onAccountChanged(wxCommandEvent& event);
+    void OnStockChanged(wxCommandEvent& event);
     void onChartChanged(wxCommandEvent& event);
     void onForwardMonthsChangedSpin(wxSpinEvent& event);
     void onForwardMonthsChangedText(wxCommandEvent& event);
@@ -131,4 +134,3 @@ private:
 };
 
 inline ReportBase* ReportPanel::getReportBase() { return m_rb; }
-

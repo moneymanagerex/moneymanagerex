@@ -2,7 +2,7 @@
  Copyright (C) 2013 James Higley
  Copyright (C) 2020 Nikolay Akimov
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025,2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -67,7 +67,7 @@ void ReportBase::setReportParameters(ReportBase::REPORT_ID report_id)
     case MonthlyCashFlow:             m_parameters = M_FORWARD_MONTHS | M_ACCOUNT | M_CHART; break;
     case DailyCashFlow:               m_parameters = M_FORWARD_MONTHS | M_ACCOUNT | M_CHART; break;
     case TransactionsCashFlow:        m_parameters = M_FORWARD_MONTHS | M_ACCOUNT | M_CHART; break;
-    case StocksReportPerformance:     m_parameters = M_DATE_RANGE; break;
+    case StocksReportPerformance:     m_parameters = M_DATE_RANGE | M_STOCK_NAMES; break;
     case StocksReportSummary:         m_parameters = M_NONE; break;
     case ForecastReport:              m_parameters = M_DATE_RANGE; break;
     case BugReport:                   m_parameters = M_NONE; break;
@@ -198,6 +198,15 @@ void ReportBase::saveReportSettings()
         json_writer.Int(m_chart_selection);
     }
 
+    if (m_parameters & M_STOCK_NAMES)
+    {
+        isActive = true;
+        json_writer.Key("STOCK_NAMES");
+        json_writer.String(m_stock_name.utf8_str());
+        json_writer.Key("STOCK_SEL");
+        json_writer.Int(m_stock_selection);
+    }
+
     if (m_parameters & M_FORWARD_MONTHS) {
         isActive = true;
         json_writer.Key("FORWARDMONTHS");
@@ -230,6 +239,14 @@ void ReportBase::restoreReportSettings()
 
     if (j_doc.HasMember("FORWARDMONTHS") && j_doc["FORWARDMONTHS"].IsInt()) {
         m_forward_months = j_doc["FORWARDMONTHS"].GetInt();
+    }
+
+    if (j_doc.HasMember("STOCK_NAMES") && j_doc["STOCK_NAMES"].IsString()) {
+        m_stock_name = j_doc["STOCK_NAMES"].GetString();
+    }
+
+    if (j_doc.HasMember("STOCK_SEL") && j_doc["STOCK_SEL"].IsInt()) {
+        m_stock_selection = j_doc["STOCK_SEL"].GetInt();
     }
 
 
@@ -328,6 +345,12 @@ int mmGeneralReport::getParameters()
 
     if (content.Contains("&single_time"))
         params |= M_TIME;
+
+    if (content.Contains("&account_selection"))
+        params |= M_ACCOUNT;
+
+    if (content.Contains("&stock_selection"))
+        params |= M_STOCK_NAMES;
 
     return params;
 }

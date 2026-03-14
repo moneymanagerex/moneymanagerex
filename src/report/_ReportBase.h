@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -69,7 +69,8 @@ public:
         M_YEAR           = 32,
         M_ACCOUNT        = 64,
         M_CHART          = 128,
-        M_FORWARD_MONTHS = 256
+        M_FORWARD_MONTHS = 256,
+        M_STOCK_NAMES    = 512
     };
 
 protected:
@@ -86,6 +87,8 @@ protected:
     int m_account_selection = 0;
     bool m_only_active = false;
     int m_chart_selection = 0;
+    int m_stock_selection = 0;
+    wxString m_stock_name = "";
 
 public:
     TrxFilter m_filter;
@@ -109,6 +112,7 @@ public:
     void setForwardMonths(int sel);
     void setAccounts(int selection, const wxString& type_name);
     void setChartSelection(int selection);
+    void setStockSelection(int selection);
 
     REPORT_ID getReportId() const;
     const wxString getReportSettings() const;
@@ -117,6 +121,8 @@ public:
     int getAccountSelection() const;
     const wxString getAccountNames() const;
     int getChartSelection() const;
+    int getStockSelection() const;
+    void setStockName(const wxString& name);
 
     void saveReportSettings();
     void restoreReportSettings();
@@ -141,6 +147,10 @@ inline void ReportBase::setDateRange(const mmDateRange2& date_range2)
 inline void ReportBase::setDateSelection(int64 sel) { m_date_selection = sel; }
 inline void ReportBase::setForwardMonths(int sel) { m_forward_months = sel; }
 inline void ReportBase::setChartSelection(int selection) { m_chart_selection = selection; }
+inline void ReportBase::setStockSelection(int selection) { m_stock_selection = selection; }
+inline void ReportBase::setStockName(const wxString& name) { m_stock_name = name; }
+
+
 
 // get
 inline ReportBase::REPORT_ID ReportBase::getReportId() const { return m_report_id; }
@@ -149,6 +159,8 @@ inline int64 ReportBase::getDateSelection() const { return this->m_date_selectio
 inline int ReportBase::getForwardMonths() const { return this->m_forward_months; }
 inline int ReportBase::getAccountSelection() const { return this->m_account_selection; }
 inline int ReportBase::getChartSelection() const { return this->m_chart_selection; }
+inline int ReportBase::getStockSelection() const { return this->m_stock_selection; }
+
 
 class mmGeneralReport : public ReportBase
 {
@@ -172,4 +184,3 @@ public:
 private:
     void load_context();
 };
-

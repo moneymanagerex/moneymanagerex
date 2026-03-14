@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -52,6 +53,10 @@ const std::vector<ReportParam> ReportParam::get_param_a()
             ReportPanel::ID_TIME_PICKER, _t("Time:") },
         { "&only_years", "wxChoice", def_date,
             ReportPanel::ID_YEAR_CHOICE, _t("Year:")},
+        { "&account_selection", "wxChoice", def_date,
+            ReportPanel::ID_ACCOUNT_CHOICE, _t("Accounts:")},
+        { "&stock_selection", "wxChoice", "",
+            ReportPanel::ID_STOCK_CHOICE, _t("Stock name:")},
     };
     return param_a;
 }
@@ -115,7 +120,7 @@ ReportModel::ReportModel() :
 {
 }
 
-ReportModel::~ReportModel() 
+ReportModel::~ReportModel()
 {
 }
 
