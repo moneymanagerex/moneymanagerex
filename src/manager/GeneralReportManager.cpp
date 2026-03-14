@@ -232,6 +232,16 @@ R"(<!DOCTYPE html>
         }
         element.innerHTML = '<TMPL_VAR PFX_SYMBOL>' + currency(element.innerHTML) +'<TMPL_VAR SFX_SYMBOL>';
     }
+    <!-- Format double to percent -->
+    elements = document.getElementsByClassName("percent");
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        element.style.textAlign='right';
+        if (element.innerHTML.indexOf("-") > -1) {
+            element.style.color="#f75e5e";
+        }
+        element.innerHTML = "" + currency(element.innerHTML) +' %';
+    }
 </script>
 </html>
 )";
