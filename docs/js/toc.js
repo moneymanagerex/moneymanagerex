@@ -18,10 +18,17 @@ function addTOC(list, node) {
 }
 
 function generateTOC(nav) {
-    var i2 = 0, i3 = 0;
+    var i2 = 0, i3 = 0, i4 = 0;
     nav = nav.appendChild(document.createElement("ol"));
-    [].forEach.call(document.querySelectorAll("h2, h3"), function(node) {
-        if (node.nodeName === "H3") {
+    [].forEach.call(document.querySelectorAll("h2, h3, h4"), function(node) {
+        if (node.nodeName === "H4") {
+            if (i4 === 0)
+                nav.lastChild.lastChild.appendChild(document.createElement("ol"));
+            node.id = "section" + i2 + "." + i3 + "."+ (++i4);
+            addTOC(nav.lastChild.lastChild.lastChild, node);
+        }
+        else if (node.nodeName === "H3") {
+            i4 = 0;
             if (i3 === 0)
                 nav.lastChild.appendChild(document.createElement("ol"));
             node.id = "section" + i2 + "." + (++i3);
@@ -29,6 +36,7 @@ function generateTOC(nav) {
         }
         else if (node.nodeName === "H2") {
             i3 = 0;
+            i4 = 0;
             node.id = "section" + (++i2);
             addTOC(nav, node);
         }
