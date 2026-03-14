@@ -907,13 +907,18 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             break;
         case LIST_ID_DELETEDTIME:
             datetime.ParseISOCombined(m_journal_xa[row].DELETEDTIME);
-            if(datetime.IsValid())
-                copyText_ = mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+            if (datetime.IsValid())
+                copyText_ = mmGetDateTimeForDisplay(
+                    datetime.FromUTC().FormatISOCombined(),
+                    dateFormat + " %H:%M:%S"
+                );
             break;
         case LIST_ID_UPDATEDTIME:
-            datetime.ParseISOCombined(m_journal_xa[row].LASTUPDATEDTIME);
-            if (datetime.IsValid())
-                copyText_ = mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+            if (m_journal_xa[row].m_repeat_num == 0)
+                copyText_ = mmGetDateTimeForDisplay(
+                    m_journal_xa[row].m_updated_time.isoDateTime(),
+                    dateFormat + " %H:%M:%S"
+                );
             break;
         case LIST_ID_UDFC01:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[0];
@@ -2025,9 +2030,12 @@ const wxString JournalList::getItem(long item, int col_id) const
         return value.Trim();
     case LIST_ID_DELETEDTIME:
         datetime.ParseISOCombined(journal_xd.DELETEDTIME);
-        if(!datetime.IsValid())
+        if (!datetime.IsValid())
             return wxString("");
-        return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+        return mmGetDateTimeForDisplay(
+            datetime.FromUTC().FormatISOCombined(),
+            dateFormat + " %H:%M:%S"
+        );
     case LIST_ID_UDFC01:
         return UDFCFormatHelper(journal_xd.UDFC_type[0], journal_xd.UDFC_content[0]);
     case LIST_ID_UDFC02:
@@ -2039,10 +2047,12 @@ const wxString JournalList::getItem(long item, int col_id) const
     case LIST_ID_UDFC05:
         return UDFCFormatHelper(journal_xd.UDFC_type[4], journal_xd.UDFC_content[4]);
     case LIST_ID_UPDATEDTIME:
-        datetime.ParseISOCombined(journal_xd.LASTUPDATEDTIME);
-        if (!datetime.IsValid())
-            return wxString("");
-        return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+        return (journal_xd.m_repeat_num == 0)
+            ? mmGetDateTimeForDisplay(
+                journal_xd.m_updated_time.isoDateTime(),
+                dateFormat + " %H:%M:%S"
+            )
+            : wxString("");
     }
 
     switch (col_id) {

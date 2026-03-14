@@ -328,7 +328,7 @@ void TrxModel::save_timestamp(int64 trx_id)
 {
     Data* trx_n = instance().unsafe_get_id_data_n(trx_id);
     if (trx_n && trx_n->m_id == trx_id) {
-        trx_n->LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+        trx_n->m_updated_time = mmDateTime::now();
         unsafe_update_data_n(trx_n);
     }
 }
@@ -342,7 +342,7 @@ void TrxModel::update_timestamp(Data& trx_d)
     if (trx_a.size() == 0 || (!trx_a[0].equals(&trx_d)
         && trx_a[0].DELETEDTIME.IsEmpty() && trx_d.DELETEDTIME.IsEmpty()
     )) {
-        trx_d.LASTUPDATEDTIME = wxDateTime::Now().ToUTC().FormatISOCombined();
+        trx_d.m_updated_time = mmDateTime::now();
     }
 }
 

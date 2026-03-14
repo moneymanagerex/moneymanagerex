@@ -45,10 +45,12 @@ public:
 public:
     static const wxTimeSpan htol; // half-second tolerance
     static mmDateTime now();
+    static mmDateTime from_utc(const wxString& utcDateTime);
 
 public:
     auto getDateTime() const -> wxDateTime;
     auto isoDateTime() const -> const wxString;
+    auto utcDateTime() const -> const wxString;
     void addDateSpan(wxDateSpan dateSpan);
     void addTimeSpan(wxTimeSpan timeSpan);
 
@@ -92,6 +94,10 @@ inline mmDateTime mmDateTime::now()
 {
     return mmDateTime(wxDateTime::Now());
 }
+inline mmDateTime mmDateTime::from_utc(const wxString& utcDateTime)
+{
+    return mmDateTime(parseDateTime(utcDateTime).FromUTC());
+}
 
 inline wxDateTime mmDateTime::getDateTime() const
 {
@@ -101,6 +107,10 @@ inline wxDateTime mmDateTime::getDateTime() const
 inline const wxString mmDateTime::isoDateTime() const
 {
     return m_dateTime.FormatISOCombined();
+}
+inline const wxString mmDateTime::utcDateTime() const
+{
+    return m_dateTime.ToUTC().FormatISOCombined();
 }
 
 inline void mmDateTime::addDateSpan(wxDateSpan dateSpan)

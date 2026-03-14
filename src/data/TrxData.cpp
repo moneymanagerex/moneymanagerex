@@ -29,7 +29,8 @@ TrxData::TrxData() :
     m_amount(0.0),
     m_to_amount(0.0),
     m_followup_id(-1),
-    m_color(-1)
+    m_color(-1),
+    m_updated_time(mmDateTime::now())
 {
 }
 
@@ -49,7 +50,7 @@ TrxRow TrxData::to_row() const
     row.NOTES             = m_notes;
     row.CATEGID           = m_category_id_n;
     row.TRANSDATE         = TRANSDATE;
-    row.LASTUPDATEDTIME   = LASTUPDATEDTIME;
+    row.LASTUPDATEDTIME   = m_updated_time.utcDateTime();
     row.DELETEDTIME       = DELETEDTIME;
     row.FOLLOWUPID        = m_followup_id;
     row.TOTRANSAMOUNT     = m_to_amount;
@@ -75,7 +76,7 @@ TrxData& TrxData::from_row(const TrxRow& row)
     m_notes           = row.NOTES;
     m_followup_id     = row.FOLLOWUPID;
     m_color           = row.COLOR;
-    LASTUPDATEDTIME   = row.LASTUPDATEDTIME;
+    m_updated_time    = mmDateTime::from_utc(row.LASTUPDATEDTIME);
     DELETEDTIME       = row.DELETEDTIME;
 
     return *this;
@@ -83,22 +84,22 @@ TrxData& TrxData::from_row(const TrxRow& row)
 
 bool TrxData::equals(const TrxData* other) const
 {
-    if ( m_id != other->m_id) return false;
-    if (!TRANSDATE.IsSameAs(other->TRANSDATE)) return false;
-    if ( m_type.id() != other->m_type.id()) return false;
-    if ( m_status.id() != other->m_status.id()) return false;
-    if ( m_account_id != other->m_account_id) return false;
+    if ( m_id              != other->m_id)              return false;
+    if (!TRANSDATE.IsSameAs(other->TRANSDATE))          return false;
+    if ( m_type.id()       != other->m_type.id())       return false;
+    if ( m_status.id()     != other->m_status.id())     return false;
+    if ( m_account_id      != other->m_account_id)      return false;
     if ( m_to_account_id_n != other->m_to_account_id_n) return false;
-    if ( m_payee_id_n != other->m_payee_id_n) return false;
-    if ( m_category_id_n != other->m_category_id_n) return false;
-    if ( m_amount != other->m_amount) return false;
-    if ( m_to_amount != other->m_to_amount) return false;
-    if (!m_number.IsSameAs(other->m_number)) return false;
-    if (!m_notes.IsSameAs(other->m_notes)) return false;
-    if ( m_followup_id != other->m_followup_id) return false;
-    if ( m_color != other->m_color) return false;
-    if (!LASTUPDATEDTIME.IsSameAs(other->LASTUPDATEDTIME)) return false;
-    if (!DELETEDTIME.IsSameAs(other->DELETEDTIME)) return false;
+    if ( m_payee_id_n      != other->m_payee_id_n)      return false;
+    if ( m_category_id_n   != other->m_category_id_n)   return false;
+    if ( m_amount          != other->m_amount)          return false;
+    if ( m_to_amount       != other->m_to_amount)       return false;
+    if (!m_number.IsSameAs(   other->m_number))         return false;
+    if (!m_notes.IsSameAs(    other->m_notes))          return false;
+    if ( m_followup_id     != other->m_followup_id)     return false;
+    if ( m_color           != other->m_color)           return false;
+    if ( m_updated_time    != other->m_updated_time)    return false;
+    if (!DELETEDTIME.IsSameAs(other->DELETEDTIME))      return false;
 
     return true;
 }
