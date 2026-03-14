@@ -71,9 +71,9 @@ TrxLinkDialog::TrxLinkDialog(
             )) {
                 tag_id_a.push_back(gl_d.m_tag_id);
             }
-            m_local_splits.push_back(
-                {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
-            );
+            m_local_splits.push_back({
+                tp_d.m_category_id, tp_d.m_amount, tp_d.m_notes, tag_id_a
+            });
         }
     }
 
@@ -280,7 +280,7 @@ void TrxLinkDialog::DataToControls()
         m_category->Enable(!has_split);
         m_category->SetLabelText(_t("Split Transaction"));
 
-        SetTransactionValue(TrxSplitModel::get_total(m_local_splits));
+        SetTransactionValue(TrxSplitModel::instance().get_total(m_local_splits));
     }
 
     if (!m_transaction_n->DELETEDTIME.IsEmpty()) {
@@ -564,10 +564,10 @@ void TrxLinkDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     if (m_local_splits.empty() && m_category->mmIsValid()) {
         Split split_d;
 
-        m_entered_amount->GetDouble(split_d.SPLITTRANSAMOUNT);
+        m_entered_amount->GetDouble(split_d.m_amount);
 
-        split_d.CATEGID = m_category->mmGetCategoryId();
-        split_d.NOTES   = m_entered_notes->GetValue();
+        split_d.m_category_id = m_category->mmGetCategoryId();
+        split_d.m_notes       = m_entered_notes->GetValue();
         m_local_splits.push_back(split_d);
     }
 
@@ -577,9 +577,9 @@ void TrxLinkDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_local_splits = dlg.mmGetResult();
 
         if (m_local_splits.size() == 1) {
-            m_category->SetLabelText(CategoryModel::instance().full_name(m_local_splits[0].CATEGID));
-            m_entered_amount->SetValue(m_local_splits[0].SPLITTRANSAMOUNT);
-            m_entered_notes->SetValue(m_local_splits[0].NOTES);
+            m_category->SetLabelText(CategoryModel::instance().full_name(m_local_splits[0].m_category_id));
+            m_entered_amount->SetValue(m_local_splits[0].m_amount);
+            m_entered_notes->SetValue(m_local_splits[0].m_notes);
 
             m_local_splits.clear();
         }
@@ -588,7 +588,7 @@ void TrxLinkDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
             m_category->Enable(true);
         }
         else {
-            m_entered_amount->SetValue(TrxSplitModel::get_total(m_local_splits));
+            m_entered_amount->SetValue(TrxSplitModel::instance().get_total(m_local_splits));
 
             m_category->Enable(false);
             m_category->SetLabelText(_t("Split Transaction"));

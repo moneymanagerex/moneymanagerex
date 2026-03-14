@@ -63,7 +63,7 @@ void PayeeReport::loadData()
 {
     m_id_data.clear();
 
-    const auto all_splits = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     for (const auto& trx_d : TrxModel::instance().find(
         TrxModel::TRANSDATE(OP_GE, m_date_range2.rangeStart().value()),
         TrxModel::TRANSDATE(OP_LE, m_date_range2.rangeEnd().value()),
@@ -99,8 +99,8 @@ void PayeeReport::loadData()
         );
 
         TrxSplitModel::DataA tp_a;
-        if (all_splits.count(trx_d.id()))
-            tp_a = all_splits.at(trx_d.id());
+        if (trxId_tpA_m.count(trx_d.id()))
+            tp_a = trxId_tpA_m.at(trx_d.id());
         if (tp_a.empty()) {
             updateData(data, trx_d.m_type, trx_d.m_amount * convRate);
         }

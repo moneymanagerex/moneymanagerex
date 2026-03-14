@@ -239,7 +239,7 @@ bool CategoryModel::is_used(int64 cat_id)
 bool CategoryModel::has_income(int64 cat_id)
 {
     double sum = 0.0;
-    auto splits = TrxSplitModel::instance().get_all_id();
+    auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     // FIXME: ignore Void transactions
     for (const auto& trx_d : TrxModel::instance().find(
         TrxCol::CATEGID(cat_id),
@@ -257,7 +257,7 @@ bool CategoryModel::has_income(int64 cat_id)
             break;
         }
 
-        for (const auto& tp_d : splits[trx_d.m_id]) {
+        for (const auto& tp_d : trxId_tpA_m[trx_d.m_id]) {
             switch (trx_d.m_type.id())
             {
             case TrxType::e_withdrawal:
@@ -308,7 +308,7 @@ void CategoryModel::getCategoryStats(
         }
     }
     //Calculations
-    auto id_tp_m = TrxSplitModel::instance().get_all_id();
+    auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     for (const auto& trx_d : TrxModel::instance().find(
         TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void)),
         TrxModel::TRANSDATE(OP_GE, date_range->start_date()),
@@ -338,7 +338,7 @@ void CategoryModel::getCategoryStats(
 
         int64 categID = trx_d.m_category_id_n;
 
-        if (id_tp_m[trx_d.id()].empty()) {
+        if (trxId_tpA_m[trx_d.id()].empty()) {
             if (!trx_d.is_transfer()) {
                 // Do not include asset or stock transfers in income expense calculations.
                 if (TrxModel::is_foreignAsTransfer(trx_d))
@@ -354,7 +354,7 @@ void CategoryModel::getCategoryStats(
             }
         }
         else {
-            for (const auto& tp_d : id_tp_m[trx_d.id()]) {
+            for (const auto& tp_d : trxId_tpA_m[trx_d.m_id]) {
                 categoryStats[tp_d.m_category_id][month] +=
                     (trx_d.is_withdrawal() ? -tp_d.m_amount : tp_d.m_amount) *
                     convRate;

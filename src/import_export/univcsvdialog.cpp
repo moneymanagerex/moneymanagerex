@@ -1695,7 +1695,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             _t("Error")
         );
 
-    const auto split = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
         TrxModel::s_ref_type
     );
@@ -1733,7 +1733,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             if (trx_d.is_void() || !trx_d.DELETEDTIME.IsEmpty())
                 continue;
 
-            TrxModel::Full_Data tran(trx_d, split, trxId_glA_m);
+            TrxModel::Full_Data tran(trx_d, trxId_tpA_m, trxId_glA_m);
             bool has_split = tran.has_split();
             double value = TrxModel::account_flow(trx_d, fromAccountID);
             account_balance += value;
@@ -2099,7 +2099,7 @@ void mmUnivCSVDialog::update_preview()
         const AccountData* from_account = AccountModel::instance().get_name_data_n(acctName);
 
         if (from_account) {
-            const auto split = TrxSplitModel::instance().get_all_id();
+            const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
             const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
                 TrxModel::s_ref_type
             );
@@ -2126,7 +2126,7 @@ void mmUnivCSVDialog::update_preview()
                     if (TrxModel::getTransDateTime(trx_d).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) ||
                         m_haveDatesCheckBox->GetValue() == false
                     ) {
-                        TrxModel::Full_Data tran(trx_d, split, trxId_glA_m);
+                        TrxModel::Full_Data tran(trx_d, trxId_tpA_m, trxId_glA_m);
                         bool has_split = tran.has_split();
                         double value = TrxModel::account_flow(trx_d, fromAccountID);
                         account_balance += value;

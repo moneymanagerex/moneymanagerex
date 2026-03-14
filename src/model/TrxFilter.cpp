@@ -128,12 +128,14 @@ wxString TrxFilter::getHTML()
 {
     mmHTMLBuilder hb;
     m_trans.clear();
-    const auto splits = TrxSplitModel::instance().get_all_id();
-    const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(TrxModel::s_ref_type);
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
+    const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
+        TrxModel::s_ref_type
+    );
     //TODO: find should be faster
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        if (!mmIsRecordMatches(trx_d, splits)) continue;
-        TrxModel::Full_Data full_tran(trx_d, splits, trxId_glA_m);
+        if (!mmIsRecordMatches(trx_d, trxId_tpA_m)) continue;
+        TrxModel::Full_Data full_tran(trx_d, trxId_tpA_m, trxId_glA_m);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.m_account_id);
         if (full_tran.has_split()) {

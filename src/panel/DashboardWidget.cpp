@@ -227,7 +227,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     //Temporary map
     std::map<int64 /*category*/, double> stat;
 
-    const auto split = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto& trx_a = TrxModel::instance().find(
         TrxModel::TRANSDATE(OP_GE, date_range->start_date()),
         TrxCol::TRANSDATE(OP_LE, date_range->end_date().FormatISOCombined()),
@@ -246,7 +246,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
             mmDate(trx_d.TRANSDATE)
         );
 
-        if (const auto it = split.find(trx_d.m_id); it == split.end()) {
+        if (const auto trxId_tpA = trxId_tpA_m.find(trx_d.m_id); trxId_tpA == trxId_tpA_m.end()) {
             int64 category = trx_d.m_category_id_n;
             if (withdrawal)
                 stat[category] -= trx_d.m_amount * convRate;
@@ -254,7 +254,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
                 stat[category] += trx_d.m_amount * convRate;
         }
         else {
-            for (const auto& tp_d : it->second) {
+            for (const auto& tp_d : trxId_tpA->second) {
                 int64 category = tp_d.m_category_id;
                 double val = tp_d.m_amount * convRate * (withdrawal ? -1 : 1);
                 stat[category] += val;

@@ -661,7 +661,7 @@ void JournalPanel::filterList()
     const auto trans = m_account_n
         ? AccountModel::instance().find_id_trx_aBySN(m_account_n->m_id)
         : TrxModel::instance().find_allByDateTimeId();
-    const auto trans_splits = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
         TrxModel::s_ref_type
     );
@@ -781,7 +781,7 @@ void JournalPanel::filterList()
             continue;
 
         Journal::Full_Data journal_xd = (repeat_num == 0) ?
-            Journal::Full_Data(*trx_n, trans_splits, trxId_glA_m) :
+            Journal::Full_Data(*trx_n, trxId_tpA_m, trxId_glA_m) :
             Journal::Full_Data(bills[bill_i], tran_date, repeat_num, schedId_qpA_m, schedId_glA_m);
 
         bool expandSplits = false;
@@ -1441,9 +1441,9 @@ void JournalPanel::displaySplitCategories(Journal::IdB journal_id)
     std::vector<Split> splits;
     for (const auto& tp_d : Journal::split(journal)) {
         Split split_d;
-        split_d.CATEGID          = tp_d.m_category_id;
-        split_d.SPLITTRANSAMOUNT = tp_d.m_amount;
-        split_d.NOTES            = tp_d.m_notes;
+        split_d.m_category_id = tp_d.m_category_id;
+        split_d.m_amount      = tp_d.m_amount;
+        split_d.m_notes       = tp_d.m_notes;
         splits.push_back(split_d);
     }
     if (splits.empty()) return;

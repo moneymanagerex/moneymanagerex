@@ -561,13 +561,13 @@ table {
 void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
 {
     trx_xa.clear();
-    const auto splits = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
         TrxModel::s_ref_type
     );
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        TrxModel::Full_Data trx_xd(trx_d, splits, trxId_glA_m);
+        TrxModel::Full_Data trx_xd(trx_d, trxId_tpA_m, trxId_glA_m);
         trx_xd.PAYEENAME = trx_xd.real_payee_name(trx_xd.m_account_id);
         if (trx_xd.has_split()) {
             TrxModel::Full_Data single_tran = trx_xd;

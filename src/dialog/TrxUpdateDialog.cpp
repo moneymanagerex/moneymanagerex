@@ -43,9 +43,9 @@ wxBEGIN_EVENT_TABLE(TrxUpdateDialog, wxDialog)
     EVT_BUTTON(wxID_OK,             TrxUpdateDialog::OnOk)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, TrxUpdateDialog::OnMoreFields)
     EVT_CHECKBOX(wxID_ANY,          TrxUpdateDialog::OnCheckboxClick)
-    EVT_CHILD_FOCUS(TrxUpdateDialog::onFocusChange)
-    EVT_CHAR_HOOK(TrxUpdateDialog::OnComboKey)
-    EVT_CHOICE(ID_TRANS_TYPE, TrxUpdateDialog::OnTransTypeChanged)
+    EVT_CHILD_FOCUS(                TrxUpdateDialog::onFocusChange)
+    EVT_CHAR_HOOK(                  TrxUpdateDialog::OnComboKey)
+    EVT_CHOICE(ID_TRANS_TYPE,       TrxUpdateDialog::OnTransTypeChanged)
 wxEND_EVENT_TABLE()
 
 TrxUpdateDialog::TrxUpdateDialog()
@@ -74,10 +74,10 @@ TrxUpdateDialog::TrxUpdateDialog(
         const bool isTransfer = trx_n->is_transfer();
 
         if (!m_hasSplits) {
-            TrxSplitModel::DataA split = TrxSplitModel::instance().find(
+            TrxSplitModel::DataA tp_a = TrxSplitModel::instance().find(
                 TrxSplitCol::TRANSID(trx_id)
             );
-            if (!split.empty())
+            if (!tp_a.empty())
                 m_hasSplits = true;
         }
 
@@ -389,7 +389,7 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
     int64 categ_id = cbCategory_->mmGetCategoryId();
 
-    const auto split = TrxSplitModel::instance().get_all_id();
+    // const auto split = TrxSplitModel::instance().find_all_mTrxId();
 
     std::vector<int64> skip_trx;
     TrxModel::instance().db_savepoint();

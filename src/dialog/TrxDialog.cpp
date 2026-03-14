@@ -128,9 +128,9 @@ TrxDialog::TrxDialog(
                 TagLinkCol::REFID(tp_d.m_id))
             )
                 tag_id_a.push_back(gl_d.m_tag_id);
-            m_local_splits.push_back(
-                {tp_d.m_category_id, tp_d.m_amount, tag_id_a, tp_d.m_notes}
-            );
+            m_local_splits.push_back({
+                tp_d.m_category_id, tp_d.m_amount, tp_d.m_notes, tag_id_a
+            });
         }
 
         if (m_mode == MODE_DUP &&
@@ -378,7 +378,7 @@ void TrxDialog::dataToControls()
         {
             cbCategory_->ChangeValue(_t("Split Transaction"));
             cbCategory_->Disable();
-            m_textAmount->SetValue(TrxSplitModel::get_total(m_local_splits));
+            m_textAmount->SetValue(TrxSplitModel::instance().get_total(m_local_splits));
             m_journal_data.m_category_id_n = -1;
         }
         else if (m_mode == MODE_NEW && m_transfer &&
@@ -1141,9 +1141,9 @@ void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
     wxLogDebug("Cat Valid %d, Cat Is Empty %d, Cat value [%s]", cbCategory_->mmIsValid(), cbCategory_->GetValue().IsEmpty(), cbCategory_->GetValue());
     if (m_local_splits.empty()) {
         Split split_d;
-        split_d.SPLITTRANSAMOUNT = m_journal_data.m_amount;
+        split_d.m_amount = m_journal_data.m_amount;
         if (cbCategory_->mmIsValid())
-            split_d.CATEGID = cbCategory_->mmGetCategoryId();
+            split_d.m_category_id = cbCategory_->mmGetCategoryId();
         m_local_splits.push_back(split_d);
     }
 
@@ -1154,8 +1154,8 @@ void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
         m_local_splits = dlg.mmGetResult();
 
         if (m_local_splits.size() == 1) {
-            m_journal_data.m_category_id_n = m_local_splits[0].CATEGID;
-            m_journal_data.m_amount = m_local_splits[0].SPLITTRANSAMOUNT;
+            m_journal_data.m_category_id_n = m_local_splits[0].m_category_id;
+            m_journal_data.m_amount = m_local_splits[0].m_amount;
             m_textAmount->SetValue(m_journal_data.m_amount);
             m_local_splits.clear();
         }
@@ -1282,17 +1282,17 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     TrxSplitModel::DataA tp_a;
     for (const auto& split_d : m_local_splits) {
         TrxSplitData tp_d = TrxSplitData();
-        tp_d.m_category_id = split_d.CATEGID;
-        tp_d.m_amount      = split_d.SPLITTRANSAMOUNT;
-        tp_d.m_notes       = split_d.NOTES;
+        tp_d.m_category_id = split_d.m_category_id;
+        tp_d.m_amount      = split_d.m_amount;
+        tp_d.m_notes       = split_d.m_notes;
         tp_a.push_back(tp_d);
     }
-    TrxSplitModel::instance().update(tp_a, m_journal_data.m_id);
+    TrxSplitModel::instance().update_trx(m_journal_data.m_id, tp_a);
 
     // Save split tags
     for (unsigned int i = 0; i < m_local_splits.size(); i++) {
         TagLinkModel::DataA new_tp_gl_a;
-        for (const auto& tag_id : m_local_splits.at(i).TAGS) {
+        for (const auto& tag_id : m_local_splits.at(i).m_tag_id_a) {
             TagLinkData new_gl_d = TagLinkData();
             new_gl_d.m_tag_id   = tag_id;
             new_gl_d.m_ref_type = TrxSplitModel::s_ref_type;
@@ -1373,7 +1373,7 @@ void TrxDialog::SetTooltips()
         if (account_n)
             currency = AccountModel::instance().get_data_currency_p(*account_n);
 
-        bSplit_->SetToolTip(TrxSplitModel::get_tooltip(m_local_splits, currency));
+        bSplit_->SetToolTip(TrxSplitModel::instance().get_tooltip(m_local_splits, currency));
     }
     if (m_mode != MODE_NEW) return;
 
