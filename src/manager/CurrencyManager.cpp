@@ -64,7 +64,7 @@ CurrencyManager::CurrencyManager(wxWindow* parent, const CurrencyData* currency)
         m_currency_d.clone_from(*currency);
         m_currency_n = &m_currency_d;
         m_currency_n->m_id             = currency->m_id;
-        m_currency_n->m_base_conv_rate = CurrencyHistoryModel::getLastRate(m_currency_n->m_id);
+        m_currency_n->m_base_conv_rate = CurrencyHistoryModel::instance().get_id_last_rate(m_currency_n->m_id);
     }
     else {
         m_currency_d = CurrencyData();

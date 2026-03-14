@@ -327,26 +327,29 @@ table {
                 const AccountData* acc = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
 
                 if (acc) {
-                    const CurrencyData* curr = AccountModel::instance().get_data_currency_p(*acc);
+                    const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(*acc);
                     double flow = TrxModel::account_flow(trx_xd, acc->m_id);
                     if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_account_id) == selected_accounts.end())))
                         flow = -flow;
-                    const double convRate = CurrencyHistoryModel::getDayRate(curr->m_id, trx_xd.TRANSDATE);
+                    const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                        currency_n->m_id,
+                        mmDate(trx_xd.TRANSDATE)
+                    );
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT)) {
                         if (trx_xd.is_void()) {
                             double void_flow = trx_xd.is_deposit() ? trx_xd.m_amount : -trx_xd.m_amount;
-                            hb.addCurrencyCell(void_flow, curr, -1, true);
+                            hb.addCurrencyCell(void_flow, currency_n, -1, true);
                         }
                         else if (trx_xd.DELETEDTIME.IsEmpty())
-                            hb.addCurrencyCell(flow, curr);
+                            hb.addCurrencyCell(flow, currency_n);
                     }
-                    total[curr->m_id] += flow;
-                    grand_total[curr->m_id] += flow;
-                    total_in_base_curr[curr->m_id] += flow * convRate;
-                    grand_total_in_base_curr[curr->m_id] += flow * convRate;
+                    total[currency_n->m_id] += flow;
+                    grand_total[currency_n->m_id] += flow;
+                    total_in_base_curr[currency_n->m_id] += flow * convRate;
+                    grand_total_in_base_curr[currency_n->m_id] += flow * convRate;
                     if (!trx_xd.is_transfer()) {
-                        grand_total_extrans[curr->m_id] += flow;
-                        grand_total_in_base_curr_extrans[curr->m_id] += flow * convRate;
+                        grand_total_extrans[currency_n->m_id] += flow;
+                        grand_total_in_base_curr_extrans[currency_n->m_id] += flow * convRate;
                     }
                     if (chart > -1 && groupBy == -1) {
                         values_chart[trx_xd.m_id.ToString()] += (flow * convRate);

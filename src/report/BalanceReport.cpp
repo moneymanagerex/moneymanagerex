@@ -95,7 +95,7 @@ double BalanceReport::getCurrencyDateRate(int64 currencyid, const wxDate& date)
     if (i != m_currencyDateRateCache.end())
         return (*i).second;
 
-    double value = CurrencyHistoryModel::getDayRate(currencyid, date);
+    double value = CurrencyHistoryModel::instance().get_id_date_rate(currencyid, mmDate(date));
     m_currencyDateRateCache[key] = value;
 
     return value;

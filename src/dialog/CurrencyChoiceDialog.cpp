@@ -147,7 +147,10 @@ void CurrencyChoiceDialog::fillControls()
             amount = _t("N/A");
         else
             amount = m_history_en
-            ? CurrencyModel::instance().toString(CurrencyHistoryModel::getLastRate(currencyID), nullptr, 4)
+            ? CurrencyModel::instance().toString(
+                CurrencyHistoryModel::instance().get_id_last_rate(currencyID),
+                nullptr, 4
+            )
             : CurrencyModel::instance().toString(currency.m_base_conv_rate, nullptr, 4);
         wxVector<wxVariant> data;
         data.push_back(wxVariant(base_currency_id == currencyID ? L"\u2713" : L""));
@@ -655,7 +658,12 @@ void CurrencyChoiceDialog::OnHistoryAdd(wxCommandEvent& /*event*/)
         CurrencyModel::instance().get_id_data_n(m_currency_id)
     ) || dPrice < 0.0)
         return mmErrorDialogs::ToolTip4Object(w_value_text, _t("Invalid Entry"), _t("Amount"));
-    CurrencyHistoryModel::instance().addUpdate(m_currency_id, w_date_picker->GetValue(), dPrice, CurrencyHistoryModel::MANUAL);
+    CurrencyHistoryModel::instance().save_record(
+        m_currency_id,
+        mmDate(w_date_picker->GetValue()),
+        dPrice,
+        UpdateType(UpdateType::e_manual)
+    );
 
     fillControls();
     ShowCurrencyHistory();
@@ -755,15 +763,21 @@ void CurrencyChoiceDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
             if (historical_rates.find(date) == historical_rates.end())
                 continue;
             wxLogDebug("%s", date.FormatISODate());
-            CurrencyHistoryModel::instance().addUpdate(
-                m_currency_id, date, historical_rates[date], CurrencyHistoryModel::ONLINE
+            CurrencyHistoryModel::instance().save_record(
+                m_currency_id,
+                mmDate(date),
+                historical_rates[date],
+                UpdateType(UpdateType::e_online)
             );
         }
     }
     else {
-        for (auto &entry : historical_rates) {
-            CurrencyHistoryModel::instance().addUpdate(
-                m_currency_id, entry.first, entry.second, CurrencyHistoryModel::ONLINE
+        for (auto& entry : historical_rates) {
+            CurrencyHistoryModel::instance().save_record(
+                m_currency_id,
+                mmDate(entry.first),
+                entry.second,
+                UpdateType(UpdateType::e_online)
             );
         }
     }
@@ -811,7 +825,7 @@ void CurrencyChoiceDialog::OnHistorySelected(wxListEvent& event)
     const CurrencyHistoryData* ch_n = CurrencyHistoryModel::instance().get_id_data_n(histId);
 
     if (ch_n->m_id > 0) {
-        w_date_picker->SetValue(CurrencyHistoryModel::CURRDATE(*ch_n));
+        w_date_picker->SetValue(ch_n->m_date.getDateTime());
         w_value_text->SetValue(wxString::Format("%f", ch_n->m_base_conv_rate));
     }
 }

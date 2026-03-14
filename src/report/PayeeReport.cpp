@@ -91,11 +91,11 @@ void PayeeReport::loadData()
             data.flow = 0.0;
         }
 
-        // NOTE: call to getDayRate() in every transaction is slow
+        // NOTE: call to get_id_date_rate() in every transaction is slow
         // if "Use historical currency" is enabled in settings
-        const double convRate = CurrencyHistoryModel::getDayRate(
+        const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            trx_d.TRANSDATE
+            mmDate(trx_d.TRANSDATE)
         );
 
         TrxSplitModel::DataA tp_a;

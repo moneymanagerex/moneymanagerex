@@ -835,7 +835,10 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
         if (symbol.IsEmpty())
             continue;
 
-        fiat[symbol] = CurrencyHistoryModel::getDayRate(currency_d.m_id, today_str);
+        fiat[symbol] = CurrencyHistoryModel::instance().get_id_date_rate(
+            currency_d.m_id,
+            mmDate(today_str)
+        );
     }
 
     if (fiat.empty()) {
@@ -899,8 +902,11 @@ bool getOnlineCurrencyRates(wxString& msg,const int64 curr_id, const bool used_o
             double new_rate = currency_data[currency_symbol];
             if (new_rate > 0) {
                 if(PrefModel::instance().getUseCurrencyHistory())
-                    CurrencyHistoryModel::instance().addUpdate(
-                        currency_d.m_id, today, new_rate, CurrencyHistoryModel::ONLINE
+                    CurrencyHistoryModel::instance().save_record(
+                        currency_d.m_id,
+                        mmDate(today),
+                        new_rate,
+                        UpdateType(UpdateType::e_online)
                     );
                 else {
                     currency_d.m_base_conv_rate = new_rate;

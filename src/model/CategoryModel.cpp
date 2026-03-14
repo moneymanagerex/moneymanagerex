@@ -276,17 +276,17 @@ bool CategoryModel::has_income(int64 cat_id)
 }
 
 void CategoryModel::getCategoryStats(
-    std::map<int64, std::map<int, double>>& categoryStats
-    , wxSharedPtr<wxArrayString> accountArray
-    , mmDateRange* date_range
-    , bool WXUNUSED(ignoreFuture) //TODO: deprecated
-    , bool group_by_month
-    , std::map<int64, double> *budgetAmt
-    , [[maybe_unused]] bool fin_months)
-{
+    std::map<int64, std::map<int, double>>& categoryStats,
+    wxSharedPtr<wxArrayString> accountArray,
+    mmDateRange* date_range,
+    bool WXUNUSED(ignoreFuture), //TODO: deprecated
+    bool group_by_month,
+    std::map<int64, double> *budgetAmt,
+    [[maybe_unused]] bool fin_months
+) {
     //Initialization
     //Set std::map with zerros
-    const auto& allcategories = instance().find_all();
+    const auto& allcategories = find_all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
     const wxDateTime start_date(date_range->start_date());
@@ -323,9 +323,9 @@ void CategoryModel::getCategoryStats(
             }
         }
 
-        const double convRate = CurrencyHistoryModel::getDayRate(
+        const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            trx_d.TRANSDATE
+            mmDate(trx_d.TRANSDATE)
         );
         wxDateTime d = TrxModel::getTransDateTime(trx_d);
 

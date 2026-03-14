@@ -54,7 +54,7 @@ public:
 
     auto get_name(const wxString& name, const wxString& parentname) -> const Data*;
     auto FilterCategory(const wxString& cat_pattern) -> const wxArrayString;
-    static void getCategoryStats(
+    void getCategoryStats(
         std::map<int64, std::map<int, double>>& categoryStats,
         wxSharedPtr<wxArrayString> accountArray,
         mmDateRange* date_range,

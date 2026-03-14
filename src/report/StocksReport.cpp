@@ -51,7 +51,6 @@ void  StocksReport::refreshData()
 
     DataHolder line;
     AccountHolder account_holder;
-    const wxDate today = wxDate::Today();
 
     for (const auto& a : AccountModel::instance().find_all(
         AccountCol::COL_ID_ACCOUNTNAME
@@ -72,7 +71,9 @@ void  StocksReport::refreshData()
             StockCol::HELDAT(a.m_id)
         )) {
             const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(a);
-            const double today_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id, today);
+            const double today_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+                currency_n->m_id
+            );
             m_stock_balance += today_rate * stock_d.current_value();
             line.realgainloss = StockModel::instance().calculate_realized_gain(stock_d);
             account_holder.realgainloss += line.realgainloss;

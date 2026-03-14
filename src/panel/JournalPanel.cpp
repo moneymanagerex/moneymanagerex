@@ -1017,7 +1017,10 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 if (m_account_id < 0 && m_lc->m_journal_xa[item].is_transfer())
                     continue;
                 double convrate = (curr != m_currency_n)
-                    ? CurrencyHistoryModel::getDayRate(curr->m_id, m_lc->m_journal_xa[item].TRANSDATE)
+                    ? CurrencyHistoryModel::instance().get_id_date_rate(
+                        curr->m_id,
+                        mmDate(m_lc->m_journal_xa[item].TRANSDATE)
+                    )
                     : 1.0;
                 flow += convrate * TrxModel::account_flow(m_lc->m_journal_xa[item], (m_account_id < 0) ? m_lc->m_journal_xa[item].m_account_id : m_account_id);
                 wxString transdate = m_lc->m_journal_xa[item].TRANSDATE;

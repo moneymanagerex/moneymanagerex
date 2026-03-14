@@ -28,44 +28,23 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class CurrencyHistoryModel : public TableFactory<CurrencyHistoryTable, CurrencyHistoryData>
 {
 public:
-    enum UPDTYPE { ONLINE = 1, MANUAL };
-
-public:
     CurrencyHistoryModel();
     ~CurrencyHistoryModel();
 
 public:
-    /**
-    Initialize the global CurrencyHistoryModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for StockModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static CurrencyHistoryModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for CurrencyHistoryModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static CurrencyHistoryModel& instance();
 
+    static CurrencyHistoryCol::CURRDATE CURRDATE(OP op, const mmDate& date);
+
 public:
-    const Data* get_key(const int64& currencyID, const wxDate& date);
-    static wxDate CURRDATE(const Data& hist);
+    auto get_key_data_n(int64 currency_id, const mmDate& date) -> const Data*;
+    auto get_id_date_rate(int64 currency_id, const mmDate& date = mmDate::today()) -> double;
+    auto get_id_last_rate(int64 currency_id) -> double;
 
-    static CurrencyHistoryCol::CURRDATE CURRDATE(OP op, const wxDate& date);
-    
-    /** Adds or updates an element in currency history */
-    int64 addUpdate(const int64 currencyID, const wxDate& date, double price, UPDTYPE type);
+    auto save_record(
+        int64 currency_id, const mmDate& date, double price, UpdateType update_type
+    ) -> int64;
 
-    /** Return the rate for a specific currency in a specific day*/
-    static double getDayRate(int64 currencyID, const wxString& DateISO);
-    static double getDayRate(int64 currencyID, const wxDate& Date = wxDate::Today());
-
-    /** Return the last rate for a specific currency */
-    static double getLastRate(const int64& currencyID);
-    
-    /** Clears the currency History table */
-    static void ResetCurrencyHistory();
+    void purge_all();
 };
-

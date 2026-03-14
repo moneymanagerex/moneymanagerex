@@ -217,7 +217,10 @@ double StockModel::calculate_realized_gain(const Data& stock_d, bool to_base_cur
             total_shares = 0;
 
         if (to_base_curr) {
-            conv_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id, trx_d.TRANSDATE);
+            conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+                currency_n->m_id,
+                mmDate(trx_d.TRANSDATE)
+            );
         }
         if (ts_n->m_number > 0) {
             // BUY
@@ -255,7 +258,7 @@ double StockModel::calculate_unrealiazed_gain(const Data& stock_d, bool to_base_
     const CurrencyData* currency_n = AccountModel::instance().get_id_currency_p(
         stock_d.m_account_id_n
     );
-    double conv_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id);
+    double conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(currency_n->m_id);
     TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
         s_ref_type, stock_d.m_id
     );
@@ -280,7 +283,10 @@ double StockModel::calculate_unrealiazed_gain(const Data& stock_d, bool to_base_
             const TrxShareData* ts_d = TrxShareModel::instance().get_trxId_data_n(
                 trx_d.m_id
             );
-            conv_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id, trx_d.TRANSDATE);
+            conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+                currency_n->m_id,
+                mmDate(trx_d.TRANSDATE)
+            );
             total_shares += ts_d->m_number;
             if (total_shares < 0) total_shares = 0;
 
@@ -296,7 +302,7 @@ double StockModel::calculate_unrealiazed_gain(const Data& stock_d, bool to_base_
             if (total_initial_value < 0) total_initial_value = 0;
             if (total_shares > 0) avg_share_price = total_initial_value / total_shares;
         }
-        conv_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id);
+        conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(currency_n->m_id);
         return stock_d.current_value() * conv_rate - total_initial_value;
     }
     else {

@@ -80,7 +80,6 @@ const wxString htmlWidgetStocks::getHTMLText()
     double grand_gain_lost    = 0;
     double grand_market_value = 0;  // Track the grand total of market values
     double grand_cash_balance = 0;  // Track the grand total of cash balances
-    const wxDate today = wxDate::Today();
 
     wxString output = "";
     AccountModel::DataA account_a = AccountModel::instance().find(
@@ -109,10 +108,14 @@ const wxString htmlWidgetStocks::getHTMLText()
         if (!account_d.is_open())
             continue;
 
-        double conv_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id, today);
+        double conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+            account_d.m_currency_id
+        );
         auto inv_bal = AccountModel::instance().get_data_investment_balance(account_d);
         if (btoday) {
-            cash_bal = AccountModel::instance().get_data_balance_to_date(account_d, mmDate::today());
+            cash_bal = AccountModel::instance().get_data_balance_to_date(
+                account_d, mmDate::today()
+            );
         }
         else {
             cash_bal = AccountModel::instance().get_data_balance(account_d);
@@ -238,9 +241,9 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
             continue;
 
         bool withdrawal = (trx_d.is_withdrawal());
-        double convRate = CurrencyHistoryModel::getDayRate(
+        double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            trx_d.TRANSDATE
+            mmDate(trx_d.TRANSDATE)
         );
 
         if (const auto it = split.find(trx_d.m_id); it == split.end()) {
@@ -419,9 +422,9 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
         if (TrxModel::is_foreignAsTransfer(trx_d) || !trx_d.DELETEDTIME.IsEmpty())
             continue;
 
-        double convRate = CurrencyHistoryModel::getDayRate(
+        double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            trx_d.TRANSDATE
+            mmDate(trx_d.TRANSDATE)
         );
 
         int64 idx = trx_d.m_account_id;
@@ -739,7 +742,6 @@ const wxString htmlWidgetAccounts::displayAccounts(
     output += wxString::Format("<tbody id = '%s'>\n", idStr);
 
     wxString body = "";
-    const wxDate today = wxDate::Today();
     double tabBalance = 0.0, tabReconciled = 0.0;
     wxString vAccts = SettingModel::instance().getViewAccounts();
     auto account_a = AccountModel::instance().find(
@@ -750,7 +752,9 @@ const wxString htmlWidgetAccounts::displayAccounts(
     for (const auto& account_d : account_a) {
         const CurrencyData* currency = AccountModel::instance().get_data_currency_p(account_d);
 
-        double currency_rate = CurrencyHistoryModel::getDayRate(account_d.m_currency_id, today);
+        double currency_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+            account_d.m_currency_id
+        );
         double bal = account_d.m_open_balance + accountStats_[account_d.m_id].second; //AccountModel::instance().get_data_balance(account_d);
         double reconciledBal = account_d.m_open_balance + accountStats_[account_d.m_id].first;
         tabBalance += bal * currency_rate;
@@ -832,13 +836,14 @@ const wxString htmlWidgetCurrency::getHtmlText()
 )";
 
 
-    const wxString today = wxDate::Today().FormatISODate();
     std::map<wxString, double> usedRates;
 
     for (const auto& currency_d : CurrencyModel::instance().find_all()) {
         if (CurrencyModel::instance().find_id_dep_c(currency_d.m_id) > 0) {
 
-            double convertionRate = CurrencyHistoryModel::getDayRate(currency_d.m_id, today);
+            double convertionRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                currency_d.m_id
+            );
             usedRates[currency_d.m_symbol] = convertionRate;
 
             if (usedRates.size() >= 10) {
@@ -852,13 +857,11 @@ const wxString htmlWidgetCurrency::getHtmlText()
     }
     wxString header;
     loop_t contents;
-    for (const auto& i : usedRates)
-    {
+    for (const auto& i : usedRates) {
         row_t r;
         r(L"CURRENCY_SYMBOL") = i.first;
         wxString row;
-        for (const auto& j : usedRates)
-        {
+        for (const auto& j : usedRates) {
             double value = j.second / i.second;
             row += wxString::Format("<td %s>%s</td>"
                 , j.first == i.first ? "class ='active'" : "class='money'"
@@ -876,16 +879,13 @@ const wxString htmlWidgetCurrency::getHtmlText()
     report(L"HEADER") = header;
 
     wxString out = wxEmptyString;
-    try
-    {
+    try {
         out = report.Process();
     }
-    catch (const syntax_ex& e)
-    {
+    catch (const syntax_ex& e) {
         return e.what();
     }
-    catch (...)
-    {
+    catch (...) {
         return _t("Caught exception");
     }
 
