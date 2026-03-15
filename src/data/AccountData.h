@@ -79,7 +79,7 @@ struct AccountData
         return m_stmt_locked && m_stmt_date_n.has_value() && date <= m_stmt_date_n.value();
     }
 
-    struct SorterByACCOUNTID
+    struct SorterById
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -87,7 +87,7 @@ struct AccountData
         }
     };
 
-    struct SorterByACCOUNTNAME
+    struct SorterByName
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -96,7 +96,7 @@ struct AccountData
         }
     };
 
-    struct SorterByACCOUNTTYPE
+    struct SorterByType
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -104,87 +104,7 @@ struct AccountData
         }
     };
 
-    struct SorterByACCOUNTNUM
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_num < y.m_num;
-        }
-    };
-
-    struct SorterBySTATUS
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_status.id() < y.m_status.id();
-        }
-    };
-
-    struct SorterByNOTES
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_notes < y.m_notes;
-        }
-    };
-
-    struct SorterByHELDAT
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_held_at < y.m_held_at;
-        }
-    };
-
-    struct SorterByWEBSITE
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_website < y.m_website;
-        }
-    };
-
-    struct SorterByCONTACTINFO
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_contact_info < y.m_contact_info;
-        }
-    };
-
-    struct SorterByACCESSINFO
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_access_info < y.m_access_info;
-        }
-    };
-
-    struct SorterByINITIALBAL
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_open_balance < y.m_open_balance;
-        }
-    };
-
-    struct SorterByINITIALDATE
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_open_date < y.m_open_date;
-        }
-    };
-
-    struct SorterByFAVORITEACCT
-    {
-        bool operator()(const AccountData& x, const AccountData& y)
-        {
-            return x.m_favorite.id() < y.m_favorite.id();
-        }
-    };
-
-    struct SorterByCURRENCYID
+    struct SorterByCurrencyId
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -192,7 +112,87 @@ struct AccountData
         }
     };
 
-    struct SorterBySTATEMENTLOCKED
+    struct SorterByStatus
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_status.id() < y.m_status.id();
+        }
+    };
+
+    struct SorterByFavorite
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_favorite.id() < y.m_favorite.id();
+        }
+    };
+
+    struct SorterByNum
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_num < y.m_num;
+        }
+    };
+
+    struct SorterByNotes
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_notes < y.m_notes;
+        }
+    };
+
+    struct SorterByHeldAt
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_held_at < y.m_held_at;
+        }
+    };
+
+    struct SorterByWebsite
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_website < y.m_website;
+        }
+    };
+
+    struct SorterByContactInfo
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_contact_info < y.m_contact_info;
+        }
+    };
+
+    struct SorterByAccessInfo
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_access_info < y.m_access_info;
+        }
+    };
+
+    struct SorterByOpenDate
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_open_date < y.m_open_date;
+        }
+    };
+
+    struct SorterByOpenBalance
+    {
+        bool operator()(const AccountData& x, const AccountData& y)
+        {
+            return x.m_open_balance < y.m_open_balance;
+        }
+    };
+
+    struct SorterByStmtLocked
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -200,7 +200,7 @@ struct AccountData
         }
     };
 
-    struct SorterBySTATEMENTDATE
+    struct SorterByStmtDate
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -211,7 +211,7 @@ struct AccountData
         }
     };
 
-    struct SorterByMINIMUMBALANCE
+    struct SorterByMinBalance
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -219,7 +219,7 @@ struct AccountData
         }
     };
 
-    struct SorterByCREDITLIMIT
+    struct SorterByCreditLimit
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -227,7 +227,7 @@ struct AccountData
         }
     };
 
-    struct SorterByINTERESTRATE
+    struct SorterByInterestRate
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -235,7 +235,7 @@ struct AccountData
         }
     };
 
-    struct SorterByPAYMENTDUEDATE
+    struct SorterByPaymentDueDate
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {
@@ -246,7 +246,7 @@ struct AccountData
         }
     };
 
-    struct SorterByMINIMUMPAYMENT
+    struct SorterByMinPayment
     {
         bool operator()(const AccountData& x, const AccountData& y)
         {

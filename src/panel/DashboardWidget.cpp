@@ -88,7 +88,7 @@ const wxString htmlWidgetStocks::getHTMLText()
     if (account_a.empty())
         return output;
 
-    std::stable_sort(account_a.begin(), account_a.end(), AccountData::SorterByACCOUNTNAME());
+    std::stable_sort(account_a.begin(), account_a.end(), AccountData::SorterByName());
 
     output = R"(<div class="shadow">)";
     output += "<table class ='sortable table'><col style='width: 50%'><col style='width: 12.5%'><col style='width: 12.5%'><col style='width: 12.5%'><col style='width: 12.5%'><thead><tr class='active'><th>\n";
@@ -590,7 +590,7 @@ const wxString htmlWidgetAssets::getHTMLText()
         return wxEmptyString;
 
     std::stable_sort(asset_account_a.begin(), asset_account_a.end(),
-        AccountData::SorterByACCOUNTNAME()
+        AccountData::SorterByName()
     );
 
     static const int MAX_ASSETS = 10;
@@ -755,14 +755,15 @@ const wxString htmlWidgetAccounts::displayAccounts(
         AccountCol::ACCOUNTTYPE(NavigatorTypes::instance().type_name(type)),
         AccountModel::STATUS(OP_NE, AccountStatus(AccountStatus::e_closed))
     );
-    std::stable_sort(account_a.begin(), account_a.end(), AccountData::SorterByACCOUNTNAME());
+    std::stable_sort(account_a.begin(), account_a.end(), AccountData::SorterByName());
     for (const auto& account_d : account_a) {
         const CurrencyData* currency = AccountModel::instance().get_data_currency_p(account_d);
 
         double currency_rate = CurrencyHistoryModel::instance().get_id_date_rate(
             account_d.m_currency_id
         );
-        double bal = account_d.m_open_balance + accountStats_[account_d.m_id].second; //AccountModel::instance().get_data_balance(account_d);
+        double bal = account_d.m_open_balance + accountStats_[account_d.m_id].second;
+        //AccountModel::instance().get_data_balance(account_d);
         double reconciledBal = account_d.m_open_balance + accountStats_[account_d.m_id].first;
         tabBalance += bal * currency_rate;
         tabReconciled += reconciledBal * currency_rate;
