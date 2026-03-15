@@ -147,8 +147,8 @@ void PrefModel::load(bool include_infotable)
         while (m_base_currency_id < 1) {
             if (CurrencyChoiceDialog::Execute(m_base_currency_id)) {
                 setBaseCurrencyID(m_base_currency_id);
-                CurrencyHistoryModel::ResetCurrencyHistory();
-                CurrencyModel::ResetBaseConversionRates();
+                CurrencyHistoryModel::instance().purge_all();
+                CurrencyModel::instance().resetBaseConversionRates();
             }
         }
     }

@@ -47,15 +47,15 @@ BalanceReport::BalanceReport(BalanceReport::PERIOD_ID period_id) :
 
 std::map<wxDate, double> BalanceReport::loadCheckingDateBalance(const AccountData& account)
 {
-    std::map<wxDate, double> date_balance;
+    std::map<wxDate, double> date_balance_m;
     double balance = account.m_open_balance;
 
-    for (const auto& tran : AccountModel::instance().find_id_trx_aBySN(account.m_id)) {
-        wxDate date = TrxModel::getTransDateTime(tran);
-        balance += TrxModel::account_flow(tran, account.m_id);
-        date_balance[date] = balance;
+    for (const auto& trx_d : AccountModel::instance().find_id_trx_aBySN(account.m_id)) {
+        wxDate date = trx_d.m_date_time.getDateTime();
+        balance += trx_d.account_flow(account.m_id);
+        date_balance_m[date] = balance;
     }
-    return date_balance;
+    return date_balance_m;
 }
 
 static bool sortFunction(const std::pair<wxDate, double> x, std::pair<wxDate, double> y)
@@ -95,7 +95,7 @@ double BalanceReport::getCurrencyDateRate(int64 currencyid, const wxDate& date)
     if (i != m_currencyDateRateCache.end())
         return (*i).second;
 
-    double value = CurrencyHistoryModel::getDayRate(currencyid, date);
+    double value = CurrencyHistoryModel::instance().get_id_date_rate(currencyid, mmDate(date));
     m_currencyDateRateCache[key] = value;
 
     return value;
@@ -132,19 +132,19 @@ wxString BalanceReport::getHTMLText()
 
     dateStart = wxDate::Today();
     // Calculate the report date
-    for (const auto& account: AccountModel::instance().find_all()) {
-        const wxDate accountOpeningDate = account.m_open_date.getDateTime();
+    for (const auto& account_d : AccountModel::instance().find_all()) {
+        const wxDate accountOpeningDate = account_d.m_open_date.getDateTime();
         if (accountOpeningDate.IsEarlierThan(dateStart))
             dateStart = accountOpeningDate;
-        m_account_date_balance[account.m_id] = loadCheckingDateBalance(account);
-        if (AccountModel::type_id(account) != NavigatorTypes::TYPE_ID_INVESTMENT)
+        m_account_date_balance[account_d.m_id] = loadCheckingDateBalance(account_d);
+        if (AccountModel::type_id(account_d) != NavigatorTypes::TYPE_ID_INVESTMENT)
             continue;
         StockModel::DataA stocks = StockModel::instance().find(
-            StockCol::HELDAT(account.id())
+            StockCol::HELDAT(account_d.m_id)
         );
         for (const auto& stock : stocks) {
             mmHistoryItem histItem;
-            histItem.acctId          = account.id();
+            histItem.acctId          = account_d.m_id;
             histItem.stockId         = stock.m_id;
             histItem.purchasePrice   = stock.m_purchase_price;
             histItem.purchaseDate    = stock.m_purchase_date.getDateTime();

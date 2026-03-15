@@ -150,7 +150,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
             }
             else {
                 if (nonDefaultData) 
-                    SetWidgetChanged(controlID, CurrencyModel::toString(value, nullptr, digitScale));
+                    SetWidgetChanged(controlID, CurrencyModel::instance().toString(value, nullptr, digitScale));
             }
             
             mmTextCtrl* CustomDecimal = new mmTextCtrl(scrolled_window, controlID,
@@ -287,7 +287,7 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
     scrolled_window->SetScrollRate(6, 6);
     box_sizer_right->Add(scrolled_window, g_flagsExpand);
     const TrxData* ref_trx_n = TrxModel::instance().get_id_data_n(m_ref_id);
-    if (ref_trx_n && !ref_trx_n->DELETEDTIME.IsEmpty())
+    if (ref_trx_n && ref_trx_n->is_deleted())
         scrolled_window->Disable();
     m_static_box->Hide();
     mmThemeAutoColour(scrolled_window);
@@ -771,7 +771,7 @@ bool FieldValueDialog::ValidateCustomValues(int64)
                 double value;
                 if (d->checkValue(value, false))
                     SetWidgetChanged(controlID,
-                        CurrencyModel::toString(value, nullptr,
+                        CurrencyModel::instance().toString(value, nullptr,
                             FieldModel::getDigitScale(field_d.m_properties)
                         )
                     );

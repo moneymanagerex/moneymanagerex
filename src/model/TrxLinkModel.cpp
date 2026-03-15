@@ -59,43 +59,21 @@ TrxLinkModel::CHECKING_TYPE TrxLinkModel::type_checking(const int64 tt)
     }
 }
 
-void TrxLinkModel::SetTranslink(
-    int64 trx_id,
-    RefTypeN ref_type,
-    int64 ref_id,
-    [[maybe_unused]] const CHECKING_TYPE checking_type
-) {
-    TrxLinkData new_tl_d = TrxLinkData();
-    new_tl_d.m_trx_id   = trx_id;
-    new_tl_d.m_ref_type = ref_type;
-    new_tl_d.m_ref_id   = ref_id;
-    add_data_n(new_tl_d);
-
-    // set the checking entry to recognise it as a foreign transaction
-    // set the checking type as AS_INCOME_EXPENSE = 32701 or AS_TRANSFER
-    TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(trx_id);
-    // FIXME
-    // trx_n->m_to_account_id_n = checking_type;
-    TrxModel::instance().unsafe_save_trx_n(trx_n);
-    //TrxLinkModel::instance().get_id_data_n(new_tl_d.id());
+// Remove all records associated with the Translink list
+void TrxLinkModel::purge_ref(RefTypeN ref_type, int64 ref_id)
+{
+    for (const auto& tl_d : find_ref_data_a(ref_type, ref_id)) {
+        TrxModel::instance().purge_id(tl_d.m_trx_id);
+    }
 }
 
-// Create the translink record as Asset
-void TrxLinkModel::SetAssetTranslink(
-    int64 trx_id,
-    int64 asset_id,
-    const CHECKING_TYPE checking_type
-){
-    SetTranslink(trx_id, AssetModel::s_ref_type, asset_id, checking_type);
-}
-
-// Create a translink record as Stock
-void TrxLinkModel::SetStockTranslink(
-    int64 trx_id,
-    int64 stock_id,
-    const CHECKING_TYPE checking_type
-) {
-    SetTranslink(trx_id, StockModel::s_ref_type, stock_id, checking_type);
+// Return the link record for the checking account
+// Equivalent SQL statements:
+//     select * from TRANSLINK_V1 where CHECKINGACCOUNTID = checking_id;
+const TrxLinkData* TrxLinkModel::get_trx_data_n(int64 trx_id)
+{
+    DataA tl_a = find(TrxLinkCol::CHECKINGACCOUNTID(trx_id));
+    return !tl_a.empty() ? get_id_data_n(tl_a[0].m_id) : nullptr;
 }
 
 // Return a list of translink records for the associated foreign table type.
@@ -131,48 +109,30 @@ size_t TrxLinkModel::find_stock_id_c(const int64 stock_id)
     return find_ref_data_a(StockModel::s_ref_type, stock_id).size();
 }
 
-// Return the link record for the checking account
-// Equivalent SQL statements:
-//     select * from TRANSLINK_V1 where CHECKINGACCOUNTID = checking_id;
-const TrxLinkData* TrxLinkModel::get_trx_data_n(int64 trx_id)
+void TrxLinkModel::update_asset_value(AssetData* asset_n)
 {
-    DataA tl_a = find(TrxLinkCol::CHECKINGACCOUNTID(trx_id));
-    return !tl_a.empty() ? get_id_data_n(tl_a[0].m_id) : nullptr;
-}
-
-// Remove all records associated with the Translink list
-void TrxLinkModel::purge_ref(RefTypeN ref_type, int64 ref_id)
-{
-    for (const auto& tl_d : find_ref_data_a(ref_type, ref_id)) {
-        TrxModel::instance().purge_id(tl_d.m_trx_id);
-    }
-}
-
-void TrxLinkModel::UpdateAssetValue(AssetData* asset_n)
-{
-    DataA tl_a = TrxLinkModel::instance().find_ref_data_a(
+    DataA tl_a = find_ref_data_a(
         AssetModel::s_ref_type, asset_n->m_id
     );
     double new_value = 0;
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
-        if (trx_n && trx_n->DELETEDTIME.IsEmpty() &&
-            !trx_n->is_void()
-        ) {
-            const CurrencyData* currency_n = AccountModel::instance().get_id_currency_p(
-                trx_n->m_account_id
-            );
-            const double conv_rate = CurrencyHistoryModel::getDayRate(
-                currency_n->m_id,
-                trx_n->TRANSDATE
-            );
+        if (!trx_n || !trx_n->is_valid())
+            continue;
 
-            if (trx_n->is_deposit()) {
-                new_value -= trx_n->m_amount * conv_rate; // Withdrawal from asset value
-            }
-            else {
-                new_value += trx_n->m_amount * conv_rate;  // Deposit to asset value
-            }
+        const CurrencyData* currency_n = AccountModel::instance().get_id_currency_p(
+            trx_n->m_account_id
+        );
+        const double conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+            currency_n->m_id,
+            trx_n->m_date()
+        );
+
+        if (trx_n->is_deposit()) {
+            new_value -= trx_n->m_amount * conv_rate; // Withdrawal from asset value
+        }
+        else {
+            new_value += trx_n->m_amount * conv_rate;  // Deposit to asset value
         }
     }
 
@@ -180,4 +140,43 @@ void TrxLinkModel::UpdateAssetValue(AssetData* asset_n)
         asset_n->m_value = new_value;
         AssetModel::instance().unsafe_save_data_n(asset_n);
     }
+}
+
+void TrxLinkModel::save_record(
+    int64 trx_id,
+    RefTypeN ref_type,
+    int64 ref_id,
+    [[maybe_unused]] const CHECKING_TYPE checking_type
+) {
+    TrxLinkData new_tl_d = TrxLinkData();
+    new_tl_d.m_trx_id   = trx_id;
+    new_tl_d.m_ref_type = ref_type;
+    new_tl_d.m_ref_id   = ref_id;
+    add_data_n(new_tl_d);
+
+    // set the checking entry to recognise it as a foreign transaction
+    // set the checking type as AS_INCOME_EXPENSE = 32701 or AS_TRANSFER
+    TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(trx_id);
+    // FIXME
+    // trx_n->m_to_account_id_n = checking_type;
+    TrxModel::instance().unsafe_save_trx_n(trx_n);
+    //TrxLinkModel::instance().get_id_data_n(new_tl_d.m_id);
+}
+
+// Create the translink record as Asset
+void TrxLinkModel::save_asset_record(
+    int64 trx_id,
+    int64 asset_id,
+    const CHECKING_TYPE checking_type
+){
+    save_record(trx_id, AssetModel::s_ref_type, asset_id, checking_type);
+}
+
+// Create a translink record as Stock
+void TrxLinkModel::save_stock_record(
+    int64 trx_id,
+    int64 stock_id,
+    const CHECKING_TYPE checking_type
+) {
+    save_record(trx_id, StockModel::s_ref_type, stock_id, checking_type);
 }

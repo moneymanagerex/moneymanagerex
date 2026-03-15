@@ -95,7 +95,7 @@ public:
 
         Bill_Data() {
             m_id              = 0;
-            TRANSDATE         = wxDateTime::Now().FormatISOCombined();
+            m_date_time       = mmDateTime::now();
             m_type            = TrxType(TrxType::e_withdrawal);
             m_status          = TrxStatus(TrxStatus::e_unreconciled);
             m_account_id      = -1;
@@ -134,20 +134,21 @@ public:
     static const RefTypeN s_ref_type;
 
 public:
-    // Initialize the global SchedModel table on initial call.
-    // Resets the global table on subsequent calls.
-    // Return the static instance address for SchedModel table
-    // Note: Assigning the address to a local variable can destroy the instance.
-    static SchedModel& instance(wxSQLite3Database* db);
+    SchedModel();
+    ~SchedModel();
 
-    // Return the static instance address for SchedModel table
-    // Note: Assigning the address to a local variable can destroy the instance.
+public:
+    static SchedModel& instance(wxSQLite3Database* db);
     static SchedModel& instance();
+
+public:
+    static SchedCol::TRANSCODE TYPE(OP op, TrxType sched_type);
+    static SchedCol::STATUS    STATUS(OP op, TrxStatus sched_status);
+    static SchedCol::STATUS    IS_VOID(bool value);
 
 public:
     // Data properties (do not require access to Model)
     // TODO: move to SchedData
-    static wxDate getTransDateTime(const Data& this_d);
     static bool encode_repeat_num(Data& this_d, const RepeatNum& rn);
     static bool decode_repeat_num(const Data& this_d, RepeatNum& rn);
     static bool next_repeat_num(RepeatNum& rn);
@@ -158,16 +159,8 @@ public:
     static wxArrayString unroll(const Data& sched_d, const wxString end_date, int limit = -1);
 
 public:
-    static SchedCol::TRANSCODE TRANSCODE(OP op, TrxType sched_type);
-    static SchedCol::STATUS STATUS(OP op, TrxStatus sched_status);
-
-public:
     static const SchedSplitModel::DataA split(const Data& sched_d);
     static const TagLinkModel::DataA taglink(const Data& sched_d);
-
-public:
-    SchedModel();
-    ~SchedModel();
 
 public:
     // Remove the Data record instance from memory and the database

@@ -450,7 +450,7 @@ wxString SchedPanel::getItem(long item, int col_id)
     case SchedList::LIST_ID_ID:
         return wxString::Format("%lld", sched_xd.m_id).Trim();
     case SchedList::LIST_ID_PAYMENT_DATE:
-        return mmGetDateTimeForDisplay(sched_xd.TRANSDATE);
+        return mmGetDateTimeForDisplay(sched_xd.m_date_time.isoDateTime());
     case SchedList::LIST_ID_DUE_DATE:
         return mmGetDateTimeForDisplay(sched_xd.m_due_date.isoDate());
     case SchedList::LIST_ID_ACCOUNT:
@@ -479,7 +479,7 @@ wxString SchedPanel::getItem(long item, int col_id)
         const CurrencyData* currency = account ?
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
-            value = CurrencyModel::toCurrency(transamount, currency);
+            value = CurrencyModel::instance().toCurrency(transamount, currency);
         if (!value.IsEmpty() && sched_xd.is_void())
             value = "* " + value;
         return value;
@@ -500,7 +500,7 @@ wxString SchedPanel::getItem(long item, int col_id)
         const CurrencyData* currency = account ?
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
-            value = CurrencyModel::toCurrency(transamount, currency);
+            value = CurrencyModel::instance().toCurrency(transamount, currency);
         if (!value.IsEmpty() && sched_xd.is_void())
             value = "* " + value;
         return value;
@@ -547,7 +547,7 @@ const wxString SchedPanel::GetFrequency(const SchedModel::RepeatNum& rn) const
 
 const wxString SchedPanel::GetRemainingDays(const SchedData& sched_d) const
 {
-    int daysRemaining = SchedModel::getTransDateTime(sched_d).
+    int daysRemaining = sched_d.m_date_time.getDateTime().
         Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
     int daysOverdue = sched_d.m_due_date.getDateTime().
         Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
@@ -735,7 +735,9 @@ void SchedPanel::updateBottomPanelData(int selIndex)
 {
     enableEditDeleteButtons(selIndex >= 0);
     if (selIndex != -1) {
-        m_infoTextMini->SetLabelText(CategoryModel::instance().full_name(bills_[selIndex].m_category_id_n));
+        m_infoTextMini->SetLabelText(CategoryModel::instance().get_id_fullname(
+            bills_[selIndex].m_category_id_n
+        ));
         m_infoText->SetLabelText(bills_[selIndex].m_notes);
     }
 }
@@ -764,13 +766,13 @@ void SchedPanel::sortList()
     std::sort(bills_.begin(), bills_.end());
     switch (m_lc->getSortColId()) {
     case SchedList::LIST_ID_ID:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByBDID());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterById());
         break;
     case SchedList::LIST_ID_PAYMENT_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByTRANSDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByDateTime());
         break;
     case SchedList::LIST_ID_DUE_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByNEXTOCCURRENCEDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByDueDate());
         break;
     case SchedList::LIST_ID_ACCOUNT:
         std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByACCOUNTNAME());
@@ -779,7 +781,7 @@ void SchedPanel::sortList()
         std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByPAYEENAME());
         break;
     case SchedList::LIST_ID_STATUS:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterBySTATUS());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByStatus());
         break;
     case SchedList::LIST_ID_CATEGORY:
         std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByCATEGNAME());
@@ -828,10 +830,10 @@ void SchedPanel::sortList()
         break;
     case SchedList::LIST_ID_REMAINING:
         // in almost all cases, sorting by remaining days is equivalent to sorting by TRANSDATE
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByTRANSDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByDateTime());
         break;
     case SchedList::LIST_ID_NOTES:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByNOTES());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByNotes());
         break;
     default:
         break;

@@ -51,28 +51,29 @@ void  StocksReport::refreshData()
 
     DataHolder line;
     AccountHolder account_holder;
-    const wxDate today = wxDate::Today();
 
-    for (const auto& a : AccountModel::instance().find_all(
+    for (const auto& account_d : AccountModel::instance().find_all(
         AccountCol::COL_ID_ACCOUNTNAME
     )) {
-        if (AccountModel::type_id(a) != NavigatorTypes::TYPE_ID_INVESTMENT)
+        if (AccountModel::type_id(account_d) != NavigatorTypes::TYPE_ID_INVESTMENT)
             continue;
-        if (!a.is_open())
+        if (!account_d.is_open())
             continue;
 
-        account_holder.id = a.id();
-        account_holder.name = a.m_name;
+        account_holder.id = account_d.m_id;
+        account_holder.name = account_d.m_name;
         account_holder.realgainloss = 0.0;
         account_holder.unrealgainloss = 0.0;
-        account_holder.total = AccountModel::instance().get_data_investment_balance(a).first;
+        account_holder.total = AccountModel::instance().get_data_investment_balance(account_d).first;
         account_holder.data.clear();
 
         for (const auto& stock_d : StockModel::instance().find(
-            StockCol::HELDAT(a.m_id)
+            StockCol::HELDAT(account_d.m_id)
         )) {
-            const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(a);
-            const double today_rate = CurrencyHistoryModel::getDayRate(currency_n->m_id, today);
+            const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(account_d);
+            const double today_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+                currency_n->m_id
+            );
             m_stock_balance += today_rate * stock_d.current_value();
             line.realgainloss = StockModel::instance().calculate_realized_gain(stock_d);
             account_holder.realgainloss += line.realgainloss;
@@ -183,7 +184,7 @@ wxString StocksReport::getHTMLText()
             hb.startTfoot();
             {
                 // Round FX gain/loss to the scale of the base currency for display
-                int scale = pow(10, log10(CurrencyModel::instance().GetBaseCurrency()->m_scale.GetValue()));
+                int scale = pow(10, log10(CurrencyModel::instance().instance().get_base_data_n()->m_scale.GetValue()));
                 double forex_real_gain_loss = std::round((m_real_gain_loss_sum_total - m_real_gain_loss_excl_forex) * scale) / scale;
                 double forex_unreal_gain_loss = std::round((m_unreal_gain_loss_sum_total - m_unreal_gain_loss_excl_forex) * scale) / scale;
 
@@ -193,19 +194,19 @@ wxString StocksReport::getHTMLText()
 
                 hb.startTableCell(" style='text-align:right;' nowrap");
                 if (forex_real_gain_loss != 0) {
-                    hb.startSpan(CurrencyModel::toCurrency(m_real_gain_loss_excl_forex), wxString::Format(" style='text-align:right;%s' nowrap"
+                    hb.startSpan(CurrencyModel::instance().toCurrency(m_real_gain_loss_excl_forex), wxString::Format(" style='text-align:right;%s' nowrap"
                         , m_real_gain_loss_excl_forex < 0 ? "color:red;" : ""));
                     hb.endSpan();
                     hb.startSpan(" + ", "");
                     hb.endSpan();
-                    hb.startSpan(CurrencyModel::toCurrency(forex_real_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
+                    hb.startSpan(CurrencyModel::instance().toCurrency(forex_real_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
                         , forex_real_gain_loss < 0 ? "color:red;" : ""));
                     hb.endSpan();
                     hb.startSpan(" FX", "");
                     hb.endSpan();
                     hb.addLineBreak();
                 }
-                hb.startSpan(CurrencyModel::toCurrency(m_real_gain_loss_sum_total), wxString::Format(" style='text-align:right;%s' nowrap"
+                hb.startSpan(CurrencyModel::instance().toCurrency(m_real_gain_loss_sum_total), wxString::Format(" style='text-align:right;%s' nowrap"
                     , m_real_gain_loss_sum_total < 0 ? "color:red;" : ""));
                 hb.endSpan();
 
@@ -213,26 +214,26 @@ wxString StocksReport::getHTMLText()
 
                 hb.startTableCell(" style='text-align:right;' nowrap");
                 if (forex_unreal_gain_loss != 0) {
-                    hb.startSpan(CurrencyModel::toCurrency(m_unreal_gain_loss_excl_forex), wxString::Format(" style='text-align:right;%s' nowrap"
+                    hb.startSpan(CurrencyModel::instance().toCurrency(m_unreal_gain_loss_excl_forex), wxString::Format(" style='text-align:right;%s' nowrap"
                         , m_unreal_gain_loss_excl_forex < 0 ? "color:red;" : ""));
                     hb.endSpan();
                     hb.startSpan(" + ", "");
                     hb.endSpan();
-                    hb.startSpan(CurrencyModel::toCurrency(forex_unreal_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
+                    hb.startSpan(CurrencyModel::instance().toCurrency(forex_unreal_gain_loss), wxString::Format(" style='text-align:right;%s' nowrap"
                         , forex_unreal_gain_loss < 0 ? "color:red;" : ""));
                     hb.endSpan();
                     hb.startSpan(" FX", "");
                     hb.endSpan();
                     hb.addLineBreak();
                 }
-                hb.startSpan(CurrencyModel::toCurrency(m_unreal_gain_loss_sum_total), wxString::Format(" style='text-align:right;%s' nowrap"
+                hb.startSpan(CurrencyModel::instance().toCurrency(m_unreal_gain_loss_sum_total), wxString::Format(" style='text-align:right;%s' nowrap"
                     , m_unreal_gain_loss_sum_total < 0 ? "color:red;" : ""));
                 hb.endSpan();
 
                 hb.endTableCell();
 
                 hb.startTableCell(" style='text-align:right;' nowrap");
-                hb.startSpan(CurrencyModel::toCurrency(m_stock_balance), "");
+                hb.startSpan(CurrencyModel::instance().toCurrency(m_stock_balance), "");
                 hb.endSpan();
 
                 hb.endTableCell();
@@ -320,8 +321,7 @@ wxString mmReportChartStocks::getHTMLText()
 
         for (const auto& sh_d : sh_a) {
             if (dataCount % freq == 0) {
-                const wxDate d = StockHistoryModel::DATE(sh_d);
-                gd.labels.push_back(d.FormatISODate());
+                gd.labels.push_back(sh_d.m_date.isoDate());
                 data.values.push_back(sh_d.m_price);
             }
             dataCount++;

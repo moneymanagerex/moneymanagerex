@@ -291,12 +291,12 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
 
     const wxString& delimiter = InfoModel::instance().getString("CATEG_DELIMITER", ":");
     if (delimiter != ":" && s_category.Contains(":")) {
-        for (const auto& category : CategoryModel::instance().all_categories()) {
-            wxString full_name = category.first;
+        for (const auto& cat_fullname_id : CategoryModel::instance().find_all_id_mFullname()) {
+            wxString full_name = cat_fullname_id.first;
             wxRegEx regex(delimiter);
             regex.Replace(&full_name, ":");
             if (s_category == full_name) {
-                s_category = category.first;
+                s_category = cat_fullname_id.first;
                 break;
             }
         }
@@ -397,14 +397,12 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
 
     // Notes
     wxString s_notes;
-    if (j_doc.HasMember("NOTES") && j_doc["NOTES"].IsString())
-    {
+    if (j_doc.HasMember("NOTES") && j_doc["NOTES"].IsString()) {
         notesCheckBox_->SetValue(true);
         Value& s = j_doc["NOTES"];
         s_notes = wxString::FromUTF8(s.GetString());
     }
-    else
-    {
+    else {
         notesCheckBox_->SetValue(false);
     }
     notesEdit_->Enable(notesCheckBox_->IsChecked());
@@ -413,8 +411,7 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
     // Colour
     m_color_value = -1;
     colorCheckBox_->SetValue(false);
-    if (j_doc.HasMember("COLOR") && j_doc["COLOR"].IsInt())
-    {
+    if (j_doc.HasMember("COLOR") && j_doc["COLOR"].IsInt()) {
         colorCheckBox_->SetValue(true);
         m_color_value = j_doc["COLOR"].GetInt();
     }
@@ -466,11 +463,11 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
     }
 
     // Remove the time column from the hidden columns list if not enabled in options
-    if (!PrefModel::instance().UseTransDateTime() && m_selected_columns_id.Index(COL_TIME) != wxNOT_FOUND)
-    {
+    if (!PrefModel::instance().UseTransDateTime() &&
+        m_selected_columns_id.Index(COL_TIME) != wxNOT_FOUND
+    ) {
         m_selected_columns_id.Remove(COL_TIME);
-        if (m_selected_columns_id.IsEmpty())
-        {
+        if (m_selected_columns_id.IsEmpty()) {
             showColumnsCheckBox_->SetValue(false);
             bHideColumns_->SetLabelText("");
         }
@@ -497,8 +494,7 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
     const bool& b_combineSplits = j_combineSplits.IsBool() ? j_combineSplits.GetBool() : false;
     combineSplitsCheckBox_->SetValue(b_combineSplits);
 
-    if (is_custom_found)
-    {
+    if (is_custom_found) {
         m_custom_fields->ShowCustomPanel();
     }
     mmThemeAutoColour(this);
@@ -508,18 +504,15 @@ void TrxFilterDialog::mmDoInitSettingNameChoice(wxString sel) const
 {
     m_setting_name->Clear();
 
-    if (isMultiAccount_)
-    {
+    if (isMultiAccount_) {
         // Add a blank setting at the beginning. This clears all selections if the user chooses it.
         m_setting_name->Append("", new wxStringClientData("{}"));
         // Add the 'Last Used' setting which was the last setting used that wasn't saved
         m_setting_name->Append(_t("Last Unsaved Filter"), new wxStringClientData(InfoModel::instance().getString(m_filter_key + "_LAST_USED", "")));
         wxArrayString filter_settings = InfoModel::instance().getArrayString(m_filter_key, true);
-        for (const auto& data : filter_settings)
-        {
+        for (const auto& data : filter_settings) {
             Document j_doc;
-            if (j_doc.Parse(data.utf8_str()).HasParseError())
-            {
+            if (j_doc.Parse(data.utf8_str()).HasParseError()) {
                 j_doc.Parse("{}");
             }
 
@@ -528,16 +521,14 @@ void TrxFilterDialog::mmDoInitSettingNameChoice(wxString sel) const
             m_setting_name->Append(s_label, new wxStringClientData(data));
         }
     }
-    else
-    {
+    else {
         const AccountData* account_n = AccountModel::instance().get_id_data_n(accountID_);
         wxString account_name = account_n ? account_n->m_name : "";
         m_setting_name->Append(account_name, new wxStringClientData(account_name));
         sel = "";
     }
 
-    if (m_setting_name->GetCount() > 0)
-    {
+    if (m_setting_name->GetCount() > 0) {
         if (sel.empty())
             m_setting_name->SetSelection(0);
         else
@@ -828,8 +819,7 @@ void TrxFilterDialog::mmDoCreateControls()
 
     wxBitmapButton* button_hide = new wxBitmapButton(button_panel, ID_BTN_CUSTOMFIELDS, mmBitmapBundle(png::RIGHTARROW, mmBitmapButtonSize));
     mmToolTip(button_hide, _t("Show/Hide custom fields window"));
-    if (m_custom_fields->GetCustomFieldsCount() == 0)
-    {
+    if (m_custom_fields->GetCustomFieldsCount() == 0) {
         button_hide->Hide();
     }
 
@@ -847,14 +837,12 @@ void TrxFilterDialog::mmDoCreateControls()
 
     m_custom_fields->FillCustomFields(custom_fields_box_sizer);
     auto cf_count = m_custom_fields->GetCustomFieldsCount();
-    if (cf_count > 0)
-    {
+    if (cf_count > 0) {
         wxCommandEvent evt(wxEVT_BUTTON, ID_BTN_CUSTOMFIELDS);
         OnMoreFields(evt);
     }
 
-    if (!isMultiAccount_)
-    {
+    if (!isMultiAccount_) {
         bSelectedAccounts_->Disable();
         bSelectedAccounts_->Hide();
         accountCheckBox_->Disable();
@@ -864,8 +852,7 @@ void TrxFilterDialog::mmDoCreateControls()
         m_btnSaveAs->Hide();
         m_setting_name->Hide();
     }
-    if (!isReportMode_)
-    {
+    if (!isReportMode_) {
         groupByCheckBox_->Disable();
         bGroupBy_->Disable();
         chartCheckBox_->Disable();
@@ -887,7 +874,12 @@ void TrxFilterDialog::mmDoCreateControls()
     Center();
     wxSize max_size = wxDisplay(GetParent()).GetGeometry().GetSize();
     wxSize best_size = GetBestSize();
-    SetSizeHints(std::min({ best_size.GetWidth(), max_size.GetWidth() }), -1, max_size.GetWidth(), std::min({ max_size.GetHeight(), best_size.GetHeight() }));
+    SetSizeHints(
+        std::min({ best_size.GetWidth(), max_size.GetWidth() }),
+        -1,
+        max_size.GetWidth(),
+        std::min({ max_size.GetHeight(), best_size.GetHeight() })
+    );
     Fit();
     this->SetSizer(box_sizer);
     if (isReportMode_)
@@ -896,16 +888,14 @@ void TrxFilterDialog::mmDoCreateControls()
 
 void TrxFilterDialog::setTransferTypeCheckBoxes()
 {
-    if (accountCheckBox_->IsChecked())
-    {
+    if (accountCheckBox_->IsChecked()) {
         cbTypeTransferFrom_->Show();
         cbTypeTransferFrom_->Enable();
         cbTypeTransferTo_->SetLabel(_t("Transfer Out"));
         Layout();
         bSelectedAccounts_->Enable(accountCheckBox_->IsEnabled());
     }
-    else
-    {
+    else {
         m_selected_accounts_id.clear();
         bSelectedAccounts_->SetLabelText(_t("All"));
         cbTypeTransferFrom_->Hide();
@@ -921,24 +911,22 @@ void TrxFilterDialog::OnCheckboxClick(wxCommandEvent& event)
     int id = event.GetId();
     switch (id)
     {
-        case ID_PERIOD_CB:
-        {
-            if (dateRangeCheckBox_->IsChecked())
-                dateRangeCheckBox_->SetValue(false);
-            wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
-            evt.SetInt(rangeChoice_->GetSelection());
-            OnChoice(evt);
-            break;
-        }
-        case ID_DATE_RANGE_CB:
-            if (datesCheckBox_->IsChecked())
-                datesCheckBox_->SetValue(false);
-            break;
-        case ID_ACCOUNT_CB:
-        {
-            setTransferTypeCheckBoxes();
-            break;
-        }
+    case ID_PERIOD_CB: {
+        if (dateRangeCheckBox_->IsChecked())
+            dateRangeCheckBox_->SetValue(false);
+        wxCommandEvent evt(wxID_ANY, ID_DATE_RANGE);
+        evt.SetInt(rangeChoice_->GetSelection());
+        OnChoice(evt);
+        break;
+    }
+    case ID_DATE_RANGE_CB:
+        if (datesCheckBox_->IsChecked())
+            datesCheckBox_->SetValue(false);
+        break;
+    case ID_ACCOUNT_CB: {
+        setTransferTypeCheckBoxes();
+        break;
+    }
     }
 
     cbPayee_->Enable(payeeCheckBox_->IsChecked());
@@ -972,26 +960,34 @@ void TrxFilterDialog::OnCheckboxClick(wxCommandEvent& event)
 
 bool TrxFilterDialog::mmIsValuesCorrect() const
 {
-    if (accountCheckBox_->IsChecked() && m_selected_accounts_id.empty())
-    {
-        mmErrorDialogs::ToolTip4Object(bSelectedAccounts_, _t("Account"), _t("Invalid value"), wxICON_ERROR);
+    if (accountCheckBox_->IsChecked() && m_selected_accounts_id.empty()) {
+        mmErrorDialogs::ToolTip4Object(bSelectedAccounts_,
+            _t("Account"),
+            _t("Invalid value"),
+            wxICON_ERROR
+        );
         return false;
     }
 
-    if (m_use_date_filter && dateRangeCheckBox_->IsChecked())
-    {
-        if (m_begin_date > m_end_date)
-        {
-            const auto today = wxDate::Today().FormatISOCombined();
-            int id = m_begin_date >= today ? fromDateCtrl_->GetId() : toDateControl_->GetId();
-            mmErrorDialogs::ToolTip4Object(FindWindow(id), _t("Date"), _t("Invalid value"), wxICON_ERROR);
-            return false;
-        }
+    if (m_use_date_filter && dateRangeCheckBox_->IsChecked() && m_begin_date > m_end_date) {
+        const auto today = wxDate::Today().FormatISOCombined();
+        int id = m_begin_date >= today ? fromDateCtrl_->GetId() : toDateControl_->GetId();
+        mmErrorDialogs::ToolTip4Object(FindWindow(id),
+            _t("Date"),
+            _t("Invalid value"),
+            wxICON_ERROR
+        );
+        return false;
     }
 
-    if (m_use_date_filter && datesCheckBox_->IsChecked() && rangeChoice_->GetSelection() == wxNOT_FOUND)
-    {
-        mmErrorDialogs::ToolTip4Object(rangeChoice_, _t("Date"), _t("Invalid value"), wxICON_ERROR);
+    if (m_use_date_filter && datesCheckBox_->IsChecked() &&
+        rangeChoice_->GetSelection() == wxNOT_FOUND
+    ) {
+        mmErrorDialogs::ToolTip4Object(rangeChoice_,
+            _t("Date"),
+            _t("Invalid value"),
+            wxICON_ERROR
+        );
         return false;
     }
 
@@ -1059,23 +1055,34 @@ bool TrxFilterDialog::mmIsValuesCorrect() const
 
     if (mmIsTagsChecked()) {
         if (!tagTextCtrl_->IsValid()) {
-            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _t("Invalid value"), _t("Tags"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(tagTextCtrl_,
+                _t("Invalid value"),
+                _t("Tags"),
+                wxICON_ERROR
+            );
             return false;
         }
         else if (tagTextCtrl_->GetTagIDs().empty()) {
-            mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _t("Empty value"), _t("Tags"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(tagTextCtrl_,
+                _t("Empty value"),
+                _t("Tags"),
+                wxICON_ERROR
+            );
             return false;
         }
     }
 
     if (amountRangeCheckBox_->IsChecked()) {
-        const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
-        int currency_precision = CurrencyModel::precision(currency);
+        const CurrencyData* currency_n = CurrencyModel::instance().get_base_data_n();
+        int currency_precision = currency_n->precision();
         double min_amount = 0;
 
         if (!amountMinEdit_->Calculate(currency_precision)) {
             amountMinEdit_->GetDouble(min_amount);
-            mmErrorDialogs::ToolTip4Object(amountMinEdit_, _t("Invalid value"), _t("Amount"), wxICON_ERROR);
+            mmErrorDialogs::ToolTip4Object(amountMinEdit_,
+                _t("Invalid value"),
+                _t("Amount"), wxICON_ERROR
+            );
             return false;
         }
 
@@ -1083,7 +1090,11 @@ bool TrxFilterDialog::mmIsValuesCorrect() const
             double max_amount = 0;
             amountMaxEdit_->GetDouble(max_amount);
             if (max_amount < min_amount) {
-                mmErrorDialogs::ToolTip4Object(amountMaxEdit_, _t("Invalid value"), _t("Amount"), wxICON_ERROR);
+                mmErrorDialogs::ToolTip4Object(amountMaxEdit_,
+                    _t("Invalid value"),
+                    _t("Amount"),
+                    wxICON_ERROR
+                );
                 return false;
             }
         }
@@ -1096,31 +1107,31 @@ bool TrxFilterDialog::mmIsValuesCorrect() const
         }
     }*/
 
-    if (showColumnsCheckBox_->IsChecked())
-    {
-        if (m_selected_columns_id.empty())
-        {
-            mmErrorDialogs::ToolTip4Object(bHideColumns_, _t("Invalid value"), _t("Hide Columns"), wxICON_ERROR);
-            return false;
-        }
-    }
-
-    if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() == wxNOT_FOUND)
-    {
-        mmErrorDialogs::ToolTip4Object(bGroupBy_, _t("Invalid value"), _t("Group By"), wxICON_ERROR);
+    if (showColumnsCheckBox_->IsChecked() && m_selected_columns_id.empty()) {
+        mmErrorDialogs::ToolTip4Object(bHideColumns_,
+            _t("Invalid value"),
+            _t("Hide Columns"),
+            wxICON_ERROR
+        );
         return false;
     }
 
-    if (chartCheckBox_->IsChecked() && bChart_->GetSelection() == wxNOT_FOUND)
-    {
+    if (groupByCheckBox_->IsChecked() && bGroupBy_->GetSelection() == wxNOT_FOUND) {
+        mmErrorDialogs::ToolTip4Object(bGroupBy_,
+            _t("Invalid value"),
+            _t("Group By"),
+            wxICON_ERROR
+        );
+        return false;
+    }
+
+    if (chartCheckBox_->IsChecked() && bChart_->GetSelection() == wxNOT_FOUND) {
         mmErrorDialogs::ToolTip4Object(bChart_, _t("Invalid value"), _t("Chart"), wxICON_ERROR);
         return false;
     }
 
     if (!m_custom_fields->ValidateCustomValues(0))
-    {
         return false;
-    }
 
     return true;
 }
@@ -1305,11 +1316,11 @@ bool TrxFilterDialog::mmIsTypeMaches(
 
 double TrxFilterDialog::mmGetAmountMin() const
 {
-    const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency_n = CurrencyModel::instance().get_base_data_n();
 
     wxString amountStr = amountMinEdit_->GetValue().Trim();
     double amount = 0;
-    if (!CurrencyModel::fromString(amountStr, amount, currency) || amount < 0)
+    if (!CurrencyModel::instance().fromString(amountStr, amount, currency_n) || amount < 0)
         amount = 0;
 
     return amount;
@@ -1317,11 +1328,11 @@ double TrxFilterDialog::mmGetAmountMin() const
 
 double TrxFilterDialog::mmGetAmountMax() const
 {
-    const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency_n = CurrencyModel::instance().get_base_data_n();
 
     wxString amountStr = amountMaxEdit_->GetValue().Trim();
     double amount = 0;
-    if (!CurrencyModel::fromString(amountStr, amount, currency) || amount < 0)
+    if (!CurrencyModel::instance().fromString(amountStr, amount, currency_n) || amount < 0)
         amount = 0;
 
     return amount;
@@ -1331,11 +1342,12 @@ void TrxFilterDialog::OnButtonClearClick(wxCommandEvent& /*event*/)
 {
     int sel = m_setting_name->GetSelection();
     int size = m_setting_name->GetCount();
-    if (sel >= 0 && size > 0)
-    {
-        if (wxMessageBox(_t("The selected item will be deleted") + "\n\n" + _t("Do you want to continue?"), _t("Settings item deletion"),
-                         wxYES_NO | wxICON_WARNING) == wxNO)
-        {
+    if (sel >= 0 && size > 0) {
+        if (wxMessageBox(
+            _t("The selected item will be deleted") + "\n\n" + _t("Do you want to continue?"),
+            _t("Settings item deletion"),
+            wxYES_NO | wxICON_WARNING
+        ) == wxNO) {
             return;
         }
 
@@ -1467,10 +1479,22 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
 {
     bool ok = true;
 
-    // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
-    if (mmIsAccountChecked() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_account_id) == m_selected_accounts_id.end() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_to_account_id_n) == m_selected_accounts_id.end())
+    // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.m_date_time.isoDateTime(), getFromDateCtrl().GetDateOnly().FormatISODate(),
+    if (mmIsAccountChecked() &&
+        std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(),
+            tran.m_account_id
+        ) == m_selected_accounts_id.end() &&
+        std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(),
+            tran.m_to_account_id_n
+        ) == m_selected_accounts_id.end()
+    )
         ok = false;
-    else if (m_use_date_filter && (mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date.Mid(0, tran.TRANSDATE.length()) || tran.TRANSDATE > m_end_date.Mid(0, tran.TRANSDATE.length())))
+    else if (m_use_date_filter &&
+        (mmIsDateRangeChecked() || mmIsRangeChecked()) && (
+            tran.m_date() < mmDate(m_begin_date) ||
+            tran.m_date() > mmDate(m_end_date)
+        )
+    )
         ok = false;
     else if (mmIsPayeeChecked() && !mmIsPayeeMatches(tran.m_payee_id_n))
         ok = false;
@@ -1491,7 +1515,7 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
         ok = false;
     else if (mmIsColorChecked() && (m_color_value != tran.m_color))
         ok = false;
-    else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.id()))
+    else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.m_id))
         ok = false;
     else if (mmIsTagsChecked()) {
         RefTypeN refType;
@@ -1500,7 +1524,7 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
             refType = TrxModel::s_ref_type;
         else if (typeid(tran).hash_code() == typeid(SchedData).hash_code())
             refType = SchedModel::s_ref_type;
-        if (!mmIsTagMatches(refType, tran.id(), mergeSplitTags))
+        if (!mmIsTagMatches(refType, tran.m_id, mergeSplitTags))
             ok = false;
     }
     return ok;
@@ -1547,25 +1571,25 @@ int TrxFilterDialog::mmIsRecordMatches(const TrxData& trx_d, const TrxSplitModel
 
 int TrxFilterDialog::mmIsRecordMatches(
     const TrxData& trx_d,
-    const std::map<int64, TrxSplitModel::DataA>& splits
+    const std::map<int64, TrxSplitModel::DataA>& trxId_tpA_m
 ) {
-    const TrxSplitModel::DataA* split = nullptr;
-    const auto& it = splits.find(trx_d.id());
-    if (it != splits.end())
-        split = &(it->second);
-    return mmIsRecordMatches(trx_d, *split);
+    const auto& trxId_tpA = trxId_tpA_m.find(trx_d.m_id);
+    if (trxId_tpA != trxId_tpA_m.end())
+        return mmIsRecordMatches(trx_d, trxId_tpA->second);
+    else
+        return mmIsRecordMatches<TrxModel>(trx_d);
 }
 
 int TrxFilterDialog::mmIsRecordMatches(
     const SchedData& sched_d,
-    const std::map<int64, SchedSplitModel::DataA>& splits
+    const std::map<int64, SchedSplitModel::DataA>& schedId_qpA_m
 ) {
     int ok = mmIsRecordMatches<SchedModel>(sched_d);
-    const auto& it = splits.find(sched_d.id());
-    if (it == splits.end())
+    const auto& schedId_qpA = schedId_qpA_m.find(sched_d.m_id);
+    if (schedId_qpA == schedId_qpA_m.end())
         return ok;
 
-    for (const auto& qp_d : it->second) {
+    for (const auto& qp_d : schedId_qpA->second) {
         SchedData sched_sched_d = sched_d;
         sched_sched_d.m_category_id_n = qp_d.m_category_id;
         sched_sched_d.m_amount        = qp_d.m_amount;
@@ -1863,8 +1887,8 @@ const wxString TrxFilterDialog::mmGetJsonSettings(bool i18n) const
     if (categoryCheckBox_->IsChecked()) {
         json_writer.Key((i18n ? _t("Category") : "CATEGORY").utf8_str());
         if (categoryComboBox_->mmIsValid()) {
-            int64 categ = categoryComboBox_->mmGetCategoryId();
-            const auto& full_name = CategoryModel::instance().full_name(categ, ":");
+            int64 cat_id = categoryComboBox_->mmGetCategoryId();
+            const auto& full_name = CategoryModel::instance().get_id_fullname(cat_id, ":");
             json_writer.String(full_name.utf8_str());
         }
         else {
@@ -2014,13 +2038,13 @@ void TrxFilterDialog::OnCategoryChange(wxEvent& event)
     if (!categoryComboBox_->GetValue().IsEmpty()) {
         wxRegEx pattern("^(" + categoryComboBox_->mmGetPattern() + ")$", wxRE_ICASE | wxRE_ADVANCED);
         if (pattern.IsValid()) {
-            for (const auto& category : CategoryModel::instance().all_categories()) {
-                if (!pattern.Matches(category.first))
+            for (const auto& cat_fullname_id : CategoryModel::instance().find_all_id_mFullname()) {
+                if (!pattern.Matches(cat_fullname_id.first))
                     continue;
-                m_selected_categories_id.push_back(category.second);
+                m_selected_categories_id.push_back(cat_fullname_id.second);
                 if (!mmIsCategorySubCatChecked())
                     continue;
-                const CategoryData* cat_n = CategoryModel::instance().get_id_data_n(category.second);
+                const CategoryData* cat_n = CategoryModel::instance().get_id_data_n(cat_fullname_id.second);
                 for (const auto& sub_d : CategoryModel::instance().find_data_subtree_a(*cat_n))
                     m_selected_categories_id.push_back(sub_d.m_id);
             }
@@ -2380,7 +2404,7 @@ void TrxFilterDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     categoryComboBox_->mmDoReInitialize();
-                category = CategoryModel::instance().full_name(dlg.getCategId());
+                category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
                 categoryComboBox_->ChangeValue(category);
                 categoryComboBox_->SelectAll();
                 return;

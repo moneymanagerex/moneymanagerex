@@ -63,12 +63,12 @@ void PayeeReport::loadData()
 {
     m_id_data.clear();
 
-    const auto all_splits = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     for (const auto& trx_d : TrxModel::instance().find(
-        TrxModel::TRANSDATE(OP_GE, m_date_range2.rangeStart().value()),
-        TrxModel::TRANSDATE(OP_LE, m_date_range2.rangeEnd().value()),
-        TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
+        TrxModel::DATE(OP_GE, m_date_range2.rangeStart().value()),
+        TrxModel::DATE(OP_LE, m_date_range2.rangeEnd().value()),
+        TrxModel::IS_VOID(false),
+        TrxModel::IS_DELETED(false)
     )) {
         // Do not include asset or stock transfers
         if (TrxModel::is_foreignAsTransfer(trx_d))
@@ -91,16 +91,16 @@ void PayeeReport::loadData()
             data.flow = 0.0;
         }
 
-        // NOTE: call to getDayRate() in every transaction is slow
+        // NOTE: call to get_id_date_rate() in every transaction is slow
         // if "Use historical currency" is enabled in settings
-        const double convRate = CurrencyHistoryModel::getDayRate(
+        const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            trx_d.TRANSDATE
+            trx_d.m_date()
         );
 
         TrxSplitModel::DataA tp_a;
-        if (all_splits.count(trx_d.id()))
-            tp_a = all_splits.at(trx_d.id());
+        if (trxId_tpA_m.count(trx_d.m_id))
+            tp_a = trxId_tpA_m.at(trx_d.m_id);
         if (tp_a.empty()) {
             updateData(data, trx_d.m_type, trx_d.m_amount * convRate);
         }

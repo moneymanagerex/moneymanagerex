@@ -230,9 +230,9 @@ void mmWebAppDialog::fillControls()
         if (WebTran.SubCategory != wxEmptyString) Category += ":" + WebTran.SubCategory;
         data.emplace_back(Category); //WEBTRAN_CATEGORY
 
-        const CurrencyData *currency = CurrencyModel::GetBaseCurrency();
-        wxString Amount = CurrencyModel::toStringNoFormatting(
-            WebTran.Amount, currency, CurrencyModel::precision(currency)
+        const CurrencyData* currency_n = CurrencyModel::instance().get_base_data_n();
+        wxString Amount = CurrencyModel::instance().toStringNoFormatting(
+            WebTran.Amount, currency_n, currency_n->precision()
         );
         data.emplace_back(Amount); //WEBTRAN_AMOUNT
 

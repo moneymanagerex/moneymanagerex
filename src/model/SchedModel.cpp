@@ -31,6 +31,17 @@
 
 const RefTypeN SchedModel::s_ref_type = RefTypeN(RefTypeN::e_sched);
 
+// -- constructor --
+
+SchedModel::SchedModel() :
+    TableFactory<SchedTable, SchedData>()
+{
+}
+
+SchedModel::~SchedModel()
+{
+}
+
 // -- static methods --
 
 // Initialize the global SchedModel table.
@@ -51,9 +62,19 @@ SchedModel& SchedModel::instance()
     return Singleton<SchedModel>::instance();
 }
 
-wxDate SchedModel::getTransDateTime(const Data& this_d)
+SchedCol::TRANSCODE SchedModel::TYPE(OP op, TrxType sched_type)
 {
-    return parseDateTime(this_d.TRANSDATE);
+    return SchedCol::TRANSCODE(op, sched_type.name());
+}
+
+SchedCol::STATUS SchedModel::STATUS(OP op, TrxStatus sched_status)
+{
+    return SchedCol::STATUS(op, sched_status.key());
+}
+
+SchedCol::STATUS SchedModel::IS_VOID(bool value)
+{
+    return SchedCol::STATUS(value ? OP_EQ : OP_NE, TrxStatus(TrxStatus::e_void).key());
 }
 
 bool SchedModel::encode_repeat_num(Data& this_d, const RepeatNum& rn)
@@ -187,7 +208,7 @@ wxArrayString SchedModel::unroll(const Data& sched_d, const wxString end_date, i
     if (!decode_repeat_num(sched_d, rn))
         return dates;
 
-    wxString date = sched_d.TRANSDATE;
+    wxString date = sched_d.m_date_time.isoDateTime();
     while (date <= end_date && limit != 0) {
         if (limit > 0)
             --limit;
@@ -207,16 +228,6 @@ wxArrayString SchedModel::unroll(const Data& sched_d, const wxString end_date, i
     return dates;
 }
 
-SchedCol::STATUS SchedModel::STATUS(OP op, TrxStatus sched_status)
-{
-    return SchedCol::STATUS(op, sched_status.key());
-}
-
-SchedCol::TRANSCODE SchedModel::TRANSCODE(OP op, TrxType sched_type)
-{
-    return SchedCol::TRANSCODE(op, sched_type.name());
-}
-
 const SchedSplitModel::DataA SchedModel::split(const Data& sched_d)
 {
     return SchedSplitModel::instance().find(
@@ -230,17 +241,6 @@ const TagLinkModel::DataA SchedModel::taglink(const Data& sched_d)
         TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
         TagLinkCol::REFID(sched_d.m_id)
     );
-}
-
-// -- constructor --
-
-SchedModel::SchedModel() :
-    TableFactory<SchedTable, SchedData>()
-{
-}
-
-SchedModel::~SchedModel()
-{
 }
 
 // -- instance methods --
@@ -328,11 +328,9 @@ void SchedModel::completeBDInSeries(int64 sched_id)
         return;
     }
 
-    wxDateTime transdate;
-    transdate.ParseDateTime(sched_n->TRANSDATE) || transdate.ParseDate(sched_n->TRANSDATE);
-    const wxDateTime& payment_date_current = transdate;
+    const wxDateTime& payment_date_current = sched_n->m_date_time.getDateTime();
     const wxDateTime& payment_date_update = nextOccurDate(payment_date_current, rn);
-    sched_n->TRANSDATE = payment_date_update.FormatISOCombined();
+    sched_n->m_date_time = mmDateTime(payment_date_update);
 
     const wxDateTime& due_date_current = sched_n->m_due_date.getDateTime();
     const wxDateTime& due_date_update = nextOccurDate(due_date_current, rn);
@@ -370,7 +368,7 @@ SchedModel::Full_Data::Full_Data(const Data& sched_d) :
     if (!m_bill_splits.empty()) {
         for (const auto& qp_d : m_bill_splits) {
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
-                + CategoryModel::instance().full_name(qp_d.m_category_id);
+                + CategoryModel::instance().get_id_fullname(qp_d.m_category_id);
 
             wxString splitTags;
             for (const auto& tag_name_id : TagLinkModel::instance().find_ref_tag_m(
@@ -383,7 +381,7 @@ SchedModel::Full_Data::Full_Data(const Data& sched_d) :
         }
     }
     else
-        CATEGNAME = CategoryModel::instance().full_name(sched_d.m_category_id_n);
+        CATEGNAME = CategoryModel::instance().get_id_fullname(sched_d.m_category_id_n);
 
     ACCOUNTNAME = AccountModel::instance().get_id_name(sched_d.m_account_id);
 

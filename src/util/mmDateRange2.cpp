@@ -556,7 +556,7 @@ mmDateN mmDateRange2::rangeStart() const
         return mmDateN();
     mmDate s1 = s1N.value();
     if (range.so1 != 0)
-        s1.addSpan(mmDatePeriod::span(range.so1, range.sp1));
+        s1.addDateSpan(mmDatePeriod::span(range.so1, range.sp1));
     s1 = periodStart(s1, range.sp1).value();
     if (!range.sp2.has_value())
         return s1;
@@ -565,7 +565,7 @@ mmDateN mmDateRange2::rangeStart() const
         return mmDateN();
     mmDate s2 = s2N.value();
     if (range.so2 != 0)
-        s2.addSpan(mmDatePeriod::span(range.so2, range.sp2.value()));
+        s2.addDateSpan(mmDatePeriod::span(range.so2, range.sp2.value()));
     mmDatePeriod p = range.sp1.toInt() > range.sp2.value().toInt() ? range.sp1
         : range.sp2.value();
     s2 = periodStart(s2, p).value();
@@ -581,7 +581,7 @@ mmDateN mmDateRange2::rangeEnd() const
         return mmDateN();
     mmDate e1 = e1N.value();
     if (range.eo1 != 0)
-        e1.addSpan(mmDatePeriod::span(range.eo1, range.ep1));
+        e1.addDateSpan(mmDatePeriod::span(range.eo1, range.ep1));
     e1 = periodEnd(e1, range.ep1).value();
     if (!range.ep2.has_value())
         return e1;
@@ -590,7 +590,7 @@ mmDateN mmDateRange2::rangeEnd() const
         return mmDateN();
     mmDate e2 = e2N.value();
     if (range.eo2 != 0)
-        e2.addSpan(mmDatePeriod::span(range.eo2, range.ep2.value()));
+        e2.addDateSpan(mmDatePeriod::span(range.eo2, range.ep2.value()));
     mmDatePeriod p = range.ep1.toInt() > range.ep2.value().toInt() ? range.ep1
         : range.ep2.value();
     e2 = periodEnd(e2, p).value();
@@ -617,7 +617,7 @@ mmDateN mmDateRange2::reportingNext() const
         // (i.e., its first period contains s)
         mmDate next = periodEnd(s, reporting.p).value();
         if (reporting.m > 1) {
-            next.addSpan(mmDatePeriod::span(reporting.m - 1, reporting.p));
+            next.addDateSpan(mmDatePeriod::span(reporting.m - 1, reporting.p));
             next = periodEnd(next, reporting.p).value();
         }
         return next <= e ? next : e;
@@ -627,10 +627,10 @@ mmDateN mmDateRange2::reportingNext() const
         // (i.e., its last period contains e)
         mmDate next = periodEnd(e, reporting.p).value();
         mmDate next1 = next;
-        next1.addSpan(mmDatePeriod::span(reporting.m, reporting.p));
+        next1.addDateSpan(mmDatePeriod::span(reporting.m, reporting.p));
         while (s <= next1) {
             next = next1;
-            next1.addSpan(mmDatePeriod::span(reporting.m, reporting.p));
+            next1.addDateSpan(mmDatePeriod::span(reporting.m, reporting.p));
             next1 = periodEnd(next1, reporting.p).value();
         }
         return next <= e ? next : e;
@@ -695,7 +695,7 @@ void mmDateRange2::ReportingIterator::increment()
     mmDatePeriod rp = a->reporting.p;
     // assertion: rp is not mmDatePeriod::_A
     mmDate next1 = nextDateN.value();
-    next1.addSpan(mmDatePeriod::span(rm, rp));
+    next1.addDateSpan(mmDatePeriod::span(rm, rp));
     next1 = a->periodEnd(next1, rp).value();
     if (lastDateN.value() < next1)
         next1 = lastDateN.value();

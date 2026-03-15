@@ -152,7 +152,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             gsActual.values.push_back(categoryStats[cat_d.m_id][0]);
             gsEstimated.values.push_back(budgetStats[cat_d.m_id][budgetMonth]);
             for (const auto& sub_d : CategoryModel::instance().find_data_subtree_a(cat_d)){
-                gd.labels.push_back(CategoryModel::instance().full_name(sub_d.m_id));
+                gd.labels.push_back(CategoryModel::instance().get_id_fullname(sub_d.m_id));
                 gsActual.values.push_back(categoryStats[sub_d.m_id][0]);
                 gsEstimated.values.push_back(budgetStats[sub_d.m_id][budgetMonth]);
             }

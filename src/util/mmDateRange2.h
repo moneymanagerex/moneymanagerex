@@ -61,8 +61,10 @@ public:
     static wxDateSpan span(int offset, mmDatePeriod period);
 
 public:
-    int toInt() const;
-    const wxString label() const;
+    int  toInt() const;
+    auto label() const -> const wxString;
+
+public:
     bool operator== (mmDatePeriod other) const;
     bool operator== (Id other_id) const;
 };
@@ -131,19 +133,19 @@ public:
         bool parseLabel(StringIt &buffer_i, StringIt buffer_end);
         void parseName(StringIt &buffer_i, StringIt buffer_end);
         bool parseLabelName(const wxString &buffer, const wxString &name_new = "");
-        int getF() const;
-        const wxString getLabel() const;
-        const wxString getName() const;
-        const wxString getLabelName() const;
-        const wxString checkingName() const;
-        const wxString checkingDescription() const;
+        int  getF() const;
+        auto getLabel() const -> const wxString;
+        auto getName() const -> const wxString;
+        auto getLabelName() const -> const wxString;
+        auto checkingName() const -> const wxString;
+        auto checkingDescription() const -> const wxString;
         bool hasPeriodS() const;
 
     private:
         static void scanWhiteSpace(StringIt &buffer_i, StringIt buffer_end);
         static char scanToken(StringIt &buffer_i, StringIt buffer_end, int &token_o, mmDatePeriod &token_p);
-        static const wxString offsetStr(int offset, bool show_zero = false);
-        static const wxString offsetRangeStr(int so, int eo, bool show_zero = false);
+        static auto offsetStr(int offset, bool show_zero = false) -> const wxString;
+        static auto offsetRangeStr(int so, int eo, bool show_zero = false) -> const wxString;
     };
 
 public:
@@ -160,10 +162,10 @@ public:
 
     public:
         bool parseLabel(StringIt &buffer_i, StringIt buffer_end);
-        const wxString getLabel() const;
+        auto getLabel() const -> const wxString;
 
     private:
-        static const wxString multiplierStr(int m, bool show_one = false);
+        static auto multiplierStr(int m, bool show_one = false) -> const wxString;
     };
 
 protected:
@@ -205,31 +207,31 @@ public:
     void setDefEndDateN(mmDateN defEndDateN_new = mmDateN());
     void setRange(const Range &range_new);
     void setReporting(const Reporting &reporting_new);
-    int getFirstDay() const;
-    wxDateTime::Month getFirstMonth() const;
-    wxDateTime::WeekDay getFirstWeekday() const;
-    mmDateN getSDateN() const;
-    mmDate  getTDate() const;
-    mmDateN getDefStartDateN() const;
-    mmDateN getDefEndDateN() const;
-    Range getRange() const;
-    Reporting getReporting() const;
-    bool parseRange(const wxString &buffer, const wxString &name = "");
-    bool parseReporting(const wxString &buffer);
-    const wxString rangeLabel() const;
-    const wxString rangeName() const;
-    const wxString rangeLabelName() const;
-    const wxString reportingLabel() const;
-    mmDateN periodStart(mmDate date, mmDatePeriod period) const;
-    mmDateN periodEnd(mmDate date, mmDatePeriod period) const;
-    mmDateN rangeStart() const;
-    mmDateN rangeEnd() const;
-    mmDateN reportingNext() const;
-    const wxString rangeStartIsoStartN() const;
-    const wxString rangeEndIsoEndN() const;
-    const wxString reportingNextIsoEndN() const;
-    const wxString checkingTooltip() const;
-    const wxString reportingTooltip() const;
+    int  getFirstDay() const;
+    auto getFirstMonth() const -> wxDateTime::Month;
+    auto getFirstWeekday() const -> wxDateTime::WeekDay;
+    auto getSDateN() const -> mmDateN;
+    auto getTDate() const -> mmDate;
+    auto getDefStartDateN() const -> mmDateN;
+    auto getDefEndDateN() const -> mmDateN;
+    auto getRange() const -> Range;
+    auto getReporting() const -> Reporting;
+    auto parseRange(const wxString &buffer, const wxString &name = "") -> bool;
+    auto parseReporting(const wxString &buffer) -> bool;
+    auto rangeLabel() const -> const wxString;
+    auto rangeName() const -> const wxString;
+    auto rangeLabelName() const -> const wxString;
+    auto reportingLabel() const -> const wxString;
+    auto periodStart(mmDate date, mmDatePeriod period) const -> mmDateN;
+    auto periodEnd(mmDate date, mmDatePeriod period) const -> mmDateN;
+    auto rangeStart() const -> mmDateN;
+    auto rangeEnd() const -> mmDateN;
+    auto reportingNext() const -> mmDateN;
+    auto rangeStartIsoStartN() const -> const wxString;
+    auto rangeEndIsoEndN() const -> const wxString;
+    auto reportingNextIsoEndN() const -> const wxString;
+    auto checkingTooltip() const -> const wxString;
+    auto reportingTooltip() const -> const wxString;
 
 public:
     struct ReportingIterator

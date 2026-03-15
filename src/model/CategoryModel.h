@@ -39,22 +39,22 @@ public:
     static CategoryModel& instance();
 
 public:
+    // TODO: change to find_id_dep_c
     bool is_used(int64 cat_id);
 
+    auto get_data_fullname(const Data* cat_n, wxString delimiter = "") -> const wxString;
+    bool get_id_active(int64 cat_id);
+    auto get_id_fullname(int64 cat_id, wxString delimiter = "") -> const wxString;
+    auto get_id_income(int64 cat_id) -> double;
     auto get_key_data_n(const wxString& name, const int64 parentid) -> const Data*;
-    auto find_data_sub_a(const Data& cat_d) -> CategoryModel::DataA;
-    auto find_data_subtree_a(const Data& cat_d) -> CategoryModel::DataA;
+    auto get_name2_data_n(const wxString& name, const wxString& parent_name) -> const Data*;
 
-    auto all_categories(bool excludeHidden = false) -> const std::map<wxString, int64>;
-    auto full_name(const Data* cat_n) -> const wxString;
-    auto full_name(int64 cat_id) -> const wxString;
-    auto full_name(int64 cat_id, wxString delimiter) -> const wxString;
-    bool is_hidden(int64 cat_id);
-    bool has_income(int64 cat_id);
+    auto find_data_sub_a(const Data& cat_d) -> DataA;
+    auto find_data_subtree_a(const Data& cat_d) -> DataA;
+    auto find_all_id_mFullname(bool only_active = false) -> const std::map<wxString, int64>;
+    auto find_pattern_name_a(const wxString& cat_pattern) -> const wxArrayString;
 
-    auto get_name(const wxString& name, const wxString& parentname) -> const Data*;
-    auto FilterCategory(const wxString& cat_pattern) -> const wxArrayString;
-    static void getCategoryStats(
+    void getCategoryStats(
         std::map<int64, std::map<int, double>>& categoryStats,
         wxSharedPtr<wxArrayString> accountArray,
         mmDateRange* date_range,
@@ -69,7 +69,9 @@ public:
     {
         bool operator()(const Data& x, const Data& y)
         {
-            return CategoryModel::instance().full_name(&x) < CategoryModel::instance().full_name(&y);
+            wxString x_fullname = CategoryModel::instance().get_data_fullname(&x);
+            wxString y_fullname = CategoryModel::instance().get_data_fullname(&y);
+            return x_fullname < y_fullname;
         }
     };
 };

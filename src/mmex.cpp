@@ -468,7 +468,7 @@ int mmGUIApp::OnExit()
         m_frame->Destroy();
 #endif
 
-    wxString rj = UsageModel::instance().To_JSON_String();
+    wxString rj = UsageModel::instance().to_json();
     wxLogDebug("RapidJson\n%s", rj);
 
     UsageData new_usage_d = UsageData();

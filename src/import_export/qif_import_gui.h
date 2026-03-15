@@ -100,8 +100,8 @@ private:
     std::unordered_map<wxString, std::tuple<int64, wxString, wxString>> m_QIFpayeeNames;
     wxArrayString m_payee_names;
     std::unordered_map<wxString, int64> m_QIFcategoryNames;
-    std::vector<TrxSplitModel::DataA> m_splitDataSets;
-    std::map<int, std::map<int, TagLinkModel::DataA>> m_splitTaglinks;
+    std::vector<TrxSplitModel::DataA> m_tp_a_a;
+    std::map<int, std::map<int, TagLinkModel::DataA>> m_gl_a_a;
     std::map<std::pair<int, int>, TagLinkModel::DataA> m_txnTaglinks;
 
     wxString m_accountNameStr;

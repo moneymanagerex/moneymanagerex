@@ -469,7 +469,7 @@ void JournalList::sortTransactions(int col_id, bool ascend)
         sortBy(Journal::SorterByJOURNALID(), ascend);
         break;
     case JournalList::LIST_ID_NUMBER:
-        sortBy(TrxModel::SorterByNUMBER(), ascend);
+        sortBy(TrxData::SorterByNumber(), ascend);
         break;
     case JournalList::LIST_ID_ACCOUNT:
         sortBy(TrxModel::SorterByACCOUNTNAME(), ascend);
@@ -478,7 +478,7 @@ void JournalList::sortTransactions(int col_id, bool ascend)
         sortBy(TrxModel::SorterByPAYEENAME(), ascend);
         break;
     case JournalList::LIST_ID_STATUS:
-        sortBy(TrxData::SorterBySTATUS(), ascend);
+        sortBy(TrxData::SorterByStatus(), ascend);
         break;
     case JournalList::LIST_ID_CATEGORY:
         sortBy(TrxModel::SorterByCATEGNAME(), ascend);
@@ -499,19 +499,19 @@ void JournalList::sortTransactions(int col_id, bool ascend)
         sortBy(TrxModel::SorterByBALANCE(), ascend);
         break;
     case JournalList::LIST_ID_NOTES:
-        sortBy(TrxData::SorterByNOTES(), ascend);
+        sortBy(TrxData::SorterByNotes(), ascend);
         break;
     case JournalList::LIST_ID_DATE:
         if (PrefModel::instance().TreatDateAsSN())
             sortBy(Journal::SorterByJOURNALSN(), ascend);
         else
-            sortBy(TrxModel::SorterByTRANSDATE_DATE(), ascend);
+            sortBy(TrxData::SorterByDate(), ascend);
         break;
     case JournalList::LIST_ID_TIME:
-        sortBy(TrxModel::SorterByTRANSDATE_TIME(), ascend);
+        sortBy(TrxData::SorterByTime(), ascend);
         break;
     case JournalList::LIST_ID_DELETEDTIME:
-        sortBy(TrxData::SorterByDELETEDTIME(), ascend);
+        sortBy(TrxData::SorterByDeletedTime(), ascend);
         break;
     case JournalList::LIST_ID_UDFC01:
         type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC01").id_n();
@@ -549,7 +549,7 @@ void JournalList::sortTransactions(int col_id, bool ascend)
             sortBy(SorterByUDFC05, ascend);
         break;
     case JournalList::LIST_ID_UPDATEDTIME:
-        sortBy(TrxData::SorterByLASTUPDATEDTIME(), ascend);
+        sortBy(TrxData::SorterByUpdatedTime(), ascend);
         break;
     default:
         break;
@@ -596,7 +596,7 @@ wxListItemAttr* JournalList::OnGetItemAttr(long item) const
 {
     if (item < 0 || item >= static_cast<int>(m_journal_xa.size())) return 0;
 
-    bool in_the_future = TrxModel::getTransDateTime(m_journal_xa[item]).FormatISOCombined() > m_today;
+    bool in_the_future = m_journal_xa[item].m_date_time.isoDateTime() > m_today;
     if (in_the_future && PrefModel::instance().getDoNotColorFuture()) {
         return (item % 2 ? m_attr3.get() : m_attr4.get());
     }
@@ -815,7 +815,7 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
     if (row < m_journal_xa.size() && (flags & wxLIST_HITTEST_ONITEM) && col_nr < getColNrSize()) {
         int col_id = getColId_Nr(col_nr);
         wxString menuItemText;
-        wxDateTime datetime;
+        mmDateTimeN dateTimeN;
         wxString dateFormat = PrefModel::instance().getDateFormat();
 
         switch (col_id) {
@@ -826,8 +826,10 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             copyText_ = m_journal_xa[row].displayID;
             break;
         case LIST_ID_DATE: {
-            copyText_ = menuItemText = mmGetDateTimeForDisplay(m_journal_xa[row].TRANSDATE);
-            wxString strDate = TrxModel::getTransDateTime(m_journal_xa[row]).FormatISODate();
+            copyText_ = menuItemText = mmGetDateTimeForDisplay(
+                m_journal_xa[row].m_date_time.isoDateTime()
+            );
+            wxString strDate = m_journal_xa[row].m_date().isoDate();
             rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
             break;
         }
@@ -872,32 +874,51 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             break;
         case LIST_ID_WITHDRAWAL: {
             columnIsAmount = true;
-            const AccountData* account = AccountModel::instance().get_id_data_n(m_journal_xa[row].ACCOUNTID_W);
-            const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
-            if (currency) {
-                copyText_ = CurrencyModel::toString(m_journal_xa[row].TRANSAMOUNT_W, currency);
-                menuItemText = wxString::Format("%.2f", m_journal_xa[row].TRANSAMOUNT_W);
-                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+            const AccountData* account_n = AccountModel::instance().get_id_data_n(
+                m_journal_xa[row].m_account_w_id_n
+            );
+            const CurrencyData* currency_n = account_n
+                ? CurrencyModel::instance().get_id_data_n(account_n->m_currency_id)
+                : nullptr;
+            if (currency_n) {
+                copyText_ = CurrencyModel::instance().toString(
+                    m_journal_xa[row].m_amount_w,
+                    currency_n
+                );
+                menuItemText = wxString::Format("%.2f", m_journal_xa[row].m_amount_w);
+                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText +
+                    ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
             }
             break;
         }
         case LIST_ID_DEPOSIT: {
             columnIsAmount = true;
-            const AccountData* account = AccountModel::instance().get_id_data_n(m_journal_xa[row].ACCOUNTID_D);
-            const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
-            if (currency) {
-                copyText_ = CurrencyModel::toString(m_journal_xa[row].TRANSAMOUNT_D, currency);
-                menuItemText = wxString::Format("%.2f", m_journal_xa[row].TRANSAMOUNT_D);
-                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+            const AccountData* account_n = AccountModel::instance().get_id_data_n(
+                m_journal_xa[row].m_account_d_id_n
+            );
+            const CurrencyData* currency_n = account_n
+                ? CurrencyModel::instance().get_id_data_n(account_n->m_currency_id)
+                : nullptr;
+            if (currency_n) {
+                copyText_ = CurrencyModel::instance().toString(
+                    m_journal_xa[row].m_amount_d,
+                    currency_n
+                );
+                menuItemText = wxString::Format("%.2f", m_journal_xa[row].m_amount_d);
+                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText +
+                    ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
             }
             break;
         }
         case LIST_ID_BALANCE:
-            copyText_ = CurrencyModel::toString(m_journal_xa[row].ACCOUNT_BALANCE, m_cp->m_currency_n);
+            copyText_ = CurrencyModel::instance().toString(
+                m_journal_xa[row].m_account_balance,
+                m_cp->m_currency_n
+            );
             break;
         case LIST_ID_CREDIT:
-            copyText_ = CurrencyModel::toString(
-                m_cp->m_account_n->m_credit_limit + m_journal_xa[row].ACCOUNT_BALANCE,
+            copyText_ = CurrencyModel::instance().toString(
+                m_cp->m_account_n->m_credit_limit + m_journal_xa[row].m_account_balance,
                 m_cp->m_currency_n
             );
             break;
@@ -906,14 +927,20 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             rightClickFilter_ = "{\n\"NOTES\": \"" + menuItemText + "\"\n}";
             break;
         case LIST_ID_DELETEDTIME:
-            datetime.ParseISOCombined(m_journal_xa[row].DELETEDTIME);
-            if(datetime.IsValid())
-                copyText_ = mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+            dateTimeN = m_journal_xa[row].m_deleted_time_n;
+            if (dateTimeN.has_value())
+                copyText_ = mmGetDateTimeForDisplay(
+                    dateTimeN.value().isoDateTime(),
+                    dateFormat + " %H:%M:%S"
+                );
             break;
         case LIST_ID_UPDATEDTIME:
-            datetime.ParseISOCombined(m_journal_xa[row].LASTUPDATEDTIME);
-            if (datetime.IsValid())
-                copyText_ = mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+            dateTimeN = m_journal_xa[row].m_updated_time_n;
+            if (dateTimeN.has_value())
+                copyText_ = mmGetDateTimeForDisplay(
+                    dateTimeN.value().isoDateTime(),
+                    dateFormat + " %H:%M:%S"
+                );
             break;
         case LIST_ID_UDFC01:
             copyText_ = menuItemText = m_journal_xa[row].UDFC_content[0];
@@ -1180,7 +1207,6 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
         , wxYES_NO | wxYES_DEFAULT | (m_cp->isDeletedTrans() ? wxICON_ERROR : wxICON_WARNING));
 
     if (msgDlg.ShowModal() == wxID_YES) {
-        wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
         std::set<std::pair<RefTypeN, int64>> assetStockAccts;
         TrxModel::instance().db_savepoint();
         AttachmentModel::instance().db_savepoint();
@@ -1190,7 +1216,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             if (id.second) continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
 
-            if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE)) {
+            if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date())) {
                 continue;
             }
 
@@ -1199,7 +1225,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                 TrxModel::instance().purge_id(id.first);
             }
             else {
-                trx_n->DELETEDTIME = deletionTime;
+                trx_n->m_deleted_time_n = mmDateTime::now();
                 TrxModel::instance().unsafe_save_trx_n(trx_n);
                 TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
@@ -1222,7 +1248,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
                 if (i.first == AssetModel::s_ref_type)
-                    TrxLinkModel::UpdateAssetValue(
+                    TrxLinkModel::instance().update_asset_value(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
                 else if (i.first == StockModel::s_ref_type)
@@ -1265,7 +1291,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
         for (const auto& id : m_selected_id) {
             if (!id.second) {
                 TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-                trx_n->DELETEDTIME.Clear();
+                trx_n->m_deleted_time_n = mmDateTimeN();
                 TrxModel::instance().unsafe_save_trx_n(trx_n);
                 TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
                     TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
@@ -1279,7 +1305,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
                 if (i.first == AssetModel::s_ref_type)
-                    TrxLinkModel::UpdateAssetValue(
+                    TrxLinkModel::instance().update_asset_value(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
                 else if (i.first == StockModel::s_ref_type)
@@ -1296,8 +1322,7 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
 
 void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
 {
-    wxMessageDialog msgDlg(
-        this,
+    wxMessageDialog msgDlg(this,
         _t("Do you want to restore all of the transactions shown?"),
         _t("Confirm Transaction Restore"),
         wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
@@ -1307,7 +1332,7 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
         for (const auto& tran : this->m_journal_xa) {
             if (tran.m_repeat_num) continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(tran.m_id);
-            trx_n->DELETEDTIME.Clear();
+            trx_n->m_deleted_time_n = mmDateTimeN();
             TrxModel::instance().unsafe_save_trx_n(trx_n);
             TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
                 TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
@@ -1319,7 +1344,7 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
         if (!assetStockAccts.empty()) {
             for (const auto& i : assetStockAccts) {
                 if (i.first == AssetModel::s_ref_type)
-                    TrxLinkModel::UpdateAssetValue(
+                    TrxLinkModel::instance().update_asset_value(
                         AssetModel::instance().unsafe_get_id_data_n(i.second)
                     );
                 else if (i.first == StockModel::s_ref_type)
@@ -1360,7 +1385,7 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
     Journal::IdRepeat id = m_selected_id[0];
     if (!id.second) {
         TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-        if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE))
+        if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date()))
             return;
 
         if (!TrxLinkModel::instance().find(
@@ -1433,10 +1458,10 @@ void JournalList::onMoveTransaction(wxCommandEvent& /*event*/)
             for (const auto& id : m_selected_id) {
                 if (!id.second) {
                     TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-                    if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE) ||
+                    if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date()) ||
                         TrxModel::is_foreign(*trx_n) ||
                         trx_n->is_transfer() ||
-                        mmDate(trx_n->TRANSDATE) < dest_account->m_open_date
+                        trx_n->m_date() < dest_account->m_open_date
                     ) {
                         skip_trx.push_back(trx_n->m_id);
                     } else {
@@ -1575,8 +1600,7 @@ void JournalList::onMarkTransaction(wxCommandEvent& event)
         const AccountData* account_n = AccountModel::instance().get_id_data_n(
             m_journal_xa[row].m_account_id
         );
-        mmDateN trx_date_n = mmDateN(TrxModel::getTransDateTime(m_journal_xa[row]));
-        if (trx_date_n.has_value() && account_n->is_locked_for(trx_date_n.value()))
+        if (account_n->is_locked_for(m_journal_xa[row].m_date()))
             continue;
         //bRefreshRequired |= (status.id() == TrxStatus::e_void) || (m_journal_xa[row].is_void());
         if (!m_journal_xa[row].m_repeat_num) {
@@ -1722,7 +1746,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     TrxData new_trx;
     new_trx.clone_from(*tran);
     if (!useOriginalDate)
-        new_trx.TRANSDATE = wxDateTime::Now().FormatISOCombined();
+        new_trx.m_date_time = mmDateTime::now();
     if (!useOriginalState) {
         // Use default status on copy insert
         new_trx.m_status = TrxStatus(
@@ -1735,7 +1759,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     ))
     new_trx.m_account_id = m_cp->m_account_id;
     TrxModel::instance().save_trx_n(new_trx);
-    int64 new_trx_id = new_trx.id();
+    int64 new_trx_id = new_trx.m_id;
     m_pasted_id.push_back({new_trx_id, 0});   // add the newly pasted transaction
 
     // Clone transaction tags
@@ -1751,7 +1775,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     }
 
     // Clone split transactions
-    for (const auto& tp_d : TrxModel::find_split(*tran)) {
+    for (const auto& tp_d : TrxModel::instance().find_data_split_a(*tran)) {
         TrxSplitData new_tp_d;
         new_tp_d.clone_from(tp_d);
         new_tp_d.m_trx_id = new_trx_id;
@@ -1764,7 +1788,7 @@ int64 JournalList::onPaste(const TrxData* tran)
         )) {
             TagLinkData new_gl_d;
             new_gl_d.clone_from(tl_d);
-            new_gl_d.m_ref_id = new_tp_d.id();
+            new_gl_d.m_ref_id = new_tp_d.m_id;
             new_gl_a.push_back(new_gl_d);
         }
     }
@@ -1971,7 +1995,7 @@ const wxString JournalList::getItem(long item, int col_id) const
     const Journal::Full_Data& journal_xd = m_journal_xa.at(item);
 
     wxString value = wxEmptyString;
-    wxDateTime datetime;
+    mmDateTimeN dateTimeN;
     wxString dateFormat = PrefModel::instance().getDateFormat();
     switch (col_id) {
     case LIST_ID_SN:
@@ -1981,9 +2005,9 @@ const wxString JournalList::getItem(long item, int col_id) const
     case LIST_ID_ACCOUNT:
         return journal_xd.ACCOUNTNAME;
     case LIST_ID_DATE:
-        return mmGetDateForDisplay(journal_xd.TRANSDATE);
+        return mmGetDateForDisplay(journal_xd.m_date_time.isoDateTime());
     case LIST_ID_TIME:
-        return mmGetTimeForDisplay(journal_xd.TRANSDATE);
+        return mmGetTimeForDisplay(journal_xd.m_date_time.isoDateTime());
     case LIST_ID_NUMBER:
         return journal_xd.m_number;
     case LIST_ID_CATEGORY:
@@ -2024,10 +2048,13 @@ const wxString JournalList::getItem(long item, int col_id) const
         }
         return value.Trim();
     case LIST_ID_DELETEDTIME:
-        datetime.ParseISOCombined(journal_xd.DELETEDTIME);
-        if(!datetime.IsValid())
-            return wxString("");
-        return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+        dateTimeN = journal_xd.m_deleted_time_n;
+        return dateTimeN.has_value()
+            ? mmGetDateTimeForDisplay(
+                dateTimeN.value().isoDateTime(),
+                dateFormat + " %H:%M:%S"
+            )
+            : wxString("");
     case LIST_ID_UDFC01:
         return UDFCFormatHelper(journal_xd.UDFC_type[0], journal_xd.UDFC_content[0]);
     case LIST_ID_UDFC02:
@@ -2039,48 +2066,55 @@ const wxString JournalList::getItem(long item, int col_id) const
     case LIST_ID_UDFC05:
         return UDFCFormatHelper(journal_xd.UDFC_type[4], journal_xd.UDFC_content[4]);
     case LIST_ID_UPDATEDTIME:
-        datetime.ParseISOCombined(journal_xd.LASTUPDATEDTIME);
-        if (!datetime.IsValid())
-            return wxString("");
-        return mmGetDateTimeForDisplay(datetime.FromUTC().FormatISOCombined(), dateFormat + " %H:%M:%S");
+        return journal_xd.m_updated_time_n.has_value()
+            ? mmGetDateTimeForDisplay(
+                journal_xd.m_updated_time_n.value().isoDateTime(),
+                dateFormat + " %H:%M:%S"
+            )
+            : wxString("");
     }
 
     switch (col_id) {
     case LIST_ID_WITHDRAWAL:
         if (!m_cp->isAccount()) {
-            const AccountData* account = AccountModel::instance().get_id_data_n(journal_xd.ACCOUNTID_W);
+            const AccountData* account = AccountModel::instance().get_id_data_n(journal_xd.m_account_w_id_n);
             const CurrencyData* currency = account ?
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
-                value = CurrencyModel::toCurrency(journal_xd.TRANSAMOUNT_W, currency);
+                value = CurrencyModel::instance().toCurrency(journal_xd.m_amount_w, currency);
         }
-        else if (journal_xd.ACCOUNTID_W == m_cp->m_account_id) {
-            value = CurrencyModel::toString(journal_xd.TRANSAMOUNT_W, m_cp->m_currency_n);
+        else if (journal_xd.m_account_w_id_n == m_cp->m_account_id) {
+            value = CurrencyModel::instance().toString(journal_xd.m_amount_w, m_cp->m_currency_n);
         }
         if (!value.IsEmpty() && journal_xd.is_void())
             value = "* " + value;
         return value;
     case LIST_ID_DEPOSIT:
         if (!m_cp->isAccount()) {
-            const AccountData* account = AccountModel::instance().get_id_data_n(journal_xd.ACCOUNTID_D);
+            const AccountData* account = AccountModel::instance().get_id_data_n(
+                journal_xd.m_account_d_id_n
+            );
             const CurrencyData* currency = account ?
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
-                value = CurrencyModel::toCurrency(journal_xd.TRANSAMOUNT_D, currency);
+                value = CurrencyModel::instance().toCurrency(journal_xd.m_amount_d, currency);
         }
-        else if (journal_xd.ACCOUNTID_D == m_cp->m_account_id) {
-            value = CurrencyModel::toString(journal_xd.TRANSAMOUNT_D, m_cp->m_currency_n);
+        else if (journal_xd.m_account_d_id_n == m_cp->m_account_id) {
+            value = CurrencyModel::instance().toString(journal_xd.m_amount_d, m_cp->m_currency_n);
         }
         if (!value.IsEmpty() && journal_xd.is_void())
             value = "* " + value;
         return value;
     case LIST_ID_BALANCE:
         if (m_balance_valid)
-            value = CurrencyModel::toString(journal_xd.ACCOUNT_BALANCE, m_cp->m_currency_n);
+            value = CurrencyModel::instance().toString(
+                journal_xd.m_account_balance,
+                m_cp->m_currency_n
+            );
         return value;
     case LIST_ID_CREDIT:
-        return CurrencyModel::toString(
-            m_cp->m_account_n->m_credit_limit + journal_xd.ACCOUNT_BALANCE,
+        return CurrencyModel::instance().toString(
+            m_cp->m_account_n->m_credit_limit + journal_xd.m_account_balance,
             m_cp->m_currency_n
         );
     }
@@ -2186,7 +2220,7 @@ void JournalList::doSearchText(const wxString& value)
         if (selectedItem < 0 || selectedItem >= static_cast<long>(m_journal_xa.size()))
             break;
 
-        wxString test1 = CurrencyModel::fromString2CLocale(value);
+        wxString test1 = CurrencyModel::instance().fromString2CLocale(value);
         double v;
         if (test1.ToCDouble(&v)) {
             try {
@@ -2266,7 +2300,6 @@ void JournalList::markSelectedTransaction()
 void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
 {
     int retainDays = SettingModel::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
-    wxString deletionTime = wxDateTime::Now().ToUTC().FormatISOCombined();
     std::set<std::pair<RefTypeN, int64>> assetStockAccts;
     TrxModel::instance().db_savepoint();
     AttachmentModel::instance().db_savepoint();
@@ -2284,7 +2317,7 @@ void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
         }
         else {
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_xd.m_id);
-            trx_n->DELETEDTIME = deletionTime;
+            trx_n->m_deleted_time_n = mmDateTime::now();
             TrxModel::instance().unsafe_save_trx_n(trx_n);
             TrxLinkModel::DataA translink = TrxLinkModel::instance().find(
                 TrxLinkCol::CHECKINGACCOUNTID(trx_n->m_id)
@@ -2298,7 +2331,7 @@ void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
     if (!assetStockAccts.empty()) {
         for (const auto& i : assetStockAccts) {
             if (i.first == AssetModel::s_ref_type)
-                TrxLinkModel::UpdateAssetValue(
+                TrxLinkModel::instance().update_asset_value(
                     AssetModel::instance().unsafe_get_id_data_n(i.second)
                 );
             else if (i.first == StockModel::s_ref_type)
@@ -2344,11 +2377,10 @@ bool JournalList::checkForClosedAccounts()
     return false;
 }
 
-bool JournalList::checkTransactionLocked(int64 accountID, const wxString& iso_date)
+bool JournalList::checkTransactionLocked(int64 account_id, mmDate date)
 {
-    const AccountData* account_n = AccountModel::instance().get_id_data_n(accountID);
-    mmDateN date_n = mmDateN(iso_date);
-    if (!date_n.has_value() || !account_n->is_locked_for(date_n.value()))
+    const AccountData* account_n = AccountModel::instance().get_id_data_n(account_id);
+    if (!account_n->is_locked_for(date))
         return false;
 
     wxMessageBox(

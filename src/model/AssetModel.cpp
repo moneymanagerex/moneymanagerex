@@ -76,8 +76,10 @@ const wxString AssetModel::get_id_name(int64 asset_id)
 }
 
 // Return the value of an asset at a given date
-const std::pair<double, double> AssetModel::get_data_value_date(const Data& asset_d, const mmDate& date)
-{
+const std::pair<double, double> AssetModel::get_data_value_date(
+    const Data& asset_d,
+    const mmDate& date
+) {
     std::pair<double /*initial*/, double /*market*/> balance;
 
     if (date < asset_d.m_start_date)
@@ -110,24 +112,27 @@ const std::pair<double, double> AssetModel::get_data_value_date(const Data& asse
     for (const auto& tl_d : tl_a) {
         const TrxData* trx_n = TrxModel::instance().get_id_data_n(tl_d.m_trx_id);
         if (trx_n &&
-            trx_n->DELETEDTIME.IsEmpty() &&
             // FIXME: ignore Void transactions
-            trx_n->m_account_id >= 0 &&
-            date < mmDate(TrxModel::getTransDateTime(*trx_n))
+            !trx_n->is_deleted() &&
+            trx_n->m_account_id > 0 &&
+            date <= trx_n->m_date()
         ) {
             trx_a.push_back(*trx_n);
         }
     }
-    std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
+    std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByDateTime());
 
     if (!tl_a.empty()) {
         mmDateN last_n = mmDateN();
         for (const auto& trx_d : trx_a) {
-            const mmDate trx_date = mmDate(TrxModel::getTransDateTime(trx_d));
+            const mmDate trx_date = trx_d.m_date();
             const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
             int64 currency_id_n = account_n ? account_n->m_currency_id : -1;
-            double currency_rate = CurrencyHistoryModel::getDayRate(currency_id_n, trx_date.getDateTime());
-            double account_flow = TrxModel::account_flow(trx_d, trx_d.m_account_id);
+            double currency_rate = CurrencyHistoryModel::instance().get_id_date_rate(
+                currency_id_n,
+                trx_date
+            );
+            double account_flow = trx_d.account_flow(trx_d.m_account_id);
             double base_amount = -(account_flow * currency_rate);
 
             if (!last_n.has_value())

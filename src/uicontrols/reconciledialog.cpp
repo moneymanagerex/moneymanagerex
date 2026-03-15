@@ -265,7 +265,7 @@ void mmReconcileDialog::FillControls(bool init)
     if (init) {
         double endval;
         wxString endvalue = InfoModel::instance().getString(wxString::Format("RECONCILE_ACCOUNT_%lld_END_BALANCE", m_account->m_id), "0.00");
-        if (!CurrencyModel::fromString(endvalue, endval, m_currency)) {
+        if (!CurrencyModel::instance().fromString(endvalue, endval, m_currency)) {
             endval = 0;
         }
         m_amountCtrl->SetValue(endval);
@@ -275,20 +275,20 @@ void mmReconcileDialog::FillControls(bool init)
     wxSharedPtr<mmDateRange> date_range;
     date_range = new mmCurrentMonthToDate;
     TrxModel::DataA trx_a = TrxModel::instance().find(
-        TrxCol::ACCOUNTID(m_account->m_id),
+        TrxModel::DATE(OP_LE, mmDate::today()),
         TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_reconciled)),
-        TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::TRANSDATE(OP_LE, mmDate::today())
+        TrxCol::ACCOUNTID(m_account->m_id),
+        TrxModel::IS_DELETED(false)
     );
     TrxModel::DataA all_trans2 = TrxModel::instance().find(  // get transfers
-        TrxCol::TOACCOUNTID(m_account->m_id),
+        TrxModel::DATE(OP_LE, mmDate::today()),
         TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_reconciled)),
-        TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::TRANSDATE(OP_LE, mmDate::today())
+        TrxCol::TOACCOUNTID(m_account->m_id),
+        TrxModel::IS_DELETED(false)
     );
 
     trx_a.insert(trx_a.end(), all_trans2.begin(), all_trans2.end());
-    std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
+    std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByDateTime());
 
     long ritemIndex = -1;
     long litemIndex = -1;
@@ -331,7 +331,7 @@ void mmReconcileDialog::UpdateAll()
         if (isListItemChecked(m_listLeft, i)) {
             wxString itext = m_listLeft->GetItemText(i, 4);
             double value;
-            if (CurrencyModel::fromString(itext, value, m_currency)) {
+            if (CurrencyModel::instance().fromString(itext, value, m_currency)) {
                clearedbalance -= value;
             }
         }
@@ -340,7 +340,7 @@ void mmReconcileDialog::UpdateAll()
         if (isListItemChecked(m_listRight, i)) {
             wxString itext = m_listRight->GetItemText(i, 4);
             double value;
-            if (CurrencyModel::fromString(itext, value, m_currency)) {
+            if (CurrencyModel::instance().fromString(itext, value, m_currency)) {
                clearedbalance += value;
             }
         }
@@ -351,15 +351,15 @@ void mmReconcileDialog::UpdateAll()
         endbalance = 0.0;
     }
 
-    m_previousCtrl->SetLabel(CurrencyModel::toCurrency(m_reconciledBalance, m_currency));
-    m_clearedBalanceCtrl->SetLabel(CurrencyModel::toCurrency(clearedbalance, m_currency));
-    m_endingCtrl->SetLabel(CurrencyModel::toCurrency(endbalance, m_currency));
+    m_previousCtrl->SetLabel(CurrencyModel::instance().toCurrency(m_reconciledBalance, m_currency));
+    m_clearedBalanceCtrl->SetLabel(CurrencyModel::instance().toCurrency(clearedbalance, m_currency));
+    m_endingCtrl->SetLabel(CurrencyModel::instance().toCurrency(endbalance, m_currency));
     m_endingCtrl->SetMinSize(m_endingCtrl->GetBestSize());
     m_endingCtrl->GetParent()->Layout();
 
     double diff = clearedbalance - endbalance - m_hiddenDuplicatedBalance;
 
-    m_differenceCtrl->SetLabel(CurrencyModel::toCurrency(diff, m_currency));
+    m_differenceCtrl->SetLabel(CurrencyModel::instance().toCurrency(diff, m_currency));
 
     wxFont font = m_differenceCtrl->GetFont();
     int ps = m_previousCtrl->GetFont().GetPointSize();
@@ -642,22 +642,22 @@ void mmReconcileDialog::editTransaction(wxListCtrl* list, long item)
     TrxDialog dlg(this, transid, {transid, false});
     if (dlg.ShowModal() == wxID_OK) {
         m_checkingPanel->refreshList();
-        const TrxData* trx = TrxModel::instance().get_id_data_n(transid);
-        setListItemData(trx, list, item);
-        long idx = getListIndexByDate(trx, list);
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(transid);
+        setListItemData(trx_n, list, item);
+        long idx = getListIndexByDate(trx_n, list);
         if (idx != item) {
             moveItemData(list, item, idx);
         }
     }
 }
 
-long mmReconcileDialog::getListIndexByDate(const TrxData* trx, wxListCtrl* list)
+long mmReconcileDialog::getListIndexByDate(const TrxData* trx_n, wxListCtrl* list)
 {
     long idx = -1;
     for (long i = 0; i < list->GetItemCount(); ++i) {
         int64 other_id = m_itemDataMap[list->GetItemData(i)];
         const TrxData* other_trx_n = TrxModel::instance().get_id_data_n(other_id);
-        if (trx->TRANSDATE.Left(10) < other_trx_n->TRANSDATE.Left(10)) {
+        if (trx_n->m_date() < other_trx_n->m_date()) {
             idx = i;
             break;
         }
@@ -700,10 +700,10 @@ void mmReconcileDialog::setListItemData(const TrxData* trx_n, wxListCtrl* list, 
             ? trx_n->m_account_id
             : trx_n->m_to_account_id_n
         ) : PayeeModel::instance().get_id_name(trx_n->m_payee_id_n);
-    list->SetItem(item, 1, mmGetDateTimeForDisplay(trx_n->TRANSDATE));
+    list->SetItem(item, 1, mmGetDateTimeForDisplay(trx_n->m_date_time.isoDateTime()));
     list->SetItem(item, 2, trx_n->m_number);
     list->SetItem(item, 3, prefix + payeeName);
-    list->SetItem(item, 4, CurrencyModel::toString(trx_n->m_amount,m_currency));
+    list->SetItem(item, 4, CurrencyModel::instance().toString(trx_n->m_amount,m_currency));
     list->SetItem(item, 5, trx_n->m_status.key());
     list->SetItemImage(item, (trx_n->m_status.id() == TrxStatus::e_followup) ? 1 : 0);
 }

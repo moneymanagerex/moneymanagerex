@@ -157,7 +157,7 @@ void AssetDialog::dataToControls()
         w_valueChange->Enable(false);
     }
 
-    if (m_checking_entry && !m_checking_entry->DELETEDTIME.IsEmpty()) {
+    if (m_checking_entry && m_checking_entry->is_deleted()) {
         w_valueChange->Enable(false);
         w_compoundingChoice->Enable(false);
         w_valueChangeRate->Enable(false);
@@ -453,12 +453,12 @@ void AssetDialog::OnOk(wxCommandEvent& /*event*/)
             return;
 
         if (!m_transfer_entry) {
-            TrxLinkModel::instance().SetAssetTranslink(
+            TrxLinkModel::instance().save_asset_record(
                 trx_id, new_asset_id,
                 w_transaction_panel->CheckingType()
             );
         }
-        TrxLinkModel::UpdateAssetValue(m_asset_n);
+        TrxLinkModel::instance().update_asset_value(m_asset_n);
     }
     else if (!m_hidden_trans_entry) {
         mmErrorDialogs::MessageWarning(this, _t("Invalid Transaction"), m_dialog_heading);
@@ -495,7 +495,7 @@ void AssetDialog::CreateAssetAccount()
     new_account_d.m_type_        = NavigatorTypes::instance().getAssetAccountStr();
     new_account_d.m_open_balance = 0;
     new_account_d.m_open_date    = m_asset_n->m_start_date;
-    new_account_d.m_currency_id  = CurrencyModel::GetBaseCurrency()->m_id;
+    new_account_d.m_currency_id  = CurrencyModel::instance().get_base_data_n()->m_id;
     AccountModel::instance().add_data_n(new_account_d);
 
     AssetDialog dlg(this, m_asset_n, true);

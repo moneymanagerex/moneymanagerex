@@ -92,7 +92,9 @@ void ReportBase::setAccounts(int selection, const wxString& type_name)
     {
         wxArrayString account_name_a;
         auto account_a = AccountModel::instance().find_all();
-        std::stable_sort(account_a.begin(), account_a.end(), AccountData::SorterByACCOUNTNAME());
+        std::stable_sort(account_a.begin(), account_a.end(),
+            AccountData::SorterByName()
+        );
         for (const auto& account_d : account_a) {
             if (m_only_active && !account_d.is_open())
                 continue;
@@ -454,6 +456,6 @@ void mm_html_template::load_context()
         (*this)(info_d.m_name.ToStdWstring()) = info_d.m_value;
     (*this)(L"INFOTABLE") = InfoModel::to_loop_t();
 
-    const CurrencyData* currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* currency = CurrencyModel::instance().get_base_data_n();
     if (currency) currency->to_html_template(*this);
 }

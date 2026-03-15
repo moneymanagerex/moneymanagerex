@@ -158,7 +158,7 @@ const ReportData* ReportModel::get_name_data_n(const wxString& name)
 
     DataA report_a = find(ReportCol::REPORTNAME(name));
     if (!report_a.empty())
-        report_n = get_id_data_n(report_a[0].id());
+        report_n = get_id_data_n(report_a[0].m_id);
     return report_n;
 }
 

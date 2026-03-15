@@ -40,13 +40,13 @@ ForecastReport::~ForecastReport()
 wxString ForecastReport::getHTMLText()
 {
     // Grab the data
-    std::map<wxString, std::pair<double, double> > amount_by_day;
+    std::map<wxString, std::pair<double, double>> amount_by_day;
     TrxModel::DataA trx_a;
     
     if (m_date_range && m_date_range->is_with_date()) {
         trx_a = TrxModel::instance().find(
-            TrxModel::TRANSDATE(OP_GE, mmDate(m_date_range->start_date())),
-            TrxModel::TRANSDATE(OP_LE, mmDate(m_date_range->end_date()))
+            TrxModel::DATE(OP_GE, mmDate(m_date_range->start_date())),
+            TrxModel::DATE(OP_LE, mmDate(m_date_range->end_date()))
         );
     }
     else {
@@ -56,14 +56,15 @@ wxString ForecastReport::getHTMLText()
     for (const auto& trx_d : trx_a) {
         if (trx_d.is_transfer() || TrxModel::is_foreignAsTransfer(trx_d))
             continue;
-        const double convRate = CurrencyHistoryModel::getDayRate(
+        const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            trx_d.TRANSDATE
+            trx_d.m_date()
         );
-        amount_by_day[trx_d.TRANSDATE].first +=
-            TrxModel::account_outflow(trx_d, trx_d.m_account_id) * convRate;
-        amount_by_day[trx_d.TRANSDATE].second +=
-            TrxModel::account_inflow(trx_d, trx_d.m_account_id) * convRate;
+        // FIXME: use only the date part
+        amount_by_day[trx_d.m_date_time.isoDateTime()].first +=
+            trx_d.account_outflow(trx_d.m_account_id) * convRate;
+        amount_by_day[trx_d.m_date_time.isoDateTime()].second +=
+            trx_d.account_inflow(trx_d.m_account_id) * convRate;
     }
 
     // Build the report

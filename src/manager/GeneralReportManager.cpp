@@ -694,7 +694,7 @@ void GeneralReportManager::importReport()
     report_d.m_description      = txt;
     report_d.m_active           = true;
     ReportModel::instance().save_data_n(report_d);
-    m_selectedReportID = report_d.id();
+    m_selectedReportID = report_d.m_id;
 
     fillControls();
 }
@@ -1049,7 +1049,7 @@ void GeneralReportManager::duplicateReport(int64 id)
         new_report_d.m_description      = report_n->m_description;
         new_report_d.m_active           = report_n->m_active;
         ReportModel::instance().add_data_n(new_report_d);
-        m_selectedReportID = new_report_d.id();
+        m_selectedReportID = new_report_d.m_id;
     }
 }
 
@@ -1211,7 +1211,7 @@ void GeneralReportManager::newReport(int sample)
     new_report_d.m_template_content = httContent;
     new_report_d.m_description      = description;
     ReportModel::instance().add_data_n(new_report_d);
-    m_selectedReportID = new_report_d.id();
+    m_selectedReportID = new_report_d.m_id;
 }
 
 void GeneralReportManager::OnExportReport(wxCommandEvent& WXUNUSED(event))
@@ -1549,7 +1549,7 @@ void GeneralReportManager::DownloadAndStoreReport(const wxString& groupName, con
     report_d.description        = txt;
     report_d.m_active           = true;
     ReportModel::instance().save_data_n(report_d);
-    m_selectedReportID = report_d.id();
+    m_selectedReportID = report_d.m_id;
 }
 #endif
 

@@ -45,10 +45,10 @@ wxString InExReport::getHTMLText()
     // Grab the data
     std::pair<double, double> income_expenses_pair;
     for (const auto& trx_d : TrxModel::instance().find(
-        TrxModel::TRANSDATE(OP_GE, mmDate(m_date_range->start_date())),
-        TrxModel::TRANSDATE(OP_LE, mmDate(m_date_range->end_date())),
-        TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
+        TrxModel::DATE(OP_GE, mmDate(m_date_range->start_date())),
+        TrxModel::DATE(OP_LE, mmDate(m_date_range->end_date())),
+        TrxModel::IS_VOID(false),
+        TrxModel::IS_DELETED(false)
     )) {
         // Do not include asset or stock transfers
         if (TrxModel::is_foreignAsTransfer(trx_d))
@@ -62,8 +62,9 @@ wxString InExReport::getHTMLText()
         double convRate = 1;
         // We got this far, get the currency conversion rate for this account
         if (account) {
-            convRate = CurrencyHistoryModel::getDayRate(
-                AccountModel::instance().get_data_currency_p(*account)->m_id, trx_d.TRANSDATE
+            convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                AccountModel::instance().get_data_currency_p(*account)->m_id,
+                trx_d.m_date()
             );
         }
 
@@ -149,30 +150,31 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     // TODO: init all the map values with 0.0
     for (const auto& trx_d : TrxModel::instance().find(
-        TrxModel::TRANSDATE(OP_GE, mmDate(start_date)),
-        TrxModel::TRANSDATE(OP_LE, mmDate(m_date_range->end_date())),
-        TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
+        TrxModel::DATE(OP_GE, mmDate(start_date)),
+        TrxModel::DATE(OP_LE, mmDate(m_date_range->end_date())),
+        TrxModel::IS_VOID(false),
+        TrxModel::IS_DELETED(false)
     )) {
         // Do not include asset or stock transfers
         if (TrxModel::is_foreignAsTransfer(trx_d))
             continue;
 
-        const AccountData *account = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
+        const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
         if (m_account_a) {
-            if (!account || wxNOT_FOUND == m_account_a->Index(account->m_name))
+            if (!account_n || wxNOT_FOUND == m_account_a->Index(account_n->m_name))
                 continue;
         }
         double convRate = 1;
-        // We got this far, get the currency conversion rate for this account
-        if (account) {
-            convRate = CurrencyHistoryModel::getDayRate(
-                AccountModel::instance().get_data_currency_p(*account)->m_id, trx_d.TRANSDATE
+        // We got this far, get the currency conversion rate for this account_n
+        if (account_n) {
+            convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                AccountModel::instance().get_data_currency_p(*account_n)->m_id,
+                trx_d.m_date()
             );
         }
-        int year = TrxModel::getTransDateTime(trx_d).GetYear();
 
-        int idx = year * 100 + TrxModel::getTransDateTime(trx_d).GetMonth();
+        int year = trx_d.m_date_time.getDateTime().GetYear();
+        int idx = year * 100 + trx_d.m_date_time.getDateTime().GetMonth();
 
         if (trx_d.is_deposit()) {
             incomeExpensesStats[idx].first += trx_d.m_amount * convRate;

@@ -23,6 +23,7 @@
 #include <wx/datetime.h>
 
 #include "_primitive.h"
+#include "mmDateTime.h"
 
 // mmDate represents a date without time information.
 // wxWidgets does not have a dedicated type for this purpose.
@@ -47,6 +48,7 @@ protected:
 
 public:
     mmDate(wxDateTime dateTime);
+    mmDate(mmDateTime dateTime);
     mmDate(const wxString& isoDateTime);
 
 public:
@@ -56,11 +58,11 @@ public:
     static mmDate max();
 
 public:
-    wxDateTime getDateTime() const;
-    const wxString isoDate() const;
-    const wxString isoStart() const;
-    const wxString isoEnd() const;
-    void addSpan(wxDateSpan spanDay);
+    auto getDateTime() const -> wxDateTime;
+    auto isoDate() const -> const wxString;
+    auto isoStart() const -> const wxString;
+    auto isoEnd() const -> const wxString;
+    void addDateSpan(wxDateSpan dateSpan);
 
 public:
     bool operator== (const mmDate& other) const;
@@ -82,18 +84,19 @@ public:
     mmDateN() = default;
     mmDateN(mmDate dateDay);
     mmDateN(wxDateTime dateTimeN);
+    mmDateN(mmDateTimeN dateTimeN);
     mmDateN(const wxString& isoDateTimeN);
 
 public:
     bool has_value() const;
-    mmDate value() const;
-    mmDate value_or(mmDate defDateDay) const;
+    auto value() const -> mmDate;
+    auto value_or(mmDate defDateDay) const -> mmDate;
 
 public:
-    wxDateTime getDateTimeN() const;
-    const wxString isoDateN() const;
-    const wxString isoStartN() const;
-    const wxString isoEndN() const;
+    auto getDateTimeN() const -> wxDateTime;
+    auto isoDateN() const -> const wxString;
+    auto isoStartN() const -> const wxString;
+    auto isoEndN() const -> const wxString;
 
 public:
     bool operator== (const mmDateN& other) const;
@@ -153,15 +156,15 @@ inline const wxString mmDate::isoEnd() const
     return dateStr.append("~");
 }
 
-inline void mmDate::addSpan(wxDateSpan spanDay)
+inline void mmDate::addDateSpan(wxDateSpan dateSpan)
 {
-    // assumption: spanDay has granularity of a day or larger
-    m_dateTime += spanDay;
+    // assumption: dateSpan has granularity of a day or larger
+    m_dateTime += dateSpan;
 }
 
-// the dateTime in both operands is set to noon, therefore
-// a simple comparison of dateTime is sufficient;
-// for more robustness we compare with a tolerance of half day.
+// The time in both operands is set to noon, therefore
+// a simple comparison of m_dateTime is sufficient.
+// For more robustness we compare with a tolerance of half day.
 inline bool mmDate::operator== (const mmDate& other) const
 {
     return (m_dateTime < other.m_dateTime + htol && m_dateTime + htol >= other.m_dateTime);
