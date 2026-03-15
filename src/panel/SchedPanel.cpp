@@ -766,13 +766,13 @@ void SchedPanel::sortList()
     std::sort(bills_.begin(), bills_.end());
     switch (m_lc->getSortColId()) {
     case SchedList::LIST_ID_ID:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByBDID());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterById());
         break;
     case SchedList::LIST_ID_PAYMENT_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByTRANSDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByDateTime());
         break;
     case SchedList::LIST_ID_DUE_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByNEXTOCCURRENCEDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByDueDate());
         break;
     case SchedList::LIST_ID_ACCOUNT:
         std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByACCOUNTNAME());
@@ -781,7 +781,7 @@ void SchedPanel::sortList()
         std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByPAYEENAME());
         break;
     case SchedList::LIST_ID_STATUS:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterBySTATUS());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByStatus());
         break;
     case SchedList::LIST_ID_CATEGORY:
         std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByCATEGNAME());
@@ -830,10 +830,10 @@ void SchedPanel::sortList()
         break;
     case SchedList::LIST_ID_REMAINING:
         // in almost all cases, sorting by remaining days is equivalent to sorting by TRANSDATE
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByTRANSDATE());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByDateTime());
         break;
     case SchedList::LIST_ID_NOTES:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByNOTES());
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByNotes());
         break;
     default:
         break;

@@ -78,7 +78,7 @@ struct SchedData
     bool is_reconciled() const { return m_status.id() == TrxStatus::e_reconciled; }
     bool is_void()       const { return m_status.id() == TrxStatus::e_void; }
 
-    struct SorterByBDID
+    struct SorterById
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
@@ -86,79 +86,7 @@ struct SchedData
         }
     };
 
-    struct SorterByACCOUNTID
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_account_id < y.m_account_id;
-        }
-    };
-
-    struct SorterByTOACCOUNTID
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_to_account_id_n < y.m_to_account_id_n;
-        }
-    };
-
-    struct SorterByPAYEEID
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_payee_id_n < y.m_payee_id_n;
-        }
-    };
-
-    struct SorterByTRANSCODE
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_type.id() < y.m_type.id();
-        }
-    };
-
-    struct SorterByTRANSAMOUNT
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_amount < y.m_amount;
-        }
-    };
-
-    struct SorterBySTATUS
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_status.id() < y.m_status.id();
-        }
-    };
-
-    struct SorterByTRANSACTIONNUMBER
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_number < y.m_number;
-        }
-    };
-
-    struct SorterByNOTES
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_notes < y.m_notes;
-        }
-    };
-
-    struct SorterByCATEGID
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_category_id_n < y.m_category_id_n;
-        }
-    };
-
-    struct SorterByTRANSDATE
+    struct SorterByDateTime
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
@@ -166,7 +94,87 @@ struct SchedData
         }
     };
 
-    struct SorterByFOLLOWUPID
+    struct SorterByType
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_type.id() < y.m_type.id();
+        }
+    };
+
+    struct SorterByStatus
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_status.id() < y.m_status.id();
+        }
+    };
+
+    struct SorterByAccountId
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_account_id < y.m_account_id;
+        }
+    };
+
+    struct SorterByToAccountId
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_to_account_id_n < y.m_to_account_id_n;
+        }
+    };
+
+    struct SorterByPayeeId
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_payee_id_n < y.m_payee_id_n;
+        }
+    };
+
+    struct SorterByCategoryId
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_category_id_n < y.m_category_id_n;
+        }
+    };
+
+    struct SorterByAmount
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_amount < y.m_amount;
+        }
+    };
+
+    struct SorterByToAmount
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_to_amount < y.m_to_amount;
+        }
+    };
+
+    struct SorterByNumber
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_number < y.m_number;
+        }
+    };
+
+    struct SorterByNotes
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_notes < y.m_notes;
+        }
+    };
+
+    struct SorterByFollowupId
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
@@ -174,11 +182,19 @@ struct SchedData
         }
     };
 
-    struct SorterByTOTRANSAMOUNT
+    struct SorterByColor
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.m_to_amount < y.m_to_amount;
+            return x.m_color < y.m_color;
+        }
+    };
+
+    struct SorterByDueDate
+    {
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_due_date < y.m_due_date;
         }
     };
 
@@ -190,27 +206,11 @@ struct SchedData
         }
     };
 
-    struct SorterByNEXTOCCURRENCEDATE
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_due_date < y.m_due_date;
-        }
-    };
-
     struct SorterByNUMOCCURRENCES
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
             return x.NUMOCCURRENCES < y.NUMOCCURRENCES;
-        }
-    };
-
-    struct SorterByCOLOR
-    {
-        bool operator()(const SchedData& x, const SchedData& y)
-        {
-            return x.m_color < y.m_color;
         }
     };
 };
