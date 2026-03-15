@@ -224,7 +224,7 @@ void TrxModel::getFrequentUsedNotes(std::vector<wxString>& frequentNotes, int64 
     // Count frequency
     std::map<wxString, std::pair<int, wxString>> counterMap;
     for (const auto& trx_d : trx_a) {
-        wxString trx_date = mmDate(trx_d.m_date_time).isoDate();
+        wxString trx_date = trx_d.m_date().isoDate();
         auto& counter = counterMap[trx_d.m_notes];
         counter.first--;
         if (trx_date > counter.second)
@@ -282,7 +282,7 @@ bool TrxModel::is_locked(const Data& trx_d)
 {
     // FIXME: check if m_to_account_id_n is locked
     const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
-    return account_n->is_locked_for(mmDate(trx_d.m_date_time));
+    return account_n->is_locked_for(trx_d.m_date());
 }
 
 bool TrxModel::purge_id(int64 trx_id)

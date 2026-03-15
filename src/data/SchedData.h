@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include "util/mmDateTime.h"
 #include "util/mmDate.h"
 #include "_DataEnum.h"
 #include "table/_TableBase.h"
@@ -65,6 +66,11 @@ struct SchedData
     bool equals(const SchedData* other) const;
     bool operator< (const SchedData& other) const { return id() < other.id(); }
     bool operator< (const SchedData* other) const { return id() < other->id(); }
+
+    // m_date is a pseudo-member variable, convenient when time is disabled.
+    // note: the (unused) time part is set to noon in mmDate constructor and methods
+    mmDate m_date() const { return mmDate(m_date_time); }
+    void m_date(mmDate date) { m_date_time = mmDateTime(date.getDateTime()); }
 
     bool is_withdrawal() const { return m_type.id() == TrxType::e_withdrawal; }
     bool is_deposit()    const { return m_type.id() == TrxType::e_deposit; }

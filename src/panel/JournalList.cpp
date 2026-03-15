@@ -1195,7 +1195,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             if (id.second) continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
 
-            if (checkTransactionLocked(trx_n->m_account_id, mmDate(trx_n->m_date_time))) {
+            if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date())) {
                 continue;
             }
 
@@ -1364,7 +1364,7 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
     Journal::IdRepeat id = m_selected_id[0];
     if (!id.second) {
         TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-        if (checkTransactionLocked(trx_n->m_account_id, mmDate(trx_n->m_date_time)))
+        if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date()))
             return;
 
         if (!TrxLinkModel::instance().find(
@@ -1437,10 +1437,10 @@ void JournalList::onMoveTransaction(wxCommandEvent& /*event*/)
             for (const auto& id : m_selected_id) {
                 if (!id.second) {
                     TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-                    if (checkTransactionLocked(trx_n->m_account_id, mmDate(trx_n->m_date_time)) ||
+                    if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date()) ||
                         TrxModel::is_foreign(*trx_n) ||
                         trx_n->is_transfer() ||
-                        mmDate(trx_n->m_date_time) < dest_account->m_open_date
+                        trx_n->m_date() < dest_account->m_open_date
                     ) {
                         skip_trx.push_back(trx_n->m_id);
                     } else {

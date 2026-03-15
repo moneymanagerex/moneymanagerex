@@ -1491,8 +1491,8 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
         ok = false;
     else if (m_use_date_filter &&
         (mmIsDateRangeChecked() || mmIsRangeChecked()) && (
-            mmDate(tran.m_date_time) < mmDate(m_begin_date) ||
-            mmDate(tran.m_date_time) > mmDate(m_end_date)
+            tran.m_date() < mmDate(m_begin_date) ||
+            tran.m_date() > mmDate(m_end_date)
         )
     )
         ok = false;

@@ -530,12 +530,12 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     double exch = 1;
                     const double convRateTo = CurrencyHistoryModel::instance().get_id_date_rate(
                         to_curr->m_id,
-                        mmDate(trx_n->m_date_time)
+                        trx_n->m_date()
                     );
                     if (convRateTo > 0) {
                         const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
                             curr->m_id,
-                            mmDate(trx_n->m_date_time)
+                            trx_n->m_date()
                         );
                         exch = convRate / convRateTo;
                     }

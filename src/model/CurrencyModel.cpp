@@ -160,7 +160,7 @@ std::map<wxDateTime, int> CurrencyModel::find_id_date_m(int64 currency_id)
                 TrxCol::ACCOUNTID(account_d.m_id),
                 TrxCol::TOACCOUNTID(account_d.m_id)
             )) {
-                dt = mmDate(trx_d.m_date_time).getDateTime();
+                dt = trx_d.m_date().getDateTime();
                 datesList[dt] = 1;
             }
         }

@@ -129,7 +129,7 @@ double AccountModel::get_data_balance_to_date(const Data& account_d, mmDate date
     // FIXME: skip Void and deleted transactions
     // TODO: query transactions up to date; order by SN is not important
     for (const auto& trx_a: find_id_trx_aBySN(account_d.m_id)) {
-        if (mmDate(trx_a.m_date_time) <= date) {
+        if (trx_a.m_date() <= date) {
             sum += TrxModel::account_flow(trx_a, account_d.m_id);
         }
     }

@@ -1138,18 +1138,18 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     trx_d.m_to_account_id_n
                 );
 
-                if (account->is_locked_for(mmDate(trx_d.m_date_time)) ||
-                    (toAccount && toAccount->is_locked_for(mmDate(trx_d.m_date_time)))
+                if (account->is_locked_for(trx_d.m_date()) ||
+                    (toAccount && toAccount->is_locked_for(trx_d.m_date()))
                 )
                     continue;
 
-                if (mmDate(trx_d.m_date_time) < account->m_open_date) {
+                if (trx_d.m_date() < account->m_open_date) {
                     // FIXME: account is changed but not saved
-                    account->m_open_date = mmDate(trx_d.m_date_time);
+                    account->m_open_date = trx_d.m_date();
                 }
-                if (toAccount && (mmDate(trx_d.m_date_time) < toAccount->m_open_date)) {
+                if (toAccount && (trx_d.m_date() < toAccount->m_open_date)) {
                     // FIXME: toAccount is changed but not saved
-                    toAccount->m_open_date = mmDate(trx_d.m_date_time);
+                    toAccount->m_open_date = trx_d.m_date();
                 }
 
                 // Save Transaction Tags
@@ -1218,7 +1218,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (!trx_d.is_transfer())
                 continue;
             const auto data = TrxModel::instance().find(
-                TrxModel::TRANSDATE(       OP_EQ, mmDate(trx_d.m_date_time)),
+                TrxModel::TRANSDATE(       OP_EQ, trx_d.m_date()),
                 TrxCol::ACCOUNTID(         OP_EQ, trx_d.m_account_id),
                 TrxCol::TOACCOUNTID(       OP_EQ, trx_d.m_to_account_id_n),
                 TrxCol::NOTES(             OP_EQ, trx_d.m_notes),
@@ -1593,7 +1593,7 @@ bool mmQIFImportDialog::completeTransaction(
         }
         // By amount and date (exact or nearby)
         else if (dupMethod == 1 || dupMethod == 2) {
-            mmDate startDate = mmDate(trx_n->m_date_time);
+            mmDate startDate = trx_n->m_date();
             mmDate endDate = startDate;
             // nearby date
             if (dupMethod != 1) {
@@ -1602,9 +1602,9 @@ bool mmQIFImportDialog::completeTransaction(
             }
 
             const auto potential_matches = TrxModel::instance().find(
-                TrxCol::TRANSAMOUNT(trx_n->m_amount),
                 TrxModel::TRANSDATE(OP_GE, startDate),
                 TrxModel::TRANSDATE(OP_LE, endDate),
+                TrxCol::TRANSAMOUNT(trx_n->m_amount),
                 TrxCol::DELETEDTIME(OP_EQ, wxEmptyString)
             );
 

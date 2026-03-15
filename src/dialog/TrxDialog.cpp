@@ -244,7 +244,7 @@ void TrxDialog::dataToControls()
             bool is_time_used = PrefModel::instance().UseTransDateTime();
             trx_date = is_time_used
                 ? m_journal_data.m_date_time.getDateTime()
-                : mmDate(m_journal_data.m_date_time).getDateTime();
+                : m_journal_data.m_date().getDateTime();
         }
         dpc_->SetValue(trx_date);
         dpc_->SetFocus();
@@ -718,7 +718,7 @@ bool TrxDialog::ValidateData()
     m_journal_data.m_account_id = cbAccount_->mmGetId();
     const AccountData* account_n = AccountModel::instance().get_id_data_n(m_journal_data.m_account_id);
 
-    if (mmDate(m_journal_data.m_date_time) < account_n->m_open_date) {
+    if (m_journal_data.m_date() < account_n->m_open_date) {
         mmErrorDialogs::ToolTip4Object(
             cbAccount_,
             _t("The opening date for the account is later than the date of this transaction"),
@@ -790,7 +790,7 @@ bool TrxDialog::ValidateData()
         }
         m_journal_data.m_to_account_id_n = to_account->m_id;
 
-        if (mmDate(m_journal_data.m_date_time) < to_account->m_open_date) {
+        if (m_journal_data.m_date() < to_account->m_open_date) {
             mmErrorDialogs::ToolTip4Object(cbToAccount_, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
             return false;
         }

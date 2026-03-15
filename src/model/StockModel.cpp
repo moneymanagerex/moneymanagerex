@@ -222,7 +222,7 @@ double StockModel::calculate_realized_gain(const Data& stock_d, bool to_base_cur
         if (to_base_curr) {
             conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
                 currency_n->m_id,
-                mmDate(trx_d.m_date_time)
+                trx_d.m_date()
             );
         }
         if (ts_n->m_number > 0) {
@@ -291,7 +291,7 @@ double StockModel::calculate_unrealiazed_gain(const Data& stock_d, bool to_base_
             );
             conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
                 currency_n->m_id,
-                mmDate(trx_d.m_date_time)
+                trx_d.m_date()
             );
             total_shares += ts_d->m_number;
             if (total_shares < 0) total_shares = 0;
@@ -386,7 +386,7 @@ void StockModel::update_data_position(StockData* stock_n)
 
         total_commission += ts_n->m_commission;
 
-        mmDate trx_date = mmDate(trx_d.m_date_time);
+        mmDate trx_date = trx_d.m_date();
         if (trx_date < min_trx_date)
             min_trx_date = trx_date;
     }

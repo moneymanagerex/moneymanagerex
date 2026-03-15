@@ -1019,7 +1019,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 double convrate = (curr != m_currency_n)
                     ? CurrencyHistoryModel::instance().get_id_date_rate(
                         curr->m_id,
-                        mmDate(m_lc->m_journal_xa[item].m_date_time)
+                        m_lc->m_journal_xa[item].m_date()
                     )
                     : 1.0;
                 flow += convrate * TrxModel::account_flow(

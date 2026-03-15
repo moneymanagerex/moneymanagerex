@@ -163,7 +163,7 @@ public:
     {
         bool operator()(const Data& x, const Data& y)
         {
-            return mmDate(x.m_date_time) < mmDate(y.m_date_time);
+            return x.m_date() < y.m_date();
         }
     };
 

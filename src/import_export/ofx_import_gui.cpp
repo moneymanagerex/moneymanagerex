@@ -1563,7 +1563,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                 else if (existing_trx_d.m_account_id != account->m_id) {
                     // Potential new transfer
                     double existingAmount = existing_trx_d.m_amount;
-                    wxDateTime existingDate = mmDate(existing_trx_d.m_date_time).getDateTime();
+                    wxDateTime existingDate = existing_trx_d.m_date().getDateTime();
                     double adjustedExistingAmount = existing_trx_d.is_withdrawal() ? -existingAmount : existingAmount;
 
                     double compAmt = fabs(adjustedExistingAmount + amount);

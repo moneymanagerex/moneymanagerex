@@ -294,7 +294,7 @@ table {
                 if (showColumnById(TrxFilterDialog::COL_COLOR))
                     hb.addColorMarker(getUDColour(trx_xd.m_color.GetValue()).GetAsString(), true);
                 if (showColumnById(TrxFilterDialog::COL_DATE)) {
-                    hb.addTableCellDate(mmDate(trx_xd.m_date_time).isoDate());
+                    hb.addTableCellDate(trx_xd.m_date().isoDate());
                 }
                 if (showColumnById(TrxFilterDialog::COL_TIME))
                     hb.addTableCell(mmGetTimeForDisplay(trx_xd.m_date_time.isoDateTime()));
@@ -329,7 +329,7 @@ table {
                         flow = -flow;
                     const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
                         currency_n->m_id,
-                        mmDate(trx_xd.m_date_time)
+                        trx_xd.m_date()
                     );
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT)) {
                         if (trx_xd.is_void()) {

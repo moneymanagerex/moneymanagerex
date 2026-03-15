@@ -41,36 +41,36 @@ FlowReport::~FlowReport()
 {
 }
 
-double FlowReport::trueAmount(const TrxData& trx)
+double FlowReport::trueAmount(const TrxData& trx_d)
 {
     double amount = 0.0;
     bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-        trx.m_account_id
+        trx_d.m_account_id
     ) != m_account_id.end();
     bool isToAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
-        trx.m_to_account_id_n
+        trx_d.m_to_account_id_n
     ) != m_account_id.end();
     if (!(isAccountFound && isToAccountFound)) {
         const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
-            AccountModel::instance().get_id_data_n(trx.m_account_id)->m_currency_id,
-            mmDate(trx.m_date_time)
+            AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
+            trx_d.m_date()
         );
-        switch (trx.m_type.id()) {
+        switch (trx_d.m_type.id()) {
         case TrxType::e_withdrawal:
-            amount = -trx.m_amount * convRate;
+            amount = -trx_d.m_amount * convRate;
             break;
         case TrxType::e_deposit:
-            amount = +trx.m_amount * convRate;
+            amount = +trx_d.m_amount * convRate;
             break;
         case TrxType::e_transfer:
             if (isAccountFound)
-                amount = -trx.m_amount * convRate;
+                amount = -trx_d.m_amount * convRate;
             else {
                 const double toConvRate = CurrencyHistoryModel::instance().get_id_date_rate(
-                    AccountModel::instance().get_id_data_n(trx.m_to_account_id_n)->m_currency_id,
-                    mmDate(trx.m_date_time)
+                    AccountModel::instance().get_id_data_n(trx_d.m_to_account_id_n)->m_currency_id,
+                    trx_d.m_date()
                 );
-                amount = +trx.m_to_amount * toConvRate;
+                amount = +trx_d.m_to_amount * toConvRate;
             }
         }
     }
@@ -426,7 +426,7 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     bool rowType = false;
     runningBalance = m_balance;
     for (const auto& trx_d : m_forecastVector) {
-        int rowDate = mmDate(trx_d.m_date_time).getDateTime().GetMonth();
+        int rowDate = trx_d.m_date().getDateTime().GetMonth();
         if (rowDate != lastRowDate) {
             lastRowDate = rowDate;
             rowType = !rowType;

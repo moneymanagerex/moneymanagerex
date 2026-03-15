@@ -976,11 +976,11 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
                 double rateFrom = CurrencyHistoryModel::instance().get_id_date_rate(
                     from_currency->m_id,
-                    mmDate(m_sched_xd.m_date_time)
+                    m_sched_xd.m_date()
                 );
                 double rateTo = CurrencyHistoryModel::instance().get_id_date_rate(
                     to_currency->m_id,
-                    mmDate(m_sched_xd.m_date_time)
+                    m_sched_xd.m_date()
                 );
 
                 double convToBaseFrom = rateFrom * m_sched_xd.m_amount;
@@ -1034,14 +1034,14 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     const AccountData* account = AccountModel::instance().get_id_data_n(m_sched_xd.m_account_id);
     const AccountData* toAccount = AccountModel::instance().get_id_data_n(m_sched_xd.m_to_account_id_n);
-    if (mmDate(m_sched_xd.m_date_time) < account->m_open_date)
+    if (m_sched_xd.m_date() < account->m_open_date)
         return mmErrorDialogs::ToolTip4Object(
             cbAccount_,
             _t("The opening date for the account is later than the date of this transaction"),
             _t("Invalid Date")
         );
 
-    if (toAccount && (mmDate(m_sched_xd.m_date_time) < toAccount->m_open_date))
+    if (toAccount && m_sched_xd.m_date() < toAccount->m_open_date)
         return mmErrorDialogs::ToolTip4Object(
             cbToAccount_,
             _t("The opening date for the account is later than the date of this transaction"),

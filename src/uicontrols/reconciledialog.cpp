@@ -657,7 +657,7 @@ long mmReconcileDialog::getListIndexByDate(const TrxData* trx_n, wxListCtrl* lis
     for (long i = 0; i < list->GetItemCount(); ++i) {
         int64 other_id = m_itemDataMap[list->GetItemData(i)];
         const TrxData* other_trx_n = TrxModel::instance().get_id_data_n(other_id);
-        if (mmDate(trx_n->m_date_time) < mmDate(other_trx_n->m_date_time)) {
+        if (trx_n->m_date() < other_trx_n->m_date()) {
             idx = i;
             break;
         }
