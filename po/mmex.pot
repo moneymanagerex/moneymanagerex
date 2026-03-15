@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-03-13 13:58+0000\n"
+"POT-Creation-Date: 2026-03-15 18:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,7 +159,7 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:1107 import_export/ofx_import_gui.cpp:1114
 #: import_export/ofx_import_gui.cpp:1121 import_export/univcsvdialog.cpp:1695
 #: import_export/webappdialog.cpp:188 import_export/webappdialog.cpp:193
-#: manager/ThemeManager.cpp:321 manager/ThemeManager.cpp:340 mmframe.cpp:4266
+#: manager/ThemeManager.cpp:321 manager/ThemeManager.cpp:340 mmframe.cpp:4270
 #: panel/StockPanel.cpp:518 panel/StockPanel.cpp:519
 msgid "Error"
 msgstr ""
@@ -2226,11 +2226,11 @@ msgstr ""
 msgid "User Interface Language"
 msgstr ""
 
-#: dialog/StartupDialog.cpp:225 mmframe.cpp:4312 pref/GeneralPref.cpp:339
+#: dialog/StartupDialog.cpp:225 mmframe.cpp:4316 pref/GeneralPref.cpp:339
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
-#: dialog/StartupDialog.cpp:228 mmframe.cpp:4314 pref/GeneralPref.cpp:341
+#: dialog/StartupDialog.cpp:228 mmframe.cpp:4318 pref/GeneralPref.cpp:341
 msgid "Language change"
 msgstr ""
 
@@ -2701,7 +2701,7 @@ msgid "Display split transactions as a single row"
 msgstr ""
 
 #: dialog/TrxFilterDialog.cpp:793 manager/PrefManager.cpp:223
-#: manager/PrefManager.h:48 mmframe.cpp:2108 mmframe.cpp:3291
+#: manager/PrefManager.h:48 mmframe.cpp:2108 mmframe.cpp:3295
 #: uicontrols/reconciledialog.cpp:118
 msgid "Settings"
 msgstr ""
@@ -3301,8 +3301,8 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: import_export/qif_export.cpp:155 mmframe.cpp:3935 mmframe.cpp:3939
-#: mmframe.cpp:3956 mmframe.cpp:3960 panel/DashboardWidget.cpp:562
+#: import_export/qif_export.cpp:155 mmframe.cpp:3939 mmframe.cpp:3943
+#: mmframe.cpp:3960 mmframe.cpp:3964 panel/DashboardWidget.cpp:562
 msgid "Accounts"
 msgstr ""
 
@@ -3386,7 +3386,7 @@ msgid "Exporting"
 msgstr ""
 
 #: import_export/qif_export.cpp:486 import_export/qif_import_gui.cpp:463
-#: import_export/qif_import_gui.cpp:1093 mmframe.cpp:3871
+#: import_export/qif_import_gui.cpp:1093 mmframe.cpp:3875
 msgid "Please wait…"
 msgstr ""
 
@@ -4341,17 +4341,17 @@ msgstr ""
 msgid "Category Manager: Editing Error"
 msgstr ""
 
-#: manager/CategoryManager.cpp:729 mmframe.cpp:4158
+#: manager/CategoryManager.cpp:729 mmframe.cpp:4162
 msgid "Merge categories completed"
 msgstr ""
 
 #: manager/CategoryManager.cpp:730 manager/PayeeManager.cpp:861
-#: mmframe.cpp:4159 mmframe.cpp:4173 mmframe.cpp:4188
+#: mmframe.cpp:4163 mmframe.cpp:4177 mmframe.cpp:4192
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr ""
 
-#: manager/CategoryManager.cpp:732 mmframe.cpp:4161
+#: manager/CategoryManager.cpp:732 mmframe.cpp:4165
 msgid "Merge categories result"
 msgstr ""
 
@@ -4585,7 +4585,7 @@ msgstr[1] ""
 msgid "&Bulk content update "
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:330 mmframe.cpp:3422 mmframereport.cpp:337
+#: manager/GeneralReportManager.cpp:330 mmframe.cpp:3426 mmframereport.cpp:337
 #: report/UsageReport.cpp:144 report/UsageReport.cpp:161
 #: uicontrols/navigatortypes.cpp:69
 msgid "Reports"
@@ -4772,7 +4772,7 @@ msgstr ""
 msgid "New Report"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1187 mmframe.cpp:2073 mmframe.cpp:3845
+#: manager/GeneralReportManager.cpp:1187 mmframe.cpp:2073 mmframe.cpp:3849
 #: panel/AssetPanel.cpp:417 panel/AssetPanel.h:130
 #: panel/DashboardWidget.cpp:565 panel/DashboardWidget.cpp:598
 #: pref/OtherPref.cpp:106 uicontrols/navigatortypes.cpp:65
@@ -4920,11 +4920,11 @@ msgstr ""
 msgid "Confirm Payee Deletion"
 msgstr ""
 
-#: manager/PayeeManager.cpp:860 mmframe.cpp:4172
+#: manager/PayeeManager.cpp:860 mmframe.cpp:4176
 msgid "Merge payees completed"
 msgstr ""
 
-#: manager/PayeeManager.cpp:864 mmframe.cpp:4176
+#: manager/PayeeManager.cpp:864 mmframe.cpp:4180
 msgid "Merge payees result"
 msgstr ""
 
@@ -5154,7 +5154,7 @@ msgstr ""
 msgid "This will also delete any associated Shares."
 msgstr ""
 
-#: mmframe.cpp:1598 mmframe.cpp:3968
+#: mmframe.cpp:1598 mmframe.cpp:3972
 msgid "Confirm Account Deletion"
 msgstr ""
 
@@ -5570,7 +5570,7 @@ msgstr ""
 msgid "Refresh &WebApp…"
 msgstr ""
 
-#: mmframe.cpp:2103 mmframe.cpp:3346 mmframe.cpp:3354
+#: mmframe.cpp:2103 mmframe.cpp:3350 mmframe.cpp:3358
 msgid "Refresh WebApp"
 msgstr ""
 
@@ -5802,7 +5802,7 @@ msgstr ""
 msgid "&View"
 msgstr ""
 
-#: mmframe.cpp:2278 mmframe.cpp:2281 mmframe.cpp:3415 pref/NetworkPref.cpp:133
+#: mmframe.cpp:2278 mmframe.cpp:2281 mmframe.cpp:3419 pref/NetworkPref.cpp:133
 msgid "News"
 msgstr ""
 
@@ -5995,7 +5995,7 @@ msgstr ""
 msgid "No account available to import"
 msgstr ""
 
-#: mmframe.cpp:3034 mmframe.cpp:3372 panel/HelpPanel.cpp:71
+#: mmframe.cpp:3034 mmframe.cpp:3376 panel/HelpPanel.cpp:71
 #: uicontrols/navigatortypes.cpp:72
 msgid "Help"
 msgstr ""
@@ -6034,85 +6034,85 @@ msgstr ""
 msgid "Transactions per payee"
 msgstr ""
 
-#: mmframe.cpp:3289
+#: mmframe.cpp:3293
 msgid "Settings have been updated."
 msgstr ""
 
-#: mmframe.cpp:3290
+#: mmframe.cpp:3294
 msgid "Some settings take effect only after an application restart."
 msgstr ""
 
-#: mmframe.cpp:3346
+#: mmframe.cpp:3350
 msgid "Accounts, Payees, and Categories Updated"
 msgstr ""
 
-#: mmframe.cpp:3353
+#: mmframe.cpp:3357
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr ""
 
-#: mmframe.cpp:3490
+#: mmframe.cpp:3494
 msgid "Choose HTML file to export"
 msgstr ""
 
-#: mmframe.cpp:3634 panel/SchedPanel.cpp:243 panel/SchedPanel.cpp:967
+#: mmframe.cpp:3638 panel/SchedPanel.cpp:243 panel/SchedPanel.cpp:967
 #: uicontrols/navigatortypes.cpp:55
 msgid "Scheduled Transactions"
 msgstr ""
 
-#: mmframe.cpp:3870 mmframe.cpp:3877
+#: mmframe.cpp:3874 mmframe.cpp:3881
 msgid "Downloading stock prices from Yahoo"
 msgstr ""
 
-#: mmframe.cpp:3917 panel/StockPanel.cpp:592
+#: mmframe.cpp:3921 panel/StockPanel.cpp:592
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
 
-#: mmframe.cpp:3935
+#: mmframe.cpp:3939
 msgid "No account available to edit!"
 msgstr ""
 
-#: mmframe.cpp:3939
+#: mmframe.cpp:3943
 msgid "Choose Account to Edit"
 msgstr ""
 
-#: mmframe.cpp:3956
+#: mmframe.cpp:3960
 msgid "No account available to delete!"
 msgstr ""
 
-#: mmframe.cpp:3960
+#: mmframe.cpp:3964
 msgid "Choose Account to Delete"
 msgstr ""
 
-#: mmframe.cpp:3964
+#: mmframe.cpp:3968
 #, c-format
 msgid ""
 "Do you you want to delete\n"
 "%1$s account: %2$s?"
 msgstr ""
 
-#: mmframe.cpp:3983 mmframe.cpp:4002
+#: mmframe.cpp:3987 mmframe.cpp:4006
 msgid "Change Account Type"
 msgstr ""
 
-#: mmframe.cpp:3983
+#: mmframe.cpp:3987
 msgid "Select account"
 msgstr ""
 
-#: mmframe.cpp:4001
+#: mmframe.cpp:4005
 #, c-format
 msgid "Select new account type for %s"
 msgstr ""
 
-#: mmframe.cpp:4187
+#: mmframe.cpp:4191
 msgid "Merge tags completed"
 msgstr ""
 
-#: mmframe.cpp:4191
+#: mmframe.cpp:4195
 msgid "Merge tags result"
 msgstr ""
 
-#: mmframe.cpp:4265
+#: mmframe.cpp:4269
 #, c-format
 msgid "File %s not found."
 msgstr ""
