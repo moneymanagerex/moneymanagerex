@@ -18,21 +18,32 @@ function addTOC(list, node) {
 }
 
 function generateTOC(nav) {
-    var i2 = 0, i3 = 0;
-    nav = nav.appendChild(document.createElement("ol"));
-    [].forEach.call(document.querySelectorAll("h2, h3"), function(node) {
-        if (node.nodeName === "H3") {
-            if (i3 === 0)
-                nav.lastChild.appendChild(document.createElement("ol"));
+    var i2 = 0, i3 = 0, i4 = 0;
+    let nnav = nav.appendChild(document.createElement("ol"));
+    const nodes = document.querySelectorAll("h2, h3, h4");
+    for (const node of nodes) {
+        if (node.nodeName === "H4") {
+            if (i4 === 0) {
+                nnav.lastChild.lastChild.appendChild(document.createElement("ol"));
+            }
+            node.id = "section" + i2 + "." + i3 + "."+ (++i4);
+            addTOC(nnav.lastChild.lastChild.lastChild, node);
+        }
+        else if (node.nodeName === "H3") {
+            i4 = 0;
+            if (i3 === 0) {
+                nnav.lastChild.appendChild(document.createElement("ol"));
+            }
             node.id = "section" + i2 + "." + (++i3);
-            addTOC(nav.lastChild.lastChild, node);
+            addTOC(nnav.lastChild.lastChild, node);
         }
         else if (node.nodeName === "H2") {
             i3 = 0;
+            i4 = 0;
             node.id = "section" + (++i2);
-            addTOC(nav, node);
+            addTOC(nnav, node);
         }
-    });
+    }
 }
 
 function collapseNode(n, bool) {

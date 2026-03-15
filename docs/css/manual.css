@@ -6,21 +6,21 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
-    body {  
+    body {
         background: black;
         color: white;
     }
-    a { text-decoration: none; 
+    a { text-decoration: none;
         color: yellow;
     }
 }
-  
+
 @media (prefers-color-scheme: light) {
     body {
         background: white;
         color: black;
     }
-    a { text-decoration: none; 
+    a { text-decoration: none;
         color: blue;
     }
 }
@@ -49,6 +49,24 @@ th, td { padding: 3px 10px; }
 #language-menu .flag-icon {
     margin-right: 0.5ex;
     margin-left: 0.8ex;
+}
+
+.container {
+  display: flex;
+}
+
+.wide,
+.container div {
+  margin: 10px;
+  padding: 20px;
+}
+
+.codebox {
+    width: 950px;
+    padding: 10px;
+    border-color: grey;
+    border-style: solid;
+    border-width: thin;
 }
 
 /* Print format */
@@ -135,9 +153,15 @@ h2::before {
     counter-increment: section;
     content: counter(section) ". ";
 }
+h3 { counter-reset: subsubsection; }
 h3::before {
    counter-increment: subsection;
    content: counter(section) "." counter(subsection) ". ";
+}
+
+h4::before {
+   counter-increment: subsubsection;
+   content: counter(section) "." counter(subsection) "." counter(subsubsection)". "
 }
 
 /* key / menu sequences */
@@ -214,4 +238,75 @@ aside.sticky::before {
 .tips::before {
     content: 'Tip';
     color: #053C5D;
+}
+
+/* SQL display: */
+.sql-codebox {
+  width: 950px;
+  background: #f2f7fa;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: Consolas, monospace;
+  color: #2f0bce;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Header */
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1b07d4;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.lang {
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.copy-btn {
+  background: #3ae6fd;
+  border: none;
+  padding: 4px 10px;
+  color: #1b07d4;;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.copy-btn:hover {
+  background: #f12272;
+}
+
+/* Code area */
+pre {
+  margin: 0;
+  padding: 15px 0;
+  overflow-x: auto;
+  counter-reset: line;
+}
+
+code {
+  display: block;
+  white-space: pre;
+}
+
+/* Line numbers */
+code span {
+  display: block;
+  padding-left: 55px;
+  position: relative;
+  counter-increment: line;
+}
+
+code span::before {
+  content: counter(line);
+  position: absolute;
+  left: 15px;
+  color: #c98773;
+  width: 30px;
+  text-align: right;
 }

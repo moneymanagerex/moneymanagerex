@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -52,6 +53,14 @@ const std::vector<ReportParam> ReportParam::get_param_a()
             ReportPanel::ID_TIME_PICKER, _t("Time:") },
         { "&only_years", "wxChoice", def_date,
             ReportPanel::ID_YEAR_CHOICE, _t("Year:")},
+        { "&account_selection", "wxChoice", def_date,
+            ReportPanel::ID_ACCOUNT_CHOICE, _t("Accounts:")},
+        { "&stock_selection", "wxChoice", "",
+            ReportPanel::ID_STOCK_CHOICE, _t("Stock name:")},
+        { "&filter", "wxTextCtrl", "",
+            ReportPanel::ID_FILTER_GENERIC_CHOICE, _t("Filter")},
+        { "&selection", "wxChoice", "",
+            ReportPanel::ID_SELECTION_GENERIC_CHOICE, _t("Selection")}
     };
     return param_a;
 }
@@ -94,8 +103,12 @@ bool ReportParam::prepare_sql(wxString& query, std::map<wxString, wxString>& lab
             value = time->GetValue().FormatISOTime();
         }
         else if (w && param.type == "wxChoice") {
-            wxChoice* year = static_cast<wxChoice*>(w);
-            value = year->GetStringSelection();
+            wxChoice* choice = static_cast<wxChoice*>(w);
+            value = choice->GetStringSelection();
+        }
+        else if (w && param.type == "wxTextCtrl") {
+            wxTextCtrl* txt_c = static_cast<wxTextCtrl*>(w);
+            value = txt_c->GetValue();
         }
 
         label_value_m[param.label.Mid(1)] = value;
@@ -115,7 +128,7 @@ ReportModel::ReportModel() :
 {
 }
 
-ReportModel::~ReportModel() 
+ReportModel::~ReportModel()
 {
 }
 

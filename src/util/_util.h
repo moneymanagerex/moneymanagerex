@@ -88,6 +88,7 @@ inline wxString mmListBoxItem::getName() const { return name_; }
 //----------------------------------------------------------------------------
 
 const wxString inQuotes(const wxString& label, const wxString& delimiter);
+wxString removeQuotes(wxString s);
 void csv2tab_separated_values(wxString& line, const wxString& delimit);
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
