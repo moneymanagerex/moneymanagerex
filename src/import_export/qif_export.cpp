@@ -473,7 +473,7 @@ void mmQIFExportDialog::mmExportQIF()
     wxArrayInt64 allCustomFields4Export;
     wxArrayInt64 allTags4Export;
     const auto trx_a = TrxModel::instance().find(
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
+        TrxModel::IS_VOID(false)
     );
 
     if (exp_transactions && !trx_a.empty()) {
@@ -497,7 +497,7 @@ void mmQIFExportDialog::mmExportQIF()
         for (const auto& trx_d : trx_a) {
             if (trx_d.is_deleted())
                 continue;
-            wxString strDate = TrxModel::getTransDateTime(trx_d).FormatISODate();
+            wxString strDate = trx_d.m_date().isoDate();
             //Filtering
             if (dateFromCheckBox_->IsChecked() && strDate < begin_date)
                 continue;

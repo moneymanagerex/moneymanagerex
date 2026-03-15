@@ -31,6 +31,17 @@
 
 const RefTypeN SchedModel::s_ref_type = RefTypeN(RefTypeN::e_sched);
 
+// -- constructor --
+
+SchedModel::SchedModel() :
+    TableFactory<SchedTable, SchedData>()
+{
+}
+
+SchedModel::~SchedModel()
+{
+}
+
 // -- static methods --
 
 // Initialize the global SchedModel table.
@@ -51,9 +62,19 @@ SchedModel& SchedModel::instance()
     return Singleton<SchedModel>::instance();
 }
 
-wxDate SchedModel::getTransDateTime(const Data& this_d)
+SchedCol::TRANSCODE SchedModel::TYPE(OP op, TrxType sched_type)
 {
-    return this_d.m_date_time.getDateTime();
+    return SchedCol::TRANSCODE(op, sched_type.name());
+}
+
+SchedCol::STATUS SchedModel::STATUS(OP op, TrxStatus sched_status)
+{
+    return SchedCol::STATUS(op, sched_status.key());
+}
+
+SchedCol::STATUS SchedModel::IS_VOID(bool value)
+{
+    return SchedCol::STATUS(value ? OP_EQ : OP_NE, TrxStatus(TrxStatus::e_void).key());
 }
 
 bool SchedModel::encode_repeat_num(Data& this_d, const RepeatNum& rn)
@@ -207,16 +228,6 @@ wxArrayString SchedModel::unroll(const Data& sched_d, const wxString end_date, i
     return dates;
 }
 
-SchedCol::STATUS SchedModel::STATUS(OP op, TrxStatus sched_status)
-{
-    return SchedCol::STATUS(op, sched_status.key());
-}
-
-SchedCol::TRANSCODE SchedModel::TRANSCODE(OP op, TrxType sched_type)
-{
-    return SchedCol::TRANSCODE(op, sched_type.name());
-}
-
 const SchedSplitModel::DataA SchedModel::split(const Data& sched_d)
 {
     return SchedSplitModel::instance().find(
@@ -230,17 +241,6 @@ const TagLinkModel::DataA SchedModel::taglink(const Data& sched_d)
         TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
         TagLinkCol::REFID(sched_d.m_id)
     );
-}
-
-// -- constructor --
-
-SchedModel::SchedModel() :
-    TableFactory<SchedTable, SchedData>()
-{
-}
-
-SchedModel::~SchedModel()
-{
 }
 
 // -- instance methods --

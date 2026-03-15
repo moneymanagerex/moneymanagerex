@@ -214,7 +214,7 @@ bool SchedDialog::Create(wxWindow* parent, wxWindowID id, const wxString& captio
 
 void SchedDialog::dataToControls()
 {
-    TrxModel::getFrequentUsedNotes(frequentNotes_);
+    TrxModel::instance().getFrequentUsedNotes(frequentNotes_);
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(
         FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES)
     );
@@ -1465,8 +1465,8 @@ void SchedDialog::setCategoryLabel()
         && PrefModel::instance().getTransCategoryTransferNone() == PrefModel::LASTUSED
     ) {
         TrxModel::DataA transactions = TrxModel::instance().find(
-            TrxModel::TRANSCODE(OP_EQ, TrxType(TrxType::e_transfer)),
-            TrxModel::TRANSDATE(OP_LE, mmDate::today())
+            TrxModel::DATE(OP_LE, mmDate::today()),
+            TrxModel::TYPE(OP_EQ, TrxType(TrxType::e_transfer))
         );
 
         if (!transactions.empty()) {

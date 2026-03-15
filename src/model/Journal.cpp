@@ -168,11 +168,11 @@ Journal::Full_Data::~Full_Data()
 }
 
 
-void Journal::setEmptyData(Journal::Data &data, int64 accountID)
+void Journal::setEmptyData(Journal::Data& journal_d, int64 account_id)
 {
-    TrxModel::setEmptyData(data, accountID);
-    data.m_bdid = 0;
-    data.m_repeat_num = 0;
+    TrxModel::instance().setEmptyData(journal_d, account_id);
+    journal_d.m_bdid = 0;
+    journal_d.m_repeat_num = 0;
 }
 
 bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)

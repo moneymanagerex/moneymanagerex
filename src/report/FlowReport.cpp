@@ -109,20 +109,20 @@ void FlowReport::getTransactions()
 
         m_account_id.push_back(account.m_id);
 
-        for (const auto& tran : AccountModel::instance().find_id_trx_aBySN(account.m_id)) {
-            wxString strDate = TrxModel::getTransDateTime(tran).FormatISOCombined();
+        for (const auto& trx_d : AccountModel::instance().find_id_trx_aBySN(account.m_id)) {
+            wxString strDate = trx_d.m_date_time.isoDateTime();
             // Do not include asset or stock transfers in income expense calculations.
-            if (TrxModel::is_foreignAsTransfer(tran) || (strDate > todayString))
+            if (TrxModel::is_foreignAsTransfer(trx_d) || (strDate > todayString))
                 continue;
-            m_balance += TrxModel::account_flow(tran, account.m_id) * convRate;
+            m_balance += trx_d.account_flow(account.m_id) * convRate;
         }
     }
 
     // Process all transations posted after today
     TrxModel::DataA trx_a = TrxModel::instance().find(
-        TrxModel::TRANSDATE(OP_GT, endOfToday),
-        TrxModel::TRANSDATE(OP_LT, endDate),
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
+        TrxModel::DATE(OP_GT, mmDate(endOfToday)),
+        TrxModel::DATE(OP_LT, mmDate(endDate)),
+        TrxModel::IS_VOID(false)
     );
     for (TrxData& trx_d : trx_a) {
         if (trx_d.is_deleted())
@@ -135,7 +135,7 @@ void FlowReport::getTransactions()
         ) != m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
-        const auto& tp_a = TrxModel::find_split(trx_d);
+        const auto& tp_a = TrxModel::instance().find_data_split_a(trx_d);
         if (tp_a.empty()) {
             trx_d.m_amount = trueAmount(trx_d);
             m_forecastVector.push_back(trx_d);
@@ -152,7 +152,7 @@ void FlowReport::getTransactions()
 
     // Gather the recurring transaction list
     for (const auto& sched_d : SchedModel::instance().find(
-        SchedModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
+        SchedModel::IS_VOID(false)
     )) {
         wxDateTime next_date = sched_d.m_due_date.getDateTime();
         if (next_date > endDate)
@@ -240,7 +240,7 @@ wxString FlowReport::getHTMLText_DayOrMonth(bool monthly)
 
     // squash the data by month or day
     for (const auto& trx_d : m_forecastVector) {
-        dt = TrxModel::getTransDateTime(trx_d);
+        dt = trx_d.m_date_time.getDateTime();
         wxString date = dt.FormatISODate();
         if (monthly) {
             date = dt.SetDay(1).FormatISODate();

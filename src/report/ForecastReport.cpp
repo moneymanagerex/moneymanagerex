@@ -45,8 +45,8 @@ wxString ForecastReport::getHTMLText()
     
     if (m_date_range && m_date_range->is_with_date()) {
         trx_a = TrxModel::instance().find(
-            TrxModel::TRANSDATE(OP_GE, mmDate(m_date_range->start_date())),
-            TrxModel::TRANSDATE(OP_LE, mmDate(m_date_range->end_date()))
+            TrxModel::DATE(OP_GE, mmDate(m_date_range->start_date())),
+            TrxModel::DATE(OP_LE, mmDate(m_date_range->end_date()))
         );
     }
     else {
@@ -62,9 +62,9 @@ wxString ForecastReport::getHTMLText()
         );
         // FIXME: use only the date part
         amount_by_day[trx_d.m_date_time.isoDateTime()].first +=
-            TrxModel::account_outflow(trx_d, trx_d.m_account_id) * convRate;
+            trx_d.account_outflow(trx_d.m_account_id) * convRate;
         amount_by_day[trx_d.m_date_time.isoDateTime()].second +=
-            TrxModel::account_inflow(trx_d, trx_d.m_account_id) * convRate;
+            trx_d.account_inflow(trx_d.m_account_id) * convRate;
     }
 
     // Build the report

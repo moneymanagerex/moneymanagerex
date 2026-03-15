@@ -221,18 +221,19 @@ const wxString htmlWidgetTop7Categories::getHTMLText()
 }
 
 void htmlWidgetTop7Categories::getTopCategoryStats(
-    std::vector<std::pair<wxString, double> > &categoryStats
-    , const mmDateRange* date_range) const
+    std::vector<std::pair<wxString, double> > &categoryStats,
+    const mmDateRange* date_range
+) const
 {
     // Temporary map
     std::map<int64 /*category_id*/, double> stat;
 
     const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto& trx_a = TrxModel::instance().find(
-        TrxModel::TRANSDATE(OP_GE, date_range->start_date()),
-        TrxCol::TRANSDATE(OP_LE, date_range->end_date().FormatISOCombined()),
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void)),
-        TrxModel::TRANSCODE(OP_NE, TrxType(TrxType::e_transfer))
+        TrxModel::DATE(OP_GE, mmDate(date_range->start_date())),
+        TrxModel::DATE(OP_LE, mmDate(date_range->end_date())),
+        TrxModel::TYPE(OP_NE, TrxType(TrxType::e_transfer)),
+        TrxModel::IS_VOID(false)
     );
 
     for (const auto& trx_d : trx_a) {
@@ -312,8 +313,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
     for (const auto& sched_d : SchedModel::instance().find_all(
         SchedCol::COL_ID_TRANSDATE
     )) {
-        int daysPayment = SchedModel::getTransDateTime(sched_d)
-            .Subtract(today).GetDays();
+        int daysPayment = sched_d.m_date_time.getDateTime().Subtract(today).GetDays();
         if (daysPayment > 14)
             break; // Done searching for all to include
 
@@ -412,10 +412,10 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 
     // Calculations
     for (const auto& trx_d : TrxModel::instance().find(
-        TrxModel::TRANSDATE(OP_GE, date_range.get()->start_date()),
-        TrxCol::TRANSDATE(OP_LE, date_range.get()->end_date().FormatISOCombined()),
-        TrxModel::TRANSCODE(OP_NE, TrxType(TrxType::e_transfer)),
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
+        TrxModel::DATE(OP_GE, mmDate(date_range.get()->start_date())),
+        TrxModel::DATE(OP_LE, mmDate(date_range.get()->end_date())),
+        TrxModel::TYPE(OP_NE, TrxType(TrxType::e_transfer)),
+        TrxModel::IS_VOID(false)
     )) {
         // Do not include asset or stock transfers or deleted transactions
         // in income expense calculations.
@@ -501,7 +501,7 @@ const wxString htmlWidgetStatistics::getHTMLText()
     if (PrefModel::instance().getIgnoreFutureTransactionsHomePage()) {
         date_range = new mmCurrentMonthToDate;
         trx_a = TrxModel::instance().find(
-            TrxModel::TRANSDATE(OP_LE, mmDate::today()));
+            TrxModel::DATE(OP_LE, mmDate::today()));
     }
     else {
         date_range = new mmCurrentMonth;
@@ -525,15 +525,15 @@ const wxString htmlWidgetStatistics::getHTMLText()
             countFollowUp++;
 
         accountStats[trx_d.m_account_id].first +=
-            TrxModel::account_recflow(trx_d, trx_d.m_account_id);
+            trx_d.account_recflow(trx_d.m_account_id);
         accountStats[trx_d.m_account_id].second +=
-            TrxModel::account_flow(trx_d, trx_d.m_account_id);
+            trx_d.account_flow(trx_d.m_account_id);
 
         if (trx_d.is_transfer()) {
             accountStats[trx_d.m_to_account_id_n].first +=
-                TrxModel::account_recflow(trx_d, trx_d.m_to_account_id_n);
+                trx_d.account_recflow(trx_d.m_to_account_id_n);
             accountStats[trx_d.m_to_account_id_n].second +=
-                TrxModel::account_flow(trx_d, trx_d.m_to_account_id_n);
+                trx_d.account_flow(trx_d.m_to_account_id_n);
         }
     }
 
@@ -698,10 +698,7 @@ void htmlWidgetAccounts::get_account_stats()
     if (PrefModel::instance().getIgnoreFutureTransactionsHomePage()) {
         date_range = new mmCurrentMonthToDate;
         trx_a = TrxModel::instance().find(
-            TrxModel::TRANSDATE(OP_LE, PrefModel::instance().UseTransDateTime()
-                ? wxDateTime::Now()
-                : wxDateTime(23, 59, 59, 999)
-            )
+            TrxModel::DATE(OP_LE, mmDate::today())
         );
     }
     else {
@@ -711,15 +708,15 @@ void htmlWidgetAccounts::get_account_stats()
 
     for (const auto& trx_d : trx_a) {
         accountStats_[trx_d.m_account_id].first +=
-            TrxModel::account_recflow(trx_d, trx_d.m_account_id);
+            trx_d.account_recflow(trx_d.m_account_id);
         accountStats_[trx_d.m_account_id].second +=
-            TrxModel::account_flow(trx_d, trx_d.m_account_id);
+            trx_d.account_flow(trx_d.m_account_id);
 
         if (trx_d.is_transfer()) {
             accountStats_[trx_d.m_to_account_id_n].first +=
-                TrxModel::account_recflow(trx_d, trx_d.m_to_account_id_n);
+                trx_d.account_recflow(trx_d.m_to_account_id_n);
             accountStats_[trx_d.m_to_account_id_n].second +=
-                TrxModel::account_flow(trx_d, trx_d.m_to_account_id_n);
+                trx_d.account_flow(trx_d.m_to_account_id_n);
         }
     }
 }

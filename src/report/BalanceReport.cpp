@@ -47,15 +47,15 @@ BalanceReport::BalanceReport(BalanceReport::PERIOD_ID period_id) :
 
 std::map<wxDate, double> BalanceReport::loadCheckingDateBalance(const AccountData& account)
 {
-    std::map<wxDate, double> date_balance;
+    std::map<wxDate, double> date_balance_m;
     double balance = account.m_open_balance;
 
-    for (const auto& tran : AccountModel::instance().find_id_trx_aBySN(account.m_id)) {
-        wxDate date = TrxModel::getTransDateTime(tran);
-        balance += TrxModel::account_flow(tran, account.m_id);
-        date_balance[date] = balance;
+    for (const auto& trx_d : AccountModel::instance().find_id_trx_aBySN(account.m_id)) {
+        wxDate date = trx_d.m_date_time.getDateTime();
+        balance += trx_d.account_flow(account.m_id);
+        date_balance_m[date] = balance;
     }
-    return date_balance;
+    return date_balance_m;
 }
 
 static bool sortFunction(const std::pair<wxDate, double> x, std::pair<wxDate, double> y)

@@ -318,8 +318,8 @@ void TrxLinkDialog::SetLastPayeeAndCategory(const int64 account_id)
 {
     if (PrefModel::instance().getTransPayeeNone() == PrefModel::LASTUSED) {
         TrxModel::DataA trans_list = TrxModel::instance().find(
-            TrxCol::ACCOUNTID(account_id),
-            TrxModel::TRANSCODE(OP_NE, TrxType(TrxType::e_transfer))
+            TrxModel::TYPE(OP_NE, TrxType(TrxType::e_transfer)),
+            TrxCol::ACCOUNTID(account_id)
         );
         if (!trans_list.empty()) {
             int last_trans_pos = trans_list.size() - 1;
@@ -398,7 +398,7 @@ void TrxLinkDialog::OnTransCategoryCombobox(wxCommandEvent& WXUNUSED(event))
 void TrxLinkDialog::OnFrequentNotes(wxCommandEvent& WXUNUSED(event))
 {
     std::vector<wxString> frequent_notes;
-    TrxModel::getFrequentUsedNotes(frequent_notes);
+    TrxModel::instance().getFrequentUsedNotes(frequent_notes);
     wxMenu menu;
     int id = wxID_HIGHEST;
     for (const auto& entry : frequent_notes)

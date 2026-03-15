@@ -1726,7 +1726,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             TrxCol::TOACCOUNTID(fromAccountID)
         );
         std::sort(trx_a.begin(), trx_a.end());
-        std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByDateTime());
 
         for (const auto& trx_d : trx_a) {
             if (!trx_d.is_valid())
@@ -1734,7 +1734,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
 
             TrxModel::Full_Data tran(trx_d, trxId_tpA_m, trxId_glA_m);
             bool has_split = tran.has_split();
-            double value = TrxModel::account_flow(trx_d, fromAccountID);
+            double value = trx_d.account_flow(fromAccountID);
             account_balance += value;
 
             if (!has_split) {
@@ -1746,9 +1746,13 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             }
 
             for (const auto& tp_d : tran.m_splits) {
-                //Export the transaction only if the transaction is between the selected dates or if the user select to export all the transactions regardless of their date
-                if (TrxModel::getTransDateTime(trx_d).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) || m_haveDatesCheckBox->IsChecked()==false
-                ) {
+                // Export the transaction only if the transaction is between
+                // the selected dates or if the user select to export all
+                // the transactions regardless of their date
+                if (trx_d.m_date_time.getDateTime().IsBetween(
+                    m_date_picker_start->GetValue(),
+                    m_date_picker_end->GetValue()
+                ) || !m_haveDatesCheckBox->IsChecked()) {
                     pTxFile->AddNewLine();
 
                     const CategoryData* category = CategoryModel::instance().get_id_data_n(
@@ -1768,7 +1772,10 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
                         switch (it.first)
                         {
                         case UNIV_CSV_DATE:
-                            entry = mmGetDateTimeForDisplay(TrxModel::getTransDateTime(trx_d).FormatISODate(), date_format_);
+                            entry = mmGetDateTimeForDisplay(
+                                trx_d.m_date().isoDate(),
+                                date_format_
+                            );
                             break;
                         case UNIV_CSV_PAYEE:
                             entry = tran.real_payee_name(fromAccountID);
@@ -2116,18 +2123,19 @@ void mmUnivCSVDialog::update_preview()
                     TrxCol::TOACCOUNTID(fromAccountID)
                 );
                 std::sort(trx_a.begin(), trx_a.end());
-                std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
+                std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByDateTime());
                 for (const auto& trx_d : trx_a) {
                     if (!trx_d.is_valid())
                         continue;
 
                     //If the transaction happened between the dates that the user selected or if the user selected to export all the transactions regardless of date then the row is added to the preview
-                    if (TrxModel::getTransDateTime(trx_d).IsBetween(m_date_picker_start->GetValue(),m_date_picker_end->GetValue()) ||
-                        m_haveDatesCheckBox->GetValue() == false
-                    ) {
+                    if (trx_d.m_date_time.getDateTime().IsBetween(
+                        m_date_picker_start->GetValue(),
+                        m_date_picker_end->GetValue()
+                    ) || !m_haveDatesCheckBox->GetValue()) {
                         TrxModel::Full_Data tran(trx_d, trxId_tpA_m, trxId_glA_m);
                         bool has_split = tran.has_split();
-                        double value = TrxModel::account_flow(trx_d, fromAccountID);
+                        double value = trx_d.account_flow(fromAccountID);
                         account_balance += value;
 
                         if (!has_split) {
@@ -2166,7 +2174,10 @@ void mmUnivCSVDialog::update_preview()
                                     text << wxString::Format("%lld", tran.m_id);
                                     break;
                                 case UNIV_CSV_DATE:
-                                    text << inQuotes(mmGetDateTimeForDisplay(TrxModel::getTransDateTime(trx_d).FormatISODate(), date_format_), delimit);
+                                    text << inQuotes(mmGetDateTimeForDisplay(
+                                        trx_d.m_date().isoDate(),
+                                        date_format_
+                                    ), delimit);
                                     break;
                                 case UNIV_CSV_PAYEE:
                                     text << inQuotes(tran.real_payee_name(fromAccountID), delimit);

@@ -62,6 +62,37 @@ TrxModel& TrxModel::instance()
     return Singleton<TrxModel>::instance();
 }
 
+TrxCol::TRANSDATE TrxModel::DATE(OP op, const mmDate& date)
+{
+    // OP_EQ and OP_NE should not be used for date comparisons.
+    // if needed, create an equivalent AND/OR combination of two other operators.
+    wxString bound =
+        (op == OP_GE || op == OP_LT) ? date.isoStart()
+        : (op == OP_LE || op == OP_GT) ? date.isoEnd()
+        : date.isoDate();
+    return TrxCol::TRANSDATE(op, bound);
+}
+
+TrxCol::TRANSCODE TrxModel::TYPE(OP op, TrxType trx_type)
+{
+    return TrxCol::TRANSCODE(op, trx_type.name());
+}
+
+TrxCol::STATUS TrxModel::STATUS(OP op, TrxStatus trx_status)
+{
+    return TrxCol::STATUS(op, trx_status.key());
+}
+
+TrxCol::STATUS TrxModel::IS_VOID(bool value)
+{
+    return TrxCol::STATUS(value ? OP_EQ : OP_NE, TrxStatus(TrxStatus::e_void).key());
+}
+
+TrxCol::DELETEDTIME TrxModel::IS_DELETED(bool value)
+{
+    return TrxCol::DELETEDTIME(value ? OP_NE : OP_EQ, wxEmptyString);
+}
+
 void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
 {
     this_n->m_date_time       = other_d.m_date_time;
@@ -79,50 +110,6 @@ void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
     this_n->m_color           = other_d.m_color;
 }
 
-wxDateTime TrxModel::getTransDateTime(const Data& this_d)
-{
-    return this_d.m_date_time.getDateTime();
-}
-
-double TrxModel::account_flow(const Data& this_d, int64 account_id)
-{
-    // Self Transfer as Revaluation
-    if (this_d.m_account_id == this_d.m_to_account_id_n && this_d.is_transfer())
-        return 0.0;
-
-    if (!this_d.is_valid())
-        return 0.0;
-
-    if (account_id == this_d.m_account_id && this_d.is_withdrawal())
-        return -(this_d.m_amount);
-    if (account_id == this_d.m_account_id && this_d.is_deposit())
-        return this_d.m_amount;
-    if (account_id == this_d.m_account_id && this_d.is_transfer())
-        return -(this_d.m_amount);
-    if (account_id == this_d.m_to_account_id_n && this_d.is_transfer())
-        return this_d.m_to_amount;
-    return 0.0;
-}
-
-double TrxModel::account_outflow(const Data& this_d, int64 account_id)
-{
-    double bal = account_flow(this_d, account_id);
-    return bal <= 0 ? -bal : 0;
-}
-
-double TrxModel::account_inflow(const Data& this_d, int64 account_id)
-{
-    double bal = account_flow(this_d, account_id);
-    return bal >= 0 ? bal : 0;
-}
-
-double TrxModel::account_recflow(const Data& this_d, int64 account_id)
-{
-    return (this_d.is_reconciled())
-        ? account_flow(this_d, account_id)
-        : 0;
-}
-
 // same as TrxModel::Full_Data::is_foreign()
 bool TrxModel::is_foreign(const Data& this_d)
 {
@@ -138,69 +125,113 @@ bool TrxModel::is_foreignAsTransfer(const Data& this_d)
     );
 }
 
-TrxCol::TRANSDATE TrxModel::TRANSDATE(OP op, const wxString& date_iso_str)
+bool TrxModel::purge_id(int64 trx_id)
 {
-    return TrxCol::TRANSDATE(op, date_iso_str);
+    // TODO: remove all split at once
+    // TrxSplitModel::instance().purge_id(TrxSplitModel::instance().find(TrxSplitCol::TRANSID(trx_id)));
+    for (const auto& tp_d : TrxSplitModel::instance().find(
+        TrxSplitCol::TRANSID(trx_id)
+    )) {
+        TrxSplitModel::instance().purge_id(tp_d.m_id);
+    }
+
+    if (is_foreign(*instance().get_id_data_n(trx_id))) {
+        const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(trx_id);
+        if (tl_n) {
+            TrxShareModel::instance().purge_trxId(tl_n->m_trx_id);
+            TrxLinkModel::instance().purge_id(tl_n->m_id);
+            if (tl_n->m_ref_type == AssetModel::s_ref_type) {
+                AssetData* asset_n = AssetModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
+                TrxLinkModel::instance().update_asset_value(asset_n);
+            }
+            else if (tl_n->m_ref_type == StockModel::s_ref_type) {
+                StockData* stock_n = StockModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
+                StockModel::instance().update_data_position(stock_n);
+            }
+        }
+    }
+
+    mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, trx_id);
+    FieldValueModel::instance().purge_ref(s_ref_type, trx_id);
+    TagLinkModel::instance().purge_ref(s_ref_type, trx_id);
+    return unsafe_remove_id(trx_id);
 }
 
-TrxCol::TRANSDATE TrxModel::TRANSDATE(OP op, const mmDate& date)
+void TrxModel::save_timestamp(int64 trx_id)
 {
-    // OP_EQ and OP_NE should not be used for date comparisons.
-    // if needed, create an equivalent AND/OR combination of two other operators.
-    wxString bound =
-        (op == OP_GE || op == OP_LT) ? date.isoStart()
-        : (op == OP_LE || op == OP_GT) ? date.isoEnd()
-        : date.isoDate();
-    return TrxCol::TRANSDATE(op, bound);
+    Data* trx_n = instance().unsafe_get_id_data_n(trx_id);
+    if (trx_n && trx_n->m_id == trx_id) {
+        trx_n->m_updated_time_n = mmDateTime::now();
+        unsafe_update_data_n(trx_n);
+    }
 }
 
-TrxCol::TRANSDATE TrxModel::TRANSDATE(OP op, const wxDateTime& date)
+void TrxModel::update_timestamp(Data& trx_d)
 {
-    // the boundary has granularity of a day
-    return TrxModel::TRANSDATE(op, mmDate(date));
+    // get record from database bypassing the cache
+    TrxModel::DataA trx_a = TrxModel::instance().find(
+        TrxCol::TRANSID(trx_d.m_id)
+    );
+    if (trx_a.size() == 0 || (!trx_a[0].equals(&trx_d) &&
+        !trx_a[0].is_deleted() && !trx_d.is_deleted()
+    )) {
+        trx_d.m_updated_time_n = mmDateTime::now();
+    }
 }
 
-TrxCol::DELETEDTIME TrxModel::DELETEDTIME(OP op, const wxString& date)
+const TrxData* TrxModel::unsafe_save_trx_n(Data* trx_n)
 {
-    return TrxCol::DELETEDTIME(op, date);
+    update_timestamp(*trx_n);
+    return unsafe_save_data_n(trx_n);
 }
 
-TrxCol::STATUS TrxModel::STATUS(OP op, TrxStatus trx_status)
+const TrxData* TrxModel::save_trx_n(Data& trx_d)
 {
-    return TrxCol::STATUS(op, trx_status.key());
+    update_timestamp(trx_d);
+    return save_data_n(trx_d);
 }
 
-TrxCol::TRANSCODE TrxModel::TRANSCODE(OP op, TrxType trx_type)
+bool TrxModel::save_trx_a(DataA& trx_a)
 {
-    return TrxCol::TRANSCODE(op, trx_type.name());
+    bool ok = true;
+
+    db_savepoint();
+    for (auto& trx_d : trx_a) {
+        if (trx_d.m_id < 0)
+            wxLogDebug("Incorrect function call to save %s", trx_d.to_json().utf8_str());
+        if (!save_trx_n(trx_d)) {
+            ok = false;
+            break;
+        }
+    }
+    db_release_savepoint();
+
+    return ok;
 }
 
-TrxCol::TRANSACTIONNUMBER TrxModel::TRANSACTIONNUMBER(OP op, const wxString& num)
-{
-    return TrxCol::TRANSACTIONNUMBER(op, num);
-}
-
-const TrxModel::DataA TrxModel::find_allByDateTimeId()
-{
-    auto trx_a = TrxModel::instance().find_all();
-    // first sort by id, then stable sort by datetime or date only
-    std::sort(trx_a.begin(), trx_a.end());
-    if (PrefModel::instance().UseTransDateTime())
-        std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
-    else
-        std::stable_sort(trx_a.begin(), trx_a.end(), TrxModel::SorterByTRANSDATE_DATE());
-    return trx_a;
-}
-
-const TrxSplitModel::DataA TrxModel::find_split(const Data& trx_d)
+const TrxSplitModel::DataA TrxModel::find_data_split_a(const Data& trx_d)
 {
     return TrxSplitModel::instance().find(
         TrxSplitCol::TRANSID(trx_d.m_id)
     );
 }
 
-bool CompareUsedNotes(const std::tuple<int, wxString, wxString>& a, const std::tuple<int, wxString, wxString>& b)
+const TrxModel::DataA TrxModel::find_all_aDateTimeId()
 {
+    DataA trx_a = TrxModel::instance().find_all();
+    // first sort by id, then stable sort by datetime or date only
+    std::sort(trx_a.begin(), trx_a.end());
+    if (PrefModel::instance().UseTransDateTime())
+        std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByDateTime());
+    else
+        std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByDate());
+    return trx_a;
+}
+
+bool CompareUsedNotes(
+    const std::tuple<int, wxString, wxString>& a,
+    const std::tuple<int, wxString, wxString>& b
+) {
     if (std::get<0>(a) < std::get<0>(b)) return true;
     if (std::get<0>(b) < std::get<0>(a)) return false;
 
@@ -282,99 +313,13 @@ bool TrxModel::is_locked(const Data& trx_d)
 {
     // FIXME: check if m_to_account_id_n is locked
     const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
-    return account_n->is_locked_for(trx_d.m_date());
-}
-
-bool TrxModel::purge_id(int64 trx_id)
-{
-    // TODO: remove all split at once
-    // TrxSplitModel::instance().purge_id(TrxSplitModel::instance().find(TrxSplitCol::TRANSID(trx_id)));
-    for (const auto& tp_d : TrxSplitModel::instance().find(
-        TrxSplitCol::TRANSID(trx_id)
-    )) {
-        TrxSplitModel::instance().purge_id(tp_d.m_id);
-    }
-
-    if (is_foreign(*instance().get_id_data_n(trx_id))) {
-        const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(trx_id);
-        if (tl_n) {
-            TrxShareModel::instance().purge_trxId(tl_n->m_trx_id);
-            TrxLinkModel::instance().purge_id(tl_n->m_id);
-            if (tl_n->m_ref_type == AssetModel::s_ref_type) {
-                AssetData* asset_n = AssetModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
-                TrxLinkModel::instance().update_asset_value(asset_n);
-            }
-            else if (tl_n->m_ref_type == StockModel::s_ref_type) {
-                StockData* stock_n = StockModel::instance().unsafe_get_id_data_n(tl_n->m_ref_id);
-                StockModel::instance().update_data_position(stock_n);
-            }
-        }
-    }
-
-    // remove all attachments
-    mmAttachmentManage::DeleteAllAttachments(TrxModel::s_ref_type, trx_id);
-    // remove all custom fields for the transaction
-    FieldValueModel::instance().purge_ref(s_ref_type, trx_id);
-    TagLinkModel::instance().purge_ref(s_ref_type, trx_id);
-    return unsafe_remove_id(trx_id);
-}
-
-void TrxModel::save_timestamp(int64 trx_id)
-{
-    Data* trx_n = instance().unsafe_get_id_data_n(trx_id);
-    if (trx_n && trx_n->m_id == trx_id) {
-        trx_n->m_updated_time_n = mmDateTime::now();
-        unsafe_update_data_n(trx_n);
-    }
-}
-
-void TrxModel::update_timestamp(Data& trx_d)
-{
-    // get record from database bypassing the cache
-    TrxModel::DataA trx_a = TrxModel::instance().find(
-        TrxCol::TRANSID(trx_d.m_id)
-    );
-    if (trx_a.size() == 0 || (!trx_a[0].equals(&trx_d) &&
-        !trx_a[0].is_deleted() && !trx_d.is_deleted()
-    )) {
-        trx_d.m_updated_time_n = mmDateTime::now();
-    }
-}
-
-const TrxData* TrxModel::unsafe_save_trx_n(Data* trx_n)
-{
-    update_timestamp(*trx_n);
-    return unsafe_save_data_n(trx_n);
-}
-
-const TrxData* TrxModel::save_trx_n(Data& trx_d)
-{
-    update_timestamp(trx_d);
-    return save_data_n(trx_d);
-}
-
-bool TrxModel::save_trx_a(DataA& trx_a)
-{
-    bool ok = true;
-
-    db_savepoint();
-    for (auto& trx_d : trx_a) {
-        if (trx_d.m_id < 0)
-            wxLogDebug("Incorrect function call to save %s", trx_d.to_json().utf8_str());
-        if (!save_trx_n(trx_d)) {
-            ok = false;
-            break;
-        }
-    }
-    db_release_savepoint();
-
-    return ok;
+    return account_n && account_n->is_locked_for(trx_d.m_date());
 }
 
 TrxModel::Full_Data::Full_Data() :
     Data(), TAGNAMES(""),
-    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
-    SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
+    m_account_w_id_n(-1), m_account_d_id_n(-1), m_amount_w(0), m_amount_d(0),
+    SN(0), m_account_flow(0), m_account_balance(0)
 {
 }
 
@@ -385,8 +330,8 @@ TrxModel::Full_Data::Full_Data(const Data& r) :
     m_tags(TagLinkModel::instance().find(
         TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
         TagLinkCol::REFID(r.m_id))),
-    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
-    SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
+    m_account_w_id_n(-1), m_account_d_id_n(-1), m_amount_w(0), m_amount_d(0),
+    SN(0), m_account_flow(0), m_account_balance(0)
 {
     fill_data();
 }
@@ -397,8 +342,8 @@ TrxModel::Full_Data::Full_Data(
     const std::map<int64 /* m_id */, TagLinkModel::DataA>& tags
 ) :
     Data(r),
-    ACCOUNTID_W(-1), ACCOUNTID_D(-1), TRANSAMOUNT_W(0), TRANSAMOUNT_D(0),
-    SN(0), ACCOUNT_FLOW(0), ACCOUNT_BALANCE(0)
+    m_account_w_id_n(-1), m_account_d_id_n(-1), m_amount_w(0), m_amount_d(0),
+    SN(0), m_account_flow(0), m_account_balance(0)
 {
     if (const auto it = splits.find(this->id()); it != splits.end()) m_splits = it->second;
 
@@ -440,14 +385,14 @@ void TrxModel::Full_Data::fill_data()
     }
 
     if (is_withdrawal()) {
-        ACCOUNTID_W = m_account_id; TRANSAMOUNT_W = m_amount;
+        m_account_w_id_n = m_account_id; m_amount_w = m_amount;
     }
     else if (is_deposit()) {
-        ACCOUNTID_D = m_account_id; TRANSAMOUNT_D = m_amount;
+        m_account_d_id_n = m_account_id; m_amount_d = m_amount;
     }
     else if (is_transfer()) {
-        ACCOUNTID_W = m_account_id; TRANSAMOUNT_W = m_amount;
-        ACCOUNTID_D = m_to_account_id_n; TRANSAMOUNT_D = m_to_amount;
+        m_account_w_id_n = m_account_id; m_amount_w = m_amount;
+        m_account_d_id_n = m_to_account_id_n; m_amount_d = m_to_amount;
     }
 }
 
@@ -512,7 +457,7 @@ bool TrxModel::Full_Data::is_foreign_transfer() const
 wxString TrxModel::Full_Data::info() const
 {
     // TODO more info
-    wxDate date = TrxModel::getTransDateTime(*this);
+    wxDate date = m_date_time.getDateTime();
     wxString info = wxGetTranslation(wxDate::GetEnglishWeekDayName(date.GetWeekDay()));
     return info;
 }

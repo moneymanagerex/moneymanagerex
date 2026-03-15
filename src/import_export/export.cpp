@@ -113,7 +113,7 @@ const wxString mmExportTransaction::getTransactionCSV(
 
         buffer << inQuotes(payee, delimiter) << delimiter;
         buffer << inQuotes(categ, delimiter) << delimiter;
-        double value = TrxModel::account_flow(trx_xd, account_id);
+        double value = trx_xd.account_flow(account_id);
         const wxString& s = wxString::FromCDouble(value, 2);
         buffer << inQuotes(s, delimiter) << delimiter;
         buffer << inQuotes(currency, delimiter) << delimiter;
@@ -171,8 +171,8 @@ const wxString mmExportTransaction::getTransactionQIF(
 
     buffer << "D" << mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime(), dateMask) << "\n";
     buffer << "C" << (trx_xd.is_reconciled() ? "R" : "") << "\n";
-    double value = TrxModel::account_flow(trx_xd,
-        (reverse ? trx_xd.m_to_account_id_n : trx_xd.m_account_id)
+    double value = trx_xd.account_flow(
+        reverse ? trx_xd.m_to_account_id_n : trx_xd.m_account_id
     );
     const wxString& s = wxString::FromCDouble(value, 2);
     buffer << "T" << s << "\n";

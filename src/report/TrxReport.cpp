@@ -180,9 +180,9 @@ table {
         else if (groupBy == TrxFilterDialog::GROUPBY_DAY)
             sortLabel = mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime());
         else if (groupBy == TrxFilterDialog::GROUPBY_MONTH)
-            sortLabel = TrxModel::getTransDateTime(trx_xd).Format("%Y-%m");
+            sortLabel = trx_xd.m_date_time.getDateTime().Format("%Y-%m");
         else if (groupBy == TrxFilterDialog::GROUPBY_YEAR)
-            sortLabel = TrxModel::getTransDateTime(trx_xd).Format("%Y");
+            sortLabel = trx_xd.m_date_time.getDateTime().Format("%Y");
 
         if (sortLabel != lastSortLabel) {
             if (lastSortLabel != "") {
@@ -324,7 +324,7 @@ table {
 
                 if (account_n) {
                     const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(*account_n);
-                    double flow = TrxModel::account_flow(trx_xd, account_n->m_id);
+                    double flow = trx_xd.account_flow(account_n->m_id);
                     if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_account_id) == selected_accounts.end())))
                         flow = -flow;
                     const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
@@ -612,7 +612,7 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
             trx_xa.push_back(trx_xd);
     }
 
-    std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
+    std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByDateTime());
     switch (dlg.get()->mmGetGroupBy())
     {
     case TrxFilterDialog::GROUPBY_ACCOUNT:
@@ -625,16 +625,16 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
         std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxModel::SorterByCATEGNAME());
         break;
     case TrxFilterDialog::GROUPBY_TYPE:
-        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSCODE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByType());
         break;
     case TrxFilterDialog::GROUPBY_DAY:
-        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByDateTime());
         break;
     case TrxFilterDialog::GROUPBY_MONTH:
-        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByDateTime());
         break;
     case TrxFilterDialog::GROUPBY_YEAR:
-        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByDateTime());
         break;
     }
 }

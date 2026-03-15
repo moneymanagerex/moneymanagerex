@@ -79,7 +79,12 @@ struct TrxData
     bool is_deleted()    const { return m_deleted_time_n.has_value(); }
     bool is_valid()      const { return !is_void() && !is_deleted(); }
 
-    struct SorterByTRANSID
+    double account_flow(int64 account_id) const;
+    double account_inflow(int64 account_id) const;
+    double account_outflow(int64 account_id) const;
+    double account_recflow(int64 account_id) const;
+
+    struct SorterById
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
@@ -87,79 +92,7 @@ struct TrxData
         }
     };
 
-    struct SorterByACCOUNTID
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_account_id < y.m_account_id;
-        }
-    };
-
-    struct SorterByTOACCOUNTID
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_to_account_id_n < y.m_to_account_id_n;
-        }
-    };
-
-    struct SorterByPAYEEID
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_payee_id_n < y.m_payee_id_n;
-        }
-    };
-
-    struct SorterByTRANSCODE
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_type.id() < y.m_type.id();
-        }
-    };
-
-    struct SorterByTRANSAMOUNT
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_amount < y.m_amount;
-        }
-    };
-
-    struct SorterBySTATUS
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_status.id() < y.m_status.id();
-        }
-    };
-
-    struct SorterByTRANSACTIONNUMBER
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_number < y.m_number;
-        }
-    };
-
-    struct SorterByNOTES
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_notes < y.m_notes;
-        }
-    };
-
-    struct SorterByCATEGID
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_category_id_n < y.m_category_id_n;
-        }
-    };
-
-    struct SorterByTRANSDATE
+    struct SorterByDateTime
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
@@ -167,7 +100,123 @@ struct TrxData
         }
     };
 
-    struct SorterByLASTUPDATEDTIME
+    struct SorterByDate
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_date() < y.m_date();
+        }
+    };
+
+    struct SorterByTime
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return
+                x.m_date_time.getDateTime().FormatISOTime() <
+                y.m_date_time.getDateTime().FormatISOTime();
+        }
+    };
+
+    struct SorterByType
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_type.id() < y.m_type.id();
+        }
+    };
+
+    struct SorterByStatus
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_status.id() < y.m_status.id();
+        }
+    };
+
+    struct SorterByAccountId
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_account_id < y.m_account_id;
+        }
+    };
+
+    struct SorterByToAccountId
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_to_account_id_n < y.m_to_account_id_n;
+        }
+    };
+
+    struct SorterByPayeeId
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_payee_id_n < y.m_payee_id_n;
+        }
+    };
+
+    struct SorterByCategoryId
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_category_id_n < y.m_category_id_n;
+        }
+    };
+
+    struct SorterByAmount
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_amount < y.m_amount;
+        }
+    };
+
+    struct SorterByToAmount
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_to_amount < y.m_to_amount;
+        }
+    };
+
+    struct SorterByNumber
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_number.IsNumber() && y.m_number.IsNumber()
+                ? (wxAtoi(x.m_number) < wxAtoi(y.m_number))
+                : (x.m_number < y.m_number);
+        }
+    };
+
+    struct SorterByNotes
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_notes < y.m_notes;
+        }
+    };
+
+    struct SorterByFollowupId
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_followup_id < y.m_followup_id;
+        }
+    };
+
+    struct SorterByColor
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_color < y.m_color;
+        }
+    };
+
+    struct SorterByUpdatedTime
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
@@ -178,7 +227,7 @@ struct TrxData
         }
     };
 
-    struct SorterByDELETEDTIME
+    struct SorterByDeletedTime
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
@@ -186,30 +235,6 @@ struct TrxData
                 !y.m_deleted_time_n.has_value() ||
                 x.m_deleted_time_n.value() < y.m_deleted_time_n.value()
             );
-        }
-    };
-
-    struct SorterByFOLLOWUPID
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_followup_id < y.m_followup_id;
-        }
-    };
-
-    struct SorterByTOTRANSAMOUNT
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_to_amount < y.m_to_amount;
-        }
-    };
-
-    struct SorterByCOLOR
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_color < y.m_color;
         }
     };
 };

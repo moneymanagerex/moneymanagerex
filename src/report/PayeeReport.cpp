@@ -65,10 +65,10 @@ void PayeeReport::loadData()
 
     const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     for (const auto& trx_d : TrxModel::instance().find(
-        TrxModel::TRANSDATE(OP_GE, m_date_range2.rangeStart().value()),
-        TrxModel::TRANSDATE(OP_LE, m_date_range2.rangeEnd().value()),
-        TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void))
+        TrxModel::DATE(OP_GE, m_date_range2.rangeStart().value()),
+        TrxModel::DATE(OP_LE, m_date_range2.rangeEnd().value()),
+        TrxModel::IS_VOID(false),
+        TrxModel::IS_DELETED(false)
     )) {
         // Do not include asset or stock transfers
         if (TrxModel::is_foreignAsTransfer(trx_d))

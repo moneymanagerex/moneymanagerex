@@ -606,16 +606,16 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     //Auto scheduled transaction
     bool continueExecution = false;
 
-    SchedModel& bills = SchedModel::instance();
-    for (const auto& q1 : bills.find_all()) {
-        if (!bills.requires_execution(q1))
+    SchedModel& Q = SchedModel::instance();
+    for (const auto& q1 : Q.find_all()) {
+        if (!Q.requires_execution(q1))
             continue;
 
         SchedModel::RepeatNum rn;
-        if (!bills.decode_repeat_num(q1, rn))
+        if (!Q.decode_repeat_num(q1, rn))
             continue;
 
-        bool allow = bills.AllowTransaction(q1);
+        bool allow = Q.AllowTransaction(q1);
         if (rn.exec == SchedModel::REPEAT_EXEC_MANUAL) {
             if (allow) {
                 continueExecution = true;
@@ -634,7 +634,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             if (allow) {
                 continueExecution = true;
                 TrxData new_trx_d = TrxData();
-                new_trx_d.m_date_time       = mmDateTime(bills.getTransDateTime(q1));
+                new_trx_d.m_date_time       = q1.m_date_time;
                 new_trx_d.m_type            = q1.m_type;
                 new_trx_d.m_status          = q1.m_status;
                 new_trx_d.m_account_id      = q1.m_account_id;
@@ -1123,9 +1123,10 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
             }
         }
 
-        if (TrxModel::instance().find(
-            TrxCol::DELETEDTIME(OP_NE, wxEmptyString)
-            ).empty() || PrefModel::instance().getHideDeletedTransactions()
+        if (PrefModel::instance().getHideDeletedTransactions() ||
+            TrxModel::instance().find(
+                TrxModel::IS_DELETED(true)
+            ).empty()
         ) {
             if (trash) {
                 m_nav_tree_ctrl->Delete(trash);
@@ -4216,11 +4217,13 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::autocleanDeletedTransactions() {
-    wxDateSpan days = wxDateSpan::Days(SettingModel::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30));
+    wxDateSpan days = wxDateSpan::Days(
+        SettingModel::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30)
+    );
     wxDateTime earliestDate = wxDateTime().Now().ToUTC().Subtract(days);
     TrxModel::DataA deleted_trx_a = TrxModel::instance().find(
-        TrxCol::DELETEDTIME(OP_LE, earliestDate.FormatISOCombined()),
-        TrxCol::DELETEDTIME(OP_NE, wxEmptyString)
+        TrxCol::DELETEDTIME(OP_NE, wxEmptyString),
+        TrxCol::DELETEDTIME(OP_LE, earliestDate.FormatISOCombined())
     );
     if (deleted_trx_a.empty())
         return;

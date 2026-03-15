@@ -469,7 +469,7 @@ void JournalList::sortTransactions(int col_id, bool ascend)
         sortBy(Journal::SorterByJOURNALID(), ascend);
         break;
     case JournalList::LIST_ID_NUMBER:
-        sortBy(TrxModel::SorterByNUMBER(), ascend);
+        sortBy(TrxData::SorterByNumber(), ascend);
         break;
     case JournalList::LIST_ID_ACCOUNT:
         sortBy(TrxModel::SorterByACCOUNTNAME(), ascend);
@@ -478,7 +478,7 @@ void JournalList::sortTransactions(int col_id, bool ascend)
         sortBy(TrxModel::SorterByPAYEENAME(), ascend);
         break;
     case JournalList::LIST_ID_STATUS:
-        sortBy(TrxData::SorterBySTATUS(), ascend);
+        sortBy(TrxData::SorterByStatus(), ascend);
         break;
     case JournalList::LIST_ID_CATEGORY:
         sortBy(TrxModel::SorterByCATEGNAME(), ascend);
@@ -499,19 +499,19 @@ void JournalList::sortTransactions(int col_id, bool ascend)
         sortBy(TrxModel::SorterByBALANCE(), ascend);
         break;
     case JournalList::LIST_ID_NOTES:
-        sortBy(TrxData::SorterByNOTES(), ascend);
+        sortBy(TrxData::SorterByNotes(), ascend);
         break;
     case JournalList::LIST_ID_DATE:
         if (PrefModel::instance().TreatDateAsSN())
             sortBy(Journal::SorterByJOURNALSN(), ascend);
         else
-            sortBy(TrxModel::SorterByTRANSDATE_DATE(), ascend);
+            sortBy(TrxData::SorterByDate(), ascend);
         break;
     case JournalList::LIST_ID_TIME:
-        sortBy(TrxModel::SorterByTRANSDATE_TIME(), ascend);
+        sortBy(TrxData::SorterByTime(), ascend);
         break;
     case JournalList::LIST_ID_DELETEDTIME:
-        sortBy(TrxData::SorterByDELETEDTIME(), ascend);
+        sortBy(TrxData::SorterByDeletedTime(), ascend);
         break;
     case JournalList::LIST_ID_UDFC01:
         type_id_n = FieldModel::instance().get_udfc_type_n(TrxModel::s_ref_type, "UDFC01").id_n();
@@ -549,7 +549,7 @@ void JournalList::sortTransactions(int col_id, bool ascend)
             sortBy(SorterByUDFC05, ascend);
         break;
     case JournalList::LIST_ID_UPDATEDTIME:
-        sortBy(TrxData::SorterByLASTUPDATEDTIME(), ascend);
+        sortBy(TrxData::SorterByUpdatedTime(), ascend);
         break;
     default:
         break;
@@ -596,7 +596,7 @@ wxListItemAttr* JournalList::OnGetItemAttr(long item) const
 {
     if (item < 0 || item >= static_cast<int>(m_journal_xa.size())) return 0;
 
-    bool in_the_future = TrxModel::getTransDateTime(m_journal_xa[item]).FormatISOCombined() > m_today;
+    bool in_the_future = m_journal_xa[item].m_date_time.isoDateTime() > m_today;
     if (in_the_future && PrefModel::instance().getDoNotColorFuture()) {
         return (item % 2 ? m_attr3.get() : m_attr4.get());
     }
@@ -826,8 +826,10 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             copyText_ = m_journal_xa[row].displayID;
             break;
         case LIST_ID_DATE: {
-            copyText_ = menuItemText = mmGetDateTimeForDisplay(m_journal_xa[row].m_date_time.isoDateTime());
-            wxString strDate = TrxModel::getTransDateTime(m_journal_xa[row]).FormatISODate();
+            copyText_ = menuItemText = mmGetDateTimeForDisplay(
+                m_journal_xa[row].m_date_time.isoDateTime()
+            );
+            wxString strDate = m_journal_xa[row].m_date().isoDate();
             rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
             break;
         }
@@ -872,32 +874,51 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             break;
         case LIST_ID_WITHDRAWAL: {
             columnIsAmount = true;
-            const AccountData* account = AccountModel::instance().get_id_data_n(m_journal_xa[row].ACCOUNTID_W);
-            const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
-            if (currency) {
-                copyText_ = CurrencyModel::instance().toString(m_journal_xa[row].TRANSAMOUNT_W, currency);
-                menuItemText = wxString::Format("%.2f", m_journal_xa[row].TRANSAMOUNT_W);
-                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+            const AccountData* account_n = AccountModel::instance().get_id_data_n(
+                m_journal_xa[row].m_account_w_id_n
+            );
+            const CurrencyData* currency_n = account_n
+                ? CurrencyModel::instance().get_id_data_n(account_n->m_currency_id)
+                : nullptr;
+            if (currency_n) {
+                copyText_ = CurrencyModel::instance().toString(
+                    m_journal_xa[row].m_amount_w,
+                    currency_n
+                );
+                menuItemText = wxString::Format("%.2f", m_journal_xa[row].m_amount_w);
+                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText +
+                    ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
             }
             break;
         }
         case LIST_ID_DEPOSIT: {
             columnIsAmount = true;
-            const AccountData* account = AccountModel::instance().get_id_data_n(m_journal_xa[row].ACCOUNTID_D);
-            const CurrencyData* currency = account ? CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
-            if (currency) {
-                copyText_ = CurrencyModel::instance().toString(m_journal_xa[row].TRANSAMOUNT_D, currency);
-                menuItemText = wxString::Format("%.2f", m_journal_xa[row].TRANSAMOUNT_D);
-                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText + ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
+            const AccountData* account_n = AccountModel::instance().get_id_data_n(
+                m_journal_xa[row].m_account_d_id_n
+            );
+            const CurrencyData* currency_n = account_n
+                ? CurrencyModel::instance().get_id_data_n(account_n->m_currency_id)
+                : nullptr;
+            if (currency_n) {
+                copyText_ = CurrencyModel::instance().toString(
+                    m_journal_xa[row].m_amount_d,
+                    currency_n
+                );
+                menuItemText = wxString::Format("%.2f", m_journal_xa[row].m_amount_d);
+                rightClickFilter_ = "{\n\"AMOUNT_MIN\": " + menuItemText +
+                    ",\n\"AMOUNT_MAX\" : " + menuItemText + "\n}";
             }
             break;
         }
         case LIST_ID_BALANCE:
-            copyText_ = CurrencyModel::instance().toString(m_journal_xa[row].ACCOUNT_BALANCE, m_cp->m_currency_n);
+            copyText_ = CurrencyModel::instance().toString(
+                m_journal_xa[row].m_account_balance,
+                m_cp->m_currency_n
+            );
             break;
         case LIST_ID_CREDIT:
             copyText_ = CurrencyModel::instance().toString(
-                m_cp->m_account_n->m_credit_limit + m_journal_xa[row].ACCOUNT_BALANCE,
+                m_cp->m_account_n->m_credit_limit + m_journal_xa[row].m_account_balance,
                 m_cp->m_currency_n
             );
             break;
@@ -1579,8 +1600,7 @@ void JournalList::onMarkTransaction(wxCommandEvent& event)
         const AccountData* account_n = AccountModel::instance().get_id_data_n(
             m_journal_xa[row].m_account_id
         );
-        mmDateN trx_date_n = mmDateN(TrxModel::getTransDateTime(m_journal_xa[row]));
-        if (trx_date_n.has_value() && account_n->is_locked_for(trx_date_n.value()))
+        if (account_n->is_locked_for(m_journal_xa[row].m_date()))
             continue;
         //bRefreshRequired |= (status.id() == TrxStatus::e_void) || (m_journal_xa[row].is_void());
         if (!m_journal_xa[row].m_repeat_num) {
@@ -1755,7 +1775,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     }
 
     // Clone split transactions
-    for (const auto& tp_d : TrxModel::find_split(*tran)) {
+    for (const auto& tp_d : TrxModel::instance().find_data_split_a(*tran)) {
         TrxSplitData new_tp_d;
         new_tp_d.clone_from(tp_d);
         new_tp_d.m_trx_id = new_trx_id;
@@ -2057,39 +2077,44 @@ const wxString JournalList::getItem(long item, int col_id) const
     switch (col_id) {
     case LIST_ID_WITHDRAWAL:
         if (!m_cp->isAccount()) {
-            const AccountData* account = AccountModel::instance().get_id_data_n(journal_xd.ACCOUNTID_W);
+            const AccountData* account = AccountModel::instance().get_id_data_n(journal_xd.m_account_w_id_n);
             const CurrencyData* currency = account ?
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
-                value = CurrencyModel::instance().toCurrency(journal_xd.TRANSAMOUNT_W, currency);
+                value = CurrencyModel::instance().toCurrency(journal_xd.m_amount_w, currency);
         }
-        else if (journal_xd.ACCOUNTID_W == m_cp->m_account_id) {
-            value = CurrencyModel::instance().toString(journal_xd.TRANSAMOUNT_W, m_cp->m_currency_n);
+        else if (journal_xd.m_account_w_id_n == m_cp->m_account_id) {
+            value = CurrencyModel::instance().toString(journal_xd.m_amount_w, m_cp->m_currency_n);
         }
         if (!value.IsEmpty() && journal_xd.is_void())
             value = "* " + value;
         return value;
     case LIST_ID_DEPOSIT:
         if (!m_cp->isAccount()) {
-            const AccountData* account = AccountModel::instance().get_id_data_n(journal_xd.ACCOUNTID_D);
+            const AccountData* account = AccountModel::instance().get_id_data_n(
+                journal_xd.m_account_d_id_n
+            );
             const CurrencyData* currency = account ?
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
-                value = CurrencyModel::instance().toCurrency(journal_xd.TRANSAMOUNT_D, currency);
+                value = CurrencyModel::instance().toCurrency(journal_xd.m_amount_d, currency);
         }
-        else if (journal_xd.ACCOUNTID_D == m_cp->m_account_id) {
-            value = CurrencyModel::instance().toString(journal_xd.TRANSAMOUNT_D, m_cp->m_currency_n);
+        else if (journal_xd.m_account_d_id_n == m_cp->m_account_id) {
+            value = CurrencyModel::instance().toString(journal_xd.m_amount_d, m_cp->m_currency_n);
         }
         if (!value.IsEmpty() && journal_xd.is_void())
             value = "* " + value;
         return value;
     case LIST_ID_BALANCE:
         if (m_balance_valid)
-            value = CurrencyModel::instance().toString(journal_xd.ACCOUNT_BALANCE, m_cp->m_currency_n);
+            value = CurrencyModel::instance().toString(
+                journal_xd.m_account_balance,
+                m_cp->m_currency_n
+            );
         return value;
     case LIST_ID_CREDIT:
         return CurrencyModel::instance().toString(
-            m_cp->m_account_n->m_credit_limit + journal_xd.ACCOUNT_BALANCE,
+            m_cp->m_account_n->m_credit_limit + journal_xd.m_account_balance,
             m_cp->m_currency_n
         );
     }

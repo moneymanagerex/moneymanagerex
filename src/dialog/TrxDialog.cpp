@@ -138,13 +138,13 @@ TrxDialog::TrxDialog(
         ) {
             // Use the empty transaction logic to generate the new date to be used
             TrxData emptyTrx;
-            TrxModel::setEmptyData(emptyTrx, account_id);
+            TrxModel::instance().setEmptyData(emptyTrx, account_id);
             m_journal_data.m_date_time = emptyTrx.m_date_time;
         }
     }
     else {
         m_mode = MODE_NEW;
-        TrxModel::setEmptyData(m_journal_data, account_id);
+        TrxModel::instance().setEmptyData(m_journal_data, account_id);
         m_journal_data.m_type = type;
     }
 
@@ -228,7 +228,7 @@ void TrxDialog::dataToControls()
     TrxModel&      T  = TrxModel::instance();
     TagLinkModel&  GL = TagLinkModel::instance();
 
-    TrxModel::getFrequentUsedNotes(frequentNotes_, m_journal_data.m_account_id);
+    TrxModel::instance().getFrequentUsedNotes(frequentNotes_, m_journal_data.m_account_id);
     wxButton* bFrequentUsedNotes = static_cast<wxButton*>(
         FindWindow(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES)
     );
@@ -331,7 +331,7 @@ void TrxDialog::dataToControls()
                 && (accountID != -1)
             ) {
                 TrxModel::DataA transactions = T.find(
-                    TrxModel::TRANSCODE(OP_NE, TrxType(TrxType::e_transfer)),
+                    TrxModel::TYPE(OP_NE, TrxType(TrxType::e_transfer)),
                     TrxCol::ACCOUNTID(OP_EQ, accountID));
 
                 if (!transactions.empty()) {
@@ -384,7 +384,7 @@ void TrxDialog::dataToControls()
             PrefModel::instance().getTransCategoryTransferNone() == PrefModel::LASTUSED
         ) {
             TrxModel::DataA transactions = T.find(
-                TrxModel::TRANSCODE(OP_EQ, TrxType(TrxType::e_transfer))
+                TrxModel::TYPE(OP_EQ, TrxType(TrxType::e_transfer))
             );
 
             if (!transactions.empty() &&
@@ -1106,11 +1106,11 @@ void TrxDialog::OnToday(wxCommandEvent& WXUNUSED(event))
 
 void TrxDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
 {
-    auto d = TrxModel::getTransDateTime(m_journal_data).Subtract(wxDateSpan::Months(12));
+    mmDate date = mmDate(m_journal_data.m_date().getDateTime().Subtract(wxDateSpan::Months(12)));
     double next_number = 0, temp_num;
     const auto numbers = TrxModel::instance().find(
+        TrxModel::DATE(OP_GE, date),
         TrxCol::ACCOUNTID(OP_EQ, m_journal_data.m_account_id),
-        TrxModel::TRANSDATE(OP_GE, d),
         TrxCol::TRANSACTIONNUMBER(OP_NE, "")
     );
     for (const auto &num : numbers) {

@@ -547,7 +547,7 @@ const wxString SchedPanel::GetFrequency(const SchedModel::RepeatNum& rn) const
 
 const wxString SchedPanel::GetRemainingDays(const SchedData& sched_d) const
 {
-    int daysRemaining = SchedModel::getTransDateTime(sched_d).
+    int daysRemaining = sched_d.m_date_time.getDateTime().
         Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
     int daysOverdue = sched_d.m_due_date.getDateTime().
         Subtract(this->getToday()).GetSeconds().GetValue() / 86400;

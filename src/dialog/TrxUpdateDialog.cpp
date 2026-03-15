@@ -396,7 +396,7 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     TagLinkModel::instance().db_savepoint();
     for (const auto& trx_id : m_trx_id_a) {
         TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(trx_id);
-        bool is_locked = TrxModel::is_locked(*trx_n);
+        bool is_locked = TrxModel::instance().is_locked(*trx_n);
 
         if (is_locked) {
             skip_trx.push_back(trx_n->m_id);

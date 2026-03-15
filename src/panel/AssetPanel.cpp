@@ -900,9 +900,10 @@ void AssetPanel::BindAssetListEvents(wxListCtrl* listCtrl)
 
         this->FillAssetListRow(listCtrl, index, *trx_n);
 
+        // FIXME: change type to int64
         listCtrl->SortItems([](wxIntPtr item1, wxIntPtr item2, wxIntPtr) -> int {
-            auto date1 = TrxModel::getTransDateTime(*TrxModel::instance().get_id_data_n(item1));
-            auto date2 = TrxModel::getTransDateTime(*TrxModel::instance().get_id_data_n(item2));
+            auto date1 = TrxModel::instance().get_id_data_n(item1)->m_date_time.getDateTime();
+            auto date2 = TrxModel::instance().get_id_data_n(item2)->m_date_time.getDateTime();
             return date1.IsEarlierThan(date2) ? -1 : (date1.IsLaterThan(date2) ? 1 : 0);
         }, 0);
     });

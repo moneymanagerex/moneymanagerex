@@ -144,10 +144,10 @@ double CategoryModel::get_id_income(int64 cat_id)
 {
     double sum = 0.0;
     auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
-    // FIXME: ignore Void transactions
     for (const auto& trx_d : TrxModel::instance().find(
         TrxCol::CATEGID(cat_id),
-        TrxCol::DELETEDTIME(wxEmptyString)
+        TrxModel::IS_VOID(false),
+        TrxModel::IS_DELETED(false)
     )) {
         switch (trx_d.m_type.id())
         {
@@ -263,22 +263,25 @@ void CategoryModel::getCategoryStats(
     mmDateRange* date_range,
     bool WXUNUSED(ignoreFuture), //TODO: deprecated
     bool group_by_month,
-    std::map<int64, double> *budgetAmt,
+    std::map<int64, double>* budgetAmt,
     [[maybe_unused]] bool fin_months
 ) {
-    //Initialization
-    //Set std::map with zerros
+    mmDate startDate = mmDate(date_range->start_date());
+    mmDate endDate = mmDate(date_range->end_date());
+
+    // Initialization
+    // Set std::map with zerros
     const auto& allcategories = find_all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
-    const wxDateTime start_date(date_range->start_date());
 
-    std::vector<std::pair<wxDateTime, int>> monthMap;
+    std::vector<std::pair<mmDate, int>> date_month_a;
     for (int m = 0; m < columns; m++) {
-        const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
-        monthMap.emplace_back(d, m);
+        mmDate date = startDate;
+        date.addDateSpan(wxDateSpan::Months(m));
+        date_month_a.emplace_back(date, m);
     }
-    std::reverse(monthMap.begin(), monthMap.end());
+    std::reverse(date_month_a.begin(), date_month_a.end());
 
     for (const auto& category : allcategories) {
         for (int m = 0; m < columns; m++) {
@@ -286,33 +289,38 @@ void CategoryModel::getCategoryStats(
             categoryStats[category.m_id][month] = value;
         }
     }
+
     // Calculations
     auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     for (const auto& trx_d : TrxModel::instance().find(
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void)),
-        TrxModel::TRANSDATE(OP_GE, date_range->start_date()),
-        TrxCol::TRANSDATE(OP_LE, date_range->end_date().FormatISOCombined())
+        TrxModel::DATE(OP_GE, startDate),
+        TrxModel::DATE(OP_LE, endDate),
+        TrxModel::IS_VOID(false)
     )) {
         if (trx_d.is_deleted())
             continue;
 
         if (accountArray) {
-            const auto account = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
-            if (wxNOT_FOUND == accountArray->Index(account->m_name)) {
+            const AccountData* account_n = AccountModel::instance().get_id_data_n(
+                trx_d.m_account_id
+            );
+            if (accountArray->Index(account_n->m_name) == wxNOT_FOUND)
                 continue;
-            }
         }
 
         const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
             trx_d.m_date()
         );
-        wxDateTime d = TrxModel::getTransDateTime(trx_d);
 
+        mmDate trx_date = trx_d.m_date();
         int month = 0;
         if (group_by_month) {
-            auto it = std::find_if(monthMap.begin(), monthMap.end()
-                , [d](std::pair<wxDateTime, int> date){return d >= date.first;});
+            auto it = std::find_if(date_month_a.begin(), date_month_a.end(),
+                [trx_date](std::pair<mmDate, int> date_month) {
+                    return trx_date >= date_month.first;
+                }
+            );
             month = it->second;
         }
 
@@ -323,7 +331,7 @@ void CategoryModel::getCategoryStats(
                 // Do not include asset or stock transfers in income expense calculations.
                 if (TrxModel::is_foreignAsTransfer(trx_d))
                     continue;
-                categoryStats[categID][month] += TrxModel::account_flow(trx_d, trx_d.m_account_id) * convRate;
+                categoryStats[categID][month] += trx_d.account_flow(trx_d.m_account_id) * convRate;
             }
             else if (budgetAmt != 0) {
                 double amt = trx_d.m_amount * convRate;

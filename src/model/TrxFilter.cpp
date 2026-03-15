@@ -106,11 +106,11 @@ bool TrxFilter::checkCategory(
 }
 
 bool TrxFilter::mmIsRecordMatches(
-    const TrxData &trx_d,
+    const TrxData& trx_d,
     const std::map<int64, TrxSplitModel::DataA>& split
 ) {
     bool ok = true;
-    wxString strDate = TrxModel::getTransDateTime(trx_d).FormatISOCombined();
+    wxString strDate = trx_d.m_date_time.isoDateTime();
     if (m_filter_account
         && (std::find(m_account_a.begin(), m_account_a.end(), trx_d.m_account_id) == m_account_a.end())
         && (std::find(m_account_a.begin(), m_account_a.end(), trx_d.m_to_account_id_n) == m_account_a.end()))
@@ -163,7 +163,7 @@ wxString TrxFilter::getHTML()
             m_trans.push_back(full_tran);
     }
 
-    std::stable_sort(m_trans.begin(), m_trans.end(), TrxData::SorterByTRANSDATE());
+    std::stable_sort(m_trans.begin(), m_trans.end(), TrxData::SorterByDateTime());
 
     const wxString extra_style = R"(
 table {
@@ -228,7 +228,7 @@ table {
         const AccountData* acc = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
         if (acc) {
             const CurrencyData* curr = AccountModel::instance().get_data_currency_p(*acc);
-            double flow = TrxModel::account_flow(trx_xd, acc->m_id);
+            double flow = trx_xd.account_flow(acc->m_id);
             hb.addCurrencyCell(flow, curr);
         }
         else {

@@ -275,20 +275,20 @@ void mmReconcileDialog::FillControls(bool init)
     wxSharedPtr<mmDateRange> date_range;
     date_range = new mmCurrentMonthToDate;
     TrxModel::DataA trx_a = TrxModel::instance().find(
-        TrxCol::ACCOUNTID(m_account->m_id),
+        TrxModel::DATE(OP_LE, mmDate::today()),
         TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_reconciled)),
-        TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::TRANSDATE(OP_LE, mmDate::today())
+        TrxCol::ACCOUNTID(m_account->m_id),
+        TrxModel::IS_DELETED(false)
     );
     TrxModel::DataA all_trans2 = TrxModel::instance().find(  // get transfers
-        TrxCol::TOACCOUNTID(m_account->m_id),
+        TrxModel::DATE(OP_LE, mmDate::today()),
         TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_reconciled)),
-        TrxCol::DELETEDTIME(OP_EQ, wxEmptyString),
-        TrxModel::TRANSDATE(OP_LE, mmDate::today())
+        TrxCol::TOACCOUNTID(m_account->m_id),
+        TrxModel::IS_DELETED(false)
     );
 
     trx_a.insert(trx_a.end(), all_trans2.begin(), all_trans2.end());
-    std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
+    std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByDateTime());
 
     long ritemIndex = -1;
     long litemIndex = -1;

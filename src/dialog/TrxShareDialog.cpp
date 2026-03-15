@@ -209,7 +209,7 @@ void TrxShareDialog::DataToControls()
             if (m_tl_n) {
                 const TrxData* trx_n = TrxModel::instance().get_id_data_n(m_tl_n->m_trx_id);
                 if (trx_n) {
-                    m_transaction_panel->TransactionDate(TrxModel::getTransDateTime(*trx_n));
+                    m_transaction_panel->TransactionDate(trx_n->m_date_time.getDateTime());
                     m_transaction_panel->SetTransactionValue(
                         GetAmount(std::abs(m_ts_n->m_number), m_ts_n->m_price, m_ts_n->m_commission),
                         true

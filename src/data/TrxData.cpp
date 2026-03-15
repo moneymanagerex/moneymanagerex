@@ -105,3 +105,48 @@ bool TrxData::equals(const TrxData* other) const
 
     return true;
 }
+
+double TrxData::account_flow(int64 account_id) const
+{
+    if (!is_valid())
+        return 0.0;
+
+    switch (m_type.id()) {
+    case TrxType::e_withdrawal:
+        if (m_account_id == account_id)
+            return -(m_amount);
+        break;
+    case TrxType::e_deposit:
+        if (m_account_id == account_id)
+            return m_amount;
+        break;
+    case TrxType::e_transfer:
+        // Self Transfer as Revaluation
+        if (m_account_id == m_to_account_id_n)
+            return 0.0;
+        else if (m_account_id == account_id)
+            return -(m_amount);
+        else if (m_to_account_id_n == account_id)
+            return m_to_amount;
+        break;
+    }
+
+    return 0.0;
+}
+
+double TrxData::account_inflow(int64 account_id) const
+{
+    double flow = account_flow(account_id);
+    return flow >= 0.0 ? flow : 0.0;
+}
+
+double TrxData::account_outflow(int64 account_id) const
+{
+    double flow = account_flow(account_id);
+    return flow < 0.0 ? -flow : 0.0;
+}
+
+double TrxData::account_recflow(int64 account_id) const
+{
+    return is_reconciled() ? account_flow(account_id) : 0.0;
+}

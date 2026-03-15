@@ -1125,7 +1125,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             TrxData trx_d = TrxData();
             wxString msg;
             if (completeTransaction(entry, &trx_d, msg)) {
-                wxString strDate = TrxModel::getTransDateTime(trx_d).FormatISODate();
+                wxString strDate = trx_d.m_date().isoDate();
                 if (dateFromCheckBox_->IsChecked() && strDate < begin_date)
                     continue;
                 if (dateToCheckBox_->IsChecked() && strDate > end_date)
@@ -1218,13 +1218,13 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             if (!trx_d.is_transfer())
                 continue;
             const auto data = TrxModel::instance().find(
-                TrxModel::TRANSDATE(       OP_EQ, trx_d.m_date()),
+                TrxModel::DATE(            OP_EQ, trx_d.m_date()),
+                TrxModel::TYPE(            OP_EQ, TrxType(TrxType::e_transfer)),
                 TrxCol::ACCOUNTID(         OP_EQ, trx_d.m_account_id),
                 TrxCol::TOACCOUNTID(       OP_EQ, trx_d.m_to_account_id_n),
-                TrxCol::NOTES(             OP_EQ, trx_d.m_notes),
+                TrxCol::TRANSAMOUNT(       OP_EQ, trx_d.m_amount),
                 TrxCol::TRANSACTIONNUMBER( OP_EQ, trx_d.m_number),
-                TrxModel::TRANSCODE(       OP_EQ, TrxType(TrxType::e_transfer)),
-                TrxCol::TRANSAMOUNT(       OP_EQ, trx_d.m_amount)
+                TrxCol::NOTES(             OP_EQ, trx_d.m_notes)
             );
             if (data.size() > 0)
                 trx_d.m_status = TrxStatus(TrxStatus::e_duplicate);
@@ -1585,7 +1585,7 @@ bool mmQIFImportDialog::completeTransaction(
             if (!trx_n->m_number.empty()) {
                 const auto existing_transactions = TrxModel::instance().find(
                     TrxCol::TRANSACTIONNUMBER(OP_EQ, trx_n->m_number),
-                    TrxCol::DELETEDTIME(OP_EQ, wxEmptyString)
+                    TrxModel::IS_DELETED(false)
                 );
 
                 isDuplicate = !existing_transactions.empty();
@@ -1602,10 +1602,10 @@ bool mmQIFImportDialog::completeTransaction(
             }
 
             const auto potential_matches = TrxModel::instance().find(
-                TrxModel::TRANSDATE(OP_GE, startDate),
-                TrxModel::TRANSDATE(OP_LE, endDate),
+                TrxModel::DATE(OP_GE, startDate),
+                TrxModel::DATE(OP_LE, endDate),
                 TrxCol::TRANSAMOUNT(trx_n->m_amount),
-                TrxCol::DELETEDTIME(OP_EQ, wxEmptyString)
+                TrxModel::IS_DELETED(false)
             );
 
             for (const auto& existingTrx : potential_matches) {
