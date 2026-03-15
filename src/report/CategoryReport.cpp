@@ -151,48 +151,40 @@ wxString CategoryReport::getHTMLText()
     std::map <int64, int> group_counter;
     std::map <int64, std::map<int64, double>> group_total;
 
-    for (const auto& entry : sortedData)
-    {
+    for (const auto& entry : sortedData) {
         if (entry.subCatID != -1 || entry.level == 0) group_counter[entry.catID] = 1;
         group_total[entry.categs][entry.catID] += entry.amount;
         if (entry.subCatID == -1) {
             group_total[-1][0] += entry.amount < 0 ? entry.amount : 0;
             group_total[-2][0] += entry.amount > 0 ? entry.amount : 0;
 
-            if (getChartSelection() == 0)
-            {
-                if (entry.amount < 0)
-                {
-                    expense_vector.emplace_back(CategoryModel::instance().full_name(entry.catID), entry.amount);
+            if (getChartSelection() == 0) {
+                if (entry.amount < 0) {
+                    expense_vector.emplace_back(CategoryModel::instance().get_id_fullname(entry.catID), entry.amount);
                 }
-                else if (entry.amount > 0)
-                {
-                    income_vector.emplace_back(CategoryModel::instance().full_name(entry.catID), entry.amount);
+                else if (entry.amount > 0) {
+                    income_vector.emplace_back(CategoryModel::instance().get_id_fullname(entry.catID), entry.amount);
                 }
             }
         }
     }
 
-    if (!expense_vector.empty())
-    {
+    if (!expense_vector.empty()) {
         std::sort(expense_vector.begin(), expense_vector.end());
         std::stable_sort(expense_vector.begin(), expense_vector.end(), [](const std::pair<wxString, double>& left, const std::pair<wxString, double>& right) {
             return left.second < right.second;});
-        for (const auto& i : expense_vector)
-        {
+        for (const auto& i : expense_vector) {
             gsExpenses.values.push_back({ i.second });
             gdExpenses.labels.push_back(i.first);
         }
         gsExpenses.name = _t("Expenses");
         gdExpenses.series.push_back(gsExpenses);
     }
-    if (!income_vector.empty())
-    {
+    if (!income_vector.empty()) {
         std::sort(income_vector.begin(), income_vector.end());
         std::stable_sort(income_vector.begin(), income_vector.end(), [](const std::pair<wxString, double>& left, const std::pair<wxString, double>& right) {
             return left.second > right.second; });
-        for (const auto& i : income_vector)
-        {
+        for (const auto& i : income_vector) {
             gsIncome.values.push_back({ i.second });
             gdIncome.labels.push_back(i.first);
         }
@@ -213,23 +205,16 @@ wxString CategoryReport::getHTMLText()
     m_filter.setAccountList(m_account_a);
 
     // Chart
-    if (getChartSelection() == 0)
-    {
-        if (!gdExpenses.series.empty())
-        {
-
+    if (getChartSelection() == 0) {
+        if (!gdExpenses.series.empty()) {
             gdExpenses.title = _t("Expenses");
             gdExpenses.type = GraphData::PIE;
             hb.addChart(gdExpenses);
-
         }
-        if (!gdIncome.series.empty())
-        {
-
+        if (!gdIncome.series.empty()) {
             gdIncome.title = _t("Income");
             gdIncome.type = GraphData::PIE;
             hb.addChart(gdIncome);
-
         }
     }
 
@@ -399,12 +384,11 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         double overall;
     } line;
     std::vector<html_data_holder> data;
-    std::map<wxString, int64> categories = CategoryModel::instance().all_categories();
-    for (const auto& category : categories) {
-        int64 categID = category.second;
+    for (const auto& cat_fullname_id : CategoryModel::instance().find_all_id_mFullname()) {
+        int64 categID = cat_fullname_id.second;
         line.catID = categID;
         line.subCatID = -1;
-        line.name = category.first;
+        line.name = cat_fullname_id.first;
         line.overall = 0;
         unsigned month = 0;
         for (const auto& i : categoryStats[categID]) {

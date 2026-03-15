@@ -52,16 +52,16 @@ void TrxReport::displayTotals(const std::map<int64, double>& total, std::map<int
     for (const auto& [curr_id, curr_total]: total)
     {
         const CurrencyData* curr = CurrencyModel::instance().get_id_data_n(curr_id);
-        const bool isBaseCurr = (curr->m_symbol == CurrencyModel::GetBaseCurrency()->m_symbol);
+        const bool isBaseCurr = (curr->m_symbol == CurrencyModel::instance().get_base_data_n()->m_symbol);
         grand_total += total_in_base_curr[curr_id];
         if (total.size() > 1 || !isBaseCurr)
         {
-            const wxString totalStr_curr = isBaseCurr ? "" : CurrencyModel::toCurrency(curr_total, curr);
-            const wxString totalStr = CurrencyModel::toCurrency(total_in_base_curr[curr_id], CurrencyModel::GetBaseCurrency());
+            const wxString totalStr_curr = isBaseCurr ? "" : CurrencyModel::instance().toCurrency(curr_total, curr);
+            const wxString totalStr = CurrencyModel::instance().toCurrency(total_in_base_curr[curr_id], CurrencyModel::instance().get_base_data_n());
             hb.addTotalRow(curr->m_symbol, noOfCols, { totalStr_curr,  totalStr });
         }
     }
-    const wxString totalStr = CurrencyModel::toCurrency(grand_total, CurrencyModel::GetBaseCurrency());
+    const wxString totalStr = CurrencyModel::instance().toCurrency(grand_total, CurrencyModel::instance().get_base_data_n());
     const std::vector<wxString> v{ "", totalStr };
     hb.addTotalRow(_t("Grand Total:"), noOfCols, v);
 }
@@ -165,7 +165,8 @@ table {
 
     // Display the data for each row
     for (auto& trx_xd : trx_xa) {
-        if (!trx_xd.DELETEDTIME.IsEmpty()) continue;
+        if (trx_xd.is_deleted())
+            continue;
 
         wxString sortLabel = "ALL";
         if (groupBy == TrxFilterDialog::GROUPBY_ACCOUNT)
@@ -177,16 +178,14 @@ table {
         else if (groupBy == TrxFilterDialog::GROUPBY_TYPE)
             sortLabel = wxGetTranslation(trx_xd.m_type.name());
         else if (groupBy == TrxFilterDialog::GROUPBY_DAY)
-            sortLabel = mmGetDateTimeForDisplay(trx_xd.TRANSDATE);
+            sortLabel = mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime());
         else if (groupBy == TrxFilterDialog::GROUPBY_MONTH)
-            sortLabel = TrxModel::getTransDateTime(trx_xd).Format("%Y-%m");
+            sortLabel = trx_xd.m_date_time.getDateTime().Format("%Y-%m");
         else if (groupBy == TrxFilterDialog::GROUPBY_YEAR)
-            sortLabel = TrxModel::getTransDateTime(trx_xd).Format("%Y");
+            sortLabel = trx_xd.m_date_time.getDateTime().Format("%Y");
 
-        if (sortLabel != lastSortLabel)
-        {
-            if (lastSortLabel != "")
-            {
+        if (sortLabel != lastSortLabel) {
+            if (lastSortLabel != "") {
                 hb.endTbody();
                 hb.endTable();
                 hb.startTable();
@@ -196,10 +195,12 @@ table {
                 hb.endTable();
                 hb.endDiv();
 
-                if (chart > -1)
-                {
-                    double value_chart = std::accumulate(total_in_base_curr.begin(), total_in_base_curr.end(), static_cast<double>(0),
-                                                         [](double previous, const auto& p) { return previous + p.second; });
+                if (chart > -1) {
+                    double value_chart = std::accumulate(
+                        total_in_base_curr.begin(), total_in_base_curr.end(),
+                        static_cast<double>(0),
+                        [](double previous, const auto& p) { return previous + p.second; }
+                    );
                     values_chart[lastSortLabel] += value_chart;
                 }
                 total.clear();
@@ -278,9 +279,6 @@ table {
         )))
             noOfTrans = 2;
 
-        bool is_time_used = PrefModel::instance().UseTransDateTime();
-        const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
-
         auto trxId_fvA_m = FieldValueModel::instance().find_refType_mRefId(
             TrxModel::s_ref_type
         );
@@ -296,12 +294,10 @@ table {
                 if (showColumnById(TrxFilterDialog::COL_COLOR))
                     hb.addColorMarker(getUDColour(trx_xd.m_color.GetValue()).GetAsString(), true);
                 if (showColumnById(TrxFilterDialog::COL_DATE)) {
-                    wxDateTime dt;
-                    dt.ParseFormat(trx_xd.TRANSDATE, mask) || dt.ParseDate(trx_xd.TRANSDATE);
-                    hb.addTableCellDate(dt.FormatISODate());
+                    hb.addTableCellDate(trx_xd.m_date().isoDate());
                 }
                 if (showColumnById(TrxFilterDialog::COL_TIME))
-                    hb.addTableCell(mmGetTimeForDisplay(trx_xd.TRANSDATE));
+                    hb.addTableCell(mmGetTimeForDisplay(trx_xd.m_date_time.isoDateTime()));
                 if (showColumnById(TrxFilterDialog::COL_NUMBER))
                     hb.addTableCell(trx_xd.m_number);
                 if (showColumnById(TrxFilterDialog::COL_ACCOUNT)) {
@@ -324,29 +320,32 @@ table {
                         hb.addTableCell(wxGetTranslation(trx_xd.m_type.name()));
                 }
 
-                const AccountData* acc = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
+                const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
 
-                if (acc) {
-                    const CurrencyData* curr = AccountModel::instance().get_data_currency_p(*acc);
-                    double flow = TrxModel::account_flow(trx_xd, acc->m_id);
+                if (account_n) {
+                    const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(*account_n);
+                    double flow = trx_xd.account_flow(account_n->m_id);
                     if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_account_id) == selected_accounts.end())))
                         flow = -flow;
-                    const double convRate = CurrencyHistoryModel::getDayRate(curr->m_id, trx_xd.TRANSDATE);
+                    const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                        currency_n->m_id,
+                        trx_xd.m_date()
+                    );
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT)) {
                         if (trx_xd.is_void()) {
                             double void_flow = trx_xd.is_deposit() ? trx_xd.m_amount : -trx_xd.m_amount;
-                            hb.addCurrencyCell(void_flow, curr, -1, true);
+                            hb.addCurrencyCell(void_flow, currency_n, -1, true);
                         }
-                        else if (trx_xd.DELETEDTIME.IsEmpty())
-                            hb.addCurrencyCell(flow, curr);
+                        else if (!trx_xd.is_deleted())
+                            hb.addCurrencyCell(flow, currency_n);
                     }
-                    total[curr->m_id] += flow;
-                    grand_total[curr->m_id] += flow;
-                    total_in_base_curr[curr->m_id] += flow * convRate;
-                    grand_total_in_base_curr[curr->m_id] += flow * convRate;
+                    total[currency_n->m_id] += flow;
+                    grand_total[currency_n->m_id] += flow;
+                    total_in_base_curr[currency_n->m_id] += flow * convRate;
+                    grand_total_in_base_curr[currency_n->m_id] += flow * convRate;
                     if (!trx_xd.is_transfer()) {
-                        grand_total_extrans[curr->m_id] += flow;
-                        grand_total_in_base_curr_extrans[curr->m_id] += flow * convRate;
+                        grand_total_extrans[currency_n->m_id] += flow;
+                        grand_total_in_base_curr_extrans[currency_n->m_id] += flow * convRate;
                     }
                     if (chart > -1 && groupBy == -1) {
                         values_chart[trx_xd.m_id.ToString()] += (flow * convRate);
@@ -528,11 +527,11 @@ table {
                         [](double previous, const auto & p) { return previous + p.second; });
                     statsAvg = values_chart.size() > 0 ? statsAvg / values_chart.size() : 0;
                     hb.addTotalRow(_t("Minimum") + " >> " + statsMin->first, 2,
-                        std::vector<wxString>{ CurrencyModel::toCurrency(statsMin->second, CurrencyModel::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::instance().toCurrency(statsMin->second, CurrencyModel::instance().get_base_data_n()) });
                     hb.addTotalRow(_t("Maximum") + " >> " + statsMax->first, 2,
-                        std::vector<wxString>{ CurrencyModel::toCurrency(statsMax->second, CurrencyModel::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::instance().toCurrency(statsMax->second, CurrencyModel::instance().get_base_data_n()) });
                     hb.addTotalRow(_t("Average"), 2,
-                        std::vector<wxString>{ CurrencyModel::toCurrency(statsAvg, CurrencyModel::GetBaseCurrency()) });
+                        std::vector<wxString>{ CurrencyModel::instance().toCurrency(statsAvg, CurrencyModel::instance().get_base_data_n()) });
                 }
                 hb.endTbody();
             }
@@ -558,13 +557,13 @@ table {
 void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
 {
     trx_xa.clear();
-    const auto splits = TrxSplitModel::instance().get_all_id();
+    const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     const auto trxId_glA_m = TagLinkModel::instance().find_refType_mRefId(
         TrxModel::s_ref_type
     );
     bool combine_splits = dlg.get()->mmIsCombineSplitsChecked();
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        TrxModel::Full_Data trx_xd(trx_d, splits, trxId_glA_m);
+        TrxModel::Full_Data trx_xd(trx_d, trxId_tpA_m, trxId_glA_m);
         trx_xd.PAYEENAME = trx_xd.real_payee_name(trx_xd.m_account_id);
         if (trx_xd.has_split()) {
             TrxModel::Full_Data single_tran = trx_xd;
@@ -576,7 +575,7 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
                 trx_xd.displayID       = wxString::Format("%lld", trx_d.m_id) + "." +
                     wxString::Format("%i", splitIndex++);
                 trx_xd.m_category_id_n = tp_d.m_category_id;
-                trx_xd.CATEGNAME       = CategoryModel::instance().full_name(tp_d.m_category_id);
+                trx_xd.CATEGNAME       = CategoryModel::instance().get_id_fullname(tp_d.m_category_id);
                 trx_xd.m_amount        = tp_d.m_amount;
                 trx_xd.m_notes         = trx_d.m_notes;
                 trx_xd.TAGNAMES        = tranTagnames;
@@ -613,7 +612,7 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
             trx_xa.push_back(trx_xd);
     }
 
-    std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
+    std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByDateTime());
     switch (dlg.get()->mmGetGroupBy())
     {
     case TrxFilterDialog::GROUPBY_ACCOUNT:
@@ -626,16 +625,16 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
         std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxModel::SorterByCATEGNAME());
         break;
     case TrxFilterDialog::GROUPBY_TYPE:
-        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSCODE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByType());
         break;
     case TrxFilterDialog::GROUPBY_DAY:
-        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByDateTime());
         break;
     case TrxFilterDialog::GROUPBY_MONTH:
-        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByDateTime());
         break;
     case TrxFilterDialog::GROUPBY_YEAR:
-        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_xa.begin(), trx_xa.end(), TrxData::SorterByDateTime());
         break;
     }
 }

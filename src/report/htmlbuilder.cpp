@@ -273,7 +273,7 @@ void mmHTMLBuilder::addHeader(int level, const wxString& header)
 void mmHTMLBuilder::addReportCurrency()
 {
     wxString base_currency_symbol;
-    CurrencyModel::GetBaseCurrencySymbol(base_currency_symbol);
+    CurrencyModel::instance().get_base_symbol(base_currency_symbol);
 
     addHeader(5, wxString::Format("%s: %s", _t("Currency"), base_currency_symbol));
 }
@@ -354,17 +354,17 @@ void mmHTMLBuilder::addCurrencyTotalRow(const wxString& caption, int cols, const
 {
     std::vector<wxString> data_str;
     for (const auto& value : data)
-        data_str.push_back(CurrencyModel::toCurrency(value));
+        data_str.push_back(CurrencyModel::instance().toCurrency(value));
     this->addTotalRow(caption, cols, data_str);
 }
 
 void mmHTMLBuilder::addMoneyTotalRow(const wxString& caption, int cols, const std::vector<double>& data)
 {
     std::vector<wxString> data_str;
-    int precision = CurrencyModel::precision(CurrencyModel::GetBaseCurrency());
+    int precision = CurrencyModel::instance().get_base_data_n()->precision();
 
     for (const auto& value : data)
-        data_str.push_back(CurrencyModel::toString(value, CurrencyModel::GetBaseCurrency(), precision));
+        data_str.push_back(CurrencyModel::instance().toString(value, CurrencyModel::instance().get_base_data_n(), precision));
     this->addTotalRow(caption, cols, data_str);
 }
 
@@ -379,11 +379,15 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const wxString& cs
     html_ += tags::TABLE_HEADER_END;
 }
 
-void mmHTMLBuilder::addCurrencyCell(double amount, const CurrencyData* currency, int precision, bool isVoid)
-{
+void mmHTMLBuilder::addCurrencyCell(
+    double amount,
+    const CurrencyData* currency_n,
+    int precision,
+    bool isVoid
+) {
     if (precision == -1)
-        precision = CurrencyModel::precision(currency);
-    wxString s = CurrencyModel::toCurrency(amount, currency, precision);
+        precision = currency_n->precision();
+    wxString s = CurrencyModel::instance().toCurrency(amount, currency_n, precision);
     if (isVoid)
         s = wxString::Format("<s>%s</s>", s);
     const wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
@@ -395,8 +399,8 @@ void mmHTMLBuilder::addCurrencyCell(double amount, const CurrencyData* currency,
 void mmHTMLBuilder::addMoneyCell(double amount, int precision)
 {
     if (precision == -1)
-        precision = CurrencyModel::precision(CurrencyModel::GetBaseCurrency());
-    const wxString s = CurrencyModel::toString(amount, CurrencyModel::GetBaseCurrency(), precision);
+        precision = CurrencyModel::instance().get_base_data_n()->precision();
+    const wxString s = CurrencyModel::instance().toString(amount, CurrencyModel::instance().get_base_data_n(), precision);
     wxString f = wxString::Format(" class='money' sorttable_customkey = '%f' nowrap", amount);
     html_ += wxString::Format(tags::TABLE_CELL, f);
     html_ += (amount == -DBL_MAX) ? "" : s;     // If -DBL_MAX then just display empty string
@@ -606,7 +610,7 @@ void mmHTMLBuilder::endTableCell()
 
 void mmHTMLBuilder::addChart(const GraphData& gd)
 {
-    int precision = CurrencyModel::precision(CurrencyModel::GetBaseCurrency());
+    int precision = CurrencyModel::instance().get_base_data_n()->precision();
     int k = pow10(precision);
     wxString htmlChart, htmlPieData;
     wxString divid = wxString::Format("apex%i", rand()); // Generate unique identifier for each graph
@@ -617,40 +621,40 @@ void mmHTMLBuilder::addChart(const GraphData& gd)
     wxString gSeriesType = "category";
     switch (gd.type)
     {
-        case GraphData::STACKEDAREA:
-            gtype = "area";
-            if (gd.labels.size() < 5)
-                chartWidth = 70;
-            break;
-        case GraphData::BAR:
-            gtype = "bar";
-            if (gd.labels.size() < 5)
-                chartWidth = 70;
-            break;
-        case GraphData::LINE:
-            gtype = "line";
-            break;
-        case GraphData::LINE_DATETIME:
-            gtype = "line";
-            gSeriesType = "datetime";
-            break;
-        case GraphData::PIE:
-            gtype = "pie";
-            chartWidth = 100;
-            break;
-        case GraphData::DONUT:
-            gtype = "donut";
+    case GraphData::STACKEDAREA:
+        gtype = "area";
+        if (gd.labels.size() < 5)
             chartWidth = 70;
-            break;
-        case GraphData::RADAR:
-            gtype = "radar";
+        break;
+    case GraphData::BAR:
+        gtype = "bar";
+        if (gd.labels.size() < 5)
             chartWidth = 70;
-            break;
-        case GraphData::BARLINE:
-        case GraphData::STACKEDBARLINE:
-            gtype = "line";
-            if (gd.labels.size() < 5)
-                chartWidth = 70;
+        break;
+    case GraphData::LINE:
+        gtype = "line";
+        break;
+    case GraphData::LINE_DATETIME:
+        gtype = "line";
+        gSeriesType = "datetime";
+        break;
+    case GraphData::PIE:
+        gtype = "pie";
+        chartWidth = 100;
+        break;
+    case GraphData::DONUT:
+        gtype = "donut";
+        chartWidth = 70;
+        break;
+    case GraphData::RADAR:
+        gtype = "radar";
+        chartWidth = 70;
+        break;
+    case GraphData::BARLINE:
+    case GraphData::STACKEDBARLINE:
+        gtype = "line";
+        if (gd.labels.size() < 5)
+            chartWidth = 70;
     }
 
     addDivContainer("shadowGraph");

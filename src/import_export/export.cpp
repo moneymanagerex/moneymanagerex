@@ -50,7 +50,7 @@ const wxString mmExportTransaction::getTransactionCSV(
     const wxString delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
     wxString categ = trx_xd.m_splits.empty()
-        ? CategoryModel::instance().full_name(trx_xd.m_category_id_n, ":")
+        ? CategoryModel::instance().get_id_fullname(trx_xd.m_category_id_n, ":")
         : "";
     wxString transNum = trx_xd.m_number;
     wxString notes = trx_xd.m_notes;
@@ -73,7 +73,7 @@ const wxString mmExportTransaction::getTransactionCSV(
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty()) {
-            transNum = wxString::Format("#%lld", trx_xd.id());
+            transNum = wxString::Format("#%lld", trx_xd.m_id);
         }
     }
 
@@ -83,10 +83,10 @@ const wxString mmExportTransaction::getTransactionCSV(
             if (trx_xd.is_withdrawal())
                 valueSplit = -valueSplit;
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-            const wxString split_categ = CategoryModel::instance().full_name(tp_d.m_category_id, ":");
+            const wxString split_categ = CategoryModel::instance().get_id_fullname(tp_d.m_category_id, ":");
 
             buffer << inQuotes(wxString::Format("%lld", trx_xd.m_id), delimiter) << delimiter;
-            buffer << inQuotes(mmGetDateTimeForDisplay(trx_xd.TRANSDATE, dateMask), delimiter) << delimiter;
+            buffer << inQuotes(mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime(), dateMask), delimiter) << delimiter;
             buffer << inQuotes(trx_xd.m_status.key(), delimiter) << delimiter;
             buffer << inQuotes(trx_xd.m_type.name(), delimiter) << delimiter;
 
@@ -105,7 +105,7 @@ const wxString mmExportTransaction::getTransactionCSV(
     }
     else {
         buffer << inQuotes(wxString::Format("%lld", trx_xd.m_id), delimiter) << delimiter;
-        buffer << inQuotes(mmGetDateTimeForDisplay(trx_xd.TRANSDATE, dateMask), delimiter) << delimiter;
+        buffer << inQuotes(mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime(), dateMask), delimiter) << delimiter;
         buffer << inQuotes(trx_xd.m_status.key(), delimiter) << delimiter;
         buffer << inQuotes(trx_xd.m_type.name(), delimiter) << delimiter;
 
@@ -113,7 +113,7 @@ const wxString mmExportTransaction::getTransactionCSV(
 
         buffer << inQuotes(payee, delimiter) << delimiter;
         buffer << inQuotes(categ, delimiter) << delimiter;
-        double value = TrxModel::account_flow(trx_xd, account_id);
+        double value = trx_xd.account_flow(account_id);
         const wxString& s = wxString::FromCDouble(value, 2);
         buffer << inQuotes(s, delimiter) << delimiter;
         buffer << inQuotes(currency, delimiter) << delimiter;
@@ -133,7 +133,7 @@ const wxString mmExportTransaction::getTransactionQIF(
 ) {
     wxString buffer = "";
     wxString categ = trx_xd.m_splits.empty()
-        ? CategoryModel::instance().full_name(trx_xd.m_category_id_n, ":")
+        ? CategoryModel::instance().get_id_fullname(trx_xd.m_category_id_n, ":")
         : "";
     // Replace square brackets which are used to denote transfers in QIF
     categ.Replace("[", "(");
@@ -155,7 +155,7 @@ const wxString mmExportTransaction::getTransactionQIF(
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
-            transNum = wxString::Format("#%lld", trx_xd.id());
+            transNum = wxString::Format("#%lld", trx_xd.m_id);
     }
 
     // don't allow '/' in category name as it is reserved for the class/tag separator
@@ -169,10 +169,10 @@ const wxString mmExportTransaction::getTransactionQIF(
         }
     }
 
-    buffer << "D" << mmGetDateTimeForDisplay(trx_xd.TRANSDATE, dateMask) << "\n";
+    buffer << "D" << mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime(), dateMask) << "\n";
     buffer << "C" << (trx_xd.is_reconciled() ? "R" : "") << "\n";
-    double value = TrxModel::account_flow(trx_xd,
-        (reverse ? trx_xd.m_to_account_id_n : trx_xd.m_account_id)
+    double value = trx_xd.account_flow(
+        reverse ? trx_xd.m_to_account_id_n : trx_xd.m_account_id
     );
     const wxString& s = wxString::FromCDouble(value, 2);
     buffer << "T" << s << "\n";
@@ -193,7 +193,7 @@ const wxString mmExportTransaction::getTransactionQIF(
         if (trx_xd.is_withdrawal())
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
-        wxString split_categ = CategoryModel::instance().full_name(tp_d.m_category_id, ":");
+        wxString split_categ = CategoryModel::instance().get_id_fullname(tp_d.m_category_id, ":");
         split_categ.Replace("/", "-");
         TagLinkModel::DataA splitTags = TagLinkModel::instance().find(
             TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
@@ -224,7 +224,7 @@ const wxString mmExportTransaction::getTransactionQIF(
 const wxString mmExportTransaction::getAccountHeaderQIF(int64 accountID)
 {
     wxString buffer = "";
-    wxString currency_symbol = CurrencyModel::GetBaseCurrency()->m_symbol;
+    wxString currency_symbol = CurrencyModel::instance().get_base_data_n()->m_symbol;
     const AccountData *account_n = AccountModel::instance().get_id_data_n(accountID);
     if (account_n) {
         double dInitBalance = account_n->m_open_balance;
@@ -234,7 +234,7 @@ const wxString mmExportTransaction::getAccountHeaderQIF(int64 accountID)
         }
 
         const wxString currency_code = "[" + currency_symbol + "]";
-        const wxString sInitBalance = CurrencyModel::toString(dInitBalance, currency);
+        const wxString sInitBalance = CurrencyModel::instance().toString(dInitBalance, currency);
 
         buffer = wxString("!Account") << "\n"
             << "N" << account_n->m_name << "\n"
@@ -254,10 +254,10 @@ const wxString mmExportTransaction::getCategoriesQIF()
 
     buffer_qif << "!Type:Cat" << "\n";
     for (const auto& cat_d : CategoryModel::instance().find_all()) {
-        const wxString& full_name = CategoryModel::instance().full_name(cat_d.m_id, ":");
-        bool bIncome = CategoryModel::instance().has_income(cat_d.m_id);
+        const wxString& full_name = CategoryModel::instance().get_id_fullname(cat_d.m_id, ":");
+        double cat_income = CategoryModel::instance().get_id_income(cat_d.m_id);
         buffer_qif << "N" << full_name << "\n"
-            << (bIncome ? "I" : "E") << "\n"
+            << (cat_income > 0.0 ? "I" : "E") << "\n"
             << "^" << "\n";
     }
     return buffer_qif;
@@ -363,7 +363,7 @@ void mmExportTransaction::getCategoriesJSON(PrettyWriter<StringBuffer>& json_wri
         json_writer.Key("ID");
         json_writer.Int64(category.m_id.GetValue());
         json_writer.Key("NAME");
-        json_writer.String(CategoryModel::instance().full_name(category.m_id, ":").utf8_str());
+        json_writer.String(CategoryModel::instance().get_id_fullname(category.m_id, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();
@@ -400,7 +400,7 @@ void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json
         json_writer.Key("ID");
         json_writer.Int64(category.m_id.GetValue());
         json_writer.Key("NAME");
-        json_writer.String(CategoryModel::instance().full_name(category.m_id, ":").utf8_str());
+        json_writer.String(CategoryModel::instance().get_id_fullname(category.m_id, ":").utf8_str());
         json_writer.EndObject();
     }
     json_writer.EndArray();
@@ -447,7 +447,7 @@ void mmExportTransaction::getTransactionJSON(
     }
 
     AttachmentModel::DataA att_a = AttachmentModel::instance().find_ref_data_a(
-        TrxModel::s_ref_type, trx_xd.id()
+        TrxModel::s_ref_type, trx_xd.m_id
     );
 
     if (!att_a.empty()) {
@@ -461,7 +461,7 @@ void mmExportTransaction::getTransactionJSON(
     }
 
     auto fv_a = FieldValueModel::instance().find(
-        FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_xd.id())
+        FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_xd.m_id)
     );
     auto f = FieldModel::instance().find(
         FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())

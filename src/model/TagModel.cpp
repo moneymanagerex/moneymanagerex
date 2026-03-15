@@ -60,14 +60,14 @@ int TagModel::is_used(int64 tag_id)
         // FIXME: do not exclude deleted transactions
         if (gl_d.m_ref_type == TrxModel::s_ref_type) {
             const TrxData* trx_n = TrxModel::instance().get_id_data_n(gl_d.m_ref_id);
-            if (trx_n && trx_n->DELETEDTIME.IsEmpty())
+            if (trx_n && !trx_n->is_deleted())
                 return 1;
         }
         else if (gl_d.m_ref_type == TrxSplitModel::s_ref_type) {
             const TrxSplitData* tp_n = TrxSplitModel::instance().get_id_data_n(gl_d.m_ref_id);
             if (tp_n) {
                 const TrxData* trx_n = TrxModel::instance().get_id_data_n(tp_n->m_trx_id);
-                if (trx_n && trx_n->DELETEDTIME.IsEmpty())
+                if (trx_n && !trx_n->is_deleted())
                     return 1;
             }
         }

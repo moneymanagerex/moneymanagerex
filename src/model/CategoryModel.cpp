@@ -56,139 +56,6 @@ CategoryModel& CategoryModel::instance()
     return Singleton<CategoryModel>::instance();
 }
 
-const CategoryData* CategoryModel::get_key_data_n(const wxString& name, const int64 parentid)
-{
-    const Data* cat_n = search_cache_n(
-        CategoryCol::CATEGNAME(name),
-        CategoryCol::PARENTID(parentid)
-    );
-    if (cat_n)
-        return cat_n;
-
-    DataA cat_a = find(
-        CategoryCol::CATEGNAME(name),
-        CategoryCol::PARENTID(parentid)
-    );
-    if (!cat_a.empty())
-        cat_n = get_id_data_n(cat_a[0].m_id);
-    return cat_n;
-}
-
-CategoryModel::DataA CategoryModel::find_data_sub_a(const Data& cat_d)
-{
-    return find(CategoryCol::PARENTID(cat_d.m_id));
-}
-
-const wxArrayString CategoryModel::FilterCategory(const wxString& cat_pattern)
-{
-    wxArrayString categories;
-    for (auto& cat_d : CategoryModel::instance().find_all()) {
-        if (cat_d.m_name.Lower().Matches(cat_pattern.Lower().Append("*")))
-            categories.push_back(cat_d.m_name);
-    }
-    return categories;
-}
-
-// FIXME: This method is ill-defined (there can be multiple matches)
-const CategoryData* CategoryModel::get_name(const wxString& name, const wxString& parent_name)
-{
-    const Data* cat_n = nullptr;
-    DataA cat_a = find(CategoryCol::CATEGNAME(name));
-    for (const auto& cat_d : cat_a) {
-        if (cat_d.m_parent_id_n != -1) {
-            const Data* parent_n = get_id_data_n(cat_d.m_parent_id_n);
-            if (parent_n->m_name.Lower() == parent_name.Lower()) {
-                cat_n = get_id_data_n(cat_d.m_id);
-                break;
-            }
-        }
-    }
-
-    return cat_n;
-}
-
-const std::map<wxString, int64> CategoryModel::all_categories(bool excludeHidden)
-{
-    std::map<wxString, int64> full_categs;
-    for (const auto& cat_d : instance().find_all(Col::COL_ID_CATEGID)) {
-        if (excludeHidden && !cat_d.m_active)
-            continue;
-
-        full_categs[full_name(cat_d.m_id)] = cat_d.m_id;
-    }
-    return full_categs;
-}
-
-CategoryModel::DataA CategoryModel::find_data_subtree_a(const Data& cat_d)
-{
-    DataA tree;
-    DataA sub_a = find(CategoryCol::PARENTID(cat_d.m_id));
-    std::stable_sort(sub_a.begin(), sub_a.end(), CategoryData::SorterByCATEGNAME());
-    for (const auto& sub_d : sub_a) {
-        tree.push_back(sub_d);
-        DataA subtree_a = find_data_subtree_a(sub_d);
-        for (const auto& subtree_d : subtree_a) {
-            tree.push_back(subtree_d);
-        }
-    }
-    return tree;
-}
-
-const wxString CategoryModel::full_name(const Data* cat_n)
-{
-    static wxString delimiter;
-    if (delimiter.empty()) {
-        delimiter = InfoModel::instance().getString("CATEG_DELIMITER", ":");
-    }
-
-    if (!cat_n)
-        return "";
-
-    if (cat_n->m_parent_id_n == -1)
-        return cat_n->m_name;
-    else {
-        wxString full_name = cat_n->m_name;
-        const Data* parent_n = get_id_data_n(cat_n->m_parent_id_n);
-        while (parent_n) {
-            full_name = full_name.Prepend(delimiter).Prepend(parent_n->m_name);
-            parent_n = get_id_data_n(parent_n->m_parent_id_n);
-        }
-        return full_name;
-    }
-}
-
-const wxString CategoryModel::full_name(int64 cat_id)
-{
-    const Data* cat_n = get_id_data_n(cat_id);
-    return full_name(cat_n);
-}
-
-const wxString CategoryModel::full_name(int64 cat_id, wxString delimiter)
-{
-    const Data* cat_n = instance().get_id_data_n(cat_id);
-    if (!cat_n)
-        return "";
-    if (cat_n->m_parent_id_n == -1)
-        return cat_n->m_name;
-    else {
-        wxString name = cat_n->m_name;
-        const Data* parent_n = instance().get_id_data_n(cat_n->m_parent_id_n);
-        while (parent_n) {
-            name = name.Prepend(delimiter).Prepend(parent_n->m_name);
-            parent_n = instance().get_id_data_n(parent_n->m_parent_id_n);
-        }
-        return name;
-    }
-}
-
-// Check if Category should be made available for use.
-// Hiding a category hides all sub-categories
-bool CategoryModel::is_hidden(int64 cat_id)
-{
-    const auto cat_n = CategoryModel::instance().get_id_data_n(cat_id);
-    return (cat_n && !cat_n->m_active);
-}
-
 bool CategoryModel::is_used(int64 cat_id)
 {
     if (cat_id <= 0)
@@ -199,15 +66,17 @@ bool CategoryModel::is_used(int64 cat_id)
     );
     // FIXME: do not exclude deleted transactions
     for (const auto& trx_d : trx_a)
-        if (trx_d.DELETEDTIME.IsEmpty())
+        if (!trx_d.is_deleted())
             return true;
 
-    const auto& split_a = TrxSplitModel::instance().find(
-        TrxCol::CATEGID(cat_id)
+    const auto& tp_a = TrxSplitModel::instance().find(
+        TrxSplitCol::CATEGID(cat_id)
     );
-    for (const auto& split_d : split_a)
-        if (TrxModel::instance().get_id_data_n(split_d.m_trx_id)->DELETEDTIME.IsEmpty())
+    for (const auto& tp_d : tp_a) {
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(tp_d.m_trx_id);
+        if (!trx_n->is_deleted())
             return true;
+    }
 
     const auto& sched_a = SchedModel::instance().find(
         SchedCol::CATEGID(cat_id)
@@ -216,7 +85,7 @@ bool CategoryModel::is_used(int64 cat_id)
         return true;
 
     const auto& sched_split_a = SchedSplitModel::instance().find(
-        SchedCol::CATEGID(cat_id)
+        SchedSplitCol::CATEGID(cat_id)
     );
     if (!sched_split_a.empty())
         return true;
@@ -236,14 +105,49 @@ bool CategoryModel::is_used(int64 cat_id)
     return false;
 }
 
-bool CategoryModel::has_income(int64 cat_id)
+bool CategoryModel::get_id_active(int64 cat_id)
+{
+    // root category (id -1) is always active
+    if (cat_id <= 0)
+        return true;
+    const Data* cat_n = get_id_data_n(cat_id);
+    return (cat_n && cat_n->m_active);
+}
+
+const wxString CategoryModel::get_data_fullname(
+    const CategoryData* cat_n,
+    wxString delimiter
+) {
+    if (!cat_n)
+        return "";
+
+    // note: CATEG_DELIMITER may change during program execution
+    if (delimiter.empty()) {
+        delimiter = InfoModel::instance().getString("CATEG_DELIMITER", ":");
+    }
+
+    wxString fullname = cat_n->m_name;
+    while (cat_n->m_parent_id_n > 0) {
+        cat_n = get_id_data_n(cat_n->m_parent_id_n);
+        fullname = cat_n->m_name + delimiter + fullname;
+    }
+
+    return fullname;
+}
+
+const wxString CategoryModel::get_id_fullname(int64 cat_id, wxString delimiter)
+{
+    return get_data_fullname(get_id_data_n(cat_id), delimiter);
+}
+
+double CategoryModel::get_id_income(int64 cat_id)
 {
     double sum = 0.0;
-    auto splits = TrxSplitModel::instance().get_all_id();
-    // FIXME: ignore Void transactions
+    auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     for (const auto& trx_d : TrxModel::instance().find(
         TrxCol::CATEGID(cat_id),
-        TrxCol::DELETEDTIME(wxEmptyString)
+        TrxModel::IS_VOID(false),
+        TrxModel::IS_DELETED(false)
     )) {
         switch (trx_d.m_type.id())
         {
@@ -257,7 +161,7 @@ bool CategoryModel::has_income(int64 cat_id)
             break;
         }
 
-        for (const auto& tp_d : splits[trx_d.m_id]) {
+        for (const auto& tp_d : trxId_tpA_m[trx_d.m_id]) {
             switch (trx_d.m_type.id())
             {
             case TrxType::e_withdrawal:
@@ -272,78 +176,162 @@ bool CategoryModel::has_income(int64 cat_id)
         }
     }
 
-    return sum > 0;
+    return sum;
+}
+
+const CategoryData* CategoryModel::get_key_data_n(const wxString& name, const int64 parentid)
+{
+    const Data* cat_n = search_cache_n(
+        CategoryCol::CATEGNAME(name),
+        CategoryCol::PARENTID(parentid)
+    );
+    if (cat_n)
+        return cat_n;
+
+    const DataA cat_a = find(
+        CategoryCol::CATEGNAME(name),
+        CategoryCol::PARENTID(parentid)
+    );
+    if (!cat_a.empty())
+        cat_n = get_id_data_n(cat_a[0].m_id);
+    return cat_n;
+}
+
+// FIXME: This method is ill-defined (there can be multiple matches)
+const CategoryData* CategoryModel::get_name2_data_n(
+    const wxString& name,
+    const wxString& parent_name
+) {
+    for (const auto& cat_d : find(CategoryCol::CATEGNAME(name))) {
+        if (cat_d.m_parent_id_n <= 0)
+            continue;
+        const Data* parent_n = get_id_data_n(cat_d.m_parent_id_n);
+        if (parent_n->m_name.Lower() == parent_name.Lower()) {
+            return get_id_data_n(cat_d.m_id);
+        }
+    }
+    return nullptr;
+}
+
+CategoryModel::DataA CategoryModel::find_data_sub_a(const Data& cat_d)
+{
+    return find(CategoryCol::PARENTID(cat_d.m_id));
+}
+
+CategoryModel::DataA CategoryModel::find_data_subtree_a(const Data& cat_d)
+{
+    DataA tree_a;
+    DataA sub_a = find(CategoryCol::PARENTID(cat_d.m_id));
+    std::stable_sort(sub_a.begin(), sub_a.end(),
+        CategoryData::SorterByCATEGNAME()
+    );
+    for (const auto& sub_d : sub_a) {
+        tree_a.push_back(sub_d);
+        DataA subtree_a = find_data_subtree_a(sub_d);
+        for (const auto& subtree_d : subtree_a) {
+            tree_a.push_back(subtree_d);
+        }
+    }
+    return tree_a;
+}
+
+const std::map<wxString, int64> CategoryModel::find_all_id_mFullname(bool only_active)
+{
+    std::map<wxString, int64> fullname_id_m;
+    for (const auto& cat_d : find_all(Col::COL_ID_CATEGID)) {
+        if (only_active && !cat_d.m_active)
+            continue;
+        wxString fullname = get_id_fullname(cat_d.m_id);
+        fullname_id_m[fullname] = cat_d.m_id;
+    }
+    return fullname_id_m;
+}
+
+const wxArrayString CategoryModel::find_pattern_name_a(const wxString& cat_pattern)
+{
+    wxArrayString name_a;
+    for (auto& cat_d : find_all()) {
+        if (cat_d.m_name.Lower().Matches(cat_pattern.Lower().Append("*")))
+            name_a.push_back(cat_d.m_name);
+    }
+    return name_a;
 }
 
 void CategoryModel::getCategoryStats(
-    std::map<int64, std::map<int, double>>& categoryStats
-    , wxSharedPtr<wxArrayString> accountArray
-    , mmDateRange* date_range
-    , bool WXUNUSED(ignoreFuture) //TODO: deprecated
-    , bool group_by_month
-    , std::map<int64, double> *budgetAmt
-    , [[maybe_unused]] bool fin_months)
-{
-    //Initialization
-    //Set std::map with zerros
-    const auto& allcategories = instance().find_all();
+    std::map<int64, std::map<int, double>>& categoryStats,
+    wxSharedPtr<wxArrayString> accountArray,
+    mmDateRange* date_range,
+    bool WXUNUSED(ignoreFuture), //TODO: deprecated
+    bool group_by_month,
+    std::map<int64, double>* budgetAmt,
+    [[maybe_unused]] bool fin_months
+) {
+    mmDate startDate = mmDate(date_range->start_date());
+    mmDate endDate = mmDate(date_range->end_date());
+
+    // Initialization
+    // Set std::map with zerros
+    const auto& allcategories = find_all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
-    const wxDateTime start_date(date_range->start_date());
 
-    std::vector<std::pair<wxDateTime, int>> monthMap;
-    for (int m = 0; m < columns; m++)
-    {
-        const wxDateTime d = start_date.Add(wxDateSpan::Months(m));
-        monthMap.emplace_back(d, m);
+    std::vector<std::pair<mmDate, int>> date_month_a;
+    for (int m = 0; m < columns; m++) {
+        mmDate date = startDate;
+        date.addDateSpan(wxDateSpan::Months(m));
+        date_month_a.emplace_back(date, m);
     }
-    std::reverse(monthMap.begin(), monthMap.end());
+    std::reverse(date_month_a.begin(), date_month_a.end());
 
-    for (const auto& category : allcategories)
-    {
-        for (int m = 0; m < columns; m++)
-        {
+    for (const auto& category : allcategories) {
+        for (int m = 0; m < columns; m++) {
             int month = group_by_month ? m : 0;
             categoryStats[category.m_id][month] = value;
         }
     }
-    //Calculations
-    auto id_tp_m = TrxSplitModel::instance().get_all_id();
+
+    // Calculations
+    auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     for (const auto& trx_d : TrxModel::instance().find(
-        TrxModel::STATUS(OP_NE, TrxStatus(TrxStatus::e_void)),
-        TrxModel::TRANSDATE(OP_GE, date_range->start_date()),
-        TrxCol::TRANSDATE(OP_LE, date_range->end_date().FormatISOCombined())
+        TrxModel::DATE(OP_GE, startDate),
+        TrxModel::DATE(OP_LE, endDate),
+        TrxModel::IS_VOID(false)
     )) {
-        if (!trx_d.DELETEDTIME.IsEmpty()) continue;
+        if (trx_d.is_deleted())
+            continue;
 
         if (accountArray) {
-            const auto account = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
-            if (wxNOT_FOUND == accountArray->Index(account->m_name)) {
+            const AccountData* account_n = AccountModel::instance().get_id_data_n(
+                trx_d.m_account_id
+            );
+            if (accountArray->Index(account_n->m_name) == wxNOT_FOUND)
                 continue;
-            }
         }
 
-        const double convRate = CurrencyHistoryModel::getDayRate(
+        const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            trx_d.TRANSDATE
+            trx_d.m_date()
         );
-        wxDateTime d = TrxModel::getTransDateTime(trx_d);
 
+        mmDate trx_date = trx_d.m_date();
         int month = 0;
         if (group_by_month) {
-            auto it = std::find_if(monthMap.begin(), monthMap.end()
-                , [d](std::pair<wxDateTime, int> date){return d >= date.first;});
+            auto it = std::find_if(date_month_a.begin(), date_month_a.end(),
+                [trx_date](std::pair<mmDate, int> date_month) {
+                    return trx_date >= date_month.first;
+                }
+            );
             month = it->second;
         }
 
         int64 categID = trx_d.m_category_id_n;
 
-        if (id_tp_m[trx_d.id()].empty()) {
+        if (trxId_tpA_m[trx_d.m_id].empty()) {
             if (!trx_d.is_transfer()) {
                 // Do not include asset or stock transfers in income expense calculations.
                 if (TrxModel::is_foreignAsTransfer(trx_d))
                     continue;
-                categoryStats[categID][month] += TrxModel::account_flow(trx_d, trx_d.m_account_id) * convRate;
+                categoryStats[categID][month] += trx_d.account_flow(trx_d.m_account_id) * convRate;
             }
             else if (budgetAmt != 0) {
                 double amt = trx_d.m_amount * convRate;
@@ -354,7 +342,7 @@ void CategoryModel::getCategoryStats(
             }
         }
         else {
-            for (const auto& tp_d : id_tp_m[trx_d.id()]) {
+            for (const auto& tp_d : trxId_tpA_m[trx_d.m_id]) {
                 categoryStats[tp_d.m_category_id][month] +=
                     (trx_d.is_withdrawal() ? -tp_d.m_amount : tp_d.m_amount) *
                     convRate;

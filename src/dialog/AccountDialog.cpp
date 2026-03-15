@@ -162,7 +162,7 @@ void AccountDialog::CreateControls()
     grid_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Currency:")), g_flagsH);
 
     wxString currName = _t("Select Currency");
-    const CurrencyData* base_currency = CurrencyModel::GetBaseCurrency();
+    const CurrencyData* base_currency = CurrencyModel::instance().get_base_data_n();
     if (base_currency)
         currName = base_currency->m_name;
 

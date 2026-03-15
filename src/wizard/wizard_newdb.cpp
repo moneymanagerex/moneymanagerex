@@ -92,7 +92,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     : wxWizardPageSimple(parent)
 {
     wxString currName = _t("Set Currency");
-    const auto base_currency = CurrencyModel::instance().GetBaseCurrency();
+    const auto base_currency = CurrencyModel::instance().get_base_data_n();
     if (base_currency) {
         currencyID_ = base_currency->m_id;
         currName = base_currency->m_name;

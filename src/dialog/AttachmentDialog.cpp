@@ -242,7 +242,7 @@ void AttachmentDialog::AddAttachment(wxString file_path)
         new_att_d.m_description = desc;
         new_att_d.m_filename    = importedFileName;
         AttachmentModel::instance().add_data_n(new_att_d);
-        m_attachment_id = new_att_d.id();
+        m_attachment_id = new_att_d.m_id;
 
         if (m_ref_type == TrxModel::s_ref_type)
             TrxModel::instance().save_timestamp(m_ref_id);

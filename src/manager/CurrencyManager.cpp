@@ -64,7 +64,7 @@ CurrencyManager::CurrencyManager(wxWindow* parent, const CurrencyData* currency)
         m_currency_d.clone_from(*currency);
         m_currency_n = &m_currency_d;
         m_currency_n->m_id             = currency->m_id;
-        m_currency_n->m_base_conv_rate = CurrencyHistoryModel::getLastRate(m_currency_n->m_id);
+        m_currency_n->m_base_conv_rate = CurrencyHistoryModel::instance().get_id_last_rate(m_currency_n->m_id);
     }
     else {
         m_currency_d = CurrencyData();
@@ -107,8 +107,11 @@ bool CurrencyManager::Create(wxWindow* parent, wxWindowID id
     CreateControls();
 
     if (!m_currency_n) {
-        mmSingleChoiceDialog select_currency_name(this, _t("Currency name"), _t("Select Currency")
-            , CurrencyModel::instance().all_currency_names());
+        mmSingleChoiceDialog select_currency_name(this,
+            _t("Currency name"),
+            _t("Select Currency"),
+            CurrencyModel::instance().find_all_name_a()
+        );
         if (select_currency_name.ShowModal() == wxID_OK) {
             const wxString currencyname = select_currency_name.GetStringSelection();
             m_currency_n = CurrencyModel::instance().unsafe_search_cache_n(
@@ -329,7 +332,10 @@ void CurrencyManager::OnDataChanged(wxCommandEvent& WXUNUSED(event))
     wxString dispAmount = "";
     double base_amount = 1234567.89;
 
-    dispAmount = wxString::Format(_t("%.2f Shown As: %s"), base_amount, CurrencyModel::toCurrency(base_amount, m_currency_n, scale));
+    dispAmount = wxString::Format(_t("%.2f Shown As: %s"),
+        base_amount,
+        CurrencyModel::instance().toCurrency(base_amount, m_currency_n, scale)
+    );
     if (m_locale_used)
         dispAmount = dispAmount + "  " + _t("(Using Locale)");
     w_sampleText->SetLabelText(dispAmount);

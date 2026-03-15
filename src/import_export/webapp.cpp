@@ -514,7 +514,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         CategoryData new_category_d = CategoryData();
         new_category_d.m_name = WebAppTrans.Category;
         CategoryModel::instance().add_data_n(new_category_d);
-        category_id = new_category_d.id();
+        category_id = new_category_d.m_id;
     }
 
     // Search or insert SubCategory
@@ -530,7 +530,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
             new_subcategory_d.m_name        = WebAppTrans.SubCategory;
             new_subcategory_d.m_parent_id_n = category_id;
             CategoryModel::instance().add_data_n(new_subcategory_d);
-            category_id = new_subcategory_d.id();
+            category_id = new_subcategory_d.m_id;
         }
     }
 
@@ -544,7 +544,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         new_payee_d.m_name          = WebAppTrans.Payee;
         new_payee_d.m_category_id_n = category_id;
         PayeeModel::instance().add_data_n(new_payee_d);
-        payeeID = new_payee_d.id();
+        payeeID = new_payee_d.m_id;
     }
 
     // Create New Transaction
@@ -563,7 +563,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         trx_datetime = wxDate::Today();
     }
 
-    new_trx_d.TRANSDATE         = trx_datetime.FormatISOCombined();
+    new_trx_d.m_date_time       = mmDateTime(trx_datetime);
     new_trx_d.m_type            = TrxType(WebAppTrans.Type);
     new_trx_d.m_status          = trx_status;
     new_trx_d.m_account_id      = AccountID;
@@ -577,7 +577,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
     new_trx_d.m_followup_id     = -1;
     new_trx_d.m_color           = -1;
     TrxModel::instance().add_data_n(new_trx_d);
-    DeskNewTrID = new_trx_d.id();
+    DeskNewTrID = new_trx_d.m_id;
 
     if (DeskNewTrID > 0) {
         if (!WebAppTrans.Attachments.IsEmpty()) {

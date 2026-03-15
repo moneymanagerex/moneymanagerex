@@ -131,8 +131,8 @@ void DiagnosticsDialog::RefreshView()
          << ", hidden: " << all_payees.size() - all_payees_nothidden.size() << ")"
          << "</td></tr>";
     // Category info
-    auto all_categories = CategoryModel::instance().all_categories(false);
-    auto all_categories_nothidden = CategoryModel::instance().all_categories(true);
+    auto all_categories = CategoryModel::instance().find_all_id_mFullname(false);
+    auto all_categories_nothidden = CategoryModel::instance().find_all_id_mFullname(true);
     html << "<tr><td><b>Categories</b></td><td>total: " << all_categories.size() 
          << " (visible: " << all_categories_nothidden.size() 
          << ", hidden: " << all_categories.size() - all_categories_nothidden.size() << ")"

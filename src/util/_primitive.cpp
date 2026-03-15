@@ -93,6 +93,9 @@ bool isValidURI(const wxString& validate)
 wxDateTime parseDateTime(const wxString& str_date)
 {
     static std::unordered_map<wxString, wxDateTime> cache;
+
+    if (str_date.empty())
+        return wxInvalidDateTime;
     if (auto it = cache.find(str_date); it != cache.end())
         return it->second;
 

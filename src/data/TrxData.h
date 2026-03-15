@@ -18,6 +18,8 @@
 
 #pragma once
 
+#include "util/mmDateTime.h"
+#include "util/mmDate.h"
 #include "_DataEnum.h"
 #include "table/_TableBase.h"
 #include "table/TrxTable.h"
@@ -25,22 +27,22 @@
 // User-friendly representation of a record in table CHECKINGACCOUNT_V1.
 struct TrxData
 {
-    int64     m_id;
-    wxString  TRANSDATE;
-    TrxType   m_type;
-    TrxStatus m_status;
-    int64     m_account_id;      // non-null (> 0) after initialization
-    int64     m_to_account_id_n; // optional (can be null)
-    int64     m_payee_id_n;      // optional (can be null)
-    int64     m_category_id_n;   // optional (can be null)
-    double    m_amount;
-    double    m_to_amount;
-    wxString  m_number;
-    wxString  m_notes;
-    int64     m_followup_id;     // this is not a database id
-    int64     m_color;
-    wxString  LASTUPDATEDTIME;
-    wxString  DELETEDTIME;
+    int64       m_id;
+    mmDateTime  m_date_time;
+    TrxType     m_type;
+    TrxStatus   m_status;
+    int64       m_account_id;      // non-null (> 0) after initialization
+    int64       m_to_account_id_n; // optional (can be null)
+    int64       m_payee_id_n;      // optional (can be null)
+    int64       m_category_id_n;   // optional (can be null)
+    double      m_amount;
+    double      m_to_amount;
+    wxString    m_number;
+    wxString    m_notes;
+    int64       m_followup_id;     // this is not a database id
+    int64       m_color;
+    mmDateTimeN m_updated_time_n;  // non-null for TrxData; null for SchedData in Journal
+    mmDateTimeN m_deleted_time_n;  // non-null for deleted transactions, null otherwise
 
     explicit TrxData();
     explicit TrxData(wxSQLite3ResultSet& q);
@@ -64,13 +66,25 @@ struct TrxData
     bool operator< (const TrxData& other) const { return id() < other.id(); }
     bool operator< (const TrxData* other) const { return id() < other->id(); }
 
+    // m_date is a pseudo-member variable, convenient when time is disabled.
+    // note: the (unused) time part is set to noon in mmDate constructor and methods
+    mmDate m_date() const { return mmDate(m_date_time); }
+    void m_date(mmDate date) { m_date_time = mmDateTime(date.getDateTime()); }
+
     bool is_withdrawal() const { return m_type.id() == TrxType::e_withdrawal; }
     bool is_deposit()    const { return m_type.id() == TrxType::e_deposit; }
     bool is_transfer()   const { return m_type.id() == TrxType::e_transfer; }
     bool is_reconciled() const { return m_status.id() == TrxStatus::e_reconciled; }
     bool is_void()       const { return m_status.id() == TrxStatus::e_void; }
+    bool is_deleted()    const { return m_deleted_time_n.has_value(); }
+    bool is_valid()      const { return !is_void() && !is_deleted(); }
 
-    struct SorterByTRANSID
+    double account_flow(int64 account_id) const;
+    double account_inflow(int64 account_id) const;
+    double account_outflow(int64 account_id) const;
+    double account_recflow(int64 account_id) const;
+
+    struct SorterById
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
@@ -78,31 +92,33 @@ struct TrxData
         }
     };
 
-    struct SorterByACCOUNTID
+    struct SorterByDateTime
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.m_account_id < y.m_account_id;
+            return x.m_date_time < y.m_date_time;
         }
     };
 
-    struct SorterByTOACCOUNTID
+    struct SorterByDate
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.m_to_account_id_n < y.m_to_account_id_n;
+            return x.m_date() < y.m_date();
         }
     };
 
-    struct SorterByPAYEEID
+    struct SorterByTime
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.m_payee_id_n < y.m_payee_id_n;
+            return
+                x.m_date_time.getDateTime().FormatISOTime() <
+                y.m_date_time.getDateTime().FormatISOTime();
         }
     };
 
-    struct SorterByTRANSCODE
+    struct SorterByType
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
@@ -110,15 +126,7 @@ struct TrxData
         }
     };
 
-    struct SorterByTRANSAMOUNT
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_amount < y.m_amount;
-        }
-    };
-
-    struct SorterBySTATUS
+    struct SorterByStatus
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
@@ -126,23 +134,31 @@ struct TrxData
         }
     };
 
-    struct SorterByTRANSACTIONNUMBER
+    struct SorterByAccountId
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.m_number < y.m_number;
+            return x.m_account_id < y.m_account_id;
         }
     };
 
-    struct SorterByNOTES
+    struct SorterByToAccountId
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.m_notes < y.m_notes;
+            return x.m_to_account_id_n < y.m_to_account_id_n;
         }
     };
 
-    struct SorterByCATEGID
+    struct SorterByPayeeId
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_payee_id_n < y.m_payee_id_n;
+        }
+    };
+
+    struct SorterByCategoryId
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
@@ -150,39 +166,15 @@ struct TrxData
         }
     };
 
-    struct SorterByTRANSDATE
+    struct SorterByAmount
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.TRANSDATE < y.TRANSDATE;
+            return x.m_amount < y.m_amount;
         }
     };
 
-    struct SorterByLASTUPDATEDTIME
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.LASTUPDATEDTIME < y.LASTUPDATEDTIME;
-        }
-    };
-
-    struct SorterByDELETEDTIME
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.DELETEDTIME < y.DELETEDTIME;
-        }
-    };
-
-    struct SorterByFOLLOWUPID
-    {
-        bool operator()(const TrxData& x, const TrxData& y)
-        {
-            return x.m_followup_id < y.m_followup_id;
-        }
-    };
-
-    struct SorterByTOTRANSAMOUNT
+    struct SorterByToAmount
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
@@ -190,11 +182,59 @@ struct TrxData
         }
     };
 
-    struct SorterByCOLOR
+    struct SorterByNumber
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_number.IsNumber() && y.m_number.IsNumber()
+                ? (wxAtoi(x.m_number) < wxAtoi(y.m_number))
+                : (x.m_number < y.m_number);
+        }
+    };
+
+    struct SorterByNotes
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_notes < y.m_notes;
+        }
+    };
+
+    struct SorterByFollowupId
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_followup_id < y.m_followup_id;
+        }
+    };
+
+    struct SorterByColor
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
             return x.m_color < y.m_color;
+        }
+    };
+
+    struct SorterByUpdatedTime
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_updated_time_n.has_value() && (
+                !y.m_updated_time_n.has_value() ||
+                x.m_updated_time_n.value() < y.m_updated_time_n.value()
+            );
+        }
+    };
+
+    struct SorterByDeletedTime
+    {
+        bool operator()(const TrxData& x, const TrxData& y)
+        {
+            return x.m_deleted_time_n.has_value() && (
+                !y.m_deleted_time_n.has_value() ||
+                x.m_deleted_time_n.value() < y.m_deleted_time_n.value()
+            );
         }
     };
 };

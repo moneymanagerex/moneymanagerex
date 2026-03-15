@@ -189,7 +189,7 @@ void PayeeManager::fillControls()
             m_patternTable->SetCellValue(row++, 0, wxString::FromUTF8(member.value.GetString()));
         }
     }
-    const wxString category = CategoryModel::instance().full_name(m_payee_n->m_category_id_n);
+    const wxString category = CategoryModel::instance().get_id_fullname(m_payee_n->m_category_id_n);
     m_category->ChangeValue(category);
     ResizeDialog();
 }
@@ -378,7 +378,7 @@ void PayeeManager::OnComboKey(wxKeyEvent& event)
             dlg.ShowModal();
             if (dlg.getRefreshRequested())
                 m_category->mmDoReInitialize();
-            category = CategoryModel::instance().full_name(dlg.getCategId());
+            category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
             m_category->ChangeValue(category);
             return;
         }
@@ -536,7 +536,7 @@ void mmPayeeDialog::Create(wxWindow* parent, const wxString &name)
 
     // Calculate payee usage
     for (const auto& trx_d : TrxModel::instance().find_all()) {
-        if (trx_d.DELETEDTIME.IsEmpty()) {
+        if (!trx_d.is_deleted()) {
             m_payeeUsage[trx_d.m_payee_id_n]++;
         }
     }
@@ -618,8 +618,8 @@ void mmPayeeDialog::fillControls()
             case PAYEE_CATEGORY:
                 std::stable_sort(payees.begin(), payees.end(), [] (PayeeData x, PayeeData y) {
                     return CaseInsensitiveLocaleCmp(
-                        CategoryModel::instance().full_name(x.m_category_id_n),
-                        CategoryModel::instance().full_name(y.m_category_id_n)
+                        CategoryModel::instance().get_id_fullname(x.m_category_id_n),
+                        CategoryModel::instance().get_id_fullname(y.m_category_id_n)
                     ) < 0;
                 });
                 break;
@@ -680,7 +680,7 @@ void mmPayeeDialog::addPayeeDataIntoItem(long idx, const PayeeData* payee_n, int
         payeeListBox_->Select(idx);
     }
     payeeListBox_->SetItem(idx, 1, !payee_n->m_active ? L"\u2713" : L"");
-    payeeListBox_->SetItem(idx, 2, CategoryModel::instance().full_name(payee_n->m_category_id_n));
+    payeeListBox_->SetItem(idx, 2, CategoryModel::instance().get_id_fullname(payee_n->m_category_id_n));
     payeeListBox_->SetItem(idx, 3, payee_n->m_number);
     payeeListBox_->SetItem(idx, 4, payee_n->m_website);
     wxString value = payee_n->m_notes;

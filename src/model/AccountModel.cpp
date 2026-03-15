@@ -109,16 +109,16 @@ const CurrencyData* AccountModel::get_data_currency_p(const Data& account_d)
         return currency_n;
     else {
         wxASSERT(false);
-        return CurrencyModel::GetBaseCurrency();
+        return CurrencyModel::instance().get_base_data_n();
     }
 }
 
 double AccountModel::get_data_balance(const Data& account_d)
 {
     double sum = account_d.m_open_balance;
-    // FIXME: skip Void and deleted transactions
-    for (const auto& trx_a: find_id_trx_aBySN(account_d.m_id)) {
-        sum += TrxModel::account_flow(trx_a, account_d.m_id);
+    // TODO: skip Void and deleted transactions; order by SN is not important
+    for (const auto& trx_d: find_id_trx_aBySN(account_d.m_id)) {
+        sum += trx_d.account_flow(account_d.m_id);
     }
     return sum;
 }
@@ -126,10 +126,11 @@ double AccountModel::get_data_balance(const Data& account_d)
 double AccountModel::get_data_balance_to_date(const Data& account_d, mmDate date)
 {
     double sum = account_d.m_open_balance;
-    // FIXME: skip Void and deleted transactions
-    for (const auto& trx_a: find_id_trx_aBySN(account_d.m_id)) {
-        if (trx_a.TRANSDATE <= date.isoEnd()) {
-            sum += TrxModel::account_flow(trx_a, account_d.m_id);
+    // TODO: skip Void and deleted transactions
+    // TODO: query transactions up to date; order by SN is not important
+    for (const auto& trx_d: find_id_trx_aBySN(account_d.m_id)) {
+        if (trx_d.m_date() <= date) {
+            sum += trx_d.account_flow(account_d.m_id);
         }
     }
     return sum;
@@ -176,7 +177,7 @@ const CurrencyData* AccountModel::get_id_currency_p(int64 account_id)
         return AccountModel::get_data_currency_p(*account_n);
     else {
         wxASSERT(false);
-        return CurrencyModel::GetBaseCurrency();
+        return CurrencyModel::instance().get_base_data_n();
     }
 }
 
@@ -190,9 +191,9 @@ const TrxModel::DataA AccountModel::find_id_trx_aBySN(int64 account_id)
     );
     std::sort(trx_a.begin(), trx_a.end());
     if (PrefModel::instance().UseTransDateTime())
-        std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByTRANSDATE());
+        std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByDateTime());
     else
-        std::stable_sort(trx_a.begin(), trx_a.end(), TrxModel::SorterByTRANSDATE_DATE());
+        std::stable_sort(trx_a.begin(), trx_a.end(), TrxData::SorterByDate());
     return trx_a;
 }
 
@@ -351,10 +352,17 @@ void AccountModel::dangerous_reset_unknown_types()
 
 const wxString AccountModel::value_number(const Data& account_d, double value, int precision)
 {
-    return CurrencyModel::toString(value, AccountModel::get_data_currency_p(account_d), precision);
+    return CurrencyModel::instance().toString(
+        value,
+        AccountModel::get_data_currency_p(account_d),
+        precision
+    );
 }
 
 const wxString AccountModel::value_number_currency(const Data& account_d, double value)
 {
-    return CurrencyModel::toCurrency(value, AccountModel::get_data_currency_p(account_d));
+    return CurrencyModel::instance().toCurrency(
+        value,
+        AccountModel::get_data_currency_p(account_d)
+    );
 }

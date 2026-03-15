@@ -58,6 +58,6 @@ public:
     // lookup for all Data
     auto find_all_name_a() -> const wxArrayString;
     auto find_all_name_id_m(bool only_active = false) -> const std::map<wxString, int64>;
-    auto find_used_id_s() -> const std::set<int64>;
+    auto find_used_id_m() -> const std::set<int64>;
     auto find_pattern_data_a(const wxString& pattern, bool only_active = false) -> const DataA;
 };

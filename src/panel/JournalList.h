@@ -226,7 +226,7 @@ private:
     void markSelectedTransaction();
     void deleteTransactionsByStatus(std::optional<TrxStatus> status_n);
     bool checkForClosedAccounts();
-    bool checkTransactionLocked(int64 AccountID, const wxString& transdate);
+    bool checkTransactionLocked(int64 account_id, mmDate date);
 
     void OnSize(wxSizeEvent& event);
     void setAutomaticColumnSize();

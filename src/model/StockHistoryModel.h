@@ -28,35 +28,20 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class StockHistoryModel : public TableFactory<StockHistoryTable, StockHistoryData>
 {
 public:
-    enum UPDTYPE { ONLINE = 1, MANUAL };
-
-public:
     StockHistoryModel();
     ~StockHistoryModel();
 
 public:
-    /**
-    Initialize the global StockHistoryModel table on initial call.
-    Resets the global table on subsequent calls.
-    * Return the static instance address for StockModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static StockHistoryModel& instance(wxSQLite3Database* db);
-
-    /**
-    * Return the static instance address for StockHistoryModel table
-    * Note: Assigning the address to a local variable can destroy the instance.
-    */
     static StockHistoryModel& instance();
 
-public:
-    const Data* get_key(const wxString& symbol, const wxDate& date);
-    static wxDate DATE(const Data& hist);
+    static StockHistoryCol::DATE DATE(OP op, const mmDate& date);
 
-    static StockHistoryCol::DATE DATE(OP op, const wxDate& date);
-    /**
-    Adds or updates an element in stock history
-    */
-    int64 addUpdate(const wxString& symbol, const wxDate& date, double price, UPDTYPE type);
+public:
+    auto get_key_data_n(const wxString& symbol, const mmDate& date) -> const Data*;
+
+    auto save_record(
+        const wxString& symbol, const mmDate& date, double price, UpdateType update_type
+    ) -> int64;
 };
 

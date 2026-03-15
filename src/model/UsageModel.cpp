@@ -41,10 +41,8 @@ UsageModel::~UsageModel()
 {
 }
 
-/**
-* Initialize the global UsageModel table.
-* Reset the UsageModel table or create the table if it does not exist.
-*/
+// Initialize the global UsageModel table.
+// Reset the UsageModel table or create the table if it does not exist.
 UsageModel& UsageModel::instance(wxSQLite3Database* db)
 {
     UsageModel& ins = Singleton<UsageModel>::instance();
@@ -56,13 +54,14 @@ UsageModel& UsageModel::instance(wxSQLite3Database* db)
     return ins;
 }
 
-/** Return the static instance of UsageModel table */
+// Return the static instance of UsageModel table
 UsageModel& UsageModel::instance()
 {
     return Singleton<UsageModel>::instance();
 }
 
-void UsageModel::AppendToUsage(const wxString& json_string)
+// Appends to usage array
+void UsageModel::append_usage(const wxString& json_string)
 {
     wxLogDebug("===== UsageModel::AppendToUsage =================");
     wxLogDebug("%s", json_string);
@@ -70,7 +69,8 @@ void UsageModel::AppendToUsage(const wxString& json_string)
     m_json_usage.Add(json_string);
 }
 
-void UsageModel::AppendToCache(const wxString& json_string)
+// Appends to cache array
+void UsageModel::append_cache(const wxString& json_string)
 {
     wxLogDebug("===== UsageModel::AppendToCache =================");
     wxLogDebug("%s", json_string);
@@ -78,7 +78,8 @@ void UsageModel::AppendToCache(const wxString& json_string)
     m_json_cache.Add(json_string);
 }
 
-wxString UsageModel::To_JSON_String() const
+// Return a json string
+const wxString UsageModel::to_json() const
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -93,8 +94,7 @@ wxString UsageModel::To_JSON_String() const
     json_writer.Key("usage");
     {
         json_writer.StartArray();
-        for (size_t i = 0; i < m_json_usage.GetCount(); i++)
-        {
+        for (size_t i = 0; i < m_json_usage.GetCount(); i++) {
             const char* item = m_json_usage.Item(i).utf8_str();
             json_writer.RawValue(item, strlen(item), kObjectType);
         }
@@ -103,8 +103,7 @@ wxString UsageModel::To_JSON_String() const
     json_writer.Key("cache");
     {
         json_writer.StartArray();
-        for (size_t i = 0; i < m_json_cache.GetCount(); i++)
-        {
+        for (size_t i = 0; i < m_json_cache.GetCount(); i++) {
             const char* item = m_json_cache.Item(i).utf8_str();
             json_writer.RawValue(item, strlen(item), kObjectType);
         }
@@ -122,20 +121,20 @@ std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()
     if (!UUID.IsEmpty() && !UID.IsEmpty())
         return std::make_pair(UUID, UID);
 
-    if (UUID.IsEmpty() && UID.IsEmpty())
-    {
+    if (UUID.IsEmpty() && UID.IsEmpty()) {
         wxDateTime now = wxDateTime::UNow();
-        UUID = UID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S%l"));
+        UUID = UID = wxString::Format("%s_%s",
+            wxPlatformInfo::Get().GetPortIdShortName(),
+            now.Format("%Y%m%d%H%M%S%l")
+        );
         SettingModel::instance().setString("UUID", UUID);
         SettingModel::instance().setString("UID", UID);
     }
-    else if (UUID.IsEmpty())
-    {
+    else if (UUID.IsEmpty()) {
         UUID = UID;
         SettingModel::instance().setString("UUID", UUID);
     }
-    else if (UID.IsEmpty())
-    {
+    else if (UID.IsEmpty()) {
         UID = UUID;
         SettingModel::instance().setString("UID", UID);
     }
@@ -146,15 +145,11 @@ std::pair<wxString /*UUID*/, wxString /*UID*/> uuid()
 class SendStatsThread : public wxThread
 {
 public:
-    explicit SendStatsThread(const wxString& url) : wxThread(), m_url(url) {
-    }
-    explicit SendStatsThread(const wxString& url, const wxString& payload) : wxThread()
-        , m_url(url)
-        , m_payload(payload)
-        {
-    }
-    ~SendStatsThread() {
-    }
+    explicit SendStatsThread(const wxString& url) :
+        wxThread(), m_url(url) {}
+    explicit SendStatsThread(const wxString& url, const wxString& payload) :
+        wxThread(), m_url(url), m_payload(payload) {}
+    ~SendStatsThread() {}
 
 protected:
     wxString m_url;
@@ -164,59 +159,54 @@ protected:
 
 void UsageModel::pageview(const wxWindow* window, long plt /* = 0 msec*/)
 {
-    if (!window) return;
-    if (window->GetName().IsEmpty()) return;
+    if (!window || window->GetName().IsEmpty())
+        return;
 
-    const wxWindow *current = window;
+    const wxWindow* current = window;
 
     wxString documentTitle = window->GetLabel();
-    if (documentTitle.IsEmpty()) documentTitle = window->GetName();
+    if (documentTitle.IsEmpty())
+        documentTitle = window->GetName();
 
     wxString documentPath;
-    while (current)
-    {
-        if (current->GetName().IsEmpty())
-        {
-            current = current->GetParent();
-            continue;
-        }
-        documentPath = "/" + current->GetName() + documentPath;
+    while (current) {
+        if (!current->GetName().IsEmpty())
+            documentPath = "/" + current->GetName() + documentPath;
         current = current->GetParent();
     }
 
     pageview(wxURI(documentPath).BuildURI(), documentTitle, plt);
 }
 
-void UsageModel::pageview(const wxWindow* window, const ReportBase* rb, long plt /* = 0 msec*/)
-{
-    if (!window) return;
-    if (window->GetName().IsEmpty()) return;
+void UsageModel::pageview(
+    const wxWindow* window,
+    const ReportBase* rb,
+    long plt /* = 0 msec*/
+) {
+    if (!window || window->GetName().IsEmpty())
+        return;
 
     const wxWindow *current = window;
 
     wxString documentTitle = rb->getTitle(false);
 
     wxString documentPath;
-    while (current)
-    {
-        if (current->GetName().IsEmpty())
-        {
-            current = current->GetParent();
-            continue;
-        }
-        documentPath = "/" + current->GetName() + documentPath;
+    while (current) {
+        if (!current->GetName().IsEmpty())
+            documentPath = "/" + current->GetName() + documentPath;
         current = current->GetParent();
     }
 
     pageview(wxURI(documentPath).BuildURI(), documentTitle, plt);
 }
 
-void UsageModel::pageview(const wxString& documentPath, const wxString& documentTitle, long plt /* = 0 msec*/)
-{
+void UsageModel::pageview(
+    const wxString& documentPath,
+    const wxString& documentTitle,
+    long plt /* = 0 msec*/
+) {
     if (!PrefModel::instance().doSendUsageStats())
-    {
         return;
-    }
 
     wxString url = mmex::weblink::AMP;
 
@@ -235,7 +225,9 @@ void UsageModel::pageview(const wxString& documentPath, const wxString& document
     Value user_id(uuid().second.utf8_str(), document.GetAllocator());
     event.AddMember("user_id", user_id, document.GetAllocator());
 
-    Value platform(wxPlatformInfo::Get().GetPortIdShortName().utf8_str(), document.GetAllocator());
+    Value platform(wxPlatformInfo::Get().GetPortIdShortName().utf8_str(),
+        document.GetAllocator()
+    );
     event.AddMember("platform", platform, document.GetAllocator());
 
     Value os_name(wxGetOsDescription().utf8_str(), document.GetAllocator());
@@ -247,7 +239,9 @@ void UsageModel::pageview(const wxString& documentPath, const wxString& document
     Value version_name(mmex::version::string.utf8_str(), document.GetAllocator());
     event.AddMember("version_name", version_name, document.GetAllocator());
 
-    Value session_id(wxString::Format("%lld", this->m_start.GetTicks()).utf8_str(), document.GetAllocator());
+    Value session_id(wxString::Format("%lld", this->m_start.GetTicks()).utf8_str(),
+        document.GetAllocator()
+    );
     event.AddMember("session_id", session_id, document.GetAllocator());
 
     Value event_properties(kObjectType);
@@ -277,10 +271,15 @@ extern WXDLLIMPEXP_DATA_WEBVIEW(const char) wxWebViewBackendDefault[];
 wxThread::ExitCode SendStatsThread::Entry()
 {
     wxLogDebug("Sending stats (thread %lu, priority %u, %s, %i cores): %s, payload %s",
-        GetId(), GetPriority(), wxGetOsDescription(), GetCPUCount(), m_url, m_payload);
+        GetId(), GetPriority(), wxGetOsDescription(), GetCPUCount(), m_url, m_payload
+    );
     wxString result = wxEmptyString;
     if (this->m_payload.IsEmpty())
-        http_get_data(m_url, result, wxString::Format("%s/%s (%s; %s) %s", mmex::getProgramName(), mmex::version::string, wxPlatformInfo::Get().GetOperatingSystemFamilyName(), wxGetOsDescription(), wxWebViewBackendDefault));
+        http_get_data(m_url, result, wxString::Format("%s/%s (%s; %s) %s",
+            mmex::getProgramName(), mmex::version::string,
+            wxPlatformInfo::Get().GetOperatingSystemFamilyName(), wxGetOsDescription(),
+            wxWebViewBackendDefault
+        ));
     else
         http_post_data(m_url, m_payload, "Content-Type: application/json", result);
     wxLogDebug("Response: %s", result);

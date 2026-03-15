@@ -43,9 +43,9 @@ wxBEGIN_EVENT_TABLE(TrxUpdateDialog, wxDialog)
     EVT_BUTTON(wxID_OK,             TrxUpdateDialog::OnOk)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS, TrxUpdateDialog::OnMoreFields)
     EVT_CHECKBOX(wxID_ANY,          TrxUpdateDialog::OnCheckboxClick)
-    EVT_CHILD_FOCUS(TrxUpdateDialog::onFocusChange)
-    EVT_CHAR_HOOK(TrxUpdateDialog::OnComboKey)
-    EVT_CHOICE(ID_TRANS_TYPE, TrxUpdateDialog::OnTransTypeChanged)
+    EVT_CHILD_FOCUS(                TrxUpdateDialog::onFocusChange)
+    EVT_CHAR_HOOK(                  TrxUpdateDialog::OnComboKey)
+    EVT_CHOICE(ID_TRANS_TYPE,       TrxUpdateDialog::OnTransTypeChanged)
 wxEND_EVENT_TABLE()
 
 TrxUpdateDialog::TrxUpdateDialog()
@@ -66,7 +66,7 @@ TrxUpdateDialog::TrxUpdateDialog(
 ) :
     m_trx_id_a(trx_id_a)
 {
-    m_currency_n = CurrencyModel::GetBaseCurrency(); // base currency if we need it
+    m_currency_n = CurrencyModel::instance().get_base_data_n(); // base currency if we need it
 
     // Determine the mix of transaction that have been selected
     for (const auto& trx_id : m_trx_id_a) {
@@ -74,10 +74,10 @@ TrxUpdateDialog::TrxUpdateDialog(
         const bool isTransfer = trx_n->is_transfer();
 
         if (!m_hasSplits) {
-            TrxSplitModel::DataA split = TrxSplitModel::instance().find(
+            TrxSplitModel::DataA tp_a = TrxSplitModel::instance().find(
                 TrxSplitCol::TRANSID(trx_id)
             );
-            if (!split.empty())
+            if (!tp_a.empty())
                 m_hasSplits = true;
         }
 
@@ -389,14 +389,14 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     }
     int64 categ_id = cbCategory_->mmGetCategoryId();
 
-    const auto split = TrxSplitModel::instance().get_all_id();
+    // const auto split = TrxSplitModel::instance().find_all_mTrxId();
 
     std::vector<int64> skip_trx;
     TrxModel::instance().db_savepoint();
     TagLinkModel::instance().db_savepoint();
     for (const auto& trx_id : m_trx_id_a) {
         TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(trx_id);
-        bool is_locked = TrxModel::is_locked(*trx_n);
+        bool is_locked = TrxModel::instance().is_locked(*trx_n);
 
         if (is_locked) {
             skip_trx.push_back(trx_n->m_id);
@@ -418,14 +418,18 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         if (m_date_checkbox->IsChecked() || (m_time_ctrl && m_time_checkbox->IsChecked())) {
-            wxString date = trx_n->TRANSDATE;
+            wxString date = trx_n->m_date_time.isoDateTime();
             if (m_date_checkbox->IsChecked()) {
                 date.replace(0, 10, m_dpc->GetValue().FormatISODate());
-                const AccountData* account = AccountModel::instance().get_id_data_n(trx_n->m_account_id);
-                const AccountData* to_account = AccountModel::instance().get_id_data_n(trx_n->m_to_account_id_n);
+                const AccountData* account = AccountModel::instance().get_id_data_n(
+                    trx_n->m_account_id
+                );
+                const AccountData* to_account = AccountModel::instance().get_id_data_n(
+                    trx_n->m_to_account_id_n
+                );
                 if ((mmDate(date) < account->m_open_date) ||
-                    (to_account && (mmDate(date) < to_account->m_open_date)))
-                {
+                    (to_account && (mmDate(date) < to_account->m_open_date))
+                ) {
                     skip_trx.push_back(trx_n->m_id);
                     continue;
                 }
@@ -438,13 +442,15 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     date.Append("T" + m_time_ctrl->GetValue().FormatISOTime());
             }
 
-            trx_n->TRANSDATE = date;
+            trx_n->m_date_time = mmDateTime(date);
         }
 
         if (m_color_checkbox->IsChecked()) {
             int color_id = bColours_->GetColorId();
             if (color_id < 0 || color_id > 7) {
-                return mmErrorDialogs::ToolTip4Object(bColours_, _t("Color"), _t("Invalid value"), wxICON_ERROR);
+                return mmErrorDialogs::ToolTip4Object(bColours_,
+                    _t("Color"), _t("Invalid value"), wxICON_ERROR
+                );
             }
             trx_n->m_color = color_id == 0 ? -1 : color_id ; 
         }
@@ -506,7 +512,9 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         // Need to consider m_to_amount if material transaction change
-        if (m_amount_checkbox->IsChecked() || m_type_checkbox->IsChecked() || m_transferAcc_checkbox->IsChecked()) {
+        if (m_amount_checkbox->IsChecked() || m_type_checkbox->IsChecked() ||
+            m_transferAcc_checkbox->IsChecked()
+        ) {
             if (!trx_n->is_transfer()) {
                 trx_n->m_to_amount = trx_n->m_amount;
             }
@@ -520,9 +528,15 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 }
                 else {
                     double exch = 1;
-                    const double convRateTo = CurrencyHistoryModel::getDayRate(to_curr->m_id, trx_n->TRANSDATE);
+                    const double convRateTo = CurrencyHistoryModel::instance().get_id_date_rate(
+                        to_curr->m_id,
+                        trx_n->m_date()
+                    );
                     if (convRateTo > 0) {
-                        const double convRate = CurrencyHistoryModel::getDayRate(curr->m_id, trx_n->TRANSDATE);
+                        const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
+                            curr->m_id,
+                            trx_n->m_date()
+                        );
                         exch = convRate / convRateTo;
                     }
                     trx_n->m_to_amount = trx_n->m_amount * exch;
@@ -675,7 +689,7 @@ void TrxUpdateDialog::OnComboKey(wxKeyEvent& event)
                 dlg.ShowModal();
                 if (dlg.getRefreshRequested())
                     cbCategory_->mmDoReInitialize();
-                category = CategoryModel::instance().full_name(dlg.getCategId());
+                category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
                 cbCategory_->ChangeValue(category);
                 cbCategory_->SelectAll();
                 return;

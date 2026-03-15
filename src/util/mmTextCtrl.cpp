@@ -27,33 +27,37 @@ EVT_TEXT_ENTER(wxID_ANY, mmTextCtrl::OnTextEntered)
 EVT_KILL_FOCUS(mmTextCtrl::OnKillFocus)
 wxEND_EVENT_TABLE()
 
-void mmTextCtrl::OnTextEntered(wxCommandEvent& )
+void mmTextCtrl::OnTextEntered(wxCommandEvent&)
 {
-    Calculate( (m_alt_precision != -1) ? m_alt_precision 
-                            : CurrencyModel::precision(m_currency));
+    Calculate((m_alt_precision != -1)
+        ? m_alt_precision
+        : m_currency->precision()
+    );
 }
 
 void mmTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
     if (!ignore_focus_)
-        Calculate( (m_alt_precision != -1) ? m_alt_precision 
-                            : CurrencyModel::precision(m_currency));
+        Calculate((m_alt_precision != -1)
+            ? m_alt_precision 
+            : m_currency->precision()
+        );
     event.Skip();
 }
 
 void mmTextCtrl::SetValue(double value)
 {
-    this->SetValue(CurrencyModel::toString(value, m_currency));
+    this->SetValue(CurrencyModel::instance().toString(value, m_currency));
 }
 
 void mmTextCtrl::SetValue(double value, int precision)
 {
-    this->SetValue(CurrencyModel::toString(value, m_currency, precision));
+    this->SetValue(CurrencyModel::instance().toString(value, m_currency, precision));
 }
 
 void mmTextCtrl::SetValueNoEvent(double value, int precision)
 {
-    this->ChangeValue(CurrencyModel::toString(value, m_currency, precision));
+    this->ChangeValue(CurrencyModel::instance().toString(value, m_currency, precision));
 }
 
 void mmTextCtrl::SetValue(double value, const AccountData* account, int precision)
@@ -65,13 +69,13 @@ void mmTextCtrl::SetValue(double value, const AccountData* account, int precisio
 
 void mmTextCtrl::SetValue(double value, const CurrencyData* currency, int precision)
 {
-    m_currency = (currency ? currency : CurrencyModel::GetBaseCurrency());
+    m_currency = (currency ? currency : CurrencyModel::instance().get_base_data_n());
     this->SetValue(value, precision > -1 ? precision : log10(m_currency->m_scale.GetValue()));
 }
 
 bool mmTextCtrl::Calculate(int alt_precision)
 {
-    const wxString str = CurrencyModel::fromString2CLocale(this->GetValue(), m_currency);
+    const wxString str = CurrencyModel::instance().fromString2CLocale(this->GetValue(), m_currency);
     if (str.empty()) return false;
 
     LuaGlue state;
@@ -82,8 +86,7 @@ bool mmTextCtrl::Calculate(int alt_precision)
     {
         wxRegEx pattern(R"(\d*:([^\>]*)$)");
         wxString err = state.lastError().c_str();
-        if (pattern.Matches(err))
-        {
+        if (pattern.Matches(err)) {
             err = pattern.GetMatch(err, 1);
         }
         mmErrorDialogs::ToolTip4Object(this, err, _t("Invalid Value"));
@@ -93,7 +96,7 @@ bool mmTextCtrl::Calculate(int alt_precision)
 
     double res = state.invokeFunction<double>("calc");
     int precision = alt_precision >= 0 ? alt_precision : log10(m_currency->m_scale.GetValue());
-    const wxString res_str = CurrencyModel::toString(res, m_currency, precision);
+    const wxString res_str = CurrencyModel::instance().toString(res, m_currency, precision);
     this->ChangeValue(res_str);
     this->SetInsertionPoint(res_str.Len());
 
@@ -103,7 +106,7 @@ bool mmTextCtrl::Calculate(int alt_precision)
 bool mmTextCtrl::GetDouble(double &amount) const
 {
     wxString amountStr = this->GetValue().Trim();
-    bool r = CurrencyModel::fromString(amountStr, amount, m_currency);
+    bool r = CurrencyModel::instance().fromString(amountStr, amount, m_currency);
     return r;
 }
 
@@ -135,12 +138,12 @@ wxChar mmTextCtrl::GetDecimalPoint()
             dp = m_currency->m_decimal_point;
         }
         else {
-            dp = CurrencyModel::GetBaseCurrency()->m_decimal_point;
+            dp = CurrencyModel::instance().get_base_data_n()->m_decimal_point;
         }
     }
     else {
         // Locale is set, so use the locale decimal
-        dp = CurrencyModel::toString(1.0);
+        dp = CurrencyModel::instance().toString(1.0);
         wxRegEx pattern2(R"([^.,])");
         pattern2.ReplaceAll(&dp, wxEmptyString);
     }

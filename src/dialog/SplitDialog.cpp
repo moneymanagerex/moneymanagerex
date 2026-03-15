@@ -86,14 +86,14 @@ void mmEditSplitOther::CreateControls()
 
     // Split Category
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _t("Category")), g_flagsH);
-    wxString catName = CategoryModel::instance().full_name(m_split->CATEGID);
+    wxString catName = CategoryModel::instance().get_id_fullname(m_split->m_category_id);
     wxTextCtrl* category = new wxTextCtrl(this, wxID_ANY, catName);
     category->Disable();
     fgSizer1->Add(category, g_flagsExpand);
 
     // Split Amount
     fgSizer1->Add(new wxStaticText(this, wxID_STATIC, _t("Amount")), g_flagsH);
-    wxString amountStr = CurrencyModel::toCurrency(m_split->SPLITTRANSAMOUNT, m_currency_n);
+    wxString amountStr = CurrencyModel::instance().toCurrency(m_split->m_amount, m_currency_n);
     wxTextCtrl* amount = new wxTextCtrl(this, wxID_ANY, amountStr);
     amount->Disable();
     fgSizer1->Add(amount, g_flagsExpand);
@@ -120,12 +120,12 @@ void mmEditSplitOther::CreateControls()
 
 void mmEditSplitOther::fillControls()
 {
-    w_notes->SetValue(m_split->NOTES);
+    w_notes->SetValue(m_split->m_notes);
 }
 
 void mmEditSplitOther::OnOk(wxCommandEvent& /*event*/)
 {
-    m_split->NOTES = w_notes->GetValue();
+    m_split->m_notes = w_notes->GetValue();
     EndModal(wxID_OK);
 }
 
@@ -172,7 +172,7 @@ SplitDialog::SplitDialog(wxWindow* parent
     const AccountData* account_n = AccountModel::instance().get_id_data_n(accountID);
     m_currency_n = account_n
         ? AccountModel::instance().get_data_currency_p(*account_n)
-        : CurrencyModel::GetBaseCurrency();
+        : CurrencyModel::instance().get_base_data_n();
     m_splits = m_orig_splits;
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -305,17 +305,16 @@ void SplitDialog::CreateControls()
 void SplitDialog::FillControls(const int focusRow)
 {
     DoWindowsFreezeThaw(this);
-    for (int row = (focusRow == -1 ? 0 : focusRow); row < static_cast<int>(m_splits_widgets.size()); row++)
-    {
-        if (row < static_cast<int>(m_splits.size()))
-        {
+    for (int row = (focusRow == -1 ? 0 : focusRow); row < static_cast<int>(m_splits_widgets.size()); row++) {
+        if (row < static_cast<int>(m_splits.size())) {
             m_splits_widgets.at(row).category->ChangeValue(
-                    CategoryModel::instance().full_name(m_splits.at(row).CATEGID));
-            if (m_splits.at(row).CATEGID == -1)
+                CategoryModel::instance().get_id_fullname(m_splits.at(row).m_category_id)
+            );
+            if (m_splits.at(row).m_category_id == -1)
                 m_splits_widgets.at(row).amount->SetValue("");
             else
-                m_splits_widgets.at(row).amount->SetValue(m_splits.at(row).SPLITTRANSAMOUNT);
-            m_splits_widgets.at(row).tags->SetTags(m_splits.at(row).TAGS);
+                m_splits_widgets.at(row).amount->SetValue(m_splits.at(row).m_amount);
+            m_splits_widgets.at(row).tags->SetTags(m_splits.at(row).m_tag_id_a);
             UpdateExtraInfo(row);
             m_splits_widgets.at(row).category->Enable(!is_view_only_);
             m_splits_widgets.at(row).amount->Enable(!is_view_only_);
@@ -341,7 +340,7 @@ void SplitDialog::FillControls(const int focusRow)
 void SplitDialog::createNewRow(const bool enabled)
 {
     int row = m_splits_widgets.size();
-    int64 catID = (row < static_cast<int>(m_splits.size())) ? m_splits.at(row).CATEGID : -1;
+    int64 catID = (row < static_cast<int>(m_splits.size())) ? m_splits.at(row).m_category_id : -1;
 
     mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row
                                         , wxDefaultSize, catID, true);
@@ -392,7 +391,7 @@ void SplitDialog::activateNewRow()
         row_num_ = row_num_ + 1;
         if (row_num_ >= static_cast<int>(m_splits.size()))
         {
-            Split s = { -1, 0, {}, "" };
+            Split s = { -1, 0, "", {} };
             m_splits.push_back(s);
         }
         m_splits_widgets.at(row_num_).category->Enable(true);
@@ -403,7 +402,7 @@ void SplitDialog::activateNewRow()
     }
     else {
         createNewRow(true);
-        Split s = { -1, 0, {}, "" };
+        Split s = { -1, 0, "", {} };
         m_splits.push_back(s);
     }
 }
@@ -416,8 +415,8 @@ void SplitDialog::OnOk( wxCommandEvent& /*event*/ )
 
     //Check total amount - should be positive
     double totalAmount = 0;
-    for (const auto& entry : m_splits)
-        totalAmount += entry.SPLITTRANSAMOUNT;
+    for (const auto& split_d : m_splits)
+        totalAmount += split_d.m_amount;
     totalAmount = std::round(totalAmount * m_currency_n->m_scale.GetValue()) / m_currency_n->m_scale.GetValue();
     if (totalAmount < 0) {
         return mmErrorDialogs::MessageError(this, _t("Invalid Total Amount"), _t("Error"));
@@ -426,7 +425,7 @@ void SplitDialog::OnOk( wxCommandEvent& /*event*/ )
     m_splits.erase(
         std::remove_if(
             m_splits.begin(), m_splits.end(),
-            [](Split const& s) { return s.CATEGID == -1; }
+            [](Split const& s) { return s.m_category_id == -1; }
         ),
         m_splits.end()
     );
@@ -514,30 +513,25 @@ void SplitDialog::OnOtherButton(wxCommandEvent& event)
 
 void SplitDialog::OnComboKey(wxKeyEvent& event)
 {
-    if (event.GetKeyCode() == WXK_RETURN)
-    {
+    if (event.GetKeyCode() == WXK_RETURN) {
         auto cbc = static_cast<mmComboBoxCategory*>(event.GetEventObject());
         if (cbc) {
             auto category = cbc->GetValue();
-            if (category.empty())
-            {
+            if (category.empty()) {
                 CategoryManager dlg(this, true, -1);
                 dlg.ShowModal();
                 DoWindowsFreezeThaw(this);
-                if (dlg.getRefreshRequested())
-                {
-                    for (int i=0; i<static_cast<int>(m_splits_widgets.size()); i++)
-                    {
+                if (dlg.getRefreshRequested()) {
+                    for (int i=0; i<static_cast<int>(m_splits_widgets.size()); i++) {
                         auto cbcUpdate = m_splits_widgets.at(i).category;
-                        if (cbc != cbcUpdate)
-                        {
-                            category = CategoryModel::instance().full_name(cbcUpdate->mmGetCategoryId());
+                        if (cbc != cbcUpdate) {
+                            category = CategoryModel::instance().get_id_fullname(cbcUpdate->mmGetCategoryId());
                             cbcUpdate->mmDoReInitialize();
                             cbcUpdate->ChangeValue(category);
                         }
                     }
                 }
-                category = CategoryModel::instance().full_name(dlg.getCategId());
+                category = CategoryModel::instance().get_id_fullname(dlg.getCategId());
                 if (dlg.getRefreshRequested())
                     cbc->mmDoReInitialize();
                 cbc->ChangeValue(category);
@@ -548,8 +542,7 @@ void SplitDialog::OnComboKey(wxKeyEvent& event)
 
     // The first time the ALT key is pressed accelerator hints are drawn, but custom painting on the tags button
     // is not applied. We need to refresh the tag ctrls to redraw the drop buttons with the correct images.
-    if (event.AltDown() && !altRefreshDone)
-    {
+    if (event.AltDown() && !altRefreshDone) {
         for (int row = 0; row < static_cast<int>(m_splits_widgets.size()); row++)
             m_splits_widgets.at(row).tags->Refresh();
         altRefreshDone = true;
@@ -561,26 +554,25 @@ void SplitDialog::OnComboKey(wxKeyEvent& event)
 void SplitDialog::UpdateSplitTotal()
 {
     double total = 0;
-    for (int i=0; i<static_cast<int>(m_splits.size()); i++)
-    {
+    for (int i=0; i<static_cast<int>(m_splits.size()); i++) {
         double amount = 0.0;
         if (m_splits_widgets.at(i).amount->GetDouble(amount))
             total += amount;
     }
 
-    wxString total_text = CurrencyModel::toCurrency(total, m_currency_n);
+    wxString total_text = CurrencyModel::instance().toCurrency(total, m_currency_n);
     transAmount_->SetLabelText(total_text);
     Layout();
 }
 
 void SplitDialog::UpdateExtraInfo(int row)
 {
-    if (m_splits.at(row).NOTES.IsEmpty())
+    if (m_splits.at(row).m_notes.IsEmpty())
         m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::UNRECONCILED,mmBitmapButtonSize));
     else
         m_splits_widgets.at(row).other->SetBitmap(mmBitmapBundle(png::RECONCILED,mmBitmapButtonSize));
 
-    m_splits_widgets.at(row).other->SetToolTip(m_splits.at(row).NOTES);
+    m_splits_widgets.at(row).other->SetToolTip(m_splits.at(row).m_notes);
 }
 
 bool SplitDialog::mmDoCheckRow(int row)
@@ -593,7 +585,7 @@ bool SplitDialog::mmDoCheckRow(int row)
     if (m_splits_widgets.at(row).category->GetValue().empty() &&
         m_splits_widgets.at(row).amount->GetValue().empty() &&
         m_splits_widgets.at(row).tags->GetTagIDs().empty() &&
-        m_splits.at(row).NOTES.IsEmpty())
+        m_splits.at(row).m_notes.IsEmpty())
         return true;
 
     double amount = 0.0;
@@ -612,8 +604,8 @@ bool SplitDialog::mmDoCheckRow(int row)
 
     m_splits_widgets.at(row).amount->GetDouble(amount);
 
-    m_splits.at(row).CATEGID = m_splits_widgets.at(row).category->mmGetCategoryId();
-    m_splits.at(row).SPLITTRANSAMOUNT = amount;
-    m_splits.at(row).TAGS = m_splits_widgets.at(row).tags->GetTagIDs();
+    m_splits.at(row).m_category_id = m_splits_widgets.at(row).category->mmGetCategoryId();
+    m_splits.at(row).m_amount      = amount;
+    m_splits.at(row).m_tag_id_a    = m_splits_widgets.at(row).tags->GetTagIDs();
     return true;
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-03-15 22:12+0000\n"
+"POT-Creation-Date: 2026-03-13 13:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,7 +159,7 @@ msgstr ""
 #: import_export/ofx_import_gui.cpp:1107 import_export/ofx_import_gui.cpp:1114
 #: import_export/ofx_import_gui.cpp:1121 import_export/univcsvdialog.cpp:1695
 #: import_export/webappdialog.cpp:188 import_export/webappdialog.cpp:193
-#: manager/ThemeManager.cpp:321 manager/ThemeManager.cpp:340 mmframe.cpp:4270
+#: manager/ThemeManager.cpp:321 manager/ThemeManager.cpp:340 mmframe.cpp:4266
 #: panel/StockPanel.cpp:518 panel/StockPanel.cpp:519
 msgid "Error"
 msgstr ""
@@ -935,7 +935,7 @@ msgstr ""
 msgid "Do you want to create one?"
 msgstr ""
 
-#: dialog/AttachmentDialog.cpp:62 manager/GeneralReportManager.cpp:505
+#: dialog/AttachmentDialog.cpp:62 manager/GeneralReportManager.cpp:490
 msgid "Description"
 msgstr ""
 
@@ -1080,7 +1080,7 @@ msgstr ""
 msgid "Delete attachment failed"
 msgstr ""
 
-#: dialog/AttachmentDialog.cpp:546 manager/GeneralReportManager.cpp:738
+#: dialog/AttachmentDialog.cpp:546 manager/GeneralReportManager.cpp:723
 msgid "Unable to open file:"
 msgstr ""
 
@@ -1419,7 +1419,7 @@ msgid "Unable to download history for base symbol %s. Historical rates unavailab
 msgstr ""
 
 #: dialog/CurrencyChoiceDialog.cpp:919 panel/StockPanel.cpp:528
-#: util/_util.cpp:834
+#: util/_util.cpp:819
 msgid "Unable to find base currency symbol!"
 msgstr ""
 
@@ -1577,7 +1577,7 @@ msgstr ""
 msgid "Enables autocomplete on custom field"
 msgstr ""
 
-#: dialog/FieldDialog.cpp:176 pref/TrxPref.cpp:278 util/_util.cpp:763
+#: dialog/FieldDialog.cpp:176 pref/TrxPref.cpp:278 util/_util.cpp:748
 msgid "Default"
 msgstr ""
 
@@ -2050,7 +2050,7 @@ msgstr ""
 #: dialog/TrxUpdateDialog.cpp:376 dialog/TrxUpdateDialog.cpp:447
 #: import_export/univcsvdialog.cpp:1449 manager/PayeeManager.cpp:203
 #: manager/PayeeManager.cpp:208 pref/GeneralPref.cpp:272
-#: pref/GeneralPref.cpp:297 util/_util.cpp:904
+#: pref/GeneralPref.cpp:297 util/_util.cpp:889
 msgid "Invalid value"
 msgstr ""
 
@@ -2226,11 +2226,11 @@ msgstr ""
 msgid "User Interface Language"
 msgstr ""
 
-#: dialog/StartupDialog.cpp:225 mmframe.cpp:4316 pref/GeneralPref.cpp:339
+#: dialog/StartupDialog.cpp:225 mmframe.cpp:4312 pref/GeneralPref.cpp:339
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr ""
 
-#: dialog/StartupDialog.cpp:228 mmframe.cpp:4318 pref/GeneralPref.cpp:341
+#: dialog/StartupDialog.cpp:228 mmframe.cpp:4314 pref/GeneralPref.cpp:341
 msgid "Language change"
 msgstr ""
 
@@ -2355,7 +2355,7 @@ msgstr ""
 msgid "Add Stock Price to history"
 msgstr ""
 
-#: dialog/StockDialog.cpp:371 manager/GeneralReportManager.cpp:460
+#: dialog/StockDialog.cpp:371 manager/GeneralReportManager.cpp:445
 #: uicontrols/navigatoreditdialog.cpp:126
 msgid "&Save "
 msgstr ""
@@ -2701,7 +2701,7 @@ msgid "Display split transactions as a single row"
 msgstr ""
 
 #: dialog/TrxFilterDialog.cpp:793 manager/PrefManager.cpp:223
-#: manager/PrefManager.h:48 mmframe.cpp:2108 mmframe.cpp:3295
+#: manager/PrefManager.h:48 mmframe.cpp:2108 mmframe.cpp:3291
 #: uicontrols/reconciledialog.cpp:118
 msgid "Settings"
 msgstr ""
@@ -3126,7 +3126,7 @@ msgid "Prompt to &confirm each fuzzy match"
 msgstr ""
 
 #: import_export/ofx_import_gui.cpp:924 import_export/univcsvdialog.cpp:633
-#: import_export/webappdialog.cpp:420 manager/GeneralReportManager.cpp:444
+#: import_export/webappdialog.cpp:420 manager/GeneralReportManager.cpp:429
 #: manager/ThemeManager.cpp:194
 msgid "&Import"
 msgstr ""
@@ -3301,8 +3301,8 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: import_export/qif_export.cpp:155 mmframe.cpp:3939 mmframe.cpp:3943
-#: mmframe.cpp:3960 mmframe.cpp:3964 panel/DashboardWidget.cpp:562
+#: import_export/qif_export.cpp:155 mmframe.cpp:3935 mmframe.cpp:3939
+#: mmframe.cpp:3956 mmframe.cpp:3960 panel/DashboardWidget.cpp:562
 msgid "Accounts"
 msgstr ""
 
@@ -3386,7 +3386,7 @@ msgid "Exporting"
 msgstr ""
 
 #: import_export/qif_export.cpp:486 import_export/qif_import_gui.cpp:463
-#: import_export/qif_import_gui.cpp:1093 mmframe.cpp:3875
+#: import_export/qif_import_gui.cpp:1093 mmframe.cpp:3871
 msgid "Please wait…"
 msgstr ""
 
@@ -3497,8 +3497,7 @@ msgstr ""
 msgid "Number of lines read from QIF file: %zu in %lld ms"
 msgstr ""
 
-#: import_export/qif_import_gui.cpp:599 model/ReportModel.cpp:57
-#: panel/ReportPanel.cpp:531
+#: import_export/qif_import_gui.cpp:599 panel/ReportPanel.cpp:488
 msgid "Accounts:"
 msgstr ""
 
@@ -3787,7 +3786,7 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: import_export/univcsvdialog.cpp:635 manager/GeneralReportManager.cpp:448
+#: import_export/univcsvdialog.cpp:635 manager/GeneralReportManager.cpp:433
 msgid "&Export"
 msgstr ""
 
@@ -4342,17 +4341,17 @@ msgstr ""
 msgid "Category Manager: Editing Error"
 msgstr ""
 
-#: manager/CategoryManager.cpp:729 mmframe.cpp:4162
+#: manager/CategoryManager.cpp:729 mmframe.cpp:4158
 msgid "Merge categories completed"
 msgstr ""
 
 #: manager/CategoryManager.cpp:730 manager/PayeeManager.cpp:861
-#: mmframe.cpp:4163 mmframe.cpp:4177 mmframe.cpp:4192
+#: mmframe.cpp:4159 mmframe.cpp:4173 mmframe.cpp:4188
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr ""
 
-#: manager/CategoryManager.cpp:732 mmframe.cpp:4165
+#: manager/CategoryManager.cpp:732 mmframe.cpp:4161
 msgid "Merge categories result"
 msgstr ""
 
@@ -4523,7 +4522,7 @@ msgid "Default date ranges"
 msgstr ""
 
 #: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1131
-#: panel/ReportPanel.cpp:979
+#: panel/ReportPanel.cpp:835
 msgid "More date ranges…"
 msgstr ""
 
@@ -4586,221 +4585,217 @@ msgstr[1] ""
 msgid "&Bulk content update "
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:345 mmframe.cpp:3426 mmframereport.cpp:337
+#: manager/GeneralReportManager.cpp:330 mmframe.cpp:3422 mmframereport.cpp:337
 #: report/UsageReport.cpp:144 report/UsageReport.cpp:161
 #: uicontrols/navigatortypes.cpp:69
 msgid "Reports"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:446
+#: manager/GeneralReportManager.cpp:431
 msgid "Locate and load a report file."
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:450
+#: manager/GeneralReportManager.cpp:435
 msgid "Export the report to a new file."
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:454
+#: manager/GeneralReportManager.cpp:439
 msgid "&Sync from GitHub"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:456
+#: manager/GeneralReportManager.cpp:441
 msgid "Fetch latest reports from GitHub repository"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:462
+#: manager/GeneralReportManager.cpp:447
 msgid "Save changes."
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:464
+#: manager/GeneralReportManager.cpp:449
 msgid "&Run"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:466
+#: manager/GeneralReportManager.cpp:451
 msgid "Run selected report."
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:479
+#: manager/GeneralReportManager.cpp:464
 msgid "Output"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:502
+#: manager/GeneralReportManager.cpp:487
 msgid "SQL"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:503
+#: manager/GeneralReportManager.cpp:488
 msgid "Lua"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:504
+#: manager/GeneralReportManager.cpp:489
 msgid "Template"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:558
+#: manager/GeneralReportManager.cpp:543
 msgid "&Test"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:559
+#: manager/GeneralReportManager.cpp:544
 msgid "Create Template"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:617
+#: manager/GeneralReportManager.cpp:602
 #, c-format
 msgid "%zu row returned, duration: %lld ms"
 msgid_plural "%zu rows returned, duration: %lld ms"
 msgstr[0] ""
 msgstr[1] ""
 
-#: manager/GeneralReportManager.cpp:644
+#: manager/GeneralReportManager.cpp:629
 msgid "SQL Syntax Error"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:675
+#: manager/GeneralReportManager.cpp:660
 msgid "Load report file:"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:677 manager/GeneralReportManager.cpp:1232
+#: manager/GeneralReportManager.cpp:662 manager/GeneralReportManager.cpp:1217
 msgid "General Report Manager files (*.grm)"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:677 manager/GeneralReportManager.cpp:1232
+#: manager/GeneralReportManager.cpp:662 manager/GeneralReportManager.cpp:1217
 msgid "ZIP files (*.zip)"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:740 manager/GeneralReportManager.cpp:890
-#: manager/GeneralReportManager.cpp:968 manager/GeneralReportManager.cpp:1035
-#: manager/GeneralReportManager.cpp:1179 manager/GeneralReportManager.h:69
+#: manager/GeneralReportManager.cpp:725 manager/GeneralReportManager.cpp:875
+#: manager/GeneralReportManager.cpp:953 manager/GeneralReportManager.cpp:1020
+#: manager/GeneralReportManager.cpp:1164 manager/GeneralReportManager.h:69
 #: mmframe.cpp:2093 uicontrols/navigatortypes.cpp:70
 msgid "General Report Manager"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:828
+#: manager/GeneralReportManager.cpp:813
 msgid "Assets…"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:831
+#: manager/GeneralReportManager.cpp:816
 msgid "New Empty Report…"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:832
+#: manager/GeneralReportManager.cpp:817
 msgid "Duplicate Report"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:833
+#: manager/GeneralReportManager.cpp:818
 msgid "New Sample Report"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:835
+#: manager/GeneralReportManager.cpp:820
 msgid "Change Group…"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:835
+#: manager/GeneralReportManager.cpp:820
 msgid "Rename Group…"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:836
+#: manager/GeneralReportManager.cpp:821
 msgid "UnGroup"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:837
+#: manager/GeneralReportManager.cpp:822
 msgid "Rename Report…"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:841
+#: manager/GeneralReportManager.cpp:826
 msgid "Active"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:841
+#: manager/GeneralReportManager.cpp:826
 msgid "Show/Hide report in Navigator"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:845
+#: manager/GeneralReportManager.cpp:830
 msgid "Delete Report…"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:849
+#: manager/GeneralReportManager.cpp:834
 msgid "Sync Report…"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:889
+#: manager/GeneralReportManager.cpp:874
 #, c-format
 msgid "Report \"%s\" has been modified. Do you want to save it?"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:967 manager/GeneralReportManager.cpp:1034
-#: manager/GeneralReportManager.cpp:1178
+#: manager/GeneralReportManager.cpp:952 manager/GeneralReportManager.cpp:1019
+#: manager/GeneralReportManager.cpp:1163
 msgid "Enter the name for the report"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:986
+#: manager/GeneralReportManager.cpp:971
 msgid "Pull Report Title:"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1003
+#: manager/GeneralReportManager.cpp:988
 msgid "Delete the Report Title:"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1067 manager/GeneralReportManager.cpp:1159
+#: manager/GeneralReportManager.cpp:1052 manager/GeneralReportManager.cpp:1144
 msgid "Enter or choose name for the new report group"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1068
+#: manager/GeneralReportManager.cpp:1053
 msgid "Change report group"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1086
+#: manager/GeneralReportManager.cpp:1071
 msgid "Enter or choose name for the new group"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1087
+#: manager/GeneralReportManager.cpp:1072
 msgid "Rename Group"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1160
+#: manager/GeneralReportManager.cpp:1145
 msgid "Add Report Group"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1173
+#: manager/GeneralReportManager.cpp:1158
 #, c-format
 msgid "New Report %s"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1188
+#: manager/GeneralReportManager.cpp:1173
 msgid "A report with this name already exists"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1188 manager/GeneralReportManager.cpp:1195
+#: manager/GeneralReportManager.cpp:1173 manager/GeneralReportManager.cpp:1180
 msgid "New Report"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1202 mmframe.cpp:2073 mmframe.cpp:3849
+#: manager/GeneralReportManager.cpp:1187 mmframe.cpp:2073 mmframe.cpp:3845
 #: panel/AssetPanel.cpp:417 panel/AssetPanel.h:130
 #: panel/DashboardWidget.cpp:565 panel/DashboardWidget.cpp:598
 #: pref/OtherPref.cpp:106 uicontrols/navigatortypes.cpp:65
 msgid "Assets"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1229
+#: manager/GeneralReportManager.cpp:1214
 msgid "Choose file to Save As Report"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1410
+#: manager/GeneralReportManager.cpp:1395
 msgid "Parameters:"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1419
-msgid "created:"
-msgstr ""
-
-#: manager/GeneralReportManager.cpp:1561
+#: manager/GeneralReportManager.cpp:1546
 msgid "Copy name"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1562
+#: manager/GeneralReportManager.cpp:1547
 msgid "Copy all column names"
 msgstr ""
 
-#: manager/GeneralReportManager.cpp:1563
+#: manager/GeneralReportManager.cpp:1548
 msgid "Copy as SQL SELECT"
 msgstr ""
 
@@ -4925,11 +4920,11 @@ msgstr ""
 msgid "Confirm Payee Deletion"
 msgstr ""
 
-#: manager/PayeeManager.cpp:860 mmframe.cpp:4176
+#: manager/PayeeManager.cpp:860 mmframe.cpp:4172
 msgid "Merge payees completed"
 msgstr ""
 
-#: manager/PayeeManager.cpp:864 mmframe.cpp:4180
+#: manager/PayeeManager.cpp:864 mmframe.cpp:4176
 msgid "Merge payees result"
 msgstr ""
 
@@ -5159,7 +5154,7 @@ msgstr ""
 msgid "This will also delete any associated Shares."
 msgstr ""
 
-#: mmframe.cpp:1598 mmframe.cpp:3972
+#: mmframe.cpp:1598 mmframe.cpp:3968
 msgid "Confirm Account Deletion"
 msgstr ""
 
@@ -5575,7 +5570,7 @@ msgstr ""
 msgid "Refresh &WebApp…"
 msgstr ""
 
-#: mmframe.cpp:2103 mmframe.cpp:3350 mmframe.cpp:3358
+#: mmframe.cpp:2103 mmframe.cpp:3346 mmframe.cpp:3354
 msgid "Refresh WebApp"
 msgstr ""
 
@@ -5807,7 +5802,7 @@ msgstr ""
 msgid "&View"
 msgstr ""
 
-#: mmframe.cpp:2278 mmframe.cpp:2281 mmframe.cpp:3419 pref/NetworkPref.cpp:133
+#: mmframe.cpp:2278 mmframe.cpp:2281 mmframe.cpp:3415 pref/NetworkPref.cpp:133
 msgid "News"
 msgstr ""
 
@@ -6000,7 +5995,7 @@ msgstr ""
 msgid "No account available to import"
 msgstr ""
 
-#: mmframe.cpp:3034 mmframe.cpp:3376 panel/HelpPanel.cpp:71
+#: mmframe.cpp:3034 mmframe.cpp:3372 panel/HelpPanel.cpp:71
 #: uicontrols/navigatortypes.cpp:72
 msgid "Help"
 msgstr ""
@@ -6039,85 +6034,85 @@ msgstr ""
 msgid "Transactions per payee"
 msgstr ""
 
-#: mmframe.cpp:3293
+#: mmframe.cpp:3289
 msgid "Settings have been updated."
 msgstr ""
 
-#: mmframe.cpp:3294
+#: mmframe.cpp:3290
 msgid "Some settings take effect only after an application restart."
 msgstr ""
 
-#: mmframe.cpp:3350
+#: mmframe.cpp:3346
 msgid "Accounts, Payees, and Categories Updated"
 msgstr ""
 
-#: mmframe.cpp:3357
+#: mmframe.cpp:3353
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr ""
 
-#: mmframe.cpp:3494
+#: mmframe.cpp:3490
 msgid "Choose HTML file to export"
 msgstr ""
 
-#: mmframe.cpp:3638 panel/SchedPanel.cpp:243 panel/SchedPanel.cpp:967
+#: mmframe.cpp:3634 panel/SchedPanel.cpp:243 panel/SchedPanel.cpp:967
 #: uicontrols/navigatortypes.cpp:55
 msgid "Scheduled Transactions"
 msgstr ""
 
-#: mmframe.cpp:3874 mmframe.cpp:3881
+#: mmframe.cpp:3870 mmframe.cpp:3877
 msgid "Downloading stock prices from Yahoo"
 msgstr ""
 
-#: mmframe.cpp:3921 panel/StockPanel.cpp:592
+#: mmframe.cpp:3917 panel/StockPanel.cpp:592
 #, c-format
 msgid "%1$s on %2$s"
 msgstr ""
 
-#: mmframe.cpp:3939
+#: mmframe.cpp:3935
 msgid "No account available to edit!"
 msgstr ""
 
-#: mmframe.cpp:3943
+#: mmframe.cpp:3939
 msgid "Choose Account to Edit"
 msgstr ""
 
-#: mmframe.cpp:3960
+#: mmframe.cpp:3956
 msgid "No account available to delete!"
 msgstr ""
 
-#: mmframe.cpp:3964
+#: mmframe.cpp:3960
 msgid "Choose Account to Delete"
 msgstr ""
 
-#: mmframe.cpp:3968
+#: mmframe.cpp:3964
 #, c-format
 msgid ""
 "Do you you want to delete\n"
 "%1$s account: %2$s?"
 msgstr ""
 
-#: mmframe.cpp:3987 mmframe.cpp:4006
+#: mmframe.cpp:3983 mmframe.cpp:4002
 msgid "Change Account Type"
 msgstr ""
 
-#: mmframe.cpp:3987
+#: mmframe.cpp:3983
 msgid "Select account"
 msgstr ""
 
-#: mmframe.cpp:4005
+#: mmframe.cpp:4001
 #, c-format
 msgid "Select new account type for %s"
 msgstr ""
 
-#: mmframe.cpp:4191
+#: mmframe.cpp:4187
 msgid "Merge tags completed"
 msgstr ""
 
-#: mmframe.cpp:4195
+#: mmframe.cpp:4191
 msgid "Merge tags result"
 msgstr ""
 
-#: mmframe.cpp:4269
+#: mmframe.cpp:4265
 #, c-format
 msgid "File %s not found."
 msgstr ""
@@ -6126,7 +6121,7 @@ msgstr ""
 msgid "General Group Report"
 msgstr ""
 
-#: mmframereport.cpp:108 model/ReportModel.cpp:398
+#: mmframereport.cpp:108 model/ReportModel.cpp:385
 #: panel/DashboardWidget.cpp:891 report/bugreport.h:112
 msgid "Caught exception"
 msgstr ""
@@ -6183,7 +6178,7 @@ msgstr ""
 msgid "Stocks Report"
 msgstr ""
 
-#: mmframereport.cpp:337 panel/ReportPanel.cpp:572
+#: mmframereport.cpp:337 panel/ReportPanel.cpp:529
 msgid "Hide"
 msgstr ""
 
@@ -6311,43 +6306,31 @@ msgstr ""
 msgid "All to quarter"
 msgstr ""
 
-#: model/ReportModel.cpp:47
+#: model/ReportModel.cpp:46
 msgid "Begin date:"
 msgstr ""
 
-#: model/ReportModel.cpp:49
+#: model/ReportModel.cpp:48
 msgid "End date:"
 msgstr ""
 
-#: model/ReportModel.cpp:51 panel/ReportPanel.cpp:411 panel/ReportPanel.cpp:429
+#: model/ReportModel.cpp:50 panel/ReportPanel.cpp:370 panel/ReportPanel.cpp:388
 msgid "Date:"
 msgstr ""
 
-#: model/ReportModel.cpp:53 panel/ReportPanel.cpp:449
+#: model/ReportModel.cpp:52 panel/ReportPanel.cpp:408
 msgid "Time:"
 msgstr ""
 
-#: model/ReportModel.cpp:55 panel/ReportPanel.cpp:464
+#: model/ReportModel.cpp:54 panel/ReportPanel.cpp:423
 msgid "Year:"
 msgstr ""
 
-#: model/ReportModel.cpp:59 panel/ReportPanel.cpp:581
-msgid "Stock name:"
-msgstr ""
-
-#: model/ReportModel.cpp:61 pref/OtherPref.cpp:188
-msgid "Filter"
-msgstr ""
-
-#: model/ReportModel.cpp:63
-msgid "Selection"
-msgstr ""
-
-#: model/ReportModel.cpp:245
+#: model/ReportModel.cpp:232
 msgid "Template is empty"
 msgstr ""
 
-#: model/ReportModel.cpp:257
+#: model/ReportModel.cpp:244
 #, c-format
 msgid ""
 "The SQL script:\n"
@@ -7093,7 +7076,7 @@ msgid "Invested: "
 msgstr ""
 
 #: panel/JournalPanel.cpp:462 panel/JournalPanel.cpp:1193
-#: panel/ReportPanel.cpp:348 panel/ReportPanel.cpp:356
+#: panel/ReportPanel.cpp:304 panel/ReportPanel.cpp:312
 msgid "Date range"
 msgstr ""
 
@@ -7124,7 +7107,7 @@ msgstr ""
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: panel/JournalPanel.cpp:1139 panel/ReportPanel.cpp:986
+#: panel/JournalPanel.cpp:1139 panel/ReportPanel.cpp:842
 msgid "Edit date ranges…"
 msgstr ""
 
@@ -7149,44 +7132,36 @@ msgstr ""
 msgid "Account View: %s"
 msgstr ""
 
-#: panel/ReportPanel.cpp:153
+#: panel/ReportPanel.cpp:146
 msgid "Report"
 msgstr ""
 
-#: panel/ReportPanel.cpp:385
+#: panel/ReportPanel.cpp:344
 msgid "Period…"
 msgstr ""
 
-#: panel/ReportPanel.cpp:492
+#: panel/ReportPanel.cpp:449
 msgid "Budget:"
 msgstr ""
 
-#: panel/ReportPanel.cpp:536 report/TrxReport.cpp:93 report/_ReportBase.cpp:150
+#: panel/ReportPanel.cpp:493 report/TrxReport.cpp:93 report/_ReportBase.cpp:150
 msgid "All Accounts"
 msgstr ""
 
-#: panel/ReportPanel.cpp:537
+#: panel/ReportPanel.cpp:494
 msgid "Specific Accounts…"
 msgstr ""
 
-#: panel/ReportPanel.cpp:547
+#: panel/ReportPanel.cpp:504
 msgid "Future Months:"
 msgstr ""
 
-#: panel/ReportPanel.cpp:565
+#: panel/ReportPanel.cpp:522
 msgid "Chart:"
 msgstr ""
 
-#: panel/ReportPanel.cpp:571 uicontrols/navigatoreditdialog.cpp:101
+#: panel/ReportPanel.cpp:528 uicontrols/navigatoreditdialog.cpp:101
 msgid "Show"
-msgstr ""
-
-#: panel/ReportPanel.cpp:609
-msgid "Filter:"
-msgstr ""
-
-#: panel/ReportPanel.cpp:626
-msgid "Selection:"
 msgstr ""
 
 #: panel/SchedPanel.cpp:62
@@ -7401,7 +7376,7 @@ msgstr ""
 msgid "Last updated %s"
 msgstr ""
 
-#: panel/StockPanel.cpp:533 util/_util.cpp:859 util/_util.cpp:1025
+#: panel/StockPanel.cpp:533 util/_util.cpp:844 util/_util.cpp:1010
 msgid "Nothing to update"
 msgstr ""
 
@@ -7815,6 +7790,10 @@ msgstr ""
 
 #: pref/OtherPref.cpp:180
 msgid "Delimiter"
+msgstr ""
+
+#: pref/OtherPref.cpp:188
+msgid "Filter"
 msgstr ""
 
 #: pref/OtherPref.cpp:194
@@ -9681,91 +9660,91 @@ msgstr ""
 msgid "New tag entered"
 msgstr ""
 
-#: util/_util.cpp:892
+#: util/_util.cpp:877
 msgid "Currency rates have been updated"
 msgstr ""
 
-#: util/_util.cpp:988 util/_util.cpp:1091 util/_util.cpp:1097
-#: util/_util.cpp:1128 util/_util.cpp:1187
+#: util/_util.cpp:973 util/_util.cpp:1076 util/_util.cpp:1082
+#: util/_util.cpp:1113 util/_util.cpp:1172
 msgid "JSON Parse Error"
 msgstr ""
 
-#: util/_util.cpp:1136 util/_util.cpp:1195
+#: util/_util.cpp:1121 util/_util.cpp:1180
 msgid "Expected response to contain a data or error string"
 msgstr ""
 
-#: util/_util.cpp:1167
+#: util/_util.cpp:1152
 msgid "Unable to find asset for symbol."
 msgstr ""
 
-#: util/_util.cpp:1202
+#: util/_util.cpp:1187
 msgid "Unable to get base currency!"
 msgstr ""
 
-#: util/_util.cpp:1208
+#: util/_util.cpp:1193
 msgid "USD"
 msgstr ""
 
-#: util/_util.cpp:1211
+#: util/_util.cpp:1196
 msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr ""
 
-#: util/_util.cpp:1232
+#: util/_util.cpp:1217
 msgid "Unable to parse price in asset history"
 msgstr ""
 
-#: util/_util.cpp:1605 wizard/wizard_update.cpp:183
+#: util/_util.cpp:1590 wizard/wizard_update.cpp:183
 #, c-format
 msgid "Version: %s"
 msgstr ""
 
-#: util/_util.cpp:1606
+#: util/_util.cpp:1591
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr ""
 
-#: util/_util.cpp:1607
+#: util/_util.cpp:1592
 #, c-format
 msgid "Database version: %d"
 msgstr ""
 
-#: util/_util.cpp:1614
+#: util/_util.cpp:1599
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr ""
 
-#: util/_util.cpp:1617
+#: util/_util.cpp:1602
 #, c-format
 msgid "Git branch: %s"
 msgstr ""
 
-#: util/_util.cpp:1621
+#: util/_util.cpp:1606
 msgid "MMEX is using the following support products:"
 msgstr ""
 
-#: util/_util.cpp:1638
+#: util/_util.cpp:1623
 msgid "Built with:"
 msgstr ""
 
-#: util/_util.cpp:1657
+#: util/_util.cpp:1642
 msgid "Running on:"
 msgstr ""
 
-#: util/_util.cpp:1671
+#: util/_util.cpp:1656
 #, c-format
 msgid "System Locale: %s"
 msgstr ""
 
-#: util/_util.cpp:1672
+#: util/_util.cpp:1657
 #, c-format
 msgid "User Interface Language: %s"
 msgstr ""
 
-#: util/_util.cpp:1895
+#: util/_util.cpp:1880
 msgid "The complete list of closed issues is available at this link"
 msgstr ""
 
-#: util/_util.cpp:2052
+#: util/_util.cpp:2037
 msgid "Copy all text to clipboard"
 msgstr ""
 
