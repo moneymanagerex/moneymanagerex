@@ -43,7 +43,7 @@ function generateTOC(nav) {
             node.id = "section" + (++i2);
             addTOC(nnav, node);
         }
-    };
+    }
 }
 
 function collapseNode(n, bool) {

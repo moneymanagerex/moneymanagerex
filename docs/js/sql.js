@@ -2,13 +2,20 @@
  * SQL Formatting script
  */
 
-document.querySelectorAll(".sqlCode").forEach(code => {
-  let lines = code.textContent.replace(/^\n|\n$/g, "").split("\n");
-  let numberedLines = lines
-    .map(line => `<span>${line || "&nbsp;"}</span>`)
-    .join("");
-  code.innerHTML = numberedLines;
-});
+  document.querySelectorAll(".sqlCode").forEach(code => {
+    const lines = code.textContent.replace(/^\n|\n$/g, "").split("\n");
+    code.textContent = "";
+    lines.forEach(line => {
+      const span = document.createElement("span");
+      if (line) {
+        span.textContent = line;
+      }
+      else {
+        span.innerHTML = "&nbsp;";
+      }
+      code.appendChild(span);
+    });
+  });
 
 // Add copy function
 document.querySelectorAll(".sql-codebox").forEach(box => {
