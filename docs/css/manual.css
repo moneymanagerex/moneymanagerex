@@ -158,6 +158,7 @@ h3::before {
    counter-increment: subsection;
    content: counter(section) "." counter(subsection) ". ";
 }
+
 h4::before {
    counter-increment: subsubsection;
    content: counter(section) "." counter(subsection) "." counter(subsubsection)". "
@@ -239,7 +240,7 @@ aside.sticky::before {
     color: #053C5D;
 }
 
-/* SQL display:*/
+/* SQL display: */
 .sql-codebox {
   width: 950px;
   background: #f2f7fa;
@@ -261,7 +262,7 @@ aside.sticky::before {
 }
 
 .lang {
-  color: #ffffff;
+  color: #fff;
   font-weight: bold;
   letter-spacing: 1px;
 }

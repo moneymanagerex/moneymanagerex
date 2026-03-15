@@ -1,24 +1,23 @@
 /*
  * SQL Formatting script
  */
-// numerate rows automatically
+
 document.querySelectorAll(".sqlCode").forEach(code => {
-
-  // Zeilen auslesen
   let lines = code.textContent.replace(/^\n|\n$/g, "").split("\n");
-
-  // HTML mit Zeilen erstellen
-  code.innerHTML = lines
+  let numberedLines = lines
     .map(line => `<span>${line || "&nbsp;"}</span>`)
     .join("");
-
+  code.innerHTML = numberedLines;
 });
+
 // Add copy function
 document.querySelectorAll(".sql-codebox").forEach(box => {
   const code = box.querySelector(".sqlCode");
   const btn = box.querySelector(".copy-btn");
 
-  if (!btn) return;
+  if (!btn) {
+    return;
+  }
 
   btn.addEventListener("click", () => {
     const lines = [...code.querySelectorAll("span")]
