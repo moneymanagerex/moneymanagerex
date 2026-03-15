@@ -563,7 +563,7 @@ int64 mmWebApp::MMEX_InsertNewTransaction(webtran_holder& WebAppTrans)
         trx_datetime = wxDate::Today();
     }
 
-    new_trx_d.TRANSDATE         = trx_datetime.FormatISOCombined();
+    new_trx_d.m_date_time       = mmDateTime(trx_datetime);
     new_trx_d.m_type            = TrxType(WebAppTrans.Type);
     new_trx_d.m_status          = trx_status;
     new_trx_d.m_account_id      = AccountID;

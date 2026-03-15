@@ -21,7 +21,7 @@
 #include "mmDateTime.h"
 
 mmDateTime::mmDateTime(wxDateTime dateTime) :
-    m_dateTime{dateTime}
+    m_dateTime(dateTime)
 {
     if (!m_dateTime.IsValid()) {
         wxLogDebug("ERROR: mmDateTime::mmDateTime(): dateTime is invalid");
@@ -43,7 +43,7 @@ mmDateTimeN::mmDateTimeN(mmDateTime dateTime) :
 }
 
 mmDateTimeN::mmDateTimeN(wxDateTime dateTimeN) :
-    m_dateTimeN{dateTimeN}
+    m_dateTimeN(dateTimeN)
 {
     if (m_dateTimeN.IsValid()) {
         m_dateTimeN.SetMillisecond(0);

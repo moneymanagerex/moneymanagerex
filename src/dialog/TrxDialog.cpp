@@ -139,7 +139,7 @@ TrxDialog::TrxDialog(
             // Use the empty transaction logic to generate the new date to be used
             TrxData emptyTrx;
             TrxModel::setEmptyData(emptyTrx, account_id);
-            m_journal_data.TRANSDATE = emptyTrx.TRANSDATE;
+            m_journal_data.m_date_time = emptyTrx.m_date_time;
         }
     }
     else {
@@ -234,7 +234,7 @@ void TrxDialog::dataToControls()
     );
     bFrequentUsedNotes->Enable(!frequentNotes_.empty());
 
-    //Date
+    // Date
     if (!skip_date_init_) {
         wxDateTime trx_date;
         if (previousDate.IsValid()) {
@@ -242,17 +242,16 @@ void TrxDialog::dataToControls()
         }
         else {
             bool is_time_used = PrefModel::instance().UseTransDateTime();
-            const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
-            if (!trx_date.ParseFormat(m_journal_data.TRANSDATE, mask)) {
-                trx_date.ParseDate(m_journal_data.TRANSDATE);
-            }
+            trx_date = is_time_used
+                ? m_journal_data.m_date_time.getDateTime()
+                : mmDate(m_journal_data.m_date_time).getDateTime();
         }
         dpc_->SetValue(trx_date);
         dpc_->SetFocus();
         skip_date_init_ = true;
     }
 
-    //Status
+    // Status
     if (!skip_status_init_) {
         bool useOriginalState = m_mode != MODE_DUP ||
             SettingModel::instance().getBool(INIDB_USE_ORG_STATE_DUPLICATE_PASTE, false);
@@ -263,10 +262,10 @@ void TrxDialog::dataToControls()
         skip_status_init_ = true;
     }
 
-    //Type
+    // Type
     transaction_type_->SetSelection(m_journal_data.m_type.id());
 
-    //Account
+    // Account
     if (!skip_account_init_) {
         const AccountData* acc_n = A.get_id_data_n(m_journal_data.m_account_id);
         if (acc_n) {
@@ -719,7 +718,7 @@ bool TrxDialog::ValidateData()
     m_journal_data.m_account_id = cbAccount_->mmGetId();
     const AccountData* account_n = AccountModel::instance().get_id_data_n(m_journal_data.m_account_id);
 
-    if (mmDate(m_journal_data.TRANSDATE) < account_n->m_open_date) {
+    if (mmDate(m_journal_data.m_date_time) < account_n->m_open_date) {
         mmErrorDialogs::ToolTip4Object(
             cbAccount_,
             _t("The opening date for the account is later than the date of this transaction"),
@@ -791,7 +790,7 @@ bool TrxDialog::ValidateData()
         }
         m_journal_data.m_to_account_id_n = to_account->m_id;
 
-        if (mmDate(m_journal_data.TRANSDATE) < to_account->m_open_date) {
+        if (mmDate(m_journal_data.m_date_time) < to_account->m_open_date) {
             mmErrorDialogs::ToolTip4Object(cbToAccount_, _t("The opening date for the account is later than the date of this transaction"), _t("Invalid Date"));
             return false;
         }
@@ -1106,7 +1105,7 @@ void TrxDialog::OnToday(wxCommandEvent& WXUNUSED(event))
 }
 
 void TrxDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
-    {
+{
     auto d = TrxModel::getTransDateTime(m_journal_data).Subtract(wxDateSpan::Months(12));
     double next_number = 0, temp_num;
     const auto numbers = TrxModel::instance().find(
@@ -1114,8 +1113,7 @@ void TrxDialog::OnAutoTransNum(wxCommandEvent& WXUNUSED(event))
         TrxModel::TRANSDATE(OP_GE, d),
         TrxCol::TRANSACTIONNUMBER(OP_NE, "")
     );
-    for (const auto &num : numbers)
-    {
+    for (const auto &num : numbers) {
         if (!num.m_number.IsNumber()) continue;
         if (num.m_number.ToDouble(&temp_num) && temp_num > next_number)
             next_number = temp_num;
@@ -1238,8 +1236,10 @@ void TrxDialog::OnOk(wxCommandEvent& event)
 {
     m_journal_data.m_notes = textNotes_->GetValue();
     m_journal_data.m_number = textNumber_->GetValue();
-    m_journal_data.TRANSDATE = dpc_->GetValue().FormatISOCombined();
-    wxStringClientData* status_obj = static_cast<wxStringClientData*>(choiceStatus_->GetClientObject(choiceStatus_->GetSelection()));
+    m_journal_data.m_date_time = dpc_->GetValue().FormatISOCombined();
+    wxStringClientData* status_obj = static_cast<wxStringClientData*>(
+        choiceStatus_->GetClientObject(choiceStatus_->GetSelection())
+    );
     if (status_obj) {
         m_status = TrxStatus(status_obj->GetData()).key();
         m_journal_data.m_status = TrxStatus(m_status);

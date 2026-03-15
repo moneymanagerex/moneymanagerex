@@ -64,7 +64,7 @@ TrxModel& TrxModel::instance()
 
 void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
 {
-    this_n->TRANSDATE         = other_d.TRANSDATE;
+    this_n->m_date_time       = other_d.m_date_time;
     this_n->m_type            = other_d.m_type;
     this_n->m_status          = other_d.m_status;
     this_n->m_account_id      = other_d.m_account_id;
@@ -81,7 +81,7 @@ void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
 
 wxDateTime TrxModel::getTransDateTime(const Data& this_d)
 {
-    return parseDateTime(this_d.TRANSDATE);
+    return this_d.m_date_time.getDateTime();
 }
 
 double TrxModel::account_flow(const Data& this_d, int64 account_id)
@@ -211,27 +211,28 @@ bool CompareUsedNotes(const std::tuple<int, wxString, wxString>& a, const std::t
     return false;
 }
 
-void TrxModel::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 accountID)
+void TrxModel::getFrequentUsedNotes(std::vector<wxString>& frequentNotes, int64 account_id)
 {
     frequentNotes.clear();
     size_t max = 20;
 
     const auto trx_a = instance().find(
         TrxCol::NOTES(OP_NE, ""),
-        accountID > 0 ? TrxCol::ACCOUNTID(accountID) : TrxCol::ACCOUNTID(OP_NE, -1)
+        account_id > 0 ? TrxCol::ACCOUNTID(account_id) : TrxCol::ACCOUNTID(OP_NE, -1)
     );
 
     // Count frequency
-    std::map <wxString, std::pair<int, wxString> > counterMap;
+    std::map<wxString, std::pair<int, wxString>> counterMap;
     for (const auto& trx_d : trx_a) {
+        wxString trx_date = mmDate(trx_d.m_date_time).isoDate();
         auto& counter = counterMap[trx_d.m_notes];
         counter.first--;
-        if (trx_d.TRANSDATE > counter.second)
-            counter.second = trx_d.TRANSDATE;
+        if (trx_date > counter.second)
+            counter.second = trx_date;
     }
 
     // Convert to vector
-    std::vector<std::tuple<int, wxString, wxString> > vec;
+    std::vector<std::tuple<int, wxString, wxString>> vec;
     for (const auto& [note, counter] : counterMap)
         vec.emplace_back(counter.first, counter.second, note);
 
@@ -239,8 +240,7 @@ void TrxModel::getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 
     std::sort(vec.begin(), vec.end(), CompareUsedNotes);
 
     // Pull out top 20 (max)
-    for (const auto& kv : vec)
-    {
+    for (const auto& kv : vec) {
         if (0 == max--)
             break;
         frequentNotes.push_back(std::get<2>(kv));
@@ -251,27 +251,22 @@ void TrxModel::setEmptyData(Data& dst_trx_d, int64 account_id)
 {
     dst_trx_d.m_id = -1;
     dst_trx_d.m_payee_id_n = -1;
-    const wxString today_date = wxDate::Now().FormatISOCombined();
-    wxString max_trx_date;
+    mmDateTime now_dateTime = mmDateTime::now();
+    mmDateTimeN max_dateTime = mmDateTimeN();
     if (PrefModel::instance().getTransDateDefault() != PrefModel::NONE) {
         for (const auto& trx_d : instance().find_or(
             TrxCol::ACCOUNTID(account_id),
             TrxCol::TOACCOUNTID(account_id)
         )) {
-            if (!trx_d.is_deleted() &&
-                max_trx_date < trx_d.TRANSDATE &&
-                today_date >= trx_d.TRANSDATE
-            ) {
-                max_trx_date = trx_d.TRANSDATE;
+            if (trx_d.is_deleted() || trx_d.m_date_time > now_dateTime)
+                continue;
+            if (!max_dateTime.has_value() || max_dateTime.value() < trx_d.m_date_time) {
+                max_dateTime = trx_d.m_date_time;
             }
         }
     }
 
-    if (max_trx_date.empty()) {
-        max_trx_date = today_date;
-    }
-
-    dst_trx_d.TRANSDATE       = max_trx_date;
+    dst_trx_d.m_date_time     = max_dateTime.value_or(now_dateTime);
     dst_trx_d.m_type          = TrxType(TrxType::e_withdrawal);
     dst_trx_d.m_status        = TrxStatus(PrefModel::instance().getTransStatusReconciled());
     dst_trx_d.m_account_id    = account_id;
@@ -287,8 +282,7 @@ bool TrxModel::is_locked(const Data& trx_d)
 {
     // FIXME: check if m_to_account_id_n is locked
     const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_d.m_account_id);
-    mmDateN trx_date_n = mmDateN(trx_d.TRANSDATE);
-    return trx_date_n.has_value() && account_n->is_locked_for(trx_date_n.value());
+    return account_n->is_locked_for(mmDate(trx_d.m_date_time));
 }
 
 bool TrxModel::purge_id(int64 trx_id)

@@ -20,6 +20,7 @@
 
 TrxData::TrxData() :
     m_id(-1),
+    m_date_time(mmDateTime::now()),
     m_type(TrxType()),
     m_status(TrxStatus()),
     m_account_id(-1),
@@ -50,7 +51,7 @@ TrxRow TrxData::to_row() const
     row.TRANSACTIONNUMBER = m_number;
     row.NOTES             = m_notes;
     row.CATEGID           = m_category_id_n;
-    row.TRANSDATE         = TRANSDATE;
+    row.TRANSDATE         = m_date_time.isoDateTime();
     row.LASTUPDATEDTIME   = m_updated_time_n.utcDateTimeN();
     row.DELETEDTIME       = m_deleted_time_n.utcDateTimeN();
     row.FOLLOWUPID        = m_followup_id;
@@ -64,7 +65,7 @@ TrxRow TrxData::to_row() const
 TrxData& TrxData::from_row(const TrxRow& row)
 {
     m_id              = row.TRANSID;
-    TRANSDATE         = row.TRANSDATE;
+    m_date_time       = mmDateTime(row.TRANSDATE);
     m_type            = TrxType(row.TRANSCODE);
     m_status          = TrxStatus(row.STATUS);
     m_account_id      = row.ACCOUNTID;
@@ -86,7 +87,7 @@ TrxData& TrxData::from_row(const TrxRow& row)
 bool TrxData::equals(const TrxData* other) const
 {
     if ( m_id              != other->m_id)              return false;
-    if (!TRANSDATE.IsSameAs(other->TRANSDATE))          return false;
+    if ( m_date_time       != other->m_date_time)       return false;
     if ( m_type.id()       != other->m_type.id())       return false;
     if ( m_status.id()     != other->m_status.id())     return false;
     if ( m_account_id      != other->m_account_id)      return false;

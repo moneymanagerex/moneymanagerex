@@ -1019,13 +1019,18 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 double convrate = (curr != m_currency_n)
                     ? CurrencyHistoryModel::instance().get_id_date_rate(
                         curr->m_id,
-                        mmDate(m_lc->m_journal_xa[item].TRANSDATE)
+                        mmDate(m_lc->m_journal_xa[item].m_date_time)
                     )
                     : 1.0;
-                flow += convrate * TrxModel::account_flow(m_lc->m_journal_xa[item], (m_account_id < 0) ? m_lc->m_journal_xa[item].m_account_id : m_account_id);
-                wxString transdate = m_lc->m_journal_xa[item].TRANSDATE;
-                if (minDate > transdate || minDate.empty()) minDate = transdate;
-                if (maxDate < transdate || maxDate.empty()) maxDate = transdate;
+                flow += convrate * TrxModel::account_flow(
+                    m_lc->m_journal_xa[item],
+                    (m_account_id < 0) ? m_lc->m_journal_xa[item].m_account_id : m_account_id
+                );
+                wxString transdate = m_lc->m_journal_xa[item].m_date_time.isoDateTime();
+                if (minDate > transdate || minDate.empty())
+                    minDate = transdate;
+                if (maxDate < transdate || maxDate.empty())
+                    maxDate = transdate;
             }
 
             wxDateTime min_date, max_date;

@@ -213,7 +213,7 @@ table {
         hb.addTableCellLink(wxString::Format("trx:%lld", trx_xd.m_id)
             , wxString::Format("%lld", trx_xd.m_id), true);
         hb.addColorMarker(getUDColour(trx_xd.m_color.GetValue()).GetAsString(), true);
-        hb.addTableCellDate(trx_xd.TRANSDATE);
+        hb.addTableCellDate(trx_xd.m_date_time.isoDateTime());
         hb.addTableCell(trx_xd.m_number);
         hb.addTableCellLink(wxString::Format("trxid:%lld", trx_xd.m_id)
             , trx_xd.ACCOUNTNAME);

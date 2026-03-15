@@ -305,7 +305,7 @@ void CategoryModel::getCategoryStats(
 
         const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            mmDate(trx_d.TRANSDATE)
+            mmDate(trx_d.m_date_time)
         );
         wxDateTime d = TrxModel::getTransDateTime(trx_d);
 

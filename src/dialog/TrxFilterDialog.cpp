@@ -1479,10 +1479,22 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
 {
     bool ok = true;
 
-    // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(),
-    if (mmIsAccountChecked() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_account_id) == m_selected_accounts_id.end() && std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(), tran.m_to_account_id_n) == m_selected_accounts_id.end())
+    // wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.m_date_time.isoDateTime(), getFromDateCtrl().GetDateOnly().FormatISODate(),
+    if (mmIsAccountChecked() &&
+        std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(),
+            tran.m_account_id
+        ) == m_selected_accounts_id.end() &&
+        std::find(m_selected_accounts_id.begin(), m_selected_accounts_id.end(),
+            tran.m_to_account_id_n
+        ) == m_selected_accounts_id.end()
+    )
         ok = false;
-    else if (m_use_date_filter && (mmIsDateRangeChecked() || mmIsRangeChecked()) && (tran.TRANSDATE < m_begin_date.Mid(0, tran.TRANSDATE.length()) || tran.TRANSDATE > m_end_date.Mid(0, tran.TRANSDATE.length())))
+    else if (m_use_date_filter &&
+        (mmIsDateRangeChecked() || mmIsRangeChecked()) && (
+            mmDate(tran.m_date_time) < mmDate(m_begin_date) ||
+            mmDate(tran.m_date_time) > mmDate(m_end_date)
+        )
+    )
         ok = false;
     else if (mmIsPayeeChecked() && !mmIsPayeeMatches(tran.m_payee_id_n))
         ok = false;

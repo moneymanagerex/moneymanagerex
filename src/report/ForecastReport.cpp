@@ -40,7 +40,7 @@ ForecastReport::~ForecastReport()
 wxString ForecastReport::getHTMLText()
 {
     // Grab the data
-    std::map<wxString, std::pair<double, double> > amount_by_day;
+    std::map<wxString, std::pair<double, double>> amount_by_day;
     TrxModel::DataA trx_a;
     
     if (m_date_range && m_date_range->is_with_date()) {
@@ -58,11 +58,12 @@ wxString ForecastReport::getHTMLText()
             continue;
         const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            mmDate(trx_d.TRANSDATE)
+            mmDate(trx_d.m_date_time)
         );
-        amount_by_day[trx_d.TRANSDATE].first +=
+        // FIXME: use only the date part
+        amount_by_day[trx_d.m_date_time.isoDateTime()].first +=
             TrxModel::account_outflow(trx_d, trx_d.m_account_id) * convRate;
-        amount_by_day[trx_d.TRANSDATE].second +=
+        amount_by_day[trx_d.m_date_time.isoDateTime()].second +=
             TrxModel::account_inflow(trx_d, trx_d.m_account_id) * convRate;
     }
 

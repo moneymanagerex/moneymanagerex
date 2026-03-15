@@ -243,7 +243,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         bool withdrawal = (trx_d.is_withdrawal());
         double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            mmDate(trx_d.TRANSDATE)
+            mmDate(trx_d.m_date_time)
         );
 
         if (const auto trxId_tpA = trxId_tpA_m.find(trx_d.m_id); trxId_tpA == trxId_tpA_m.end()) {
@@ -424,7 +424,7 @@ const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 
         double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx_d.m_account_id)->m_currency_id,
-            mmDate(trx_d.TRANSDATE)
+            mmDate(trx_d.m_date_time)
         );
 
         int64 idx = trx_d.m_account_id;

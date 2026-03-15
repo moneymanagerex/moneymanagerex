@@ -53,7 +53,7 @@ double FlowReport::trueAmount(const TrxData& trx)
     if (!(isAccountFound && isToAccountFound)) {
         const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
             AccountModel::instance().get_id_data_n(trx.m_account_id)->m_currency_id,
-            mmDate(trx.TRANSDATE)
+            mmDate(trx.m_date_time)
         );
         switch (trx.m_type.id()) {
         case TrxType::e_withdrawal:
@@ -68,7 +68,7 @@ double FlowReport::trueAmount(const TrxData& trx)
             else {
                 const double toConvRate = CurrencyHistoryModel::instance().get_id_date_rate(
                     AccountModel::instance().get_id_data_n(trx.m_to_account_id_n)->m_currency_id,
-                    mmDate(trx.TRANSDATE)
+                    mmDate(trx.m_date_time)
                 );
                 amount = +trx.m_to_amount * toConvRate;
             }
@@ -85,7 +85,9 @@ void FlowReport::getTransactions()
 
     wxDateTime endOfToday = mmDateRange::getDayEnd(m_today);
     wxString todayString = endOfToday.FormatISOCombined();
-    wxDateTime endDate = mmDateRange::getDayEnd(m_today.Add(wxDateSpan::Months(getForwardMonths())));
+    wxDateTime endDate = mmDateRange::getDayEnd(
+        m_today.Add(wxDateSpan::Months(getForwardMonths()))
+    );
 
     // Get initial Balance as of today
     for (const auto& account : AccountModel::instance().find(
@@ -175,7 +177,7 @@ void FlowReport::getTransactions()
                 break;
 
             TrxData trx_d;
-            trx_d.TRANSDATE         = next_date.FormatISODate();
+            trx_d.m_date_time       = mmDateTime(next_date); // time is set to noon
             trx_d.m_type            = sched_d.m_type;
             trx_d.m_account_id      = sched_d.m_account_id;
             trx_d.m_to_account_id_n = sched_d.m_to_account_id_n;
@@ -209,7 +211,7 @@ void FlowReport::getTransactions()
     sort(
         m_forecastVector.begin(), m_forecastVector.end(),
         [] (TrxData const& a, TrxData const& b) {
-            return a.TRANSDATE < b.TRANSDATE;
+            return a.m_date_time < b.m_date_time;
         }
     );
 }
@@ -228,8 +230,7 @@ wxString FlowReport::getHTMLText_DayOrMonth(bool monthly)
     if (monthly)
         dt.SetDay(1);
 
-    while(dt.IsEarlierThan(et))
-    {
+    while(dt.IsEarlierThan(et)) {
         dateMap[dt.FormatISODate()] = 0;
         if (monthly)
             dt.Add(wxDateSpan::Month());
@@ -238,15 +239,13 @@ wxString FlowReport::getHTMLText_DayOrMonth(bool monthly)
     }
 
     // squash the data by month or day
-    for (const auto& trx : m_forecastVector)
-    {
-        dt = TrxModel::getTransDateTime(trx);
+    for (const auto& trx_d : m_forecastVector) {
+        dt = TrxModel::getTransDateTime(trx_d);
         wxString date = dt.FormatISODate();
-        if (monthly)
-        {
+        if (monthly) {
             date = dt.SetDay(1).FormatISODate();
         }
-        dateMap[date] += trx.m_amount;
+        dateMap[date] += trx_d.m_amount;
     }
 
     // Build the report
@@ -263,8 +262,7 @@ wxString FlowReport::getHTMLText_DayOrMonth(bool monthly)
     GraphSeries gs;
 
     double runningBalance = m_balance;
-    for (const auto& entry : dateMap)
-    {
+    for (const auto& entry : dateMap) {
         runningBalance += entry.second;
         gs.values.push_back(runningBalance);
         gd.labels.push_back(entry.first);
@@ -395,16 +393,14 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     GraphSeries gs;
 
     double runningBalance = m_balance;
-    for (const auto& entry : m_forecastVector)
-    {
-        runningBalance += entry.m_amount;
+    for (const auto& trx_d : m_forecastVector) {
+        runningBalance += trx_d.m_amount;
         gs.values.push_back(runningBalance);
-        gd.labels.push_back(entry.TRANSDATE);
+        gd.labels.push_back(trx_d.m_date_time.isoDateTime());
     }
     gd.series.push_back(gs);
 
-    if (getChartSelection() == 0 && !gd.series.empty())
-    {
+    if (getChartSelection() == 0 && !gd.series.empty()) {
         gd.type = GraphData::LINE_DATETIME;
         hb.addChart(gd);
     }
@@ -429,14 +425,9 @@ wxString mmReportCashFlowTransactions::getHTMLText()
     int lastRowDate = -1;
     bool rowType = false;
     runningBalance = m_balance;
-    for (const auto& trx : m_forecastVector)
-    {
-        wxDateTime dt;
-        int rowDate;
-        dt.ParseDate(trx.TRANSDATE);
-        rowDate = dt.GetMonth();
-        if (rowDate != lastRowDate)
-        {
+    for (const auto& trx_d : m_forecastVector) {
+        int rowDate = mmDate(trx_d.m_date_time).getDateTime().GetMonth();
+        if (rowDate != lastRowDate) {
             lastRowDate = rowDate;
             rowType = !rowType;
         }
@@ -444,12 +435,14 @@ wxString mmReportCashFlowTransactions::getHTMLText()
             hb.startTableRow();
         else
             hb.startAltTableRow();
-        hb.addTableCellDate(trx.TRANSDATE);
-        hb.addTableCell(AccountModel::instance().get_id_name(trx.m_account_id));
-        hb.addTableCell((trx.m_to_account_id_n == -1) ? PayeeModel::instance().get_id_name(trx.m_payee_id_n)
-            : "> " + AccountModel::instance().get_id_name(trx.m_to_account_id_n));
-        hb.addTableCell(CategoryModel::instance().get_id_fullname(trx.m_category_id_n));
-        double amount = trx.m_amount;
+        hb.addTableCellDate(trx_d.m_date_time.isoDateTime());
+        hb.addTableCell(AccountModel::instance().get_id_name(trx_d.m_account_id));
+        hb.addTableCell((trx_d.m_to_account_id_n == -1)
+            ? PayeeModel::instance().get_id_name(trx_d.m_payee_id_n)
+            : "> " + AccountModel::instance().get_id_name(trx_d.m_to_account_id_n)
+        );
+        hb.addTableCell(CategoryModel::instance().get_id_fullname(trx_d.m_category_id_n));
+        double amount = trx_d.m_amount;
         hb.addMoneyCell(amount);
         runningBalance += amount;
         hb.addMoneyCell(runningBalance);

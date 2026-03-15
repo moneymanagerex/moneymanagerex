@@ -450,7 +450,7 @@ wxString SchedPanel::getItem(long item, int col_id)
     case SchedList::LIST_ID_ID:
         return wxString::Format("%lld", sched_xd.m_id).Trim();
     case SchedList::LIST_ID_PAYMENT_DATE:
-        return mmGetDateTimeForDisplay(sched_xd.TRANSDATE);
+        return mmGetDateTimeForDisplay(sched_xd.m_date_time.isoDateTime());
     case SchedList::LIST_ID_DUE_DATE:
         return mmGetDateTimeForDisplay(sched_xd.m_due_date.isoDate());
     case SchedList::LIST_ID_ACCOUNT:

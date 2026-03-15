@@ -21,7 +21,7 @@
 #include "mmDate.h"
 
 mmDate::mmDate(wxDateTime dateTime) :
-    m_dateTime{dateTime}
+    m_dateTime(dateTime)
 {
     if (!m_dateTime.IsValid()) {
         wxLogDebug("ERROR: mmDate::mmDate(): dateTime is invalid");
@@ -29,6 +29,11 @@ mmDate::mmDate(wxDateTime dateTime) :
     }
     // set time to noon (12:00)
     m_dateTime.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
+}
+
+mmDate::mmDate(mmDateTime dateTime) :
+    mmDate(dateTime.getDateTime())
+{
 }
 
 mmDate::mmDate(const wxString& isoDateTime) :
@@ -44,12 +49,17 @@ mmDateN::mmDateN(mmDate dateDay) :
 }
 
 mmDateN::mmDateN(wxDateTime dateTimeN) :
-    m_dateTimeN{dateTimeN}
+    m_dateTimeN(dateTimeN)
 {
     if (m_dateTimeN.IsValid()) {
         // set time to noon (12:00)
         m_dateTimeN.SetHour(12).SetMinute(0).SetSecond(0).SetMillisecond(0);
     }
+}
+
+mmDateN::mmDateN(mmDateTimeN dateTimeN) :
+    mmDateN(dateTimeN.getDateTimeN())
+{
 }
 
 mmDateN::mmDateN(const wxString& isoDateTimeN) :

@@ -418,14 +418,18 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         if (m_date_checkbox->IsChecked() || (m_time_ctrl && m_time_checkbox->IsChecked())) {
-            wxString date = trx_n->TRANSDATE;
+            wxString date = trx_n->m_date_time.isoDateTime();
             if (m_date_checkbox->IsChecked()) {
                 date.replace(0, 10, m_dpc->GetValue().FormatISODate());
-                const AccountData* account = AccountModel::instance().get_id_data_n(trx_n->m_account_id);
-                const AccountData* to_account = AccountModel::instance().get_id_data_n(trx_n->m_to_account_id_n);
+                const AccountData* account = AccountModel::instance().get_id_data_n(
+                    trx_n->m_account_id
+                );
+                const AccountData* to_account = AccountModel::instance().get_id_data_n(
+                    trx_n->m_to_account_id_n
+                );
                 if ((mmDate(date) < account->m_open_date) ||
-                    (to_account && (mmDate(date) < to_account->m_open_date)))
-                {
+                    (to_account && (mmDate(date) < to_account->m_open_date))
+                ) {
                     skip_trx.push_back(trx_n->m_id);
                     continue;
                 }
@@ -438,13 +442,15 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     date.Append("T" + m_time_ctrl->GetValue().FormatISOTime());
             }
 
-            trx_n->TRANSDATE = date;
+            trx_n->m_date_time = mmDateTime(date);
         }
 
         if (m_color_checkbox->IsChecked()) {
             int color_id = bColours_->GetColorId();
             if (color_id < 0 || color_id > 7) {
-                return mmErrorDialogs::ToolTip4Object(bColours_, _t("Color"), _t("Invalid value"), wxICON_ERROR);
+                return mmErrorDialogs::ToolTip4Object(bColours_,
+                    _t("Color"), _t("Invalid value"), wxICON_ERROR
+                );
             }
             trx_n->m_color = color_id == 0 ? -1 : color_id ; 
         }
@@ -506,7 +512,9 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
 
         // Need to consider m_to_amount if material transaction change
-        if (m_amount_checkbox->IsChecked() || m_type_checkbox->IsChecked() || m_transferAcc_checkbox->IsChecked()) {
+        if (m_amount_checkbox->IsChecked() || m_type_checkbox->IsChecked() ||
+            m_transferAcc_checkbox->IsChecked()
+        ) {
             if (!trx_n->is_transfer()) {
                 trx_n->m_to_amount = trx_n->m_amount;
             }
@@ -522,12 +530,12 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                     double exch = 1;
                     const double convRateTo = CurrencyHistoryModel::instance().get_id_date_rate(
                         to_curr->m_id,
-                        mmDate(trx_n->TRANSDATE)
+                        mmDate(trx_n->m_date_time)
                     );
                     if (convRateTo > 0) {
                         const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
                             curr->m_id,
-                            mmDate(trx_n->TRANSDATE)
+                            mmDate(trx_n->m_date_time)
                         );
                         exch = convRate / convRateTo;
                     }

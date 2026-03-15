@@ -1395,38 +1395,37 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 {
     // date and amount are required
     bool datefield = isIndexPresent(UNIV_CSV_DATE);
-    bool amountfields = isIndexPresent(UNIV_CSV_AMOUNT)
-        || (isIndexPresent(UNIV_CSV_WITHDRAWAL)
-            && isIndexPresent(UNIV_CSV_DEPOSIT));
+    bool amountfields = isIndexPresent(UNIV_CSV_AMOUNT) || (
+        isIndexPresent(UNIV_CSV_WITHDRAWAL) && isIndexPresent(UNIV_CSV_DEPOSIT)
+    );
     if (!datefield || !amountfields)
-        return mmErrorDialogs::ToolTip4Object(csvListBox_
-            , _t("Incorrect fields specified for import!")
-            + (!datefield ? "\n" + _t("Date field is required.") : "")
-            + (!amountfields ? "\n" + _t("Amount field or both Withdrawal and Deposit fields are required.") : "")
-            , _t("Import"), wxICON_WARNING);
+        return mmErrorDialogs::ToolTip4Object(csvListBox_,
+            _t("Incorrect fields specified for import!") +
+                (!datefield ? "\n" + _t("Date field is required.") : "") +
+                (!amountfields ? "\n" + _t("Amount field or both Withdrawal and Deposit fields are required.") : ""),
+            _t("Import"),
+            wxICON_WARNING
+        );
 
     bool is_canceled = false;
     long nImportedLines = 0;
+
     const wxString acctName = m_choice_account_->GetStringSelection();
-    const AccountData* account = AccountModel::instance().get_name_data_n(acctName);
-
-    if (!account){
+    const AccountData* account_n = AccountModel::instance().get_name_data_n(acctName);
+    if (!account_n)
         return mmErrorDialogs::InvalidAccount(m_choice_account_);
-    }
-
-    accountID_ = account->m_id;
+    accountID_ = account_n->m_id;
 
     const wxString fileName = m_text_ctrl_->GetValue();
-    if (fileName.IsEmpty()) {
+    if (fileName.IsEmpty())
         return mmErrorDialogs::InvalidFile(m_text_ctrl_);
-    }
 
     // Open and parse file
     wxSharedPtr<ITransactionsFile> pParser(CreateFileHandler());
-    if (!pParser) return; // is this possible?
-    if (!pParser->Load(fileName, m_list_ctrl_->GetColumnCount())) {
+    if (!pParser)
+        return; // is this possible?
+    if (!pParser->Load(fileName, m_list_ctrl_->GetColumnCount()))
         return;
-    }
 
     wxFileName logFile = mmex::GetLogDir(true);
     logFile.SetFullName(fileName);
@@ -1442,18 +1441,24 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     const long linesToImport = lastRow - firstRow;
     long countEmptyLines = 0;
     int color_id = colorCheckBox_->IsChecked() ? colorButton_->GetColorId() : -1;
-    if (colorCheckBox_->IsChecked() && (color_id < 0 || color_id > 7) ) {
-        return mmErrorDialogs::ToolTip4Object(colorButton_, _t("Color"), _t("Invalid value"), wxICON_ERROR);
-    }
+    if (colorCheckBox_->IsChecked() && (color_id < 0 || color_id > 7) )
+        return mmErrorDialogs::ToolTip4Object(colorButton_,
+            _t("Color"),
+            _t("Invalid value"),
+            wxICON_ERROR
+        );
 
     TrxModel::instance().db_begin();
     TrxModel::instance().db_savepoint("IMP");
     FieldValueModel::instance().db_savepoint("IMP");
 
-    wxProgressDialog progressDlg(_t("Universal CSV Import")
-        , wxEmptyString, linesToImport
-        , nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT
-        | wxPD_ELAPSED_TIME | wxPD_REMAINING_TIME
+    wxProgressDialog progressDlg(
+        _t("Universal CSV Import"),
+        wxEmptyString,
+        linesToImport,
+        nullptr,
+        wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT |
+            wxPD_ELAPSED_TIME | wxPD_REMAINING_TIME
     );
     progressDlg.Fit();
 
@@ -1461,10 +1466,11 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     // A place to store all rejected rows to display after import
     wxString rejectedRows;
     for (long nLines = firstRow; nLines < lastRow; nLines++) {
-        const wxString& progressMsg = wxString::Format(_t("Transactions imported to account %s: %ld")
-            , "'" + acctName + "'", nImportedLines);
-        if (!progressDlg.Update(nLines - firstRow, progressMsg))
-        {
+        const wxString& progressMsg = wxString::Format(_t("Transactions imported to account %s: %ld"),
+            "'" + acctName + "'",
+            nImportedLines
+        );
+        if (!progressDlg.Update(nLines - firstRow, progressMsg)) {
             is_canceled = true;
             break; // abort processing
         }
@@ -1473,8 +1479,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         unsigned int blankTokenCount = 0;
         tran_holder holder;
         wxString rowString;
-        if (numTokens != 0)
-        {
+        if (numTokens != 0) {
             for (size_t i = 0; i < csvFieldOrder_.size() && i < numTokens; ++i) {
                 wxString token = pParser->GetItem(nLines, i).Trim(false /*from left*/);
                 // Store the CSV row to display in case the row is rejected
@@ -1485,8 +1490,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
             }
         }
         // if the line had no field separators or all fields were blank (",,,,,")
-        if (numTokens == 0 || blankTokenCount == numTokens)
-        {
+        if (numTokens == 0 || blankTokenCount == numTokens) {
             wxString msg = wxString::Format(_t("Line %ld: Empty"), nLines + 1);
             log << msg << endl;
             *log_field_ << msg << "\n";
@@ -1496,8 +1500,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
         wxString message;
         // validate data and store any error messages
-        if (!validateData(holder, message))
-        {
+        if (!validateData(holder, message)) {
             wxString msg = wxString::Format(_t("Line %ld: Error:"), nLines + 1);
             msg << " " << message;
             log << msg << endl;
@@ -1511,8 +1514,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         const AccountData* account2 = AccountModel::instance().get_id_data_n(accountID_);
         const AccountData* toAccount = AccountModel::instance().get_id_data_n(holder.ToAccountID);
         if ((mmDate(trx_datetime) < account2->m_open_date) ||
-            (toAccount && (mmDate(trx_datetime) < toAccount->m_open_date)))
-        {
+            (toAccount && (mmDate(trx_datetime) < toAccount->m_open_date))
+        ) {
             wxString msg = wxString::Format(_t("Line %ld: %s"),
                 nLines + 1,
                 _t("The opening date for the account is later than the date of this transaction")
@@ -1525,7 +1528,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
         }
 
         TrxData new_trx_d = TrxData();
-        new_trx_d.TRANSDATE         = trx_datetime.FormatISOCombined();
+        new_trx_d.m_date_time       = mmDateTime(trx_datetime);
         new_trx_d.m_type            = TrxType(holder.Type);
         new_trx_d.m_status          = TrxStatus(holder.Status);
         new_trx_d.m_account_id      = accountID_;
@@ -1576,8 +1579,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
 
     // If any rows were rejected, display CSV rows in the log field and log file
     // so that users can easily copy/paste errored records for reimport
-    if (!rejectedRows.IsEmpty())
-    {
+    if (!rejectedRows.IsEmpty()) {
         *log_field_ << "\n" << _t("Rejected rows:") << "\n" << rejectedRows;
         log << "\nRejected rows:\n" << rejectedRows;
     }

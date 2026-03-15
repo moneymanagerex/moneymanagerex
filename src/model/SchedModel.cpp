@@ -53,7 +53,7 @@ SchedModel& SchedModel::instance()
 
 wxDate SchedModel::getTransDateTime(const Data& this_d)
 {
-    return parseDateTime(this_d.TRANSDATE);
+    return this_d.m_date_time.getDateTime();
 }
 
 bool SchedModel::encode_repeat_num(Data& this_d, const RepeatNum& rn)
@@ -187,7 +187,7 @@ wxArrayString SchedModel::unroll(const Data& sched_d, const wxString end_date, i
     if (!decode_repeat_num(sched_d, rn))
         return dates;
 
-    wxString date = sched_d.TRANSDATE;
+    wxString date = sched_d.m_date_time.isoDateTime();
     while (date <= end_date && limit != 0) {
         if (limit > 0)
             --limit;
@@ -328,11 +328,9 @@ void SchedModel::completeBDInSeries(int64 sched_id)
         return;
     }
 
-    wxDateTime transdate;
-    transdate.ParseDateTime(sched_n->TRANSDATE) || transdate.ParseDate(sched_n->TRANSDATE);
-    const wxDateTime& payment_date_current = transdate;
+    const wxDateTime& payment_date_current = sched_n->m_date_time.getDateTime();
     const wxDateTime& payment_date_update = nextOccurDate(payment_date_current, rn);
-    sched_n->TRANSDATE = payment_date_update.FormatISOCombined();
+    sched_n->m_date_time = mmDateTime(payment_date_update);
 
     const wxDateTime& due_date_current = sched_n->m_due_date.getDateTime();
     const wxDateTime& due_date_update = nextOccurDate(due_date_current, rn);

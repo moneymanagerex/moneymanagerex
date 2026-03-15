@@ -163,7 +163,7 @@ public:
     {
         bool operator()(const Data& x, const Data& y)
         {
-            return x.TRANSDATE.Left(10) < y.TRANSDATE.Left(10);
+            return mmDate(x.m_date_time) < mmDate(y.m_date_time);
         }
     };
 
@@ -171,7 +171,7 @@ public:
     {
         bool operator()(const Data& x, const Data& y)
         {
-            return mmGetTimeForDisplay(x.TRANSDATE) < mmGetTimeForDisplay(y.TRANSDATE);
+            return mmGetTimeForDisplay(x.m_date_time.isoDateTime()) < mmGetTimeForDisplay(y.m_date_time.isoDateTime());
         }
     };
 

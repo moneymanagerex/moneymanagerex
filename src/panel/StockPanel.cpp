@@ -322,7 +322,7 @@ void StockPanel::FillListRow(
     const TrxData& trx_d,
     const TrxShareData& ts_d
 ) {
-    listCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(trx_d.TRANSDATE));
+    listCtrl->SetItem(index, 0, mmGetDateTimeForDisplay(trx_d.m_date_time.isoDateTime()));
     listCtrl->SetItem(index, 1, ts_d.m_lot);
 
     int precision = ts_d.m_number == floor(ts_d.m_number) ? 0 : PrefModel::instance().getSharePrecision();

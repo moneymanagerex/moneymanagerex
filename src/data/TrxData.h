@@ -27,7 +27,7 @@
 struct TrxData
 {
     int64       m_id;
-    wxString    TRANSDATE;
+    mmDateTime  m_date_time;
     TrxType     m_type;
     TrxStatus   m_status;
     int64       m_account_id;      // non-null (> 0) after initialization
@@ -157,7 +157,7 @@ struct TrxData
     {
         bool operator()(const TrxData& x, const TrxData& y)
         {
-            return x.TRANSDATE < y.TRANSDATE;
+            return x.m_date_time < y.m_date_time;
         }
     };
 

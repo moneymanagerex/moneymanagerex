@@ -1513,11 +1513,13 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
             results.push_back(result);
             continue;
         }
+        // set time to noon
+        date = mmDate(date).getDateTime();
 
         TrxData new_trx_d = TrxData();
         new_trx_d.m_account_id = account->m_id;
         new_trx_d.m_number     = result.fitid;
-        new_trx_d.TRANSDATE    = date.FormatISODate();
+        new_trx_d.m_date_time  = mmDateTime(date);
         new_trx_d.m_amount     = fabs(amount);
         new_trx_d.m_notes      = memo;
 
@@ -1561,8 +1563,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
                 else if (existing_trx_d.m_account_id != account->m_id) {
                     // Potential new transfer
                     double existingAmount = existing_trx_d.m_amount;
-                    wxDateTime existingDate;
-                    existingDate.ParseISODate(existing_trx_d.TRANSDATE);
+                    wxDateTime existingDate = mmDate(existing_trx_d.m_date_time).getDateTime();
                     double adjustedExistingAmount = existing_trx_d.is_withdrawal() ? -existingAmount : existingAmount;
 
                     double compAmt = fabs(adjustedExistingAmount + amount);
@@ -1668,7 +1669,7 @@ bool mmOFXImportDialog::ImportTransactions(wxXmlNode* banktranlist, wxLongLong a
 
             if (promptForConfirmation) {
                 mmPayeeSelectionDialog payeeDlg(this,
-                    memo, payeeName, fitid, date.FormatISODate(),
+                    memo, payeeName, fitid, mmDate(date).isoDate(),
                     wxString::Format("%.2f", amount),
                     new_trx_d.m_type.name(),
                     transactionIndex, newTransactions,

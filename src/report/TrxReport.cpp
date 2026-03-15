@@ -178,7 +178,7 @@ table {
         else if (groupBy == TrxFilterDialog::GROUPBY_TYPE)
             sortLabel = wxGetTranslation(trx_xd.m_type.name());
         else if (groupBy == TrxFilterDialog::GROUPBY_DAY)
-            sortLabel = mmGetDateTimeForDisplay(trx_xd.TRANSDATE);
+            sortLabel = mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime());
         else if (groupBy == TrxFilterDialog::GROUPBY_MONTH)
             sortLabel = TrxModel::getTransDateTime(trx_xd).Format("%Y-%m");
         else if (groupBy == TrxFilterDialog::GROUPBY_YEAR)
@@ -279,9 +279,6 @@ table {
         )))
             noOfTrans = 2;
 
-        bool is_time_used = PrefModel::instance().UseTransDateTime();
-        const wxString mask = is_time_used ? "%Y-%m-%dT%H:%M:%S" : "%Y-%m-%d";
-
         auto trxId_fvA_m = FieldValueModel::instance().find_refType_mRefId(
             TrxModel::s_ref_type
         );
@@ -297,12 +294,10 @@ table {
                 if (showColumnById(TrxFilterDialog::COL_COLOR))
                     hb.addColorMarker(getUDColour(trx_xd.m_color.GetValue()).GetAsString(), true);
                 if (showColumnById(TrxFilterDialog::COL_DATE)) {
-                    wxDateTime dt;
-                    dt.ParseFormat(trx_xd.TRANSDATE, mask) || dt.ParseDate(trx_xd.TRANSDATE);
-                    hb.addTableCellDate(dt.FormatISODate());
+                    hb.addTableCellDate(mmDate(trx_xd.m_date_time).isoDate());
                 }
                 if (showColumnById(TrxFilterDialog::COL_TIME))
-                    hb.addTableCell(mmGetTimeForDisplay(trx_xd.TRANSDATE));
+                    hb.addTableCell(mmGetTimeForDisplay(trx_xd.m_date_time.isoDateTime()));
                 if (showColumnById(TrxFilterDialog::COL_NUMBER))
                     hb.addTableCell(trx_xd.m_number);
                 if (showColumnById(TrxFilterDialog::COL_ACCOUNT)) {
@@ -325,16 +320,16 @@ table {
                         hb.addTableCell(wxGetTranslation(trx_xd.m_type.name()));
                 }
 
-                const AccountData* acc = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
+                const AccountData* account_n = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
 
-                if (acc) {
-                    const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(*acc);
-                    double flow = TrxModel::account_flow(trx_xd, acc->m_id);
+                if (account_n) {
+                    const CurrencyData* currency_n = AccountModel::instance().get_data_currency_p(*account_n);
+                    double flow = TrxModel::account_flow(trx_xd, account_n->m_id);
                     if (noOfTrans || (!allAccounts && (std::find(selected_accounts.begin(), selected_accounts.end(), trx_xd.m_account_id) == selected_accounts.end())))
                         flow = -flow;
                     const double convRate = CurrencyHistoryModel::instance().get_id_date_rate(
                         currency_n->m_id,
-                        mmDate(trx_xd.TRANSDATE)
+                        mmDate(trx_xd.m_date_time)
                     );
                     if (showColumnById(TrxFilterDialog::COL_AMOUNT)) {
                         if (trx_xd.is_void()) {

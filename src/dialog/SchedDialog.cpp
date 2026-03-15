@@ -122,7 +122,7 @@ SchedDialog::SchedDialog(
         // If duplicate then we will be creating a new identity
         if (!m_dup_bill)
             m_sched_xd.m_id = sched_id;
-        m_sched_xd.TRANSDATE         = sched_n->TRANSDATE;
+        m_sched_xd.m_date_time       = sched_n->m_date_time;
         m_sched_xd.m_type            = sched_n->m_type;
         m_sched_xd.m_status          = sched_n->m_status;
         m_sched_xd.m_account_id      = sched_n->m_account_id;
@@ -245,9 +245,7 @@ void SchedDialog::dataToControls()
     m_choice_status->SetSelection(m_sched_xd.m_status.id());
 
     // Set the date paid
-    wxDateTime field_date;
-    field_date.ParseDateTime(m_sched_xd.TRANSDATE) || field_date.ParseDate(m_sched_xd.TRANSDATE);
-    m_date_paid->SetValue(field_date);
+    m_date_paid->SetValue(m_sched_xd.m_date_time.getDateTime());
 
     // Set the due Date
     m_date_due->SetValue(m_sched_xd.m_due_date.getDateTime());
@@ -978,11 +976,11 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
                 double rateFrom = CurrencyHistoryModel::instance().get_id_date_rate(
                     from_currency->m_id,
-                    mmDate(m_sched_xd.TRANSDATE)
+                    mmDate(m_sched_xd.m_date_time)
                 );
                 double rateTo = CurrencyHistoryModel::instance().get_id_date_rate(
                     to_currency->m_id,
-                    mmDate(m_sched_xd.TRANSDATE)
+                    mmDate(m_sched_xd.m_date_time)
                 );
 
                 double convToBaseFrom = rateFrom * m_sched_xd.m_amount;
@@ -1016,7 +1014,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
     SchedModel::encode_repeat_num(m_sched_xd, rn);
 
     m_sched_xd.m_due_date = mmDate(m_date_due->GetValue());
-    m_sched_xd.TRANSDATE = m_date_paid->GetValue().FormatISOCombined();
+    m_sched_xd.m_date_time = mmDateTime(m_date_paid->GetValue());
 
     wxStringClientData* status_obj = static_cast<wxStringClientData *>(
         m_choice_status->GetClientObject(m_choice_status->GetSelection())
@@ -1036,14 +1034,14 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     const AccountData* account = AccountModel::instance().get_id_data_n(m_sched_xd.m_account_id);
     const AccountData* toAccount = AccountModel::instance().get_id_data_n(m_sched_xd.m_to_account_id_n);
-    if (mmDate(m_sched_xd.TRANSDATE) < account->m_open_date)
+    if (mmDate(m_sched_xd.m_date_time) < account->m_open_date)
         return mmErrorDialogs::ToolTip4Object(
             cbAccount_,
             _t("The opening date for the account is later than the date of this transaction"),
             _t("Invalid Date")
         );
 
-    if (toAccount && (mmDate(m_sched_xd.TRANSDATE) < toAccount->m_open_date))
+    if (toAccount && (mmDate(m_sched_xd.m_date_time) < toAccount->m_open_date))
         return mmErrorDialogs::ToolTip4Object(
             cbToAccount_,
             _t("The opening date for the account is later than the date of this transaction"),
@@ -1054,7 +1052,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         SchedData sched_d = (!m_new_bill && !m_dup_bill)
             ? *(SchedModel::instance().get_id_data_n(m_sched_xd.m_id))
             : SchedData();
-        sched_d.TRANSDATE         = m_sched_xd.TRANSDATE;
+        sched_d.m_date_time       = m_sched_xd.m_date_time;
         sched_d.m_type            = TrxType(m_choice_transaction_type->GetSelection());
         sched_d.m_status          = m_sched_xd.m_status;
         sched_d.m_account_id      = m_sched_xd.m_account_id;
@@ -1139,7 +1137,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
             TrxData new_trx_d = TrxData();
             new_trx_d.m_type            = TrxType(m_choice_transaction_type->GetSelection());
-            new_trx_d.TRANSDATE         = m_sched_xd.TRANSDATE;
+            new_trx_d.m_date_time       = m_sched_xd.m_date_time;
             new_trx_d.m_status          = m_sched_xd.m_status;
             new_trx_d.m_account_id      = m_sched_xd.m_account_id;
             new_trx_d.m_to_account_id_n = m_sched_xd.m_to_account_id_n;

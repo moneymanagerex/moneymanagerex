@@ -634,8 +634,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             if (allow) {
                 continueExecution = true;
                 TrxData new_trx_d = TrxData();
-                const wxDateTime payment_date = bills.getTransDateTime(q1);
-                new_trx_d.TRANSDATE         = payment_date.FormatISOCombined();
+                new_trx_d.m_date_time       = mmDateTime(bills.getTransDateTime(q1));
                 new_trx_d.m_type            = q1.m_type;
                 new_trx_d.m_status          = q1.m_status;
                 new_trx_d.m_account_id      = q1.m_account_id;

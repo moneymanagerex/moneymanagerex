@@ -826,7 +826,7 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             copyText_ = m_journal_xa[row].displayID;
             break;
         case LIST_ID_DATE: {
-            copyText_ = menuItemText = mmGetDateTimeForDisplay(m_journal_xa[row].TRANSDATE);
+            copyText_ = menuItemText = mmGetDateTimeForDisplay(m_journal_xa[row].m_date_time.isoDateTime());
             wxString strDate = TrxModel::getTransDateTime(m_journal_xa[row]).FormatISODate();
             rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
             break;
@@ -1195,7 +1195,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
             if (id.second) continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
 
-            if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE)) {
+            if (checkTransactionLocked(trx_n->m_account_id, mmDate(trx_n->m_date_time))) {
                 continue;
             }
 
@@ -1364,7 +1364,7 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
     Journal::IdRepeat id = m_selected_id[0];
     if (!id.second) {
         TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-        if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE))
+        if (checkTransactionLocked(trx_n->m_account_id, mmDate(trx_n->m_date_time)))
             return;
 
         if (!TrxLinkModel::instance().find(
@@ -1437,10 +1437,10 @@ void JournalList::onMoveTransaction(wxCommandEvent& /*event*/)
             for (const auto& id : m_selected_id) {
                 if (!id.second) {
                     TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-                    if (checkTransactionLocked(trx_n->m_account_id, trx_n->TRANSDATE) ||
+                    if (checkTransactionLocked(trx_n->m_account_id, mmDate(trx_n->m_date_time)) ||
                         TrxModel::is_foreign(*trx_n) ||
                         trx_n->is_transfer() ||
-                        mmDate(trx_n->TRANSDATE) < dest_account->m_open_date
+                        mmDate(trx_n->m_date_time) < dest_account->m_open_date
                     ) {
                         skip_trx.push_back(trx_n->m_id);
                     } else {
@@ -1726,7 +1726,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     TrxData new_trx;
     new_trx.clone_from(*tran);
     if (!useOriginalDate)
-        new_trx.TRANSDATE = wxDateTime::Now().FormatISOCombined();
+        new_trx.m_date_time = mmDateTime::now();
     if (!useOriginalState) {
         // Use default status on copy insert
         new_trx.m_status = TrxStatus(
@@ -1985,9 +1985,9 @@ const wxString JournalList::getItem(long item, int col_id) const
     case LIST_ID_ACCOUNT:
         return journal_xd.ACCOUNTNAME;
     case LIST_ID_DATE:
-        return mmGetDateForDisplay(journal_xd.TRANSDATE);
+        return mmGetDateForDisplay(journal_xd.m_date_time.isoDateTime());
     case LIST_ID_TIME:
-        return mmGetTimeForDisplay(journal_xd.TRANSDATE);
+        return mmGetTimeForDisplay(journal_xd.m_date_time.isoDateTime());
     case LIST_ID_NUMBER:
         return journal_xd.m_number;
     case LIST_ID_CATEGORY:
@@ -2352,11 +2352,10 @@ bool JournalList::checkForClosedAccounts()
     return false;
 }
 
-bool JournalList::checkTransactionLocked(int64 accountID, const wxString& iso_date)
+bool JournalList::checkTransactionLocked(int64 account_id, mmDate date)
 {
-    const AccountData* account_n = AccountModel::instance().get_id_data_n(accountID);
-    mmDateN date_n = mmDateN(iso_date);
-    if (!date_n.has_value() || !account_n->is_locked_for(date_n.value()))
+    const AccountData* account_n = AccountModel::instance().get_id_data_n(account_id);
+    if (!account_n->is_locked_for(date))
         return false;
 
     wxMessageBox(

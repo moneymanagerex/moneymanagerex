@@ -642,22 +642,22 @@ void mmReconcileDialog::editTransaction(wxListCtrl* list, long item)
     TrxDialog dlg(this, transid, {transid, false});
     if (dlg.ShowModal() == wxID_OK) {
         m_checkingPanel->refreshList();
-        const TrxData* trx = TrxModel::instance().get_id_data_n(transid);
-        setListItemData(trx, list, item);
-        long idx = getListIndexByDate(trx, list);
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(transid);
+        setListItemData(trx_n, list, item);
+        long idx = getListIndexByDate(trx_n, list);
         if (idx != item) {
             moveItemData(list, item, idx);
         }
     }
 }
 
-long mmReconcileDialog::getListIndexByDate(const TrxData* trx, wxListCtrl* list)
+long mmReconcileDialog::getListIndexByDate(const TrxData* trx_n, wxListCtrl* list)
 {
     long idx = -1;
     for (long i = 0; i < list->GetItemCount(); ++i) {
         int64 other_id = m_itemDataMap[list->GetItemData(i)];
         const TrxData* other_trx_n = TrxModel::instance().get_id_data_n(other_id);
-        if (trx->TRANSDATE.Left(10) < other_trx_n->TRANSDATE.Left(10)) {
+        if (mmDate(trx_n->m_date_time) < mmDate(other_trx_n->m_date_time)) {
             idx = i;
             break;
         }
@@ -700,7 +700,7 @@ void mmReconcileDialog::setListItemData(const TrxData* trx_n, wxListCtrl* list, 
             ? trx_n->m_account_id
             : trx_n->m_to_account_id_n
         ) : PayeeModel::instance().get_id_name(trx_n->m_payee_id_n);
-    list->SetItem(item, 1, mmGetDateTimeForDisplay(trx_n->TRANSDATE));
+    list->SetItem(item, 1, mmGetDateTimeForDisplay(trx_n->m_date_time.isoDateTime()));
     list->SetItem(item, 2, trx_n->m_number);
     list->SetItem(item, 3, prefix + payeeName);
     list->SetItem(item, 4, CurrencyModel::instance().toString(trx_n->m_amount,m_currency));

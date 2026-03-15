@@ -26,23 +26,23 @@
 // User-friendly representation of a record in table BILLSDEPOSITS_V1.
 struct SchedData
 {
-    int64     m_id;
-    wxString  TRANSDATE;
-    TrxType   m_type;
-    TrxStatus m_status;
-    int64     m_account_id;      // non-null (> 0) after initialization
-    int64     m_to_account_id_n; // optional (can be null)
-    int64     m_payee_id_n;      // optional (can be null)
-    int64     m_category_id_n;   // optional (can be null)
-    double    m_amount;
-    double    m_to_amount;
-    wxString  m_number;
-    wxString  m_notes;
-    int64     m_followup_id;
-    int64     m_color;
-    mmDate    m_due_date;
-    int64     REPEATS;
-    int64     NUMOCCURRENCES;
+    int64      m_id;
+    mmDateTime m_date_time;
+    TrxType    m_type;
+    TrxStatus  m_status;
+    int64      m_account_id;      // non-null (> 0) after initialization
+    int64      m_to_account_id_n; // optional (can be null)
+    int64      m_payee_id_n;      // optional (can be null)
+    int64      m_category_id_n;   // optional (can be null)
+    double     m_amount;
+    double     m_to_amount;
+    wxString   m_number;
+    wxString   m_notes;
+    int64      m_followup_id;
+    int64      m_color;
+    mmDate     m_due_date;
+    int64      REPEATS;
+    int64      NUMOCCURRENCES;
 
     explicit SchedData();
     explicit SchedData(wxSQLite3ResultSet& q);
@@ -156,7 +156,7 @@ struct SchedData
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.TRANSDATE < y.TRANSDATE;
+            return x.m_date_time < y.m_date_time;
         }
     };
 

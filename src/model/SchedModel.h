@@ -95,7 +95,7 @@ public:
 
         Bill_Data() {
             m_id              = 0;
-            TRANSDATE         = wxDateTime::Now().FormatISOCombined();
+            m_date_time       = mmDateTime::now();
             m_type            = TrxType(TrxType::e_withdrawal);
             m_status          = TrxStatus(TrxStatus::e_unreconciled);
             m_account_id      = -1;

@@ -23,6 +23,7 @@
 #include <wx/datetime.h>
 
 #include "_primitive.h"
+#include "mmDateTime.h"
 
 // mmDate represents a date without time information.
 // wxWidgets does not have a dedicated type for this purpose.
@@ -47,6 +48,7 @@ protected:
 
 public:
     mmDate(wxDateTime dateTime);
+    mmDate(mmDateTime dateTime);
     mmDate(const wxString& isoDateTime);
 
 public:
@@ -82,6 +84,7 @@ public:
     mmDateN() = default;
     mmDateN(mmDate dateDay);
     mmDateN(wxDateTime dateTimeN);
+    mmDateN(mmDateTimeN dateTimeN);
     mmDateN(const wxString& isoDateTimeN);
 
 public:

@@ -879,7 +879,7 @@ void AssetPanel::LoadAssetTransactions(wxListCtrl* listCtrl, int64 asset_id)
 void AssetPanel::FillAssetListRow(wxListCtrl* listCtrl, long index, const TrxData& trx_d)
 {
     listCtrl->SetItem(index, 0, AccountModel::instance().get_id_name(trx_d.m_account_id));
-    listCtrl->SetItem(index, 1, mmGetDateTimeForDisplay(trx_d.TRANSDATE));
+    listCtrl->SetItem(index, 1, mmGetDateTimeForDisplay(trx_d.m_date_time.isoDateTime()));
     listCtrl->SetItem(index, 2, trx_d.m_type.trade_name());
     listCtrl->SetItem(index, 3, CurrencyModel::instance().toString(trx_d.m_amount));
 //    listCtrl->SetItem(index, 3, CurrencyModel::instance().get_currency_symbol(trx_d.CURRENCYID));

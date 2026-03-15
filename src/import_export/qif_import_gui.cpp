@@ -1131,25 +1131,32 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 if (dateToCheckBox_->IsChecked() && strDate > end_date)
                     continue;
 
-                AccountData* account = AccountModel::instance().unsafe_get_id_data_n(trx_d.m_account_id);
-                AccountData* toAccount = AccountModel::instance().unsafe_get_id_data_n(trx_d.m_to_account_id_n);
+                AccountData* account = AccountModel::instance().unsafe_get_id_data_n(
+                    trx_d.m_account_id
+                );
+                AccountData* toAccount = AccountModel::instance().unsafe_get_id_data_n(
+                    trx_d.m_to_account_id_n
+                );
 
-                if (account->is_locked_for(mmDate(trx_d.TRANSDATE)) ||
-                    (toAccount && toAccount->is_locked_for(mmDate(trx_d.TRANSDATE)))
+                if (account->is_locked_for(mmDate(trx_d.m_date_time)) ||
+                    (toAccount && toAccount->is_locked_for(mmDate(trx_d.m_date_time)))
                 )
                     continue;
 
-                if (mmDate(trx_d.TRANSDATE) < account->m_open_date) {
+                if (mmDate(trx_d.m_date_time) < account->m_open_date) {
                     // FIXME: account is changed but not saved
-                    account->m_open_date = trx_d.TRANSDATE;
+                    account->m_open_date = mmDate(trx_d.m_date_time);
                 }
-                if (toAccount && (mmDate(trx_d.TRANSDATE) < toAccount->m_open_date)) {
+                if (toAccount && (mmDate(trx_d.m_date_time) < toAccount->m_open_date)) {
                     // FIXME: toAccount is changed but not saved
-                    toAccount->m_open_date = trx_d.TRANSDATE;
+                    toAccount->m_open_date = mmDate(trx_d.m_date_time);
                 }
 
                 // Save Transaction Tags
-                wxString tagStr = (entry.find(QIF_ID_Category) != entry.end() ? entry.at(QIF_ID_Category).AfterFirst('/') : "");
+                wxString tagStr = (entry.find(QIF_ID_Category) != entry.end()
+                    ? entry.at(QIF_ID_Category).AfterFirst('/')
+                    : ""
+                );
                 TagLinkModel::DataA gl_a;
                 if (!tagStr.IsEmpty()) {
                     wxStringTokenizer tagTokens = wxStringTokenizer(tagStr, ":");
@@ -1206,20 +1213,18 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         mergeTransferPair(trx_to_a, trx_from_a);
         appendTransfers(trx_a, trx_to_a);
 
-        //Search for duplicates for transfers
+        // Search for duplicates for transfers
         for (auto& trx_d : trx_a) {
             if (!trx_d.is_transfer())
                 continue;
-            wxDate dt;
-            dt.ParseISODate(trx_d.TRANSDATE);
             const auto data = TrxModel::instance().find(
-                TrxModel::TRANSDATE(OP_EQ, dt),
-                TrxCol::ACCOUNTID(OP_EQ, trx_d.m_account_id),
-                TrxCol::TOACCOUNTID(OP_EQ, trx_d.m_to_account_id_n),
-                TrxCol::NOTES(OP_EQ, trx_d.m_notes),
-                TrxCol::TRANSACTIONNUMBER(OP_EQ, trx_d.m_number),
-                TrxModel::TRANSCODE(OP_EQ, TrxType(TrxType::e_transfer)),
-                TrxCol::TRANSAMOUNT(OP_EQ, trx_d.m_amount)
+                TrxModel::TRANSDATE(       OP_EQ, mmDate(trx_d.m_date_time)),
+                TrxCol::ACCOUNTID(         OP_EQ, trx_d.m_account_id),
+                TrxCol::TOACCOUNTID(       OP_EQ, trx_d.m_to_account_id_n),
+                TrxCol::NOTES(             OP_EQ, trx_d.m_notes),
+                TrxCol::TRANSACTIONNUMBER( OP_EQ, trx_d.m_number),
+                TrxModel::TRANSCODE(       OP_EQ, TrxType(TrxType::e_transfer)),
+                TrxCol::TRANSAMOUNT(       OP_EQ, trx_d.m_amount)
             );
             if (data.size() > 0)
                 trx_d.m_status = TrxStatus(TrxStatus::e_duplicate);
@@ -1331,11 +1336,11 @@ bool mmQIFImportDialog::mergeTransferPair(
         bool pair_found = false;
         for (auto& src_trx_d : src_trx_a) {
             ++i;
-            if (dst_trx_d.m_account_id != src_trx_d.m_to_account_id_n) continue;
-            if (dst_trx_d.m_to_account_id_n != src_trx_d.m_account_id) continue;
-            if (dst_trx_d.m_number != src_trx_d.m_number) continue;
-            if (dst_trx_d.m_notes != src_trx_d.m_notes) continue;
-            if (dst_trx_d.TRANSDATE != src_trx_d.TRANSDATE) continue;
+            if (dst_trx_d.m_account_id      != src_trx_d.m_to_account_id_n) continue;
+            if (dst_trx_d.m_to_account_id_n != src_trx_d.m_account_id)      continue;
+            if (dst_trx_d.m_number          != src_trx_d.m_number)          continue;
+            if (dst_trx_d.m_notes           != src_trx_d.m_notes)           continue;
+            if (dst_trx_d.m_date_time       != src_trx_d.m_date_time)       continue;
             dst_trx_d.m_to_amount = src_trx_d.m_amount;
             src_trx_a.erase(src_trx_a.begin() + i);
             // a match is found so erase the 'from' taglinks
@@ -1402,11 +1407,12 @@ bool mmQIFImportDialog::completeTransaction(
     }
 
     wxString dateStr = (t.find(QIF_ID_Date) != t.end() ? t[QIF_ID_Date] : "");
-    if (!m_dateFormatStr.Contains(" ")) dateStr.Replace(" ", "");
+    if (!m_dateFormatStr.Contains(" "))
+        dateStr.Replace(" ", "");
     wxDateTime dtdt;
     wxString::const_iterator end;
     if (dtdt.ParseFormat(dateStr, m_dateFormatStr, &end))
-        trx_n->TRANSDATE = dtdt.FormatISOCombined();
+        trx_n->m_date_time = mmDateTime(dtdt);
     else {
         *log_field_ << _t("Date format or date mask is incorrect") << "\n";
         return false;
@@ -1417,15 +1423,19 @@ bool mmQIFImportDialog::completeTransaction(
     if ((accountName.empty() || accountCheckBox_->IsChecked()) /*&& !transfer*/) {
         accountName = m_accountNameStr;
     }
-    accountID = (m_QIFaccountsID.find(accountName) != m_QIFaccountsID.end() ? m_QIFaccountsID.at(accountName) : -1);
+    accountID = (m_QIFaccountsID.find(accountName) != m_QIFaccountsID.end())
+        ? m_QIFaccountsID.at(accountName)
+        : -1;
     if (accountID < 1) {
         msg = _t("Transaction Account is incorrect");
         return false;
     }
     trx_n->m_account_id = accountID;
-    trx_n->m_to_account_id_n = (t.find(QIF_ID_ToAccountName) != t.end()
+    trx_n->m_to_account_id_n = (t.find(QIF_ID_ToAccountName) != t.end())
         ? (m_QIFaccountsID.find(t[QIF_ID_ToAccountName]) != m_QIFaccountsID.end()
-            ? m_QIFaccountsID[t[QIF_ID_ToAccountName]] : -1) : -1);
+            ? m_QIFaccountsID[t[QIF_ID_ToAccountName]]
+            : -1)
+        : -1;
     if (trx_n->m_account_id == trx_n->m_to_account_id_n && transfer) {
         msg = _t("Transaction Account for transfer is incorrect");
         return false;
@@ -1433,9 +1443,9 @@ bool mmQIFImportDialog::completeTransaction(
 
     trx_n->m_number = (t.find(QIF_ID_TransNumber) != t.end() ? t[QIF_ID_TransNumber] : "");
     // add the actual NOTES before the payee match details
-    trx_n->m_notes
-        .Prepend(!trx_n->m_notes.IsEmpty() ? "\n" : "")
-        .Prepend(t.find(QIF_ID_Memo) != t.end() ? t[QIF_ID_Memo] : "");
+    trx_n->m_notes.
+        Prepend(!trx_n->m_notes.IsEmpty() ? "\n" : "").
+        Prepend(t.find(QIF_ID_Memo) != t.end() ? t[QIF_ID_Memo] : "");
     TrxStatus trx_status = TrxStatus(TrxStatus::e_unreconciled);
     if (t.find(QIF_ID_Status) != t.end()) {
         wxString s = t[QIF_ID_Status];
@@ -1453,7 +1463,11 @@ bool mmQIFImportDialog::completeTransaction(
     if (colorCheckBox_->IsChecked() && color_id > 0 && color_id < 8)
         trx_n->m_color = color_id;
 
-    const wxString value = mmTrimAmount(t.find(QIF_ID_Amount) != t.end() ? t[QIF_ID_Amount] : "", decimal_, ".");
+    const wxString value = mmTrimAmount(
+        t.find(QIF_ID_Amount) != t.end() ? t[QIF_ID_Amount] : "",
+        decimal_,
+        "."
+    );
     if (value.empty()) {
         msg = _t("Transaction Amount is incorrect");
         return false;
@@ -1469,7 +1483,10 @@ bool mmQIFImportDialog::completeTransaction(
     if (t.find(QIF_ID_CategorySplit) != t.end()) {
         TrxSplitModel::DataA tp_a;
         wxStringTokenizer categToken(t[QIF_ID_CategorySplit], "\n");
-        wxStringTokenizer amtToken((t.find(QIF_ID_AmountSplit) != t.end() ? t[QIF_ID_AmountSplit] : ""), "\n");
+        wxStringTokenizer amtToken(
+            (t.find(QIF_ID_AmountSplit) != t.end() ? t[QIF_ID_AmountSplit] : ""),
+            "\n"
+        );
         wxString notes = t.find(QIF_ID_MemoSplit) != t.end() ? t[QIF_ID_MemoSplit] : "";
         int split_id = 1;
 
@@ -1576,32 +1593,18 @@ bool mmQIFImportDialog::completeTransaction(
         }
         // By amount and date (exact or nearby)
         else if (dupMethod == 1 || dupMethod == 2) {
-            wxDateTime startDate, endDate;
-            wxString trxDateStr = trx_n->TRANSDATE;
-
-            // exact date
-            if (dupMethod == 1) {
-                startDate = endDate = wxDateTime();
-                startDate.ParseISODate(trxDateStr);
-                endDate = startDate;
-            }
+            mmDate startDate = mmDate(trx_n->m_date_time);
+            mmDate endDate = startDate;
             // nearby date
-            else {
-                wxDateTime trxDate;
-                trxDate.ParseISODate(trxDateStr);
-                startDate = trxDate;
-                endDate = trxDate;
-                startDate.Subtract(wxDateSpan::Days(4));
-                endDate.Add(wxDateSpan::Days(2));
+            if (dupMethod != 1) {
+                startDate.addDateSpan(wxDateSpan::Days(-4));
+                endDate.addDateSpan(wxDateSpan::Days(2));
             }
-
-            wxString startDateStr = startDate.FormatISODate() + "T00:00:00";
-            wxString endDateStr = mmDateRange::getDayEnd(endDate).FormatISOCombined();
 
             const auto potential_matches = TrxModel::instance().find(
                 TrxCol::TRANSAMOUNT(trx_n->m_amount),
-                TrxCol::TRANSDATE(OP_GE, startDateStr),
-                TrxCol::TRANSDATE(OP_LE, endDateStr),
+                TrxModel::TRANSDATE(OP_GE, startDate),
+                TrxModel::TRANSDATE(OP_LE, endDate),
                 TrxCol::DELETEDTIME(OP_EQ, wxEmptyString)
             );
 

@@ -125,7 +125,7 @@ void TrxLinkModel::update_asset_value(AssetData* asset_n)
         );
         const double conv_rate = CurrencyHistoryModel::instance().get_id_date_rate(
             currency_n->m_id,
-            mmDate(trx_n->TRANSDATE)
+            mmDate(trx_n->m_date_time)
         );
 
         if (trx_n->is_deposit()) {
