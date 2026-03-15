@@ -91,7 +91,7 @@ void OtherPref::Create()
     wxFlexGridSizer* share_precision_sizer = new wxFlexGridSizer(0, 3, 0, 0);
     share_precision_sizer->Add(new wxStaticText(stockStaticBox, wxID_STATIC, _t("Share Precision")), g_flagsH);
 
-    m_share_precision = new wxSpinCtrl(misc_panel, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize
+    m_share_precision = new wxSpinCtrl(stockStaticBox, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize
         , wxSP_ARROW_KEYS, 2, 10, PrefModel::instance().getSharePrecision());
     m_share_precision->SetValue(PrefModel::instance().getSharePrecision());
     mmToolTip(m_share_precision, _t("Set the precision for Share prices"));
