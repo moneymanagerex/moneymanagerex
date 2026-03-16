@@ -705,10 +705,10 @@ void FieldValueDialog::SetWidgetChanged(wxWindowID id, const wxString& data)
     }
 }
 
-bool FieldValueDialog::IsDataFound(const TrxModel::Full_Data& trx_xd)
+bool FieldValueDialog::IsDataFound(const TrxModel::DataExt& trx_dx)
 {
     const auto& fv_a = FieldValueModel::instance().find(
-        FieldValueCol::REFID(trx_xd.m_id)
+        FieldValueCol::REFID(trx_dx.m_id)
     );
     for (const auto& filter : m_data_changed) {
         for (const auto& fv_d : fv_a) {

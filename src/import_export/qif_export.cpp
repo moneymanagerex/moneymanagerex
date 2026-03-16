@@ -528,7 +528,7 @@ void mmQIFExportDialog::mmExportQIF()
 
             bool is_reverce = false;
             wxString trx_str;
-            TrxModel::Full_Data full_tran(trx_d, trxId_tpA_m, trxId_glA_m);
+            TrxModel::DataExt full_tran(trx_d, trxId_tpA_m, trxId_glA_m);
             int64 account_id = trx_d.m_account_id;
 
             switch (m_type)

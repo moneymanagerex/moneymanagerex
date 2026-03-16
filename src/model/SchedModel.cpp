@@ -186,12 +186,12 @@ void SchedModel::reschedule_id(int64 sched_id)
     unsafe_save_data_n(sched_n);
 }
 
-// -- Full_Data --
+// -- DataExt --
 
-SchedModel::Full_Data::Full_Data()
+SchedModel::DataExt::DataExt()
 {}
 
-SchedModel::Full_Data::Full_Data(const Data& sched_d) :
+SchedModel::DataExt::DataExt(const Data& sched_d) :
     Data(sched_d),
     m_bill_splits(SchedModel::instance().get_data_qp_a(sched_d)),
     m_tags(TagLinkModel::instance().find(
@@ -235,7 +235,7 @@ SchedModel::Full_Data::Full_Data(const Data& sched_d) :
     }
 }
 
-wxString SchedModel::Full_Data::real_payee_name() const
+wxString SchedModel::DataExt::real_payee_name() const
 {
     return is_transfer() ? ("> " + this->PAYEENAME) : this->PAYEENAME;
 }

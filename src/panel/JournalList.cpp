@@ -397,10 +397,10 @@ void JournalList::refreshVisualList(bool filter)
         m_topItemIndex = getSortAsc(0) ? i - 1 : 0;
 
     i = 0;
-    for(const auto& journal_xd : m_journal_xa) {
-        int64 id = !journal_xd.m_repeat_i ? journal_xd.m_id : journal_xd.m_sched_id;
+    for(const auto& journal_dx : m_journal_xa) {
+        int64 id = !journal_dx.m_repeat_i ? journal_dx.m_id : journal_dx.m_sched_id;
         for (const auto& item : m_selected_id) {
-            if (item.first == id && item.second == journal_xd.m_repeat_i) {
+            if (item.first == id && item.second == journal_dx.m_repeat_i) {
                 SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
                 SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
                 EnsureVisible(i);
@@ -721,15 +721,15 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
     bool is_foreign = false;
     if (selected == 1) {
         Journal::IdRepeat id = m_selected_id[0];
-        Journal::Full_Data trx_xd = !id.second
-            ? Journal::Full_Data(*TrxModel::instance().get_id_data_n(id.first))
-            : Journal::Full_Data(*SchedModel::instance().get_id_data_n(id.first));
+        Journal::DataExt trx_dx = !id.second
+            ? Journal::DataExt(*TrxModel::instance().get_id_data_n(id.first))
+            : Journal::DataExt(*SchedModel::instance().get_id_data_n(id.first));
 
-        if (trx_xd.is_transfer())
+        if (trx_dx.is_transfer())
             type_transfer = true;
-        if (!trx_xd.has_split())
+        if (!trx_dx.has_split())
             have_category = true;
-        if (TrxModel::is_foreign(trx_xd))
+        if (TrxModel::is_foreign(trx_dx))
             is_foreign = true;
     }
     wxMenu menu;
@@ -1329,9 +1329,9 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
     );
     if (msgDlg.ShowModal() == wxID_YES) {
         std::set<std::pair<RefTypeN, int64>> assetStockAccts;
-        for (const auto& journal_xd : this->m_journal_xa) {
-            if (journal_xd.m_repeat_i) continue;
-            TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_xd.m_id);
+        for (const auto& journal_dx : this->m_journal_xa) {
+            if (journal_dx.m_repeat_i) continue;
+            TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_dx.m_id);
             trx_n->m_deleted_time_n = mmDateTimeN();
             TrxModel::instance().unsafe_save_trx_n(trx_n);
             TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
@@ -1492,9 +1492,9 @@ void JournalList::onViewOtherAccount(wxCommandEvent& /*event*/)
     findSelectedTransactions();
     Journal::IdRepeat id = m_selected_id[0];
 
-    Journal::Full_Data tran = !id.second
-        ? Journal::Full_Data(*TrxModel::instance().get_id_data_n(id.first))
-        : Journal::Full_Data(*SchedModel::instance().get_id_data_n(id.first));
+    Journal::DataExt tran = !id.second
+        ? Journal::DataExt(*TrxModel::instance().get_id_data_n(id.first))
+        : Journal::DataExt(*SchedModel::instance().get_id_data_n(id.first));
 
     int64 gotoAccountID = (m_cp->m_account_id == tran.m_account_id) ? tran.m_to_account_id_n : tran.m_account_id;
     wxString gotoAccountName = (m_cp->m_account_id == tran.m_account_id) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;
@@ -1675,10 +1675,10 @@ void JournalList::onSelectAll(wxCommandEvent& WXUNUSED(event))
     std::set<Journal::IdRepeat> unique_ids;
     for (int row = 0; row < GetItemCount(); row++) {
         SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        const auto& journal_xd = m_journal_xa[row];
+        const auto& journal_dx = m_journal_xa[row];
         Journal::IdRepeat id = {
-            !journal_xd.m_repeat_i ? journal_xd.m_id : journal_xd.m_sched_id,
-            journal_xd.m_repeat_i
+            !journal_dx.m_repeat_i ? journal_dx.m_id : journal_dx.m_sched_id,
+            journal_dx.m_repeat_i
         };
         if (unique_ids.find(id) == unique_ids.end()) {
             m_selected_id.push_back(id);
@@ -1995,49 +1995,49 @@ const wxString JournalList::getItem(long item, int col_id) const
     // TODO: add isHiddenColId(col_id)
     if (isDisabledColId(col_id))
         return "";
-    const Journal::Full_Data& journal_xd = m_journal_xa.at(item);
+    const Journal::DataExt& journal_dx = m_journal_xa.at(item);
 
     wxString value = wxEmptyString;
     mmDateTimeN dateTimeN;
     wxString dateFormat = PrefModel::instance().getDateFormat();
     switch (col_id) {
     case LIST_ID_SN:
-        return journal_xd.displaySN;
+        return journal_dx.displaySN;
     case LIST_ID_ID:
-        return journal_xd.displayID;
+        return journal_dx.displayID;
     case LIST_ID_ACCOUNT:
-        return journal_xd.ACCOUNTNAME;
+        return journal_dx.ACCOUNTNAME;
     case LIST_ID_DATE:
-        return mmGetDateForDisplay(journal_xd.m_date_time.isoDateTime());
+        return mmGetDateForDisplay(journal_dx.m_date_time.isoDateTime());
     case LIST_ID_TIME:
-        return mmGetTimeForDisplay(journal_xd.m_date_time.isoDateTime());
+        return mmGetTimeForDisplay(journal_dx.m_date_time.isoDateTime());
     case LIST_ID_NUMBER:
-        return journal_xd.m_number;
+        return journal_dx.m_number;
     case LIST_ID_CATEGORY:
-        return journal_xd.CATEGNAME;
+        return journal_dx.CATEGNAME;
     case LIST_ID_PAYEE_STR:
-        return journal_xd.is_foreign_transfer() ?
-            (journal_xd.is_deposit() ? "< " : "> ") + journal_xd.PAYEENAME :
-            journal_xd.PAYEENAME;
+        return journal_dx.is_foreign_transfer() ?
+            (journal_dx.is_deposit() ? "< " : "> ") + journal_dx.PAYEENAME :
+            journal_dx.PAYEENAME;
     case LIST_ID_STATUS:
-        return journal_xd.is_foreign()
-            ? "< " + journal_xd.m_status.key()
-            : journal_xd.m_status.key();
+        return journal_dx.is_foreign()
+            ? "< " + journal_dx.m_status.key()
+            : journal_dx.m_status.key();
     case LIST_ID_NOTES: {
-        value = journal_xd.m_notes;
-        if (!journal_xd.displayID.Contains(".")) {
-            for (const auto& tp_d : journal_xd.m_splits)
+        value = journal_dx.m_notes;
+        if (!journal_dx.displayID.Contains(".")) {
+            for (const auto& tp_d : journal_dx.m_splits)
                 value += wxString::Format(" %s", tp_d.m_notes);
         }
         value.Replace("\n", " ");
-        if (journal_xd.has_attachment())
+        if (journal_dx.has_attachment())
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value.Trim(false);
     }
     case LIST_ID_TAGS:
-        value = journal_xd.TAGNAMES;
-        if (!journal_xd.displayID.Contains(".")) {
-            for (const auto& tp_d : journal_xd.m_splits) {
+        value = journal_dx.TAGNAMES;
+        if (!journal_dx.displayID.Contains(".")) {
+            for (const auto& tp_d : journal_dx.m_splits) {
                 wxString tagnames;
                 std::map<wxString, int64> tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
                     TrxSplitModel::s_ref_type, tp_d.m_id
@@ -2051,7 +2051,7 @@ const wxString JournalList::getItem(long item, int col_id) const
         }
         return value.Trim();
     case LIST_ID_DELETEDTIME:
-        dateTimeN = journal_xd.m_deleted_time_n;
+        dateTimeN = journal_dx.m_deleted_time_n;
         return dateTimeN.has_value()
             ? mmGetDateTimeForDisplay(
                 dateTimeN.value().isoDateTime(),
@@ -2059,19 +2059,19 @@ const wxString JournalList::getItem(long item, int col_id) const
             )
             : wxString("");
     case LIST_ID_UDFC01:
-        return UDFCFormatHelper(journal_xd.UDFC_type[0], journal_xd.UDFC_content[0]);
+        return UDFCFormatHelper(journal_dx.UDFC_type[0], journal_dx.UDFC_content[0]);
     case LIST_ID_UDFC02:
-        return UDFCFormatHelper(journal_xd.UDFC_type[1], journal_xd.UDFC_content[1]);
+        return UDFCFormatHelper(journal_dx.UDFC_type[1], journal_dx.UDFC_content[1]);
     case LIST_ID_UDFC03:
-        return UDFCFormatHelper(journal_xd.UDFC_type[2], journal_xd.UDFC_content[2]);
+        return UDFCFormatHelper(journal_dx.UDFC_type[2], journal_dx.UDFC_content[2]);
     case LIST_ID_UDFC04:
-        return UDFCFormatHelper(journal_xd.UDFC_type[3], journal_xd.UDFC_content[3]);
+        return UDFCFormatHelper(journal_dx.UDFC_type[3], journal_dx.UDFC_content[3]);
     case LIST_ID_UDFC05:
-        return UDFCFormatHelper(journal_xd.UDFC_type[4], journal_xd.UDFC_content[4]);
+        return UDFCFormatHelper(journal_dx.UDFC_type[4], journal_dx.UDFC_content[4]);
     case LIST_ID_UPDATEDTIME:
-        return journal_xd.m_updated_time_n.has_value()
+        return journal_dx.m_updated_time_n.has_value()
             ? mmGetDateTimeForDisplay(
-                journal_xd.m_updated_time_n.value().isoDateTime(),
+                journal_dx.m_updated_time_n.value().isoDateTime(),
                 dateFormat + " %H:%M:%S"
             )
             : wxString("");
@@ -2080,44 +2080,44 @@ const wxString JournalList::getItem(long item, int col_id) const
     switch (col_id) {
     case LIST_ID_WITHDRAWAL:
         if (!m_cp->isAccount()) {
-            const AccountData* account = AccountModel::instance().get_id_data_n(journal_xd.m_account_w_id_n);
+            const AccountData* account = AccountModel::instance().get_id_data_n(journal_dx.m_account_w_id_n);
             const CurrencyData* currency = account ?
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
-                value = CurrencyModel::instance().toCurrency(journal_xd.m_amount_w, currency);
+                value = CurrencyModel::instance().toCurrency(journal_dx.m_amount_w, currency);
         }
-        else if (journal_xd.m_account_w_id_n == m_cp->m_account_id) {
-            value = CurrencyModel::instance().toString(journal_xd.m_amount_w, m_cp->m_currency_n);
+        else if (journal_dx.m_account_w_id_n == m_cp->m_account_id) {
+            value = CurrencyModel::instance().toString(journal_dx.m_amount_w, m_cp->m_currency_n);
         }
-        if (!value.IsEmpty() && journal_xd.is_void())
+        if (!value.IsEmpty() && journal_dx.is_void())
             value = "* " + value;
         return value;
     case LIST_ID_DEPOSIT:
         if (!m_cp->isAccount()) {
             const AccountData* account = AccountModel::instance().get_id_data_n(
-                journal_xd.m_account_d_id_n
+                journal_dx.m_account_d_id_n
             );
             const CurrencyData* currency = account ?
                 CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
             if (currency)
-                value = CurrencyModel::instance().toCurrency(journal_xd.m_amount_d, currency);
+                value = CurrencyModel::instance().toCurrency(journal_dx.m_amount_d, currency);
         }
-        else if (journal_xd.m_account_d_id_n == m_cp->m_account_id) {
-            value = CurrencyModel::instance().toString(journal_xd.m_amount_d, m_cp->m_currency_n);
+        else if (journal_dx.m_account_d_id_n == m_cp->m_account_id) {
+            value = CurrencyModel::instance().toString(journal_dx.m_amount_d, m_cp->m_currency_n);
         }
-        if (!value.IsEmpty() && journal_xd.is_void())
+        if (!value.IsEmpty() && journal_dx.is_void())
             value = "* " + value;
         return value;
     case LIST_ID_BALANCE:
         if (m_balance_valid)
             value = CurrencyModel::instance().toString(
-                journal_xd.m_account_balance,
+                journal_dx.m_account_balance,
                 m_cp->m_currency_n
             );
         return value;
     case LIST_ID_CREDIT:
         return CurrencyModel::instance().toString(
-            m_cp->m_account_n->m_credit_limit + journal_xd.m_account_balance,
+            m_cp->m_account_n->m_credit_limit + journal_dx.m_account_balance,
             m_cp->m_currency_n
         );
     }
@@ -2157,8 +2157,8 @@ void JournalList::markItem(long selectedItem)
 void JournalList::setSelectedId(Journal::IdRepeat sel_id)
 {
     int i = 0;
-    for (const auto& journal_xd : m_journal_xa) {
-        if (journal_xd.m_repeat_i == sel_id.second && journal_xd.m_id == sel_id.first) {
+    for (const auto& journal_dx : m_journal_xa) {
+        if (journal_dx.m_repeat_i == sel_id.second && journal_dx.m_id == sel_id.first) {
             SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
             SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
             m_topItemIndex = i;
@@ -2174,13 +2174,13 @@ void JournalList::findSelectedTransactions()
     long x = 0;
     m_selected_id.clear();
     std::set<Journal::IdRepeat> unique_ids;
-    for (const auto& journal_xd : m_journal_xa) {
+    for (const auto& journal_dx : m_journal_xa) {
         if (GetItemState(x++, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
             continue;
-        int64 id = !journal_xd.m_repeat_i ? journal_xd.m_id : journal_xd.m_sched_id;
-        if (unique_ids.find({id, journal_xd.m_repeat_i}) == unique_ids.end()) {
-            m_selected_id.push_back({id, journal_xd.m_repeat_i});
-            unique_ids.insert({id, journal_xd.m_repeat_i});
+        int64 id = !journal_dx.m_repeat_i ? journal_dx.m_id : journal_dx.m_sched_id;
+        if (unique_ids.find({id, journal_dx.m_repeat_i}) == unique_ids.end()) {
+            m_selected_id.push_back({id, journal_dx.m_repeat_i});
+            unique_ids.insert({id, journal_dx.m_repeat_i});
         }
     }
 }
@@ -2271,10 +2271,10 @@ void JournalList::doSearchText(const wxString& value)
 void JournalList::markSelectedTransaction()
 {
     long i = 0;
-    for (const auto & journal_xd : m_journal_xa) {
+    for (const auto & journal_dx : m_journal_xa) {
         Journal::IdRepeat id = {
-            !journal_xd.m_repeat_i ? journal_xd.m_id : journal_xd.m_sched_id,
-            journal_xd.m_repeat_i
+            !journal_dx.m_repeat_i ? journal_dx.m_id : journal_dx.m_sched_id,
+            journal_dx.m_repeat_i
         };
         //reset any selected items in the list
         if (GetItemState(i, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
@@ -2310,18 +2310,18 @@ void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
     AttachmentModel::instance().db_savepoint();
     TrxSplitModel::instance().db_savepoint();
     FieldValueModel::instance().db_savepoint();
-    for (const auto& journal_xd : this->m_journal_xa) {
-        if (journal_xd.m_repeat_i)
+    for (const auto& journal_dx : this->m_journal_xa) {
+        if (journal_dx.m_repeat_i)
             continue;
-        if (status_n.has_value() && journal_xd.m_status.id() != status_n.value().id())
+        if (status_n.has_value() && journal_dx.m_status.id() != status_n.value().id())
             continue;
         if (m_cp->isDeletedTrans() || retainDays == 0) {
             // remove also removes any split transactions, translink entries, attachments,
             // and custom field data
-            TrxModel::instance().purge_id(journal_xd.m_id);
+            TrxModel::instance().purge_id(journal_dx.m_id);
         }
         else {
-            TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_xd.m_id);
+            TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_dx.m_id);
             trx_n->m_deleted_time_n = mmDateTime::now();
             TrxModel::instance().unsafe_save_trx_n(trx_n);
             TrxLinkModel::DataA translink = TrxLinkModel::instance().find(

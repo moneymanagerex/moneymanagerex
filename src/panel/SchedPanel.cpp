@@ -346,7 +346,7 @@ int SchedPanel::initVirtualListControl(int64 id)
     )) {
         if (transFilterActive_ && !transFilterDlg_->mmIsRecordMatches(data, schedId_qpA_m))
             continue;
-        SchedModel::Full_Data r(data);
+        SchedModel::DataExt r(data);
         bills_.push_back(r);
     }
 
@@ -442,34 +442,34 @@ void SchedList::OnItemRightClick(wxMouseEvent& event)
 
 wxString SchedPanel::getItem(long item, int col_id)
 {
-    const SchedModel::Full_Data& sched_xd = this->bills_.at(item);
+    const SchedModel::DataExt& sched_dx = this->bills_.at(item);
 
     switch (col_id) {
     case SchedList::LIST_ID_ID:
-        return wxString::Format("%lld", sched_xd.m_id).Trim();
+        return wxString::Format("%lld", sched_dx.m_id).Trim();
     case SchedList::LIST_ID_PAYMENT_DATE:
-        return mmGetDateTimeForDisplay(sched_xd.m_date_time.isoDateTime());
+        return mmGetDateTimeForDisplay(sched_dx.m_date_time.isoDateTime());
     case SchedList::LIST_ID_DUE_DATE:
-        return mmGetDateTimeForDisplay(sched_xd.m_due_date.isoDate());
+        return mmGetDateTimeForDisplay(sched_dx.m_due_date.isoDate());
     case SchedList::LIST_ID_ACCOUNT:
-        return sched_xd.ACCOUNTNAME;
+        return sched_dx.ACCOUNTNAME;
     case SchedList::LIST_ID_PAYEE:
-        return sched_xd.real_payee_name();
+        return sched_dx.real_payee_name();
     case SchedList::LIST_ID_STATUS:
-        return sched_xd.m_status.key();
+        return sched_dx.m_status.key();
     case SchedList::LIST_ID_CATEGORY:
-        return sched_xd.CATEGNAME;
+        return sched_dx.CATEGNAME;
     case SchedList::LIST_ID_TAGS:
-        return sched_xd.TAGNAMES;
+        return sched_dx.TAGNAMES;
     case SchedList::LIST_ID_WITHDRAWAL: {
         wxString value = wxEmptyString;
         int64 accountid;
         double transamount;
-        if (sched_xd.is_withdrawal()) {
-            accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
+        if (sched_dx.is_withdrawal()) {
+            accountid = sched_dx.m_account_id; transamount = sched_dx.m_amount;
         }
-        else if (sched_xd.is_transfer()) {
-            accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
+        else if (sched_dx.is_transfer()) {
+            accountid = sched_dx.m_account_id; transamount = sched_dx.m_amount;
         }
         else
             return value;
@@ -478,7 +478,7 @@ wxString SchedPanel::getItem(long item, int col_id)
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
             value = CurrencyModel::instance().toCurrency(transamount, currency);
-        if (!value.IsEmpty() && sched_xd.is_void())
+        if (!value.IsEmpty() && sched_dx.is_void())
             value = "* " + value;
         return value;
     }
@@ -486,11 +486,11 @@ wxString SchedPanel::getItem(long item, int col_id)
         wxString value = wxEmptyString;
         int64 accountid;
         double transamount;
-        if (sched_xd.is_deposit()) {
-            accountid = sched_xd.m_account_id; transamount = sched_xd.m_amount;
+        if (sched_dx.is_deposit()) {
+            accountid = sched_dx.m_account_id; transamount = sched_dx.m_amount;
         }
-        else if (sched_xd.is_transfer()) {
-            accountid = sched_xd.m_to_account_id_n; transamount = sched_xd.m_to_amount;
+        else if (sched_dx.is_transfer()) {
+            accountid = sched_dx.m_to_account_id_n; transamount = sched_dx.m_to_amount;
         }
         else
             return value;
@@ -499,32 +499,32 @@ wxString SchedPanel::getItem(long item, int col_id)
             CurrencyModel::instance().get_id_data_n(account->m_currency_id) : nullptr;
         if (currency)
             value = CurrencyModel::instance().toCurrency(transamount, currency);
-        if (!value.IsEmpty() && sched_xd.is_void())
+        if (!value.IsEmpty() && sched_dx.is_void())
             value = "* " + value;
         return value;
     }
     case SchedList::LIST_ID_FREQUENCY: {
-        wxString name = wxGetTranslation(sched_xd.m_repeat.m_freq.name());
-        if (sched_xd.m_repeat.m_freq.has_x())
-            name.Replace("%s", wxString::Format("%i", sched_xd.m_repeat.m_x));
+        wxString name = wxGetTranslation(sched_dx.m_repeat.m_freq.name());
+        if (sched_dx.m_repeat.m_freq.has_x())
+            name.Replace("%s", wxString::Format("%i", sched_dx.m_repeat.m_x));
         return name;
     }
     case SchedList::LIST_ID_REPEATS: {
-        return sched_xd.m_repeat.m_num == -1
+        return sched_dx.m_repeat.m_num == -1
             ? L"\x221E" /* INFITITY */
-            : wxString::Format("%i", sched_xd.m_repeat.m_num);
+            : wxString::Format("%i", sched_dx.m_repeat.m_num);
     }
     case SchedList::LIST_ID_AUTO: {
-        return wxGetTranslation(sched_xd.m_repeat.m_mode.name());
+        return wxGetTranslation(sched_dx.m_repeat.m_mode.name());
     }
     case SchedList::LIST_ID_REMAINING:
-        return GetRemainingDays(sched_xd);
+        return GetRemainingDays(sched_dx);
     case SchedList::LIST_ID_NUMBER:
-        return sched_xd.m_number;
+        return sched_dx.m_number;
     case SchedList::LIST_ID_NOTES: {
-        wxString value = sched_xd.m_notes;
+        wxString value = sched_dx.m_notes;
         value.Replace("\n", " ");
-        if (AttachmentModel::instance().find_ref_c(SchedModel::s_ref_type, sched_xd.m_id))
+        if (AttachmentModel::instance().find_ref_c(SchedModel::s_ref_type, sched_dx.m_id))
             value.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         return value;
     }

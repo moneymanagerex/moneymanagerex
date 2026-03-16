@@ -124,7 +124,7 @@ public:
     ~SchedPanel();
 
     /* Helper Functions/data */
-    SchedModel::Full_DataA bills_;
+    SchedModel::DataExtA bills_;
     void updateBottomPanelData(int selIndex);
     void enableEditDeleteButtons(bool en);
     /* updates the Repeating transactions panel data */

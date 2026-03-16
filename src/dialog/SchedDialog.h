@@ -85,7 +85,7 @@ private:
     void OnCalculator(wxCommandEvent& event);
 
 private:
-    SchedModel::Bill_Data m_sched_xd = SchedModel::Bill_Data();
+    SchedModel::Bill_Data m_sched_dx = SchedModel::Bill_Data();
     int64 m_trans_id;
     bool m_transfer = false;
     bool m_new_bill = false;

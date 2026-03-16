@@ -38,24 +38,24 @@ TrxData Journal::execute_bill(const SchedData& sched_d, wxString date)
     return trx_d;
 }
 
-TrxModel::Full_Data Journal::execute_bill_full(const SchedData& sched_d, wxString date)
+TrxModel::DataExt Journal::execute_bill_full(const SchedData& sched_d, wxString date)
 {
-    TrxModel::Full_Data trx_xd;
-    trx_xd.m_id              = 0;
-    trx_xd.m_date_time       = mmDateTime(date);
-    trx_xd.m_type            = sched_d.m_type;
-    trx_xd.m_status          = sched_d.m_status;
-    trx_xd.m_account_id      = sched_d.m_account_id;
-    trx_xd.m_to_account_id_n = sched_d.m_to_account_id_n;
-    trx_xd.m_payee_id_n      = sched_d.m_payee_id_n;
-    trx_xd.m_category_id_n   = sched_d.m_category_id_n;
-    trx_xd.m_amount          = sched_d.m_amount;
-    trx_xd.m_to_amount       = sched_d.m_to_amount;
-    trx_xd.m_number          = sched_d.m_number;
-    trx_xd.m_notes           = sched_d.m_notes;
-    trx_xd.m_followup_id     = sched_d.m_followup_id;
-    trx_xd.m_color           = sched_d.m_color;
-    return trx_xd;
+    TrxModel::DataExt trx_dx;
+    trx_dx.m_id              = 0;
+    trx_dx.m_date_time       = mmDateTime(date);
+    trx_dx.m_type            = sched_d.m_type;
+    trx_dx.m_status          = sched_d.m_status;
+    trx_dx.m_account_id      = sched_d.m_account_id;
+    trx_dx.m_to_account_id_n = sched_d.m_to_account_id_n;
+    trx_dx.m_payee_id_n      = sched_d.m_payee_id_n;
+    trx_dx.m_category_id_n   = sched_d.m_category_id_n;
+    trx_dx.m_amount          = sched_d.m_amount;
+    trx_dx.m_to_amount       = sched_d.m_to_amount;
+    trx_dx.m_number          = sched_d.m_number;
+    trx_dx.m_notes           = sched_d.m_notes;
+    trx_dx.m_followup_id     = sched_d.m_followup_id;
+    trx_dx.m_color           = sched_d.m_color;
+    return trx_dx;
 }
 
 TrxSplitModel::DataA Journal::execute_splits(const SchedSplitDataA& qp_a)
@@ -101,30 +101,30 @@ Journal::Data::~Data()
 {
 }
 
-Journal::Full_Data::Full_Data(const TrxData& trx_d) :
-    TrxModel::Full_Data(trx_d), m_sched_id(0), m_repeat_i(0)
+Journal::DataExt::DataExt(const TrxData& trx_d) :
+    TrxModel::DataExt(trx_d), m_sched_id(0), m_repeat_i(0)
 {
 }
 
-Journal::Full_Data::Full_Data(
+Journal::DataExt::DataExt(
     const TrxData& trx_d,
     const std::map<int64 /* m_id */, TrxSplitDataA>& splits,
     const std::map<int64 /* m_id */, TagLinkDataA>& tags
 ) :
-    TrxModel::Full_Data(trx_d, splits, tags), m_sched_id(0), m_repeat_i(0)
+    TrxModel::DataExt(trx_d, splits, tags), m_sched_id(0), m_repeat_i(0)
 {
 }
 
-Journal::Full_Data::Full_Data(const SchedData& sched_d) :
-    Full_Data(sched_d, sched_d.m_date_time.isoDateTime(), 1)
+Journal::DataExt::DataExt(const SchedData& sched_d) :
+    DataExt(sched_d, sched_d.m_date_time.isoDateTime(), 1)
 {
 }
 
-Journal::Full_Data::Full_Data(
+Journal::DataExt::DataExt(
     const SchedData& sched_d,
     wxString date, int repeat_i
 ) :
-    TrxModel::Full_Data(execute_bill_full(sched_d, date), {}, {}),
+    TrxModel::DataExt(execute_bill_full(sched_d, date), {}, {}),
     m_sched_id(sched_d.m_id), m_repeat_i(repeat_i)
 {
     if (m_repeat_i < 1) {
@@ -135,16 +135,16 @@ Journal::Full_Data::Full_Data(
 
     m_tags = SchedModel::instance().get_data_gl_a(sched_d);
 
-    TrxModel::Full_Data::fill_data();
+    TrxModel::DataExt::fill_data();
     displayID = wxString("");
 }
 
-Journal::Full_Data::Full_Data(const SchedData& sched_d,
+Journal::DataExt::DataExt(const SchedData& sched_d,
     wxString date, int repeat_i,
     const std::map<int64 /* m_id */, SchedSplitDataA>& budgetsplits,
     const std::map<int64 /* m_id */, TagLinkDataA>& tags)
 :
-    TrxModel::Full_Data(execute_bill_full(sched_d, date), {}, {}),
+    TrxModel::DataExt(execute_bill_full(sched_d, date), {}, {}),
     m_sched_id(sched_d.m_id), m_repeat_i(repeat_i)
 {
     if (m_repeat_i < 1) {
@@ -159,11 +159,11 @@ Journal::Full_Data::Full_Data(const SchedData& sched_d,
     const auto tag_it = tags.find(m_sched_id);
     if (tag_it != tags.end()) m_tags = tag_it->second;
 
-    TrxModel::Full_Data::fill_data();
+    TrxModel::DataExt::fill_data();
     displayID = wxString("");
 }
 
-Journal::Full_Data::~Full_Data()
+Journal::DataExt::~DataExt()
 {
 }
 

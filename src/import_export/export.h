@@ -27,15 +27,15 @@ public:
     virtual ~mmExportTransaction();
     mmExportTransaction();
 
-    static const wxString getTransactionQIF(const TrxModel::Full_Data & tran, const wxString& dateMask, bool reverce = false);
-    static const wxString getTransactionCSV(const TrxModel::Full_Data & tran, const wxString& dateMask, bool reverce = false);
+    static const wxString getTransactionQIF(const TrxModel::DataExt & tran, const wxString& dateMask, bool reverce = false);
+    static const wxString getTransactionCSV(const TrxModel::DataExt & tran, const wxString& dateMask, bool reverce = false);
     static const wxString getAccountHeaderQIF(int64 accountID);
     static const wxString getCategoriesQIF();
     static const std::unordered_map <wxString, int> m_QIFaccountTypes;
     static const wxString qif_acc_type(const wxString& mmex_type);
     static const wxString mm_acc_type(const wxString& qif_type);
 
-    static void getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const TrxModel::Full_Data & tran);
+    static void getTransactionJSON(PrettyWriter<StringBuffer>& json_writer, const TrxModel::DataExt & tran);
     static void getCategoriesJSON(PrettyWriter<StringBuffer>& json_writer);
     static void getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json_writer);
     static void getAccountsJSON(PrettyWriter<StringBuffer>& json_writer, std::map <int64 /*account ID*/, wxString>& allAccounts4Export);

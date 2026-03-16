@@ -1332,7 +1332,7 @@ void TrxDialog::OnOk(wxCommandEvent& event)
         new_gl_a
     );
 
-    //TrxModel::Full_Data trx(trx_d);
+    //TrxModel::DataExt trx(trx_d);
     //wxLogDebug("%s", trx.to_json());
 
     if (event.GetId() == ID_BTN_OK_NEW) {

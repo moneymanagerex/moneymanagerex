@@ -135,7 +135,7 @@ wxString TrxFilter::getHTML()
     //TODO: find should be faster
     for (const auto& trx_d : TrxModel::instance().find_all()) {
         if (!mmIsRecordMatches(trx_d, trxId_tpA_m)) continue;
-        TrxModel::Full_Data full_tran(trx_d, trxId_tpA_m, trxId_glA_m);
+        TrxModel::DataExt full_tran(trx_d, trxId_tpA_m, trxId_glA_m);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(full_tran.m_account_id);
         if (full_tran.has_split()) {
@@ -208,27 +208,27 @@ table {
     hb.endThead();
     hb.startTbody();
     // Display the data for each row
-    for (auto& trx_xd : m_trans) {
+    for (auto& trx_dx : m_trans) {
         hb.startTableRow();
-        hb.addTableCellLink(wxString::Format("trx:%lld", trx_xd.m_id)
-            , wxString::Format("%lld", trx_xd.m_id), true);
-        hb.addColorMarker(getUDColour(trx_xd.m_color.GetValue()).GetAsString(), true);
-        hb.addTableCellDate(trx_xd.m_date_time.isoDateTime());
-        hb.addTableCell(trx_xd.m_number);
-        hb.addTableCellLink(wxString::Format("trxid:%lld", trx_xd.m_id)
-            , trx_xd.ACCOUNTNAME);
-        hb.addTableCell(trx_xd.PAYEENAME);
-        hb.addTableCell(trx_xd.m_status.key(), false, true);
-        hb.addTableCell(trx_xd.CATEGNAME);
-        if (TrxModel::is_foreignAsTransfer(trx_xd))
-            hb.addTableCell("< " + wxGetTranslation(trx_xd.m_type.name()));
+        hb.addTableCellLink(wxString::Format("trx:%lld", trx_dx.m_id)
+            , wxString::Format("%lld", trx_dx.m_id), true);
+        hb.addColorMarker(getUDColour(trx_dx.m_color.GetValue()).GetAsString(), true);
+        hb.addTableCellDate(trx_dx.m_date_time.isoDateTime());
+        hb.addTableCell(trx_dx.m_number);
+        hb.addTableCellLink(wxString::Format("trxid:%lld", trx_dx.m_id)
+            , trx_dx.ACCOUNTNAME);
+        hb.addTableCell(trx_dx.PAYEENAME);
+        hb.addTableCell(trx_dx.m_status.key(), false, true);
+        hb.addTableCell(trx_dx.CATEGNAME);
+        if (TrxModel::is_foreignAsTransfer(trx_dx))
+            hb.addTableCell("< " + wxGetTranslation(trx_dx.m_type.name()));
         else
-            hb.addTableCell(wxGetTranslation(trx_xd.m_type.name()));
+            hb.addTableCell(wxGetTranslation(trx_dx.m_type.name()));
 
-        const AccountData* acc = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
+        const AccountData* acc = AccountModel::instance().get_id_data_n(trx_dx.m_account_id);
         if (acc) {
             const CurrencyData* curr = AccountModel::instance().get_data_currency_p(*acc);
-            double flow = trx_xd.account_flow(acc->m_id);
+            double flow = trx_dx.account_flow(acc->m_id);
             hb.addCurrencyCell(flow, curr);
         }
         else {
@@ -238,14 +238,14 @@ table {
 
         // Attachments
         wxString AttachmentsLink = "";
-        if (AttachmentModel::instance().find_ref_c(TrxModel::s_ref_type, trx_xd.m_id)) {
+        if (AttachmentModel::instance().find_ref_c(TrxModel::s_ref_type, trx_dx.m_id)) {
             AttachmentsLink = wxString::Format(R"(<a href = "attachment:%s|%lld" target="_blank">%s</a>)",
-                TrxModel::s_ref_type.name_n(), trx_xd.m_id,
+                TrxModel::s_ref_type.name_n(), trx_dx.m_id,
                 mmAttachmentManage::GetAttachmentNoteSign());
         }
 
         //Notes
-        hb.addTableCell(AttachmentsLink + trx_xd.m_notes);
+        hb.addTableCell(AttachmentsLink + trx_dx.m_notes);
         hb.endTableRow();
     }
     hb.endTbody();

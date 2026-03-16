@@ -56,6 +56,6 @@ private:
     wxArrayInt64 m_account_a;
     wxArrayInt64 m_payee_a;
     wxArrayInt64 m_category_a;
-    TrxModel::Full_DataA m_trans;
+    TrxModel::DataExtA m_trans;
 };
 

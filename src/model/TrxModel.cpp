@@ -110,13 +110,13 @@ void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
     this_n->m_color           = other_d.m_color;
 }
 
-// same as TrxModel::Full_Data::is_foreign()
+// same as TrxModel::DataExt::is_foreign()
 bool TrxModel::is_foreign(const Data& this_d)
 {
     return (!this_d.is_transfer() && this_d.m_to_account_id_n > 0);
 }
 
-// see also TrxModel::Full_Data::is_foreign_transfer()
+// see also TrxModel::DataExt::is_foreign_transfer()
 bool TrxModel::is_foreignAsTransfer(const Data& this_d)
 {
     return is_foreign(this_d) && (
@@ -316,14 +316,14 @@ bool TrxModel::is_locked(const Data& trx_d)
     return account_n && account_n->is_locked_for(trx_d.m_date());
 }
 
-TrxModel::Full_Data::Full_Data() :
+TrxModel::DataExt::DataExt() :
     Data(), TAGNAMES(""),
     m_account_w_id_n(-1), m_account_d_id_n(-1), m_amount_w(0), m_amount_d(0),
     SN(0), m_account_flow(0), m_account_balance(0)
 {
 }
 
-TrxModel::Full_Data::Full_Data(const Data& r) :
+TrxModel::DataExt::DataExt(const Data& r) :
     Data(r),
     m_splits(TrxSplitModel::instance().find(
         TrxSplitCol::TRANSID(r.m_id))),
@@ -336,7 +336,7 @@ TrxModel::Full_Data::Full_Data(const Data& r) :
     fill_data();
 }
 
-TrxModel::Full_Data::Full_Data(
+TrxModel::DataExt::DataExt(
     const Data& r,
     const std::map<int64 /* m_id */, TrxSplitModel::DataA>& splits,
     const std::map<int64 /* m_id */, TagLinkModel::DataA>& tags
@@ -352,7 +352,7 @@ TrxModel::Full_Data::Full_Data(
     fill_data();
 }
 
-void TrxModel::Full_Data::fill_data()
+void TrxModel::DataExt::fill_data()
 {
     displayID = wxString::Format("%lld", m_id);
     ACCOUNTNAME = AccountModel::instance().get_id_name(m_account_id);
@@ -396,11 +396,11 @@ void TrxModel::Full_Data::fill_data()
     }
 }
 
-TrxModel::Full_Data::~Full_Data()
+TrxModel::DataExt::~DataExt()
 {
 }
 
-wxString TrxModel::Full_Data::real_payee_name(int64 account_id) const
+wxString TrxModel::DataExt::real_payee_name(int64 account_id) const
 {
     if (is_transfer()) {
         if (this->m_account_id == account_id || account_id < 0)
@@ -412,7 +412,7 @@ wxString TrxModel::Full_Data::real_payee_name(int64 account_id) const
     return this->PAYEENAME;
 }
 
-const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
+const wxString TrxModel::DataExt::get_currency_code(int64 account_id) const
 {
     if (is_transfer()) {
         if (this->m_account_id == account_id || account_id == -1)
@@ -427,7 +427,7 @@ const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
     return curr ? curr->m_symbol : "";
 }
 
-const wxString TrxModel::Full_Data::get_account_name(int64 account_id) const
+const wxString TrxModel::DataExt::get_account_name(int64 account_id) const
 {
     if (!is_transfer())
         return ACCOUNTNAME;
@@ -443,18 +443,18 @@ const wxString TrxModel::Full_Data::get_account_name(int64 account_id) const
 }
 
 // same as TrxModel::is_foreign()
-bool TrxModel::Full_Data::is_foreign() const
+bool TrxModel::DataExt::is_foreign() const
 {
     return (!is_transfer() && m_to_account_id_n > 0);
 }
 
 // see also TrxModel::is_foreignAsTransfer()
-bool TrxModel::Full_Data::is_foreign_transfer() const
+bool TrxModel::DataExt::is_foreign_transfer() const
 {
     return is_foreign() && (this->m_to_account_id_n == TrxLinkModel::AS_TRANSFER);
 }
 
-wxString TrxModel::Full_Data::info() const
+wxString TrxModel::DataExt::info() const
 {
     // TODO more info
     wxDate date = m_date_time.getDateTime();
@@ -462,7 +462,7 @@ wxString TrxModel::Full_Data::info() const
     return info;
 }
 
-const wxString TrxModel::Full_Data::to_json()
+const wxString TrxModel::DataExt::to_json()
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -510,8 +510,8 @@ const wxString TrxModel::Full_Data::to_json()
 
     json_writer.EndObject();
 
-    wxLogDebug("======= TrxModel::FullData::to_json =======");
-    wxLogDebug("FullData using rapidjson:\n%s", wxString::FromUTF8(json_buffer.GetString()));
+    wxLogDebug("======= TrxModel::DataExt::to_json =======");
+    wxLogDebug("DataExt using rapidjson:\n%s", wxString::FromUTF8(json_buffer.GetString()));
 
     return wxString::FromUTF8(json_buffer.GetString());
 }

@@ -63,7 +63,7 @@ public:
         }
     };
 
-    struct Full_Data : public Data
+    struct DataExt : public Data
     {
         wxString ACCOUNTNAME;
         wxString PAYEENAME;
@@ -72,12 +72,12 @@ public:
         TagLinkModel::DataA m_tags;
         wxString TAGNAMES;
 
-        Full_Data();
-        explicit Full_Data(const Data& r);
+        DataExt();
+        explicit DataExt(const Data& r);
 
         wxString real_payee_name() const;
     };
-    typedef std::vector<Full_Data> Full_DataA;
+    typedef std::vector<DataExt> DataExtA;
 
 public:
     static const RefTypeN s_ref_type;
@@ -107,7 +107,7 @@ public:
 public:
     struct SorterByACCOUNTNAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.ACCOUNTNAME.Lower().wc_str(), y.ACCOUNTNAME.Lower().wc_str()) < 0;
         }
@@ -115,7 +115,7 @@ public:
 
     struct SorterByPAYEENAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.PAYEENAME.Lower().wc_str(), y.PAYEENAME.Lower().wc_str()) < 0;
         }
@@ -123,7 +123,7 @@ public:
 
     struct SorterByCATEGNAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.CATEGNAME.Lower().wc_str(), y.CATEGNAME.Lower().wc_str()) < 0;
         }
@@ -131,7 +131,7 @@ public:
 
     struct SorterByWITHDRAWAL
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
@@ -153,7 +153,7 @@ public:
 
     struct SorterByDEPOSIT
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;

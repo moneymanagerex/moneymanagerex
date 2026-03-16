@@ -64,7 +64,7 @@ public:
     wxWindowID GetBaseID() const;
     void ResetRefID();
     bool IsSomeWidgetChanged() const;
-    bool IsDataFound(const TrxModel::Full_Data &tran);
+    bool IsDataFound(const TrxModel::DataExt &tran);
     void ResetWidgetsChanged();
     void ClearSettings();
     bool IsCustomPanelShown() const;

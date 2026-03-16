@@ -39,7 +39,7 @@ public:
     typedef TagLinkModel::DataA TagLinkDataA;
 
     static TrxData execute_bill(const SchedData& r, wxString date);
-    static TrxModel::Full_Data execute_bill_full(const SchedData& r, wxString date);
+    static TrxModel::DataExt execute_bill_full(const SchedData& r, wxString date);
     static TrxSplitDataA execute_splits(const SchedSplitDataA& rs);
 
     struct Data: public TrxData
@@ -55,26 +55,26 @@ public:
     };
     typedef std::vector<Data> DataA;
 
-    struct Full_Data: public TrxModel::Full_Data
+    struct DataExt: public TrxModel::DataExt
     {
         int64 m_sched_id;
         int m_repeat_i;
 
-        explicit Full_Data(const TrxData& t);
-        Full_Data(
+        explicit DataExt(const TrxData& t);
+        DataExt(
             const TrxData& t,
             const std::map<int64 /* TRANSID */, TrxSplitDataA>& splits,
             const std::map<int64 /* TRANSID */, TagLinkDataA>& tags
         );
-        Full_Data(const SchedData& r);
-        Full_Data(const SchedData& r, wxString date, int repeat_i);
-        Full_Data(const SchedData& r, wxString date, int repeat_i,
+        DataExt(const SchedData& r);
+        DataExt(const SchedData& r, wxString date, int repeat_i);
+        DataExt(const SchedData& r, wxString date, int repeat_i,
             const std::map<int64 /* BDID */, SchedSplitDataA>& budgetsplits,
             const std::map<int64 /* BDID */, TagLinkDataA>& tags
         );
-        ~Full_Data();
+        ~DataExt();
     };
-    typedef std::vector<Full_Data> Full_DataA;
+    typedef std::vector<DataExt> DataExtA;
 
     struct SorterByJOURNALID
     { 
@@ -89,7 +89,7 @@ public:
 
     struct SorterByJOURNALSN
     { 
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return x.SN < y.SN;
         }

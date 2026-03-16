@@ -1732,7 +1732,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& WXUNUSED(event))
             if (!trx_d.is_valid())
                 continue;
 
-            TrxModel::Full_Data tran(trx_d, trxId_tpA_m, trxId_glA_m);
+            TrxModel::DataExt tran(trx_d, trxId_tpA_m, trxId_glA_m);
             bool has_split = tran.has_split();
             double value = trx_d.account_flow(fromAccountID);
             account_balance += value;
@@ -2133,7 +2133,7 @@ void mmUnivCSVDialog::update_preview()
                         m_date_picker_start->GetValue(),
                         m_date_picker_end->GetValue()
                     ) || !m_haveDatesCheckBox->GetValue()) {
-                        TrxModel::Full_Data tran(trx_d, trxId_tpA_m, trxId_glA_m);
+                        TrxModel::DataExt tran(trx_d, trxId_tpA_m, trxId_glA_m);
                         bool has_split = tran.has_split();
                         double value = trx_d.account_flow(fromAccountID);
                         account_balance += value;
