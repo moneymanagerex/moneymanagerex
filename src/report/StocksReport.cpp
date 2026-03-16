@@ -100,7 +100,7 @@ void  StocksReport::refreshData()
 
 wxString StocksReport::getHTMLText()
 {
-    // Grab the data  
+    // Grab the data
     refreshData();
 
     // Build the report
@@ -231,7 +231,7 @@ wxString StocksReport::getHTMLText()
                 hb.endSpan();
 
                 hb.endTableCell();
-                
+
                 hb.startTableCell(" style='text-align:right;' nowrap");
                 hb.startSpan(CurrencyModel::instance().toCurrency(m_stock_balance), "");
                 hb.endSpan();
@@ -271,7 +271,7 @@ wxString mmReportChartStocks::getHTMLText()
 
     wxTimeSpan dist;
     wxArrayString symbols;
-    for (const auto& stock_d : StockModel::instance().find_all(
+    /*for (const auto& stock_d : StockModel::instance().find_all(
         StockCol::COL_ID_SYMBOL
     )) {
         const AccountData* account = AccountModel::instance().get_id_data_n(
@@ -283,9 +283,28 @@ wxString mmReportChartStocks::getHTMLText()
             continue;
 
         symbols.Add(stock_d.m_symbol);
+    */
+    StockModel::Data stock;
+    bool found = false;
+    for (StockModel::Data stock_d : StockModel::instance().find_all()) {
+        if (stock_d.m_name == m_stock_name) {
+            stock = stock_d;
+            found = true;
+            break;
+        }
+    }
+    /*for (const auto& stock : StockModel::instance().all(StockModel::COL_SYMBOL))
+    {
+        AccountModel::Data* account = AccountModel::instance().get_id(stock.HELDAT);
+        if (AccountModel::status_id(account) != AccountModel::STATUS_ID_OPEN) continue;
+        if (symbols.Index(stock.SYMBOL) != wxNOT_FOUND) continue;
+    */
+    if (found) {
+        const AccountModel::Data* account = AccountModel::instance().get_id_data_n(stock.m_account_id_n);
+        symbols.Add(stock.m_symbol);
         int dataCount = 0, freq = 1;
         auto sh_a = StockHistoryModel::instance().find(
-            StockHistoryCol::SYMBOL(stock_d.m_symbol),
+            StockHistoryCol::SYMBOL(stock.m_symbol),
             StockHistoryModel::DATE(OP_GE, m_date_range->start_date()),
             StockHistoryModel::DATE(OP_LE, m_date_range->end_date())
         );
@@ -311,18 +330,18 @@ wxString mmReportChartStocks::getHTMLText()
 
         if (!gd.series.empty()) {
             hb.addHeader(1, wxString::Format("%s / %s - (%s)",
-                stock_d.m_symbol, stock_d.m_name, account->m_name
+                stock.m_symbol, stock.m_name, account->m_name
             ));
             gd.type = GraphData::LINE_DATETIME;
             hb.addChart(gd);
         }
     }
     hb.endDiv();
-    
+
     hb.end();
 
     wxLogDebug("======= mmReportChartStocks:getHTMLText =======");
-    wxLogDebug("%s", hb.getHTMLText());    
+    wxLogDebug("%s", hb.getHTMLText());
 
     return hb.getHTMLText();
 }

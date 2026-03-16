@@ -2,7 +2,7 @@
  Copyright (C) 2013 James Higley
  Copyright (C) 2020 Nikolay Akimov
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025,2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -67,7 +67,7 @@ void ReportBase::setReportParameters(ReportBase::REPORT_ID report_id)
     case MonthlyCashFlow:             m_parameters = M_FORWARD_MONTHS | M_ACCOUNT | M_CHART; break;
     case DailyCashFlow:               m_parameters = M_FORWARD_MONTHS | M_ACCOUNT | M_CHART; break;
     case TransactionsCashFlow:        m_parameters = M_FORWARD_MONTHS | M_ACCOUNT | M_CHART; break;
-    case StocksReportPerformance:     m_parameters = M_DATE_RANGE; break;
+    case StocksReportPerformance:     m_parameters = M_DATE_RANGE | M_STOCK_NAMES; break;
     case StocksReportSummary:         m_parameters = M_NONE; break;
     case ForecastReport:              m_parameters = M_DATE_RANGE; break;
     case BugReport:                   m_parameters = M_NONE; break;
@@ -200,10 +200,26 @@ void ReportBase::saveReportSettings()
         json_writer.Int(m_chart_selection);
     }
 
+    if (m_parameters & M_STOCK_NAMES)
+    {
+        isActive = true;
+        json_writer.Key("STOCK_NAMES");
+        json_writer.String(m_stock_name.utf8_str());
+        json_writer.Key("STOCK_SEL");
+        json_writer.Int(m_stock_selection);
+    }
+
     if (m_parameters & M_FORWARD_MONTHS) {
         isActive = true;
         json_writer.Key("FORWARDMONTHS");
         json_writer.Int(m_forward_months);
+    }
+
+    if (m_parameters & M_GENERIC_FILTER)
+    {
+        isActive = true;
+        json_writer.Key("GENERIC_FILTER");
+        json_writer.String(m_generic_filter.utf8_str());
     }
 
     json_writer.EndObject();
@@ -234,6 +250,17 @@ void ReportBase::restoreReportSettings()
         m_forward_months = j_doc["FORWARDMONTHS"].GetInt();
     }
 
+    if (j_doc.HasMember("STOCK_NAMES") && j_doc["STOCK_NAMES"].IsString()) {
+        m_stock_name = j_doc["STOCK_NAMES"].GetString();
+    }
+
+    if (j_doc.HasMember("STOCK_SEL") && j_doc["STOCK_SEL"].IsInt()) {
+        m_stock_selection = j_doc["STOCK_SEL"].GetInt();
+    }
+
+    if (j_doc.HasMember("GENERIC_FILTER") && j_doc["GENERIC_FILTER"].IsString()) {
+        m_generic_filter = j_doc["GENERIC_FILTER"].GetString();
+    }
 
     m_account_selection = -1;
     int selection = 0;
@@ -317,7 +344,7 @@ wxString mmGeneralReport::getHTMLText()
     return out;
 }
 
-int mmGeneralReport::getParameters()
+int mmGeneralReport::extractParameters()
 {
     int params = 0;
     const auto content = m_report->m_sql_content.Lower();
@@ -331,8 +358,91 @@ int mmGeneralReport::getParameters()
     if (content.Contains("&single_time"))
         params |= M_TIME;
 
+    if (content.Contains("&account_selection"))
+        params |= M_ACCOUNT;
+
+    if (content.Contains("&stock_selection"))
+        params |= M_STOCK_NAMES;
+
+    if (content.Contains("&filter")) {
+        params |= M_GENERIC_FILTER;
+        m_filter_map = extractVarDetails(m_report->m_sql_content, "&filter");
+    }
+
+    if (content.Contains("&selection")) {
+        params |= M_GENERIC_SELECTION;
+        m_selection_map = extractVarDetails(m_report->m_sql_content, "&selection");
+    }
+
+    m_parameters = params;
     return params;
 }
+
+std::map<wxString, wxString> mmGeneralReport::extractVarDetails(const wxString& input, const wxString& marker)
+{
+    std::map<wxString, wxString> result;
+
+    wxString token = marker + "?";
+    size_t searchPos = 0;
+
+    while (true) {
+        size_t start = input.find(token, searchPos);
+        if (start == wxString::npos) {
+            break;
+        }
+
+        start += token.Length();
+
+        size_t end = start;
+        bool isNotQuoted = true;
+        bool isNotDoubleQuoted = true;
+        while (end < input.Length()) {
+            wxChar c = input[end];
+            if (c == '\n' || c == '\r') {
+                break;
+            }
+            else if (c == ' ' && isNotQuoted && isNotDoubleQuoted) {
+                break;
+            }
+            else if (c == '"') {
+                isNotDoubleQuoted = !isNotDoubleQuoted;
+            }
+            else if (c == '\'') {
+                isNotQuoted = !isNotQuoted;
+            }
+            end++;
+        }
+
+        wxString filterPart = input.Mid(start, end - start);
+
+        if (!filterPart.IsEmpty()) {
+            size_t pos = 0;
+            while (pos < filterPart.Length()) {
+                size_t sep_pos = filterPart.find('&', pos);
+                if (sep_pos == wxString::npos)
+                    sep_pos = filterPart.Length();
+
+                wxString pair = filterPart.Mid(pos, sep_pos - pos);
+                int eq = pair.Find('=');
+                if (eq != wxNOT_FOUND) {
+                    wxString key = pair.Left(eq);
+                    wxString value = pair.Mid(eq + 1);
+
+                    if (!key.IsEmpty() && !value.IsEmpty()) {
+                        if (result.find(key) == result.end()) {
+                            result[key] = value;
+                        }
+                    }
+                }
+                pos = sep_pos + 1;
+            }
+        }
+        searchPos = end;
+    }
+
+    return result;
+}
+
 
 mm_html_template::mm_html_template(const wxString& arg_template): html_template(arg_template.ToStdWstring())
 {

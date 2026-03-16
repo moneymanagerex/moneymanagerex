@@ -60,7 +60,7 @@ const std::vector<std::pair<JournalPanel::FILTER_ID, wxString> > JournalPanel::F
 {
     { JournalPanel::FILTER_ID_DATE,        wxString("Date") },
     { JournalPanel::FILTER_ID_DATE_RANGE,  wxString("mmDateRange") },
-    { JournalPanel::FILTER_ID_DATE_PICKER, wxString("DatePicker") },
+    { JournalPanel::FILTER_ID_DATE_PICKER, wxString("DatePicker") }
 };
 
 //----------------------------------------------------------------------------

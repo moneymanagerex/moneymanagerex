@@ -253,6 +253,21 @@ const wxString inQuotes(const wxString& l, const wxString& delimiter)
     return label;
 }
 
+wxString removeQuotes(wxString s)
+{
+    s = s.Trim(true).Trim(false);
+
+    if (s.length() > 1 &&
+        ((s[0] == '"'  && s.Last() == '"') ||
+         (s[0] == '\'' && s.Last() == '\'')))
+    {
+        s = s.Mid(1, s.length() - 2);
+    }
+
+    return s.Trim(true).Trim(false);
+}
+
+
 void mmLoadColorsFromDatabase(const bool def)
     {
     mmColors::userDefColor1 = def ? wxColour(246, 144, 144) : InfoModel::instance().getColour("USER_COLOR1", wxColour(246, 144, 144));
