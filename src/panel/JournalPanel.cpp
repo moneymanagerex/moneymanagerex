@@ -697,7 +697,7 @@ void JournalPanel::filterList()
     typedef std::tuple<
         int      /* i */,
         wxString /* date */,
-        int      /* repeat_num */
+        int      /* repeat_i */
     > bills_index_t;
     std::vector<bills_index_t> bills_index;
     if (m_scheduled_enable && m_scheduled_selected) {
@@ -713,9 +713,9 @@ void JournalPanel::filterList()
             : SchedModel::instance().find_all();
         for (unsigned int i = 0; i < sched_a.size(); ++i) {
             int limit = 1000;  // this is enough for daily repetitions for one year
-            auto dates = SchedModel::unroll(sched_a[i], date_end_str, limit);
-            for (unsigned int repeat_num = 1; repeat_num <= dates.size(); ++repeat_num)
-                bills_index.push_back({i, dates[repeat_num-1], repeat_num});
+            auto dates = sched_a[i].unroll(date_end_str, limit);
+            for (unsigned int repeat_i = 1; repeat_i <= dates.size(); ++repeat_i)
+                bills_index.push_back({i, dates[repeat_i-1], repeat_i});
         }
         std::stable_sort(
             bills_index.begin(), bills_index.end(),
@@ -730,7 +730,7 @@ void JournalPanel::filterList()
     while (trx_it != trx_a.end() || bills_it != bills_index.end()) {
         int bill_i = 0;
         wxString tran_date;
-        int repeat_num = 0;
+        int repeat_i = 0;
         TrxData bill_tran;
         const TrxData* trx_n = nullptr;
 
@@ -745,7 +745,7 @@ void JournalPanel::filterList()
         else {
             bill_i = std::get<0>(*bills_it);
             tran_date = std::get<1>(*bills_it);
-            repeat_num = std::get<2>(*bills_it);
+            repeat_i = std::get<2>(*bills_it);
             bill_tran = Journal::execute_bill(sched_a[bill_i], tran_date);
             trx_n = &bill_tran;
             bills_it++;
@@ -779,9 +779,9 @@ void JournalPanel::filterList()
         if (tran_date < date_start_str || tran_date > date_end_str)
             continue;
 
-        Journal::Full_Data journal_xd = (repeat_num == 0) ?
+        Journal::Full_Data journal_xd = (repeat_i == 0) ?
             Journal::Full_Data(*trx_n, trxId_tpA_m, trxId_glA_m) :
-            Journal::Full_Data(sched_a[bill_i], tran_date, repeat_num, schedId_qpA_m, schedId_glA_m);
+            Journal::Full_Data(sched_a[bill_i], tran_date, repeat_i, schedId_qpA_m, schedId_glA_m);
 
         bool expandSplits = false;
         if (m_filter_advanced) {
@@ -806,12 +806,12 @@ void JournalPanel::filterList()
             journal_xd.m_account_balance = m_balance;
         }
 
-        if (repeat_num == 0 && refId_attA_m.find(trx_n->m_id) != refId_attA_m.end()) {
+        if (repeat_i == 0 && refId_attA_m.find(trx_n->m_id) != refId_attA_m.end()) {
             for (const auto& att_d : refId_attA_m.at(trx_n->m_id))
                 journal_xd.ATTACHMENT_DESCRIPTION.Add(att_d.m_description);
         }
-        else if (repeat_num > 0 && schedId_attA_m.find(journal_xd.m_bdid) != schedId_attA_m.end()) {
-            for (const auto& att_d : schedId_attA_m.at(journal_xd.m_bdid))
+        else if (repeat_i > 0 && schedId_attA_m.find(journal_xd.m_sched_id) != schedId_attA_m.end()) {
+            for (const auto& att_d : schedId_attA_m.at(journal_xd.m_sched_id))
                 journal_xd.ATTACHMENT_DESCRIPTION.Add(att_d.m_description);
         }
 
@@ -820,7 +820,7 @@ void JournalPanel::filterList()
             journal_xd.UDFC_value[i] = -DBL_MAX;
         }
 
-        if (repeat_num == 0 && trxId_fvA_m.find(trx_n->m_id) != trxId_fvA_m.end()) {
+        if (repeat_i == 0 && trxId_fvA_m.find(trx_n->m_id) != trxId_fvA_m.end()) {
             for (const auto& udfc : trxId_fvA_m.at(trx_n->m_id)) {
                 for (int i = 0; i < 5; i++) {
                     if (udfc.m_field_id == udfc_id[i]) {
@@ -834,8 +834,8 @@ void JournalPanel::filterList()
                 }
             }
         }
-        else if (repeat_num > 0 && schedId_fvA_m.find(journal_xd.m_bdid) != schedId_fvA_m.end()) {
-            for (const auto& udfc : schedId_fvA_m.at(journal_xd.m_bdid)) {
+        else if (repeat_i > 0 && schedId_fvA_m.find(journal_xd.m_sched_id) != schedId_fvA_m.end()) {
+            for (const auto& udfc : schedId_fvA_m.at(journal_xd.m_sched_id)) {
                 for (int i = 0; i < 5; i++) {
                     if (udfc.m_field_id == udfc_id[i]) {
                         journal_xd.UDFC_type[i] = udfc_type[i];
@@ -849,11 +849,11 @@ void JournalPanel::filterList()
             }
         }
 
-        wxString marker = (repeat_num == 0) ? "" : "*";
+        wxString marker = (repeat_i == 0) ? "" : "*";
         journal_xd.SN = ++sn;
         journal_xd.displaySN = wxString::Format("%s%ld", marker, journal_xd.SN);
-        if (repeat_num > 0)
-            journal_xd.displayID = wxString::Format("%s%ld", marker, journal_xd.m_bdid);
+        if (repeat_i > 0)
+            journal_xd.displayID = wxString::Format("%s%ld", marker, journal_xd.m_sched_id);
 
         if (!expandSplits) {
             m_lc->m_journal_xa.push_back(journal_xd);
@@ -895,7 +895,7 @@ void JournalPanel::filterList()
             journal_xd.m_notes.Append((trx_n->m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
             wxString tagnames;
             for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
-                (repeat_num == 0 ? TrxSplitModel::s_ref_type : SchedSplitModel::s_ref_type),
+                (repeat_i == 0 ? TrxSplitModel::s_ref_type : SchedSplitModel::s_ref_type),
                 tp_d.m_id
             )) {
                 tagnames.Append(tag.first + " ");
@@ -914,15 +914,15 @@ void JournalPanel::sortList()
 
 //----------------------------------------------------------------------------
 
-void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool foreign)
+void JournalPanel::updateExtraTransactionData(bool single, int repeat_i, bool foreign)
 {
     if (single) {
         enableButtons(
             /* Edit      */ true,
             /* Duplicate */ !foreign,
-            /* Delete    */ !repeat_num,
-            /* Enter     */ repeat_num == 1,
-            /* Skip      */ repeat_num == 1,
+            /* Delete    */ !repeat_i,
+            /* Enter     */ repeat_i == 1,
+            /* Skip      */ repeat_i == 1,
             /* attach    */ true
         );
 
@@ -947,7 +947,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
         }
 
         wxString notesStr = journal_xd.m_notes;
-        if (!journal_xd.m_repeat_num) {
+        if (!journal_xd.m_repeat_i) {
             auto tp_a = TrxSplitModel::instance().find(
                 TrxSplitCol::TRANSID(journal_xd.m_id)
             );
@@ -967,7 +967,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
         }
         else {
             auto qp_a = SchedSplitModel::instance().find(
-                SchedSplitCol::TRANSID(journal_xd.m_bdid)
+                SchedSplitCol::TRANSID(journal_xd.m_sched_id)
             );
             for (const auto& qp_d : qp_a)
                 if (!qp_d.m_notes.IsEmpty()) {
@@ -976,7 +976,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_num, bool 
                 }
             if (journal_xd.has_attachment()) {
                 for (const auto& att_d : AttachmentModel::instance().find_ref_data_a(
-                    SchedModel::s_ref_type, journal_xd.m_bdid)
+                    SchedModel::s_ref_type, journal_xd.m_sched_id)
                 ) {
                     notesStr += notesStr.empty() ? "" : "\n";
                     notesStr += _t("Attachment") + " " + att_d.m_description + " " + att_d.m_filename;

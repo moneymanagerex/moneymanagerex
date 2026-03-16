@@ -44,28 +44,6 @@
 #include "SplitDialog.h"
 #include "import_export/webapp.h"
 
-// the order in gui may be different than the database encoding order.
-const std::vector<std::pair<int, wxString> > SchedDialog::BILLSDEPOSITS_REPEATS =
-{
-    { SchedModel::REPEAT_FREQ_ONCE,                      _n("Once") },
-    { SchedModel::REPEAT_FREQ_WEEKLY,                    _n("Weekly") },
-    { SchedModel::REPEAT_FREQ_BI_WEEKLY,                 _n("Fortnightly") },
-    { SchedModel::REPEAT_FREQ_MONTHLY,                   _n("Monthly") },
-    { SchedModel::REPEAT_FREQ_BI_MONTHLY,                _n("Every 2 Months") },
-    { SchedModel::REPEAT_FREQ_QUARTERLY,                 _n("Quarterly") },
-    { SchedModel::REPEAT_FREQ_HALF_YEARLY,               _n("Half-Yearly") },
-    { SchedModel::REPEAT_FREQ_YEARLY,                    _n("Yearly") },
-    { SchedModel::REPEAT_FREQ_FOUR_MONTHLY,              _n("Four Months") },
-    { SchedModel::REPEAT_FREQ_FOUR_WEEKLY,               _n("Four Weeks") },
-    { SchedModel::REPEAT_FREQ_DAILY,                     _n("Daily") },
-    { SchedModel::REPEAT_FREQ_IN_X_DAYS,                 _n("In (n) Days") },
-    { SchedModel::REPEAT_FREQ_IN_X_MONTHS,               _n("In (n) Months") },
-    { SchedModel::REPEAT_FREQ_EVERY_X_DAYS,              _n("Every (n) Days") },
-    { SchedModel::REPEAT_FREQ_EVERY_X_MONTHS,            _n("Every (n) Months") },
-    { SchedModel::REPEAT_FREQ_MONTHLY_LAST_DAY,          _n("Monthly (last day)") },
-    { SchedModel::REPEAT_FREQ_MONTHLY_LAST_BUSINESS_DAY, _n("Monthly (last business day)") }
-};
-
 // Used to determine if we need to refresh the tag text ctrl after
 // accelerator hints are shown which only occurs once.
 static bool altRefreshDone;
@@ -73,26 +51,25 @@ static bool altRefreshDone;
 wxIMPLEMENT_DYNAMIC_CLASS(SchedDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(SchedDialog, wxDialog)
-EVT_CHAR_HOOK(SchedDialog::OnComboKey)
-EVT_CHILD_FOCUS(SchedDialog::OnFocusChange)
-EVT_BUTTON(wxID_OK, SchedDialog::OnOk)
-EVT_BUTTON(wxID_CANCEL, SchedDialog::OnCancel)
-EVT_BUTTON(mmID_CATEGORY, SchedDialog::OnCategs)
-EVT_BUTTON(ID_DIALOG_TRANS_BUTTONSPLIT, SchedDialog::OnCategs)
-EVT_TEXT(mmID_PAYEE, SchedDialog::OnPayee)
-EVT_BUTTON(wxID_FILE, SchedDialog::OnAttachments)
-EVT_BUTTON(ID_BTN_CUSTOMFIELDS, SchedDialog::OnMoreFields)
-EVT_CHOICE(wxID_VIEW_DETAILS, SchedDialog::OnTypeChanged)
-EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, SchedDialog::OnAdvanceChecked)
-EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK, SchedDialog::OnAutoExecutionUserAckChecked)
-EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, SchedDialog::OnAutoExecutionSilentChecked)
-EVT_CHOICE(ID_DIALOG_BD_COMBOBOX_REPEATS, SchedDialog::OnRepeatTypeChanged)
-EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, SchedDialog::OnsetPrevOrNextRepeatDate)
-EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, SchedDialog::OnsetPrevOrNextRepeatDate)
-EVT_TEXT(mmID_ACCOUNTNAME, SchedDialog::OnAccountUpdated)
-EVT_CLOSE(SchedDialog::OnQuit)
+    EVT_CHAR_HOOK(                                 SchedDialog::OnComboKey)
+    EVT_CHILD_FOCUS(                               SchedDialog::OnFocusChange)
+    EVT_BUTTON(wxID_OK,                            SchedDialog::OnOk)
+    EVT_BUTTON(wxID_CANCEL,                        SchedDialog::OnCancel)
+    EVT_BUTTON(mmID_CATEGORY,                      SchedDialog::OnCategs)
+    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONSPLIT,        SchedDialog::OnCategs)
+    EVT_TEXT(mmID_PAYEE,                           SchedDialog::OnPayee)
+    EVT_BUTTON(wxID_FILE,                          SchedDialog::OnAttachments)
+    EVT_BUTTON(ID_BTN_CUSTOMFIELDS,                SchedDialog::OnMoreFields)
+    EVT_CHOICE(wxID_VIEW_DETAILS,                  SchedDialog::OnTypeChanged)
+    EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, SchedDialog::OnAdvanceChecked)
+    EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK, SchedDialog::OnAutoExecutionUserAckChecked)
+    EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, SchedDialog::OnAutoExecutionSilentChecked)
+    EVT_CHOICE(ID_DIALOG_BD_COMBOBOX_REPEATS, SchedDialog::OnRepeatTypeChanged)
+    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUMPREV, SchedDialog::OnsetPrevOrNextRepeatDate)
+    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM,     SchedDialog::OnsetPrevOrNextRepeatDate)
+    EVT_TEXT(mmID_ACCOUNTNAME,                     SchedDialog::OnAccountUpdated)
+    EVT_CLOSE(                                     SchedDialog::OnQuit)
 wxEND_EVENT_TABLE()
-
 
 SchedDialog::SchedDialog()
 {
@@ -102,7 +79,10 @@ SchedDialog::~SchedDialog()
 {
     wxSize size = GetSize();
     if (m_custom_fields->IsCustomPanelShown())
-        size = wxSize(GetSize().GetWidth() - m_custom_fields->GetMinWidth(), GetSize().GetHeight());
+        size = wxSize(
+            GetSize().GetWidth() - m_custom_fields->GetMinWidth(),
+            GetSize().GetHeight()
+        );
     InfoModel::instance().setSize("RECURRINGTRANS_DIALOG_SIZE", size);
 }
 
@@ -136,8 +116,7 @@ SchedDialog::SchedDialog(
         m_sched_xd.m_followup_id     = sched_n->m_followup_id;
         m_sched_xd.m_color           = sched_n->m_color;
         m_sched_xd.m_due_date        = sched_n->m_due_date;
-        m_sched_xd.REPEATS           = sched_n->REPEATS;
-        m_sched_xd.NUMOCCURRENCES    = sched_n->NUMOCCURRENCES;
+        m_sched_xd.m_repeat          = sched_n->m_repeat;
 
         wxArrayInt64 tag_id_a;
         for (const auto& gl_d : TagLinkModel::instance().find(
@@ -147,7 +126,7 @@ SchedDialog::SchedDialog(
             tag_id_a.push_back(gl_d.m_tag_id);
         m_sched_xd.TAGS = tag_id_a;
 
-        for (const auto& qp_d : SchedModel::split(*sched_n)) {
+        for (const auto& qp_d : SchedModel::instance().get_data_qp_a(*sched_n)) {
             wxArrayInt64 split_tag_id_a;
             for (const auto& gl_d : TagLinkModel::instance().find(
                 TagLinkCol::REFTYPE(SchedSplitModel::s_ref_type.name_n()),
@@ -222,61 +201,51 @@ void SchedDialog::dataToControls()
 
     bColours_->SetColor(m_sched_xd.m_color.GetValue());
 
-    for (const auto& entry : BILLSDEPOSITS_REPEATS) {
-        m_choice_repeat->Append(wxGetTranslation(entry.second));
+    for (int i = 0; i < RepeatFreq::size; ++i) {
+        RepeatFreq freq = RepeatFreq(i);
+        wxString freq_name = wxGetTranslation(freq.name());
+        if (freq.has_x())
+            freq_name.Replace("%s", "(n)");
+        m_choice_repeat->Append(freq_name);
     }
-    setRepeatType(SchedModel::REPEAT_FREQ_MONTHLY);
+    m_choice_repeat->SetSelection(RepeatFreq::e_1_month);
 
     for (int i = 0; i < TrxType::size; ++i) {
         if (i == TrxType::e_transfer && AccountModel::instance().find_all().size() < 2)
             break;
-        wxString type = TrxType(i).name();
-        m_choice_transaction_type->Append(wxGetTranslation(type), new wxStringClientData(type));
+        wxString type_name = TrxType(i).name();
+        m_choice_transaction_type->Append(
+            wxGetTranslation(type_name),
+            new wxStringClientData(type_name)
+        );
     }
     m_choice_transaction_type->SetSelection(TrxType::e_withdrawal);
 
     SetTransferControls();  // hide appropriate fields
     setCategoryLabel();
 
-    if (!(!m_new_bill || m_enter_occur)) {
+    if (m_new_bill && !m_enter_occur) {
         return;
     }
 
     m_choice_status->SetSelection(m_sched_xd.m_status.id());
-
-    // Set the date paid
     m_date_paid->SetValue(m_sched_xd.m_date_time.getDateTime());
-
-    // Set the due Date
     m_date_due->SetValue(m_sched_xd.m_due_date.getDateTime());
+    m_choice_repeat->SetSelection(m_sched_xd.m_repeat.m_freq.id());
 
-    // demultiplex REPEATS and NUMOCCURRENCES
-    SchedModel::RepeatNum rn;
-    SchedModel::decode_repeat_num(m_sched_xd, rn);
-    // fix repeats
-    if (rn.freq < 0 || rn.freq > SchedModel::REPEAT_FREQ_size) {
-        wxFAIL;
-        rn.freq = SchedModel::REPEAT_FREQ_MONTHLY;
+    if (m_sched_xd.m_repeat.m_freq.has_num() && m_sched_xd.m_repeat.m_num > 0) {
+        textNumRepeats_->SetValue(wxString::Format("%i", m_sched_xd.m_repeat.m_num));
     }
-    // old invalid entry. change to REPEAT_FREQ_ONCE and turn off automatic execution.
-    if (rn.freq >= SchedModel::REPEAT_FREQ_IN_X_DAYS &&
-        rn.freq <= SchedModel::REPEAT_FREQ_EVERY_X_MONTHS && rn.x < 1
-    ) {
-        rn.exec = SchedModel::REPEAT_EXEC_NONE;
-        rn.freq = SchedModel::REPEAT_FREQ_ONCE;
-    }
-    setRepeatType(rn.freq);
-
-    if (rn.freq != SchedModel::REPEAT_FREQ_ONCE && m_sched_xd.NUMOCCURRENCES > 0) {
-        textNumRepeats_->SetValue(wxString::Format("%lld", m_sched_xd.NUMOCCURRENCES));
+    else if (m_sched_xd.m_repeat.m_freq.has_x() && m_sched_xd.m_repeat.m_x > 0) {
+        textNumRepeats_->SetValue(wxString::Format("%i", m_sched_xd.m_repeat.m_x));
     }
 
-    if (rn.exec == SchedModel::REPEAT_EXEC_SILENT) {
+    if (m_sched_xd.m_repeat.m_mode.id() == RepeatMode::e_automated) {
         autoExecuteSilent_ = true;
         itemCheckBoxAutoExeSilent_->SetValue(true);
         itemCheckBoxAutoExeUserAck_->Enable(false);
     }
-    else if (rn.exec == SchedModel::REPEAT_EXEC_MANUAL) {
+    else if (m_sched_xd.m_repeat.m_mode.id() == RepeatMode::e_suggested) {
         autoExecuteUserAck_ = true;
         itemCheckBoxAutoExeUserAck_->SetValue(true);
         itemCheckBoxAutoExeSilent_->Enable(false);
@@ -897,17 +866,24 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return;
 
     if (!cbAccount_->mmIsValid()) {
-        return mmErrorDialogs::InvalidAccount(cbAccount_, m_transfer, mmErrorDialogs::MESSAGE_DROPDOWN_BOX);
+        return mmErrorDialogs::InvalidAccount(cbAccount_,
+            m_transfer,
+            mmErrorDialogs::MESSAGE_DROPDOWN_BOX
+        );
     }
     m_sched_xd.m_account_id = cbAccount_->mmGetId();
     const AccountData* acc = AccountModel::instance().get_id_data_n(m_sched_xd.m_account_id);
 
-    if (!textAmount_->checkValue(m_sched_xd.m_amount)) return;
+    if (!textAmount_->checkValue(m_sched_xd.m_amount))
+        return;
 
     m_sched_xd.m_to_amount = m_sched_xd.m_amount;
     if (m_transfer) {
         if (!cbToAccount_->mmIsValid()) {
-            return mmErrorDialogs::InvalidAccount(cbToAccount_, m_transfer, mmErrorDialogs::MESSAGE_DROPDOWN_BOX);
+            return mmErrorDialogs::InvalidAccount(cbToAccount_,
+                m_transfer,
+                mmErrorDialogs::MESSAGE_DROPDOWN_BOX
+            );
         }
         m_sched_xd.m_to_account_id_n = cbToAccount_->mmGetId();
 
@@ -915,7 +891,8 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return mmErrorDialogs::InvalidAccount(cbPayee_, true);
         }
 
-        if (m_advanced && !toTextAmount_->checkValue(m_sched_xd.m_to_amount)) return;
+        if (m_advanced && !toTextAmount_->checkValue(m_sched_xd.m_to_amount))
+            return;
     }
     else {
         wxString payee_name = cbPayee_->GetValue();
@@ -924,7 +901,8 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             return;
         }
 
-        // Get payee string from populated list to address issues with case compare differences between autocomplete and payee list
+        // Get payee string from populated list to address issues with case compare
+        // differences between autocomplete and payee list
         int payee_loc = cbPayee_->FindString(payee_name);
         if (payee_loc != wxNOT_FOUND)
             payee_name = cbPayee_->GetString(payee_loc);
@@ -951,13 +929,21 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
     if (m_sched_xd.local_splits.empty()) {
         if (!cbCategory_->mmIsValid()) {
-            return mmErrorDialogs::ToolTip4Object(cbCategory_, _t("Invalid value"), _t("Category"), wxICON_ERROR);
+            return mmErrorDialogs::ToolTip4Object(cbCategory_,
+                _t("Invalid value"),
+                _t("Category"),
+                wxICON_ERROR
+            );
         }
         m_sched_xd.m_category_id_n = cbCategory_->mmGetCategoryId();
     }
 
     if (!tagTextCtrl_->IsValid()) {
-        return mmErrorDialogs::ToolTip4Object(tagTextCtrl_, _t("Invalid value"), _t("Tags"), wxICON_ERROR);
+        return mmErrorDialogs::ToolTip4Object(tagTextCtrl_,
+            _t("Invalid value"),
+            _t("Tags"),
+            wxICON_ERROR
+        );
     }
 
     if (!m_custom_fields->ValidateCustomValues(-m_sched_xd.m_id))
@@ -969,8 +955,9 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         // subsequent edits will not allow automatic update of the amount
         if (m_new_bill) {
             if (m_sched_xd.m_to_account_id_n != -1) {
-                const AccountData* to_account = AccountModel::instance().get_id_data_n(m_sched_xd.m_to_account_id_n);
-
+                const AccountData* to_account = AccountModel::instance().get_id_data_n(
+                    m_sched_xd.m_to_account_id_n
+                );
                 const CurrencyData* from_currency = AccountModel::instance().get_data_currency_p(*acc);
                 const CurrencyData* to_currency = AccountModel::instance().get_data_currency_p(*to_account);
 
@@ -992,26 +979,20 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
     }
 
-    SchedModel::RepeatNum rn;
-    rn.exec =
-        autoExecuteSilent_  ? SchedModel::REPEAT_EXEC_SILENT :
-        autoExecuteUserAck_ ? SchedModel::REPEAT_EXEC_MANUAL :
-                              SchedModel::REPEAT_EXEC_NONE;
-    rn.freq = static_cast<SchedModel::REPEAT_FREQ>(getRepeatType());
-    rn.num = SchedModel::REPEAT_NUM_INFINITY;
-    rn.x = 1;
-    const wxString& numRepeatStr = textNumRepeats_->GetValue();
-    long cnt = 0;
-    if (!numRepeatStr.empty() && numRepeatStr.ToLong(&cnt) && cnt > 0) {
-        wxASSERT(cnt <= std::numeric_limits<int>::max());
-        if (rn.freq >= SchedModel::REPEAT_FREQ_IN_X_DAYS &&
-            rn.freq <= SchedModel::REPEAT_FREQ_EVERY_X_MONTHS
-        )
-            rn.x = cnt;
-        else
-            rn.num = cnt;
+    const wxString& num_str = textNumRepeats_->GetValue();
+    long num = -1;
+    if (!num_str.empty() && num_str.ToLong(&num)) {
+        wxASSERT(num <= std::numeric_limits<int>::max());
     }
-    SchedModel::encode_repeat_num(m_sched_xd, rn);
+    m_sched_xd.m_repeat = Repeat(
+        RepeatMode(
+            autoExecuteSilent_  ? RepeatMode::e_automated :
+            autoExecuteUserAck_ ? RepeatMode::e_suggested :
+                                  RepeatMode::e_none
+        ),
+        RepeatFreq(getRepeatType()),
+        num
+    );
 
     m_sched_xd.m_due_date = mmDate(m_date_due->GetValue());
     m_sched_xd.m_date_time = mmDateTime(m_date_paid->GetValue());
@@ -1066,8 +1047,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         sched_d.m_followup_id     = m_sched_xd.m_followup_id;
         sched_d.m_color           = m_sched_xd.m_color;
         sched_d.m_due_date        = m_sched_xd.m_due_date;
-        sched_d.REPEATS           = m_sched_xd.REPEATS;
-        sched_d.NUMOCCURRENCES    = m_sched_xd.NUMOCCURRENCES;
+        sched_d.m_repeat          = m_sched_xd.m_repeat;
         SchedModel::instance().save_data_n(sched_d);
         m_trans_id = sched_d.m_id;
 
@@ -1121,87 +1101,80 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         m_custom_fields->SaveCustomValues(SchedModel::s_ref_type, m_trans_id);
     }
     else {
-        // the following condition is always true, since old inactive entries of type
-        // REPEAT_FREQ_IN_X_*, REPEAT_EVERY_X_* have been converted to entries of type REPEAT_FREQ_ONCE
-        if (rn.freq < SchedModel::REPEAT_FREQ_IN_X_DAYS ||
-            rn.freq > SchedModel::REPEAT_FREQ_EVERY_X_MONTHS ||
-            rn.x > 0
-        ) {
-            // FIXME: use m_sched_xd directly
-            SchedData sched_d;
-            sched_d.m_account_id = m_sched_xd.m_account_id;
-            sched_d.m_type       = m_sched_xd.m_type;
-            sched_d.m_amount     = m_sched_xd.m_amount;
-            if (!SchedModel::instance().AllowTransaction(sched_d))
-                return;
+        // FIXME: use m_sched_xd directly
+        SchedData sched_d;
+        sched_d.m_account_id = m_sched_xd.m_account_id;
+        sched_d.m_type       = m_sched_xd.m_type;
+        sched_d.m_amount     = m_sched_xd.m_amount;
+        if (!SchedModel::instance().is_data_allowed(sched_d))
+            return;
 
-            TrxData new_trx_d = TrxData();
-            new_trx_d.m_type            = TrxType(m_choice_transaction_type->GetSelection());
-            new_trx_d.m_date_time       = m_sched_xd.m_date_time;
-            new_trx_d.m_status          = m_sched_xd.m_status;
-            new_trx_d.m_account_id      = m_sched_xd.m_account_id;
-            new_trx_d.m_to_account_id_n = m_sched_xd.m_to_account_id_n;
-            new_trx_d.m_payee_id_n      = m_sched_xd.m_payee_id_n;
-            new_trx_d.m_category_id_n   = m_sched_xd.m_category_id_n;
-            new_trx_d.m_amount          = m_sched_xd.m_amount;
-            new_trx_d.m_to_amount       = m_sched_xd.m_to_amount;
-            new_trx_d.m_number          = m_sched_xd.m_number;
-            new_trx_d.m_notes           = m_sched_xd.m_notes;
-            new_trx_d.m_followup_id     = m_sched_xd.m_followup_id;
-            new_trx_d.m_color           = m_sched_xd.m_color;
-            TrxModel::instance().save_trx_n(new_trx_d);
-            int64 new_trx_id = new_trx_d.m_id;
+        TrxData new_trx_d = TrxData();
+        new_trx_d.m_type            = TrxType(m_choice_transaction_type->GetSelection());
+        new_trx_d.m_date_time       = m_sched_xd.m_date_time;
+        new_trx_d.m_status          = m_sched_xd.m_status;
+        new_trx_d.m_account_id      = m_sched_xd.m_account_id;
+        new_trx_d.m_to_account_id_n = m_sched_xd.m_to_account_id_n;
+        new_trx_d.m_payee_id_n      = m_sched_xd.m_payee_id_n;
+        new_trx_d.m_category_id_n   = m_sched_xd.m_category_id_n;
+        new_trx_d.m_amount          = m_sched_xd.m_amount;
+        new_trx_d.m_to_amount       = m_sched_xd.m_to_amount;
+        new_trx_d.m_number          = m_sched_xd.m_number;
+        new_trx_d.m_notes           = m_sched_xd.m_notes;
+        new_trx_d.m_followup_id     = m_sched_xd.m_followup_id;
+        new_trx_d.m_color           = m_sched_xd.m_color;
+        TrxModel::instance().save_trx_n(new_trx_d);
+        int64 new_trx_id = new_trx_d.m_id;
 
-            TrxSplitModel::DataA new_tp_a;
-            for (auto& split_d : m_sched_xd.local_splits) {
-                TrxSplitData new_tp_d = TrxSplitData();
-                new_tp_d.m_trx_id      = new_trx_id;
-                new_tp_d.m_category_id = split_d.m_category_id;
-                new_tp_d.m_amount      = split_d.m_amount;
-                new_tp_d.m_notes       = split_d.m_notes;
-                new_tp_a.push_back(new_tp_d);
-            }
-            TrxSplitModel::instance().update_trx(new_trx_id, new_tp_a);
+        TrxSplitModel::DataA new_tp_a;
+        for (auto& split_d : m_sched_xd.local_splits) {
+            TrxSplitData new_tp_d = TrxSplitData();
+            new_tp_d.m_trx_id      = new_trx_id;
+            new_tp_d.m_category_id = split_d.m_category_id;
+            new_tp_d.m_amount      = split_d.m_amount;
+            new_tp_d.m_notes       = split_d.m_notes;
+            new_tp_a.push_back(new_tp_d);
+        }
+        TrxSplitModel::instance().update_trx(new_trx_id, new_tp_a);
 
-            // Save split tags
-            for (size_t i = 0; i < m_sched_xd.local_splits.size(); i++) {
-                TagLinkModel::DataA new_tp_gl_a;
-                for (const auto& tag_id : m_sched_xd.local_splits.at(i).m_tag_id_a) {
-                    TagLinkData new_gl_d = TagLinkData();
-                    new_gl_d.m_tag_id   = tag_id;
-                    new_gl_d.m_ref_type = TrxSplitModel::s_ref_type;
-                    new_gl_d.m_ref_id   = new_tp_a.at(i).m_id;
-                    new_tp_gl_a.push_back(new_gl_d);
-                }
-                TagLinkModel::instance().update(
-                    TrxSplitModel::s_ref_type, new_tp_a.at(i).m_id,
-                    new_tp_gl_a
-                );
-            }
-
-            // Custom Data
-            m_custom_fields->SaveCustomValues(TrxModel::s_ref_type, new_trx_id);
-
-            mmAttachmentManage::RelocateAllAttachments(
-                SchedModel::s_ref_type, m_sched_xd.m_id,
-                TrxModel::s_ref_type, new_trx_id
-            );
-
-            // Save base transaction tags
-            TagLinkModel::DataA new_gl_a;
-            for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
+        // Save split tags
+        for (size_t i = 0; i < m_sched_xd.local_splits.size(); i++) {
+            TagLinkModel::DataA new_tp_gl_a;
+            for (const auto& tag_id : m_sched_xd.local_splits.at(i).m_tag_id_a) {
                 TagLinkData new_gl_d = TagLinkData();
                 new_gl_d.m_tag_id   = tag_id;
-                new_gl_d.m_ref_type = TrxModel::s_ref_type;
-                new_gl_d.m_ref_id   = new_trx_id;
-                new_gl_a.push_back(new_gl_d);
+                new_gl_d.m_ref_type = TrxSplitModel::s_ref_type;
+                new_gl_d.m_ref_id   = new_tp_a.at(i).m_id;
+                new_tp_gl_a.push_back(new_gl_d);
             }
             TagLinkModel::instance().update(
-                TrxModel::s_ref_type, new_trx_id,
-                new_gl_a
+                TrxSplitModel::s_ref_type, new_tp_a.at(i).m_id,
+                new_tp_gl_a
             );
         }
-        SchedModel::instance().completeBDInSeries(m_sched_xd.m_id);
+
+        // Custom Data
+        m_custom_fields->SaveCustomValues(TrxModel::s_ref_type, new_trx_id);
+
+        mmAttachmentManage::RelocateAllAttachments(
+            SchedModel::s_ref_type, m_sched_xd.m_id,
+            TrxModel::s_ref_type, new_trx_id
+        );
+
+        // Save base transaction tags
+        TagLinkModel::DataA new_gl_a;
+        for (const auto& tag_id : tagTextCtrl_->GetTagIDs()) {
+            TagLinkData new_gl_d = TagLinkData();
+            new_gl_d.m_tag_id   = tag_id;
+            new_gl_d.m_ref_type = TrxModel::s_ref_type;
+            new_gl_d.m_ref_id   = new_trx_id;
+            new_gl_a.push_back(new_gl_d);
+        }
+        TagLinkModel::instance().update(
+            TrxModel::s_ref_type, new_trx_id,
+            new_gl_a
+        );
+        SchedModel::instance().reschedule_id(m_sched_xd.m_id);
     }
 
     EndModal(wxID_OK);
@@ -1293,22 +1266,22 @@ void SchedDialog::setRepeatDetails()
 {
     staticTextRepeats_->SetLabelText(_t("Repeats"));
 
-    int repeats = getRepeatType();
-    if (repeats == SchedModel::REPEAT_FREQ_IN_X_DAYS ||
-        repeats == SchedModel::REPEAT_FREQ_EVERY_X_DAYS
+    RepeatFreq repeat_freq = RepeatFreq(getRepeatType());
+    if (repeat_freq.id() == RepeatFreq::e_in_x_days ||
+        repeat_freq.id() == RepeatFreq::e_every_x_days
     ) {
         staticTimesRepeat_->SetLabelText(_t("Period: Days"));
         const auto toolTipsStr = _t("Specify period in Days.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
-    else if (repeats == SchedModel::REPEAT_FREQ_IN_X_MONTHS ||
-        repeats == SchedModel::REPEAT_FREQ_EVERY_X_MONTHS
+    else if (repeat_freq.id() == RepeatFreq::e_in_x_months ||
+        repeat_freq.id() == RepeatFreq::e_every_x_months
     ) {
         staticTimesRepeat_->SetLabelText(_t("Period: Months"));
         const auto toolTipsStr = _t("Specify period in Months.");
         mmToolTip(textNumRepeats_, toolTipsStr);
     }
-    else if (repeats == SchedModel::REPEAT_FREQ_ONCE) {
+    else if (repeat_freq.id() == RepeatFreq::e_once) {
         staticTimesRepeat_->SetLabelText(_t("Payments Left"));
         const auto toolTipsStr = _t("Ignored (leave blank).");
         mmToolTip(textNumRepeats_, toolTipsStr);
@@ -1328,77 +1301,31 @@ void SchedDialog::OnRepeatTypeChanged(wxCommandEvent& WXUNUSED(event))
 
 int SchedDialog::getRepeatType()
 {
-    int repeatIndex = m_choice_repeat->GetSelection();
-    return repeatIndex >= 0 ? BILLSDEPOSITS_REPEATS.at(repeatIndex).first : -1;
-}
-
-void SchedDialog::setRepeatType(int repeatType)
-{
-    if (repeatType < 0) {
-        wxFAIL;
-        return;
-    }
-
-    // fast path
-    int repeatIndex = repeatType;
-    if (BILLSDEPOSITS_REPEATS.at(repeatIndex).first != repeatType) {
-        // slow path: BILLSDEPOSITS_REPEATS is not sorted by REPEAT_FREQ
-        // cache the mapping from type to index
-        static std::vector<int> index;
-        if (index.size() == 0) {
-            wxLogDebug("SchedDialog::setRepeatType : cache index");
-            index.resize(BILLSDEPOSITS_REPEATS.size(), -1);
-            for (size_t i = 0; i < BILLSDEPOSITS_REPEATS.size(); i++) {
-                unsigned int j = BILLSDEPOSITS_REPEATS.at(i).first;
-                if (j < BILLSDEPOSITS_REPEATS.size() && index.at(j) == -1)
-                    index.at(j) = i;
-                else {
-                    wxFAIL;
-                }
-            }
-        }
-
-        repeatIndex = index.at(repeatType);
-        if (repeatIndex == -1) {
-            wxFAIL;
-            repeatIndex = 0;
-        }
-    }
-
-    m_choice_repeat->SetSelection(repeatIndex);
+    return m_choice_repeat->GetSelection();
 }
 
 void SchedDialog::OnsetPrevOrNextRepeatDate(wxCommandEvent& event)
 {
-    SchedModel::RepeatNum rn;
-    rn.freq = static_cast<SchedModel::REPEAT_FREQ>(getRepeatType());
-    rn.x = 1;
-    wxString valueStr = textNumRepeats_->GetValue();
+    Repeat repeat;
+    repeat.m_freq = RepeatFreq(getRepeatType());
+    repeat.m_x = 1;
+    wxString num_str = textNumRepeats_->GetValue();
     bool goPrev = (event.GetId() == ID_DIALOG_TRANS_BUTTONTRANSNUMPREV);
+    bool ok = true;
 
-    switch (rn.freq)
-    {
-    case SchedModel::REPEAT_FREQ_IN_X_DAYS:
-        wxFALLTHROUGH;
-    case SchedModel::REPEAT_FREQ_IN_X_MONTHS:
-        wxFALLTHROUGH;
-    case SchedModel::REPEAT_FREQ_EVERY_X_DAYS:
-        wxFALLTHROUGH;
-    case SchedModel::REPEAT_FREQ_EVERY_X_MONTHS:
-        rn.x = wxAtoi(valueStr);
-        if (!valueStr.IsNumber() || !rn.x) {
-            mmErrorDialogs::ToolTip4Object(textNumRepeats_, _t("Invalid value"), _t("Error"));
-            break;
+    if (repeat.m_freq.has_x()) {
+        repeat.m_x = wxAtoi(num_str);
+        if (!num_str.IsNumber() || !repeat.m_x) {
+            mmErrorDialogs::ToolTip4Object(textNumRepeats_,
+                _t("Invalid value"),
+                _t("Error")
+            );
+            return;
         }
-        wxFALLTHROUGH;
-    default:
-        m_date_paid->SetValue(SchedModel::nextOccurDate(
-            m_date_paid->GetValue(), rn, goPrev)
-        );
-        m_date_due->SetValue(SchedModel::nextOccurDate(
-            m_date_due->GetValue(), rn, goPrev)
-        );
     }
+
+    m_date_paid->SetValue(repeat.next_datetime(m_date_paid->GetValue(), goPrev));
+    m_date_due->SetValue( repeat.next_datetime(m_date_due->GetValue(),  goPrev));
 }
 
 void SchedDialog::activateSplitTransactionsDlg()

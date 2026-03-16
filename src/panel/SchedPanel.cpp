@@ -443,8 +443,6 @@ void SchedList::OnItemRightClick(wxMouseEvent& event)
 wxString SchedPanel::getItem(long item, int col_id)
 {
     const SchedModel::Full_Data& sched_xd = this->bills_.at(item);
-    SchedModel::RepeatNum rn;
-    bool is_active = SchedModel::decode_repeat_num(sched_xd, rn);
 
     switch (col_id) {
     case SchedList::LIST_ID_ID:
@@ -505,22 +503,22 @@ wxString SchedPanel::getItem(long item, int col_id)
             value = "* " + value;
         return value;
     }
-    case SchedList::LIST_ID_FREQUENCY:
-        return GetFrequency(rn);
+    case SchedList::LIST_ID_FREQUENCY: {
+        wxString name = wxGetTranslation(sched_xd.m_repeat.m_freq.name());
+        if (sched_xd.m_repeat.m_freq.has_x())
+            name.Replace("%s", wxString::Format("%i", sched_xd.m_repeat.m_x));
+        return name;
+    }
     case SchedList::LIST_ID_REPEATS: {
-        return !is_active                             ? L"\x2015" : // HORIZONTAL BAR
-            rn.num == SchedModel::REPEAT_NUM_INFINITY ? L"\x221E" : // INFITITY
-            wxString::Format("%i", rn.num).Trim();
+        return sched_xd.m_repeat.m_num == -1
+            ? L"\x221E" /* INFITITY */
+            : wxString::Format("%i", sched_xd.m_repeat.m_num);
     }
     case SchedList::LIST_ID_AUTO: {
-        wxString repeatSTR =
-            (rn.exec == SchedModel::REPEAT_EXEC_SILENT) ? _t("Automated") :
-            (rn.exec == SchedModel::REPEAT_EXEC_MANUAL) ? _t("Suggested") :
-                                                          _t("Manual");
-        return repeatSTR;
+        return wxGetTranslation(sched_xd.m_repeat.m_mode.name());
     }
     case SchedList::LIST_ID_REMAINING:
-        return is_active ? GetRemainingDays(sched_xd) : _t("Inactive");
+        return GetRemainingDays(sched_xd);
     case SchedList::LIST_ID_NUMBER:
         return sched_xd.m_number;
     case SchedList::LIST_ID_NOTES: {
@@ -533,16 +531,6 @@ wxString SchedPanel::getItem(long item, int col_id)
     default:
         return wxEmptyString;
     }
-}
-
-const wxString SchedPanel::GetFrequency(const SchedModel::RepeatNum& rn) const
-{
-    wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[rn.freq]);
-    if (rn.freq >= SchedModel::REPEAT_FREQ_IN_X_DAYS &&
-        rn.freq <= SchedModel::REPEAT_FREQ_EVERY_X_MONTHS
-    )
-        text = wxString::Format(text, wxString::Format("%i", rn.x));
-    return text;
 }
 
 const wxString SchedPanel::GetRemainingDays(const SchedData& sched_d) const
@@ -589,23 +577,17 @@ void SchedList::OnListLeftClick(wxMouseEvent& event)
 
 int SchedList::OnGetItemImage(long item) const
 {
-    SchedData& bill = m_bdp->bills_[item];
-    SchedModel::RepeatNum rn;
-    if (!SchedModel::decode_repeat_num(bill, rn)) {
-        // inactive
-        return -1;
-    }
-
+    SchedData& sched_d = m_bdp->bills_[item];
     int daysRemaining = m_bdp->bills_[item].m_due_date.getDateTime().
         Subtract(m_bdp->getToday()).GetSeconds().GetValue()
     / 86400;
 
-    /* Returns the icon to be shown for each entry */
+    // Returns the icon to be shown for each entry
     if (daysRemaining < 0)
         return SchedPanel::ICON_FOLLOWUP;
-    if (rn.exec == SchedModel::REPEAT_EXEC_SILENT)
+    if (sched_d.m_repeat.m_mode.id() == RepeatMode::e_automated)
         return SchedPanel::ICON_RUN_AUTO;
-    if (rn.exec == SchedModel::REPEAT_EXEC_MANUAL)
+    if (sched_d.m_repeat.m_mode.id() == RepeatMode::e_suggested)
         return SchedPanel::ICON_RUN;
     return -1;
 }
@@ -691,11 +673,11 @@ void SchedList::OnSkipBDTransaction(wxCommandEvent& /*event*/)
     if (m_selected_row == -1)
         return;
 
-    int64 id = m_bdp->bills_[m_selected_row].m_id;
-    SchedModel::instance().completeBDInSeries(id);
+    int64 sched_id = m_bdp->bills_[m_selected_row].m_id;
+    SchedModel::instance().reschedule_id(sched_id);
     if (++m_selected_row < long(m_bdp->bills_.size()))
-        id = m_bdp->bills_[m_selected_row].m_id;
-    refreshVisualList(m_bdp->initVirtualListControl(id));
+        sched_id = m_bdp->bills_[m_selected_row].m_id;
+    refreshVisualList(m_bdp->initVirtualListControl(sched_id));
 }
 
 void SchedList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
@@ -793,40 +775,13 @@ void SchedPanel::sortList()
         std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByDEPOSIT());
         break;
     case SchedList::LIST_ID_FREQUENCY:
-        std::stable_sort(bills_.begin(), bills_.end(),
-            [&](const SchedModel::Full_Data& x, const SchedModel::Full_Data& y) {
-                SchedModel::RepeatNum x_rn; SchedModel::decode_repeat_num(x, x_rn);
-                SchedModel::RepeatNum y_rn; SchedModel::decode_repeat_num(y, y_rn);
-                wxString x_text = this->GetFrequency(x_rn);
-                wxString y_text = this->GetFrequency(y_rn);
-                return x_text < y_text;
-            }
-        );
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByRepeatFreq());
         break;
     case SchedList::LIST_ID_REPEATS:
-        std::stable_sort(bills_.begin(), bills_.end(),
-            [&](const SchedModel::Full_Data& x, const SchedModel::Full_Data& y) {
-                SchedModel::RepeatNum x_rn; SchedModel::decode_repeat_num(x, x_rn);
-                SchedModel::RepeatNum y_rn; SchedModel::decode_repeat_num(y, y_rn);
-                // the order is: 1, 2, …, -1 (INFINITY), 0 (INVALID)
-                if (x_rn.num > 0)
-                    return y_rn.num > x_rn.num ||
-                        y_rn.num == SchedModel::REPEAT_NUM_INFINITY ||
-                        y_rn.num == SchedModel::REPEAT_NUM_INVALID;
-                else
-                    return x_rn.num == SchedModel::REPEAT_NUM_INFINITY &&
-                        y_rn.num == SchedModel::REPEAT_NUM_INVALID;
-            }
-        );
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByRepeatNum());
         break;
     case SchedList::LIST_ID_AUTO:
-        std::stable_sort(bills_.begin(), bills_.end(),
-            [&](const SchedModel::Full_Data& x, const SchedModel::Full_Data& y) {
-                SchedModel::RepeatNum x_rn; SchedModel::decode_repeat_num(x, x_rn);
-                SchedModel::RepeatNum y_rn; SchedModel::decode_repeat_num(y, y_rn);
-                return x_rn.exec < y_rn.exec;
-            }
-        );
+        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByRepeatMode());
         break;
     case SchedList::LIST_ID_REMAINING:
         // in almost all cases, sorting by remaining days is equivalent to sorting by TRANSDATE

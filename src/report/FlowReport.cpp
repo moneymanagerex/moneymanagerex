@@ -158,10 +158,6 @@ void FlowReport::getTransactions()
         if (next_date > endDate)
             continue;
 
-        SchedModel::RepeatNum rn;
-        if (!SchedModel::decode_repeat_num(sched_d, rn))
-            continue;
-
         bool isAccountFound = std::find(m_account_id.begin(), m_account_id.end(),
             sched_d.m_account_id
         ) != m_account_id.end();
@@ -170,6 +166,8 @@ void FlowReport::getTransactions()
         ) != m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
+
+        Repeat repeat = sched_d.m_repeat;
 
         // Process all possible recurring transactions for this BD
         while (1) {
@@ -185,8 +183,8 @@ void FlowReport::getTransactions()
             trx_d.m_amount          = sched_d.m_amount;
             trx_d.m_to_amount       = sched_d.m_to_amount;
 
-            if (!SchedModel::split(sched_d).empty()) {
-                for (const auto& qp_d : SchedModel::split(sched_d)) {
+            if (!SchedModel::instance().get_data_qp_a(sched_d).empty()) {
+                for (const auto& qp_d : SchedModel::instance().get_data_qp_a(sched_d)) {
                     trx_d.m_category_id_n = qp_d.m_category_id;
                     trx_d.m_amount        = qp_d.m_amount;
                     trx_d.m_amount        = trueAmount(trx_d);
@@ -199,11 +197,11 @@ void FlowReport::getTransactions()
                 m_forecastVector.push_back(trx_d);
             }
 
-            if (rn.num == 1)
+            if (repeat.m_num == 1)
                 break;
 
-            next_date = SchedModel::nextOccurDate(next_date, rn);
-            SchedModel::next_repeat_num(rn);
+            next_date = repeat.next_datetime(next_date);
+            repeat.next_repeat();
         }
     }
 

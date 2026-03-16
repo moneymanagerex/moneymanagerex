@@ -31,8 +31,8 @@ public:
     // id represents TRANSID if !is_bill, or BDID otherwise
     typedef std::pair<int64 /* id */, bool /* is_bill */> IdB;
 
-    // id represents TRANSID if repeat_num == 0, or BDID otherwise
-    typedef std::pair<int64 /* id */, int /* repeat_num */> IdRepeat;
+    // id represents TRANSID if repeat_i == 0, or BDID otherwise
+    typedef std::pair<int64 /* id */, int /* repeat_i */> IdRepeat;
 
     typedef TrxSplitModel::DataA TrxSplitDataA;
     typedef SchedSplitModel::DataA SchedSplitDataA;
@@ -44,21 +44,21 @@ public:
 
     struct Data: public TrxData
     {
-        int64 m_bdid;
-        int m_repeat_num;
+        int64 m_sched_id;
+        int m_repeat_i;
 
         Data();
         explicit Data(const TrxData& t);
         explicit Data(const SchedData& r);
-        Data(const SchedData& r, wxString date, int repeat_num);
+        Data(const SchedData& r, wxString date, int repeat_i);
         ~Data();
     };
     typedef std::vector<Data> DataA;
 
     struct Full_Data: public TrxModel::Full_Data
     {
-        int64 m_bdid;
-        int m_repeat_num;
+        int64 m_sched_id;
+        int m_repeat_i;
 
         explicit Full_Data(const TrxData& t);
         Full_Data(
@@ -67,8 +67,8 @@ public:
             const std::map<int64 /* TRANSID */, TagLinkDataA>& tags
         );
         Full_Data(const SchedData& r);
-        Full_Data(const SchedData& r, wxString date, int repeat_num);
-        Full_Data(const SchedData& r, wxString date, int repeat_num,
+        Full_Data(const SchedData& r, wxString date, int repeat_i);
+        Full_Data(const SchedData& r, wxString date, int repeat_i,
             const std::map<int64 /* BDID */, SchedSplitDataA>& budgetsplits,
             const std::map<int64 /* BDID */, TagLinkDataA>& tags
         );
@@ -81,9 +81,9 @@ public:
         template<class DATA>
         bool operator()(const DATA& x, const DATA& y)
         {
-            return (!x.m_repeat_num && y.m_repeat_num) ||
-                (!x.m_repeat_num && !y.m_repeat_num && x.m_id < y.m_id) ||
-                (x.m_repeat_num && y.m_repeat_num && x.m_bdid < y.m_bdid);
+            return (!x.m_repeat_i && y.m_repeat_i) ||
+                (!x.m_repeat_i && !y.m_repeat_i && x.m_id < y.m_id) ||
+                (x.m_repeat_i && y.m_repeat_i && x.m_sched_id < y.m_sched_id);
         }
     };
 

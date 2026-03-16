@@ -133,7 +133,6 @@ public:
     wxString getItem(long item, int col_id);
     void RefreshList();
 
-    const wxString GetFrequency(const SchedModel::RepeatNum& rn) const;
     const wxString GetRemainingDays(const SchedData& item) const;
 
     wxString BuildPage() const;

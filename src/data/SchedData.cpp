@@ -32,8 +32,7 @@ SchedData::SchedData() :
     m_followup_id(-1),
     m_color(-1),
     m_due_date(mmDate::today()),
-    REPEATS(-1),
-    NUMOCCURRENCES(-1)
+    m_repeat(Repeat())
 {
 }
 
@@ -55,10 +54,11 @@ SchedRow SchedData::to_row() const
     row.TRANSDATE          = m_date_time.isoDateTime();
     row.FOLLOWUPID         = m_followup_id;
     row.TOTRANSAMOUNT      = m_to_amount;
-    row.REPEATS            = REPEATS;
     row.NEXTOCCURRENCEDATE = m_due_date.isoDate();
-    row.NUMOCCURRENCES     = NUMOCCURRENCES;
     row.COLOR              = m_color;
+
+    // encode m_repeat to row.REPEATS, row.NUMOCCURRENCES
+    m_repeat.to_row(row.REPEATS, row.NUMOCCURRENCES);
 
     return row;
 }
@@ -66,46 +66,86 @@ SchedRow SchedData::to_row() const
 // Convert SchedRow to SchedData
 SchedData& SchedData::from_row(const SchedRow& row)
 {
-    m_id               = row.BDID;
-    m_date_time        = mmDateTime(row.TRANSDATE);
-    m_type             = TrxType(row.TRANSCODE);
-    m_status           = TrxStatus(row.STATUS);
-    m_account_id       = row.ACCOUNTID;
-    m_to_account_id_n  = row.TOACCOUNTID;
-    m_payee_id_n       = row.PAYEEID;
-    m_category_id_n    = row.CATEGID;
-    m_amount           = row.TRANSAMOUNT;
-    m_to_amount        = row.TOTRANSAMOUNT;
-    m_number           = row.TRANSACTIONNUMBER;
-    m_notes            = row.NOTES;
-    m_followup_id      = row.FOLLOWUPID;
-    m_color            = row.COLOR;
-    m_due_date         = mmDate(row.NEXTOCCURRENCEDATE);
-    REPEATS            = row.REPEATS;
-    NUMOCCURRENCES     = row.NUMOCCURRENCES;
+    m_id              = row.BDID;
+    m_date_time       = mmDateTime(row.TRANSDATE);
+    m_type            = TrxType(row.TRANSCODE);
+    m_status          = TrxStatus(row.STATUS);
+    m_account_id      = row.ACCOUNTID;
+    m_to_account_id_n = row.TOACCOUNTID;
+    m_payee_id_n      = row.PAYEEID;
+    m_category_id_n   = row.CATEGID;
+    m_amount          = row.TRANSAMOUNT;
+    m_to_amount       = row.TOTRANSAMOUNT;
+    m_number          = row.TRANSACTIONNUMBER;
+    m_notes           = row.NOTES;
+    m_followup_id     = row.FOLLOWUPID;
+    m_color           = row.COLOR;
+    m_due_date        = mmDate(row.NEXTOCCURRENCEDATE);
+
+    // decode row.REPEATS, row.NUMOCCURRENCES to m_repeat
+    m_repeat = Repeat::from_row(row.REPEATS, row.NUMOCCURRENCES);
 
     return *this;
 }
 
 bool SchedData::equals(const SchedData* other) const
 {
-    if ( m_id              != other->m_id)              return false;
-    if ( m_date_time       != other->m_date_time)       return false;
-    if ( m_type.id()       != other->m_type.id())       return false;
-    if ( m_status.id()     != other->m_status.id())     return false;
-    if ( m_account_id      != other->m_account_id)      return false;
-    if ( m_to_account_id_n != other->m_to_account_id_n) return false;
-    if ( m_payee_id_n      != other->m_payee_id_n)      return false;
-    if ( m_category_id_n   != other->m_category_id_n)   return false;
-    if ( m_amount          != other->m_amount)          return false;
-    if ( m_to_amount       != other->m_to_amount)       return false;
-    if (!m_number.IsSameAs(   other->m_number))         return false;
-    if (!m_notes.IsSameAs(    other->m_notes))          return false;
-    if ( m_followup_id     != other->m_followup_id)     return false;
-    if ( m_color           != other->m_color)           return false;
-    if ( m_due_date        != other->m_due_date)        return false;
-    if ( REPEATS           != other->REPEATS)           return false;
-    if ( NUMOCCURRENCES    != other->NUMOCCURRENCES)    return false;
+    if ( m_id                 != other->m_id)                 return false;
+    if ( m_date_time          != other->m_date_time)          return false;
+    if ( m_type.id()          != other->m_type.id())          return false;
+    if ( m_status.id()        != other->m_status.id())        return false;
+    if ( m_account_id         != other->m_account_id)         return false;
+    if ( m_to_account_id_n    != other->m_to_account_id_n)    return false;
+    if ( m_payee_id_n         != other->m_payee_id_n)         return false;
+    if ( m_category_id_n      != other->m_category_id_n)      return false;
+    if ( m_amount             != other->m_amount)             return false;
+    if ( m_to_amount          != other->m_to_amount)          return false;
+    if (!m_number.IsSameAs(      other->m_number))            return false;
+    if (!m_notes.IsSameAs(       other->m_notes))             return false;
+    if ( m_followup_id        != other->m_followup_id)        return false;
+    if ( m_color              != other->m_color)              return false;
+    if ( m_due_date           != other->m_due_date)           return false;
+    if ( m_repeat.m_mode.id() != other->m_repeat.m_mode.id()) return false;
+    if ( m_repeat.m_freq.id() != other->m_repeat.m_freq.id()) return false;
+    if ( m_repeat.m_num       != other->m_repeat.m_num)       return false;
+    if ( m_repeat.m_x         != other->m_repeat.m_x)         return false;
 
     return true;
 }
+
+bool SchedData::is_due() const
+{
+    // TODO: use time only if it is enabled in settings
+    return (
+        m_due_date.getDateTime().Subtract(wxDateTime::Today()).GetSeconds().GetValue()
+        < 24*60*60
+    );
+}
+
+// TODO: return std::vector<wxDateTime>
+// TODO: return iterator
+const wxArrayString SchedData::unroll(const wxString end_date, int limit) const
+{
+    wxArrayString dates;
+
+    Repeat repeat = m_repeat;
+    wxString date = m_date_time.isoDateTime();
+    while (date <= end_date && limit != 0) {
+        if (limit > 0)
+            --limit;
+        dates.push_back(date);
+
+        if (repeat.m_num == 1)
+            break;
+
+        wxDateTime date_curr;
+        date_curr.ParseDateTime(date) || date_curr.ParseDate(date);
+        const wxDateTime& date_next = repeat.next_datetime(date_curr);
+        date = date_next.FormatISOCombined();
+
+        repeat.next_repeat();
+    }
+
+    return dates;
+}
+

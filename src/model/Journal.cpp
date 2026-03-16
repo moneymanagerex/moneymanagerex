@@ -75,12 +75,12 @@ TrxSplitModel::DataA Journal::execute_splits(const SchedSplitDataA& qp_a)
 }
 
 Journal::Data::Data() :
-    TrxData(), m_bdid(0), m_repeat_num(0)
+    TrxData(), m_sched_id(0), m_repeat_i(0)
 {
 }
 
 Journal::Data::Data(const TrxData& trx_d) :
-    TrxData(trx_d), m_bdid(0), m_repeat_num(0)
+    TrxData(trx_d), m_sched_id(0), m_repeat_i(0)
 {
 }
 
@@ -89,10 +89,10 @@ Journal::Data::Data(const SchedData& sched_d) :
 {
 }
 
-Journal::Data::Data(const SchedData& sched_d, wxString date, int repeat_num) :
-    TrxData(execute_bill(sched_d, date)), m_bdid(sched_d.m_id), m_repeat_num(repeat_num)
+Journal::Data::Data(const SchedData& sched_d, wxString date, int repeat_i) :
+    TrxData(execute_bill(sched_d, date)), m_sched_id(sched_d.m_id), m_repeat_i(repeat_i)
 {
-    if (m_repeat_num < 1) {
+    if (m_repeat_i < 1) {
         wxFAIL;
     }
 }
@@ -102,7 +102,7 @@ Journal::Data::~Data()
 }
 
 Journal::Full_Data::Full_Data(const TrxData& trx_d) :
-    TrxModel::Full_Data(trx_d), m_bdid(0), m_repeat_num(0)
+    TrxModel::Full_Data(trx_d), m_sched_id(0), m_repeat_i(0)
 {
 }
 
@@ -111,7 +111,7 @@ Journal::Full_Data::Full_Data(
     const std::map<int64 /* m_id */, TrxSplitDataA>& splits,
     const std::map<int64 /* m_id */, TagLinkDataA>& tags
 ) :
-    TrxModel::Full_Data(trx_d, splits, tags), m_bdid(0), m_repeat_num(0)
+    TrxModel::Full_Data(trx_d, splits, tags), m_sched_id(0), m_repeat_i(0)
 {
 }
 
@@ -122,41 +122,41 @@ Journal::Full_Data::Full_Data(const SchedData& sched_d) :
 
 Journal::Full_Data::Full_Data(
     const SchedData& sched_d,
-    wxString date, int repeat_num
+    wxString date, int repeat_i
 ) :
     TrxModel::Full_Data(execute_bill_full(sched_d, date), {}, {}),
-    m_bdid(sched_d.m_id), m_repeat_num(repeat_num)
+    m_sched_id(sched_d.m_id), m_repeat_i(repeat_i)
 {
-    if (m_repeat_num < 1) {
+    if (m_repeat_i < 1) {
         wxFAIL;
     }
 
-    m_splits = execute_splits(SchedModel::split(sched_d));
+    m_splits = execute_splits(SchedModel::instance().get_data_qp_a(sched_d));
 
-    m_tags = SchedModel::taglink(sched_d);
+    m_tags = SchedModel::instance().get_data_gl_a(sched_d);
 
     TrxModel::Full_Data::fill_data();
     displayID = wxString("");
 }
 
 Journal::Full_Data::Full_Data(const SchedData& sched_d,
-    wxString date, int repeat_num,
+    wxString date, int repeat_i,
     const std::map<int64 /* m_id */, SchedSplitDataA>& budgetsplits,
     const std::map<int64 /* m_id */, TagLinkDataA>& tags)
 :
     TrxModel::Full_Data(execute_bill_full(sched_d, date), {}, {}),
-    m_bdid(sched_d.m_id), m_repeat_num(repeat_num)
+    m_sched_id(sched_d.m_id), m_repeat_i(repeat_i)
 {
-    if (m_repeat_num < 1) {
+    if (m_repeat_i < 1) {
         wxFAIL;
     }
 
-    const auto budgetsplits_it = budgetsplits.find(m_bdid);
+    const auto budgetsplits_it = budgetsplits.find(m_sched_id);
     if (budgetsplits_it != budgetsplits.end()) {
         m_splits = execute_splits(budgetsplits_it->second);
     }
 
-    const auto tag_it = tags.find(m_bdid);
+    const auto tag_it = tags.find(m_sched_id);
     if (tag_it != tags.end()) m_tags = tag_it->second;
 
     TrxModel::Full_Data::fill_data();
@@ -171,8 +171,8 @@ Journal::Full_Data::~Full_Data()
 void Journal::setEmptyData(Journal::Data& journal_d, int64 account_id)
 {
     TrxModel::instance().setEmptyData(journal_d, account_id);
-    journal_d.m_bdid = 0;
-    journal_d.m_repeat_num = 0;
+    journal_d.m_sched_id = 0;
+    journal_d.m_repeat_i = 0;
 }
 
 bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
@@ -181,8 +181,8 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         const TrxData *trx_n = TrxModel::instance().get_id_data_n(journal_id.first);
         if (!trx_n)
             return false;
-        journal_d.m_repeat_num      = 0;
-        journal_d.m_bdid            = 0;
+        journal_d.m_repeat_i        = 0;
+        journal_d.m_sched_id        = 0;
         journal_d.m_id              = trx_n->m_id;
         journal_d.m_date_time       = trx_n->m_date_time;
         journal_d.m_type            = trx_n->m_type;
@@ -204,9 +204,9 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         const SchedData *sched_n = SchedModel::instance().get_id_data_n(journal_id.first);
         if (!sched_n)
             return false;
-        journal_d.m_repeat_num      = 1;
+        journal_d.m_repeat_i        = 1;
         journal_d.m_id              = 0;
-        journal_d.m_bdid            = sched_n->m_id;
+        journal_d.m_sched_id        = sched_n->m_id;
         journal_d.m_date_time       = sched_n->m_date_time;
         journal_d.m_type            = sched_n->m_type;
         journal_d.m_status          = sched_n->m_status;
@@ -228,10 +228,10 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
 
 const TrxSplitModel::DataA Journal::split(Journal::Data& journal_d)
 {
-    return (journal_d.m_repeat_num == 0)
+    return (journal_d.m_repeat_i == 0)
         ? TrxSplitModel::instance().find(
             TrxSplitCol::TRANSID(journal_d.m_id)
         ) : Journal::execute_splits(SchedSplitModel::instance().find(
-            SchedSplitCol::TRANSID(journal_d.m_bdid)
+            SchedSplitCol::TRANSID(journal_d.m_sched_id)
         ));
 }

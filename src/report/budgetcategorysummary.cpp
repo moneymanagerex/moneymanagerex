@@ -101,7 +101,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         evaluateTransfer = true;
     }
     //Get statistics
-    std::map<int64, BudgetFrequency> budgetFreq;
+    std::map<int64, BudgetFreq> budgetFreq;
     std::map<int64, double> budgetAmt;
     std::map<int64, wxString> budgetNotes;
     BudgetModel::instance().getBudgetEntry(m_date_selection, budgetFreq, budgetAmt, budgetNotes);

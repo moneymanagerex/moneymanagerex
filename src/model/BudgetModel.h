@@ -36,7 +36,7 @@ public:
     static BudgetModel& instance();
 
 public:
-    static BudgetCol::PERIOD FREQUENCY(OP op, BudgetFrequency freq);
+    static BudgetCol::PERIOD FREQUENCY(OP op, BudgetFreq freq);
 
 public:
     BudgetModel();
@@ -44,7 +44,7 @@ public:
 
     void getBudgetEntry(
         int64 bp_id,
-        std::map<int64, BudgetFrequency>& budgetFreq,
+        std::map<int64, BudgetFreq>& budgetFreq,
         std::map<int64, double>& budgetAmt,
         std::map<int64, wxString>& budgetNotes
     );

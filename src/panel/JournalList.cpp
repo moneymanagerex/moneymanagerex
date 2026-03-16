@@ -397,10 +397,10 @@ void JournalList::refreshVisualList(bool filter)
         m_topItemIndex = getSortAsc(0) ? i - 1 : 0;
 
     i = 0;
-    for(const auto& entry : m_journal_xa) {
-        int64 id = !entry.m_repeat_num ? entry.m_id : entry.m_bdid;
+    for(const auto& journal_xd : m_journal_xa) {
+        int64 id = !journal_xd.m_repeat_i ? journal_xd.m_id : journal_xd.m_sched_id;
         for (const auto& item : m_selected_id) {
-            if (item.first == id && item.second == entry.m_repeat_num) {
+            if (item.first == id && item.second == journal_xd.m_repeat_i) {
                 SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
                 SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
                 EnsureVisible(i);
@@ -1329,9 +1329,9 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
     );
     if (msgDlg.ShowModal() == wxID_YES) {
         std::set<std::pair<RefTypeN, int64>> assetStockAccts;
-        for (const auto& tran : this->m_journal_xa) {
-            if (tran.m_repeat_num) continue;
-            TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(tran.m_id);
+        for (const auto& journal_xd : this->m_journal_xa) {
+            if (journal_xd.m_repeat_i) continue;
+            TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_xd.m_id);
             trx_n->m_deleted_time_n = mmDateTimeN();
             TrxModel::instance().unsafe_save_trx_n(trx_n);
             TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
@@ -1603,7 +1603,7 @@ void JournalList::onMarkTransaction(wxCommandEvent& event)
         if (account_n->is_locked_for(m_journal_xa[row].m_date()))
             continue;
         //bRefreshRequired |= (status.id() == TrxStatus::e_void) || (m_journal_xa[row].is_void());
-        if (!m_journal_xa[row].m_repeat_num) {
+        if (!m_journal_xa[row].m_repeat_i) {
             m_journal_xa[row].m_status = status;
             TrxModel::instance().save_trx_n(m_journal_xa[row]);
         }
@@ -1675,8 +1675,11 @@ void JournalList::onSelectAll(wxCommandEvent& WXUNUSED(event))
     std::set<Journal::IdRepeat> unique_ids;
     for (int row = 0; row < GetItemCount(); row++) {
         SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        const auto& tran = m_journal_xa[row];
-        Journal::IdRepeat id = { !tran.m_repeat_num ? tran.m_id : tran.m_bdid, tran.m_repeat_num };
+        const auto& journal_xd = m_journal_xa[row];
+        Journal::IdRepeat id = {
+            !journal_xd.m_repeat_i ? journal_xd.m_id : journal_xd.m_sched_id,
+            journal_xd.m_repeat_i
+        };
         if (unique_ids.find(id) == unique_ids.end()) {
             m_selected_id.push_back(id);
             unique_ids.insert(id);
@@ -1726,16 +1729,16 @@ void JournalList::onPaste(wxCommandEvent& WXUNUSED(event))
     m_pasted_id.clear();    // make sure the list is empty before we paste
     for (const auto& id : m_selectedForCopy) {
         if (!id.second) {
-            const TrxData* tran = TrxModel::instance().get_id_data_n(id.first);
-            if (TrxModel::is_foreign(*tran)) continue;
-            onPaste(tran);
+            const TrxData* trx_d = TrxModel::instance().get_id_data_n(id.first);
+            if (TrxModel::is_foreign(*trx_d)) continue;
+            onPaste(trx_d);
         }
     }
     TrxModel::instance().db_release_savepoint();
     refreshVisualList();
 }
 
-int64 JournalList::onPaste(const TrxData* tran)
+int64 JournalList::onPaste(const TrxData* trx_n)
 {
     wxASSERT(m_cp->isAccount());
 
@@ -1744,7 +1747,7 @@ int64 JournalList::onPaste(const TrxData* tran)
 
     //TODO: the clone function can't clone split transactions, or custom data
     TrxData new_trx;
-    new_trx.clone_from(*tran);
+    new_trx.clone_from(*trx_n);
     if (!useOriginalDate)
         new_trx.m_date_time = mmDateTime::now();
     if (!useOriginalState) {
@@ -1766,7 +1769,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     TagLinkModel::DataA new_gl_a;
     for (const auto& tl_d : TagLinkModel::instance().find(
         TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
-        TagLinkCol::REFID(tran->m_id)
+        TagLinkCol::REFID(trx_n->m_id)
     )) {
         TagLinkData new_gl_d;
         new_gl_d.clone_from(tl_d);
@@ -1775,7 +1778,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     }
 
     // Clone split transactions
-    for (const auto& tp_d : TrxModel::instance().find_data_split_a(*tran)) {
+    for (const auto& tp_d : TrxModel::instance().find_data_split_a(*trx_n)) {
         TrxSplitData new_tp_d;
         new_tp_d.clone_from(tp_d);
         new_tp_d.m_trx_id = new_trx_id;
@@ -1796,7 +1799,7 @@ int64 JournalList::onPaste(const TrxData* tran)
 
     // Clone duplicate custom fields
     const auto& fv_a = FieldValueModel::instance().find(
-        FieldValueCol::REFID(tran->m_id)
+        FieldValueCol::REFID(trx_n->m_id)
     );
     if (fv_a.size() > 0) {
         FieldValueModel::instance().db_savepoint();
@@ -1814,7 +1817,7 @@ int64 JournalList::onPaste(const TrxData* tran)
     // Clone attachments if wanted
     if (InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false)) {
         mmAttachmentManage::CloneAllAttachments(
-            TrxModel::s_ref_type, tran->m_id, new_trx_id
+            TrxModel::s_ref_type, trx_n->m_id, new_trx_id
         );
     }
 
@@ -1864,7 +1867,7 @@ void JournalList::onSkipScheduled(wxCommandEvent& WXUNUSED(event))
     Journal::IdRepeat id = m_selected_id[0];
 
     if (id.second == 1) {
-        SchedModel::instance().completeBDInSeries(id.first);
+        SchedModel::instance().reschedule_id(id.first);
         refreshVisualList();
     }
 }
@@ -2124,7 +2127,7 @@ const wxString JournalList::getItem(long item, int col_id) const
 
 void JournalList::setExtraTransactionData(const bool single)
 {
-    int repeat_num = 0;
+    int repeat_i = 0;
     bool isForeign = false;
     if (single) {
         Journal::IdRepeat id = m_selected_id[0];
@@ -2133,9 +2136,9 @@ void JournalList::setExtraTransactionData(const bool single)
             : Journal::Data(*SchedModel::instance().get_id_data_n(id.first));
         if (TrxModel::is_foreign(tran))
             isForeign = true;
-        repeat_num = id.second;
+        repeat_i = id.second;
     }
-    m_cp->updateExtraTransactionData(single, repeat_num, isForeign);
+    m_cp->updateExtraTransactionData(single, repeat_i, isForeign);
 }
 
 void JournalList::markItem(long selectedItem)
@@ -2155,7 +2158,7 @@ void JournalList::setSelectedId(Journal::IdRepeat sel_id)
 {
     int i = 0;
     for (const auto& journal_xd : m_journal_xa) {
-        if (journal_xd.m_repeat_num == sel_id.second && journal_xd.m_id == sel_id.first) {
+        if (journal_xd.m_repeat_i == sel_id.second && journal_xd.m_id == sel_id.first) {
             SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
             SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
             m_topItemIndex = i;
@@ -2171,13 +2174,13 @@ void JournalList::findSelectedTransactions()
     long x = 0;
     m_selected_id.clear();
     std::set<Journal::IdRepeat> unique_ids;
-    for (const auto& tran : m_journal_xa) {
+    for (const auto& journal_xd : m_journal_xa) {
         if (GetItemState(x++, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
             continue;
-        int64 id = !tran.m_repeat_num ? tran.m_id : tran.m_bdid;
-        if (unique_ids.find({id, tran.m_repeat_num}) == unique_ids.end()) {
-            m_selected_id.push_back({id, tran.m_repeat_num});
-            unique_ids.insert({id, tran.m_repeat_num});
+        int64 id = !journal_xd.m_repeat_i ? journal_xd.m_id : journal_xd.m_sched_id;
+        if (unique_ids.find({id, journal_xd.m_repeat_i}) == unique_ids.end()) {
+            m_selected_id.push_back({id, journal_xd.m_repeat_i});
+            unique_ids.insert({id, journal_xd.m_repeat_i});
         }
     }
 }
@@ -2268,9 +2271,11 @@ void JournalList::doSearchText(const wxString& value)
 void JournalList::markSelectedTransaction()
 {
     long i = 0;
-    for (const auto & tran : m_journal_xa) {
-        Journal::IdRepeat id = { !tran.m_repeat_num ? tran.m_id : tran.m_bdid,
-            tran.m_repeat_num };
+    for (const auto & journal_xd : m_journal_xa) {
+        Journal::IdRepeat id = {
+            !journal_xd.m_repeat_i ? journal_xd.m_id : journal_xd.m_sched_id,
+            journal_xd.m_repeat_i
+        };
         //reset any selected items in the list
         if (GetItemState(i, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             SetItemState(i, 0, wxLIST_STATE_SELECTED);
@@ -2306,7 +2311,7 @@ void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
     TrxSplitModel::instance().db_savepoint();
     FieldValueModel::instance().db_savepoint();
     for (const auto& journal_xd : this->m_journal_xa) {
-        if (journal_xd.m_repeat_num)
+        if (journal_xd.m_repeat_i)
             continue;
         if (status_n.has_value() && journal_xd.m_status.id() != status_n.value().id())
             continue;

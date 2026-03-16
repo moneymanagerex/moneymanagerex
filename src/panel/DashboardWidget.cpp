@@ -317,11 +317,6 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (daysPayment > 14)
             break; // Done searching for all to include
 
-        // ignore invalid entries
-        SchedModel::RepeatNum rn;
-        if (!SchedModel::decode_repeat_num(sched_d, rn))
-            continue;
-
         int daysOverdue = sched_d.m_due_date.getDateTime().Subtract(today).GetDays();
         wxString daysRemainingStr = (daysPayment > 0
             ? wxString::Format(wxPLURAL("%d day", "%d days", daysPayment), daysPayment)

@@ -104,11 +104,11 @@ public:
     static TrxModel& instance();
 
 public:
-    static TrxCol::TRANSDATE   DATE(OP op, const mmDate& date);
-    static TrxCol::TRANSCODE   TYPE(OP op, TrxType trx_type);
-    static TrxCol::STATUS      STATUS(OP op, TrxStatus trx_status);
-    static TrxCol::STATUS      IS_VOID(bool value);
-    static TrxCol::DELETEDTIME IS_DELETED(bool value);
+    static auto DATE(OP op, const mmDate& date) -> TrxCol::TRANSDATE;
+    static auto TYPE(OP op, TrxType trx_type) -> TrxCol::TRANSCODE;
+    static auto STATUS(OP op, TrxStatus trx_status) -> TrxCol::STATUS;
+    static auto IS_VOID(bool value) -> TrxCol::STATUS;
+    static auto IS_DELETED(bool value) -> TrxCol::DELETEDTIME;
 
 public:
     // TODO: move to TrxData

@@ -118,7 +118,7 @@ TrxDialog::TrxDialog(
     if (found) {
         // a bill can only be duplicated
         m_mode = (duplicate || journal_id.second) ? MODE_DUP : MODE_EDIT;
-        RefTypeN split_ref_type = (m_journal_data.m_repeat_num == 0) ?
+        RefTypeN split_ref_type = (m_journal_data.m_repeat_i == 0) ?
             TrxSplitModel::s_ref_type :
             SchedSplitModel::s_ref_type;
         for (const auto& tp_d : Journal::split(m_journal_data)) {
@@ -154,12 +154,12 @@ TrxDialog::TrxDialog(
 
     m_custom_fields = new mmCustomDataTransaction(this,
         (m_mode == MODE_NEW ? TrxModel::s_ref_type :
-            m_journal_data.m_repeat_num == 0 ? TrxModel::s_ref_type :
+            m_journal_data.m_repeat_i == 0 ? TrxModel::s_ref_type :
             SchedModel::s_ref_type
         ),
         (m_mode == MODE_NEW ? 0 :
-            m_journal_data.m_repeat_num == 0 ? m_journal_data.m_id :
-            m_journal_data.m_bdid
+            m_journal_data.m_repeat_i == 0 ? m_journal_data.m_id :
+            m_journal_data.m_sched_id
         ),
         ID_CUSTOMFIELDS
     );
@@ -412,13 +412,13 @@ void TrxDialog::dataToControls()
     if (!skip_tag_init_) {
         wxArrayInt64 tag_id_a;
         for (const auto& gl_d : GL.find(
-            TagLinkCol::REFTYPE((m_journal_data.m_repeat_num == 0)
+            TagLinkCol::REFTYPE((m_journal_data.m_repeat_i == 0)
                 ? TrxModel::s_ref_type.name_n()
                 : SchedModel::s_ref_type.name_n()
             ),
-            TagLinkCol::REFID((m_journal_data.m_repeat_num == 0)
+            TagLinkCol::REFID((m_journal_data.m_repeat_i == 0)
                 ? m_journal_data.m_id
-                : m_journal_data.m_bdid
+                : m_journal_data.m_sched_id
             )
         ))
             tag_id_a.push_back(gl_d.m_tag_id);
@@ -1176,7 +1176,7 @@ void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 
 void TrxDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    RefTypeN ref_type = (m_journal_data.m_repeat_num == 0) ?
+    RefTypeN ref_type = (m_journal_data.m_repeat_i == 0) ?
         TrxModel::s_ref_type :
         SchedModel::s_ref_type;
     int64 transID = (m_mode == MODE_DUP) ? -1 : m_journal_data.m_id;
@@ -1246,8 +1246,8 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     }
 
     if (!ValidateData()) return;
-    if (!m_custom_fields->ValidateCustomValues((m_journal_data.m_repeat_num == 0) ?
-        m_journal_data.m_id : -(m_journal_data.m_bdid))
+    if (!m_custom_fields->ValidateCustomValues((m_journal_data.m_repeat_i == 0) ?
+        m_journal_data.m_id : -(m_journal_data.m_sched_id))
     )
         return;
 
@@ -1280,8 +1280,8 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     TrxModel::copy_from_trx(trx_n, m_journal_data);
     TrxModel::instance().unsafe_save_trx_n(trx_n);
     m_journal_data.m_id         = trx_n->id();
-    m_journal_data.m_bdid       = 0;
-    m_journal_data.m_repeat_num = 0;
+    m_journal_data.m_sched_id   = 0;
+    m_journal_data.m_repeat_i   = 0;
 
     TrxSplitModel::DataA tp_a;
     for (const auto& split_d : m_local_splits) {

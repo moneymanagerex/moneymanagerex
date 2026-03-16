@@ -54,20 +54,20 @@ BudgetModel& BudgetModel::instance()
     return Singleton<BudgetModel>::instance();
 }
 
-BudgetCol::PERIOD BudgetModel::FREQUENCY(OP op, BudgetFrequency freq)
+BudgetCol::PERIOD BudgetModel::FREQUENCY(OP op, BudgetFreq freq)
 {
     return BudgetCol::PERIOD(op, freq.name());
 }
 
 void BudgetModel::getBudgetEntry(
     int64 bp_id,
-    std::map<int64, BudgetFrequency>& budgetFreq,
+    std::map<int64, BudgetFreq>& budgetFreq,
     std::map<int64, double>& budgetAmt,
     std::map<int64, wxString>& budgetNotes
 ) {
     //Set std::map with zerros
     for (const auto& category_d : CategoryModel::instance().find_all()) {
-        budgetFreq[category_d.m_id] = BudgetFrequency(BudgetFrequency::e_none);
+        budgetFreq[category_d.m_id] = BudgetFreq(BudgetFreq::e_none);
         budgetAmt[category_d.m_id]  = 0.0;
     }
 
@@ -75,7 +75,7 @@ void BudgetModel::getBudgetEntry(
         BudgetCol::BUDGETYEARID(bp_id)
     )) {
         int64 category_id = budget_d.m_category_id;
-        budgetFreq[category_id]  = budget_d.m_frequency;
+        budgetFreq[category_id]  = budget_d.m_freq;
         budgetAmt[category_id]   = budget_d.m_amount;
         budgetNotes[category_id] = budget_d.m_notes;
     }
@@ -213,7 +213,7 @@ void BudgetModel::copyBudgetYear(int64 dst_bp_id, int64 src_bp_id)
         new_budget_d.m_period_id = dst_bp_id;
         if (optionDeductMonthly && budgetedMonths > 0) {
             double yearAmount = src_budget_d.amount_per_year();
-            new_budget_d.m_frequency = BudgetFrequency(BudgetFrequency::e_monthly);
+            new_budget_d.m_freq = BudgetFreq(BudgetFreq::e_monthly);
             // CHECK: budgetedMonths can be 12
             new_budget_d.m_amount    = (yearDeduction[new_budget_d.m_category_id] < yearAmount)
                 ? (yearAmount - yearDeduction[new_budget_d.m_category_id]) / (12 - budgetedMonths)

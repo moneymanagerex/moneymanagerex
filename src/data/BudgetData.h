@@ -25,13 +25,13 @@
 // User-friendly representation of a record in table BUDGETTABLE_V1.
 struct BudgetData
 {
-    int64           m_id;
-    int64           m_period_id;
-    int64           m_category_id;
-    BudgetFrequency m_frequency;
-    double          m_amount;
-    wxString        m_notes;
-    bool            m_active;
+    int64      m_id;
+    int64      m_period_id;
+    int64      m_category_id;
+    BudgetFreq m_freq;
+    double     m_amount;
+    wxString   m_notes;
+    bool       m_active;
 
     explicit BudgetData();
     explicit BudgetData(wxSQLite3ResultSet& q);
@@ -56,10 +56,10 @@ struct BudgetData
     bool operator< (const BudgetData* other) const { return id() < other->id(); }
 
     double amount_per_year() const {
-        return m_amount * m_frequency.times_per_year();
+        return m_amount * m_freq.times_per_year();
     }
     double amount_per_month() const {
-        return m_amount * m_frequency.times_per_month();
+        return m_amount * m_freq.times_per_month();
     }
 
     struct SorterByBUDGETENTRYID
@@ -90,7 +90,7 @@ struct BudgetData
     {
         bool operator()(const BudgetData& x, const BudgetData& y)
         {
-            return x.m_frequency.id() < y.m_frequency.id();
+            return x.m_freq.id() < y.m_freq.id();
         }
     };
 
