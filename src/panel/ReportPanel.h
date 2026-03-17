@@ -83,6 +83,7 @@ private:
     wxChoice*         w_stocks_choice      = nullptr;
     wxChoice*         w_chart_choice       = nullptr;
     wxTextCtrl*       w_filter             = nullptr;
+    wxBitmapButton*   w_filter_cancel      = nullptr;
     wxChoice*         w_selection_choice   = nullptr;
 
 
@@ -135,6 +136,8 @@ private:
     void onDateRangeSelect(wxCommandEvent& event);
     void onDateRangeEdit(wxCommandEvent& event);
     void onFilterChanged(wxCommandEvent& event);
+    void onFilterTextChanged(wxCommandEvent& event);
+    void onFilterCancel(wxCommandEvent& event);
     void onSelectionChanged(wxCommandEvent& event);
 
     void updateFilter();
