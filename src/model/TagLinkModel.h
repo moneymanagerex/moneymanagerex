@@ -41,6 +41,6 @@ public:
     int  update(RefTypeN ref_type, int64 ref_id, const DataA& src_gl_a);
 
     auto get_key_data_n(int64 tag_id, RefTypeN ref_type, int64 ref_id) -> const Data*;
-    auto find_ref_tag_m(RefTypeN ref_type, int64 ref_id) -> std::map<wxString, int64>;
+    auto find_ref_mTagName(RefTypeN ref_type, int64 ref_id) -> std::map<wxString, int64>;
     auto find_refType_mRefId(RefTypeN ref_type) -> std::map<int64, DataA>;
 };

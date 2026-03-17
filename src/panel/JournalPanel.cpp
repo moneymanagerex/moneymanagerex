@@ -785,9 +785,9 @@ void JournalPanel::filterList()
 
         bool expandSplits = false;
         if (m_filter_advanced) {
-            int txnMatch = m_trans_filter_dlg->mmIsRecordMatches(*trx_n, journal_dx.m_splits);
+            int txnMatch = m_trans_filter_dlg->mmIsRecordMatches(*trx_n, journal_dx.m_tp_a);
             if (txnMatch) {
-                expandSplits = (txnMatch < static_cast<int>(journal_dx.m_splits.size()) + 1);
+                expandSplits = (txnMatch < static_cast<int>(journal_dx.m_tp_a.size()) + 1);
             }
             else {
               continue;
@@ -866,7 +866,7 @@ void JournalPanel::filterList()
         wxString tranTagnames = journal_dx.TAGNAMES;
         wxString tranDisplaySN = journal_dx.displaySN;
         wxString tranDisplayID = journal_dx.displayID;
-        for (const auto& tp_d : journal_dx.m_splits) {
+        for (const auto& tp_d : journal_dx.m_tp_a) {
             if (m_filter_advanced) {
               if (!m_trans_filter_dlg->mmIsSplitRecordMatches<TrxSplitModel>(tp_d))
                   continue;
@@ -893,15 +893,18 @@ void JournalPanel::filterList()
                 m_flow += journal_dx.m_account_flow;
             }
             journal_dx.m_notes.Append((trx_n->m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
-            wxString tagnames;
-            for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
+            wxString tag_names;
+            for (const auto& tag_name_id : TagLinkModel::instance().find_ref_mTagName(
                 (repeat_i == 0 ? TrxSplitModel::s_ref_type : SchedSplitModel::s_ref_type),
                 tp_d.m_id
             )) {
-                tagnames.Append(tag.first + " ");
+                tag_names.Append(tag_name_id.first + " ");
             }
-            if (!tagnames.IsEmpty())
-                journal_dx.TAGNAMES.Append((journal_dx.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
+            if (!tag_names.IsEmpty())
+                journal_dx.TAGNAMES.Append(
+                    (journal_dx.TAGNAMES.IsEmpty() ? "" : ", ") +
+                    tag_names.Trim()
+                );
             m_lc->m_journal_xa.push_back(journal_dx);
         }
     }

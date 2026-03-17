@@ -646,7 +646,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
                 TrxSplitModel::DataA tp_a;
                 std::vector<wxArrayInt64> splitTags;
-                for (const auto& qp_d : SchedModel::instance().get_data_qp_a(sched_d)) {
+                for (const auto& qp_d : SchedModel::instance().find_id_qp_a(sched_d.m_id)) {
                     TrxSplitData tp_d = TrxSplitData();
                     tp_d.m_trx_id      = new_trx_id;
                     tp_d.m_category_id = qp_d.m_category_id;

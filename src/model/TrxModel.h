@@ -34,8 +34,7 @@
 class TrxModel : public TableFactory<TrxTable, TrxData>
 {
 public:
-    using TrxSplitDataA = TrxSplitModel::DataA;
-    using TagLinkDataA  = TagLinkModel::DataA;
+    using SplitDataA = TrxSplitModel::DataA;
 
 public:
     struct DataExt: public Data
@@ -45,8 +44,8 @@ public:
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
-        TrxSplitDataA m_splits;
-        TagLinkDataA m_tags;
+        TrxSplitModel::DataA m_tp_a;
+        TagLinkModel::DataA m_gl_a;
         wxString TAGNAMES;
 
         // filled-in by constructor; overwritten by JournalPanel::filterList()
@@ -70,10 +69,10 @@ public:
         double UDFC_value[5] = {0, 0, 0, 0, 0};
 
         DataExt();
-        explicit DataExt(const Data& r);
-        DataExt(const Data& r,
-            const std::map<int64 /* m_id */, TrxSplitModel::DataA> & splits,
-            const std::map<int64 /* m_id */, TagLinkModel::DataA> & tags
+        explicit DataExt(const Data& trx_d);
+        DataExt(const Data& trx_d,
+            const std::map<int64, TrxSplitModel::DataA>& trxId_tpA_m,
+            const std::map<int64, TagLinkModel::DataA>& trxId_glA_m
         );
         ~DataExt();
 
@@ -89,7 +88,6 @@ public:
         wxString info() const;
         const wxString to_json();
     };
-
     typedef std::vector<DataExt> DataExtA;
 
 public:
@@ -126,7 +124,8 @@ public:
     auto save_trx_n(Data& trx_d) -> const Data*;
     bool save_trx_a(DataA& rows);
 
-    auto find_data_split_a(const Data& trx_d) -> const TrxSplitDataA;
+    auto find_id_tp_a(int64 trx_id) -> const TrxSplitModel::DataA;
+    auto find_id_gl_a(int64 trx_id) -> const TagLinkModel::DataA;
     auto find_all_aDateTimeId() -> const TrxModel::DataA;
 
     void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 accountID = -1);
@@ -207,13 +206,13 @@ public:
 
 inline bool TrxModel::DataExt::has_split() const
 {
-    return !this->m_splits.empty();
+    return !this->m_tp_a.empty();
 }
 
 inline bool TrxModel::DataExt::has_tags() const
 
 {
-    return !this->m_tags.empty();
+    return !this->m_gl_a.empty();
 }
 
 inline bool TrxModel::DataExt::has_attachment() const

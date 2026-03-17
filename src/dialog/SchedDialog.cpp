@@ -126,7 +126,7 @@ SchedDialog::SchedDialog(
             tag_id_a.push_back(gl_d.m_tag_id);
         m_sched_dx.TAGS = tag_id_a;
 
-        for (const auto& qp_d : SchedModel::instance().get_data_qp_a(*sched_n)) {
+        for (const auto& qp_d : SchedModel::instance().find_id_qp_a(sched_n->m_id)) {
             wxArrayInt64 split_tag_id_a;
             for (const auto& gl_d : TagLinkModel::instance().find(
                 TagLinkCol::REFTYPE(SchedSplitModel::s_ref_type.name_n()),
@@ -348,7 +348,7 @@ void SchedDialog::SetDialogParameters(int64 trx_id)
     }
 
     if (trx_dx.has_split()) {
-        for (auto& tp_d : trx_dx.m_splits) {
+        for (auto& tp_d : trx_dx.m_tp_a) {
             Split split_d;
             split_d.m_category_id = tp_d.m_category_id;
             split_d.m_amount      = tp_d.m_amount;

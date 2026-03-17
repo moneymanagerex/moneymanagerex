@@ -135,7 +135,7 @@ void FlowReport::getTransactions()
         ) != m_account_id.end();
         if (!isAccountFound && !isToAccountFound)
             continue; // skip account
-        const auto& tp_a = TrxModel::instance().find_data_split_a(trx_d);
+        const auto& tp_a = TrxModel::instance().find_id_tp_a(trx_d.m_id);
         if (tp_a.empty()) {
             trx_d.m_amount = trueAmount(trx_d);
             m_forecastVector.push_back(trx_d);
@@ -183,8 +183,11 @@ void FlowReport::getTransactions()
             trx_d.m_amount          = sched_d.m_amount;
             trx_d.m_to_amount       = sched_d.m_to_amount;
 
-            if (!SchedModel::instance().get_data_qp_a(sched_d).empty()) {
-                for (const auto& qp_d : SchedModel::instance().get_data_qp_a(sched_d)) {
+            const SchedSplitModel::DataA qp_a = SchedModel::instance().find_id_qp_a(
+                sched_d.m_id
+            );
+            if (!qp_a.empty()) {
+                for (const auto& qp_d : qp_a) {
                     trx_d.m_category_id_n = qp_d.m_category_id;
                     trx_d.m_amount        = qp_d.m_amount;
                     trx_d.m_amount        = trueAmount(trx_d);

@@ -84,7 +84,7 @@ SchedCol::STATUS SchedModel::IS_VOID(bool value)
 bool SchedModel::purge_id(int64 sched_id)
 {
     // purge SchedSplitData owned by sched_id
-    for (auto& qp_d : SchedModel::get_data_qp_a(*get_id_data_n(sched_id)))
+    for (auto& qp_d : find_id_qp_a(sched_id))
         SchedSplitModel::instance().purge_id(qp_d.m_id);
 
     // remove TagLinkData owned by sched_id
@@ -96,18 +96,18 @@ bool SchedModel::purge_id(int64 sched_id)
     return unsafe_remove_id(sched_id);
 }
 
-const SchedSplitModel::DataA SchedModel::get_data_qp_a(const Data& sched_d)
+const SchedSplitModel::DataA SchedModel::find_id_qp_a(int64 sched_id)
 {
     return SchedSplitModel::instance().find(
-        SchedSplitCol::TRANSID(sched_d.m_id)
+        SchedSplitCol::TRANSID(sched_id)
     );
 }
 
-const TagLinkModel::DataA SchedModel::get_data_gl_a(const Data& sched_d)
+const TagLinkModel::DataA SchedModel::find_id_gl_a(int64 sched_id)
 {
     return TagLinkModel::instance().find(
         TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
-        TagLinkCol::REFID(sched_d.m_id)
+        TagLinkCol::REFID(sched_id)
     );
 }
 
@@ -193,29 +193,26 @@ SchedModel::DataExt::DataExt()
 
 SchedModel::DataExt::DataExt(const Data& sched_d) :
     Data(sched_d),
-    m_bill_splits(SchedModel::instance().get_data_qp_a(sched_d)),
-    m_tags(TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
-        TagLinkCol::REFID(sched_d.m_id)
-    ))
+    m_qp_a(SchedModel::instance().find_id_qp_a(sched_d.m_id)),
+    m_gl_a(SchedModel::instance().find_id_gl_a(sched_d.m_id))
 {
-    if (!m_tags.empty()) {
-        wxArrayString tagnames;
-        for (const auto& gl_d : m_tags)
-            tagnames.Add(TagModel::instance().get_id_data_n(gl_d.m_tag_id)->m_name);
+    if (!m_gl_a.empty()) {
+        wxArrayString tag_name_a;
+        for (const auto& gl_d : m_gl_a)
+            tag_name_a.Add(TagModel::instance().get_id_data_n(gl_d.m_tag_id)->m_name);
         // Sort TAGNAMES
-        tagnames.Sort();
-        for (const auto& name : tagnames)
-            this->TAGNAMES += (this->TAGNAMES.empty() ? "" : " ") + name;
+        tag_name_a.Sort();
+        for (const auto& tag_name : tag_name_a)
+            TAGNAMES += (TAGNAMES.empty() ? "" : " ") + tag_name;
     }
 
-    if (!m_bill_splits.empty()) {
-        for (const auto& qp_d : m_bill_splits) {
+    if (!m_qp_a.empty()) {
+        for (const auto& qp_d : m_qp_a) {
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
                 + CategoryModel::instance().get_id_fullname(qp_d.m_category_id);
 
             wxString splitTags;
-            for (const auto& tag_name_id : TagLinkModel::instance().find_ref_tag_m(
+            for (const auto& tag_name_id : TagLinkModel::instance().find_ref_mTagName(
                 SchedSplitModel::s_ref_type, qp_d.m_id
             )) {
                 splitTags.Append(tag_name_id.first + " ");

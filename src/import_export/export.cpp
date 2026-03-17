@@ -49,7 +49,7 @@ const wxString mmExportTransaction::getTransactionCSV(
     bool is_transfer = trx_dx.is_transfer();
     const wxString delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
-    wxString categ = trx_dx.m_splits.empty()
+    wxString categ = trx_dx.m_tp_a.empty()
         ? CategoryModel::instance().get_id_fullname(trx_dx.m_category_id_n, ":")
         : "";
     wxString transNum = trx_dx.m_number;
@@ -78,7 +78,7 @@ const wxString mmExportTransaction::getTransactionCSV(
     }
 
     if (trx_dx.has_split()) {
-        for (const auto& tp_d : trx_dx.m_splits) {
+        for (const auto& tp_d : trx_dx.m_tp_a) {
             double valueSplit = tp_d.m_amount;
             if (trx_dx.is_withdrawal())
                 valueSplit = -valueSplit;
@@ -132,7 +132,7 @@ const wxString mmExportTransaction::getTransactionQIF(
     bool reverse
 ) {
     wxString buffer = "";
-    wxString categ = trx_dx.m_splits.empty()
+    wxString categ = trx_dx.m_tp_a.empty()
         ? CategoryModel::instance().get_id_fullname(trx_dx.m_category_id_n, ":")
         : "";
     // Replace square brackets which are used to denote transfers in QIF
@@ -160,11 +160,11 @@ const wxString mmExportTransaction::getTransactionQIF(
 
     // don't allow '/' in category name as it is reserved for the class/tag separator
     categ.Replace("/", "-");
-    if (!trx_dx.m_tags.empty()) {
+    if (!trx_dx.m_gl_a.empty()) {
         categ.Append("/");
-        auto numTags = trx_dx.m_tags.size();
+        auto numTags = trx_dx.m_gl_a.size();
         for (decltype(numTags) i = 0; i < numTags; i++) {
-            const TagData* tag_n = TagModel::instance().get_id_data_n(trx_dx.m_tags[i].m_tag_id);
+            const TagData* tag_n = TagModel::instance().get_id_data_n(trx_dx.m_gl_a[i].m_tag_id);
             categ.Append((i > 0 ? ":" : "") + tag_n->m_name);
         }
     }
@@ -188,7 +188,7 @@ const wxString mmExportTransaction::getTransactionQIF(
         buffer << "M" << notes << "\n";
     }
 
-    for (const auto& tp_d : trx_dx.m_splits) {
+    for (const auto& tp_d : trx_dx.m_tp_a) {
         double valueSplit = tp_d.m_amount;
         if (trx_dx.is_withdrawal())
             valueSplit = -valueSplit;
@@ -415,14 +415,14 @@ void mmExportTransaction::getTransactionJSON(
 
     json_writer.Key("TAGS");
     json_writer.StartArray();
-    for (const auto& gl_d : trx_dx.m_tags)
+    for (const auto& gl_d : trx_dx.m_gl_a)
         json_writer.Int64(gl_d.m_tag_id.GetValue());
     json_writer.EndArray();
 
-    if (!trx_dx.m_splits.empty()) {
+    if (!trx_dx.m_tp_a.empty()) {
         json_writer.Key("DIVISION");
         json_writer.StartArray();
-        for (const auto& tp_d : trx_dx.m_splits) {
+        for (const auto& tp_d : trx_dx.m_tp_a) {
             double valueSplit = tp_d.m_amount;
             if (trx_dx.is_withdrawal()) {
                 valueSplit = -valueSplit;
@@ -435,10 +435,11 @@ void mmExportTransaction::getTransactionJSON(
             json_writer.Double(valueSplit);
             json_writer.Key("TAGS");
             json_writer.StartArray();
-            for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
+            for (const auto& tag_name_id : TagLinkModel::instance().find_ref_mTagName(
                 TrxSplitModel::s_ref_type, tp_d.m_id)
-            )
-                json_writer.Int64(tag.second.GetValue());
+            ) {
+                json_writer.Int64(tag_name_id.second.GetValue());
+            }
             json_writer.EndArray();
             json_writer.EndObject();
 

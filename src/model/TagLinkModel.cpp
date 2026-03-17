@@ -82,7 +82,7 @@ const TagLinkData* TagLinkModel::get_key_data_n(int64 tag_id, RefTypeN ref_type,
     return gl_n;
 }
 
-std::map<wxString, int64> TagLinkModel::find_ref_tag_m(RefTypeN ref_type, int64 ref_id)
+std::map<wxString, int64> TagLinkModel::find_ref_mTagName(RefTypeN ref_type, int64 ref_id)
 {
     std::map<wxString, int64> tag_name_id_m;
     for (const auto& gl_d : find(

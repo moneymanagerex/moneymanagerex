@@ -34,13 +34,9 @@ public:
     // id represents TRANSID if repeat_i == 0, or BDID otherwise
     typedef std::pair<int64 /* id */, int /* repeat_i */> IdRepeat;
 
-    typedef TrxSplitModel::DataA TrxSplitDataA;
-    typedef SchedSplitModel::DataA SchedSplitDataA;
-    typedef TagLinkModel::DataA TagLinkDataA;
-
-    static TrxData execute_bill(const SchedData& r, wxString date);
-    static TrxModel::DataExt execute_bill_full(const SchedData& r, wxString date);
-    static TrxSplitDataA execute_splits(const SchedSplitDataA& rs);
+    static TrxData execute_bill(const SchedData& sched_d, wxString date);
+    static TrxModel::DataExt execute_bill_full(const SchedData& sched_d, wxString date);
+    static TrxSplitModel::DataA execute_splits(const SchedSplitModel::DataA& rs);
 
     struct Data: public TrxData
     {
@@ -49,8 +45,8 @@ public:
 
         Data();
         explicit Data(const TrxData& t);
-        explicit Data(const SchedData& r);
-        Data(const SchedData& r, wxString date, int repeat_i);
+        explicit Data(const SchedData& sched_d);
+        Data(const SchedData& sched_d, wxString date, int repeat_i);
         ~Data();
     };
     typedef std::vector<Data> DataA;
@@ -63,14 +59,14 @@ public:
         explicit DataExt(const TrxData& t);
         DataExt(
             const TrxData& t,
-            const std::map<int64 /* TRANSID */, TrxSplitDataA>& splits,
-            const std::map<int64 /* TRANSID */, TagLinkDataA>& tags
+            const std::map<int64, TrxSplitModel::DataA>& trxId_tpA_m,
+            const std::map<int64, TagLinkModel::DataA>& trxId_glA_m
         );
-        DataExt(const SchedData& r);
-        DataExt(const SchedData& r, wxString date, int repeat_i);
-        DataExt(const SchedData& r, wxString date, int repeat_i,
-            const std::map<int64 /* BDID */, SchedSplitDataA>& budgetsplits,
-            const std::map<int64 /* BDID */, TagLinkDataA>& tags
+        DataExt(const SchedData& sched_d);
+        DataExt(const SchedData& sched_d, wxString date, int repeat_i);
+        DataExt(const SchedData& sched_d, wxString date, int repeat_i,
+            const std::map<int64, SchedSplitModel::DataA>& schedId_qpA_m,
+            const std::map<int64, TagLinkModel::DataA>& schedId_glA_m
         );
         ~DataExt();
     };
@@ -95,8 +91,7 @@ public:
         }
     };
 
-    static void setEmptyData(Data &data, int64 account_id);
-    static bool setJournalData(Data &data, IdB journal_id);
-    static const TrxSplitModel::DataA split(Data &r);
+    static void setEmptyData(Data& journal_d, int64 account_id);
+    static bool setJournalData(Data& journal_d, IdB journal_id);
+    static auto split(Data& journal_d) -> const TrxSplitModel::DataA;
 };
-

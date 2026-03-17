@@ -34,7 +34,7 @@
 class SchedModel : public TableFactory<SchedTable, SchedData>
 {
 public:
-    using TrxSplitDataA = SchedSplitModel::DataA;
+    using SplitDataA = SchedSplitModel::DataA;
 
 public:
     // Pre-initialised data structure
@@ -68,12 +68,12 @@ public:
         wxString ACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
-        SchedSplitModel::DataA m_bill_splits;
-        TagLinkModel::DataA m_tags;
+        SchedSplitModel::DataA m_qp_a;
+        TagLinkModel::DataA m_gl_a;
         wxString TAGNAMES;
 
         DataExt();
-        explicit DataExt(const Data& r);
+        explicit DataExt(const Data& sched_d);
 
         wxString real_payee_name() const;
     };
@@ -97,10 +97,10 @@ public:
 
 public:
     // override
-    bool purge_id(int64 id) override;
+    bool purge_id(int64 sched_id) override;
 
-    auto get_data_qp_a(const Data& sched_d) -> const SchedSplitModel::DataA;
-    auto get_data_gl_a(const Data& sched_d) -> const TagLinkModel::DataA;
+    auto find_id_qp_a(int64 sched_id) -> const SchedSplitModel::DataA;
+    auto find_id_gl_a(int64 sched_id) -> const TagLinkModel::DataA;
     bool is_data_allowed(const Data& sched_d);
     void reschedule_id(int64 sched_id);
 

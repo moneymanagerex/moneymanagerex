@@ -209,10 +209,18 @@ bool TrxModel::save_trx_a(DataA& trx_a)
     return ok;
 }
 
-const TrxSplitModel::DataA TrxModel::find_data_split_a(const Data& trx_d)
+const TrxSplitModel::DataA TrxModel::find_id_tp_a(int64 trx_id)
 {
     return TrxSplitModel::instance().find(
-        TrxSplitCol::TRANSID(trx_d.m_id)
+        TrxSplitCol::TRANSID(trx_id)
+    );
+}
+
+const TagLinkModel::DataA TrxModel::find_id_gl_a(int64 trx_id)
+{
+    return TagLinkModel::instance().find(
+        TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
+        TagLinkCol::REFID(trx_id)
     );
 }
 
@@ -323,13 +331,10 @@ TrxModel::DataExt::DataExt() :
 {
 }
 
-TrxModel::DataExt::DataExt(const Data& r) :
-    Data(r),
-    m_splits(TrxSplitModel::instance().find(
-        TrxSplitCol::TRANSID(r.m_id))),
-    m_tags(TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
-        TagLinkCol::REFID(r.m_id))),
+TrxModel::DataExt::DataExt(const Data& trx_d) :
+    Data(trx_d),
+    m_tp_a(TrxModel::instance().find_id_tp_a(trx_d.m_id)),
+    m_gl_a(TrxModel::instance().find_id_gl_a(trx_d.m_id)),
     m_account_w_id_n(-1), m_account_d_id_n(-1), m_amount_w(0), m_amount_d(0),
     SN(0), m_account_flow(0), m_account_balance(0)
 {
@@ -337,17 +342,19 @@ TrxModel::DataExt::DataExt(const Data& r) :
 }
 
 TrxModel::DataExt::DataExt(
-    const Data& r,
-    const std::map<int64 /* m_id */, TrxSplitModel::DataA>& splits,
-    const std::map<int64 /* m_id */, TagLinkModel::DataA>& tags
+    const Data& trx_d,
+    const std::map<int64 /* m_id */, TrxSplitModel::DataA>& trxId_tpA_m,
+    const std::map<int64 /* m_id */, TagLinkModel::DataA>& trxId_glA_m
 ) :
-    Data(r),
+    Data(trx_d),
     m_account_w_id_n(-1), m_account_d_id_n(-1), m_amount_w(0), m_amount_d(0),
     SN(0), m_account_flow(0), m_account_balance(0)
 {
-    if (const auto it = splits.find(this->id()); it != splits.end()) m_splits = it->second;
+    if (const auto it = trxId_tpA_m.find(this->id()); it != trxId_tpA_m.end())
+        m_tp_a = it->second;
 
-    if (const auto tag_it = tags.find(this->id()); tag_it != tags.end()) m_tags = tag_it->second;
+    if (const auto tag_it = trxId_glA_m.find(this->id()); tag_it != trxId_glA_m.end())
+        m_gl_a = tag_it->second;
 
     fill_data();
 }
@@ -365,8 +372,8 @@ void TrxModel::DataExt::fill_data()
         PAYEENAME = PayeeModel::instance().get_id_name(m_payee_id_n);
     }
 
-    if (!m_splits.empty()) {
-        for (const auto& tp_d : m_splits)
+    if (!m_tp_a.empty()) {
+        for (const auto& tp_d : m_tp_a)
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
                 + CategoryModel::instance().get_id_fullname(tp_d.m_category_id);
     }
@@ -374,9 +381,9 @@ void TrxModel::DataExt::fill_data()
         CATEGNAME = CategoryModel::instance().get_id_fullname(m_category_id_n);
     }
 
-    if (!m_tags.empty()) {
+    if (!m_gl_a.empty()) {
         wxArrayString tag_name_a;
-        for (const auto& gl_d : m_tags)
+        for (const auto& gl_d : m_gl_a)
             tag_name_a.Add(TagModel::instance().get_id_data_n(gl_d.m_tag_id)->m_name);
         // Sort TAGNAMES
         tag_name_a.Sort(CaseInsensitiveCmp);
@@ -484,7 +491,7 @@ const wxString TrxModel::DataExt::to_json()
     if (this->has_tags()) {
         json_writer.Key("TAGS");
         json_writer.StartArray();
-        for (const auto& tp_d : m_splits) {
+        for (const auto& tp_d : m_tp_a) {
             json_writer.StartObject();
             json_writer.Key(CategoryModel::instance().get_id_fullname(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
@@ -495,7 +502,7 @@ const wxString TrxModel::DataExt::to_json()
     if (this->has_split()) {
         json_writer.Key("CATEGS");
         json_writer.StartArray();
-        for (const auto & tp_d : m_splits) {
+        for (const auto & tp_d : m_tp_a) {
             json_writer.StartObject();
             json_writer.Key(CategoryModel::instance().get_id_fullname(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);

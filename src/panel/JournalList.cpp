@@ -863,7 +863,7 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             if (!m_journal_xa[row].has_split() && m_journal_xa[row].has_tags()) {
                 copyText_ = menuItemText = m_journal_xa[row].TAGNAMES;
                 // build the tag filter json
-                for (const auto& gl_d : m_journal_xa[row].m_tags) {
+                for (const auto& gl_d : m_journal_xa[row].m_gl_a) {
                     rightClickFilter_ += (rightClickFilter_.IsEmpty()
                         ? "{\n\"TAGS\": [\n"
                         : ",\n"
@@ -1778,7 +1778,7 @@ int64 JournalList::onPaste(const TrxData* trx_n)
     }
 
     // Clone split transactions
-    for (const auto& tp_d : TrxModel::instance().find_data_split_a(*trx_n)) {
+    for (const auto& tp_d : TrxModel::instance().find_id_tp_a(trx_n->m_id)) {
         TrxSplitData new_tp_d;
         new_tp_d.clone_from(tp_d);
         new_tp_d.m_trx_id = new_trx_id;
@@ -2026,7 +2026,7 @@ const wxString JournalList::getItem(long item, int col_id) const
     case LIST_ID_NOTES: {
         value = journal_dx.m_notes;
         if (!journal_dx.displayID.Contains(".")) {
-            for (const auto& tp_d : journal_dx.m_splits)
+            for (const auto& tp_d : journal_dx.m_tp_a)
                 value += wxString::Format(" %s", tp_d.m_notes);
         }
         value.Replace("\n", " ");
@@ -2037,9 +2037,9 @@ const wxString JournalList::getItem(long item, int col_id) const
     case LIST_ID_TAGS:
         value = journal_dx.TAGNAMES;
         if (!journal_dx.displayID.Contains(".")) {
-            for (const auto& tp_d : journal_dx.m_splits) {
+            for (const auto& tp_d : journal_dx.m_tp_a) {
                 wxString tagnames;
-                std::map<wxString, int64> tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
+                std::map<wxString, int64> tag_name_id_m = TagLinkModel::instance().find_ref_mTagName(
                     TrxSplitModel::s_ref_type, tp_d.m_id
                 );
                 std::map<wxString, int64, caseInsensitiveComparator> sortedTags(tag_name_id_m.begin(), tag_name_id_m.end());

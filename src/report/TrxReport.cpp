@@ -573,7 +573,7 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
             int splitIndex = 1;
             bool match = false;
             wxString tranTagnames = trx_dx.TAGNAMES;
-            for (const auto& tp_d : trx_dx.m_splits) {
+            for (const auto& tp_d : trx_dx.m_tp_a) {
                 trx_dx.displayID       = wxString::Format("%lld", trx_d.m_id) + "." +
                     wxString::Format("%i", splitIndex++);
                 trx_dx.m_category_id_n = tp_d.m_category_id;
@@ -593,13 +593,16 @@ void TrxReport::Run(wxSharedPtr<TrxFilterDialog>& dlg)
                     trx_dx.m_notes.Append((trx_d.m_notes.IsEmpty() ? "" : " ") + tp_d.m_notes);
 
                     wxString tagnames;
-                    for (const auto& [tag_name, _] : TagLinkModel::instance().find_ref_tag_m(
+                    for (const auto& [tag_name, _] : TagLinkModel::instance().find_ref_mTagName(
                         TrxSplitModel::s_ref_type, tp_d.m_id
                     )) {
                         tagnames.Append(tag_name + " ");
                     }
                     if (!tagnames.IsEmpty())
-                        trx_dx.TAGNAMES.Append((trx_dx.TAGNAMES.IsEmpty() ? "" : ", ") + tagnames.Trim());
+                        trx_dx.TAGNAMES.Append(
+                            (trx_dx.TAGNAMES.IsEmpty() ? "" : ", ") +
+                            tagnames.Trim()
+                        );
 
                     if (!combine_splits)
                         trx_xa.push_back(trx_dx);
