@@ -64,6 +64,14 @@ double SchedSplitModel::get_data_amount(const DataA& qp_a)
     return amount;
 }
 
+const TagLinkModel::DataA SchedSplitModel::find_id_gl_a(int64 qp_id)
+{
+    return TagLinkModel::instance().find(
+        TagLinkCol::REFTYPE(SchedSplitModel::s_ref_type.name_n()),
+        TagLinkCol::REFID(qp_id)
+    );
+}
+
 std::map<int64, SchedSplitModel::DataA> SchedSplitModel::find_all_mSchedId()
 {
     std::map<int64, SchedSplitModel::DataA> schedId_qpA_m;

@@ -25,6 +25,7 @@
 #include "data/SchedSplitData.h"
 
 #include "_ModelBase.h"
+#include "TagLinkModel.h"
 
 class SchedSplitModel : public TableFactory<SchedSplitTable, SchedSplitData>
 {
@@ -43,6 +44,7 @@ public:
     bool purge_id(int64 qp_id) override;
 
     auto get_data_amount(const DataA& qp_a) -> double;
+    auto find_id_gl_a(int64 qp_id) -> const TagLinkModel::DataA;
     auto find_all_mSchedId() -> std::map<int64, DataA>;
     int  update(int64 dst_sched_id, DataA& src_qp_a);
 };

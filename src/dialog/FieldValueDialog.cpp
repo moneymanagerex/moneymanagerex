@@ -62,7 +62,10 @@ FieldValueDialog::~FieldValueDialog()
 
 // TODO: refactor to FieldValueDialog()
 mmCustomDataTransaction::mmCustomDataTransaction(
-    wxDialog* dialog, RefTypeN ref_type, int64 ref_id, wxWindowID base_id
+    wxDialog* dialog,
+    RefTypeN ref_type,
+    int64 ref_id,
+    wxWindowID base_id
 ) :
     FieldValueDialog(dialog, ref_type, ref_id)
 {
