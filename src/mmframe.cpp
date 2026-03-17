@@ -4036,10 +4036,12 @@ void mmGUIFrame::OnViewToolbar(wxCommandEvent &event)
 void mmGUIFrame::OnViewLinks(wxCommandEvent& WXUNUSED(event))
 {
     if (m_mgr.GetPane("Navigation").IsShown()) {
+        SettingModel::instance().setString("AUIPERSPECTIVE_NAV", m_mgr.SavePerspective());
         m_mgr.GetPane("Navigation").Hide();
     }
     else {
         m_mgr.GetPane("Navigation").Show();
+        m_mgr.LoadPerspective(SettingModel::instance().getString("AUIPERSPECTIVE_NAV", wxEmptyString));
     }
     m_mgr.Update();
 }
