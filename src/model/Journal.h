@@ -112,13 +112,14 @@ public:
         {
             JournalKey x_key = x.key();
             JournalKey y_key = y.key();
-            return (x_key.is_realized() && !y_key.is_realized()) ||
+            return (x_key.is_realized() && !y_key.is_realized()) || (
                 x_key.is_realized() == y_key.is_realized() && (
                     x_key.m_ref_id < y_key.m_ref_id || (
                         x_key.m_ref_id == y_key.m_ref_id &&
                         x_key.m_repeat_id < y_key.m_repeat_id
                     )
-                );
+                )
+            );
         }
     };
 
