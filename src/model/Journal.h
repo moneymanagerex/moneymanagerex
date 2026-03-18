@@ -43,7 +43,9 @@ struct JournalKey
     auto rid() const -> int64 { return m_repeat_id < 0 ? m_ref_id : -1; }
     auto sid() const -> int64 { return m_repeat_id > 0 ? m_ref_id : -1; }
 
-    bool operator== (const JournalKey&) const = default;
+    bool operator== (const JournalKey& other) const {
+        return m_repeat_id == other.m_repeat_id && m_ref_id == other.m_ref_id;
+    }
     bool operator< (const JournalKey& other) const {
         return m_repeat_id < other.m_repeat_id || (
             m_repeat_id == other.m_repeat_id && m_ref_id < other.m_ref_id
