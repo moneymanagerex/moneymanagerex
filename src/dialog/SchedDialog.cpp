@@ -155,9 +155,15 @@ SchedDialog::SchedDialog(
     mmThemeAutoColour(this);
 }
 
-bool SchedDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-{
+bool SchedDialog::Create(
+    wxWindow* parent,
+    wxWindowID id,
+    const wxString& caption,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) {
     altRefreshDone = false; // reset the ALT refresh indicator on new dialog creation
     style |= wxRESIZE_BORDER;
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
@@ -1097,7 +1103,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
             m_mode_suggested ? RepeatMode::e_suggested :
                                RepeatMode::e_none
         ),
-        RepeatFreq(getRepeatType()),
+        getRepeatFreq(),
         num
     );
 
@@ -1373,7 +1379,7 @@ void SchedDialog::setRepeatDetails()
 {
     w_static_freq->SetLabelText(_t("Repeats"));
 
-    RepeatFreq repeat_freq = RepeatFreq(getRepeatType());
+    RepeatFreq repeat_freq = getRepeatFreq();
     if (repeat_freq.id() == RepeatFreq::e_in_x_days ||
         repeat_freq.id() == RepeatFreq::e_every_x_days
     ) {
@@ -1406,15 +1412,16 @@ void SchedDialog::OnRepeatTypeChanged(wxCommandEvent& WXUNUSED(event))
     setRepeatDetails();
 }
 
-int SchedDialog::getRepeatType()
+RepeatFreq SchedDialog::getRepeatFreq()
 {
-    return w_freq_choice->GetSelection();
+    int freq_id = w_freq_choice->GetSelection();
+    return freq_id >= 0 ? RepeatFreq(freq_id) : RepeatFreq();
 }
 
 void SchedDialog::OnsetPrevOrNextRepeatDate(wxCommandEvent& event)
 {
     Repeat repeat;
-    repeat.m_freq = RepeatFreq(getRepeatType());
+    repeat.m_freq = getRepeatFreq();
     repeat.m_x = 1;
     wxString num_str = w_repeat_num_text->GetValue();
     bool goPrev = (event.GetId() == ID_DIALOG_TRANS_BUTTONTRANSNUMPREV);
