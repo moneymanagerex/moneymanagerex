@@ -306,7 +306,7 @@ bool mmWebAppDialog::ImportWebTr(int64 WebTrID, bool open)
                 if (open)
                 {
                     //fillControls(); //TODO: Delete transaction from view
-                    TrxDialog EditTransactionDialog(this, 1, {InsertedTransactionID, false});
+                    TrxDialog EditTransactionDialog(this, 1, JournalKey(-1, InsertedTransactionID));
                     EditTransactionDialog.ShowModal();
                 }
                 refreshRequested_ = true;

@@ -375,8 +375,12 @@ void JournalList::refreshVisualList(bool filter)
     }
     else {
         m_selected_id.clear();
-        m_selected_id.insert(std::end(m_selected_id), std::begin(m_pasted_id), std::end(m_pasted_id));
-        m_pasted_id.clear();    // Now clear them
+        m_selected_id.insert(
+            std::end(m_selected_id),
+            std::begin(m_pasted_id), std::end(m_pasted_id)
+        );
+        // Now clear them
+        m_pasted_id.clear();
     }
 
     m_today = PrefModel::instance().UseTransDateTime() ?
@@ -397,10 +401,10 @@ void JournalList::refreshVisualList(bool filter)
         m_topItemIndex = getSortAsc(0) ? i - 1 : 0;
 
     i = 0;
-    for(const auto& journal_dx : m_journal_xa) {
-        int64 id = !journal_dx.m_repeat_i ? journal_dx.m_id : journal_dx.m_sched_id;
-        for (const auto& item : m_selected_id) {
-            if (item.first == id && item.second == journal_dx.m_repeat_i) {
+    for (const auto& journal_dx : m_journal_xa) {
+        JournalKey journal_key = journal_dx.key();
+        for (const auto& selected_key : m_selected_id) {
+            if (selected_key == journal_key) {
                 SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
                 SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
                 EnsureVisible(i);
@@ -720,16 +724,14 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
     bool have_category = false;
     bool is_foreign = false;
     if (selected == 1) {
-        Journal::IdRepeat id = m_selected_id[0];
-        Journal::DataExt trx_dx = !id.second
-            ? Journal::DataExt(*TrxModel::instance().get_id_data_n(id.first))
-            : Journal::DataExt(*SchedModel::instance().get_id_data_n(id.first));
+        JournalKey journal_key = m_selected_id[0];
+        Journal::DataExt journal_dx = Journal::get_id_data_x(journal_key);
 
-        if (trx_dx.is_transfer())
+        if (journal_dx.is_transfer())
             type_transfer = true;
-        if (!trx_dx.has_split())
+        if (!journal_dx.has_split())
             have_category = true;
-        if (TrxModel::is_foreign(trx_dx))
+        if (TrxModel::is_foreign(journal_dx))
             is_foreign = true;
     }
     wxMenu menu;
@@ -741,11 +743,16 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 
         menu.AppendSeparator();
 
-        menu.Append(MENU_TREEPOPUP_EDIT2, (1 == selected) ? _tu("&Edit Transaction…") : _tu("&Edit Transactions…"));
+        menu.Append(MENU_TREEPOPUP_EDIT2, (1 == selected)
+            ? _tu("&Edit Transaction…")
+            : _tu("&Edit Transactions…")
+        );
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
-        menu.Append(MENU_ON_COPY_TRANSACTION, wxPLURAL("&Copy Transaction", "&Copy Transactions", selected));
+        menu.Append(MENU_ON_COPY_TRANSACTION,
+            wxPLURAL("&Copy Transaction", "&Copy Transactions", selected)
+        );
         if (is_nothing_selected)
             menu.Enable(MENU_ON_COPY_TRANSACTION, false);
 
@@ -768,7 +775,10 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
-        menu.Append(MENU_TREEPOPUP_MOVE2, (1 == selected) ? _tu("&Move Transaction…") : _tu("&Move Transactions…"));
+        menu.Append(MENU_TREEPOPUP_MOVE2, (1 == selected)
+            ? _tu("&Move Transaction…")
+            : _tu("&Move Transactions…")
+        );
         if (is_nothing_selected || type_transfer ||
             AccountModel::instance().find_money_type_c() < 2 ||
             is_foreign
@@ -778,7 +788,9 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
         menu.AppendSeparator();
 
         menu.Append(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, _t("&View In Other Account"));
-        if (!m_cp->isAccount() || is_nothing_selected || multiselect || is_foreign || !type_transfer)
+        if (!m_cp->isAccount() || is_nothing_selected || multiselect ||
+            is_foreign || !type_transfer
+        )
             menu.Enable(MENU_TREEPOPUP_VIEW_OTHER_ACCOUNT, false);
 
         menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _t("&View Split Categories"));
@@ -797,9 +809,9 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
     }
     else {
-        menu.Append(
-            MENU_TREEPOPUP_RESTORE,
-            (1 == selected) ? _tu("&Restore selected transaction…") : _tu("&Restore selected transactions…")
+        menu.Append(MENU_TREEPOPUP_RESTORE, (1 == selected)
+            ? _tu("&Restore selected transaction…")
+            : _tu("&Restore selected transactions…")
         );
         if (is_nothing_selected)
             menu.Enable(MENU_TREEPOPUP_RESTORE, false);
@@ -812,7 +824,9 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
     int col_nr = getColNr_X(event.GetX());
     int flags;
     unsigned long row = HitTest(event.GetPosition(), flags);
-    if (row < m_journal_xa.size() && (flags & wxLIST_HITTEST_ONITEM) && col_nr < getColNrSize()) {
+    if (row < m_journal_xa.size() && (flags & wxLIST_HITTEST_ONITEM) &&
+        col_nr < getColNrSize()
+    ) {
         int col_id = getColId_Nr(col_nr);
         wxString menuItemText;
         mmDateTimeN dateTimeN;
@@ -830,7 +844,8 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
                 m_journal_xa[row].m_date_time.isoDateTime()
             );
             wxString strDate = m_journal_xa[row].m_date().isoDate();
-            rightClickFilter_ = "{\n\"DATE1\": \"" + strDate + "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
+            rightClickFilter_ = "{\n\"DATE1\": \"" + strDate +
+                "\",\n\"DATE2\" : \"" + strDate + "T23:59:59" + "\"\n}";
             break;
         }
         case LIST_ID_NUMBER:
@@ -856,7 +871,8 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
             copyText_ = m_journal_xa[row].CATEGNAME;
             if (!m_journal_xa[row].has_split()) {
                 menuItemText = m_journal_xa[row].CATEGNAME;
-                rightClickFilter_ = "{\n\"CATEGORY\": \"" + menuItemText + "\",\n\"SUBCATEGORYINCLUDE\": false\n}";
+                rightClickFilter_ = "{\n\"CATEGORY\": \"" + menuItemText +
+                    "\",\n\"SUBCATEGORYINCLUDE\": false\n}";
             }
             break;
         case LIST_ID_TAGS:
@@ -994,11 +1010,14 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
-    subGlobalOpMenuDelete->Append(
-        MENU_TREEPOPUP_DELETE2,
-        !m_cp->isDeletedTrans() ?
-            (1 == selected) ? _tu("&Delete selected transaction…") : _tu("&Delete selected transactions…") :
-            (1 == selected) ? _tu("&Permanently delete selected transaction…") : _tu("&Permanently delete selected transactions…")
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, !m_cp->isDeletedTrans()
+        ? ((1 == selected)
+            ? _tu("&Delete selected transaction…")
+            : _tu("&Delete selected transactions…")
+        ) : ((1 == selected)
+            ? _tu("&Permanently delete selected transaction…")
+            : _tu("&Permanently delete selected transactions…")
+        )
     );
     if (is_nothing_selected)
         subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
@@ -1170,7 +1189,7 @@ void JournalList::onNewTransaction(wxCommandEvent& event)
         return;
 
     m_selected_id.clear();
-    m_pasted_id.push_back({dlg.GetTransactionID(), 0});
+    m_pasted_id.push_back(JournalKey(-1, dlg.GetTransactionID()));
     m_cp->mmPlayTransactionSound();
     refreshVisualList();
 
@@ -1189,22 +1208,30 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
     int retainDays = SettingModel::instance().getInt("DELETED_TRANS_RETAIN_DAYS", 30);
 
     //ask if they want to delete
-    wxString text = (m_cp->isDeletedTrans() || retainDays == 0)?
-        wxString::Format(wxPLURAL("Do you want to permanently delete the selected transaction?"
-        , "Do you want to permanently delete the %i selected transactions?", sel)
-        , sel)
-        :
-        wxString::Format(wxPLURAL("Do you want to delete the selected transaction?"
-            , "Do you want to delete the %i selected transactions?", sel)
-            , sel);
+    wxString text = (m_cp->isDeletedTrans() || retainDays == 0)
+        ? wxString::Format(
+            wxPLURAL("Do you want to permanently delete the selected transaction?",
+                "Do you want to permanently delete the %i selected transactions?",
+                sel
+            ),
+            sel
+        ) : wxString::Format(
+            wxPLURAL("Do you want to delete the selected transaction?",
+                "Do you want to delete the %i selected transactions?",
+                sel
+            ),
+            sel
+        );
     text += "\n\n";
-    text += ((m_cp->isDeletedTrans() || retainDays == 0) ? _t("Unable to undo this action.")
-        : _t("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."));
+    text += (m_cp->isDeletedTrans() || retainDays == 0)
+        ? _t("Unable to undo this action.")
+        : _t("Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view.");
 
-    wxMessageDialog msgDlg(this
-        , text
-        , _t("Confirm Transaction Deletion")
-        , wxYES_NO | wxYES_DEFAULT | (m_cp->isDeletedTrans() ? wxICON_ERROR : wxICON_WARNING));
+    wxMessageDialog msgDlg(this,
+        text,
+        _t("Confirm Transaction Deletion"),
+        wxYES_NO | wxYES_DEFAULT | (m_cp->isDeletedTrans() ? wxICON_ERROR : wxICON_WARNING)
+    );
 
     if (msgDlg.ShowModal() == wxID_YES) {
         std::set<std::pair<RefTypeN, int64>> assetStockAccts;
@@ -1212,17 +1239,18 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
         AttachmentModel::instance().db_savepoint();
         TrxSplitModel::instance().db_savepoint();
         FieldValueModel::instance().db_savepoint();
-        for (const auto& id : m_selected_id) {
-            if (id.second) continue;
-            TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
-
-            if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date())) {
+        for (const auto& journal_key : m_selected_id) {
+            if (!journal_key.is_realized())
                 continue;
-            }
+            TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_key.rid());
+
+            if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date()))
+                continue;
 
             if (m_cp->isDeletedTrans() || retainDays == 0) {
-                // purge_id() also removes split transactions, translink entries, attachments, and custom field data
-                TrxModel::instance().purge_id(id.first);
+                // purge_id() also removes split transactions, translink entries,
+                // attachments, and custom field data
+                TrxModel::instance().purge_id(journal_key.rid());
             }
             else {
                 trx_n->m_deleted_time_n = mmDateTime::now();
@@ -1235,7 +1263,7 @@ void JournalList::onDeleteTransaction(wxCommandEvent& WXUNUSED(event))
                 }
             }
             m_selectedForCopy.erase(
-                std::remove(m_selectedForCopy.begin(), m_selectedForCopy.end(), id),
+                std::remove(m_selectedForCopy.begin(), m_selectedForCopy.end(), journal_key),
                 m_selectedForCopy.end()
             );
         }
@@ -1266,7 +1294,8 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
 {
     // check if any transactions selected
     int sel = GetSelectedItemCount();
-    if (sel < 1) return;
+    if (sel < 1)
+        return;
 
     findSelectedTransactions();
 
@@ -1288,9 +1317,9 @@ void JournalList::onRestoreTransaction(wxCommandEvent& WXUNUSED(event))
 
     if (msgDlg.ShowModal() == wxID_YES) {
         std::set<std::pair<RefTypeN, int64>> assetStockAccts;
-        for (const auto& id : m_selected_id) {
-            if (!id.second) {
-                TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
+        for (const auto& journal_key : m_selected_id) {
+            if (journal_key.is_realized()) {
+                TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_key.rid());
                 trx_n->m_deleted_time_n = mmDateTimeN();
                 TrxModel::instance().unsafe_save_trx_n(trx_n);
                 TrxLinkModel::DataA tl_a = TrxLinkModel::instance().find(
@@ -1330,7 +1359,8 @@ void JournalList::onRestoreViewedTransaction(wxCommandEvent&)
     if (msgDlg.ShowModal() == wxID_YES) {
         std::set<std::pair<RefTypeN, int64>> assetStockAccts;
         for (const auto& journal_dx : this->m_journal_xa) {
-            if (journal_dx.m_repeat_i) continue;
+            if (!journal_dx.key().is_realized())
+                continue;
             TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_dx.m_id);
             trx_n->m_deleted_time_n = mmDateTimeN();
             TrxModel::instance().unsafe_save_trx_n(trx_n);
@@ -1368,9 +1398,9 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
     // edit multiple transactions
     if (m_selected_id.size() > 1) {
         std::vector<int64> trx_id_a;
-        for (const auto& id : m_selected_id)
-            if (!id.second)
-                trx_id_a.push_back(id.first);
+        for (const auto& journal_key : m_selected_id)
+            if (journal_key.is_realized())
+                trx_id_a.push_back(journal_key.rid());
         if (trx_id_a.size() == 0)
             return;
         if (!checkForClosedAccounts())
@@ -1382,16 +1412,17 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
     }
 
     // edit single transaction
-    Journal::IdRepeat id = m_selected_id[0];
-    if (!id.second) {
-        TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
+    JournalKey journal_key = m_selected_id[0];
+    if (journal_key.is_realized()) {
+        int64 trx_id = journal_key.rid();
+        TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(trx_id);
         if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date()))
             return;
 
         if (!TrxLinkModel::instance().find(
-            TrxLinkCol::CHECKINGACCOUNTID(id.first)
+            TrxLinkCol::CHECKINGACCOUNTID(trx_id)
         ).empty()) {
-            const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(id.first);
+            const TrxLinkData* tl_n = TrxLinkModel::instance().get_trx_data_n(trx_id);
             if (tl_n && tl_n->m_ref_type == StockModel::s_ref_type) {
                 TrxLinkData tl_d = *tl_n;
                 TrxShareDialog dlg(this, &tl_d, trx_n);
@@ -1409,13 +1440,13 @@ void JournalList::onEditTransaction(wxCommandEvent& /*event*/)
             }
         }
         else {
-            TrxDialog dlg(this, m_cp->m_account_id, {id.first, false});
+            TrxDialog dlg(this, m_cp->m_account_id, JournalKey(-1, trx_id));
             if (dlg.ShowModal() != wxID_CANCEL)
                 refreshVisualList();
         }
     }
     else {
-        SchedDialog dlg(this, id.first, false, false);
+        SchedDialog dlg(this, journal_key.sid(), false, false);
         if ( dlg.ShowModal() == wxID_OK )
             refreshVisualList();
     }
@@ -1429,35 +1460,43 @@ void JournalList::onMoveTransaction(wxCommandEvent& /*event*/)
 
     //ask if they want to move
     const wxString text = wxString::Format(
-        wxPLURAL("Do you want to move the selected transaction?"
-            , "Do you want to move the %i selected transactions?", sel)
-        , sel);
-    wxMessageDialog msgDlg(this
-        , text
-        , _t("Confirm Transaction Move")
-        , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
+        wxPLURAL("Do you want to move the selected transaction?",
+            "Do you want to move the %i selected transactions?",
+            sel
+        ),
+        sel
+    );
+    wxMessageDialog msgDlg(this,
+        text,
+        _t("Confirm Transaction Move"),
+        wxYES_NO | wxYES_DEFAULT | wxICON_ERROR
+    );
 
     if (msgDlg.ShowModal() == wxID_YES) {
-        const wxString headerMsg = (1 == sel) ? _tu("Moving transaction to…") :
-                                    wxString::Format(_tu("Moving %i transactions to…"), sel);
+        const wxString headerMsg = (1 == sel)
+            ? _tu("Moving transaction to…")
+            : wxString::Format(_tu("Moving %i transactions to…"), sel);
 
-        mmSingleChoiceDialog scd(this
-            , _t("Select the destination Account ")
-            , headerMsg
-            , AccountModel::instance().find_all_name_a());
+        mmSingleChoiceDialog scd(this,
+            _t("Select the destination Account "),
+            headerMsg,
+            AccountModel::instance().find_all_name_a()
+        );
         if (scd.ShowModal() == wxID_OK) {
             int64 dest_account_id = -1;
             wxString dest_account_name = scd.GetStringSelection();
-            const AccountData* dest_account = AccountModel::instance().get_name_data_n(dest_account_name);
+            const AccountData* dest_account = AccountModel::instance().get_name_data_n(
+                dest_account_name
+            );
             if (dest_account)
                 dest_account_id = dest_account->m_id;
             else
                 return;
             std::vector<int64> skip_trx;
             TrxModel::instance().db_savepoint();
-            for (const auto& id : m_selected_id) {
-                if (!id.second) {
-                    TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(id.first);
+            for (const auto& journal_key : m_selected_id) {
+                if (journal_key.is_realized()) {
+                    TrxData* trx_n = TrxModel::instance().unsafe_get_id_data_n(journal_key.rid());
                     if (checkTransactionLocked(trx_n->m_account_id, trx_n->m_date()) ||
                         TrxModel::is_foreign(*trx_n) ||
                         trx_n->is_transfer() ||
@@ -1472,15 +1511,19 @@ void JournalList::onMoveTransaction(wxCommandEvent& /*event*/)
             }
             TrxModel::instance().db_release_savepoint();
             if (!skip_trx.empty()) {
-                const wxString detail = wxString::Format("%s\n%s: %zu\n%s: %zu"
-                                , _t("This is due to some elements of the transaction or account detail not allowing the move")
-                                , _t("Moved"), m_selected_id.size() - skip_trx.size()
-                                , _t("Not moved"), skip_trx.size());
-                mmErrorDialogs::MessageWarning(this
-                    , detail
-                    , _t("Unable to move some transactions."));
+                const wxString detail = wxString::Format("%s\n%s: %zu\n%s: %zu",
+                    _t("This is due to some elements of the transaction or account detail not allowing the move"),
+                    _t("Moved"),
+                    m_selected_id.size() - skip_trx.size(),
+                    _t("Not moved"),
+                    skip_trx.size()
+                );
+                mmErrorDialogs::MessageWarning(this,
+                    detail,
+                    _t("Unable to move some transactions.")
+                );
             }
-            //TODO: enable report to detail transactions that are unable to be moved
+            // TODO: enable report to detail transactions that are unable to be moved
             refreshVisualList();
         }
     }
@@ -1490,17 +1533,18 @@ void JournalList::onViewOtherAccount(wxCommandEvent& /*event*/)
 {
     // we can only get here for a single transfer transaction
     findSelectedTransactions();
-    Journal::IdRepeat id = m_selected_id[0];
+    JournalKey journal_key = m_selected_id[0];
+    Journal::DataExt journal_dx = Journal::get_id_data_x(journal_key);
 
-    Journal::DataExt tran = !id.second
-        ? Journal::DataExt(*TrxModel::instance().get_id_data_n(id.first))
-        : Journal::DataExt(*SchedModel::instance().get_id_data_n(id.first));
-
-    int64 gotoAccountID = (m_cp->m_account_id == tran.m_account_id) ? tran.m_to_account_id_n : tran.m_account_id;
-    wxString gotoAccountName = (m_cp->m_account_id == tran.m_account_id) ? tran.TOACCOUNTNAME : tran.ACCOUNTNAME;
+    int64 gotoAccountID = (m_cp->m_account_id == journal_dx.m_account_id)
+        ? journal_dx.m_to_account_id_n
+        : journal_dx.m_account_id;
+    wxString gotoAccountName = (m_cp->m_account_id == journal_dx.m_account_id)
+        ? journal_dx.TOACCOUNTNAME
+        : journal_dx.ACCOUNTNAME;
 
     m_cp->m_frame->selectNavTreeItem(gotoAccountName);
-    m_cp->m_frame->setGotoAccountID(gotoAccountID, id);
+    m_cp->m_frame->setGotoAccountID(gotoAccountID, journal_key);
     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
     m_cp->m_frame->GetEventHandler()->AddPendingEvent(event);
 }
@@ -1508,24 +1552,23 @@ void JournalList::onViewOtherAccount(wxCommandEvent& /*event*/)
 void JournalList::onViewSplitTransaction(wxCommandEvent& /*event*/)
 {
     // we can only view a single transaction
-    if (GetSelectedItemCount() != 1) return;
+    if (GetSelectedItemCount() != 1)
+        return;
     findSelectedTransactions();
-    Journal::IdRepeat id = m_selected_id[0];
-
-    m_cp->displaySplitCategories({id.first, id.second != 0});
+    m_cp->displaySplitCategories(m_selected_id[0]);
 }
 
 void JournalList::onOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     // we only support a single transaction
-    if (GetSelectedItemCount() != 1) return;
-    findSelectedTransactions();
-    Journal::IdRepeat id = m_selected_id[0];
+    if (GetSelectedItemCount() != 1)
+        return;
 
-    RefTypeN ref_type = !id.second ?
-        TrxModel::s_ref_type :
-        SchedModel::s_ref_type;
-    AttachmentDialog dlg(this, ref_type, id.first);
+    findSelectedTransactions();
+    JournalKey journal_key = m_selected_id[0];
+    AttachmentDialog dlg(this,
+        journal_key.ref_type(), journal_key.ref_id()
+    );
     dlg.ShowModal();
     refreshVisualList();
 }
@@ -1533,13 +1576,14 @@ void JournalList::onOrganizeAttachments(wxCommandEvent& /*event*/)
 void JournalList::onCreateReoccurance(wxCommandEvent& /*event*/)
 {
      // we only support a single transaction
-    if (GetSelectedItemCount() != 1) return;
+    if (GetSelectedItemCount() != 1)
+        return;
     findSelectedTransactions();
-    Journal::IdRepeat id = m_selected_id[0];
+    JournalKey journal_key = m_selected_id[0];
 
-    if (!id.second) {
+    if (journal_key.is_realized()) {
         SchedDialog dlg(this, 0, false, false);
-        dlg.SetDialogParameters(id.first);
+        dlg.SetDialogParameters(journal_key.rid());
         if (dlg.ShowModal() == wxID_OK)
             wxMessageBox(_t("Scheduled transaction saved."));
     }
@@ -1603,7 +1647,7 @@ void JournalList::onMarkTransaction(wxCommandEvent& event)
         if (account_n->is_locked_for(m_journal_xa[row].m_date()))
             continue;
         //bRefreshRequired |= (status.id() == TrxStatus::e_void) || (m_journal_xa[row].is_void());
-        if (!m_journal_xa[row].m_repeat_i) {
+        if (m_journal_xa[row].key().is_realized()) {
             m_journal_xa[row].m_status = status;
             TrxModel::instance().save_trx_n(m_journal_xa[row]);
         }
@@ -1672,17 +1716,14 @@ void JournalList::onSelectAll(wxCommandEvent& WXUNUSED(event))
 {
     m_selected_id.clear();
     SetEvtHandlerEnabled(false);
-    std::set<Journal::IdRepeat> unique_ids;
+    std::set<JournalKey> journal_key_m;
     for (int row = 0; row < GetItemCount(); row++) {
         SetItemState(row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         const auto& journal_dx = m_journal_xa[row];
-        Journal::IdRepeat id = {
-            !journal_dx.m_repeat_i ? journal_dx.m_id : journal_dx.m_sched_id,
-            journal_dx.m_repeat_i
-        };
-        if (unique_ids.find(id) == unique_ids.end()) {
-            m_selected_id.push_back(id);
-            unique_ids.insert(id);
+        JournalKey journal_key = journal_dx.key();
+        if (journal_key_m.find(journal_key) == journal_key_m.end()) {
+            m_selected_id.push_back(journal_key);
+            journal_key_m.insert(journal_key);
         }
     }
     SetEvtHandlerEnabled(true);
@@ -1727,10 +1768,11 @@ void JournalList::onPaste(wxCommandEvent& WXUNUSED(event))
     findSelectedTransactions();
     TrxModel::instance().db_savepoint();
     m_pasted_id.clear();    // make sure the list is empty before we paste
-    for (const auto& id : m_selectedForCopy) {
-        if (!id.second) {
-            const TrxData* trx_d = TrxModel::instance().get_id_data_n(id.first);
-            if (TrxModel::is_foreign(*trx_d)) continue;
+    for (const auto& journal_key : m_selectedForCopy) {
+        if (journal_key.is_realized()) {
+            const TrxData* trx_d = TrxModel::instance().get_id_data_n(journal_key.rid());
+            if (TrxModel::is_foreign(*trx_d))
+                continue;
             onPaste(trx_d);
         }
     }
@@ -1763,7 +1805,7 @@ int64 JournalList::onPaste(const TrxData* trx_n)
     new_trx.m_account_id = m_cp->m_account_id;
     TrxModel::instance().save_trx_n(new_trx);
     int64 new_trx_id = new_trx.m_id;
-    m_pasted_id.push_back({new_trx_id, 0});   // add the newly pasted transaction
+    m_pasted_id.push_back(JournalKey(-1, new_trx_id));   // add the newly pasted transaction
 
     // Clone transaction tags
     TagLinkModel::DataA new_gl_a;
@@ -1827,18 +1869,17 @@ int64 JournalList::onPaste(const TrxData* trx_n)
 void JournalList::onDuplicateTransaction(wxCommandEvent& WXUNUSED(event))
 {
     // we can only duplicate a single transaction
-    if (GetSelectedItemCount() != 1) return;
+    if (GetSelectedItemCount() != 1)
+        return;
     findSelectedTransactions();
-    Journal::IdRepeat id = m_selected_id[0];
-
-    TrxDialog dlg(this, m_cp->m_account_id, {id.first, id.second != 0}, true);
+    TrxDialog dlg(this, m_cp->m_account_id, m_selected_id[0], true);
 
     int i = wxID_CANCEL;
     do {
         i = dlg.ShowModal();
         if (i != wxID_CANCEL) {
             m_selected_id.clear();
-            m_pasted_id.push_back({dlg.GetTransactionID(), 0});
+            m_pasted_id.push_back({-1, dlg.GetTransactionID()});
             m_cp->mmPlayTransactionSound();
             refreshVisualList();
         }
@@ -1848,12 +1889,13 @@ void JournalList::onDuplicateTransaction(wxCommandEvent& WXUNUSED(event))
 
 void JournalList::onEnterScheduled(wxCommandEvent& WXUNUSED(event))
 {
-    if (GetSelectedItemCount() != 1) return;
-    findSelectedTransactions();
-    Journal::IdRepeat id = m_selected_id[0];
+    if (GetSelectedItemCount() != 1)
+        return;
 
-    if (id.second == 1) {
-        SchedDialog dlg(this, id.first, false, true);
+    findSelectedTransactions();
+    JournalKey journal_key = m_selected_id[0];
+    if (journal_key.m_repeat_id == 1) {
+        SchedDialog dlg(this, journal_key.sid(), false, true);
         if ( dlg.ShowModal() == wxID_OK ) {
             refreshVisualList();
         }
@@ -1862,12 +1904,13 @@ void JournalList::onEnterScheduled(wxCommandEvent& WXUNUSED(event))
 
 void JournalList::onSkipScheduled(wxCommandEvent& WXUNUSED(event))
 {
-    if (GetSelectedItemCount() != 1) return;
-    findSelectedTransactions();
-    Journal::IdRepeat id = m_selected_id[0];
+    if (GetSelectedItemCount() != 1)
+        return;
 
-    if (id.second == 1) {
-        SchedModel::instance().reschedule_id(id.first);
+    findSelectedTransactions();
+    JournalKey journal_key = m_selected_id[0];
+    if (journal_key.m_repeat_id == 1) {
+        SchedModel::instance().reschedule_id(journal_key.sid());
         refreshVisualList();
     }
 }
@@ -1884,9 +1927,9 @@ void JournalList::onSetUserColour(wxCommandEvent& event)
 
     TrxModel::instance().db_savepoint();
     SchedModel::instance().db_savepoint();
-    for (const auto& id : m_selected_id) {
-        if (!id.second) {
-            const TrxData* tran = TrxModel::instance().get_id_data_n(id.first);
+    for (const auto& journal_key : m_selected_id) {
+        if (journal_key.is_realized()) {
+            const TrxData* tran = TrxModel::instance().get_id_data_n(journal_key.rid());
             if (tran) {
                 TrxData tran_d = *tran;
                 tran_d.m_color = user_color_id;
@@ -1894,7 +1937,7 @@ void JournalList::onSetUserColour(wxCommandEvent& event)
             }
         }
         else {
-            SchedData* sched_n = SchedModel::instance().unsafe_get_id_data_n(id.first);
+            SchedData* sched_n = SchedModel::instance().unsafe_get_id_data_n(journal_key.sid());
             if (sched_n) {
                 sched_n->m_color = user_color_id;
                 SchedModel::instance().unsafe_update_data_n(sched_n);
@@ -1911,12 +1954,14 @@ void JournalList::onSetUserColour(wxCommandEvent& event)
 void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
 {
     // we can only open a single transaction
-    if (GetSelectedItemCount() != 1) return;
-    findSelectedTransactions();
-    Journal::IdRepeat id = m_selected_id[0];
+    if (GetSelectedItemCount() != 1)
+        return;
 
-    RefTypeN ref_type = !id.second ? TrxModel::s_ref_type : SchedModel::s_ref_type;
-    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, ref_type, id.first);
+    findSelectedTransactions();
+    JournalKey journal_key = m_selected_id[0];
+    mmAttachmentManage::OpenAttachmentFromPanelIcon(this,
+        journal_key.ref_type(), journal_key.ref_id()
+    );
     refreshVisualList();
 }
 
@@ -2127,18 +2172,16 @@ const wxString JournalList::getItem(long item, int col_id) const
 
 void JournalList::setExtraTransactionData(const bool single)
 {
-    int repeat_i = 0;
+    int repeat_id = -1;
     bool isForeign = false;
     if (single) {
-        Journal::IdRepeat id = m_selected_id[0];
-        Journal::Data tran = !id.second
-            ? Journal::Data(*TrxModel::instance().get_id_data_n(id.first))
-            : Journal::Data(*SchedModel::instance().get_id_data_n(id.first));
-        if (TrxModel::is_foreign(tran))
+        JournalKey journal_key = m_selected_id[0];
+        Journal::Data journal_d = Journal::get_id_data(journal_key);
+        if (TrxModel::is_foreign(journal_d))
             isForeign = true;
-        repeat_i = id.second;
+        repeat_id = journal_key.m_repeat_id;
     }
-    m_cp->updateExtraTransactionData(single, repeat_i, isForeign);
+    m_cp->updateExtraTransactionData(single, repeat_id, isForeign);
 }
 
 void JournalList::markItem(long selectedItem)
@@ -2154,11 +2197,14 @@ void JournalList::markItem(long selectedItem)
     return;
 }
 
-void JournalList::setSelectedId(Journal::IdRepeat sel_id)
+void JournalList::setSelectedId(JournalKey journal_key)
 {
     int i = 0;
     for (const auto& journal_dx : m_journal_xa) {
-        if (journal_dx.m_repeat_i == sel_id.second && journal_dx.m_id == sel_id.first) {
+        // CHECK: the following condition is valid only for realized journal_dx
+        if (journal_dx.m_repeat_id == journal_key.m_repeat_id &&
+            journal_dx.m_id == journal_key.m_ref_id
+        ) {
             SetItemState(i, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
             SetItemState(i, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
             m_topItemIndex = i;
@@ -2173,14 +2219,15 @@ void JournalList::findSelectedTransactions()
     // find the selected transactions
     long x = 0;
     m_selected_id.clear();
-    std::set<Journal::IdRepeat> unique_ids;
+    std::set<JournalKey> journal_key_m;
     for (const auto& journal_dx : m_journal_xa) {
         if (GetItemState(x++, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
             continue;
-        int64 id = !journal_dx.m_repeat_i ? journal_dx.m_id : journal_dx.m_sched_id;
-        if (unique_ids.find({id, journal_dx.m_repeat_i}) == unique_ids.end()) {
-            m_selected_id.push_back({id, journal_dx.m_repeat_i});
-            unique_ids.insert({id, journal_dx.m_repeat_i});
+        JournalKey journal_key = journal_dx.key();
+        int64 id = !journal_dx.m_repeat_id ? journal_dx.m_id : journal_dx.m_sched_id;
+        if (journal_key_m.find(journal_key) == journal_key_m.end()) {
+            m_selected_id.push_back(journal_key);
+            journal_key_m.insert(journal_key);
         }
     }
 }
@@ -2272,20 +2319,17 @@ void JournalList::markSelectedTransaction()
 {
     long i = 0;
     for (const auto & journal_dx : m_journal_xa) {
-        Journal::IdRepeat id = {
-            !journal_dx.m_repeat_i ? journal_dx.m_id : journal_dx.m_sched_id,
-            journal_dx.m_repeat_i
-        };
-        //reset any selected items in the list
+        JournalKey journal_key = journal_dx.key();
+        // reset any selected items in the list
         if (GetItemState(i, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             SetItemState(i, 0, wxLIST_STATE_SELECTED);
         if (!m_selected_id.empty()) {
             // discover where the transaction has ended up in the list
             if (getSortAsc(0)) {
-                if (m_topItemIndex < i && id == m_selected_id.back())
+                if (m_topItemIndex < i && journal_key == m_selected_id.back())
                     m_topItemIndex = i;
             } else {
-                if (m_topItemIndex > i && id == m_selected_id.back())
+                if (m_topItemIndex > i && journal_key == m_selected_id.back())
                     m_topItemIndex = i;
             }
         }
@@ -2311,7 +2355,7 @@ void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
     TrxSplitModel::instance().db_savepoint();
     FieldValueModel::instance().db_savepoint();
     for (const auto& journal_dx : this->m_journal_xa) {
-        if (journal_dx.m_repeat_i)
+        if (journal_dx.m_repeat_id)
             continue;
         if (status_n.has_value() && journal_dx.m_status.id() != status_n.value().id())
             continue;
@@ -2355,16 +2399,18 @@ void JournalList::deleteTransactionsByStatus(std::optional<TrxStatus> status_n)
 bool JournalList::checkForClosedAccounts()
 {
     int closedTrx = 0;
-    for (const auto& id : m_selected_id) {
-        Journal::Data journal_d = !id.second
-            ? Journal::Data(*TrxModel::instance().get_id_data_n(id.first))
-            : Journal::Data(*SchedModel::instance().get_id_data_n(id.first));
-        const AccountData* account_n = AccountModel::instance().get_id_data_n(journal_d.m_account_id);
+    for (const auto& journal_key : m_selected_id) {
+        Journal::Data journal_d = Journal::get_id_data(journal_key);
+        const AccountData* account_n = AccountModel::instance().get_id_data_n(
+            journal_d.m_account_id
+        );
         if (account_n && account_n->is_closed()) {
             closedTrx++;
             continue;
         }
-        const AccountData* to_account_n = AccountModel::instance().get_id_data_n(journal_d.m_to_account_id_n);
+        const AccountData* to_account_n = AccountModel::instance().get_id_data_n(
+            journal_d.m_to_account_id_n
+        );
         if (to_account_n && to_account_n->is_closed())
             closedTrx++;
     }
@@ -2373,10 +2419,16 @@ bool JournalList::checkForClosedAccounts()
         return true;
     else {
         const wxString text = wxString::Format(
-            wxPLURAL("You are about to edit a transaction involving an account that is closed."
-            , "The edit will affect %i transactions involving an account that is closed.", GetSelectedItemCount())
-            , closedTrx) + "\n\n" + _t("Do you want to perform the edit?");
-        if (wxMessageBox(text, _t("Closed Account Check"), wxYES_NO | wxICON_WARNING) == wxYES)
+            wxPLURAL("You are about to edit a transaction involving an account that is closed.",
+                "The edit will affect %i transactions involving an account that is closed.",
+                GetSelectedItemCount()
+            ),
+            closedTrx
+        ) + "\n\n" + _t("Do you want to perform the edit?");
+        if (wxMessageBox(text,
+            _t("Closed Account Check"),
+            wxYES_NO | wxICON_WARNING
+        ) == wxYES)
             return true;
     }
     return false;

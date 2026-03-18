@@ -130,9 +130,9 @@ private:
     bool m_balance_valid = false;
     wxString rightClickFilter_;
     wxString copyText_;
-    std::vector<Journal::IdRepeat> m_selectedForCopy; // copied transactions
-    std::vector<Journal::IdRepeat> m_pasted_id;       // last pasted transactions
-    std::vector<Journal::IdRepeat> m_selected_id;     // selected transactions
+    std::vector<JournalKey> m_selectedForCopy; // copied transactions
+    std::vector<JournalKey> m_pasted_id;       // last pasted transactions
+    std::vector<JournalKey> m_selected_id;     // selected transactions
 
     DECLARE_NO_COPY_CLASS(JournalList)
     wxDECLARE_EVENT_TABLE();
@@ -216,9 +216,9 @@ private:
     const wxString getItem(long item, int col_id) const;
     void setExtraTransactionData(const bool single);
     void markItem(long selectedItem);
-    void setSelectedId(Journal::IdRepeat sel_id);
-    std::vector<Journal::IdRepeat> getSelectedId() const;
-    std::vector<Journal::IdRepeat> getSelectedForCopy() const;
+    void setSelectedId(JournalKey journal_key);
+    std::vector<JournalKey> getSelectedId() const;
+    std::vector<JournalKey> getSelectedForCopy() const;
     void findSelectedTransactions();
     int getColNr_X(int xPos);
     void doSearchText(const wxString& value);
@@ -234,11 +234,11 @@ private:
 
 //----------------------------------------------------------------------------
 
-inline std::vector<Journal::IdRepeat> JournalList::getSelectedId() const
+inline std::vector<JournalKey> JournalList::getSelectedId() const
 {
     return m_selected_id;
 }
-inline std::vector<Journal::IdRepeat> JournalList::getSelectedForCopy() const
+inline std::vector<JournalKey> JournalList::getSelectedForCopy() const
 {
     return m_selectedForCopy;
 }

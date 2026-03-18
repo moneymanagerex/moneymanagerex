@@ -1053,7 +1053,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         );
     }
 
-    if (!m_custom_fields->ValidateCustomValues(-m_sched_d.m_id))
+    if (!m_custom_fields->ValidateCustomValues())
         return;
 
     if (!m_advanced || m_sched_d.m_to_amount < 0) {

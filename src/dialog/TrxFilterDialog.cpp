@@ -1130,7 +1130,7 @@ bool TrxFilterDialog::mmIsValuesCorrect() const
         return false;
     }
 
-    if (!m_custom_fields->ValidateCustomValues(0))
+    if (!m_custom_fields->ValidateCustomValues())
         return false;
 
     return true;

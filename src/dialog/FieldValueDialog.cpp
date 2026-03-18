@@ -753,7 +753,7 @@ void FieldValueDialog::SetStringValue(int fieldIndex, const wxString& value, boo
          SetWidgetChanged(widget_id, value);
 }
 
-bool FieldValueDialog::ValidateCustomValues(int64)
+bool FieldValueDialog::ValidateCustomValues()
 {
     bool is_valid = true;
     int field_index = 0;

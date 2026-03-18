@@ -78,8 +78,8 @@ public:
     void refreshList();
     wxString BuildPage() const;
     void resetColumnView();
-    void setSelectedTransaction(Journal::IdRepeat journal_id);
-    void displaySplitCategories(Journal::IdB journal_id);
+    void setSelectedTransaction(JournalKey journal_key);
+    void displaySplitCategories(JournalKey journal_key);
 
     //static support function
     static wxString getFilterName(FILTER_ID id);

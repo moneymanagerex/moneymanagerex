@@ -21,7 +21,7 @@
 TrxData Journal::execute_bill(const SchedData& sched_d, wxString date)
 {
     TrxData trx_d;
-    trx_d.m_id              = 0;
+    trx_d.m_id              = -1;
     trx_d.m_date_time       = mmDateTime(date);
     trx_d.m_type            = sched_d.m_type;
     trx_d.m_status          = sched_d.m_status;
@@ -41,7 +41,7 @@ TrxData Journal::execute_bill(const SchedData& sched_d, wxString date)
 TrxModel::DataExt Journal::execute_bill_full(const SchedData& sched_d, wxString date)
 {
     TrxModel::DataExt trx_dx;
-    trx_dx.m_id              = 0;
+    trx_dx.m_id              = -1;
     trx_dx.m_date_time       = mmDateTime(date);
     trx_dx.m_type            = sched_d.m_type;
     trx_dx.m_status          = sched_d.m_status;
@@ -65,7 +65,7 @@ TrxSplitModel::DataA Journal::execute_splits(const SchedSplitModel::DataA& qp_a)
         TrxSplitData tp_d;
         // FIXME: tp_d.m_id is invalid
         tp_d.m_id          = qp_d.m_id;
-        tp_d.m_trx_id      = 0;
+        tp_d.m_trx_id      = -1;
         tp_d.m_category_id = qp_d.m_category_id;
         tp_d.m_amount      = qp_d.m_amount;
         tp_d.m_notes       = qp_d.m_notes;
@@ -75,12 +75,14 @@ TrxSplitModel::DataA Journal::execute_splits(const SchedSplitModel::DataA& qp_a)
 }
 
 Journal::Data::Data() :
-    TrxData(), m_sched_id(0), m_repeat_i(0)
+    TrxData(),
+    m_sched_id(-1), m_repeat_id(-1)
 {
 }
 
 Journal::Data::Data(const TrxData& trx_d) :
-    TrxData(trx_d), m_sched_id(0), m_repeat_i(0)
+    TrxData(trx_d),
+    m_sched_id(-1), m_repeat_id(-1)
 {
 }
 
@@ -89,10 +91,11 @@ Journal::Data::Data(const SchedData& sched_d) :
 {
 }
 
-Journal::Data::Data(const SchedData& sched_d, wxString date, int repeat_i) :
-    TrxData(execute_bill(sched_d, date)), m_sched_id(sched_d.m_id), m_repeat_i(repeat_i)
+Journal::Data::Data(const SchedData& sched_d, wxString date, int repeat_id) :
+    TrxData(execute_bill(sched_d, date)),
+    m_sched_id(sched_d.m_id), m_repeat_id(repeat_id)
 {
-    if (m_repeat_i < 1) {
+    if (m_repeat_id < 1) {
         wxFAIL;
     }
 }
@@ -102,7 +105,8 @@ Journal::Data::~Data()
 }
 
 Journal::DataExt::DataExt(const TrxData& trx_d) :
-    TrxModel::DataExt(trx_d), m_sched_id(0), m_repeat_i(0)
+    TrxModel::DataExt(trx_d),
+    m_sched_id(-1), m_repeat_id(-1)
 {
 }
 
@@ -112,7 +116,7 @@ Journal::DataExt::DataExt(
     const std::map<int64, TagLinkModel::DataA>& trxId_glA_m
 ) :
     TrxModel::DataExt(trx_d, trxId_tpA_m, trxId_glA_m),
-    m_sched_id(0), m_repeat_i(0)
+    m_sched_id(-1), m_repeat_id(-1)
 {
 }
 
@@ -123,12 +127,12 @@ Journal::DataExt::DataExt(const SchedData& sched_d) :
 
 Journal::DataExt::DataExt(
     const SchedData& sched_d,
-    wxString date, int repeat_i
+    wxString date, int repeat_id
 ) :
     TrxModel::DataExt(execute_bill_full(sched_d, date), {}, {}),
-    m_sched_id(sched_d.m_id), m_repeat_i(repeat_i)
+    m_sched_id(sched_d.m_id), m_repeat_id(repeat_id)
 {
-    if (m_repeat_i < 1) {
+    if (m_repeat_id < 1) {
         wxFAIL;
     }
 
@@ -140,14 +144,14 @@ Journal::DataExt::DataExt(
 }
 
 Journal::DataExt::DataExt(const SchedData& sched_d,
-    wxString date, int repeat_i,
+    wxString date, int repeat_id,
     const std::map<int64, SchedSplitModel::DataA>& schedId_qpA_m,
     const std::map<int64, TagLinkModel::DataA>& schedId_glA_m)
 :
     TrxModel::DataExt(execute_bill_full(sched_d, date), {}, {}),
-    m_sched_id(sched_d.m_id), m_repeat_i(repeat_i)
+    m_sched_id(sched_d.m_id), m_repeat_id(repeat_id)
 {
-    if (m_repeat_i < 1) {
+    if (m_repeat_id < 1) {
         wxFAIL;
     }
 
@@ -172,19 +176,19 @@ Journal::DataExt::~DataExt()
 void Journal::setEmptyData(Journal::Data& journal_d, int64 account_id)
 {
     TrxModel::instance().setEmptyData(journal_d, account_id);
-    journal_d.m_sched_id = 0;
-    journal_d.m_repeat_i = 0;
+    journal_d.m_sched_id  = -1;
+    journal_d.m_repeat_id = -1;
 }
 
-bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
+bool Journal::setJournalData(Journal::Data& journal_d, JournalKey journal_key)
 {
-    if (!journal_id.second) {
-        const TrxData *trx_n = TrxModel::instance().get_id_data_n(journal_id.first);
+    if (journal_key.is_realized()) {
+        const TrxData *trx_n = TrxModel::instance().get_id_data_n(journal_key.rid());
         if (!trx_n)
             return false;
-        journal_d.m_repeat_i        = 0;
-        journal_d.m_sched_id        = 0;
         journal_d.m_id              = trx_n->m_id;
+        journal_d.m_sched_id        = -1;
+        journal_d.m_repeat_id       = -1;
         journal_d.m_date_time       = trx_n->m_date_time;
         journal_d.m_type            = trx_n->m_type;
         journal_d.m_status          = trx_n->m_status;
@@ -202,12 +206,12 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
         journal_d.m_deleted_time_n  = trx_n->m_deleted_time_n;
     }
     else {
-        const SchedData *sched_n = SchedModel::instance().get_id_data_n(journal_id.first);
+        const SchedData *sched_n = SchedModel::instance().get_id_data_n(journal_key.sid());
         if (!sched_n)
             return false;
-        journal_d.m_repeat_i        = 1;
-        journal_d.m_id              = 0;
+        journal_d.m_id              = -1;
         journal_d.m_sched_id        = sched_n->m_id;
+        journal_d.m_repeat_id       = 1;
         journal_d.m_date_time       = sched_n->m_date_time;
         journal_d.m_type            = sched_n->m_type;
         journal_d.m_status          = sched_n->m_status;
@@ -229,7 +233,22 @@ bool Journal::setJournalData(Journal::Data& journal_d, Journal::IdB journal_id)
 
 const TrxSplitModel::DataA Journal::split(Journal::Data& journal_d)
 {
-    return (journal_d.m_repeat_i == 0)
+    return journal_d.m_repeat_id < 0
         ? TrxModel::instance().find_id_tp_a(journal_d.m_id)
         : Journal::execute_splits(SchedModel::instance().find_id_qp_a(journal_d.m_sched_id));
 }
+
+Journal::Data Journal::get_id_data(JournalKey journal_key)
+{
+    return journal_key.is_realized()
+        ? Journal::Data(*TrxModel::instance().get_id_data_n(journal_key.rid()))
+        : Journal::Data(*SchedModel::instance().get_id_data_n(journal_key.sid()));
+}
+
+Journal::DataExt Journal::get_id_data_x(JournalKey journal_key)
+{
+    return journal_key.is_realized()
+        ? Journal::DataExt(*TrxModel::instance().get_id_data_n(journal_key.rid()))
+        : Journal::DataExt(*SchedModel::instance().get_id_data_n(journal_key.sid()));
+}
+

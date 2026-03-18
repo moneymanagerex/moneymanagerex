@@ -3197,7 +3197,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
         return;
 
     gotoAccountID_ = dlg.GetAccountID();
-    gotoTransID_ = { dlg.GetTransactionID(), 0 };
+    gotoTransID_ = JournalKey(-1, dlg.GetTransactionID());
     const AccountData * account_n = AccountModel::instance().get_id_data_n(gotoAccountID_);
     if (account_n) {
         createCheckingPage(gotoAccountID_);
@@ -3733,10 +3733,10 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
     UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
 
     menuPrintingEnable(true);
-    if (checking_id >= 1 && gotoTransID_.first > 0) {
+    if (checking_id >= 1 && gotoTransID_.ref_id() > 0) {
         JournalPanel* cp = wxDynamicCast(panelCurrent_, JournalPanel);
         cp->setSelectedTransaction(gotoTransID_);
-        gotoTransID_ = { -1, 0 };
+        gotoTransID_ = JournalKey();
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     m_nav_tree_ctrl->SetFocus();
@@ -4288,10 +4288,10 @@ void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
     m_recentFiles->AddFileToHistory(m_filename);
 }
 
-void mmGUIFrame::setGotoAccountID(int64 account_id, Journal::IdRepeat journal_id)
+void mmGUIFrame::setGotoAccountID(int64 account_id, JournalKey journal_key)
 {
     gotoAccountID_ = account_id;
-    gotoTransID_ = journal_id;
+    gotoTransID_ = journal_key;
 }
 
 void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))

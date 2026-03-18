@@ -735,7 +735,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
                 const AccountData* account = AccountModel::instance().get_id_data_n(trx_n->m_account_id);
                 if (account) {
                     w_frame->selectNavTreeItem(account->m_name);
-                    w_frame->setGotoAccountID(trx_n->m_account_id, { transID, 0 });
+                    w_frame->setGotoAccountID(trx_n->m_account_id, JournalKey(-1, transID));
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     w_frame->GetEventHandler()->AddPendingEvent(event);
                 }
@@ -767,7 +767,7 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
                     }
                 }
                 else {
-                    TrxDialog dlg(w_frame, -1, {transId, false});
+                    TrxDialog dlg(w_frame, -1, JournalKey(-1, transId));
                     if (dlg.ShowModal() != wxID_CANCEL) {
                         m_rb->getHTMLText();
                         saveReportText();
