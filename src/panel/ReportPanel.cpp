@@ -616,7 +616,13 @@ void ReportPanel::CreateControls()
             if (map.count("default") > 0) {
                 w_filter->SetValue(removeQuotes(map["default"]));
             }
+            w_filter->Bind(wxEVT_TEXT, &ReportPanel::onFilterTextChanged, this);
             itemBoxSizerHeader->Add(w_filter, 0, wxALL | wxALIGN_CENTER_VERTICAL, 1);
+
+            w_filter_cancel = new wxBitmapButton(itemPanel3, wxID_ANY, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
+            mmToolTip(w_filter_cancel, _t("Reset filter"));
+            w_filter_cancel->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &ReportPanel::onFilterCancel, this);
+            itemBoxSizerHeader->Add(w_filter_cancel, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
             itemBoxSizerHeader->AddSpacer(30);
         }
 
@@ -899,6 +905,19 @@ void ReportPanel::onFilterChanged(wxCommandEvent& WXUNUSED(event))
         saveReportText();
         saveFilterSettings();
         m_rb->saveReportSettings();
+    }
+}
+
+void ReportPanel::onFilterTextChanged(wxCommandEvent& WXUNUSED(event))
+{
+    w_filter_cancel->Enable(!w_filter->GetValue().IsEmpty());
+}
+
+void ReportPanel::onFilterCancel(wxCommandEvent& event)
+{
+    if (m_rb) {
+        w_filter->SetValue("");
+        onFilterChanged(event);
     }
 }
 

@@ -65,6 +65,15 @@ mmReconcileDialog::mmReconcileDialog(wxWindow* parent, const AccountData* accoun
     FillControls(true);
     UpdateAll();
 
+    const wxAcceleratorEntry entries[] = {
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_NEW),
+        wxAcceleratorEntry(wxACCEL_CTRL, static_cast<int>('S'), wxID_SAVE),
+    };
+    wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
+    SetAcceleratorTable(tab);
+    Bind(wxEVT_MENU, &mmReconcileDialog::OnNew, this, wxID_NEW);
+    Bind(wxEVT_MENU, &mmReconcileDialog::OnClose, this, wxID_SAVE);
+
     SetIcon(mmex::getProgramIcon());
     applyColumnSettings();
     Fit();

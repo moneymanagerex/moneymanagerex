@@ -102,7 +102,7 @@ private:
     mmTextCtrl* m_textAmount = nullptr;
     mmTextCtrl* toTextAmount_ = nullptr;
     wxTextCtrl* textNotes_ = nullptr;
-    wxButton* bAttachments_ = nullptr;
+    wxBitmapButton* bAttachments_ = nullptr;
     mmColorButton* bColours_ = nullptr;
     wxStaticText* account_label_ = nullptr;
     wxStaticText* categ_label_ = nullptr;
@@ -121,8 +121,8 @@ private:
     wxChoice* transaction_type_ = nullptr;
     mmDatePickerCtrl* dpc_ = nullptr;
     mmTagTextCtrl* tagTextCtrl_ = nullptr;
-    wxButton* bCalc_ = nullptr;
-    wxButton* bSwitch_ = nullptr;
+    wxBitmapButton* bCalc_ = nullptr;
+    wxBitmapButton* bSwitch_ = nullptr;
     mmCalculatorPopup* calcPopup_ = nullptr;
     mmTextCtrl* calcTarget_ = nullptr;
 
@@ -183,4 +183,3 @@ private:
         ID_CUSTOMFIELDS      // must be last in the list
     };
 };
-
