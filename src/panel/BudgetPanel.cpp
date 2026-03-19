@@ -532,7 +532,7 @@ void BudgetPanel::initVirtualListControl()
 double BudgetPanel::getEstimate(int64 category_id) const
 {
     try {
-        BudgetFrequency freq = budgetPeriod_.at(category_id);
+        BudgetFreq freq = budgetPeriod_.at(category_id);
         double amt = budgetAmt_.at(category_id);
         return monthlyBudget_
             ? amt * freq.times_per_month()
@@ -578,7 +578,7 @@ wxString BudgetPanel::getItem(long item, int col_id)
     }
     case BudgetList::LIST_ID_FREQUENCY: {
         if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
-            BudgetFrequency freq = budgetPeriod_[budget_[item].first];
+            BudgetFreq freq = budgetPeriod_[budget_[item].first];
             return wxGetTranslation(freq.name());
         }
         return wxEmptyString;

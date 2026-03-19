@@ -80,9 +80,9 @@ bool BudgetEntryDialog::Create(
 void BudgetEntryDialog::fillControls()
 {
     double amt = m_budget_n->m_amount;
-    int period = m_budget_n->m_frequency.id();
+    int period = m_budget_n->m_freq.id();
     m_choiceItem->SetSelection(period);
-    if (period == BudgetFrequency::e_none && amt == 0.0)
+    if (period == BudgetFreq::e_none && amt == 0.0)
         m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
 
     if (amt <= 0.0)
@@ -144,8 +144,8 @@ void BudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Frequency:")), g_flagsH);
 
     wxArrayString period;
-    for (int i = 0; i < BudgetFrequency::size; ++i) {
-        period.Add(wxGetTranslation(BudgetFrequency(i).name()));
+    for (int i = 0; i < BudgetFreq::size; ++i) {
+        period.Add(wxGetTranslation(BudgetFreq(i).name()));
     }
     m_choiceItem = new wxChoice(
         itemPanel7, wxID_ANY,
@@ -196,7 +196,7 @@ void BudgetEntryDialog::OnOk(wxCommandEvent& event)
     if (!m_textAmount->checkValue(amt))
         return;
 
-    if (freq == BudgetFrequency::e_none && amt > 0) {
+    if (freq == BudgetFreq::e_none && amt > 0) {
         m_choiceItem->SetFocus();
         m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
         event.Skip();
@@ -204,14 +204,14 @@ void BudgetEntryDialog::OnOk(wxCommandEvent& event)
     }
     
     if (amt == 0.0)
-        freq = BudgetFrequency::e_none;
+        freq = BudgetFreq::e_none;
 
     if (typeSelection == DEF_TYPE_EXPENSE)
         amt = -amt;
 
-    m_budget_n->m_frequency = BudgetFrequency(freq);
-    m_budget_n->m_amount    = amt;
-    m_budget_n->m_notes     = m_Notes->GetValue();
+    m_budget_n->m_freq   = BudgetFreq(freq);
+    m_budget_n->m_amount = amt;
+    m_budget_n->m_notes  = m_Notes->GetValue();
     BudgetModel::instance().unsafe_save_data_n(m_budget_n);
 
     EndModal(wxID_OK);

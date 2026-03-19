@@ -57,7 +57,7 @@ mmChoiceNameA AssetChangeMode::s_choice_a = mmChoiceNameA({
     { e_linear,     _n("Linear") },
 }, e_percentage, true);
 
-mmChoiceNameA BudgetFrequency::s_choice_a = mmChoiceNameA({
+mmChoiceNameA BudgetFreq::s_choice_a = mmChoiceNameA({
     { e_none,       _n("None") },
     { e_weekly,     _n("Weekly") },
     { e_biweekly,   _n("Fortnightly") },
@@ -88,7 +88,7 @@ mmChoiceNameA FieldTypeN::s_choice_a = mmChoiceNameA({
 mmChoiceNameA TrxType::s_choice_a = mmChoiceNameA({
     { e_withdrawal, _n("Withdrawal") },
     { e_deposit,    _n("Deposit") },
-    { e_transfer,   _n("Transfer") }
+    { e_transfer,   _n("Transfer") },
 }, e_withdrawal, true);
 
 mmChoiceKeyNameA TrxStatus::s_choice_a = mmChoiceKeyNameA({
@@ -96,8 +96,34 @@ mmChoiceKeyNameA TrxStatus::s_choice_a = mmChoiceKeyNameA({
     { e_reconciled,   "R", _n("Reconciled") },
     { e_void,         "V", _n("Void") },
     { e_followup,     "F", _n("Follow Up") },
-    { e_duplicate,    "D", _n("Duplicate") }
+    { e_duplicate,    "D", _n("Duplicate") },
 }, e_unreconciled, true);
+
+mmChoiceCodeNameA RepeatMode::s_choice_a = mmChoiceCodeNameA({
+    { e_none,      0, _n("Manual") },
+    { e_suggested, 1, _n("Suggested") },
+    { e_automated, 2, _n("Automated") },
+}, e_none, true);
+
+mmChoiceCodeNameA RepeatFreq::s_choice_a = mmChoiceCodeNameA({
+    { e_once,                     0, _n("Once") },
+    { e_1_day,                   10, _n("Daily") },
+    { e_1_week,                   1, _n("Weekly") },
+    { e_2_weeks,                  2, _n("Fortnightly") },
+    { e_4_weeks,                  9, _n("Four Weeks") },
+    { e_1_month,                  3, _n("Monthly") },
+    { e_month_last_day,          15, _n("Monthly (last day)") },
+    { e_month_last_business_day, 16, _n("Monthly (last business day)") },
+    { e_2_months,                 4, _n("Every 2 Months") },
+    { e_3_months,                 5, _n("Quarterly") },
+    { e_4_months,                 8, _n("Four Months") },
+    { e_6_months,                 6, _n("Half-Yearly") },
+    { e_1_year,                   7, _n("Yearly") },
+    { e_in_x_days,               11, _n("In %s Days") },
+    { e_in_x_months,             12, _n("In %s Months") },
+    { e_every_x_days,            13, _n("Every %s Days") },
+    { e_every_x_months,          14, _n("Every %s Months") },
+}, e_once, true);
 
 mmChoiceNameA RefTypeN::s_choice_a = mmChoiceNameA({
     { e_trx,         _n("Transaction") },

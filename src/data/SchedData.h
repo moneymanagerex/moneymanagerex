@@ -21,6 +21,7 @@
 #include "util/mmDateTime.h"
 #include "util/mmDate.h"
 #include "_DataEnum.h"
+#include "_Repeat.h"
 #include "table/_TableBase.h"
 #include "table/SchedTable.h"
 
@@ -42,8 +43,7 @@ struct SchedData
     int64      m_followup_id;
     int64      m_color;
     mmDate     m_due_date;
-    int64      REPEATS;
-    int64      NUMOCCURRENCES;
+    Repeat     m_repeat;          // decoding of REEPATS, NUMOCCURRENCES
 
     explicit SchedData();
     explicit SchedData(wxSQLite3ResultSet& q);
@@ -77,6 +77,9 @@ struct SchedData
     bool is_transfer()   const { return m_type.id() == TrxType::e_transfer; }
     bool is_reconciled() const { return m_status.id() == TrxStatus::e_reconciled; }
     bool is_void()       const { return m_status.id() == TrxStatus::e_void; }
+
+    bool is_due() const;
+    auto unroll(const wxString end_date, int limit = -1) const -> const wxArrayString;
 
     struct SorterById
     {
@@ -198,19 +201,41 @@ struct SchedData
         }
     };
 
-    struct SorterByREPEATS
+    struct SorterByRepeatMode
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.REPEATS < y.REPEATS;
+            return x.m_repeat.m_mode.id() < y.m_repeat.m_mode.id();
         }
     };
 
-    struct SorterByNUMOCCURRENCES
+    struct SorterByRepeatFreq
     {
         bool operator()(const SchedData& x, const SchedData& y)
         {
-            return x.NUMOCCURRENCES < y.NUMOCCURRENCES;
+            return x.m_repeat.m_freq.id() < y.m_repeat.m_freq.id();
+        }
+    };
+
+    struct SorterByRepeatNum
+    {
+        // the order is: 1, 2, …, -1 (infinity)
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_repeat.m_num > 0 && (
+                y.m_repeat.m_num == -1 || x.m_repeat.m_num < y.m_repeat.m_num
+            );
+        }
+    };
+
+    struct SorterByRepeatX
+    {
+        // the order is: 1, 2, …, -1 (null)
+        bool operator()(const SchedData& x, const SchedData& y)
+        {
+            return x.m_repeat.m_x > 0 && (
+                y.m_repeat.m_x == -1 || x.m_repeat.m_x < y.m_repeat.m_x
+            );
         }
     };
 };

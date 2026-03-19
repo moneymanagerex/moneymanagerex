@@ -449,14 +449,12 @@ void mmQIFExportDialog::mmExportQIF()
     json_writer.StartObject();
 
     //Export categories
-    if (m_type == QIF && exp_categ)
-    {
+    if (m_type == QIF && exp_categ) {
         buffer << mmExportTransaction::getCategoriesQIF();
         numCategories = CategoryModel::instance().find_all().size();
         sErrorMsg << _t("Categories exported") << "\n";
     }
-    else if (m_type == JSON)
-    {
+    else if (m_type == JSON) {
         if (exp_categ) {
             mmExportTransaction::getCategoriesJSON(json_writer);
             numCategories = CategoryModel::instance().find_all().size();
@@ -528,36 +526,36 @@ void mmQIFExportDialog::mmExportQIF()
 
             bool is_reverce = false;
             wxString trx_str;
-            TrxModel::Full_Data full_tran(trx_d, trxId_tpA_m, trxId_glA_m);
+            TrxModel::DataExt trx_dx(trx_d, trxId_tpA_m, trxId_glA_m);
             int64 account_id = trx_d.m_account_id;
 
             switch (m_type)
             {
             case JSON:
-                mmExportTransaction::getTransactionJSON(json_writer, full_tran);
+                mmExportTransaction::getTransactionJSON(json_writer, trx_dx);
                 allAccounts4Export[account_id] = "";
                 if (
                     std::find(allPayees4Export.begin(), allPayees4Export.begin(),
-                        full_tran.m_payee_id_n
+                        trx_dx.m_payee_id_n
                     ) == allPayees4Export.end() &&
-                    !full_tran.is_transfer()
+                    !trx_dx.is_transfer()
                 ) {
-                    allPayees4Export.push_back(full_tran.m_payee_id_n);
+                    allPayees4Export.push_back(trx_dx.m_payee_id_n);
                 }
 
                 if (
                     !AttachmentModel::instance().find_ref_data_a(
-                        TrxModel::s_ref_type, full_tran.m_id
+                        TrxModel::s_ref_type, trx_dx.m_id
                     ).empty() &&
                     std::find(
-                        allAttachments4Export.begin(), allAttachments4Export.end(), full_tran.m_id
+                        allAttachments4Export.begin(), allAttachments4Export.end(), trx_dx.m_id
                     ) == allAttachments4Export.end()
                 ) {
-                    allAttachments4Export.push_back(full_tran.m_id);
+                    allAttachments4Export.push_back(trx_dx.m_id);
                 }
 
                 for (const auto & fv_d : FieldValueModel::instance().find(
-                    FieldValueModel::REFTYPEID(TrxModel::s_ref_type, full_tran.m_id)
+                    FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_dx.m_id)
                 )) {
                     if (std::find(allCustomFields4Export.begin(), allCustomFields4Export.end(),
                         fv_d.m_id) == allCustomFields4Export.end()
@@ -567,17 +565,23 @@ void mmQIFExportDialog::mmExportQIF()
                 }
 
                 // store tags from the transaction
-                for (const auto& gl_d : full_tran.m_tags) {
-                    if (std::find(allTags4Export.begin(), allTags4Export.end(), gl_d.m_tag_id) == allTags4Export.end())
+                for (const auto& gl_d : trx_dx.m_gl_a) {
+                    if (std::find(allTags4Export.begin(), allTags4Export.end(),
+                        gl_d.m_tag_id
+                    ) == allTags4Export.end()) {
                         allTags4Export.push_back(gl_d.m_tag_id);
+                    }
                 }
                 // store tags from the splits
-                for (const auto& tp_d : full_tran.m_splits) {
-                    for (const auto& gl_d : TagLinkModel::instance().find_ref_tag_m(
+                for (const auto& tp_d : trx_dx.m_tp_a) {
+                    for (const auto& tag_name_id : TagLinkModel::instance().find_ref_mTagName(
                         TrxSplitModel::s_ref_type, tp_d.m_id
                     )) {
-                        if (std::find(allTags4Export.begin(), allTags4Export.end(), gl_d.second) == allTags4Export.end())
-                            allTags4Export.push_back(gl_d.second);
+                        if (std::find(allTags4Export.begin(), allTags4Export.end(),
+                            tag_name_id.second
+                        ) == allTags4Export.end()) {
+                            allTags4Export.push_back(tag_name_id.second);
+                        }
                     }
                 }
 
@@ -594,12 +598,12 @@ void mmQIFExportDialog::mmExportQIF()
                     }
 
                     if (trx_d.m_amount != trx_d.m_to_amount) {
-                        const auto trx2_str = mmExportTransaction::getTransactionQIF(full_tran, dateMask, !is_reverce);
+                        const auto trx2_str = mmExportTransaction::getTransactionQIF(trx_dx, dateMask, !is_reverce);
                         extraTransfers[is_reverce ? trx_d.m_account_id : trx_d.m_to_account_id_n] += trx2_str;
                     }
                 }
 
-                trx_str = mmExportTransaction::getTransactionQIF(full_tran, dateMask, is_reverce);
+                trx_str = mmExportTransaction::getTransactionQIF(trx_dx, dateMask, is_reverce);
                 allAccounts4Export[account_id] += trx_str;
                 break;
 
@@ -612,11 +616,11 @@ void mmQIFExportDialog::mmExportQIF()
                         is_reverce = true;
                         account_id = trx_d.m_to_account_id_n;
                     }
-                    const auto trx2_str = mmExportTransaction::getTransactionCSV(full_tran, dateMask, !is_reverce);
+                    const auto trx2_str = mmExportTransaction::getTransactionCSV(trx_dx, dateMask, !is_reverce);
                     extraTransfers[is_reverce ? trx_d.m_account_id : trx_d.m_to_account_id_n] += trx2_str;
                 }
 
-                trx_str = mmExportTransaction::getTransactionCSV(full_tran, dateMask, is_reverce);
+                trx_str = mmExportTransaction::getTransactionCSV(trx_dx, dateMask, is_reverce);
                 allAccounts4Export[account_id] += trx_str;
                 break;
             }

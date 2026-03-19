@@ -56,6 +56,14 @@ bool TrxSplitModel::purge_id(int64 tp_id)
     return unsafe_remove_id(tp_id);
 }
 
+const TagLinkModel::DataA TrxSplitModel::find_id_gl_a(int64 tp_id)
+{
+    return TagLinkModel::instance().find(
+        TagLinkCol::REFTYPE(TrxSplitModel::s_ref_type.name_n()),
+        TagLinkCol::REFID(tp_id)
+    );
+}
+
 std::map<int64, TrxSplitModel::DataA> TrxSplitModel::find_all_mTrxId()
 {
     std::map<int64, DataA> trxId_dataA_m;

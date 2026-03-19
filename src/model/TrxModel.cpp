@@ -110,13 +110,13 @@ void TrxModel::copy_from_trx(Data *this_n, const Data& other_d)
     this_n->m_color           = other_d.m_color;
 }
 
-// same as TrxModel::Full_Data::is_foreign()
+// same as TrxModel::DataExt::is_foreign()
 bool TrxModel::is_foreign(const Data& this_d)
 {
     return (!this_d.is_transfer() && this_d.m_to_account_id_n > 0);
 }
 
-// see also TrxModel::Full_Data::is_foreign_transfer()
+// see also TrxModel::DataExt::is_foreign_transfer()
 bool TrxModel::is_foreignAsTransfer(const Data& this_d)
 {
     return is_foreign(this_d) && (
@@ -209,10 +209,18 @@ bool TrxModel::save_trx_a(DataA& trx_a)
     return ok;
 }
 
-const TrxSplitModel::DataA TrxModel::find_data_split_a(const Data& trx_d)
+const TrxSplitModel::DataA TrxModel::find_id_tp_a(int64 trx_id)
 {
     return TrxSplitModel::instance().find(
-        TrxSplitCol::TRANSID(trx_d.m_id)
+        TrxSplitCol::TRANSID(trx_id)
+    );
+}
+
+const TagLinkModel::DataA TrxModel::find_id_gl_a(int64 trx_id)
+{
+    return TagLinkModel::instance().find(
+        TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
+        TagLinkCol::REFID(trx_id)
     );
 }
 
@@ -316,43 +324,42 @@ bool TrxModel::is_locked(const Data& trx_d)
     return account_n && account_n->is_locked_for(trx_d.m_date());
 }
 
-TrxModel::Full_Data::Full_Data() :
+TrxModel::DataExt::DataExt() :
     Data(), TAGNAMES(""),
     m_account_w_id_n(-1), m_account_d_id_n(-1), m_amount_w(0), m_amount_d(0),
     SN(0), m_account_flow(0), m_account_balance(0)
 {
 }
 
-TrxModel::Full_Data::Full_Data(const Data& r) :
-    Data(r),
-    m_splits(TrxSplitModel::instance().find(
-        TrxSplitCol::TRANSID(r.m_id))),
-    m_tags(TagLinkModel::instance().find(
-        TagLinkCol::REFTYPE(TrxModel::s_ref_type.name_n()),
-        TagLinkCol::REFID(r.m_id))),
+TrxModel::DataExt::DataExt(const Data& trx_d) :
+    Data(trx_d),
+    m_tp_a(TrxModel::instance().find_id_tp_a(trx_d.m_id)),
+    m_gl_a(TrxModel::instance().find_id_gl_a(trx_d.m_id)),
     m_account_w_id_n(-1), m_account_d_id_n(-1), m_amount_w(0), m_amount_d(0),
     SN(0), m_account_flow(0), m_account_balance(0)
 {
     fill_data();
 }
 
-TrxModel::Full_Data::Full_Data(
-    const Data& r,
-    const std::map<int64 /* m_id */, TrxSplitModel::DataA>& splits,
-    const std::map<int64 /* m_id */, TagLinkModel::DataA>& tags
+TrxModel::DataExt::DataExt(
+    const Data& trx_d,
+    const std::map<int64 /* m_id */, TrxSplitModel::DataA>& trxId_tpA_m,
+    const std::map<int64 /* m_id */, TagLinkModel::DataA>& trxId_glA_m
 ) :
-    Data(r),
+    Data(trx_d),
     m_account_w_id_n(-1), m_account_d_id_n(-1), m_amount_w(0), m_amount_d(0),
     SN(0), m_account_flow(0), m_account_balance(0)
 {
-    if (const auto it = splits.find(this->id()); it != splits.end()) m_splits = it->second;
+    if (const auto it = trxId_tpA_m.find(this->id()); it != trxId_tpA_m.end())
+        m_tp_a = it->second;
 
-    if (const auto tag_it = tags.find(this->id()); tag_it != tags.end()) m_tags = tag_it->second;
+    if (const auto tag_it = trxId_glA_m.find(this->id()); tag_it != trxId_glA_m.end())
+        m_gl_a = tag_it->second;
 
     fill_data();
 }
 
-void TrxModel::Full_Data::fill_data()
+void TrxModel::DataExt::fill_data()
 {
     displayID = wxString::Format("%lld", m_id);
     ACCOUNTNAME = AccountModel::instance().get_id_name(m_account_id);
@@ -365,8 +372,8 @@ void TrxModel::Full_Data::fill_data()
         PAYEENAME = PayeeModel::instance().get_id_name(m_payee_id_n);
     }
 
-    if (!m_splits.empty()) {
-        for (const auto& tp_d : m_splits)
+    if (!m_tp_a.empty()) {
+        for (const auto& tp_d : m_tp_a)
             CATEGNAME += (CATEGNAME.empty() ? " + " : ", ")
                 + CategoryModel::instance().get_id_fullname(tp_d.m_category_id);
     }
@@ -374,9 +381,9 @@ void TrxModel::Full_Data::fill_data()
         CATEGNAME = CategoryModel::instance().get_id_fullname(m_category_id_n);
     }
 
-    if (!m_tags.empty()) {
+    if (!m_gl_a.empty()) {
         wxArrayString tag_name_a;
-        for (const auto& gl_d : m_tags)
+        for (const auto& gl_d : m_gl_a)
             tag_name_a.Add(TagModel::instance().get_id_data_n(gl_d.m_tag_id)->m_name);
         // Sort TAGNAMES
         tag_name_a.Sort(CaseInsensitiveCmp);
@@ -396,11 +403,11 @@ void TrxModel::Full_Data::fill_data()
     }
 }
 
-TrxModel::Full_Data::~Full_Data()
+TrxModel::DataExt::~DataExt()
 {
 }
 
-wxString TrxModel::Full_Data::real_payee_name(int64 account_id) const
+wxString TrxModel::DataExt::real_payee_name(int64 account_id) const
 {
     if (is_transfer()) {
         if (this->m_account_id == account_id || account_id < 0)
@@ -412,7 +419,7 @@ wxString TrxModel::Full_Data::real_payee_name(int64 account_id) const
     return this->PAYEENAME;
 }
 
-const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
+const wxString TrxModel::DataExt::get_currency_code(int64 account_id) const
 {
     if (is_transfer()) {
         if (this->m_account_id == account_id || account_id == -1)
@@ -427,7 +434,7 @@ const wxString TrxModel::Full_Data::get_currency_code(int64 account_id) const
     return curr ? curr->m_symbol : "";
 }
 
-const wxString TrxModel::Full_Data::get_account_name(int64 account_id) const
+const wxString TrxModel::DataExt::get_account_name(int64 account_id) const
 {
     if (!is_transfer())
         return ACCOUNTNAME;
@@ -443,18 +450,18 @@ const wxString TrxModel::Full_Data::get_account_name(int64 account_id) const
 }
 
 // same as TrxModel::is_foreign()
-bool TrxModel::Full_Data::is_foreign() const
+bool TrxModel::DataExt::is_foreign() const
 {
     return (!is_transfer() && m_to_account_id_n > 0);
 }
 
 // see also TrxModel::is_foreignAsTransfer()
-bool TrxModel::Full_Data::is_foreign_transfer() const
+bool TrxModel::DataExt::is_foreign_transfer() const
 {
     return is_foreign() && (this->m_to_account_id_n == TrxLinkModel::AS_TRANSFER);
 }
 
-wxString TrxModel::Full_Data::info() const
+wxString TrxModel::DataExt::info() const
 {
     // TODO more info
     wxDate date = m_date_time.getDateTime();
@@ -462,7 +469,7 @@ wxString TrxModel::Full_Data::info() const
     return info;
 }
 
-const wxString TrxModel::Full_Data::to_json()
+const wxString TrxModel::DataExt::to_json()
 {
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
@@ -484,7 +491,7 @@ const wxString TrxModel::Full_Data::to_json()
     if (this->has_tags()) {
         json_writer.Key("TAGS");
         json_writer.StartArray();
-        for (const auto& tp_d : m_splits) {
+        for (const auto& tp_d : m_tp_a) {
             json_writer.StartObject();
             json_writer.Key(CategoryModel::instance().get_id_fullname(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
@@ -495,7 +502,7 @@ const wxString TrxModel::Full_Data::to_json()
     if (this->has_split()) {
         json_writer.Key("CATEGS");
         json_writer.StartArray();
-        for (const auto & tp_d : m_splits) {
+        for (const auto & tp_d : m_tp_a) {
             json_writer.StartObject();
             json_writer.Key(CategoryModel::instance().get_id_fullname(tp_d.m_category_id).utf8_str());
             json_writer.Double(tp_d.m_amount);
@@ -510,8 +517,8 @@ const wxString TrxModel::Full_Data::to_json()
 
     json_writer.EndObject();
 
-    wxLogDebug("======= TrxModel::FullData::to_json =======");
-    wxLogDebug("FullData using rapidjson:\n%s", wxString::FromUTF8(json_buffer.GetString()));
+    wxLogDebug("======= TrxModel::DataExt::to_json =======");
+    wxLogDebug("DataExt using rapidjson:\n%s", wxString::FromUTF8(json_buffer.GetString()));
 
     return wxString::FromUTF8(json_buffer.GetString());
 }

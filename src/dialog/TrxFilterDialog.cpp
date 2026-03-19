@@ -1130,7 +1130,7 @@ bool TrxFilterDialog::mmIsValuesCorrect() const
         return false;
     }
 
-    if (!m_custom_fields->ValidateCustomValues(0))
+    if (!m_custom_fields->ValidateCustomValues())
         return false;
 
     return true;
@@ -1404,7 +1404,7 @@ bool TrxFilterDialog::mmIsCategoryMatches(int64 categid)
 
 bool TrxFilterDialog::mmIsTagMatches(RefTypeN ref_type, int64 ref_id, bool mergeSplitTags)
 {
-    std::map<wxString, int64> tagnames = TagLinkModel::instance().find_ref_tag_m(
+    std::map<wxString, int64> tagnames = TagLinkModel::instance().find_ref_mTagName(
         ref_type, ref_id
     );
 
@@ -1412,12 +1412,12 @@ bool TrxFilterDialog::mmIsTagMatches(RefTypeN ref_type, int64 ref_id, bool merge
     // where one tag is on the base txn and the other is on the split
     std::map<wxString, int64> tag_name_id_m;
     if (ref_type == TrxSplitModel::s_ref_type)
-        tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
+        tag_name_id_m = TagLinkModel::instance().find_ref_mTagName(
             TrxModel::s_ref_type,
             TrxSplitModel::instance().get_id_data_n(ref_id)->m_trx_id
         );
     else if (ref_type == SchedSplitModel::s_ref_type)
-        tag_name_id_m = TagLinkModel::instance().find_ref_tag_m(
+        tag_name_id_m = TagLinkModel::instance().find_ref_mTagName(
             SchedModel::s_ref_type,
             SchedSplitModel::instance().get_id_data_n(ref_id)->m_sched_id
         );
@@ -1432,7 +1432,7 @@ bool TrxFilterDialog::mmIsTagMatches(RefTypeN ref_type, int64 ref_id, bool merge
                 TrxSplitCol::TRANSID(ref_id)
             )) {
                 std::map<wxString, int64> splitTagnames =
-                    TagLinkModel::instance().find_ref_tag_m(
+                    TagLinkModel::instance().find_ref_mTagName(
                         TrxSplitModel::s_ref_type, tp_d.m_id
                     );
                 tag_name_id_m.insert(splitTagnames.begin(), splitTagnames.end());
@@ -1444,7 +1444,7 @@ bool TrxFilterDialog::mmIsTagMatches(RefTypeN ref_type, int64 ref_id, bool merge
                 SchedSplitCol::TRANSID(ref_id)
             )) {
                 std::map<wxString, int64> splitTagnames =
-                    TagLinkModel::instance().find_ref_tag_m(
+                    TagLinkModel::instance().find_ref_mTagName(
                         SchedSplitModel::s_ref_type, qp_d.m_id
                     );
                 tag_name_id_m.insert(splitTagnames.begin(), splitTagnames.end());

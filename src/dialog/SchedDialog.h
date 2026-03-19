@@ -43,119 +43,6 @@ class SchedDialog : public wxDialog
     wxDECLARE_DYNAMIC_CLASS(SchedDialog);
     wxDECLARE_EVENT_TABLE();
 
-public:
-    SchedDialog();
-    SchedDialog(wxWindow* parent, int64 bdD, bool duplicate, bool enterOccur);
-    ~SchedDialog();
-
-    int64 GetTransID() { return m_trans_id; }
-    void SetDialogHeader(const wxString& header);
-    void SetDialogParameters(int64 trx_id);
-
-private:
-    bool Create(
-        wxWindow* parent,
-        wxWindowID id = wxID_ANY,
-        const wxString& caption = _t("New Scheduled Transaction"),
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX,
-        const wxString& name = "Scheduled Transaction Dialog"
-    );
-
-    void CreateControls();
-
-    // utility functions
-    void OnQuit(wxCloseEvent& event);
-    void OnOk(wxCommandEvent& event);
-    void OnCancel(wxCommandEvent& event);
-    void OnCategs(wxCommandEvent& event);
-    void OnPayee(wxCommandEvent& event);
-    void OnTypeChanged(wxCommandEvent& event);
-    void OnAttachments(wxCommandEvent& event);
-    void OnComboKey(wxKeyEvent& event);
-
-    void dataToControls();
-    void updateControlsForTransType();
-    void OnAccountUpdated(wxCommandEvent& event);
-    void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
-    void OnAutoExecutionSilentChecked(wxCommandEvent& event);
-    void OnFocusChange(wxChildFocusEvent& event);
-    void SetAmountCurrencies(int64 accountID, int64 toAccountID);
-    void OnCalculator(wxCommandEvent& event);
-
-private:
-    SchedModel::Bill_Data m_sched_xd = SchedModel::Bill_Data();
-    int64 m_trans_id;
-    bool m_transfer = false;
-    bool m_new_bill = false;
-    bool m_dup_bill = false;
-    bool m_enter_occur = false;
-    bool autoExecuteUserAck_ = false;
-    bool autoExecuteSilent_ = false;
-    bool m_advanced = false;
-    int object_in_focus_ = wxID_ANY;
-    wxSize min_size_;
-    std::vector<wxString> frequentNotes_;
-
-    const wxString payeeWithdrawalTip_ = _t("Specify where the transaction is going to");
-    const wxString payeeDepositTip_    = _t("Specify where the transaction is coming from");
-    const wxString payeeTransferTip_   = _t("Specify which account the transfer is going to");
-    const wxString amountNormalTip_    = _t("Specify the amount for this transaction");
-    const wxString amountTransferTip_  = _t("Specify the amount to be transferred");
-
-    wxBitmapButton*     bCalc_                      = nullptr;
-    mmCalculatorPopup*  calcPopup_                  = nullptr;
-    wxTextCtrl*         textNumber_                 = nullptr;
-    mmTextCtrl*         textAmount_                 = nullptr;
-    mmTextCtrl*         toTextAmount_               = nullptr;
-    mmTextCtrl*         calcTarget_                 = nullptr;
-    wxTextCtrl*         textNotes_                  = nullptr;
-    wxTextCtrl*         textNumRepeats_             = nullptr;
-    mmComboBoxCategory* cbCategory_                 = nullptr;
-    wxBitmapButton*     bSplit_                     = nullptr;
-    mmComboBoxPayee*    cbPayee_                    = nullptr;
-    mmComboBoxAccount*  cbAccount_                  = nullptr;
-    mmComboBoxAccount*  cbToAccount_                = nullptr;
-    wxBitmapButton*     bAttachments_               = nullptr;
-    wxButton*           m_button_cancel             = nullptr;
-    mmColorButton*      bColours_                   = nullptr;
-    wxCheckBox*         cAdvanced_                  = nullptr;
-    wxChoice*           m_choice_status             = nullptr;
-    wxChoice*           m_choice_transaction_type   = nullptr;
-    mmDatePickerCtrl*   m_date_paid                 = nullptr; // Stored in TRANSDATE
-    mmDatePickerCtrl*   m_date_due                  = nullptr; // Stored in NEXTOCCURRENCEDATE
-    wxChoice*           m_choice_repeat             = nullptr;
-    wxCheckBox*         itemCheckBoxAutoExeUserAck_ = nullptr;
-    wxCheckBox*         itemCheckBoxAutoExeSilent_  = nullptr;
-    wxStaticText*       staticTimesRepeat_          = nullptr;
-    wxStaticText*       staticTextRepeats_          = nullptr;
-    wxBitmapButton*     m_btn_due_prev_date         = nullptr;
-    wxBitmapButton*     m_btn_due_date              = nullptr;
-    mmTagTextCtrl*      tagTextCtrl_                = nullptr;
-    //wxTextCtrl*       textCategory_               = nullptr;
-
-private:
-    void setTooltips();
-    void setCategoryLabel();
-    void OnAdvanceChecked(wxCommandEvent& event);
-    void SetTransferControls(bool transfers = false);
-    void SetAdvancedTransferControls(bool advanced = false);
-    void SetSplitControls(bool split = false);
-    void OnFrequentUsedNotes(wxCommandEvent& event);
-    void OnNoteSelected(wxCommandEvent& event);
-
-    void OnRepeatTypeChanged(wxCommandEvent& event);
-    void OnsetPrevOrNextRepeatDate(wxCommandEvent& event);
-    void setRepeatDetails();
-    int getRepeatType();
-    void setRepeatType(int repeatType);
-    void OnMoreFields(wxCommandEvent& event);
-
-    void activateSplitTransactionsDlg();
-    static const std::vector<std::pair<int, wxString> > BILLSDEPOSITS_REPEATS;
-    wxSharedPtr<FieldValueDialog> m_custom_fields;
-
 private:
     enum
     {
@@ -196,5 +83,120 @@ private:
         ID_BTN_CUSTOMFIELDS,
         ID_CUSTOMFIELDS    // must be last in the list
     };
+
+private:
+    const wxString payeeWithdrawalTip_ = _t("Specify where the transaction is going to");
+    const wxString payeeDepositTip_    = _t("Specify where the transaction is coming from");
+    const wxString payeeTransferTip_   = _t("Specify which account the transfer is going to");
+    const wxString amountNormalTip_    = _t("Specify the amount for this transaction");
+    const wxString amountTransferTip_  = _t("Specify the amount to be transferred");
+
+private:
+    SchedData m_sched_d = SchedData();
+    std::vector<Split> m_split_a;
+    wxArrayInt64 m_tag_id_a;
+    int64 m_sched_id;
+    bool m_is_transfer = false;
+    bool m_is_new = false;
+    bool m_is_duplicate = false;
+    bool m_enter = false;
+    bool m_mode_suggested = false;
+    bool m_mode_automated = false;
+    bool m_advanced = false;
+    std::vector<wxString> m_frequent_note_a;
+
+    int                 w_focus             = wxID_ANY;
+    wxSize              w_min_size;
+    wxBitmapButton*     w_calculator_btn    = nullptr;
+    mmCalculatorPopup*  w_calculator        = nullptr;
+    wxTextCtrl*         w_number_text       = nullptr;
+    mmTextCtrl*         w_amount_text       = nullptr;
+    mmTextCtrl*         w_to_amount_text    = nullptr;
+    mmTextCtrl*         w_calculator_text   = nullptr;
+    wxTextCtrl*         w_notes_text        = nullptr;
+    wxTextCtrl*         w_repeat_num_text   = nullptr;
+    mmComboBoxCategory* w_category_cb       = nullptr;
+    mmComboBoxPayee*    w_payee_cb          = nullptr;
+    mmComboBoxAccount*  w_account_cb        = nullptr;
+    mmComboBoxAccount*  w_to_account_cb     = nullptr;
+    wxBitmapButton*     w_split_btn         = nullptr;
+    wxBitmapButton*     w_attachment_btn    = nullptr;
+    wxButton*           w_cancel_btn        = nullptr;
+    mmColorButton*      w_color_btn         = nullptr;
+    wxCheckBox*         w_advanced_cb       = nullptr;
+    wxChoice*           w_status_choice     = nullptr;
+    wxChoice*           w_type_choice       = nullptr;
+    mmDatePickerCtrl*   w_date_paid         = nullptr; // Stored in TRANSDATE
+    mmDatePickerCtrl*   w_date_due          = nullptr; // Stored in NEXTOCCURRENCEDATE
+    wxChoice*           w_freq_choice       = nullptr;
+    wxCheckBox*         w_mode_suggested_cb = nullptr;
+    wxCheckBox*         w_mode_automated_cb = nullptr;
+    wxStaticText*       w_static_freq       = nullptr;
+    wxStaticText*       w_static_repeat_num = nullptr;
+    wxBitmapButton*     w_repeat_prev_btn   = nullptr;
+    wxBitmapButton*     w_repeat_next_btn   = nullptr;
+    mmTagTextCtrl*      w_tag_text          = nullptr;
+
+public:
+    SchedDialog();
+    SchedDialog(wxWindow* parent, int64 bdD, bool duplicate, bool enterOccur);
+    ~SchedDialog();
+
+public:
+    int64 GetTransID() { return m_sched_id; }
+    void SetDialogHeader(const wxString& header);
+    void SetDialogParameters(int64 trx_id);
+
+private:
+    bool Create(
+        wxWindow* parent,
+        wxWindowID id = wxID_ANY,
+        const wxString& caption = _t("New Scheduled Transaction"),
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX,
+        const wxString& name = "Scheduled Transaction Dialog"
+    );
+
+    void CreateControls();
+
+    // utility functions
+    void OnQuit(wxCloseEvent& event);
+    void OnOk(wxCommandEvent& event);
+    void OnCancel(wxCommandEvent& event);
+    void OnCategs(wxCommandEvent& event);
+    void OnPayee(wxCommandEvent& event);
+    void OnTypeChanged(wxCommandEvent& event);
+    void OnAttachments(wxCommandEvent& event);
+    void OnComboKey(wxKeyEvent& event);
+
+    void dataToControls();
+    void updateControlsForTransType();
+    void OnAccountUpdated(wxCommandEvent& event);
+    void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
+    void OnAutoExecutionSilentChecked(wxCommandEvent& event);
+    void OnFocusChange(wxChildFocusEvent& event);
+    void SetAmountCurrencies(int64 accountID, int64 toAccountID);
+    void OnCalculator(wxCommandEvent& event);
+
+private:
+    void setTooltips();
+    void setCategoryLabel();
+    void OnAdvanceChecked(wxCommandEvent& event);
+    void SetTransferControls(bool transfers = false);
+    void SetAdvancedTransferControls(bool advanced = false);
+    void SetSplitControls(bool split = false);
+    void OnFrequentUsedNotes(wxCommandEvent& event);
+    void OnNoteSelected(wxCommandEvent& event);
+
+    void OnRepeatTypeChanged(wxCommandEvent& event);
+    void OnsetPrevOrNextRepeatDate(wxCommandEvent& event);
+    void setRepeatDetails();
+    RepeatFreq getRepeatFreq();
+    void OnMoreFields(wxCommandEvent& event);
+
+    void activateSplitTransactionsDlg();
+    static const std::vector<std::pair<int, wxString> > BILLSDEPOSITS_REPEATS;
+    wxSharedPtr<FieldValueDialog> m_custom_fields;
 };
 

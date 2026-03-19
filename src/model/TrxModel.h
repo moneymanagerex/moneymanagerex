@@ -34,19 +34,18 @@
 class TrxModel : public TableFactory<TrxTable, TrxData>
 {
 public:
-    using TrxSplitDataA = TrxSplitModel::DataA;
-    using TagLinkDataA  = TagLinkModel::DataA;
+    using SplitDataA = TrxSplitModel::DataA;
 
 public:
-    struct Full_Data: public Data
+    struct DataExt: public Data
     {
         // filled-in by constructor
         wxString displayID;
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
-        TrxSplitDataA m_splits;
-        TagLinkDataA m_tags;
+        TrxSplitModel::DataA m_tp_a;
+        TagLinkModel::DataA m_gl_a;
         wxString TAGNAMES;
 
         // filled-in by constructor; overwritten by JournalPanel::filterList()
@@ -69,13 +68,13 @@ public:
         wxString UDFC_content[5];
         double UDFC_value[5] = {0, 0, 0, 0, 0};
 
-        Full_Data();
-        explicit Full_Data(const Data& r);
-        Full_Data(const Data& r,
-            const std::map<int64 /* m_id */, TrxSplitModel::DataA> & splits,
-            const std::map<int64 /* m_id */, TagLinkModel::DataA> & tags
+        DataExt();
+        explicit DataExt(const Data& trx_d);
+        DataExt(const Data& trx_d,
+            const std::map<int64, TrxSplitModel::DataA>& trxId_tpA_m,
+            const std::map<int64, TagLinkModel::DataA>& trxId_glA_m
         );
-        ~Full_Data();
+        ~DataExt();
 
         void fill_data();
         wxString real_payee_name(int64 account_id) const;
@@ -89,8 +88,7 @@ public:
         wxString info() const;
         const wxString to_json();
     };
-
-    typedef std::vector<Full_Data> Full_DataA;
+    typedef std::vector<DataExt> DataExtA;
 
 public:
     static const RefTypeN s_ref_type;
@@ -104,11 +102,11 @@ public:
     static TrxModel& instance();
 
 public:
-    static TrxCol::TRANSDATE   DATE(OP op, const mmDate& date);
-    static TrxCol::TRANSCODE   TYPE(OP op, TrxType trx_type);
-    static TrxCol::STATUS      STATUS(OP op, TrxStatus trx_status);
-    static TrxCol::STATUS      IS_VOID(bool value);
-    static TrxCol::DELETEDTIME IS_DELETED(bool value);
+    static auto DATE(OP op, const mmDate& date) -> TrxCol::TRANSDATE;
+    static auto TYPE(OP op, TrxType trx_type) -> TrxCol::TRANSCODE;
+    static auto STATUS(OP op, TrxStatus trx_status) -> TrxCol::STATUS;
+    static auto IS_VOID(bool value) -> TrxCol::STATUS;
+    static auto IS_DELETED(bool value) -> TrxCol::DELETEDTIME;
 
 public:
     // TODO: move to TrxData
@@ -126,7 +124,8 @@ public:
     auto save_trx_n(Data& trx_d) -> const Data*;
     bool save_trx_a(DataA& rows);
 
-    auto find_data_split_a(const Data& trx_d) -> const TrxSplitDataA;
+    auto find_id_tp_a(int64 trx_id) -> const TrxSplitModel::DataA;
+    auto find_id_gl_a(int64 trx_id) -> const TagLinkModel::DataA;
     auto find_all_aDateTimeId() -> const TrxModel::DataA;
 
     void getFrequentUsedNotes(std::vector<wxString> &frequentNotes, int64 accountID = -1);
@@ -136,7 +135,7 @@ public:
 public:
     struct SorterByACCOUNTNAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.ACCOUNTNAME.Lower().wc_str(), y.ACCOUNTNAME.Lower().wc_str()) < 0;
         }
@@ -144,7 +143,7 @@ public:
 
     struct SorterByTOACCOUNTNAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.TOACCOUNTNAME.Lower().wc_str(), y.TOACCOUNTNAME.Lower().wc_str()) < 0;
         }
@@ -152,7 +151,7 @@ public:
 
     struct SorterByPAYEENAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.PAYEENAME.Lower().wc_str(), y.PAYEENAME.Lower().wc_str()) < 0;
         }
@@ -160,7 +159,7 @@ public:
 
     struct SorterByCATEGNAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.CATEGNAME.Lower().wc_str(), y.CATEGNAME.Lower().wc_str()) < 0;
         }
@@ -168,7 +167,7 @@ public:
 
     struct SorterByTAGNAMES
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return x.TAGNAMES < y.TAGNAMES;
         }
@@ -176,7 +175,7 @@ public:
 
     struct SorterByDEPOSIT
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return x.m_account_d_id_n != -1 && (
                 y.m_account_d_id_n == -1 || x.m_amount_d < y.m_amount_d
@@ -186,7 +185,7 @@ public:
 
     struct SorterByWITHDRAWAL
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return x.m_account_w_id_n != -1 && (
                 y.m_account_w_id_n == -1 || x.m_amount_w < y.m_amount_w
@@ -196,7 +195,7 @@ public:
 
     struct SorterByBALANCE
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return x.m_account_balance < y.m_account_balance;
         }
@@ -205,18 +204,18 @@ public:
 
 //----------------------------------------------------------------------------
 
-inline bool TrxModel::Full_Data::has_split() const
+inline bool TrxModel::DataExt::has_split() const
 {
-    return !this->m_splits.empty();
+    return !this->m_tp_a.empty();
 }
 
-inline bool TrxModel::Full_Data::has_tags() const
+inline bool TrxModel::DataExt::has_tags() const
 
 {
-    return !this->m_tags.empty();
+    return !this->m_gl_a.empty();
 }
 
-inline bool TrxModel::Full_Data::has_attachment() const
+inline bool TrxModel::DataExt::has_attachment() const
 {
     return !ATTACHMENT_DESCRIPTION.empty();
 }

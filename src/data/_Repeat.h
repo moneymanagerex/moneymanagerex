@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2013,2014 James Higley
+ Copyright (C) 2026 George Ef (george.a.ef@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -18,34 +18,24 @@
 
 #pragma once
 
-#include "base/defs.h"
+#include "base/types.h"
+#include "_DataEnum.h"
 
-#include "table/SchedSplitTable.h"
-#include "data/_DataEnum.h"
-#include "data/SchedSplitData.h"
-
-#include "_ModelBase.h"
-#include "TagLinkModel.h"
-
-class SchedSplitModel : public TableFactory<SchedSplitTable, SchedSplitData>
+struct Repeat
 {
-public:
-    static const RefTypeN s_ref_type;
+    static const int encoding_base = 100;
 
-public:
-    SchedSplitModel();
-    ~SchedSplitModel();
+    RepeatMode m_mode;
+    RepeatFreq m_freq;
+    int        m_num;  // positive (> 0) or -1 (infinity)
+    int        m_x;    // positive if freq is e_{in,every}_x_*; -1 (null) otherwise
 
-public:
-    static SchedSplitModel& instance(wxSQLite3Database* db);
-    static SchedSplitModel& instance();
+    Repeat();
+    Repeat(RepeatMode mode, RepeatFreq freq, int num);
 
-public:
-    bool purge_id(int64 qp_id) override;
+    static Repeat from_row(int64 row_REPEATS, int64 row_NUMOCCURRENCES);
 
-    auto get_data_amount(const DataA& qp_a) -> double;
-    auto find_id_gl_a(int64 qp_id) -> const TagLinkModel::DataA;
-    auto find_all_mSchedId() -> std::map<int64, DataA>;
-    int  update(int64 dst_sched_id, DataA& src_qp_a);
+    void to_row(int64& row_REPEATS, int64& row_NUMOCCURRENCES) const;
+    auto next_datetime(const wxDateTime dateTime, bool revese = false) -> const wxDateTime;
+    void next_repeat();
 };
-

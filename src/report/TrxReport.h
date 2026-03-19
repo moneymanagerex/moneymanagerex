@@ -34,7 +34,7 @@ public:
 
 private:
     void Run(wxSharedPtr<TrxFilterDialog>& transDialog);
-    TrxModel::Full_DataA trx_xa;
+    TrxModel::DataExtA trx_xa;
     wxSharedPtr<TrxFilterDialog> m_transDialog;
     bool showColumnById(int num);
     void displayTotals(const std::map<int64, double>& total, std::map<int64, double>& total_in_base_curr, int noOfCols);

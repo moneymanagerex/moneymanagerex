@@ -27,6 +27,7 @@
 
 #include "_ModelBase.h"
 #include "CurrencyModel.h"
+#include "TagLinkModel.h"
 
 struct Split
 {
@@ -53,6 +54,7 @@ public:
     // override
     bool purge_id(int64 tp_id) override;
 
+    auto find_id_gl_a(int64 tp_id) -> const TagLinkModel::DataA;
     auto find_all_mTrxId() -> std::map<int64, DataA>;
 
     auto get_total(const DataA& tp_a) -> double;

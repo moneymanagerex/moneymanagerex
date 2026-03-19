@@ -37,8 +37,8 @@ public:
     // Apply Filter methods
     template<class MODEL, class DATA = typename MODEL::Data>
     bool checkCategory(
-        const DATA& tran,
-        const std::map<int64, typename MODEL::TrxSplitDataA> & splits
+        const DATA& d,
+        const std::map<int64, typename MODEL::SplitDataA>& id_splitA_m
     );
     bool mmIsRecordMatches(
         const TrxData &tran,
@@ -53,9 +53,9 @@ private:
     bool m_filter_payee;
     bool m_filter_category;
     wxString m_start_date, m_end_date;
-    wxArrayInt64 m_account_a;
-    wxArrayInt64 m_payee_a;
-    wxArrayInt64 m_category_a;
-    TrxModel::Full_DataA m_trans;
+    wxArrayInt64 m_account_id_a;
+    wxArrayInt64 m_payee_id_a;
+    wxArrayInt64 m_category_id_a;
+    TrxModel::DataExtA m_trx_xa;
 };
 

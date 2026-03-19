@@ -49,18 +49,19 @@ public:
     TrxDialog(
         wxWindow* parent,
         int64 account_id,
-        Journal::IdB journal_id,
+        JournalKey journal_key,
         bool duplicate = false,
         TrxType type = TrxType(TrxType::e_withdrawal)
     );
 
-    bool Create(wxWindow* parent
-        , wxWindowID id = wxID_ANY
-        , const wxString& caption = _t("Transactions Dialog")
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxDefaultSize
-        , long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
-        , const wxString& name = "Transactions Dialog"
+    bool Create(
+        wxWindow* parent,
+        wxWindowID id = wxID_ANY,
+        const wxString& caption = _t("Transactions Dialog"),
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX,
+        const wxString& name = "Transactions Dialog"
     );
 
     void SetDialogTitle(const wxString& title);

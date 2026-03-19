@@ -62,7 +62,10 @@ FieldValueDialog::~FieldValueDialog()
 
 // TODO: refactor to FieldValueDialog()
 mmCustomDataTransaction::mmCustomDataTransaction(
-    wxDialog* dialog, RefTypeN ref_type, int64 ref_id, wxWindowID base_id
+    wxDialog* dialog,
+    RefTypeN ref_type,
+    int64 ref_id,
+    wxWindowID base_id
 ) :
     FieldValueDialog(dialog, ref_type, ref_id)
 {
@@ -705,10 +708,10 @@ void FieldValueDialog::SetWidgetChanged(wxWindowID id, const wxString& data)
     }
 }
 
-bool FieldValueDialog::IsDataFound(const TrxModel::Full_Data& trx_xd)
+bool FieldValueDialog::IsDataFound(const TrxModel::DataExt& trx_dx)
 {
     const auto& fv_a = FieldValueModel::instance().find(
-        FieldValueCol::REFID(trx_xd.m_id)
+        FieldValueCol::REFID(trx_dx.m_id)
     );
     for (const auto& filter : m_data_changed) {
         for (const auto& fv_d : fv_a) {
@@ -750,7 +753,7 @@ void FieldValueDialog::SetStringValue(int fieldIndex, const wxString& value, boo
          SetWidgetChanged(widget_id, value);
 }
 
-bool FieldValueDialog::ValidateCustomValues(int64)
+bool FieldValueDialog::ValidateCustomValues()
 {
     bool is_valid = true;
     int field_index = 0;

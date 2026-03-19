@@ -31,104 +31,27 @@
 #include "SchedSplitModel.h"
 #include "TagLinkModel.h"
 
-const int BD_REPEATS_MULTIPLEX_BASE = 100;
-
 class SchedModel : public TableFactory<SchedTable, SchedData>
 {
 public:
-    using TrxSplitDataA = SchedSplitModel::DataA;
-
-    enum REPEAT_EXEC
-    {
-        REPEAT_EXEC_NONE   = 0,
-        REPEAT_EXEC_MANUAL = 1,
-        REPEAT_EXEC_SILENT = 2
-    };
-    enum REPEAT_FREQ
-    {
-        REPEAT_FREQ_INVALID = -1,   // this value is never stored in database
-        REPEAT_FREQ_ONCE = 0,
-        REPEAT_FREQ_WEEKLY,
-        REPEAT_FREQ_BI_WEEKLY,      // FORTNIGHTLY
-        REPEAT_FREQ_MONTHLY,
-        REPEAT_FREQ_BI_MONTHLY,
-        REPEAT_FREQ_QUARTERLY,      // TRI_MONTHLY
-        REPEAT_FREQ_HALF_YEARLY,
-        REPEAT_FREQ_YEARLY,
-        REPEAT_FREQ_FOUR_MONTHLY,   // QUAD_MONTHLY
-        REPEAT_FREQ_FOUR_WEEKLY,    // QUAD_WEEKLY
-        REPEAT_FREQ_DAILY,
-        REPEAT_FREQ_IN_X_DAYS,
-        REPEAT_FREQ_IN_X_MONTHS,
-        REPEAT_FREQ_EVERY_X_DAYS,
-        REPEAT_FREQ_EVERY_X_MONTHS,
-        REPEAT_FREQ_MONTHLY_LAST_DAY,
-        REPEAT_FREQ_MONTHLY_LAST_BUSINESS_DAY,
-        REPEAT_FREQ_size
-    };
-    enum REPEAT_NUM
-    {
-        REPEAT_NUM_INFINITY = -1,
-        REPEAT_NUM_INVALID  = 0
-    };
-    enum REPEAT_X
-    {
-        REPEAT_X_VOID    = -1,
-        REPEAT_X_INVALID = 0
-    };
-    // decoding of REPEATS and NUMOCCURRENCES
-    struct RepeatNum
-    {
-        REPEAT_EXEC exec; // auto execution mode
-        REPEAT_FREQ freq; // repetition frequency
-        int num;          // occurrences if freq is WEEKLY .. DAILY, MONTHLY_LAST_*
-        int x;            // x           if freq is IN_X_*, EVERY_X_*
-        RepeatNum() = default;
-    };
+    using SplitDataA = SchedSplitModel::DataA;
 
 public:
-    // Pre-initialised data structure
-    struct Bill_Data : SchedData
-    {
-        std::vector<Split> local_splits;
-        wxArrayInt64 TAGS;
-
-        Bill_Data() {
-            m_id              = 0;
-            m_date_time       = mmDateTime::now();
-            m_type            = TrxType(TrxType::e_withdrawal);
-            m_status          = TrxStatus(TrxStatus::e_unreconciled);
-            m_account_id      = -1;
-            m_to_account_id_n = -1;
-            m_payee_id_n      = -1;
-            m_category_id_n   = -1;
-            m_amount          = 0;
-            m_to_amount       = 0;
-            m_number          = "";
-            m_notes           = "";
-            m_followup_id     = -1;
-            m_color           = -1;
-            m_due_date        = mmDate::today();
-            REPEATS           = 0;
-            NUMOCCURRENCES    = 0;
-        }
-    };
-
-    struct Full_Data : public Data
+    struct DataExt : public Data
     {
         wxString ACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
-        SchedSplitModel::DataA m_bill_splits;
-        TagLinkModel::DataA m_tags;
+        SchedSplitModel::DataA m_qp_a;
+        TagLinkModel::DataA m_gl_a;
         wxString TAGNAMES;
 
-        Full_Data();
-        explicit Full_Data(const Data& r);
+        DataExt();
+        explicit DataExt(const Data& sched_d);
 
         wxString real_payee_name() const;
     };
-    typedef std::vector<Full_Data> Full_DataA;
+    typedef std::vector<DataExt> DataExtA;
 
 public:
     static const RefTypeN s_ref_type;
@@ -142,37 +65,23 @@ public:
     static SchedModel& instance();
 
 public:
-    static SchedCol::TRANSCODE TYPE(OP op, TrxType sched_type);
-    static SchedCol::STATUS    STATUS(OP op, TrxStatus sched_status);
-    static SchedCol::STATUS    IS_VOID(bool value);
+    static auto TYPE(OP op, TrxType sched_type) -> SchedCol::TRANSCODE;
+    static auto STATUS(OP op, TrxStatus sched_status) -> SchedCol::STATUS;
+    static auto IS_VOID(bool value) -> SchedCol::STATUS;
 
 public:
-    // Data properties (do not require access to Model)
-    // TODO: move to SchedData
-    static bool encode_repeat_num(Data& this_d, const RepeatNum& rn);
-    static bool decode_repeat_num(const Data& this_d, RepeatNum& rn);
-    static bool next_repeat_num(RepeatNum& rn);
-    static bool requires_execution(const Data& this_d);
-    static const wxDateTime nextOccurDate(
-        wxDateTime this_date, const RepeatNum& rn, bool reverse = false
-    );
-    static wxArrayString unroll(const Data& sched_d, const wxString end_date, int limit = -1);
+    // override
+    bool purge_id(int64 sched_id) override;
 
-public:
-    static const SchedSplitModel::DataA split(const Data& sched_d);
-    static const TagLinkModel::DataA taglink(const Data& sched_d);
-
-public:
-    // Remove the Data record instance from memory and the database
-    // including any splits associated with the Data Record.
-    bool purge_id(int64 id) override;
-    bool AllowTransaction(const Data& sched_d);
-    void completeBDInSeries(int64 bdID);
+    auto find_id_qp_a(int64 sched_id) -> const SchedSplitModel::DataA;
+    auto find_id_gl_a(int64 sched_id) -> const TagLinkModel::DataA;
+    bool is_data_allowed(const Data& sched_d);
+    void reschedule_id(int64 sched_id);
 
 public:
     struct SorterByACCOUNTNAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.ACCOUNTNAME.Lower().wc_str(), y.ACCOUNTNAME.Lower().wc_str()) < 0;
         }
@@ -180,7 +89,7 @@ public:
 
     struct SorterByPAYEENAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.PAYEENAME.Lower().wc_str(), y.PAYEENAME.Lower().wc_str()) < 0;
         }
@@ -188,7 +97,7 @@ public:
 
     struct SorterByCATEGNAME
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             return std::wcscoll(x.CATEGNAME.Lower().wc_str(), y.CATEGNAME.Lower().wc_str()) < 0;
         }
@@ -196,7 +105,7 @@ public:
 
     struct SorterByWITHDRAWAL
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;
@@ -218,7 +127,7 @@ public:
 
     struct SorterByDEPOSIT
     {
-        bool operator()(const Full_Data& x, const Full_Data& y)
+        bool operator()(const DataExt& x, const DataExt& y)
         {
             int64 x_accountid = -1, y_accountid = -1;
             double x_transamount = 0.0, y_transamount = 0.0;

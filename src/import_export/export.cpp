@@ -40,30 +40,30 @@ mmExportTransaction::~mmExportTransaction()
 {}
 
 const wxString mmExportTransaction::getTransactionCSV(
-    const TrxModel::Full_Data& trx_xd,
+    const TrxModel::DataExt& trx_dx,
     const wxString& dateMask,
     bool reverce
 ) {
-    auto account_id = trx_xd.m_account_id;
+    auto account_id = trx_dx.m_account_id;
     wxString buffer = "";
-    bool is_transfer = trx_xd.is_transfer();
+    bool is_transfer = trx_dx.is_transfer();
     const wxString delimiter = InfoModel::instance().getString("DELIMITER", mmex::DEFDELIMTER);
 
-    wxString categ = trx_xd.m_splits.empty()
-        ? CategoryModel::instance().get_id_fullname(trx_xd.m_category_id_n, ":")
+    wxString categ = trx_dx.m_tp_a.empty()
+        ? CategoryModel::instance().get_id_fullname(trx_dx.m_category_id_n, ":")
         : "";
-    wxString transNum = trx_xd.m_number;
-    wxString notes = trx_xd.m_notes;
-    wxString payee = trx_xd.PAYEENAME;
+    wxString transNum = trx_dx.m_number;
+    wxString notes = trx_dx.m_notes;
+    wxString payee = trx_dx.PAYEENAME;
 
-    const auto acc_in = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
+    const auto acc_in = AccountModel::instance().get_id_data_n(trx_dx.m_account_id);
     const auto curr_in = CurrencyModel::instance().get_id_data_n(acc_in->m_currency_id);
     wxString account = acc_in->m_name;
     wxString currency = curr_in->m_symbol;
 
     if (is_transfer) {
-        account_id = reverce ? trx_xd.m_account_id : trx_xd.m_to_account_id_n;
-        const auto acc_to = AccountModel::instance().get_id_data_n(trx_xd.m_to_account_id_n);
+        account_id = reverce ? trx_dx.m_account_id : trx_dx.m_to_account_id_n;
+        const auto acc_to = AccountModel::instance().get_id_data_n(trx_dx.m_to_account_id_n);
         const auto curr_to = CurrencyModel::instance().get_id_data_n(acc_to->m_currency_id);
 
         payee = reverce ? acc_to->m_name : acc_in->m_name;
@@ -73,22 +73,22 @@ const wxString mmExportTransaction::getTransactionCSV(
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty()) {
-            transNum = wxString::Format("#%lld", trx_xd.m_id);
+            transNum = wxString::Format("#%lld", trx_dx.m_id);
         }
     }
 
-    if (trx_xd.has_split()) {
-        for (const auto& tp_d : trx_xd.m_splits) {
+    if (trx_dx.has_split()) {
+        for (const auto& tp_d : trx_dx.m_tp_a) {
             double valueSplit = tp_d.m_amount;
-            if (trx_xd.is_withdrawal())
+            if (trx_dx.is_withdrawal())
                 valueSplit = -valueSplit;
             const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
             const wxString split_categ = CategoryModel::instance().get_id_fullname(tp_d.m_category_id, ":");
 
-            buffer << inQuotes(wxString::Format("%lld", trx_xd.m_id), delimiter) << delimiter;
-            buffer << inQuotes(mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime(), dateMask), delimiter) << delimiter;
-            buffer << inQuotes(trx_xd.m_status.key(), delimiter) << delimiter;
-            buffer << inQuotes(trx_xd.m_type.name(), delimiter) << delimiter;
+            buffer << inQuotes(wxString::Format("%lld", trx_dx.m_id), delimiter) << delimiter;
+            buffer << inQuotes(mmGetDateTimeForDisplay(trx_dx.m_date_time.isoDateTime(), dateMask), delimiter) << delimiter;
+            buffer << inQuotes(trx_dx.m_status.key(), delimiter) << delimiter;
+            buffer << inQuotes(trx_dx.m_type.name(), delimiter) << delimiter;
 
             buffer << inQuotes(acc_in->m_name, delimiter) << delimiter;
 
@@ -104,16 +104,16 @@ const wxString mmExportTransaction::getTransactionCSV(
         }
     }
     else {
-        buffer << inQuotes(wxString::Format("%lld", trx_xd.m_id), delimiter) << delimiter;
-        buffer << inQuotes(mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime(), dateMask), delimiter) << delimiter;
-        buffer << inQuotes(trx_xd.m_status.key(), delimiter) << delimiter;
-        buffer << inQuotes(trx_xd.m_type.name(), delimiter) << delimiter;
+        buffer << inQuotes(wxString::Format("%lld", trx_dx.m_id), delimiter) << delimiter;
+        buffer << inQuotes(mmGetDateTimeForDisplay(trx_dx.m_date_time.isoDateTime(), dateMask), delimiter) << delimiter;
+        buffer << inQuotes(trx_dx.m_status.key(), delimiter) << delimiter;
+        buffer << inQuotes(trx_dx.m_type.name(), delimiter) << delimiter;
 
         buffer << inQuotes(account, delimiter) << delimiter;
 
         buffer << inQuotes(payee, delimiter) << delimiter;
         buffer << inQuotes(categ, delimiter) << delimiter;
-        double value = trx_xd.account_flow(account_id);
+        double value = trx_dx.account_flow(account_id);
         const wxString& s = wxString::FromCDouble(value, 2);
         buffer << inQuotes(s, delimiter) << delimiter;
         buffer << inQuotes(currency, delimiter) << delimiter;
@@ -127,52 +127,52 @@ const wxString mmExportTransaction::getTransactionCSV(
 }
 
 const wxString mmExportTransaction::getTransactionQIF(
-    const TrxModel::Full_Data& trx_xd,
+    const TrxModel::DataExt& trx_dx,
     const wxString& dateMask,
     bool reverse
 ) {
     wxString buffer = "";
-    wxString categ = trx_xd.m_splits.empty()
-        ? CategoryModel::instance().get_id_fullname(trx_xd.m_category_id_n, ":")
+    wxString categ = trx_dx.m_tp_a.empty()
+        ? CategoryModel::instance().get_id_fullname(trx_dx.m_category_id_n, ":")
         : "";
     // Replace square brackets which are used to denote transfers in QIF
     categ.Replace("[", "(");
     categ.Replace("]", ")");
-    wxString transNum = trx_xd.m_number;
-    wxString notes = trx_xd.m_notes;
-    wxString payee = trx_xd.PAYEENAME;
+    wxString transNum = trx_dx.m_number;
+    wxString notes = trx_dx.m_notes;
+    wxString payee = trx_dx.PAYEENAME;
 
-    if (trx_xd.is_transfer()) {
-        const auto acc_in = AccountModel::instance().get_id_data_n(trx_xd.m_account_id);
-        const auto acc_to = AccountModel::instance().get_id_data_n(trx_xd.m_to_account_id_n);
+    if (trx_dx.is_transfer()) {
+        const auto acc_in = AccountModel::instance().get_id_data_n(trx_dx.m_account_id);
+        const auto acc_to = AccountModel::instance().get_id_data_n(trx_dx.m_to_account_id_n);
         const auto curr_in = CurrencyModel::instance().get_id_data_n(acc_in->m_currency_id);
         const auto curr_to = CurrencyModel::instance().get_id_data_n(acc_to->m_currency_id);
 
-        categ = "[" + (reverse ? trx_xd.ACCOUNTNAME : trx_xd.TOACCOUNTNAME) + "]";
+        categ = "[" + (reverse ? trx_dx.ACCOUNTNAME : trx_dx.TOACCOUNTNAME) + "]";
         payee = wxString::Format("%s %s %s -> %s %s %s"
-            , wxString::FromCDouble(trx_xd.m_amount, 2), curr_in->m_symbol, acc_in->m_name
-            , wxString::FromCDouble(trx_xd.m_to_amount, 2), curr_to->m_symbol, acc_to->m_name);
+            , wxString::FromCDouble(trx_dx.m_amount, 2), curr_in->m_symbol, acc_in->m_name
+            , wxString::FromCDouble(trx_dx.m_to_amount, 2), curr_to->m_symbol, acc_to->m_name);
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
-            transNum = wxString::Format("#%lld", trx_xd.m_id);
+            transNum = wxString::Format("#%lld", trx_dx.m_id);
     }
 
     // don't allow '/' in category name as it is reserved for the class/tag separator
     categ.Replace("/", "-");
-    if (!trx_xd.m_tags.empty()) {
+    if (!trx_dx.m_gl_a.empty()) {
         categ.Append("/");
-        auto numTags = trx_xd.m_tags.size();
+        auto numTags = trx_dx.m_gl_a.size();
         for (decltype(numTags) i = 0; i < numTags; i++) {
-            const TagData* tag_n = TagModel::instance().get_id_data_n(trx_xd.m_tags[i].m_tag_id);
+            const TagData* tag_n = TagModel::instance().get_id_data_n(trx_dx.m_gl_a[i].m_tag_id);
             categ.Append((i > 0 ? ":" : "") + tag_n->m_name);
         }
     }
 
-    buffer << "D" << mmGetDateTimeForDisplay(trx_xd.m_date_time.isoDateTime(), dateMask) << "\n";
-    buffer << "C" << (trx_xd.is_reconciled() ? "R" : "") << "\n";
-    double value = trx_xd.account_flow(
-        reverse ? trx_xd.m_to_account_id_n : trx_xd.m_account_id
+    buffer << "D" << mmGetDateTimeForDisplay(trx_dx.m_date_time.isoDateTime(), dateMask) << "\n";
+    buffer << "C" << (trx_dx.is_reconciled() ? "R" : "") << "\n";
+    double value = trx_dx.account_flow(
+        reverse ? trx_dx.m_to_account_id_n : trx_dx.m_account_id
     );
     const wxString& s = wxString::FromCDouble(value, 2);
     buffer << "T" << s << "\n";
@@ -188,9 +188,9 @@ const wxString mmExportTransaction::getTransactionQIF(
         buffer << "M" << notes << "\n";
     }
 
-    for (const auto& tp_d : trx_xd.m_splits) {
+    for (const auto& tp_d : trx_dx.m_tp_a) {
         double valueSplit = tp_d.m_amount;
-        if (trx_xd.is_withdrawal())
+        if (trx_dx.is_withdrawal())
             valueSplit = -valueSplit;
         const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
         wxString split_categ = CategoryModel::instance().get_id_fullname(tp_d.m_category_id, ":");
@@ -408,23 +408,23 @@ void mmExportTransaction::getUsedCategoriesJSON(PrettyWriter<StringBuffer>& json
 
 void mmExportTransaction::getTransactionJSON(
     PrettyWriter<StringBuffer>& json_writer,
-    const TrxModel::Full_Data& trx_xd
+    const TrxModel::DataExt& trx_dx
 ) {
     json_writer.StartObject();
-    trx_xd.as_json(json_writer);
+    trx_dx.as_json(json_writer);
 
     json_writer.Key("TAGS");
     json_writer.StartArray();
-    for (const auto& gl_d : trx_xd.m_tags)
+    for (const auto& gl_d : trx_dx.m_gl_a)
         json_writer.Int64(gl_d.m_tag_id.GetValue());
     json_writer.EndArray();
 
-    if (!trx_xd.m_splits.empty()) {
+    if (!trx_dx.m_tp_a.empty()) {
         json_writer.Key("DIVISION");
         json_writer.StartArray();
-        for (const auto& tp_d : trx_xd.m_splits) {
+        for (const auto& tp_d : trx_dx.m_tp_a) {
             double valueSplit = tp_d.m_amount;
-            if (trx_xd.is_withdrawal()) {
+            if (trx_dx.is_withdrawal()) {
                 valueSplit = -valueSplit;
             }
 
@@ -435,10 +435,11 @@ void mmExportTransaction::getTransactionJSON(
             json_writer.Double(valueSplit);
             json_writer.Key("TAGS");
             json_writer.StartArray();
-            for (const auto& tag : TagLinkModel::instance().find_ref_tag_m(
+            for (const auto& tag_name_id : TagLinkModel::instance().find_ref_mTagName(
                 TrxSplitModel::s_ref_type, tp_d.m_id)
-            )
-                json_writer.Int64(tag.second.GetValue());
+            ) {
+                json_writer.Int64(tag_name_id.second.GetValue());
+            }
             json_writer.EndArray();
             json_writer.EndObject();
 
@@ -447,7 +448,7 @@ void mmExportTransaction::getTransactionJSON(
     }
 
     AttachmentModel::DataA att_a = AttachmentModel::instance().find_ref_data_a(
-        TrxModel::s_ref_type, trx_xd.m_id
+        TrxModel::s_ref_type, trx_dx.m_id
     );
 
     if (!att_a.empty()) {
@@ -461,7 +462,7 @@ void mmExportTransaction::getTransactionJSON(
     }
 
     auto fv_a = FieldValueModel::instance().find(
-        FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_xd.m_id)
+        FieldValueModel::REFTYPEID(TrxModel::s_ref_type, trx_dx.m_id)
     );
     auto f = FieldModel::instance().find(
         FieldCol::REFTYPE(TrxModel::s_ref_type.name_n())

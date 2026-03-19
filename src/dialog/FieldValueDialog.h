@@ -52,7 +52,7 @@ public:
     bool SaveCustomValues(RefTypeN ref_type, int64 ref_id);
     void UpdateCustomValues(RefTypeN ref_type, int64 ref_id);
     void SetStringValue(int fieldIndex, const wxString& value, bool hasChanged = false);
-    bool ValidateCustomValues(int64);
+    bool ValidateCustomValues();
     const wxString GetWidgetData(wxWindowID controlID) const;
     void SetWidgetData(wxWindowID controlID, const wxString& value);
     int GetWidgetType(wxWindowID controlID) const;
@@ -64,7 +64,7 @@ public:
     wxWindowID GetBaseID() const;
     void ResetRefID();
     bool IsSomeWidgetChanged() const;
-    bool IsDataFound(const TrxModel::Full_Data &tran);
+    bool IsDataFound(const TrxModel::DataExt &tran);
     void ResetWidgetsChanged();
     void ClearSettings();
     bool IsCustomPanelShown() const;

@@ -647,11 +647,11 @@ void mmReconcileDialog::OnEdit(wxCommandEvent& WXUNUSED(event))
 
 void mmReconcileDialog::editTransaction(wxListCtrl* list, long item)
 {
-    int64 transid = m_itemDataMap[list->GetItemData(item)];
-    TrxDialog dlg(this, transid, {transid, false});
+    int64 trx_id = m_itemDataMap[list->GetItemData(item)];
+    TrxDialog dlg(this, trx_id, JournalKey(-1, trx_id));
     if (dlg.ShowModal() == wxID_OK) {
         m_checkingPanel->refreshList();
-        const TrxData* trx_n = TrxModel::instance().get_id_data_n(transid);
+        const TrxData* trx_n = TrxModel::instance().get_id_data_n(trx_id);
         setListItemData(trx_n, list, item);
         long idx = getListIndexByDate(trx_n, list);
         if (idx != item) {

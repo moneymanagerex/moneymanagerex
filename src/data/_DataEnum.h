@@ -173,7 +173,7 @@ public:
     const wxString name() const { return AssetChangeMode::s_choice_a.get_name(m_id); }
 };
 
-struct BudgetFrequency
+struct BudgetFreq
 {
 public:
     enum
@@ -195,13 +195,13 @@ private:
     mmChoiceId m_id;
 
 public:
-    BudgetFrequency(mmChoiceId id = s_choice_a.default_id_n()) :
+    BudgetFreq(mmChoiceId id = s_choice_a.default_id_n()) :
         m_id(s_choice_a.valid_id_n(id)) {}
-    BudgetFrequency(const wxString& name) :
-        m_id(BudgetFrequency::s_choice_a.find_name_n(name)) {}
+    BudgetFreq(const wxString& name) :
+        m_id(BudgetFreq::s_choice_a.find_name_n(name)) {}
 
     mmChoiceId id() const { return m_id; }
-    const wxString name() const { return BudgetFrequency::s_choice_a.get_name(m_id); }
+    const wxString name() const { return BudgetFreq::s_choice_a.get_name(m_id); }
     int times_per_year() const {
         int a[size] = { 0, 52, 26, 12, 6, 4, 2, 1, 365 };
         return a[m_id];
@@ -325,6 +325,79 @@ public:
     mmChoiceId id() const { return m_id; }
     const wxString key() const { return TrxStatus::s_choice_a.get_key(m_id); }
     const wxString name() const { return TrxStatus::s_choice_a.get_name(m_id); }
+};
+
+struct RepeatMode
+{
+public:
+    enum
+    {
+        e_none = 0,
+        e_suggested,
+        e_automated,
+        size
+    };
+    static mmChoiceCodeNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    RepeatMode(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    static RepeatMode from_code(int code) {
+        return RepeatMode(RepeatMode::s_choice_a.find_code_n(code));
+    }
+
+    mmChoiceId id() const { return m_id; }
+    int code() const { return RepeatMode::s_choice_a.get_code(m_id); }
+    const wxString name() const { return RepeatMode::s_choice_a.get_name(m_id); }
+};
+
+struct RepeatFreq
+{
+public:
+    enum
+    {
+        e_once = 0,
+        e_1_day,
+        e_1_week,
+        e_2_weeks,
+        e_4_weeks,
+        e_1_month,
+        e_month_last_day,
+        e_month_last_business_day,
+        e_2_months,
+        e_3_months,
+        e_4_months,
+        e_6_months,
+        e_1_year,
+        e_in_x_days,
+        e_in_x_months,
+        e_every_x_days,
+        e_every_x_months,
+        size
+    };
+    static mmChoiceCodeNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    RepeatFreq(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    static RepeatFreq from_code(int code) {
+        return RepeatFreq(RepeatFreq::s_choice_a.find_code_n(code));
+    }
+
+    mmChoiceId id() const { return m_id; }
+    int code() const { return RepeatFreq::s_choice_a.get_code(m_id); }
+    const wxString name() const { return RepeatFreq::s_choice_a.get_name(m_id); }
+    bool is_once() const { return m_id == e_once; }
+    bool is_in_x() const { return m_id >= e_in_x_days && m_id <= e_in_x_months; }
+    bool is_every_x() const { return m_id >= e_every_x_days && m_id <= e_every_x_months; }
+    bool has_x() const { return m_id >= e_in_x_days && m_id <= e_every_x_months; }
+    bool has_num() const { return !is_once() && !has_x(); }
 };
 
 struct RefTypeN

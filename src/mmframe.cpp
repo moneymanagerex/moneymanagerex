@@ -590,10 +590,9 @@ bool mmGUIFrame::findAndSelectNavTreeItem(const wxTreeItemId& treeitem, const wx
     return false;
 }
 
-//----------------------------------------------------------------------------
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
-    //WebApp check
+    // WebApp check
     if (mmWebApp::WebApp_CheckEnabled()) {
         if (OnRefreshWebApp(true)) {
             mmWebAppDialog dlg(this, true);
@@ -603,23 +602,18 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         }
     }
 
-    //Auto scheduled transaction
+    // Auto scheduled transaction
     bool continueExecution = false;
 
-    SchedModel& Q = SchedModel::instance();
-    for (const auto& q1 : Q.find_all()) {
-        if (!Q.requires_execution(q1))
+    for (const auto& sched_d : SchedModel::instance().find_all()) {
+        if (!sched_d.is_due())
             continue;
 
-        SchedModel::RepeatNum rn;
-        if (!Q.decode_repeat_num(q1, rn))
-            continue;
-
-        bool allow = Q.AllowTransaction(q1);
-        if (rn.exec == SchedModel::REPEAT_EXEC_MANUAL) {
-            if (allow) {
+        bool is_allowed = SchedModel::instance().is_data_allowed(sched_d);
+        if (sched_d.m_repeat.m_mode.id() == RepeatMode::e_suggested) {
+            if (is_allowed) {
                 continueExecution = true;
-                SchedDialog repeatTransactionsDlg(this, q1.m_id, false, true);
+                SchedDialog repeatTransactionsDlg(this, sched_d.m_id, false, true);
                 repeatTransactionsDlg.SetDialogHeader(_t("Auto Repeat Transactions"));
                 if (repeatTransactionsDlg.ShowModal() == wxID_OK) {
                     refreshPanelData();
@@ -630,29 +624,29 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 }
             }
         }
-        else if (rn.exec == SchedModel::REPEAT_EXEC_SILENT) {
-            if (allow) {
+        else if (sched_d.m_repeat.m_mode.id() == RepeatMode::e_automated) {
+            if (is_allowed) {
                 continueExecution = true;
                 TrxData new_trx_d = TrxData();
-                new_trx_d.m_date_time       = q1.m_date_time;
-                new_trx_d.m_type            = q1.m_type;
-                new_trx_d.m_status          = q1.m_status;
-                new_trx_d.m_account_id      = q1.m_account_id;
-                new_trx_d.m_to_account_id_n = q1.m_to_account_id_n;
-                new_trx_d.m_payee_id_n      = q1.m_payee_id_n;
-                new_trx_d.m_category_id_n   = q1.m_category_id_n;
-                new_trx_d.m_amount          = q1.m_amount;
-                new_trx_d.m_to_amount       = q1.m_to_amount;
-                new_trx_d.m_number          = q1.m_number;
-                new_trx_d.m_notes           = q1.m_notes;
-                new_trx_d.m_followup_id     = q1.m_followup_id;
-                new_trx_d.m_color           = q1.m_color;
+                new_trx_d.m_date_time       = sched_d.m_date_time;
+                new_trx_d.m_type            = sched_d.m_type;
+                new_trx_d.m_status          = sched_d.m_status;
+                new_trx_d.m_account_id      = sched_d.m_account_id;
+                new_trx_d.m_to_account_id_n = sched_d.m_to_account_id_n;
+                new_trx_d.m_payee_id_n      = sched_d.m_payee_id_n;
+                new_trx_d.m_category_id_n   = sched_d.m_category_id_n;
+                new_trx_d.m_amount          = sched_d.m_amount;
+                new_trx_d.m_to_amount       = sched_d.m_to_amount;
+                new_trx_d.m_number          = sched_d.m_number;
+                new_trx_d.m_notes           = sched_d.m_notes;
+                new_trx_d.m_followup_id     = sched_d.m_followup_id;
+                new_trx_d.m_color           = sched_d.m_color;
                 TrxModel::instance().save_trx_n(new_trx_d);
                 int64 new_trx_id = new_trx_d.m_id;
 
                 TrxSplitModel::DataA tp_a;
                 std::vector<wxArrayInt64> splitTags;
-                for (const auto& qp_d : SchedModel::split(q1)) {
+                for (const auto& qp_d : SchedModel::instance().find_id_qp_a(sched_d.m_id)) {
                     TrxSplitData tp_d = TrxSplitData();
                     tp_d.m_trx_id      = new_trx_id;
                     tp_d.m_category_id = qp_d.m_category_id;
@@ -689,7 +683,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
                 // Copy the custom fields to the newly created transaction
                 const auto& fv_a = FieldValueModel::instance().find(
-                    FieldValueModel::REFTYPEID(SchedModel::s_ref_type, q1.m_id)
+                    FieldValueModel::REFTYPEID(SchedModel::s_ref_type, sched_d.m_id)
                 );
                 FieldValueModel::instance().db_savepoint();
                 for (const auto& fv_d : fv_a) {
@@ -706,7 +700,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 TagLinkModel::DataA new_gl_a;
                 for (const auto& gl_d : TagLinkModel::instance().find(
                     TagLinkCol::REFTYPE(SchedModel::s_ref_type.name_n()),
-                    TagLinkCol::REFID(q1.m_id)
+                    TagLinkCol::REFID(sched_d.m_id)
                 )) {
                     TagLinkData new_gl_d = TagLinkData();
                     new_gl_d.m_tag_id   = gl_d.m_tag_id;
@@ -719,7 +713,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                     new_gl_a
                 );
             }
-            SchedModel::instance().completeBDInSeries(q1.m_id);
+            SchedModel::instance().reschedule_id(sched_d.m_id);
         }
     }
 
@@ -3203,7 +3197,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& event)
         return;
 
     gotoAccountID_ = dlg.GetAccountID();
-    gotoTransID_ = { dlg.GetTransactionID(), 0 };
+    gotoTransID_ = JournalKey(-1, dlg.GetTransactionID());
     const AccountData * account_n = AccountModel::instance().get_id_data_n(gotoAccountID_);
     if (account_n) {
         createCheckingPage(gotoAccountID_);
@@ -3739,10 +3733,10 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
     UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
 
     menuPrintingEnable(true);
-    if (checking_id >= 1 && gotoTransID_.first > 0) {
+    if (checking_id >= 1 && gotoTransID_.ref_id() > 0) {
         JournalPanel* cp = wxDynamicCast(panelCurrent_, JournalPanel);
         cp->setSelectedTransaction(gotoTransID_);
-        gotoTransID_ = { -1, 0 };
+        gotoTransID_ = JournalKey();
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
     m_nav_tree_ctrl->SetFocus();
@@ -4296,10 +4290,10 @@ void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
     m_recentFiles->AddFileToHistory(m_filename);
 }
 
-void mmGUIFrame::setGotoAccountID(int64 account_id, Journal::IdRepeat journal_id)
+void mmGUIFrame::setGotoAccountID(int64 account_id, JournalKey journal_key)
 {
     gotoAccountID_ = account_id;
-    gotoTransID_ = journal_id;
+    gotoTransID_ = journal_key;
 }
 
 void mmGUIFrame::OnToggleFullScreen(wxCommandEvent& WXUNUSED(event))

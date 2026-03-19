@@ -78,7 +78,7 @@ public:
     ~mmGUIFrame();
 
 public:
-    void setGotoAccountID(int64 account_id, Journal::IdRepeat journal_id = {-1, 0});
+    void setGotoAccountID(int64 account_id, JournalKey journal_key = JournalKey());
     bool financialYearIsDifferent()
     {
         return PrefModel::instance().getFinancialFirstDay() != 1 ||
@@ -125,7 +125,7 @@ private:
     bool db_lockInPlace;
 
     int64 gotoAccountID_ = -1;
-    Journal::IdRepeat gotoTransID_ = { -1, 0 };
+    JournalKey gotoTransID_ = JournalKey();
 
     /* There are 2 kinds of reports */
     bool activeReport_ = false;

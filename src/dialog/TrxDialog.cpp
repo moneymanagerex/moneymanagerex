@@ -107,20 +107,18 @@ static wxDateTime previousDate;
 TrxDialog::TrxDialog(
     wxWindow* parent,
     int64 account_id,
-    Journal::IdB journal_id,
+    JournalKey journal_key,
     bool duplicate,
     TrxType type
 ) :
     m_account_id(account_id)
 {
     SetEvtHandlerEnabled(false);
-    bool found = Journal::setJournalData(m_journal_data, journal_id);
+    bool found = Journal::setJournalData(m_journal_data, journal_key);
     if (found) {
         // a bill can only be duplicated
-        m_mode = (duplicate || journal_id.second) ? MODE_DUP : MODE_EDIT;
-        RefTypeN split_ref_type = (m_journal_data.m_repeat_num == 0) ?
-            TrxSplitModel::s_ref_type :
-            SchedSplitModel::s_ref_type;
+        m_mode = (duplicate || journal_key.is_scheduled()) ? MODE_DUP : MODE_EDIT;
+        RefTypeN split_ref_type = m_journal_data.key().ref_type();
         for (const auto& tp_d : Journal::split(m_journal_data)) {
             wxArrayInt64 tag_id_a;
             for (const auto& gl_d : TagLinkModel::instance().find(
@@ -153,24 +151,22 @@ TrxDialog::TrxDialog(
         (m_journal_data.m_amount != m_journal_data.m_to_amount);
 
     m_custom_fields = new mmCustomDataTransaction(this,
-        (m_mode == MODE_NEW ? TrxModel::s_ref_type :
-            m_journal_data.m_repeat_num == 0 ? TrxModel::s_ref_type :
-            SchedModel::s_ref_type
-        ),
-        (m_mode == MODE_NEW ? 0 :
-            m_journal_data.m_repeat_num == 0 ? m_journal_data.m_id :
-            m_journal_data.m_bdid
-        ),
+        m_mode == MODE_NEW ? TrxModel::s_ref_type : m_journal_data.key().ref_type(),
+        m_mode == MODE_NEW ? -1                   : m_journal_data.key().ref_id(),
         ID_CUSTOMFIELDS
     );
 
     // If duplicate then we may need to copy the attachments
+// FIXME: commented out until fixed
+/*
     if (m_mode == MODE_DUP && InfoModel::instance().getBool("ATTACHMENTSDUPLICATE", false)) {
+        // FIXME: check if journal_key.is_reliazed()
         // FIXME: id -1 does not exist in database
         mmAttachmentManage::CloneAllAttachments(
-            TrxModel::s_ref_type, journal_id.first, -1
+            TrxModel::s_ref_type, journal_key.rid(), -1
         );
     }
+*/
 
     this->SetFont(parent->GetFont());
     Create(parent);
@@ -412,14 +408,8 @@ void TrxDialog::dataToControls()
     if (!skip_tag_init_) {
         wxArrayInt64 tag_id_a;
         for (const auto& gl_d : GL.find(
-            TagLinkCol::REFTYPE((m_journal_data.m_repeat_num == 0)
-                ? TrxModel::s_ref_type.name_n()
-                : SchedModel::s_ref_type.name_n()
-            ),
-            TagLinkCol::REFID((m_journal_data.m_repeat_num == 0)
-                ? m_journal_data.m_id
-                : m_journal_data.m_bdid
-            )
+            TagLinkCol::REFTYPE(m_journal_data.key().ref_type().name_n()),
+            TagLinkCol::REFID(m_journal_data.key().ref_id())
         ))
             tag_id_a.push_back(gl_d.m_tag_id);
         tagTextCtrl_->SetTags(tag_id_a);
@@ -1176,9 +1166,8 @@ void TrxDialog::OnCategs(wxCommandEvent& WXUNUSED(event))
 
 void TrxDialog::OnAttachments(wxCommandEvent& WXUNUSED(event))
 {
-    RefTypeN ref_type = (m_journal_data.m_repeat_num == 0) ?
-        TrxModel::s_ref_type :
-        SchedModel::s_ref_type;
+    RefTypeN ref_type = m_journal_data.key().ref_type();
+    // FIXME: the following assumes that ref_type is Trx
     int64 transID = (m_mode == MODE_DUP) ? -1 : m_journal_data.m_id;
     AttachmentDialog dlg(this, ref_type, transID);
     dlg.ShowModal();
@@ -1246,9 +1235,7 @@ void TrxDialog::OnOk(wxCommandEvent& event)
     }
 
     if (!ValidateData()) return;
-    if (!m_custom_fields->ValidateCustomValues((m_journal_data.m_repeat_num == 0) ?
-        m_journal_data.m_id : -(m_journal_data.m_bdid))
-    )
+    if (!m_custom_fields->ValidateCustomValues())
         return;
 
     if (!m_advanced)
@@ -1279,9 +1266,9 @@ void TrxDialog::OnOk(wxCommandEvent& event)
 
     TrxModel::copy_from_trx(trx_n, m_journal_data);
     TrxModel::instance().unsafe_save_trx_n(trx_n);
-    m_journal_data.m_id         = trx_n->id();
-    m_journal_data.m_bdid       = 0;
-    m_journal_data.m_repeat_num = 0;
+    m_journal_data.m_id        = trx_n->id();
+    m_journal_data.m_sched_id  = -1;
+    m_journal_data.m_repeat_id = -1;
 
     TrxSplitModel::DataA tp_a;
     for (const auto& split_d : m_local_splits) {
@@ -1332,7 +1319,7 @@ void TrxDialog::OnOk(wxCommandEvent& event)
         new_gl_a
     );
 
-    //TrxModel::Full_Data trx(trx_d);
+    //TrxModel::DataExt trx(trx_d);
     //wxLogDebug("%s", trx.to_json());
 
     if (event.GetId() == ID_BTN_OK_NEW) {

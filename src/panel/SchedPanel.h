@@ -124,7 +124,7 @@ public:
     ~SchedPanel();
 
     /* Helper Functions/data */
-    SchedModel::Full_DataA bills_;
+    SchedModel::DataExtA bills_;
     void updateBottomPanelData(int selIndex);
     void enableEditDeleteButtons(bool en);
     /* updates the Repeating transactions panel data */
@@ -133,7 +133,6 @@ public:
     wxString getItem(long item, int col_id);
     void RefreshList();
 
-    const wxString GetFrequency(const SchedModel::RepeatNum& rn) const;
     const wxString GetRemainingDays(const SchedData& item) const;
 
     wxString BuildPage() const;
