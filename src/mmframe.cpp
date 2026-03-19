@@ -3282,9 +3282,6 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         menuBar_->Update();
 
         RefreshNavigationTree();
-        if (panelCurrent_  && panelCurrent_->GetId() == mmID_REPORTS) { // Workaround to prevent crash in report page
-            panelCurrent_ = nullptr;
-        }
         refreshPanelData();
 
         // Reset columns of the checking panel in case the time columns was added/removed
@@ -4091,6 +4088,10 @@ void mmGUIFrame::RefreshNavigationTree()
         if (navTreeID.IsOk()) {
             m_nav_tree_ctrl->EnsureVisible(navTreeID);
             m_nav_tree_ctrl->SelectItem(navTreeID);
+        }
+        else {
+            wxLogDebug("Refresh Tree: Original selectedItem not found => Reset to Dashboard");
+            panelCurrent_ = nullptr;
         }
         delete(iData);
     }

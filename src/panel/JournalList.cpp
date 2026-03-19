@@ -2224,7 +2224,6 @@ void JournalList::findSelectedTransactions()
         if (GetItemState(x++, wxLIST_STATE_SELECTED) != wxLIST_STATE_SELECTED)
             continue;
         JournalKey journal_key = journal_dx.key();
-        int64 id = !journal_dx.m_repeat_id ? journal_dx.m_id : journal_dx.m_sched_id;
         if (journal_key_m.find(journal_key) == journal_key_m.end()) {
             m_selected_id.push_back(journal_key);
             journal_key_m.insert(journal_key);
