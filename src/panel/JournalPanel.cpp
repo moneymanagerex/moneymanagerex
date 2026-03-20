@@ -950,7 +950,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
         }
 
         wxString notesStr = journal_dx.m_notes;
-        if (!journal_dx.m_repeat_id) {
+        if (journal_dx.m_repeat_id < 0) {
             auto tp_a = TrxSplitModel::instance().find(
                 TrxSplitCol::TRANSID(journal_dx.m_id)
             );
