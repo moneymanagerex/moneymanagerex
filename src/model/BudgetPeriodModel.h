@@ -19,11 +19,9 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/BudgetPeriodTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/BudgetPeriodData.h"
-
-#include "_ModelBase.h"
 
 class BudgetPeriodModel : public TableFactory<BudgetPeriodTable, BudgetPeriodData>
 {

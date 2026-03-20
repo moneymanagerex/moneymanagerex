@@ -23,13 +23,11 @@
 #include <set>
 
 #include "base/defs.h"
-#include "util/mmChoice.h"
-
-#include "table/CurrencyTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/CurrencyData.h"
 
-#include "_ModelBase.h"
-#include "InfoModel.h" // detect base currency setting BASECURRENCYID
+#include "InfoModel.h"
 
 class CurrencyModel : public TableFactory<CurrencyTable, CurrencyData>
 {

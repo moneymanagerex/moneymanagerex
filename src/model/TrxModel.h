@@ -19,17 +19,14 @@
 #pragma once
 
 #include "base/defs.h"
-#include "util/mmChoice.h"
-#include "util/mmDate.h"
-
-#include "table/TrxTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/TrxData.h"
+// cannot include "util/util.h"
 
-#include "_ModelBase.h"
 #include "TrxSplitModel.h"
 #include "FieldModel.h"
 #include "TagLinkModel.h"
-// cannot include "util/util.h"
 
 class TrxModel : public TableFactory<TrxTable, TrxData>
 {

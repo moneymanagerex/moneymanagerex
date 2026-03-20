@@ -278,8 +278,6 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/TrxSplitModel.h
     model/UsageModel.cpp
     model/UsageModel.h
-    model/_ModelBase.cpp
-    model/_ModelBase.h
     model/_all.h
 
     panel/AssetPanel.cpp

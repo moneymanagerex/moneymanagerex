@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "table/_TableBase.h"
 #include "table/UsageTable.h"
 
 // User-friendly representation of a record in table USAGE_V1.

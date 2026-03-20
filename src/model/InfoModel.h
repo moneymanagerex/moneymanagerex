@@ -22,12 +22,10 @@
 
 #include "base/defs.h"
 #include "util/mmDate.h"
+#include "util/mmSingleton.h"
 #include "util/_util.h"
-
-#include "table/InfoTable.h"
+#include "table/_TableFactory.h"
 #include "data/InfoData.h"
-
-#include "_ModelBase.h"
 
 class InfoModel : public TableFactory<InfoTable, InfoData>
 {

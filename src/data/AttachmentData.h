@@ -19,7 +19,6 @@
 #pragma once
 
 #include "_DataEnum.h"
-#include "table/_TableBase.h"
 #include "table/AttachmentTable.h"
 
 // User-friendly representation of a record in table ATTACHMENT_V1.

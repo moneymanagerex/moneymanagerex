@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "table/_TableBase.h"
 #include "table/ReportTable.h"
 
 // User-friendly representation of a record in table REPORT_V1.

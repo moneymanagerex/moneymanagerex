@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "table/_TableBase.h"
 #include "table/PayeeTable.h"
 
 // User-friendly representation of a record in table PAYEE_V1.

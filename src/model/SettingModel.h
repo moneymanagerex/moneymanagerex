@@ -21,11 +21,9 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/SettingTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/SettingData.h"
-
-#include "_ModelBase.h"
 
 class SettingModel : public TableFactory<SettingTable, SettingData>
 {

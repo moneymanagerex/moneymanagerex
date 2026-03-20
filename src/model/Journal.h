@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "_ModelBase.h"
 #include "TrxModel.h"
 #include "SchedModel.h"
 #include "TrxSplitModel.h"

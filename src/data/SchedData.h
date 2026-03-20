@@ -22,7 +22,6 @@
 #include "util/mmDate.h"
 #include "_DataEnum.h"
 #include "_Repeat.h"
-#include "table/_TableBase.h"
 #include "table/SchedTable.h"
 
 // User-friendly representation of a record in table BILLSDEPOSITS_V1.

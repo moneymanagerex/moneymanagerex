@@ -21,13 +21,12 @@
 
 #include "base/defs.h"
 #include <wx/sharedptr.h>
-
-#include "table/CategoryTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/CategoryData.h"
 
-#include "_ModelBase.h"
-
 class mmDateRange;
+
 class CategoryModel : public TableFactory<CategoryTable, CategoryData>
 {
 public:

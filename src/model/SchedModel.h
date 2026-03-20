@@ -20,12 +20,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/SchedTable.h"
-#include "data/_DataEnum.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/SchedData.h"
 
-#include "_ModelBase.h"
 #include "TrxModel.h"
 #include "TrxSplitModel.h"
 #include "SchedSplitModel.h"

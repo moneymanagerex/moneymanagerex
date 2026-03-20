@@ -19,15 +19,12 @@
 
 #pragma once
 
-#include "base/defs.h"
 #include <float.h>
-
+#include "base/defs.h"
 #include "util/mmDateRange.h"
-
-#include "table/BudgetTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/BudgetData.h"
-
-#include "_ModelBase.h"
 
 class BudgetModel : public TableFactory<BudgetTable, BudgetData>
 {

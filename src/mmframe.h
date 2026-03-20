@@ -41,7 +41,6 @@ class BudgetPanel;
 class CommitCallbackHook;
 class DashboardPanel;
 class JournalPanel;
-class ModelBase;
 class PanelBase;
 class ReportBase;
 class ReportPanel;

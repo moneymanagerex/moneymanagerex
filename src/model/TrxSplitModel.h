@@ -20,12 +20,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/TrxSplitTable.h"
-#include "data/_DataEnum.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/TrxSplitData.h"
 
-#include "_ModelBase.h"
 #include "CurrencyModel.h"
 #include "TagLinkModel.h"
 

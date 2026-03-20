@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "table/_TableBase.h"
 #include "table/BudgetPeriodTable.h"
 
 // User-friendly representation of a record in table BUDGETYEAR_V1.

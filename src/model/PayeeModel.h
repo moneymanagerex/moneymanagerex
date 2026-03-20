@@ -21,12 +21,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/PayeeTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/_DataEnum.h"
 #include "data/PayeeData.h"
-
-#include "_ModelBase.h"
 
 class PayeeModel : public TableFactory<PayeeTable, PayeeData>
 {

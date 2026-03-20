@@ -19,12 +19,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/SchedSplitTable.h"
-#include "data/_DataEnum.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/SchedSplitData.h"
 
-#include "_ModelBase.h"
 #include "TagLinkModel.h"
 
 class SchedSplitModel : public TableFactory<SchedSplitTable, SchedSplitData>

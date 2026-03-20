@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "table/_TableBase.h"
 #include "table/SettingTable.h"
 
 // User-friendly representation of a record in table SETTING_V1.

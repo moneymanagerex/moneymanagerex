@@ -20,11 +20,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/StockTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/StockData.h"
 
-#include "_ModelBase.h"
 #include "AccountModel.h"
 
 class StockModel : public TableFactory<StockTable, StockData>
