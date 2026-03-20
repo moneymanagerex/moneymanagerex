@@ -48,50 +48,42 @@ enum
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
 };
 
-static const wxString VIEW_ALL      = _n("View All Budget Categories");
-static const wxString VIEW_NON_ZERO = _n("View Non-Zero Budget Categories");
-static const wxString VIEW_PLANNED  = _n("View Planned Budget Categories");
-static const wxString VIEW_INCOME   = _n("View Income Budget Categories");
-static const wxString VIEW_EXPENSE  = _n("View Expense Budget Categories");
-static const wxString VIEW_SUMM     = _n("View Budget Category Summary");
+const wxString BudgetPanel::VIEW_ALL      = _n("View All Budget Categories");
+const wxString BudgetPanel::VIEW_NON_ZERO = _n("View Non-Zero Budget Categories");
+const wxString BudgetPanel::VIEW_PLANNED  = _n("View Planned Budget Categories");
+const wxString BudgetPanel::VIEW_INCOME   = _n("View Income Budget Categories");
+const wxString BudgetPanel::VIEW_EXPENSE  = _n("View Expense Budget Categories");
+const wxString BudgetPanel::VIEW_SUMM     = _n("View Budget Category Summary");
 
 wxBEGIN_EVENT_TABLE(BudgetPanel, wxPanel)
     EVT_BUTTON(wxID_FILE2, BudgetPanel::OnMouseLeftDown)
     EVT_MENU(wxID_ANY,     BudgetPanel::OnViewPopupSelected)
 wxEND_EVENT_TABLE()
 
-wxBEGIN_EVENT_TABLE(BudgetList, ListBase)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,  BudgetList::OnListItemSelected)
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, BudgetList::OnListItemActivated)
-    EVT_MOTION(BudgetList::OnMouseMove)
-wxEND_EVENT_TABLE()
-
-const std::vector<ListColumnInfo> BudgetList::LIST_INFO = {
-    { LIST_ID_ICON,      true, _n("Icon"),      _WH, _FL, false },
-    { LIST_ID_CATEGORY,  true, _n("Category"),  _WH, _FL, false },
-    { LIST_ID_FREQUENCY, true, _n("Frequency"), _WH, _FL, false },
-    { LIST_ID_AMOUNT,    true, _n("Amount"),    _WH, _FR, false },
-    { LIST_ID_ESTIMATED, true, _n("Estimated"), _WH, _FR, false },
-    { LIST_ID_ACTUAL,    true, _n("Actual"),    _WH, _FR, false },
-    { LIST_ID_NOTES,     true, _n("Notes"),     _WH, _FL, false },
-};
-
-BudgetPanel::BudgetPanel(int64 budgetYearID
-    , wxWindow *parent
-    , wxWindowID winid
-    , const wxPoint& pos, const wxSize& size
-    , long style, const wxString& name)
-    : m_lc(nullptr)
-    , budgetYearID_(budgetYearID)
+BudgetPanel::BudgetPanel(
+    int64 budgetYearID,
+    wxWindow *parent,
+    wxWindowID winid,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) :
+    m_lc(nullptr),
+    budgetYearID_(budgetYearID)
 {
     Create(parent, winid, pos, size, style, name);
     mmThemeAutoColour(this);
 }
 
-bool BudgetPanel::Create(wxWindow *parent
-    , wxWindowID winid, const wxPoint& pos
-    , const wxSize& size, long style, const wxString& name)
-{
+bool BudgetPanel::Create(
+    wxWindow *parent,
+    wxWindowID winid,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
@@ -119,17 +111,17 @@ void BudgetPanel::OnViewPopupSelected(wxCommandEvent& event)
 {
     int evt =  event.GetId();
     if (evt ==  MENU_VIEW_ALLBUDGETENTRIES)
-        currentView_ = VIEW_ALL;
+        currentView_ = BudgetPanel::VIEW_ALL;
     else if (evt == MENU_VIEW_NONZEROBUDGETENTRIES)
-        currentView_ = VIEW_NON_ZERO;
+        currentView_ = BudgetPanel::VIEW_NON_ZERO;
     else if (evt == MENU_VIEW_PLANNEDBUDGETENTRIES)
-        currentView_ = VIEW_PLANNED;
+        currentView_ = BudgetPanel::VIEW_PLANNED;
     else if (evt == MENU_VIEW_INCOMEBUDGETENTRIES)
-        currentView_ = VIEW_INCOME;
+        currentView_ = BudgetPanel::VIEW_INCOME;
     else if (evt == MENU_VIEW_EXPENSEBUDGETENTRIES)
-        currentView_ = VIEW_EXPENSE;
+        currentView_ = BudgetPanel::VIEW_EXPENSE;
     else if (evt == MENU_VIEW_SUMMARYBUDGETENTRIES)
-        currentView_ = VIEW_SUMM;
+        currentView_ = BudgetPanel::VIEW_SUMM;
     else {
         wxASSERT(false);
     }
@@ -151,13 +143,13 @@ void BudgetPanel::RefreshList()
 void BudgetPanel::OnMouseLeftDown(wxCommandEvent& event)
 {
     wxMenu menu;
-    menu.Append(MENU_VIEW_ALLBUDGETENTRIES, wxGetTranslation(VIEW_ALL));
-    menu.Append(MENU_VIEW_PLANNEDBUDGETENTRIES, wxGetTranslation(VIEW_PLANNED));
-    menu.Append(MENU_VIEW_NONZEROBUDGETENTRIES, wxGetTranslation(VIEW_NON_ZERO));
-    menu.Append(MENU_VIEW_INCOMEBUDGETENTRIES, wxGetTranslation(VIEW_INCOME));
-    menu.Append(MENU_VIEW_EXPENSEBUDGETENTRIES, wxGetTranslation(VIEW_EXPENSE));
+    menu.Append(MENU_VIEW_ALLBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_ALL));
+    menu.Append(MENU_VIEW_PLANNEDBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_PLANNED));
+    menu.Append(MENU_VIEW_NONZEROBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_NON_ZERO));
+    menu.Append(MENU_VIEW_INCOMEBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_INCOME));
+    menu.Append(MENU_VIEW_EXPENSEBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_EXPENSE));
     menu.AppendSeparator();
-    menu.Append(MENU_VIEW_SUMMARYBUDGETENTRIES, wxGetTranslation(VIEW_SUMM));
+    menu.Append(MENU_VIEW_SUMMARYBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_SUMM));
     PopupMenu(&menu);
 
     event.Skip();
@@ -235,19 +227,29 @@ void BudgetPanel::CreateControls()
     wxFlexGridSizer* itemIncomeSizer = new wxFlexGridSizer(0, 7, 5, 10);
     itemBoxSizerVHeader->Add(itemIncomeSizer);
 
-    income_estimated_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_EST, "$", wxDefaultPosition, wxSize(120, -1));
-    income_actual_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_ACT, "$", wxDefaultPosition, wxSize(120, -1));
-    income_diff_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_DIF, "$");
+    income_estimated_ = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_EST, "$",
+        wxDefaultPosition, wxSize(120, -1)
+    );
+    income_actual_ = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_ACT, "$",
+        wxDefaultPosition, wxSize(120, -1)
+    );
+    income_diff_ = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_DIF, "$"
+    );
 
-    expenses_estimated_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST, "$", wxDefaultPosition, wxSize(120, -1));
-    expenses_actual_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT, "$", wxDefaultPosition, wxSize(120, -1));
-    expenses_diff_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF, "$");
+    expenses_estimated_ = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST, "$",
+        wxDefaultPosition, wxSize(120, -1)
+    );
+    expenses_actual_ = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT, "$",
+        wxDefaultPosition, wxSize(120, -1)
+    );
+    expenses_diff_ = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF, "$"
+    );
 
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Income: ")));
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Estimated: ")));
@@ -278,22 +280,6 @@ void BudgetPanel::CreateControls()
     itemBoxSizer2->Add(m_lc.get(), 1, wxGROW | wxALL, 1);
 }
 
-BudgetList::BudgetList(
-    BudgetPanel* cp, wxWindow *parent, const wxWindowID id
-) :
-    ListBase(parent, id),
-    attr3_(new wxListItemAttr(
-        wxNullColour, mmThemeMetaColour(meta::COLOR_LISTTOTAL), wxNullFont
-    )),
-    cp_(cp)
-{
-    mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
-
-    m_setting_name = "BUDGET";
-    m_col_info_id = LIST_INFO;
-    o_col_width_prefix = "BUDGET_COL";
-}
-
 void BudgetPanel::sortList()
 {
     //TODO: Sort budget panel
@@ -314,15 +300,15 @@ bool BudgetPanel::DisplayEntryAllowed(int64 cat_id, int64 subcategoryID)
         estimated = getEstimate(cat_id);
     }
 
-    if (currentView_ == VIEW_NON_ZERO)
+    if (currentView_ == BudgetPanel::VIEW_NON_ZERO)
         result = ((estimated != 0.0) || (actual != 0.0));
-    else if (currentView_ == VIEW_INCOME)
+    else if (currentView_ == BudgetPanel::VIEW_INCOME)
         result = ((estimated > 0.0) || (actual > 0.0));
-    else if (currentView_ == VIEW_PLANNED)
+    else if (currentView_ == BudgetPanel::VIEW_PLANNED)
         result = (estimated != 0.0);
-    else if (currentView_ == VIEW_EXPENSE)
+    else if (currentView_ == BudgetPanel::VIEW_EXPENSE)
         result = ((estimated < 0.0) || (actual < 0.0));
-    else if (currentView_ == VIEW_SUMM)
+    else if (currentView_ == BudgetPanel::VIEW_SUMM)
         result = (cat_id < 0);
     else
         result = true;
@@ -356,7 +342,7 @@ void BudgetPanel::initVirtualListControl()
         evaluateTransfer = true;
     }
 
-    currentView_ = InfoModel::instance().getString("BUDGET_FILTER", VIEW_ALL);
+    currentView_ = InfoModel::instance().getString("BUDGET_FILTER", BudgetPanel::VIEW_ALL);
     const wxString bp_name_n = BudgetPeriodModel::instance().get_id_name_n(budgetYearID_);
     long year = 0;
     bp_name_n.ToLong(&year);
@@ -409,7 +395,7 @@ void BudgetPanel::initVirtualListControl()
             estIncome += estimated;
 
         double actual = 0;
-        if (currentView_ != VIEW_PLANNED || estimated != 0)
+        if (currentView_ != BudgetPanel::VIEW_PLANNED || estimated != 0)
         {
             actual = categoryStats_[cat_d.m_id][0];
             if (actual < 0)
@@ -436,7 +422,7 @@ void BudgetPanel::initVirtualListControl()
                 estIncome += estimated;
 
             actual = 0;
-            if (currentView_ != VIEW_PLANNED || estimated != 0) {
+            if (currentView_ != BudgetPanel::VIEW_PLANNED || estimated != 0) {
                 actual = categoryStats_[subcat_a[i].m_id][0];
                 if (actual < 0)
                     actExpenses += actual;
@@ -626,11 +612,6 @@ wxString BudgetPanel::getItem(long item, int col_id)
     }
 }
 
-int BudgetList::OnGetItemImage(long item) const
-{
-    return cp_->GetItemImage(item);
-}
-
 int BudgetPanel::GetItemImage(long item) const
 {
     try
@@ -663,29 +644,6 @@ int BudgetPanel::GetItemImage(long item) const
         wxLogDebug(wxString::FromUTF8(exc.what()));
         return 1;
     }
-}
-
-wxString BudgetList::OnGetItemText(long item, long col_nr) const
-{
-    return cp_->getItem(item, getColId_Nr(static_cast<int>(col_nr)));
-}
-
-wxListItemAttr* BudgetList::OnGetItemAttr(long item) const
-{
-    if ((cp_->GetTransID(item) < 0) &&
-        (cp_->GetCurrentView() != VIEW_SUMM))
-    {
-        return attr3_.get();
-    }
-
-    /* Returns the alternating background pattern */
-    return (item % 2) ? attr2_.get() : attr1_.get();
-}
-
-void BudgetList::OnListItemActivated(wxListEvent& event)
-{
-    selectedIndex_ = event.GetIndex();
-    cp_->OnListItemActivated(selectedIndex_);
 }
 
 void BudgetPanel::OnListItemActivated(int selectedIndex)
@@ -735,35 +693,3 @@ void BudgetPanel::OnListItemActivated(int selectedIndex)
         m_lc->EnsureVisible(selectedIndex);
     }
 }
-/* ===================== Tooltip logic ===================== */
-
-void BudgetList::OnMouseMove(wxMouseEvent& event)
-{
-    long row = -1;
-    long column = -1;
-    int flags = 0;
-
-    row = HitTest(event.GetPosition(), flags, &column);
-
-    if (LIST_ID_ICON == column && row >= 0) {
-        wxString tooltip;
-        int icon = cp_->GetItemImage(row);
-
-        if (-1 == icon)
-            tooltip = _("No budget defined");
-        else if (BudgetPanel::ICON_VOID == icon)
-            tooltip = _("Critical: budget exceeded! Stop spending");
-        else if (BudgetPanel::ICON_RECONCILLED == icon)
-            tooltip = _("Within budget limits");
-        else if (BudgetPanel::ICON_FOLLOWUP == icon)
-            tooltip = _("Alert: budget close to or over limit");
-
-        mmToolTip(this, tooltip);
-    }
-    else {
-        UnsetToolTip();
-    }
-
-    event.Skip();
-}
-

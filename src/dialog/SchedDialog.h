@@ -105,6 +105,7 @@ private:
     bool m_advanced = false;
     std::vector<wxString> m_frequent_note_a;
 
+    wxSharedPtr<FieldValueDialog> m_custom_fields;
     int                 w_focus             = wxID_ANY;
     wxSize              w_min_size;
     wxBitmapButton*     w_calculator_btn    = nullptr;
@@ -196,7 +197,4 @@ private:
     void OnMoreFields(wxCommandEvent& event);
 
     void activateSplitTransactionsDlg();
-    static const std::vector<std::pair<int, wxString> > BILLSDEPOSITS_REPEATS;
-    wxSharedPtr<FieldValueDialog> m_custom_fields;
 };
-
