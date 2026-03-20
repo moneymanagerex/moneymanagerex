@@ -29,25 +29,6 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #include "util/mmSingleton.h"
 #include "table/_TableFactory.h"
 
-typedef wxDateTime wxDate;
-typedef std::vector<int64> wxArrayInt64;
-
-#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
-// wx 3.1 has implemented such hash
-#else
-namespace std
-{
-    template<>
-    struct hash<wxString>
-    {
-        size_t operator()(const wxString& k) const
-        {
-            return std::hash<std::wstring>()(k.ToStdWstring());
-        }
-    };
-}
-#endif
-
 class ModelBase
 {
 public:

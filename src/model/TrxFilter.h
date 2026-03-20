@@ -23,13 +23,24 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 class TrxFilter
 {
+private:
+    bool m_filter_date;
+    bool m_filter_account;
+    bool m_filter_payee;
+    bool m_filter_category;
+    mmDateN m_start_date_n, m_end_date_n;
+    wxArrayInt64 m_account_id_a;
+    wxArrayInt64 m_payee_id_a;
+    wxArrayInt64 m_category_id_a;
+    TrxModel::DataExtA m_trx_xa;
+
 public:
     TrxFilter();
 
     // Filter setup methods
     void clear();
     void setDateRange(const mmDateRange2& date_range);
-    void setDateRange(wxDateTime startDate, wxDateTime endDate);
+    void setDateRange(mmDateN start_date_n, mmDateN end_date_n);
     void setAccountList(wxSharedPtr<wxArrayString> accountList);
     void setPayeeList(const wxArrayInt64& payeeList);
     void setCategoryList(const wxArrayInt64 &categoryList);
@@ -40,22 +51,12 @@ public:
         const DATA& d,
         const std::map<int64, typename MODEL::SplitDataA>& id_splitA_m
     );
+
     bool mmIsRecordMatches(
         const TrxData &tran,
         const std::map<int64, TrxSplitModel::DataA>& split
     );
 
     wxString getHTML();
-
-private:
-    bool m_filter_date;
-    bool m_filter_account;
-    bool m_filter_payee;
-    bool m_filter_category;
-    wxString m_start_date, m_end_date;
-    wxArrayInt64 m_account_id_a;
-    wxArrayInt64 m_payee_id_a;
-    wxArrayInt64 m_category_id_a;
-    TrxModel::DataExtA m_trx_xa;
 };
 

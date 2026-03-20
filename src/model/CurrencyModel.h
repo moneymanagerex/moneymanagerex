@@ -20,6 +20,7 @@
 #pragma once
 
 #include <map>
+#include <set>
 
 #include "base/defs.h"
 #include "util/mmChoice.h"
@@ -52,7 +53,7 @@ public:
     auto get_base_data_n() -> const Data*;
     bool get_base_symbol(wxString& symbol);
     auto get_symbol_data_n(const wxString& symbol) -> const Data*;
-    auto find_id_date_m(int64 CurrencyID) -> std::map<wxDateTime, int>;
+    auto find_id_date_m(int64 currency_id) -> std::set<mmDate>;
     auto find_all_name_a() -> const wxArrayString;
     auto find_all_symbol_a() -> const wxArrayString;
     auto find_all_name_id_m() -> const std::map<wxString, int64>;

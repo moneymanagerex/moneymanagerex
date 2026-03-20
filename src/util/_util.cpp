@@ -1167,16 +1167,22 @@ bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& 
     return false;
 }
 
-bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg) {
+bool getCoincapAssetHistory(
+    const wxString& asset_id,
+    wxDateTime begin_date,
+    std::map<mmDate, double>& date_rate_m,
+    wxString& msg
+) {
     // coincap uses unix time milliseconds
     long long begin_date_unix = static_cast<long long>(begin_date.GetTicks()) * 1000;
     long long end_date_unix = static_cast<long long>(wxDateTime::Today().GetTicks()) * 1000;
-    wxString url = wxString::Format(mmex::weblink::CoinCapHistory, asset_id, "d1", begin_date_unix, end_date_unix);
+    wxString url = wxString::Format(mmex::weblink::CoinCapHistory,
+        asset_id, "d1", begin_date_unix, end_date_unix
+    );
 
     wxString json_data;
     auto err_code = http_get_data(url, json_data);
-    if (err_code != CURLE_OK)
-    {
+    if (err_code != CURLE_OK) {
         msg = json_data;
         return false;
     }
@@ -1203,38 +1209,40 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
     }
 
     // prices in USD are multiplied by this value to convert them to the base currency
-    double multiplier = 1.0;
+    double usd_base_rate = 1.0;
     if (baseCurrencySymbol != _t("USD")) {
-        auto usd = CurrencyModel::instance().get_symbol_data_n("USD");
-        if (usd == nullptr) {
+        auto usd_n = CurrencyModel::instance().get_symbol_data_n("USD");
+        if (!usd_n) {
             msg = _t("Unable to find currency 'USD', required for converting historical prices");
             return false;
         }
 
-        multiplier = usd->m_base_conv_rate;
+        usd_base_rate = usd_n->m_base_conv_rate;
     }
 
 
-    Value history = json_doc["data"].GetArray();
-    for (rapidjson::SizeType i = 0; i < history.Size(); ++i) {
-        if (!history[i].IsObject()) continue;
-        Value entry = history[i].GetObject();
+    Value history_a = json_doc["data"].GetArray();
+    for (rapidjson::SizeType i = 0; i < history_a.Size(); ++i) {
+        if (!history_a[i].IsObject())
+            continue;
+        Value entry = history_a[i].GetObject();
 
         // if the object has both a symbol and id check if the symbol matches the target symbol
-        if (entry.HasMember("priceUsd") && entry["priceUsd"].IsString() && entry.HasMember("time") && entry["time"].IsInt64()) {
-            time_t dt = entry["time"].GetInt64() / 1000;
-            wxDateTime date = wxDateTime(dt).GetDateOnly();
-            double price_usd = -1.0;
-            auto priceUSD = wxString::FromUTF8(entry["priceUsd"].GetString());
+        if (!entry.HasMember("priceUsd") || !entry["priceUsd"].IsString() ||
+            !entry.HasMember("time") || !entry["time"].IsInt64()
+        )
+            continue;
+        time_t dt = entry["time"].GetInt64() / 1000;
+        mmDate date = mmDate(wxDateTime(dt));
+        double price_usd = -1.0;
+        auto price_usd_str = wxString::FromUTF8(entry["priceUsd"].GetString());
 
-            if (!priceUSD.ToCDouble(&price_usd)) {
-                msg = _t("Unable to parse price in asset history");
-                return false;
-            }
-
-            double price_base_currency = price_usd * multiplier;
-            historical_rates[date] = price_base_currency;
+        if (!price_usd_str.ToCDouble(&price_usd)) {
+            msg = _t("Unable to parse price in asset history");
+            return false;
         }
+
+        date_rate_m[date] = price_usd * usd_base_rate;
     }
 
     return true;

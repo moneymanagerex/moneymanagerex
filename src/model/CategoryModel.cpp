@@ -277,8 +277,7 @@ void CategoryModel::getCategoryStats(
 
     std::vector<std::pair<mmDate, int>> date_month_a;
     for (int m = 0; m < columns; m++) {
-        mmDate date = startDate;
-        date.addDateSpan(wxDateSpan::Months(m));
+        mmDate date = startDate.plusDateSpan(wxDateSpan::Months(m));
         date_month_a.emplace_back(date, m);
     }
     std::reverse(date_month_a.begin(), date_month_a.end());

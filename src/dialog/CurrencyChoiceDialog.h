@@ -135,6 +135,15 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     bool SetBaseCurrency(int64& baseCurrencyID);
 
-    bool ConvertHistoryRates(const std::vector<CurrencyHistoryRate>& Bce, std::vector<CurrencyHistoryRate>& ConvertedRate, const wxString& BaseCurrencySymbol);
-    bool GetOnlineHistory(const wxString &symbol, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg);
+    bool ConvertHistoryRates(
+        const std::vector<CurrencyHistoryRate>& Bce,
+        std::vector<CurrencyHistoryRate>& ConvertedRate,
+        const wxString& BaseCurrencySymbol
+    );
+    bool GetOnlineHistory(
+        const wxString &symbol,
+        wxDateTime begin_date,
+        std::map<mmDate, double>& date_rate_m,
+        wxString &msg
+    );
 };

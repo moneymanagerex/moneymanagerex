@@ -18,11 +18,11 @@
 
 #include "Journal.h"
 
-TrxData Journal::execute_bill(const SchedData& sched_d, wxString date)
+TrxData Journal::execute_bill(const SchedData& sched_d, mmDateTime date_time)
 {
     TrxData trx_d;
     trx_d.m_id              = -1;
-    trx_d.m_date_time       = mmDateTime(date);
+    trx_d.m_date_time       = date_time;
     trx_d.m_type            = sched_d.m_type;
     trx_d.m_status          = sched_d.m_status;
     trx_d.m_account_id      = sched_d.m_account_id;
@@ -38,11 +38,11 @@ TrxData Journal::execute_bill(const SchedData& sched_d, wxString date)
     return trx_d;
 }
 
-TrxModel::DataExt Journal::execute_bill_full(const SchedData& sched_d, wxString date)
+TrxModel::DataExt Journal::execute_bill_full(const SchedData& sched_d, mmDateTime date_time)
 {
     TrxModel::DataExt trx_dx;
     trx_dx.m_id              = -1;
-    trx_dx.m_date_time       = mmDateTime(date);
+    trx_dx.m_date_time       = date_time;
     trx_dx.m_type            = sched_d.m_type;
     trx_dx.m_status          = sched_d.m_status;
     trx_dx.m_account_id      = sched_d.m_account_id;
@@ -87,11 +87,11 @@ Journal::Data::Data(const TrxData& trx_d) :
 }
 
 Journal::Data::Data(const SchedData& sched_d) :
-    Data(sched_d, sched_d.m_date_time.isoDateTime(), 1)
+    Data(sched_d, sched_d.m_date_time, 1)
 {
 }
 
-Journal::Data::Data(const SchedData& sched_d, wxString date, int repeat_id) :
+Journal::Data::Data(const SchedData& sched_d, mmDateTime date, int repeat_id) :
     TrxData(execute_bill(sched_d, date)),
     m_sched_id(sched_d.m_id), m_repeat_id(repeat_id)
 {
@@ -126,8 +126,7 @@ Journal::DataExt::DataExt(const SchedData& sched_d) :
 }
 
 Journal::DataExt::DataExt(
-    const SchedData& sched_d,
-    wxString date, int repeat_id
+    const SchedData& sched_d, mmDateTime date, int repeat_id
 ) :
     TrxModel::DataExt(execute_bill_full(sched_d, date), {}, {}),
     m_sched_id(sched_d.m_id), m_repeat_id(repeat_id)
@@ -143,8 +142,8 @@ Journal::DataExt::DataExt(
     displayID = wxString("");
 }
 
-Journal::DataExt::DataExt(const SchedData& sched_d,
-    wxString date, int repeat_id,
+Journal::DataExt::DataExt(
+    const SchedData& sched_d, mmDateTime date, int repeat_id,
     const std::map<int64, SchedSplitModel::DataA>& schedId_qpA_m,
     const std::map<int64, TagLinkModel::DataA>& schedId_glA_m)
 :

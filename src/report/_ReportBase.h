@@ -148,10 +148,10 @@ inline void ReportBase::setDateRange(const mmDateRange2& date_range2)
 {
     m_date_range2 = date_range2;
     m_date_range = new mmDateRange();
-    m_date_range->start_date(date_range2.rangeStart().value().getDateTime()
+    m_date_range->start_date(date_range2.rangeStartN().value().getDateTime()
         .ResetTime()
     );
-    m_date_range->end_date(date_range2.rangeEnd().value().getDateTime()
+    m_date_range->end_date(date_range2.rangeEndN().value().getDateTime()
         .ResetTime().Add(wxTimeSpan(23,59,59,999))
     );
 }

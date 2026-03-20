@@ -118,7 +118,8 @@ public:
     void loadBudgetDaysOffset();
     void setBudgetDaysOffset(const int value);
     int getBudgetDaysOffset() const noexcept;
-    void addBudgetDateOffset(wxDateTime& date) const;
+    void addBudgetDateOffset(wxDateTime& dateTime) const;
+    void addBudgetDateOffset(mmDate& date) const;
 
     // m_homepage_incexp_range: homepage income vs expenses graph range
     void loadHomePageIncExpRange();

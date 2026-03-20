@@ -139,11 +139,9 @@ const CurrencyData* CurrencyModel::get_symbol_data_n(const wxString& symbol)
     return currency_n;
 }
 
-// TODO: return an ordered set (std::set)
-std::map<wxDateTime, int> CurrencyModel::find_id_date_m(int64 currency_id)
+std::set<mmDate> CurrencyModel::find_id_date_m(int64 currency_id)
 {
-    wxDateTime dt;
-    std::map<wxDateTime, int> datesList;
+    std::set<mmDate> date_m;
     for (const auto& account_d : AccountModel::instance().find(
         CurrencyCol::CURRENCYID(currency_id)
     )) {
@@ -151,8 +149,7 @@ std::map<wxDateTime, int> CurrencyModel::find_id_date_m(int64 currency_id)
             for (const auto& stock_d : StockModel::instance().find(
                 StockCol::HELDAT(account_d.m_id)
             )) {
-                dt = stock_d.m_purchase_date.getDateTime();
-                datesList[dt] = 1;
+                date_m.insert(stock_d.m_purchase_date);
             }
         }
         else {
@@ -160,12 +157,11 @@ std::map<wxDateTime, int> CurrencyModel::find_id_date_m(int64 currency_id)
                 TrxCol::ACCOUNTID(account_d.m_id),
                 TrxCol::TOACCOUNTID(account_d.m_id)
             )) {
-                dt = trx_d.m_date().getDateTime();
-                datesList[dt] = 1;
+                date_m.insert(trx_d.m_date());
             }
         }
     }
-    return datesList;
+    return date_m;
 }
 
 const wxArrayString CurrencyModel::find_all_name_a()

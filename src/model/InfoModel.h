@@ -21,6 +21,7 @@
 #pragma once
 
 #include "base/defs.h"
+#include "util/mmDate.h"
 #include "util/_util.h"
 
 #include "table/InfoTable.h"
@@ -62,7 +63,7 @@ public:
     void setColour(const wxString& key, const wxColour& newValue);
     const wxColour getColour(const wxString& key, const wxColour& defaultValue = wxColour(255, 255, 255));
 
-    void setDate(const wxString& key, const wxDateTime& newValue);
+    void setDate(const wxString& key, const mmDate& newValue);
 
     void setJdoc(const wxString& key, Document& newValue);
     void setJdoc(const wxString& key, StringBuffer& newValue);

@@ -63,6 +63,8 @@ public:
     auto isoStart() const -> const wxString;
     auto isoEnd() const -> const wxString;
     void addDateSpan(wxDateSpan dateSpan);
+    auto plusDateSpan(wxDateSpan dateSpan) -> mmDate;
+    auto minusDateSpan(wxDateSpan dateSpan) -> mmDate;
 
 public:
     bool operator== (const mmDate& other) const;
@@ -160,6 +162,14 @@ inline void mmDate::addDateSpan(wxDateSpan dateSpan)
 {
     // assumption: dateSpan has granularity of a day or larger
     m_dateTime += dateSpan;
+}
+inline mmDate mmDate::plusDateSpan(wxDateSpan dateSpan)
+{
+    return mmDate(m_dateTime + dateSpan);
+}
+inline mmDate mmDate::minusDateSpan(wxDateSpan dateSpan)
+{
+    return mmDate(m_dateTime - dateSpan);
 }
 
 // The time in both operands is set to noon, therefore

@@ -359,10 +359,15 @@ void PrefModel::setBudgetDaysOffset(const int value)
     InfoModel::instance().setInt("BUDGET_DAYS_OFFSET", value);
     m_budget_days_offset = value;
 }
-void PrefModel::addBudgetDateOffset(wxDateTime& date) const
+void PrefModel::addBudgetDateOffset(wxDateTime& dateTime) const
 {
     if (m_budget_days_offset != 0)
-        date.Add(wxDateSpan::Days(m_budget_days_offset));
+        dateTime.Add(wxDateSpan::Days(m_budget_days_offset));
+}
+void PrefModel::addBudgetDateOffset(mmDate& date) const
+{
+    if (m_budget_days_offset != 0)
+        date.addDateSpan(wxDateSpan::Days(m_budget_days_offset));
 }
 
 void PrefModel::loadHomePageIncExpRange()

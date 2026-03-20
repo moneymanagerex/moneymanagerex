@@ -243,8 +243,8 @@ void mmHTMLBuilder::displayDateHeading(const mmDateRange* date_range)
 
 void mmHTMLBuilder::displayDateHeading(const mmDateRange2& date_range)
 {
-    mmDateN range_start = date_range.rangeStart();
-    mmDateN range_end = date_range.rangeEnd();
+    mmDateN range_start = date_range.rangeStartN();
+    mmDateN range_end = date_range.rangeEndN();
     wxString header;
     if (range_start.has_value() || range_end.has_value()) {
         header << wxString::Format(_t("From %1$s till %2$s"),

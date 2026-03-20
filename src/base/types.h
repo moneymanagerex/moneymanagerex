@@ -19,8 +19,12 @@
 #pragma once
 
 #include <wx/longlong.h>
+#include <wx/datetime.h>
 
 typedef wxLongLong int64;
+typedef std::vector<int64> wxArrayInt64;
+
+typedef wxDateTime wxDate;
 
 // make int64 hashable
 template<>
@@ -29,4 +33,17 @@ struct std::hash<int64> {
         return std::hash<long>{}(x.GetHi()) ^ std::hash<unsigned long>{}(x.GetLo());
     }
 };
+
+#if (wxMAJOR_VERSION == 3 && wxMINOR_VERSION >= 1)
+// wx 3.1 has implemented such hash
+#else
+template<>
+struct std::hash<wxString>
+{
+    size_t operator()(const wxString& k) const
+    {
+        return std::hash<std::wstring>()(k.ToStdWstring());
+    }
+};
+#endif
 

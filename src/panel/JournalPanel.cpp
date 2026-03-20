@@ -206,14 +206,14 @@ void JournalPanel::createControls()
 
     fromDateCtrl = new wxDatePickerCtrl(this, ID_DATE_PICKER_LOW, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
     fromDateCtrl->SetValue(
-        tmprange.rangeStart().value_or(mmDate::min()).getDateTime()
+        tmprange.rangeStartN().value_or(mmDate::min()).getDateTime()
     );
     fromDateCtrl->SetRange(wxInvalidDateTime, wxDateTime::Now());
     sizerHCtrl->Add(fromDateCtrl, g_flagsH);
 
     toDateCtrl = new wxDatePickerCtrl(this, ID_DATE_PICKER_HIGH, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
     toDateCtrl->SetValue(
-        tmprange.rangeEnd().value_or(mmDate::today()).getDateTime()
+        tmprange.rangeEndN().value_or(mmDate::today()).getDateTime()
     );
     sizerHCtrl->Add(toDateCtrl, g_flagsH);
 
@@ -452,10 +452,10 @@ void JournalPanel::updateFilter(bool firstinit)
             mmBitmapButtonSize
         ));
         fromDateCtrl->SetValue(
-            m_current_date_range.rangeStart().value_or(mmDate::min()).getDateTime()
+            m_current_date_range.rangeStartN().value_or(mmDate::min()).getDateTime()
         );
         toDateCtrl->SetValue(
-            m_current_date_range.rangeEnd().value_or(mmDate::today()).getDateTime()
+            m_current_date_range.rangeEndN().value_or(mmDate::today()).getDateTime()
         );
     }
     else if (m_filter_id == FILTER_ID_DATE_PICKER) {
@@ -507,7 +507,7 @@ void JournalPanel::setFilterDate(mmDateRange2::Range& range)
         m_current_date_range.setSDateN(m_account_n->m_stmt_date_n);
     }
     m_current_date_range.setRange(range);
-    m_scheduled_enable = !isDeletedTrans() && m_current_date_range.rangeEnd().has_value();
+    m_scheduled_enable = !isDeletedTrans() && m_current_date_range.rangeEndN().has_value();
     saveFilterSettings();
     updateFilter();
 }
@@ -596,8 +596,8 @@ void  JournalPanel::updateScheduledEnable()
     m_scheduled_enable = !isDeletedTrans() && (
         m_filter_id == FILTER_ID_DATE_PICKER
         ? m_current_date_range.getTDate() >= mmDate::today()
-        : !m_current_date_range.rangeEnd().has_value()
-            || m_current_date_range.rangeEnd().value() >= mmDate::today()
+        : !m_current_date_range.rangeEndN().has_value()
+            || m_current_date_range.rangeEndN().value() >= mmDate::today()
     );
 }
 
@@ -669,26 +669,24 @@ void JournalPanel::filterList()
         TrxModel::s_ref_type
     );
 
-    wxString date_start_str, date_end_str;
-    mmDate date_end = mmDate::today();
-    date_end.addDateSpan(wxDateSpan::Days(30));
+    mmDateN range_start_n, range_end_n;
+    mmDate range_end_default = mmDate::today().plusDateSpan(wxDateSpan::Days(30));
     if (m_filter_id == FILTER_ID_DATE_PICKER) {
-        date_start_str = mmDateN(fromDateCtrl->GetValue()).value_or(mmDate::min()).isoStart();
-        date_end_str = mmDateN(toDateCtrl->GetValue()).value_or(date_end).isoEnd();
+        range_start_n = mmDateN(fromDateCtrl->GetValue()).value_or(mmDate::min());
+        range_end_n = mmDateN(toDateCtrl->GetValue()).value_or(range_end_default);
     } else {
-        date_start_str = m_current_date_range.rangeStartIsoStartN();
+        range_start_n = m_current_date_range.rangeStartN();
         // find last un-deleted transaction and use that if later than current date + 30 days
         for (auto it = trx_a.rbegin(); it != trx_a.rend(); ++it) {
             const TrxData* trx_n = &(*it);
             if (trx_n && (isDeletedTrans() || !trx_n->is_deleted())) {
-                if (date_end < trx_n->m_date())
-                    date_end = trx_n->m_date();
+                if (range_end_default < trx_n->m_date())
+                    range_end_default = trx_n->m_date();
                 // FIXME: early break
                 break;
             }
         }
-        date_end_str = m_current_date_range.rangeEnd()
-            .value_or(date_end).isoEnd();
+        range_end_n = m_current_date_range.rangeEndN().value_or(range_end_default);
     }
     std::map<int64, SchedSplitModel::DataA> schedId_qpA_m;
     std::map<int64, TagLinkModel::DataA> schedId_glA_m;
@@ -696,7 +694,7 @@ void JournalPanel::filterList()
     SchedModel::DataA sched_a;
     typedef std::tuple<
         int      /* i */,
-        wxString /* date */,
+        wxString /* date; TODO: mmDateTime */,
         int      /* repeat_id */
     > bills_index_t;
     std::vector<bills_index_t> bills_index;
@@ -713,9 +711,9 @@ void JournalPanel::filterList()
             : SchedModel::instance().find_all();
         for (unsigned int i = 0; i < sched_a.size(); ++i) {
             int limit = 1000;  // this is enough for daily repetitions for one year
-            auto dates = sched_a[i].unroll(date_end_str, limit);
-            for (unsigned int repeat_id = 1; repeat_id <= dates.size(); ++repeat_id)
-                bills_index.push_back({i, dates[repeat_id-1], repeat_id});
+            auto date_time_a = sched_a[i].unroll(range_end_n.value(), limit);
+            for (unsigned int repeat_id = 1; repeat_id <= date_time_a.size(); ++repeat_id)
+                bills_index.push_back({i, date_time_a[repeat_id-1].isoDateTime(), repeat_id});
         }
         std::stable_sort(
             bills_index.begin(), bills_index.end(),
@@ -746,7 +744,7 @@ void JournalPanel::filterList()
             bill_i = std::get<0>(*bills_it);
             tran_date = std::get<1>(*bills_it);
             repeat_id = std::get<2>(*bills_it);
-            bill_tran = Journal::execute_bill(sched_a[bill_i], tran_date);
+            bill_tran = Journal::execute_bill(sched_a[bill_i], mmDateTime(tran_date));
             trx_n = &bill_tran;
             bills_it++;
         }
@@ -776,7 +774,7 @@ void JournalPanel::filterList()
                 m_show_reconciled = true;
         }
 
-        if (tran_date < date_start_str || tran_date > date_end_str)
+        if (tran_date < range_start_n.isoStartN() || tran_date > range_end_n.isoEndN())
             continue;
 
         Journal::DataExt journal_dx = (repeat_id < 0) ?
@@ -1175,10 +1173,10 @@ void JournalPanel::onFilterDate(wxCommandEvent& event)
     m_bitmapTransFilter->SetBitmap(mmBitmapBundle((i > 0 ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
 
     fromDateCtrl->SetValue(
-        m_current_date_range.rangeStart().value_or(mmDate::min()).getDateTime()
+        m_current_date_range.rangeStartN().value_or(mmDate::min()).getDateTime()
     );
     toDateCtrl->SetValue(
-        m_current_date_range.rangeEnd().value_or(mmDate::today()).getDateTime()
+        m_current_date_range.rangeEndN().value_or(mmDate::today()).getDateTime()
     );
 
     refreshList();

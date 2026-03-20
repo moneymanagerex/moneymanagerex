@@ -39,21 +39,14 @@ void TrxFilter::clear()
 void TrxFilter::setDateRange(const mmDateRange2& date_range)
 {
     m_filter_date = true;
-    m_start_date = date_range.rangeStartIsoStartN();
-    m_end_date = date_range.rangeEndIsoEndN();
+    m_start_date_n = date_range.rangeStartN();
+    m_end_date_n = date_range.rangeEndN();
 }
-void TrxFilter::setDateRange(wxDateTime startDate, wxDateTime endDate)
+void TrxFilter::setDateRange(mmDateN start_date_n, mmDateN end_date_n)
 {
     m_filter_date = true;
-    if (startDate.FormatISOTime() == "00:00:00")
-        m_start_date = startDate.FormatISODate();
-    else
-        m_start_date = startDate.FormatISOCombined();
-
-    if (!PrefModel::instance().UseTransDateTime())
-        endDate = mmDateRange::getDayEnd(endDate);
-
-    m_end_date = endDate.FormatISOCombined();
+    m_start_date_n = start_date_n;
+    m_end_date_n = end_date_n;
 }
 
 void TrxFilter::setAccountList(wxSharedPtr<wxArrayString> accountList)
@@ -109,14 +102,18 @@ bool TrxFilter::mmIsRecordMatches(
     const std::map<int64, TrxSplitModel::DataA>& split
 ) {
     bool ok = true;
-    wxString strDate = trx_d.m_date_time.isoDateTime();
+    // note: date comparisons have granularity of a day
+    mmDate trx_date = mmDate(trx_d.m_date_time);
     if (m_filter_account && (std::find(m_account_id_a.begin(), m_account_id_a.end(),
         trx_d.m_account_id
     ) == m_account_id_a.end()) && (std::find(m_account_id_a.begin(), m_account_id_a.end(),
         trx_d.m_to_account_id_n
     ) == m_account_id_a.end()))
         ok = false;
-    else if (m_filter_date && ((strDate < m_start_date) || (strDate > m_end_date)))
+    else if (m_filter_date && (
+        (m_start_date_n.has_value() && trx_date < m_start_date_n.value()) ||
+        (m_end_date_n.has_value() && trx_date > m_end_date_n.value())
+    ))
         ok = false;
     else if (m_filter_payee && (std::find(m_payee_id_a.begin(), m_payee_id_a.end(),
         trx_d.m_payee_id_n

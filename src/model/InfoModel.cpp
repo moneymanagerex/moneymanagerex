@@ -45,7 +45,7 @@ InfoModel& InfoModel::instance(wxSQLite3Database* db)
     if (!ins.contains("MMEXVERSION")) {
         ins.setString("MMEXVERSION", mmex::version::string);
         ins.setString("DATAVERSION", mmex::DATAVERSION);
-        ins.setDate("CREATEDATE", wxDateTime::Now());
+        ins.setDate("CREATEDATE", mmDate::today());
         ins.setString("DATEFORMAT", mmex::DEFDATEFORMAT);
     }
     return ins;
@@ -193,9 +193,9 @@ const wxColour InfoModel::getColour(const wxString& key, const wxColour& default
 }
 
 // Date
-void InfoModel::setDate(const wxString& key, const wxDateTime& newValue)
+void InfoModel::setDate(const wxString& key, const mmDate& newValue)
 {
-    setRaw(key, newValue.FormatISODate());
+    setRaw(key, newValue.isoDate());
 }
 
 //-------------------------------------------------------------------

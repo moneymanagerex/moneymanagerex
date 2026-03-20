@@ -338,10 +338,10 @@ void ReportPanel::updateFilter()
         m_date_range.setDefEndDateN(mmDate::max());
         // copy from date range to start/end pickers
         w_start_date_picker->SetValue(
-            m_date_range.rangeStart().value().getDateTime()
+            m_date_range.rangeStartN().value().getDateTime()
         );
         w_end_date_picker->SetValue(
-            m_date_range.rangeEnd().value().getDateTime()
+            m_date_range.rangeEndN().value().getDateTime()
         );
     }
     else if (m_filter_id == JournalPanel::FILTER_ID_DATE_PICKER) {
