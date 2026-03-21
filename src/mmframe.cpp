@@ -3699,7 +3699,7 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     bool done = false;
-    if (panelCurrent_->GetId() == mmID_CHECKING) {
+    if (panelCurrent_ && panelCurrent_->GetId() == mmID_CHECKING) {
         JournalPanel* cp = wxDynamicCast(panelCurrent_, JournalPanel);
         if ((checking_id == -1 && cp->isAllTrans()) ||
             (checking_id == -2 && cp->isDeletedTrans()) ||
