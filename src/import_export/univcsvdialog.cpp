@@ -3202,8 +3202,11 @@ void mmUnivCSVDialog::OnMenuSelected(wxCommandEvent&)
 /* Validates the specified string matches the parameters of the target Custom Field.
 Cleanses the value and reformats as needed for DB storage
 */
-bool mmUnivCSVDialog::validateCustomFieldData(int64 fieldId, wxString& value, wxString& message)
-{
+bool mmUnivCSVDialog::validateCustomFieldData(
+    int64 fieldId,
+    wxString& value,
+    wxString& message
+) {
     bool is_valid = true;
     long int_val;
     int index;

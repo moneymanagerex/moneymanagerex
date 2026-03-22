@@ -464,8 +464,9 @@ bool TrxModel::DataExt::is_foreign_transfer() const
 wxString TrxModel::DataExt::info() const
 {
     // TODO more info
-    wxDate date = m_date_time.getDateTime();
-    wxString info = wxGetTranslation(wxDate::GetEnglishWeekDayName(date.GetWeekDay()));
+    wxString info = wxGetTranslation(wxDateTime::GetEnglishWeekDayName(
+        m_date_time.getDateTime().GetWeekDay()
+    ));
     return info;
 }
 

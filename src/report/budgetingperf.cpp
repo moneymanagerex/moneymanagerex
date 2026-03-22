@@ -44,7 +44,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 {
 
     int startDay;
-    wxDate::Month startMonth;
+    wxDateTime::Month startMonth;
     if (PrefModel::instance().getBudgetFinancialYears()) {
         GetFinancialYearValues(startDay, startMonth);
     } else {

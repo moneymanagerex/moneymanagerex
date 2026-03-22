@@ -57,9 +57,9 @@ public:
     wxString getHTMLText();
 
 private:
-    std::map<wxDate, double> loadCheckingDateBalance(const AccountData& account);
-    double getCheckingBalance(const AccountData* account, const wxDate& date);
-    std::pair<double, double> getBalance(const AccountData* account, const mmDate& date);
-    double getCurrencyDateRate(int64 currencyid, const wxDate& date);
+    std::map<wxDate, double> loadCheckingDateBalance(const AccountData& account_d);
+    double getCheckingBalance(const AccountData* account_n, const wxDate& date);
+    std::pair<double, double> getBalance(const AccountData* account_n, const mmDate& date);
+    double getCurrencyDateRate(int64 currency_id, const wxDate& date);
 };
 

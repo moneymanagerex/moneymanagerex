@@ -54,16 +54,18 @@ enum tab_id {
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
-EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick)
-EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
-EVT_MENU(wxID_HIGHEST, mmQIFImportDialog::OnMenuSelected)
-EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
-EVT_CHOICE(ID_ACCOUNT, mmQIFImportDialog::OnAccountChanged)
-EVT_CLOSE(mmQIFImportDialog::OnQuit)
+    EVT_CHECKBOX(wxID_ANY,  mmQIFImportDialog::OnCheckboxClick)
+    EVT_BUTTON(wxID_OK,     mmQIFImportDialog::OnOk)
+    EVT_MENU(wxID_HIGHEST,  mmQIFImportDialog::OnMenuSelected)
+    EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
+    EVT_CHOICE(ID_ACCOUNT,  mmQIFImportDialog::OnAccountChanged)
+    EVT_CLOSE(              mmQIFImportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(
-    wxWindow* parent, int64 account_id, const wxString& file_path
+    wxWindow* parent,
+    int64 account_id,
+    const wxString& file_path
 ) :
     m_FileNameStr(file_path),
     m_today(wxDate::Today()),

@@ -347,7 +347,7 @@ void BudgetPanel::initVirtualListControl()
     bp_name_n.ToLong(&year);
 
     int startDay = 1;
-    wxDate::Month startMonth = wxDateTime::Jan;
+    wxDateTime::Month startMonth = wxDateTime::Jan;
     if (PrefModel::instance().getBudgetFinancialYears())
         budgetDetails.GetFinancialYearValues(startDay, startMonth);
     wxDateTime dtBegin(startDay, startMonth, year);

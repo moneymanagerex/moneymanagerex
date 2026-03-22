@@ -971,7 +971,9 @@ bool TrxFilterDialog::mmIsValuesCorrect() const
 
     if (m_use_date_filter && dateRangeCheckBox_->IsChecked() && m_begin_date > m_end_date) {
         const auto today = wxDate::Today().FormatISOCombined();
-        int id = m_begin_date >= today ? fromDateCtrl_->GetId() : toDateControl_->GetId();
+        int id = (m_begin_date >= today)
+            ? fromDateCtrl_->GetId()
+            : toDateControl_->GetId();
         mmErrorDialogs::ToolTip4Object(FindWindow(id),
             _t("Date"),
             _t("Invalid value"),
