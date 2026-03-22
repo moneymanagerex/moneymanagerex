@@ -63,8 +63,7 @@ wxBEGIN_EVENT_TABLE(ReportPanel, wxPanel)
     EVT_MENU(ID_DATE_RANGE_EDIT,             ReportPanel::onDateRangeEdit)
     EVT_MENU_RANGE(
         ID_DATE_RANGE_MIN,
-        ID_DATE_RANGE_MAX,
-        ReportPanel::onDateRangeSelect)
+        ID_DATE_RANGE_MAX,                   ReportPanel::onDateRangeSelect)
     EVT_BUTTON(wxID_ANY,                     ReportPanel::onShiftPressed)
 wxEND_EVENT_TABLE()
 

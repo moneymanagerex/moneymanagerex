@@ -74,14 +74,10 @@ wxBEGIN_EVENT_TABLE(JournalList, ListBase)
     EVT_MENU(MENU_TREEPOPUP_COPYTEXT,              JournalList::onCopyText)
     EVT_MENU_RANGE(
         MENU_TREEPOPUP_MARKRECONCILED,
-        MENU_TREEPOPUP_MARKDELETE,
-        JournalList::onMarkTrx
-    )
+        MENU_TREEPOPUP_MARKDELETE,                 JournalList::onMarkTrx)
     EVT_MENU_RANGE(
         MENU_TREEPOPUP_DELETE_VIEWED,
-        MENU_TREEPOPUP_DELETE_UNRECONCILED,
-        JournalList::onDeleteViewedTrx
-    )
+        MENU_TREEPOPUP_DELETE_UNRECONCILED,        JournalList::onDeleteViewedTrx)
 
     EVT_MENU(MENU_ON_SELECT_ALL,                   JournalList::onSelectAll)
     EVT_MENU(MENU_ON_COPY_TRANSACTION,             JournalList::onCopy)
@@ -92,9 +88,7 @@ wxBEGIN_EVENT_TABLE(JournalList, ListBase)
     EVT_MENU(MENU_ON_SKIP_SCHEDULED,               JournalList::onSkipSched)
     EVT_MENU_RANGE(
         MENU_ON_SET_UDC0,
-        MENU_ON_SET_UDC7,
-        JournalList::onSetUserColour
-    )
+        MENU_ON_SET_UDC7,                          JournalList::onSetUserColour)
 wxEND_EVENT_TABLE();
 
 const std::vector<ListColumnInfo> JournalList::LIST_INFO = {

@@ -1,6 +1,7 @@
 /*******************************************************
 Copyright (C) 2014 Gabriele-V
-Copyright (C) 2022  Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2026 George Ef (george.a.ef@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -211,8 +212,11 @@ bool mmWebApp::deleteTrxWebId(int64 trx_w_id)
 }
 
 // Upload all accounts from MMEX to WebApp
-bool mmWebApp::unchecked_uploadAccount()
+bool mmWebApp::uploadAccount()
 {
+    if (!mmWebApp::isEnabled() || !mmWebApp::checkGuid() || !mmWebApp::checkApiVersion())
+        return false;
+
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
 
@@ -251,8 +255,11 @@ bool mmWebApp::unchecked_uploadAccount()
 }
 
 // Upload all payees from MMEX to WebApp
-bool mmWebApp::unchecked_uploadPayee()
+bool mmWebApp::uploadPayee()
 {
+    if (!mmWebApp::isEnabled() || !mmWebApp::checkGuid() || !mmWebApp::checkApiVersion())
+        return false;
+
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
 
@@ -316,8 +323,11 @@ bool mmWebApp::unchecked_uploadPayee()
 }
 
 // Upload all categories from MMEX to WebApp
-bool mmWebApp::unchecked_uploadCategory()
+bool mmWebApp::uploadCategory()
 {
+    if (!mmWebApp::isEnabled() || !mmWebApp::checkGuid() || !mmWebApp::checkApiVersion())
+        return false;
+
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
 
@@ -377,27 +387,6 @@ bool mmWebApp::unchecked_uploadCategory()
         output_message
     );
     return mmWebApp::result(error_code, output_message);
-}
-
-bool mmWebApp::uploadAccount()
-{
-    return (mmWebApp::isEnabled() && mmWebApp::checkGuid() && mmWebApp::checkApiVersion())
-        ? mmWebApp::unchecked_uploadAccount()
-        : false;
-}
-
-bool mmWebApp::uploadPayee()
-{
-    return (mmWebApp::isEnabled() && mmWebApp::checkGuid() && mmWebApp::checkApiVersion())
-        ? mmWebApp::unchecked_uploadPayee()
-        : false;
-}
-
-bool mmWebApp::uploadCategory()
-{
-    return (mmWebApp::isEnabled() && mmWebApp::checkGuid() && mmWebApp::checkApiVersion())
-        ? mmWebApp::unchecked_uploadCategory()
-        : false;
 }
 
 // Download new transactions

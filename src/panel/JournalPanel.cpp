@@ -66,32 +66,29 @@ const std::vector<std::pair<JournalPanel::FILTER_ID, wxString> > JournalPanel::F
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(JournalPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW,           JournalPanel::onNewTrx)
-    EVT_BUTTON(wxID_EDIT,          JournalPanel::onEditTrx)
-    EVT_BUTTON(wxID_DUPLICATE,     JournalPanel::onDuplicateTrx)
-    EVT_BUTTON(wxID_UNDELETE,      JournalPanel::onRestoreTrx)
-    EVT_BUTTON(wxID_REMOVE,        JournalPanel::onDeleteTrx)
-    EVT_BUTTON(wxID_PASTE,         JournalPanel::onEnterSched)
-    EVT_BUTTON(wxID_IGNORE,        JournalPanel::onSkipSched)
-    EVT_BUTTON(wxID_FILE,          JournalPanel::onOpenAttachment)
-    EVT_BUTTON(ID_FILTER,          JournalPanel::onFilterPopup)
-    EVT_BUTTON(ID_FILTER_TRANS,    JournalPanel::onFilterAdvanced)
-    EVT_MENU(ID_FILTER_ADVANCED,   JournalPanel::onFilterAdvanced)
-    EVT_MENU(ID_DATE_RANGE_EDIT,   JournalPanel::onEditDateRanges)
-    EVT_TOGGLEBUTTON(ID_SCHEDULED, JournalPanel::onScheduled)
+    EVT_BUTTON(wxID_NEW,                  JournalPanel::onNewTrx)
+    EVT_BUTTON(wxID_EDIT,                 JournalPanel::onEditTrx)
+    EVT_BUTTON(wxID_DUPLICATE,            JournalPanel::onDuplicateTrx)
+    EVT_BUTTON(wxID_UNDELETE,             JournalPanel::onRestoreTrx)
+    EVT_BUTTON(wxID_REMOVE,               JournalPanel::onDeleteTrx)
+    EVT_BUTTON(wxID_PASTE,                JournalPanel::onEnterSched)
+    EVT_BUTTON(wxID_IGNORE,               JournalPanel::onSkipSched)
+    EVT_BUTTON(wxID_FILE,                 JournalPanel::onOpenAttachment)
+    EVT_BUTTON(ID_FILTER,                 JournalPanel::onFilterPopup)
+    EVT_BUTTON(ID_FILTER_TRANS,           JournalPanel::onFilterAdvanced)
+    EVT_MENU(ID_FILTER_ADVANCED,          JournalPanel::onFilterAdvanced)
+    EVT_MENU(ID_DATE_RANGE_EDIT,          JournalPanel::onEditDateRanges)
+    EVT_TOGGLEBUTTON(ID_SCHEDULED,        JournalPanel::onScheduled)
     EVT_MENU_RANGE(
         ID_DATE_RANGE_MIN,
-        ID_DATE_RANGE_MAX,
-        JournalPanel::onFilterDate)
+        ID_DATE_RANGE_MAX,                JournalPanel::onFilterDate)
     EVT_MENU_RANGE(
         TrxType::e_withdrawal,
-        TrxType::e_transfer,
-        JournalPanel::onNewTrx
-    )
+        TrxType::e_transfer,              JournalPanel::onNewTrx)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND,  JournalPanel::onSearchTxtEntered)
     EVT_DATE_CHANGED(ID_DATE_PICKER_LOW,  JournalPanel::onDatePickLow)
     EVT_DATE_CHANGED(ID_DATE_PICKER_HIGH, JournalPanel::onDatePickHigh)
-    wxEND_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
 

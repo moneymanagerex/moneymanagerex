@@ -252,9 +252,7 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF,     mmGUIFrame::OnImportQIF)
 EVT_MENU_RANGE(
     MENU_TREEPOPUP_ACCOUNT_VIEWALL,
     MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,         mmGUIFrame::OnViewAccountsTemporaryChange)
-EVT_MENU_RANGE(
-    MENU_LANG + 1,
-    MENU_LANG_MAX,                             mmGUIFrame::OnChangeGUILanguage)
+EVT_MENU_RANGE(MENU_LANG + 1, MENU_LANG_MAX,   mmGUIFrame::OnChangeGUILanguage)
 
 /*Automatic processing of repeat transactions*/
 EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID,   mmGUIFrame::OnAutoRepeatTransactionsTimer)

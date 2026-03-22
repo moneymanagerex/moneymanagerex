@@ -47,12 +47,12 @@ enum
 };
 
 wxBEGIN_EVENT_TABLE(SchedList, ListBase)
-    EVT_LEFT_DOWN(SchedList::OnListLeftClick)
-    EVT_RIGHT_DOWN(SchedList::OnItemRightClick)
+    EVT_LEFT_DOWN(                                SchedList::OnListLeftClick)
+    EVT_RIGHT_DOWN(                               SchedList::OnItemRightClick)
 
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, SchedList::OnListItemActivated)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,  SchedList::OnListItemSelected)
-    EVT_LIST_KEY_DOWN(wxID_ANY,       SchedList::OnListKeyDown)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY,             SchedList::OnListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,              SchedList::OnListItemSelected)
+    EVT_LIST_KEY_DOWN(wxID_ANY,                   SchedList::OnListKeyDown)
 
     EVT_MENU(MENU_TREEPOPUP_NEW,                  SchedList::onNewBDSeries)
     EVT_MENU(MENU_TREEPOPUP_EDIT,                 SchedList::onEditBDSeries)
@@ -62,9 +62,7 @@ wxBEGIN_EVENT_TABLE(SchedList, ListBase)
     EVT_MENU(MENU_POPUP_BD_ENTER_OCCUR,           SchedList::onEnterBDTransaction)
     EVT_MENU(MENU_POPUP_BD_SKIP_OCCUR,            SchedList::onSkipBDTransaction)
     EVT_MENU_RANGE(
-        MENU_ON_SET_UDC0, MENU_ON_SET_UDC7,
-        SchedList::OnSetUserColour
-    )
+        MENU_ON_SET_UDC0, MENU_ON_SET_UDC7,       SchedList::OnSetUserColour)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> SchedList::LIST_INFO = {

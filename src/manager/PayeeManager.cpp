@@ -433,27 +433,28 @@ void PayeeManager::ResizeDialog()
 wxIMPLEMENT_DYNAMIC_CLASS(mmPayeeDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmPayeeDialog, wxDialog)
-EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
-EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
-EVT_TOGGLEBUTTON(wxID_SELECTALL, mmPayeeDialog::OnShowHiddenToggle)
-EVT_TEXT(wxID_FIND, mmPayeeDialog::OnTextChanged)
-EVT_LIST_COL_CLICK(wxID_ANY, mmPayeeDialog::OnSort)
-EVT_LIST_ITEM_ACTIVATED(wxID_ANY, mmPayeeDialog::OnListItemActivated)
-EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, mmPayeeDialog::OnItemRightClick)
-EVT_MENU_RANGE(MENU_DEFINE_CATEGORY, MENU_RELOCATE_PAYEE, mmPayeeDialog::OnMenuSelected)
+    EVT_BUTTON(wxID_OK,                 mmPayeeDialog::OnOk)
+    EVT_BUTTON(wxID_APPLY,              mmPayeeDialog::OnMagicButton)
+    EVT_TOGGLEBUTTON(wxID_SELECTALL,    mmPayeeDialog::OnShowHiddenToggle)
+    EVT_TEXT(wxID_FIND,                 mmPayeeDialog::OnTextChanged)
+    EVT_LIST_COL_CLICK(wxID_ANY,        mmPayeeDialog::OnSort)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   mmPayeeDialog::OnListItemActivated)
+    EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, mmPayeeDialog::OnItemRightClick)
+    EVT_MENU_RANGE(
+        MENU_DEFINE_CATEGORY,
+        MENU_RELOCATE_PAYEE,            mmPayeeDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
-
-mmPayeeDialog::~mmPayeeDialog()
-{
-    InfoModel::instance().setSize("PAYEES_DIALOG_SIZE", GetSize());
-}
-
-mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString& name, const wxString& payee_selected) :
-    m_payee_choose(payee_choose)
-    , m_init_selected_payee(payee_selected)
-    , m_sort(PAYEE_NAME)
-    , m_lastSort(PAYEE_NAME)
+mmPayeeDialog::mmPayeeDialog(
+    wxWindow* parent,
+    bool payee_choose,
+    const wxString& name,
+    const wxString& payee_selected
+) :
+    m_payee_choose(payee_choose),
+    m_init_selected_payee(payee_selected),
+    m_sort(PAYEE_NAME),
+    m_lastSort(PAYEE_NAME)
 {
     this->SetFont(parent->GetFont());
     m_hiddenColor = mmThemeMetaColour(meta::COLOR_HIDDEN);
@@ -472,10 +473,17 @@ mmPayeeDialog::mmPayeeDialog(wxWindow* parent, bool payee_choose, const wxString
     SetAcceleratorTable(tab);
 }
 
+mmPayeeDialog::~mmPayeeDialog()
+{
+    InfoModel::instance().setSize("PAYEES_DIALOG_SIZE", GetSize());
+}
+
 int64 mmPayeeDialog::getPayeeId() const
 {
     long sel = payeeListBox_->GetFirstSelected();
-    return sel > -1 ? (reinterpret_cast<RowData*>(payeeListBox_->GetItemData(sel)))->payeeId : -1;
+    return sel > -1
+        ? (reinterpret_cast<RowData*>(payeeListBox_->GetItemData(sel)))->payeeId
+        : -1;
 }
 
 void mmPayeeDialog::FindSelectedPayees()

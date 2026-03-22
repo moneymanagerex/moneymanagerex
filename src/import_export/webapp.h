@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Gabriele-V
+Copyright (C) 2026 George Ef (george.a.ef@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -88,10 +89,6 @@ public:
     static bool deletePayee();
     static bool deleteCategory();
     static bool deleteTrxWebId(int64 trx_w_id);
-
-    static bool unchecked_uploadAccount();
-    static bool unchecked_uploadPayee();
-    static bool unchecked_uploadCategory();
 
     static bool uploadAccount();
     static bool uploadPayee();
