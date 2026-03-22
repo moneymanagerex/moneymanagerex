@@ -45,8 +45,9 @@ SchedPanel::SchedPanel(
     const wxSize& size,
     long style,
     const wxString& name
-) {
-    m_today = wxDate::Today();
+) :
+    m_today(mmDate::today())
+{
     m_tip_a.Add(_t("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits,"
         " or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur,"
         " and appears on the Dashboard 14 days before the transaction is due."));
@@ -331,22 +332,25 @@ wxString SchedPanel::getItem(long item, int col_id)
 
 const wxString SchedPanel::getRemainingDays(const SchedData& sched_d) const
 {
-    int daysRemaining = sched_d.m_date_time.getDateTime().
-        Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
-    int daysOverdue = sched_d.m_due_date.getDateTime().
-        Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
+    int payment_days = sched_d.m_date().daysSince(m_today);
+    int due_days = sched_d.m_due_date.daysSince(m_today);
 
     // add a warning marker (*) in front, such that it is visible
     // to the user even when the Remaining column is too narrow.
-    wxString text = (daysOverdue < 0)
-        ? "*" + wxString::Format(wxPLURAL( "%d day overdue", "%d days overdue", -daysOverdue),
-            -daysOverdue)
-        : (daysRemaining < 0)
-        ? "*" + wxString::Format(wxPLURAL("%d day delay", "%d days delay", -daysRemaining),
-            -daysRemaining)
-        : wxString::Format(wxPLURAL("%d day", "%d days", daysRemaining), daysRemaining);
-
-    return text;
+    return (due_days < 0)
+        ? "*" + wxString::Format(
+            wxPLURAL( "%d day overdue", "%d days overdue", -due_days),
+            -due_days
+        )
+        : (payment_days < 0)
+        ? "*" + wxString::Format(
+            wxPLURAL("%d day delay", "%d days delay", -payment_days),
+            -payment_days
+        )
+        : wxString::Format(
+            wxPLURAL("%d day", "%d days", payment_days),
+            payment_days
+        );
 }
 
 void SchedPanel::updateBottomPanelData(int selIndex)

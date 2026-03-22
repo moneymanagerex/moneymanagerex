@@ -32,22 +32,23 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 wxIMPLEMENT_DYNAMIC_CLASS(mmWebAppDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmWebAppDialog, wxDialog)
-    EVT_BUTTON(wxID_CANCEL, mmWebAppDialog::OnCancel)
-    EVT_BUTTON(wxID_APPLY, mmWebAppDialog::OnApply)
-    EVT_BUTTON(wxID_OK, mmWebAppDialog::OnOk)
-    EVT_BUTTON(wxID_EXECUTE, mmWebAppDialog::OnCheckNetwork)
-    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmWebAppDialog::OnListItemActivated)
+    EVT_BUTTON(wxID_CANCEL,                  mmWebAppDialog::OnCancel)
+    EVT_BUTTON(wxID_APPLY,                   mmWebAppDialog::OnApply)
+    EVT_BUTTON(wxID_OK,                      mmWebAppDialog::OnOk)
+    EVT_BUTTON(wxID_EXECUTE,                 mmWebAppDialog::OnCheckNetwork)
+    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY,    mmWebAppDialog::OnListItemActivated)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmWebAppDialog::OnItemRightClick)
-    EVT_MENU_RANGE(MENU_OPEN_ATTACHMENT, MENU_DELETE_WEBTRAN, mmWebAppDialog::OnMenuSelected)
-    EVT_BUTTON(wxID_HELP, mmWebAppDialog::OnButtonHelpClick)
-    EVT_TIMER(wxID_REFRESH, mmWebAppDialog::OnTimer)
+    EVT_MENU_RANGE(
+        MENU_OPEN_ATTACHMENT,
+        MENU_DELETE_WEBTRAN,                 mmWebAppDialog::OnMenuSelected)
+    EVT_BUTTON(wxID_HELP,                    mmWebAppDialog::OnButtonHelpClick)
+    EVT_TIMER(wxID_REFRESH,                  mmWebAppDialog::OnTimer)
 wxEND_EVENT_TABLE()
 
 mmWebAppDialog::~mmWebAppDialog()
 {
     autoWebAppDialogTimer_.Stop();
-    for (const auto& entry : tempFiles_)
-    {
+    for (const auto& entry : tempFiles_) {
         wxRemoveFile(entry);
     }
 }
@@ -68,9 +69,10 @@ void mmWebAppDialog::Create(wxWindow* parent, const wxString& name)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
-    if (!wxDialog::Create(parent, wxID_ANY, _t("Import WebApp transactions")
-        , wxDefaultPosition, wxDefaultSize, style, name))
-    {
+    if (!wxDialog::Create(parent, wxID_ANY,
+        _t("Import WebApp transactions"),
+        wxDefaultPosition, wxDefaultSize, style, name
+    )) {
         return;
     }
 
@@ -98,14 +100,14 @@ void mmWebAppDialog::CreateControls()
     url_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     url_text_->SetMinSize(wxSize(300, -1));
     url_text_->Enable(false);
-    url_text_->SetValue(mmWebApp::getUrl());
-    mmToolTip(url_text_, mmWebApp::getUrl());
+    url_text_->SetValue(mmWebApp::url());
+    mmToolTip(url_text_, mmWebApp::url());
 
     wxStaticText* guid_label = new wxStaticText(this, wxID_STATIC, _t("GUID"));
     guid_text_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     guid_text_->SetMinSize(wxSize(300, -1));
     guid_text_->Enable(false);
-    guid_text_->SetValue(mmWebApp::getGuid());
+    guid_text_->SetValue(mmWebApp::guid());
 
     wxBitmapButton* help_button = new wxBitmapButton(this, wxID_HELP, mmBitmapBundle(png::HELP, mmBitmapButtonSize));
     if (isStartup_)
@@ -182,29 +184,24 @@ void mmWebAppDialog::fillControls()
     WebAppTransactions_.clear();
     mainBoxSizer_->Show(loadingSizer_, true);
 
-    if (mmWebApp::getUrl().empty())
-    {
+    if (mmWebApp::url().empty()) {
         mainBoxSizer_->Hide(loadingSizer_, true);
         return mmErrorDialogs::ToolTip4Object(url_text_, _t("Empty value"), _t("Error"));
     }
-    if (mmWebApp::getGuid().empty())
-    {
+    if (mmWebApp::guid().empty()) {
         mainBoxSizer_->Hide(loadingSizer_, true);
         return mmErrorDialogs::ToolTip4Object(guid_text_, _t("Empty value"), _t("Error"));
     }
 
-    if (!mmWebApp::WebApp_CheckGuid() || !mmWebApp::WebApp_CheckApiVersion())
-    {
+    if (!mmWebApp::checkGuid() || !mmWebApp::checkApiVersion()) {
         mainBoxSizer_->Hide(loadingSizer_, true);
         return;
     }
 
     wxString CurlError = "";
-    if (!mmWebApp::WebApp_DownloadNewTransaction(WebAppTransactions_, false, CurlError))
-    {
+    if (!mmWebApp::downloadNewTrx(WebAppTransactions_, false, CurlError)) {
         mainBoxSizer_->Hide(loadingSizer_, true);
-        if (!isStartup_)
-        {
+        if (!isStartup_) {
             wxString msgStr = wxString() << _t("Unable to download transactions from the WebApp.") << "\n" << CurlError;
             wxMessageBox(msgStr, _t("Transactions download error"), wxICON_ERROR);
         }
@@ -214,8 +211,7 @@ void mmWebAppDialog::fillControls()
 
     net_button_->SetBitmap(mmBitmapBundle(png::LED_GREEN));
 
-    for (const auto& WebTran : WebAppTransactions_)
-    {
+    for (const auto& WebTran : WebAppTransactions_) {
         std::vector<wxVariant> data;
         data.emplace_back(wxString::Format(wxT("%lld"), WebTran.ID)); //WEBTRAN_ID
         data.emplace_back(mmGetDateTimeForDisplay(WebTran.Date.FormatISODate())); //WEBTRAN_DATE
@@ -248,15 +244,13 @@ void mmWebAppDialog::fillControls()
         #endif
     }
 
-    if (!WebAppTransactions_.empty())
-    {
+    if (!WebAppTransactions_.empty()) {
         wxButton* buttonOK = static_cast<wxButton*>(FindWindow(wxID_OK));
         if (buttonOK) buttonOK->Enable(true);
         wxButton* buttonApply = static_cast<wxButton*>(FindWindow(wxID_APPLY));
         if (buttonApply) buttonApply->Enable(true);
     }
-    else if (isStartup_)
-    {
+    else if (isStartup_) {
         this->Close();
     }
 
@@ -291,7 +285,7 @@ void mmWebAppDialog::OnListItemActivated(wxDataViewEvent& event)
 
 bool mmWebAppDialog::ImportWebTr(int64 WebTrID, bool open)
 {
-    mmWebApp::webtran_holder WebTrToImport;
+    mmWebApp::TrxWebData WebTrToImport;
     bool bFound = false;
 
     for (const auto &webTr : WebAppTransactions_)
@@ -300,7 +294,7 @@ bool mmWebAppDialog::ImportWebTr(int64 WebTrID, bool open)
         {
             bFound = true;
             WebTrToImport = webTr;
-            int64 InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(WebTrToImport);
+            int64 InsertedTransactionID = mmWebApp::insertNewTrx(WebTrToImport);
             if (InsertedTransactionID > 0)
             {
                 if (open)
@@ -340,7 +334,7 @@ void mmWebAppDialog::OpenAttachment()
             wxString AttachmentName = webtranListBox_->GetTextValue(selectedIndex_, WEBTRAN_ATTACHMENTS);
             AttachmentName = AttachmentName.BeforeFirst(';');
             wxString CurlError = "";
-            if (mmWebApp::WebApp_DownloadAttachment(AttachmentName, CurlError))
+            if (mmWebApp::downloadAttachmentFile(AttachmentName, CurlError))
             {
                 wxLaunchDefaultApplication(AttachmentName);
                 tempFiles_.Add(AttachmentName);
@@ -382,12 +376,10 @@ void mmWebAppDialog::DeleteWebTr()
     if (Selected.size() == 0)
         return;
 
-    for (wxDataViewItem Item : Selected)
-    {
+    for (wxDataViewItem Item : Selected) {
         int selectedIndex_ = webtranListBox_->ItemToRow(Item);
-        if (selectedIndex_ >= 0)
-        {
-            mmWebApp::WebApp_DeleteOneTransaction(static_cast<int64>(webtranListBox_->GetItemData(Item)));
+        if (selectedIndex_ >= 0) {
+            mmWebApp::deleteTrxWebId(static_cast<int64>(webtranListBox_->GetItemData(Item)));
         }
     }
     fillControls();

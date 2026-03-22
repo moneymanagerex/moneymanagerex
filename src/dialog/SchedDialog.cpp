@@ -1032,7 +1032,7 @@ void SchedDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 new_payee_d.m_name = payee_name;
                 PayeeModel::instance().add_data_n(new_payee_d);
                 payee_n = PayeeModel::instance().get_id_data_n(new_payee_d.m_id);
-                mmWebApp::MMEX_WebApp_UpdatePayee();
+                mmWebApp::uploadPayee();
             }
             else
                 return;

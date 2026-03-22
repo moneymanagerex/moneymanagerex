@@ -65,6 +65,8 @@ public:
     void addDateSpan(wxDateSpan dateSpan);
     auto plusDateSpan(wxDateSpan dateSpan) -> mmDate;
     auto minusDateSpan(wxDateSpan dateSpan) -> mmDate;
+    int  daysSince(const mmDate& other) const;
+    int  daysUntil(const mmDate& other) const;
 
 public:
     bool operator== (const mmDate& other) const;
@@ -170,6 +172,15 @@ inline mmDate mmDate::plusDateSpan(wxDateSpan dateSpan)
 inline mmDate mmDate::minusDateSpan(wxDateSpan dateSpan)
 {
     return mmDate(m_dateTime - dateSpan);
+}
+
+inline int mmDate::daysSince(const mmDate& other) const
+{
+    return m_dateTime.Subtract(other.m_dateTime).GetDays();
+}
+inline int mmDate::daysUntil(const mmDate& other) const
+{
+    return other.m_dateTime.Subtract(m_dateTime).GetDays();
 }
 
 // The time in both operands is set to noon, therefore

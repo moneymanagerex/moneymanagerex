@@ -621,5 +621,5 @@ void AccountDialog::OnOk(wxCommandEvent& /*event*/)
     AccountModel::instance().unsafe_save_data_n(m_account_n);
 
     EndModal(wxID_OK);
-    mmWebApp::MMEX_WebApp_UpdateAccount();
+    mmWebApp::uploadAccount();
 }

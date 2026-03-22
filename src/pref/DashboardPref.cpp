@@ -107,7 +107,7 @@ void DashboardPref::Create()
         wxDefaultPosition, wxDefaultSize,
         wxSP_ARROW_KEYS,
         1,
-        (wxDate::Today() - wxDateTime(1, wxDate::Month::Jan, 1900)).GetDays(),
+        mmDate::today().daysSince(mmDate(wxDateTime(1, wxDateTime::Month::Jan, 1900))),
         InfoModel::instance().getInt("HOMEPAGE_INCEXP_DAYS", 14)
     );
     nDays_->Bind(wxEVT_SPINCTRL, [this](wxSpinEvent& event) {

@@ -29,13 +29,12 @@
 #include "budget.h"
 #include "htmlbuilder.h"
 
-#define CATEGORY_SORT_BY_NAME        1
-#define CATEGORY_SORT_BY_AMOUNT      2
+#define CATEGORY_SORT_BY_NAME   1
+#define CATEGORY_SORT_BY_AMOUNT 2
 
-CategoryReport::CategoryReport
-(const wxString& title, enum TYPE type)
-    : ReportBase(title)
-    , type_(type)
+CategoryReport::CategoryReport(const wxString& title, enum TYPE type) :
+    ReportBase(title),
+    type_(type)
 {
 }
 
@@ -44,42 +43,42 @@ CategoryReport::~CategoryReport()
 }
 
 double CategoryReport::AppendData(
-    [[maybe_unused]] const std::vector<CategoryReport::data_holder> &data,
-    std::map<int64, std::map<int, double>> &categoryStats,
+    [[maybe_unused]] const std::vector<CategoryReport::data_holder>& data,
+    std::map<int64, std::map<int, double>>& categoryStats,
     const CategoryData* category_n,
     int64 groupID,
     int level
 ) {
-    double amt = categoryStats[category_n->m_id][0];
-    if (type_ == COME && amt < 0.0)
-        amt = 0;
-    if (type_ == GOES && amt > 0.0)
-        amt = 0;
+    double amount = categoryStats[category_n->m_id][0];
+    if (type_ == COME && amount < 0.0)
+        amount = 0;
+    if (type_ == GOES && amount > 0.0)
+        amount = 0;
 
-    CategoryModel::DataA subcategory_a = CategoryModel::instance().find_data_sub_a(*category_n);
-    std::stable_sort(subcategory_a.begin(), subcategory_a.end(),
+    CategoryModel::DataA subcat_a = CategoryModel::instance().find_data_sub_a(*category_n);
+    std::stable_sort(subcat_a.begin(), subcat_a.end(),
         CategoryData::SorterByCATEGNAME()
     );
-    std::reverse(subcategory_a.begin(), subcategory_a.end());
+    std::reverse(subcat_a.begin(), subcat_a.end());
     double subamount = 0;
-    for (const auto& subcategory_d : subcategory_a) {
-        double amount = AppendData(data_, categoryStats, &subcategory_d, groupID, level + 1);
+    for (const auto& subcat_d : subcat_a) {
+        double amount = AppendData(data_, categoryStats, &subcat_d, groupID, level + 1);
         if (amount != 0)
             data_.insert(data_.begin(), {
-                category_n->m_id, subcategory_d.m_id, category_n->m_name,
+                category_n->m_id, subcat_d.m_id, category_n->m_name,
                 amount, groupID, level
             });
         subamount += amount;
     }
-    if (amt != 0 || subamount != 0)
+    if (amount != 0 || subamount != 0)
         data_.insert(data_.begin(), {
             category_n->m_id, -1, category_n->m_name,
-            amt, groupID, level
+            amount, groupID, level
         });
-    return amt + subamount;
+    return amount + subamount;
 }
 
-void  CategoryReport::refreshData()
+void CategoryReport::refreshData()
 {
     data_.clear();
     std::map<int64, std::map<int, double> > categoryStats;
@@ -98,30 +97,32 @@ void  CategoryReport::refreshData()
         CategoryData::SorterByCATEGNAME()
     );
     std::reverse(category_a.begin(), category_a.end());
-    for (const auto& category_d : category_a) {
-        double amt = categoryStats[category_d.m_id][0];
-        if (type_ == COME && amt < 0.0) amt = 0;
-        if (type_ == GOES && amt > 0.0) amt = 0;
+    for (const auto& cat_d : category_a) {
+        double amount = categoryStats[cat_d.m_id][0];
+        if ((type_ == COME && amount < 0.0) ||
+            (type_ == GOES && amount > 0.0)
+        )
+            amount = 0.0;
 
-        auto subcategory_a = CategoryModel::instance().find_data_sub_a(category_d);
-        std::stable_sort(subcategory_a.begin(), subcategory_a.end(),
+        auto subcat_a = CategoryModel::instance().find_data_sub_a(cat_d);
+        std::stable_sort(subcat_a.begin(), subcat_a.end(),
             CategoryData::SorterByCATEGNAME()
         );
-        std::reverse(subcategory_a.begin(), subcategory_a.end());
+        std::reverse(subcat_a.begin(), subcat_a.end());
         double subamount = 0;
-        for (const auto& subcategory_d : subcategory_a) {
-            double amount = AppendData(data_, categoryStats, &subcategory_d, category_d.m_id, 1);
+        for (const auto& subcat_d : subcat_a) {
+            double amount = AppendData(data_, categoryStats, &subcat_d, cat_d.m_id, 1);
             if (amount != 0)
                 data_.insert(data_.begin(), {
-                    category_d.m_id, subcategory_d.m_id, category_d.m_name,
-                    amount, category_d.m_id, 0
+                    cat_d.m_id, subcat_d.m_id, cat_d.m_name,
+                    amount, cat_d.m_id, 0
                 });
             subamount += amount;
         }
-        if (amt != 0 || subamount != 0)
+        if (amount != 0 || subamount != 0)
             data_.insert(data_.begin(), {
-                category_d.m_id, -1, category_d.m_name,
-                amt, category_d.m_id, 0
+                cat_d.m_id, -1, cat_d.m_name,
+                amount, cat_d.m_id, 0
             });
 
         groupID++;
@@ -148,22 +149,28 @@ wxString CategoryReport::getHTMLText()
     GraphSeries gsExpenses, gsIncome;
     std::vector<std::pair<wxString, double>> expense_vector;
     std::vector<std::pair<wxString, double>> income_vector;
-    std::map <int64, int> group_counter;
-    std::map <int64, std::map<int64, double>> group_total;
+    std::map<int64, int> group_counter;
+    std::map<int64, std::map<int64, double>> group_total;
 
     for (const auto& entry : sortedData) {
         if (entry.subCatID != -1 || entry.level == 0) group_counter[entry.catID] = 1;
         group_total[entry.categs][entry.catID] += entry.amount;
         if (entry.subCatID == -1) {
-            group_total[-1][0] += entry.amount < 0 ? entry.amount : 0;
-            group_total[-2][0] += entry.amount > 0 ? entry.amount : 0;
+            group_total[-1][0] += (entry.amount < 0) ? entry.amount : 0;
+            group_total[-2][0] += (entry.amount > 0) ? entry.amount : 0;
 
             if (getChartSelection() == 0) {
                 if (entry.amount < 0) {
-                    expense_vector.emplace_back(CategoryModel::instance().get_id_fullname(entry.catID), entry.amount);
+                    expense_vector.emplace_back(
+                        CategoryModel::instance().get_id_fullname(entry.catID),
+                        entry.amount
+                    );
                 }
                 else if (entry.amount > 0) {
-                    income_vector.emplace_back(CategoryModel::instance().get_id_fullname(entry.catID), entry.amount);
+                    income_vector.emplace_back(
+                        CategoryModel::instance().get_id_fullname(entry.catID),
+                        entry.amount
+                    );
                 }
             }
         }
@@ -171,8 +178,11 @@ wxString CategoryReport::getHTMLText()
 
     if (!expense_vector.empty()) {
         std::sort(expense_vector.begin(), expense_vector.end());
-        std::stable_sort(expense_vector.begin(), expense_vector.end(), [](const std::pair<wxString, double>& left, const std::pair<wxString, double>& right) {
-            return left.second < right.second;});
+        std::stable_sort(expense_vector.begin(), expense_vector.end(),
+            [](const std::pair<wxString, double>& left, const std::pair<wxString, double>& right) {
+                return left.second < right.second;
+            }
+        );
         for (const auto& i : expense_vector) {
             gsExpenses.values.push_back({ i.second });
             gdExpenses.labels.push_back(i.first);
@@ -182,8 +192,11 @@ wxString CategoryReport::getHTMLText()
     }
     if (!income_vector.empty()) {
         std::sort(income_vector.begin(), income_vector.end());
-        std::stable_sort(income_vector.begin(), income_vector.end(), [](const std::pair<wxString, double>& left, const std::pair<wxString, double>& right) {
-            return left.second > right.second; });
+        std::stable_sort(income_vector.begin(), income_vector.end(),
+            [](const std::pair<wxString, double>& left, const std::pair<wxString, double>& right) {
+                return left.second > right.second;
+            }
+        );
         for (const auto& i : income_vector) {
             gsIncome.values.push_back({ i.second });
             gdIncome.labels.push_back(i.first);
@@ -221,8 +234,12 @@ wxString CategoryReport::getHTMLText()
     hb.addDivContainer("shadow"); // Table Container
     {
         hb.addDivContainer();
-        hb.addText(wxString::Format("<button onclick=\"collapseAllToggles()\">%s</button>", _t("Collapse All")));
-        hb.addText(wxString::Format("<button onclick=\"expandAllToggles()\">%s</button>", _t("Expand All")));
+        hb.addText(wxString::Format("<button onclick=\"collapseAllToggles()\">%s</button>",
+            _t("Collapse All")
+        ));
+        hb.addText(wxString::Format("<button onclick=\"expandAllToggles()\">%s</button>",
+            _t("Expand All")
+        ));
         //hb.addText(wxString::Format("<button onclick=\"expandAllToggles()\" style=\"float: right;\">%s</button>", _t("Export")));
         hb.endDiv();
 
@@ -246,8 +263,7 @@ wxString CategoryReport::getHTMLText()
                 std::map<int, wxString> levelParent;
                 wxString row_id = "";
                 wxString row_pid = "";
-                for (const auto& entry : sortedData)
-                {
+                for (const auto& entry : sortedData) {
                     if (entry.subCatID != -1) continue;
 
                     if (entry.level == 0) {
@@ -296,8 +312,7 @@ wxString CategoryReport::getHTMLText()
             int span = 3;
             hb.startTfoot();
             {
-                if (type_ == SUMMARY)
-                {
+                if (type_ == SUMMARY) {
                     hb.addTotalRow(_t("Total Expenses:"), span, group_total[-1][0]);
                     hb.addTotalRow(_t("Total Income:"), span, group_total[-2][0]);
                 }
@@ -317,34 +332,32 @@ wxString CategoryReport::getHTMLText()
     return hb.getHTMLText();
 }
 
-mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes()
-    : CategoryReport(_n("Where the Money Goes"), TYPE::GOES)
+mmReportCategoryExpensesGoes::mmReportCategoryExpensesGoes() :
+    CategoryReport(_n("Where the Money Goes"), TYPE::GOES)
 {
     setReportParameters(REPORT_ID::WheretheMoneyGoes);
 }
 
-mmReportCategoryExpensesComes::mmReportCategoryExpensesComes()
-    : CategoryReport(_n("Where the Money Comes From"), TYPE::COME)
+mmReportCategoryExpensesComes::mmReportCategoryExpensesComes() :
+    CategoryReport(_n("Where the Money Comes From"), TYPE::COME)
 {
     setReportParameters(REPORT_ID::WheretheMoneyComesFrom);
 }
 
-mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories()
-    : CategoryReport(_n("Categories Summary"), TYPE::MONTHLY)
+mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories() :
+    CategoryReport(_n("Categories Summary"), TYPE::MONTHLY)
 {
     m_chart_selection = 1;
     setReportParameters(REPORT_ID::CategoriesMonthly);
 }
 
-//----------------------------------------------------------------------------
-
-mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance()
-    : ReportBase(_n("Category Income/Expenses"))
+mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance() :
+    ReportBase(_n("Category Income/Expenses"))
 {
     m_date_range = new mmLast12Months();
     setReportParameters(REPORT_ID::CategoryOverTimePerformance);
 }
-//----------------------------------------------------------------------------
+
 mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
 {
     delete m_date_range;
@@ -355,14 +368,17 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     // Grab the data
     const int MONTHS_IN_PERIOD = 12; // including current month
 
-    wxDate sd = m_date_range->start_date();
-    wxDate ed = m_date_range->end_date();
-    sd.Add(wxDateSpan::Months(m_date_selection.GetValue()));
-    ed.Add(wxDateSpan::Months(m_date_selection.GetValue()));
-    mmDateRange* date_range = new mmSpecifiedRange(sd, ed);
+    // TODO: refine mmDateRange -> mmDateRange2
+    mmDate sd = mmDate(m_date_range->start_date()).plusDateSpan(
+        wxDateSpan::Months(m_date_selection.GetValue())
+    );
+    mmDate ed = mmDate(m_date_range->end_date()).plusDateSpan(
+        wxDateSpan::Months(m_date_selection.GetValue())
+    );
+    mmDateRange* date_range = new mmSpecifiedRange(sd.getDateTime(), ed.getDateTime());
 
     //Get statistic
-    std::map<int64, std::map<int, double> > categoryStats;
+    std::map<int64, std::map<int, double>> categoryStats;
     CategoryModel::instance().getCategoryStats(
         categoryStats,
         m_account_a,
@@ -370,9 +386,9 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         PrefModel::instance().getIgnoreFutureTransactions()
     );
 
-    //Init totals
-    //Type(Withdrawal/Income/Summ), month, value
-    std::map<int, std::map<int, double> > totals;
+    // Init totals
+    // Type(Withdrawal/Income/Summ), month, value
+    std::map<int, std::map<int, double>> totals;
 
     // structure for sorting of data
     struct html_data_holder
@@ -406,31 +422,28 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     hb.addReportHeader(getTitle(), m_date_range->startDay(), m_date_range->isFutureIgnored());
-    hb.displayDateHeading(sd, ed, true);
+    hb.displayDateHeading(sd.getDateTime(), ed.getDateTime(), true);
     hb.displayFooter(getAccountNames());
     // Prime the filter
     m_filter.clear();
-    m_filter.setDateRange(sd, ed);
+    m_filter.setDateRange(sd.getDateTime(), ed.getDateTime());
     m_filter.setAccountList(m_account_a);
 
     const wxDateTime start_date = date_range->start_date();
     delete date_range;
 
-    //Chart
-    //wxArrayString labels;
-    if (getChartSelection() == 0)
-    {
+    // Chart
+    // wxArrayString labels;
+    if (getChartSelection() == 0) {
         GraphData gd;
         GraphSeries data_negative, data_positive, data_difference;
 
-        for (int i = 0; i < MONTHS_IN_PERIOD; i++)
-        {
+        for (int i = 0; i < MONTHS_IN_PERIOD; i++) {
             wxDateTime d = start_date.Add(wxDateSpan::Months(i));
 
             double val_negative = 0;
             double val_positive = 0;
-            for (const auto& entry : data)
-            {
+            for (const auto& entry : data) {
                 if (entry.period[i] < 0)
                     val_negative += -entry.period[i];
                 else
@@ -441,7 +454,10 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             data_positive.values.push_back(val_positive);
             data_difference.values.push_back(val_positive - val_negative);
 
-            const auto label = wxString::Format("%s %i", wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())), d.GetYear());
+            const auto label = wxString::Format("%s %i",
+                wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth())),
+                d.GetYear()
+            );
             gd.labels.push_back(label);
         }
 
@@ -457,12 +473,13 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         gd.series.push_back(data_positive);
         gd.series.push_back(data_negative);
 
-        if (!gd.series.empty())
-        {
+        if (!gd.series.empty()) {
             gd.type = GraphData::BARLINE;
-            gd.colors = { mmThemeMetaColour(meta::COLOR_REPORT_DELTA)
-                            , mmThemeMetaColour(meta::COLOR_REPORT_CREDIT)
-                            , mmThemeMetaColour(meta::COLOR_REPORT_DEBIT) };
+            gd.colors = {
+                mmThemeMetaColour(meta::COLOR_REPORT_DELTA),
+                mmThemeMetaColour(meta::COLOR_REPORT_CREDIT),
+                mmThemeMetaColour(meta::COLOR_REPORT_DEBIT)
+            };
             hb.addChart(gd);
         }
     }
@@ -471,7 +488,6 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     {
         hb.startSortTable();
         {
-
             //Add header
             hb.startThead();
             {
@@ -479,11 +495,14 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                 {
                     hb.addTableHeaderCell(_t("Category"));
 
-                    for (int i = 0; i < MONTHS_IN_PERIOD; i++)
-                    {
+                    for (int i = 0; i < MONTHS_IN_PERIOD; i++) {
                         wxDateTime d = start_date.Add(wxDateSpan::Months(i));
-                        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth()
-                            , wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()), "text-right");
+                        hb.addTableHeaderCell(
+                            wxGetTranslation(wxDateTime::GetEnglishMonthName(
+                                d.GetMonth(), wxDateTime::Name_Abbr
+                            )) + wxString::Format("<br>%i", d.GetYear()),
+                            "text-right"
+                        );
                     }
                     hb.addTableHeaderCell(_t("Overall"), "text-right");
                 }
@@ -494,14 +513,14 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             hb.startTbody();
             {
                 //Begin of table
-                for (const auto& entry : data)
-                {
-                    if (entry.overall != 0.0)
-                    {
+                for (const auto& entry : data) {
+                    if (entry.overall != 0.0) {
                         hb.startTableRow();
                         {
-                            hb.addTableCellLink(wxString::Format("viewtrans:%lld", entry.catID)
-                                , entry.name);
+                            hb.addTableCellLink(
+                                wxString::Format("viewtrans:%lld", entry.catID),
+                                entry.name
+                            );
                             for (int i = 0; i < MONTHS_IN_PERIOD; i++)
                                 hb.addMoneyCell(entry.period[i]);
                             hb.addMoneyCell(entry.overall);
@@ -519,14 +538,12 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                 totalLabels[INCOME] = _t("Incomes");
                 totalLabels[EXPENSES] = _t("Expenses");
                 totalLabels[TOTAL] = _t("Total");
-                for (const auto& print_totals : totals)
-                {
+                for (const auto& print_totals : totals) {
                     hb.startTotalTableRow();
                     {
                         hb.addTableCell(totalLabels[print_totals.first]);
                         double overall = 0;
-                        for (const auto& range : totals[print_totals.first])
-                        {
+                        for (const auto& range : totals[print_totals.first]) {
                             double amount = range.second;
                             overall += amount;
                             hb.addMoneyCell(amount);

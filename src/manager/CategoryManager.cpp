@@ -404,7 +404,7 @@ void CategoryManager::OnAdd(wxCommandEvent& /*event*/)
     }
 
     CategoryModel::instance().add_data_n(new_category_d);
-    mmWebApp::MMEX_WebApp_UpdateCategory();
+    mmWebApp::uploadCategory();
 
     wxTreeItemId tid = m_treeCtrl->AppendItem(m_selectedItemId, name);
     m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(new_category_d));
@@ -591,7 +591,7 @@ void CategoryManager::mmDoDeleteSelectedCategory()
         payee_d.m_category_id_n = -1;
     }
     PayeeModel::instance().save_data_a(payee_a);
-    mmWebApp::MMEX_WebApp_UpdatePayee();
+    mmWebApp::uploadPayee();
 
     m_treeCtrl->SelectItem(PreviousItem);
     m_selectedItemId = PreviousItem;
@@ -680,7 +680,7 @@ void CategoryManager::OnEdit(wxCommandEvent& /*event*/)
     }
     category->m_name = text;
     CategoryModel::instance().unsafe_save_data_n(category);
-    mmWebApp::MMEX_WebApp_UpdateCategory();
+    mmWebApp::uploadCategory();
 
     m_treeCtrl->SetItemText(m_selectedItemId, text);
 

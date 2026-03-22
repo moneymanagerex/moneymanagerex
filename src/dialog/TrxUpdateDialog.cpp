@@ -361,7 +361,7 @@ void TrxUpdateDialog::OnOk(wxCommandEvent& WXUNUSED(event))
                 PayeeData new_payee_d = PayeeData();
                 new_payee_d.m_name = cbPayee_->GetValue();
                 PayeeModel::instance().add_data_n(new_payee_d);
-                mmWebApp::MMEX_WebApp_UpdatePayee();
+                mmWebApp::uploadPayee();
                 payee_id = new_payee_d.m_id;
             }
             else

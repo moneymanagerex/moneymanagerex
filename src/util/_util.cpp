@@ -290,7 +290,7 @@ wxColour mmColors::userDefColor7;
 //*-------------------------------------------------------------------------*//
 
 //Get unread news or all news for last year
-bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
+bool getNewsRSS(std::vector<WebsiteNews>& websiteNews_a)
 {
     wxString RssContent;
     if (http_get_data(mmex::weblink::NewsRSS, RssContent) != CURLE_OK)
@@ -310,51 +310,48 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 
     wxLogDebug("{{{ getNewsRSS()");
 
-    const wxString news_last_read_date_str = SettingModel::instance().getString(INIDB_NEWS_LAST_READ_DATE, "");
-    wxDate news_last_read_date;
-    if (!news_last_read_date.ParseISODate(news_last_read_date_str))
-        news_last_read_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
+    mmDate last_date = mmDateN(SettingModel::instance().getString(
+        INIDB_NEWS_LAST_READ_DATE, ""
+    )).value_or(
+        mmDate::today().minusDateSpan(wxDateSpan::Year())
+    );
 
-    wxXmlNode* RssRoot = RssDocument.GetRoot()->GetChildren()->GetChildren();
-    while (RssRoot) {
-        if (RssRoot->GetName() == "item") {
-            WebsiteNews website_news;
-            wxXmlNode* News = RssRoot->GetChildren();
-            while (News) {
-                wxString ElementName = News->GetName();
-
-                if (ElementName == "title")
-                    website_news.Title = News->GetChildren()->GetContent();
-                else if (ElementName == "link")
-                    website_news.Link = News->GetChildren()->GetContent();
-                else if (ElementName == "description")
-                    website_news.Description = News->GetChildren()->GetContent();
-                else if (ElementName == "pubDate") {
-                    wxDateTime Date;
-                    const wxString DateString = News->GetChildren()->GetContent();
-                    if (!DateString.IsEmpty())
-                        Date.ParseDate(DateString);
-                    if (!Date.IsValid())
-                        //Seems invalid date, mark it as 1 year old
-                        Date = wxDateTime::Today().Subtract(wxDateSpan::Year());
-                    website_news.Date = Date;
+    wxXmlNode* news_node = RssDocument.GetRoot()->GetChildren()->GetChildren();
+    while (news_node) {
+        if (news_node->GetName() == "item") {
+            WebsiteNews websiteNews;
+            wxXmlNode* field_node = news_node->GetChildren();
+            while (field_node) {
+                wxString field_name = field_node->GetName();
+                if (field_name == "title")
+                    websiteNews.Title = field_node->GetChildren()->GetContent();
+                else if (field_name == "link")
+                    websiteNews.Link = field_node->GetChildren()->GetContent();
+                else if (field_name == "description")
+                    websiteNews.Description = field_node->GetChildren()->GetContent();
+                else if (field_name == "pubDate") {
+                    websiteNews.Date = mmDateN(
+                        field_node->GetChildren()->GetContent()
+                    ).value_or(
+                        mmDate::today().minusDateSpan(wxDateSpan::Year())
+                    ).getDateTime();
                 }
-                News = News->GetNext();
+                field_node = field_node->GetNext();
             }
             wxLogDebug("%s - %s",
-                news_last_read_date.FormatISODate(),
-                website_news.Date.FormatISODate()
+                last_date.isoDate(),
+                mmDate(websiteNews.Date).isoDate()
             );
-            if (news_last_read_date.IsEarlierThan(website_news.Date))
-                WebsiteNewsList.push_back(website_news);
+            if (last_date < mmDate(websiteNews.Date))
+                websiteNews_a.push_back(websiteNews);
         }
-        RssRoot = RssRoot->GetNext();
+        news_node = news_node->GetNext();
     }
 
-    wxLogDebug("New articles: %i", static_cast<int>(WebsiteNewsList.size()));
+    wxLogDebug("New articles: %i", static_cast<int>(websiteNews_a.size()));
     wxLogDebug("}}}");
 
-    if (WebsiteNewsList.size() == 0)
+    if (websiteNews_a.size() == 0)
         return false;
 
     return true;
@@ -543,7 +540,7 @@ bool mmParseDisplayStringToDate(
     wxString date_str = str_date;
     wxString mask_str = sDateMask;
 
-    static std::unordered_map<wxString, wxDate> cache;
+    static std::unordered_map<wxString, wxDateTime> cache;
     if (const auto it = cache.find(str_date); it != cache.end()) {
         date = it->second;
         return true;
@@ -1726,16 +1723,16 @@ const wxRect GetDefaultMonitorRect()
 }
 
 // ----------------------------------------
-mmDates::~mmDates()
-{
-}
-
 mmDates::mmDates() :
     m_date_formats_temp(g_date_formats_map()),
-    m_today(wxDate::Today())
+    m_today(wxDateTime::Today())
 {
     m_date_parsing_stat.clear();
-    m_month_ago = wxDate::Today().Subtract(wxDateSpan::Months(1));
+    m_month_ago = wxDateTime::Today().Subtract(wxDateSpan::Months(1));
+}
+
+mmDates::~mmDates()
+{
 }
 
 void mmDates::doFinalizeStatistics()
@@ -1765,44 +1762,43 @@ void mmDates::doFinalizeStatistics()
 
 void mmDates::doHandleStatistics(const wxString &dateStr)
 {
+    if (m_error_count > MAX_ATTEMPTS || m_date_formats_temp.size() <= 1)
+        return;
 
-    if (m_error_count <= MAX_ATTEMPTS && m_date_formats_temp.size() > 1) {
-        wxArrayString invalidMask;
-        std::vector<std::pair<wxString, wxString> > date_formats = m_date_formats_temp;
-        for (const auto& date_mask : date_formats) {
-            const wxString mask = date_mask.first;
-            wxDateTime dtdt = m_today;
-            if (mmParseDisplayStringToDate(dtdt, dateStr, mask)) {
+    wxArrayString invalidMask;
+    std::vector<std::pair<wxString, wxString>> date_formats = m_date_formats_temp;
+    for (const auto& date_mask : date_formats) {
+        const wxString mask = date_mask.first;
+        wxDateTime dtdt = m_today;
+        if (mmParseDisplayStringToDate(dtdt, dateStr, mask)) {
+            m_date_parsing_stat[mask] ++;
+            //Increase the date mask rating if parse date is recent (1 month ago) date
+            if (dtdt <= m_today && dtdt >= m_month_ago)
                 m_date_parsing_stat[mask] ++;
-                //Increase the date mask rating if parse date is recent (1 month ago) date
-                if (dtdt <= m_today && dtdt >= m_month_ago)
-                    m_date_parsing_stat[mask] ++;
 
-                //Decrease the data mask rating if parsed date is in future
-                if (dtdt > m_today)
-                    m_date_parsing_stat[mask] -= 2;
-            }
-            else {
-                invalidMask.Add(mask);
-                m_date_parsing_stat.erase(mask);
-            }
-        }
-
-        if (invalidMask.size() < m_date_formats_temp.size()) {
-            for (const auto &i : invalidMask) {
-                auto it = std::find_if(m_date_formats_temp.begin(), m_date_formats_temp.end(),
-                    [&i](const std::pair<wxString, wxString>& element) { return element.first == i; });
-                m_date_formats_temp.erase(it);
-            }
+            //Decrease the data mask rating if parsed date is in future
+            if (dtdt > m_today)
+                m_date_parsing_stat[mask] -= 2;
         }
         else {
-            m_error_count++;
+            invalidMask.Add(mask);
+            m_date_parsing_stat.erase(mask);
         }
     }
-}
 
-mmSeparator::~mmSeparator()
-{
+    if (invalidMask.size() < m_date_formats_temp.size()) {
+        for (const auto &i : invalidMask) {
+            auto it = std::find_if(m_date_formats_temp.begin(), m_date_formats_temp.end(),
+                [&i](const std::pair<wxString, wxString>& element) {
+                    return element.first == i;
+                }
+            );
+            m_date_formats_temp.erase(it);
+        }
+    }
+    else {
+        m_error_count++;
+    }
 }
 
 mmSeparator::mmSeparator()
@@ -1813,6 +1809,10 @@ mmSeparator::mmSeparator()
     m_separators["\t"] = 0;
     m_separators["|"] = 0;
     m_separators[def_delim] = 0;
+}
+
+mmSeparator::~mmSeparator()
+{
 }
 
 const wxString mmSeparator::getSeparator() const

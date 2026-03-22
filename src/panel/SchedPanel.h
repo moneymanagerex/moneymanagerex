@@ -46,7 +46,7 @@ public:
 
 private:
     SchedModel::DataExtA m_sched_xa;
-    wxDate m_today;
+    mmDate m_today;
     bool m_filter_active;
     wxArrayString m_tip_a;
 
@@ -85,7 +85,6 @@ private:
         const wxString& name = "SchedPanel"
     );
     void createControls();
-    auto getToday() const -> wxDate { return m_today; }
     auto getItem(long item, int col_id) -> wxString;
     int  initList(int64 sched_id_n = -1);
     auto getRemainingDays(const SchedData& sched_d) const -> const wxString;

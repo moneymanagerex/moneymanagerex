@@ -232,13 +232,11 @@ void SchedList::OnListLeftClick(wxMouseEvent& event)
 
 int SchedList::OnGetItemImage(long item) const
 {
-    SchedData& sched_d = w_panel->m_sched_xa[item];
-    int daysRemaining = w_panel->m_sched_xa[item].m_due_date.getDateTime().
-        Subtract(w_panel->getToday()).GetSeconds().GetValue()
-    / 86400;
+    const SchedData& sched_d = w_panel->m_sched_xa[item];
+    int due_days = sched_d.m_due_date.daysSince(w_panel->m_today);
 
     // Returns the icon to be shown for each entry
-    if (daysRemaining < 0)
+    if (due_days < 0)
         return SchedPanel::ICON_FOLLOWUP;
     if (sched_d.m_repeat.m_mode.id() == RepeatMode::e_automated)
         return SchedPanel::ICON_RUN_AUTO;

@@ -1635,9 +1635,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& WXUNUSED(event))
     {
         // we need to save them to the database.
         TrxModel::instance().db_commit();
-        mmWebApp::MMEX_WebApp_UpdateAccount();
-        mmWebApp::MMEX_WebApp_UpdatePayee();
-        mmWebApp::MMEX_WebApp_UpdateCategory();
+        mmWebApp::uploadAccount();
+        mmWebApp::uploadPayee();
+        mmWebApp::uploadCategory();
         importSuccessful_ = true;
         // TODO: user cannot see following messages because dialog
         // will be closed (?)

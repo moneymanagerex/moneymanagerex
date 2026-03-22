@@ -300,87 +300,109 @@ htmlWidgetBillsAndDeposits::~htmlWidgetBillsAndDeposits()
 const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 {
     wxString output = "";
-    wxDate today = wxDate::Today();
+    mmDate today = mmDate::today();
 
-    //                    days, payee, description, amount, account, notes
-    std::vector< std::tuple<int, wxString, wxString, double, const AccountData*, wxString> > bd_days;
+    std::vector<std::tuple<
+        int                /* 0: days */,
+        wxString           /* 1: payee_name */,
+        wxString           /* 2: description */,
+        double             /* 3: amount */,
+        const AccountData* /* 4: account_n */,
+        wxString           /* 5: notes */
+    >> sched_info_a;
     for (const auto& sched_d : SchedModel::instance().find_all(
         SchedCol::COL_ID_TRANSDATE
     )) {
-        int daysPayment = sched_d.m_date_time.getDateTime().Subtract(today).GetDays();
-        if (daysPayment > 14)
-            break; // Done searching for all to include
+        int payment_days = sched_d.m_date().daysSince(today);
+        // Stop searching
+        if (payment_days > 14)
+            break;
+        int due_days = sched_d.m_due_date.daysSince(today);
 
-        int daysOverdue = sched_d.m_due_date.getDateTime().Subtract(today).GetDays();
-        wxString daysRemainingStr = (daysPayment > 0
-            ? wxString::Format(wxPLURAL("%d day", "%d days", daysPayment), daysPayment)
-            : "*" + wxString::Format(wxPLURAL("%d day delay", "%d days delay", -daysPayment), -daysPayment));
-        if (daysOverdue < 0)
-            daysRemainingStr = "*" + wxString::Format(wxPLURAL("%d day overdue", "%d days overdue", std::abs(daysOverdue)), std::abs(daysOverdue));
+        wxString description = (payment_days > 0)
+            ? wxString::Format(wxPLURAL("%d day", "%d days", payment_days), payment_days)
+            : "*" + wxString::Format(
+                wxPLURAL("%d day delay", "%d days delay", -payment_days),
+                -payment_days
+            );
+        if (due_days < 0)
+            description = "*" + wxString::Format(
+                wxPLURAL("%d day overdue", "%d days overdue", -due_days),
+                -due_days
+            );
 
-        wxString accountStr = "";
-        const auto *account = AccountModel::instance().get_id_data_n(sched_d.m_account_id);
-        if (account) accountStr = account->m_name;
+        const auto* account_n = AccountModel::instance().get_id_data_n(sched_d.m_account_id);
+        wxString account_name_n = account_n ? account_n->m_name : "";
 
-        wxString payeeStr = "";
+        wxString payee_name_n = "";
         if (sched_d.is_transfer()) {
-            const AccountData *to_account = AccountModel::instance().get_id_data_n(
+            const AccountData* to_account_n = AccountModel::instance().get_id_data_n(
                 sched_d.m_to_account_id_n
             );
-            if (to_account)
-                payeeStr = to_account->m_name;
-            payeeStr += " &larr; " + accountStr;
+            if (to_account_n)
+                payee_name_n = to_account_n->m_name;
+            payee_name_n += " &larr; " + account_name_n;
         }
         else {
             const PayeeData* payee_n = PayeeModel::instance().get_id_data_n(
                 sched_d.m_payee_id_n
             );
-            payeeStr = accountStr;
-            payeeStr += (sched_d.is_withdrawal() ? " &rarr; " : " &larr; ");
+            payee_name_n = account_name_n;
+            payee_name_n += (sched_d.is_withdrawal() ? " &rarr; " : " &larr; ");
             if (payee_n)
-                payeeStr += payee_n->m_name;
+                payee_name_n += payee_n->m_name;
         }
         double amount = (sched_d.is_withdrawal() ? -sched_d.m_amount : sched_d.m_amount);
         wxString notes = HTMLEncode(sched_d.m_notes);
-        bd_days.push_back(std::make_tuple(
-            daysPayment, payeeStr, daysRemainingStr, amount, account, notes
+        sched_info_a.push_back(std::make_tuple(
+            payment_days, payee_name_n, description, amount, account_n, notes
         ));
     }
 
-    //std::sort(bd_days.begin(), bd_days.end());
-    //std::reverse(bd_days.begin(), bd_days.end());
-    ////////////////////////////////////
+    //std::sort(sched_info_a.begin(), sched_info_a.end());
+    //std::reverse(sched_info_a.begin(), sched_info_a.end());
 
-    if (!bd_days.empty()) {
+    if (!sched_info_a.empty()) {
         static const wxString idStr = "BILLS_AND_DEPOSITS";
 
         output = R"(<div class="shadow">)";
         output += "<table class='table'>\n<thead>\n<tr class='active'><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></th>\n<th></th>\n", m_title);
-        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>\n"
-            , static_cast<int>(bd_days.size()), idStr, idStr, idStr);
+        output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></th>\n<th></th>\n",
+            m_title
+        );
+        output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>\n",
+            static_cast<int>(sched_info_a.size()), idStr, idStr, idStr
+        );
         output += "</thead></table>\n";
 
         output += wxString::Format("<table class='table' id='%s'>\n", idStr);
-        output += wxString::Format("<thead><tr><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr></thead>\n"
-            , _t("Account/Payee"), _t("Amount"), _t("Remaining"));
+        output += wxString::Format("<thead><tr><th>%s</th>\n<th class='text-right'>%s</th>\n<th class='text-right'>%s</th></tr></thead>\n",
+            _t("Account/Payee"), _t("Amount"), _t("Remaining")
+        );
 
-        for (const auto& item : bd_days) {
-            output += wxString::Format("<tr %s>\n", std::get<0>(item) < 0 ? "class='danger'" : "");
-            output += "<td>" + std::get<1>(item);
-            wxString notes = std::get<5>(item);
+        for (const auto& sched_info : sched_info_a) {
+            int                days        = std::get<0>(sched_info);
+            wxString           payee_name  = std::get<1>(sched_info);
+            wxString           description = std::get<2>(sched_info);
+            double             amount      = std::get<3>(sched_info);
+            const AccountData* account_n   = std::get<4>(sched_info);
+            wxString           notes       = std::get<5>(sched_info);
+
+            output += wxString::Format("<tr %s>\n",
+                days < 0 ? "class='danger'" : ""
+            );
+            output += "<td>" + payee_name;
             if (notes.Length() > 150)
                 notes = notes.Left(150) + wxString::FromUTF8Unchecked("…");
             if (!notes.IsEmpty())
                 output += wxString::Format("<br><i>%s</i>", notes);
-
             output += "</td>";
             output += wxString::Format("<td class='money'>%s</td>\n",
                 AccountModel::instance().value_number_currency(
-                    *(std::get<4>(item)), std::get<3>(item)
+                    *account_n, amount
                 )
             );
-            output += "<td  class='money'>" + std::get<2>(item) + "</td></tr>\n";
+            output += "<td class='money'>" + description + "</td></tr>\n";
         }
         output += "</table>\n";
         output += "</div>";
@@ -388,9 +410,6 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
     return output;
 }
 
-////////////////////////////////////////////////////////
-
-//* Income vs Expenses *//
 const wxString htmlWidgetIncomeVsExpenses::getHTMLText()
 {
     DashboardPref home_options;

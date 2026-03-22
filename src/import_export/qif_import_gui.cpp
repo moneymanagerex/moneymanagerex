@@ -1095,16 +1095,16 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         wxProgressDialog progressDlg(_tu("Please wait…"), _t("Importing")
             , nTransactions + 1, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
         progressDlg.Update(1, _t("Importing Accounts"));
-        bool is_webbapp_enabled = mmWebApp::MMEX_WebApp_UpdateAccount();
+        bool is_webbapp_enabled = mmWebApp::uploadAccount();
 
         progressDlg.Update(1, _t("Importing Payees"));
         getOrCreatePayees();
         if (is_webbapp_enabled)
-            is_webbapp_enabled = mmWebApp::MMEX_WebApp_UpdatePayee();
+            is_webbapp_enabled = mmWebApp::uploadPayee();
         progressDlg.Update(1, _t("Importing Categories"));
         getOrCreateCategories();
         if (is_webbapp_enabled)
-            mmWebApp::MMEX_WebApp_UpdateCategory();
+            mmWebApp::uploadCategory();
 
         TrxModel::DataA trx_a;
         TrxModel::DataA trx_to_a;

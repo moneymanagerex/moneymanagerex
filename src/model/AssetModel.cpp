@@ -91,9 +91,7 @@ const std::pair<double, double> AssetModel::get_data_value_date(
         if (change_id == AssetChange::e_none)
             return;
 
-        double days = static_cast<double>(
-            (to_date.getDateTime() - from_date.getDateTime()).GetDays()
-        );
+        double days = static_cast<double>(to_date.daysSince(from_date));
 
         if (change_id == AssetChange::e_appreciates) {
             value *= exp(daily_rate * days);

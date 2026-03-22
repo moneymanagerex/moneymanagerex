@@ -241,7 +241,7 @@ void PayeeManager::OnOk(wxCommandEvent& /*event*/)
         m_payee_n->m_pattern = wxString::FromUTF8(json_buffer.GetString());
 
         PayeeModel::instance().unsafe_save_data_n(m_payee_n);
-        mmWebApp::MMEX_WebApp_UpdatePayee();
+        mmWebApp::uploadPayee();
     }
     else
         return mmErrorDialogs::ToolTip4Object(m_payeeName,
@@ -818,7 +818,7 @@ void mmPayeeDialog::DefineDefaultCategory()
                 PayeeData* payee_n = PayeeModel::instance().unsafe_get_id_data_n(rdata->payeeId);
                 payee_n->m_category_id_n = dlg.getCategId();
                 PayeeModel::instance().unsafe_update_data_n(payee_n);
-                mmWebApp::MMEX_WebApp_UpdatePayee();
+                mmWebApp::uploadPayee();
                 addPayeeDataIntoItem(rdata->tidx, payee_n, rdata->count);
             }
         }
@@ -836,7 +836,7 @@ void mmPayeeDialog::RemoveDefaultCategory()
         PayeeData* payee_n = PayeeModel::instance().unsafe_get_id_data_n(rdata->payeeId);
         payee_n->m_category_id_n = -1;
         PayeeModel::instance().unsafe_update_data_n(payee_n);
-        mmWebApp::MMEX_WebApp_UpdatePayee();
+        mmWebApp::uploadPayee();
         addPayeeDataIntoItem(rdata->tidx, payee_n, rdata->count);
     }
 }

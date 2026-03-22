@@ -750,7 +750,7 @@ bool TrxDialog::ValidateData()
                 new_payee_d.m_name = payee_name;
                 PayeeModel::instance().add_data_n(new_payee_d);
                 payee_n = PayeeModel::instance().get_id_data_n(new_payee_d.m_id);
-                mmWebApp::MMEX_WebApp_UpdatePayee();
+                mmWebApp::uploadPayee();
             }
             else
                 return false;
@@ -767,7 +767,7 @@ bool TrxDialog::ValidateData()
             PayeeData payee_d = *payee_n;
             payee_d.m_category_id_n = m_journal_data.m_category_id_n;
             PayeeModel::instance().save_data_n(payee_d);
-            mmWebApp::MMEX_WebApp_UpdatePayee();
+            mmWebApp::uploadPayee();
         }
     }
     else //transfer

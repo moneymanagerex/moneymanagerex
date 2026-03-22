@@ -118,17 +118,14 @@ void mmToolbarArt::DrawButton(wxDC& dc, wxWindow* wnd, const wxAuiToolBarItem& i
     bmpX = rect.x + (rect.width / 2) - (bmpSize.x / 2);
     bmpY = rect.y + (rect.height / 2) - (bmpSize.y / 2);
 
-    if (!(item.GetState() & wxAUI_BUTTON_STATE_DISABLED))
-    {
+    if (!(item.GetState() & wxAUI_BUTTON_STATE_DISABLED)) {
 
-        if (item.GetState() & wxAUI_BUTTON_STATE_PRESSED)
-        {
+        if (item.GetState() & wxAUI_BUTTON_STATE_PRESSED) {
             dc.SetPen(wxPen(m_highlightColour));
             dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(dark ? 10 : 140)));
             dc.DrawRectangle(rect);
         }
-        else if (item.GetState() & wxAUI_BUTTON_STATE_HOVER)
-        {
+        else if (item.GetState() & wxAUI_BUTTON_STATE_HOVER) {
             dc.SetPen(wxPen(m_highlightColour));
             dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(dark ? 40 : 170)));
             dc.DrawRectangle(rect);
@@ -254,14 +251,10 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF,     mmGUIFrame::OnImportQIF)
 
 EVT_MENU_RANGE(
     MENU_TREEPOPUP_ACCOUNT_VIEWALL,
-    MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,
-    mmGUIFrame::OnViewAccountsTemporaryChange
-)
+    MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,         mmGUIFrame::OnViewAccountsTemporaryChange)
 EVT_MENU_RANGE(
     MENU_LANG + 1,
-    MENU_LANG_MAX,
-    mmGUIFrame::OnChangeGUILanguage
-)
+    MENU_LANG_MAX,                             mmGUIFrame::OnChangeGUILanguage)
 
 /*Automatic processing of repeat transactions*/
 EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID,   mmGUIFrame::OnAutoRepeatTransactionsTimer)
@@ -550,10 +543,10 @@ void mmGUIFrame::setNavTreeSectionById(int sectionid)
 }
 
 
-void mmGUIFrame::selectNavTreeItem(const wxString& accountName)
+void mmGUIFrame::selectNavTreeItem(const wxString& account_name)
 {
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    if (!findAndSelectNavTreeItem(m_nav_tree_ctrl->GetRootItem(), accountName)) {
+    if (!findAndSelectNavTreeItem(m_nav_tree_ctrl->GetRootItem(), account_name)) {
         m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
@@ -593,7 +586,7 @@ bool mmGUIFrame::findAndSelectNavTreeItem(const wxTreeItemId& treeitem, const wx
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
     // WebApp check
-    if (mmWebApp::WebApp_CheckEnabled()) {
+    if (mmWebApp::isEnabled()) {
         if (OnRefreshWebApp(true)) {
             mmWebAppDialog dlg(this, true);
             dlg.ShowModal();
@@ -783,7 +776,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_ASSETS)->Enable(enable);
     menuBar_->FindItem(MENU_BUDGETSETUPDIALOG)->Enable(enable);
     menuBar_->FindItem(MENU_TRANSACTIONREPORT)->Enable(enable);
-    menuBar_->FindItem(MENU_REFRESH_WEBAPP)->Enable(enable && mmWebApp::WebApp_CheckEnabled());
+    menuBar_->FindItem(MENU_REFRESH_WEBAPP)->Enable(enable && mmWebApp::isEnabled());
 
     menuBar_->FindItem(MENU_VIEW_HIDE_SHARE_ACCOUNTS)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_HIDE_DELETED_TRANSACTIONS)->Enable(enable);
@@ -3342,9 +3335,9 @@ void mmGUIFrame::OnDateRangeManager(wxCommandEvent& WXUNUSED(event))
 
 bool mmGUIFrame::OnRefreshWebApp(bool is_silent)
 {
-    if (mmWebApp::MMEX_WebApp_UpdateAccount()
-        && mmWebApp::MMEX_WebApp_UpdateCategory()
-        && mmWebApp::MMEX_WebApp_UpdatePayee()) {
+    if (mmWebApp::uploadAccount()
+        && mmWebApp::uploadCategory()
+        && mmWebApp::uploadPayee()) {
         if (!is_silent) {
             wxMessageBox(_t("Accounts, Payees, and Categories Updated"), _t("Refresh WebApp"), wxOK | wxICON_INFORMATION);
         }
