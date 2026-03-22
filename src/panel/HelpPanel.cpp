@@ -27,24 +27,36 @@
 #include "HelpPanel.h"
 
 BEGIN_EVENT_TABLE(HelpPanel, wxPanel)
-    EVT_BUTTON(wxID_BACKWARD, HelpPanel::OnHelpPageBack)
-    EVT_BUTTON(wxID_FORWARD, HelpPanel::OnHelpPageForward)
+    EVT_BUTTON(wxID_BACKWARD, HelpPanel::onHelpPageBack)
+    EVT_BUTTON(wxID_FORWARD,  HelpPanel::onHelpPageForward)
 END_EVENT_TABLE()
 
-HelpPanel::HelpPanel(wxWindow *parent, mmGUIFrame* frame, wxWindowID winid
-    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-    : m_frame(frame)
+HelpPanel::HelpPanel(
+    wxWindow* parent_win,
+    mmGUIFrame* frame,
+    wxWindowID win_id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) :
+    w_frame(frame)
 {
-    Create(parent, winid, pos, size, style, name);
+    create(parent_win, win_id, pos, size, style, name);
 }
 
-bool HelpPanel::Create( wxWindow *parent, wxWindowID winid,
-    const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-{
+bool HelpPanel::create(
+    wxWindow* parent_win,
+    wxWindowID win_id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxPanel::Create(parent, winid, pos, size, style, name);
+    wxPanel::Create(parent_win, win_id, pos, size, style, name);
 
-    CreateControls();
+    createControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     UsageModel::instance().pageview(this);
@@ -52,13 +64,14 @@ bool HelpPanel::Create( wxWindow *parent, wxWindowID winid,
     return true;
 }
 
-void HelpPanel::CreateControls()
+void HelpPanel::createControls()
 {
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    wxPanel* itemPanel3 = new wxPanel(this, wxID_ANY
-        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* itemPanel3 = new wxPanel(this, wxID_ANY,
+        wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL
+    );
     itemBoxSizer2->Add(itemPanel3, 0, wxGROW | wxALL, 5);
 
     wxBoxSizer* itemBoxSizerHeader = new wxBoxSizer(wxHORIZONTAL);
@@ -67,8 +80,9 @@ void HelpPanel::CreateControls()
     wxButton* buttonBack = new wxButton(itemPanel3, wxID_BACKWARD, _t("&Back"));
     wxButton* buttonFordward = new wxButton(itemPanel3, wxID_FORWARD, _t("&Forward"));
 
-    wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3, wxID_ANY
-        , mmex::getCaption(_t("Help")));
+    wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3, wxID_ANY,
+        mmex::getCaption(_t("Help"))
+    );
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
 
     itemBoxSizerHeader->Add(buttonBack, 0, wxLEFT, 5);
@@ -84,48 +98,37 @@ void HelpPanel::CreateControls()
     Default help files will be used when the language help file are not found.
     **************************************************************************/
 
-    int helpFileIndex = m_frame->getHelpFileIndex();
+    int helpFileIndex = w_frame->getHelpFileIndex();
     const wxString help_file = mmex::getPathDoc(static_cast<mmex::EDocFile>(helpFileIndex));
-    m_frame->setHelpFileIndex();
+    w_frame->setHelpFileIndex();
     //wxLogDebug("%s", help_file);
-    browser_ = wxWebView::New(this, wxID_ANY, help_file);
+    w_browser = wxWebView::New(this, wxID_ANY, help_file);
 
-    Bind(wxEVT_WEBVIEW_NEWWINDOW, &HelpPanel::OnNewWindow, this, browser_->GetId());
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &HelpPanel::onNewWindow, this, w_browser->GetId());
 
-    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
+    itemBoxSizer2->Add(w_browser, 1, wxGROW | wxALL, 1);
 }
 
-void HelpPanel::sortList()
+void HelpPanel::onHelpPageBack(wxCommandEvent& /*event*/)
 {
-}
-
-void HelpPanel::OnHelpPageBack(wxCommandEvent& /*event*/)
-{
-    if (browser_->CanGoBack())
-    {
-        browser_->GoBack();
-        browser_->SetFocus();
+    if (w_browser->CanGoBack()) {
+        w_browser->GoBack();
+        w_browser->SetFocus();
     }
 }
 
-void HelpPanel::OnHelpPageForward(wxCommandEvent& /*event*/)
+void HelpPanel::onHelpPageForward(wxCommandEvent& /*event*/)
 {
-    if (browser_->CanGoForward() )
-    {
-        browser_->GoForward();
-        browser_->SetFocus();
+    if (w_browser->CanGoForward()) {
+        w_browser->GoForward();
+        w_browser->SetFocus();
     }
 }
 
-void HelpPanel::PrintPage()
+void HelpPanel::onNewWindow(wxWebViewEvent& event)
 {
-    browser_->Print();
-}
-
-void HelpPanel::OnNewWindow(wxWebViewEvent& evt)
-{
-    const wxString uri = evt.GetURL();
+    const wxString uri = event.GetURL();
     wxLaunchDefaultBrowser(uri);
-    evt.Veto();
-    evt.Skip();
+    event.Veto();
+    event.Skip();
 }

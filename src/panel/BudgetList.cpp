@@ -21,20 +21,13 @@
 
 #include "base/constants.h"
 #include "base/images_list.h"
-#include "mmex.h"
-#include "util/mmDateRange.h"
-
-#include "model/_all.h"
-#include "model/PrefModel.h"
-
+#include "BudgetList.h"
 #include "BudgetPanel.h"
-#include "dialog/BudgetEntryDialog.h"
-#include "report/budget.h"
 
 wxBEGIN_EVENT_TABLE(BudgetList, ListBase)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,  BudgetList::OnListItemSelected)
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, BudgetList::OnListItemActivated)
-    EVT_MOTION(BudgetList::OnMouseMove)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,  BudgetList::onListItemSelected)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, BudgetList::onListItemActivated)
+    EVT_MOTION(                       BudgetList::onMouseMove)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> BudgetList::LIST_INFO = {
@@ -48,13 +41,15 @@ const std::vector<ListColumnInfo> BudgetList::LIST_INFO = {
 };
 
 BudgetList::BudgetList(
-    BudgetPanel* cp, wxWindow *parent, const wxWindowID id
+    BudgetPanel* panel,
+    wxWindow* parent_win,
+    const wxWindowID win_id
 ) :
-    ListBase(parent, id),
-    attr3_(new wxListItemAttr(
+    ListBase(parent_win, win_id),
+    w_attr3(new wxListItemAttr(
         wxNullColour, mmThemeMetaColour(meta::COLOR_LISTTOTAL), wxNullFont
     )),
-    cp_(cp)
+    m_panel(panel)
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
@@ -65,33 +60,33 @@ BudgetList::BudgetList(
 
 int BudgetList::OnGetItemImage(long item) const
 {
-    return cp_->GetItemImage(item);
+    return m_panel->getItemImage(item);
 }
 
 wxString BudgetList::OnGetItemText(long item, long col_nr) const
 {
-    return cp_->getItem(item, getColId_Nr(static_cast<int>(col_nr)));
+    return m_panel->getItem(item, getColId_Nr(static_cast<int>(col_nr)));
 }
 
 wxListItemAttr* BudgetList::OnGetItemAttr(long item) const
 {
-    if ((cp_->GetTransID(item) < 0) &&
-        (cp_->GetCurrentView() != BudgetPanel::VIEW_SUMM)
+    if ((m_panel->getCatId(item) < 0) &&
+        (m_panel->getCurrentView() != BudgetPanel::VIEW_SUMM)
     ) {
-        return attr3_.get();
+        return w_attr3.get();
     }
 
-    /* Returns the alternating background pattern */
-    return (item % 2) ? attr2_.get() : attr1_.get();
+    // Returns the alternating background pattern
+    return (item % 2 == 0) ? w_attr1.get() : w_attr2.get();
 }
 
-void BudgetList::OnListItemActivated(wxListEvent& event)
+void BudgetList::onListItemActivated(wxListEvent& event)
 {
-    selectedIndex_ = event.GetIndex();
-    cp_->OnListItemActivated(selectedIndex_);
+    m_select = event.GetIndex();
+    m_panel->onListItemActivated(m_select);
 }
 
-void BudgetList::OnMouseMove(wxMouseEvent& event)
+void BudgetList::onMouseMove(wxMouseEvent& event)
 {
     long row = -1;
     long column = -1;
@@ -101,7 +96,7 @@ void BudgetList::OnMouseMove(wxMouseEvent& event)
 
     if (LIST_ID_ICON == column && row >= 0) {
         wxString tooltip;
-        int icon = cp_->GetItemImage(row);
+        int icon = m_panel->getItemImage(row);
 
         if (-1 == icon)
             tooltip = _("No budget defined");
@@ -119,4 +114,9 @@ void BudgetList::OnMouseMove(wxMouseEvent& event)
     }
 
     event.Skip();
+}
+
+void BudgetList::onListItemSelected(wxListEvent& event)
+{
+    m_select = event.GetIndex();
 }

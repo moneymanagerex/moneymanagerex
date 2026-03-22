@@ -61,23 +61,23 @@ BudgetCol::PERIOD BudgetModel::FREQUENCY(OP op, BudgetFreq freq)
 
 void BudgetModel::getBudgetEntry(
     int64 bp_id,
-    std::map<int64, BudgetFreq>& budgetFreq,
-    std::map<int64, double>& budgetAmt,
-    std::map<int64, wxString>& budgetNotes
+    std::map<int64, BudgetFreq>& freq_mCatId,
+    std::map<int64, double>& amount_mCatId,
+    std::map<int64, wxString>& notes_mCatId
 ) {
-    //Set std::map with zerros
-    for (const auto& category_d : CategoryModel::instance().find_all()) {
-        budgetFreq[category_d.m_id] = BudgetFreq(BudgetFreq::e_none);
-        budgetAmt[category_d.m_id]  = 0.0;
+    // initaialize category maps; set amount to zero
+    for (const auto& cat_d : CategoryModel::instance().find_all()) {
+        freq_mCatId[cat_d.m_id]   = BudgetFreq(BudgetFreq::e_none);
+        amount_mCatId[cat_d.m_id] = 0.0;
     }
 
     for (const auto& budget_d : find(
         BudgetCol::BUDGETYEARID(bp_id)
     )) {
-        int64 category_id = budget_d.m_category_id;
-        budgetFreq[category_id]  = budget_d.m_freq;
-        budgetAmt[category_id]   = budget_d.m_amount;
-        budgetNotes[category_id] = budget_d.m_notes;
+        int64 cat_id = budget_d.m_category_id;
+        freq_mCatId[cat_id]   = budget_d.m_freq;
+        amount_mCatId[cat_id] = budget_d.m_amount;
+        notes_mCatId[cat_id]  = budget_d.m_notes;
     }
 }
 
@@ -87,9 +87,9 @@ void BudgetModel::getBudgetStats(
     bool groupByMonth
 ) {
     //Set std::map with zeros
-    for (const auto& category_d : CategoryModel::instance().find_all()) {
+    for (const auto& cat_d : CategoryModel::instance().find_all()) {
         for (int month = 0; month < 12; month++) {
-            budgetStats[category_d.m_id][month] = 0.0;
+            budgetStats[cat_d.m_id][month] = 0.0;
         }
     }
 

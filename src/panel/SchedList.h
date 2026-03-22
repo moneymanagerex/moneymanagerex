@@ -20,9 +20,8 @@
 #pragma once
 
 #include <vector>
-
 #include "model/SchedModel.h"
-#include "_PanelBase.h"
+#include "_ListBase.h"
 #include "dialog/TrxFilterDialog.h"
 
 class wxListEvent;
@@ -31,6 +30,8 @@ class SchedPanel;
 /* Custom ListCtrl class that implements virtual LC style */
 class SchedList: public ListBase
 {
+    friend class SchedPanel;
+
     DECLARE_NO_COPY_CLASS(SchedList)
     wxDECLARE_EVENT_TABLE();
 
@@ -59,36 +60,41 @@ public:
 
 private:
     static const std::vector<ListColumnInfo> LIST_INFO;
-    SchedPanel* m_bdp;
-    long m_selected_row = -1;
+    long m_select_n = -1;
+
+    SchedPanel* w_panel;
 
 public:
-    SchedList(SchedPanel* bdp, wxWindow *parent, wxWindowID winid = wxID_ANY);
+    SchedList(
+        SchedPanel* panel,
+        wxWindow* parent_win,
+        wxWindowID win_id = wxID_ANY
+    );
     ~SchedList();
 
-    void OnNewBDSeries(wxCommandEvent& event);
-    void OnEditBDSeries(wxCommandEvent& event);
-    void OnDuplicateBDSeries(wxCommandEvent& event);
-    void OnDeleteBDSeries(wxCommandEvent& event);
-    void OnEnterBDTransaction(wxCommandEvent& event);
-    void OnSkipBDTransaction(wxCommandEvent& event);
-    void OnOpenAttachment(wxCommandEvent& event);
-    void OnOrganizeAttachments(wxCommandEvent& event);
-    void RefreshList();
+    // override ListBase
+    virtual void onColClick(wxListEvent& event) override;
+    virtual int  getSortIcon(bool asc) const override;
 
-protected:
-    virtual int getSortIcon(bool asc) const override;
-    virtual void OnColClick(wxListEvent& event) override;
-    virtual wxListItemAttr *OnGetItemAttr(long item) const override;
+    // override wxListCtrl
+    virtual auto OnGetItemAttr(long item) const -> wxListItemAttr* override;
+    virtual auto OnGetItemText(long item, long col_nr) const -> wxString override;
+    virtual int  OnGetItemImage(long item) const override;
 
 private:
     static int col_sort() { return LIST_ID_PAYMENT_DATE; }
+
+    void refreshList();
     void refreshVisualList(int selected_index = -1);
 
-    /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long col_nr) const override;
-    virtual int OnGetItemImage(long item) const override;
-
+    void onNewBDSeries(wxCommandEvent& event);
+    void onEditBDSeries(wxCommandEvent& event);
+    void onDuplicateBDSeries(wxCommandEvent& event);
+    void onDeleteBDSeries(wxCommandEvent& event);
+    void onEnterBDTransaction(wxCommandEvent& event);
+    void onSkipBDTransaction(wxCommandEvent& event);
+    void onOpenAttachment(wxCommandEvent& event);
+    void OnOrganizeAttachments(wxCommandEvent& event);
     void OnItemRightClick(wxMouseEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
     void OnListItemActivated(wxListEvent& event);

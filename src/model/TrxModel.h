@@ -112,8 +112,8 @@ public:
     static bool is_foreignAsTransfer(const Data& this_d);
 
 public:
-    // override
-    bool purge_id(int64 id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 id) override;
 
     void save_timestamp(int64 id);
     void update_timestamp(Data& trx_d);

@@ -39,7 +39,7 @@ public:
     static SchedSplitModel& instance();
 
 public:
-    bool purge_id(int64 qp_id) override;
+    virtual bool purge_id(int64 qp_id) override;
 
     auto get_data_amount(const DataA& qp_a) -> double;
     auto find_id_gl_a(int64 qp_id) -> const TagLinkModel::DataA;

@@ -30,41 +30,49 @@ class DashboardPanel : public PanelBase
 {
     wxDECLARE_EVENT_TABLE();
 
+private:
+    wxString m_templateText;
+    std::map<wxString, wxString> m_htmlText_mLabel;
+
+    mmGUIFrame* w_frame   = nullptr;
+    wxWebView*  w_browser = nullptr;
+
 public:
-    DashboardPanel(wxWindow *parent, mmGUIFrame *frame,
-        wxWindowID winid = wxID_ANY,
+    DashboardPanel(
+        wxWindow* parent_win,
+        mmGUIFrame* frame,
+        wxWindowID win_id = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = "DashboardPanel");
-
-    bool Create(wxWindow *parent, wxWindowID winid,
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = "DashboardPanel");
-
+        const wxString& name = "DashboardPanel"
+    );
     ~DashboardPanel();
 
-    wxString BuildPage() const { return GetHomePageText(); }
-    void PrintPage();
+    // override PanelBase
+    virtual auto buildPage() const -> wxString override { return getHomePageText(); }
+    virtual void printPage() override { w_browser->Print(); }
+    virtual void sortList() override {}
+
     void createHtml();
 
-public:
-    mmGUIFrame* m_frame = nullptr;
 private:
-    wxString GetHomePageText() const;
-    wxWebView* browser_ = nullptr;
+    bool create(
+        wxWindow* parent_win,
+        wxWindowID win_id,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = "DashboardPanel"
+    );
     void createControls();
-    void sortList() {}
-    void OnNewWindow(wxWebViewEvent& evt);
 
-    wxString m_templateText;
-    std::map <wxString, wxString> m_frames;
+    wxString getHomePageText() const;
     void insertDataIntoTemplate();
     void fillData();
     const wxString getToggles();
-    void OnLinkClicked(wxWebViewEvent& event);
 
+    void onNewWindow(wxWebViewEvent& event);
+    void onLinkClicked(wxWebViewEvent& event);
 };
 

@@ -49,8 +49,8 @@ public:
     static TrxSplitModel& instance();
 
 public:
-    // override
-    bool purge_id(int64 tp_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 tp_id) override;
 
     auto find_id_gl_a(int64 tp_id) -> const TagLinkModel::DataA;
     auto find_all_mTrxId() -> std::map<int64, DataA>;

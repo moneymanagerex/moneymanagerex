@@ -3104,16 +3104,16 @@ void mmGUIFrame::refreshPanelData()
         wxDynamicCast(panelCurrent_, JournalPanel)->refreshList();
         break;
     case mmID_STOCKS:
-        wxDynamicCast(panelCurrent_, StockPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, StockPanel)->refreshList();
         break;
     case mmID_ASSETS:
-        wxDynamicCast(panelCurrent_, AssetPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, AssetPanel)->refreshList();
         break;
     case mmID_BILLS:
-        wxDynamicCast(panelCurrent_, SchedPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, SchedPanel)->refreshList();
         break;
     case mmID_BUDGET:
-        wxDynamicCast(panelCurrent_, BudgetPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, BudgetPanel)->refreshList();
         break;
     case mmID_REPORTS:
         if (activeReport_) {
@@ -3440,7 +3440,7 @@ void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnPrintPage(wxCommandEvent& WXUNUSED(event))
 {
-    panelCurrent_->PrintPage();
+    panelCurrent_->printPage();
 }
 
 //----------------------------------------------------------------------------
@@ -3497,7 +3497,7 @@ void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
     );
 
     if (!fileName.empty()) {
-        wxString htmlText = panelCurrent_->BuildPage();
+        wxString htmlText = panelCurrent_->buildPage();
         correctEmptyFileExt("html", fileName);
         wxFileOutputStream output(fileName);
         wxTextOutputStream text(output);
@@ -3612,8 +3612,7 @@ void mmGUIFrame::createBillsDeposits()
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BILLS) {
-        SchedPanel* billsDepositsPanel = wxDynamicCast(panelCurrent_, SchedPanel);
-        billsDepositsPanel->RefreshList();
+        wxDynamicCast(panelCurrent_, SchedPanel)->refreshList();
     }
     else {
         DoWindowsFreezeThaw(homePanel_);
@@ -3651,8 +3650,7 @@ void mmGUIFrame::createBudgetingPage(int64 budgetYearID)
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_->GetId() == mmID_BUDGET) {
-        BudgetPanel* budgetingPage = wxDynamicCast(panelCurrent_, BudgetPanel);
-        budgetingPage->DisplayBudgetingDetails(budgetYearID);
+        wxDynamicCast(panelCurrent_, BudgetPanel)->displayBudgetingDetails(budgetYearID);
     }
     else {
         DoWindowsFreezeThaw(homePanel_);
@@ -3739,7 +3737,7 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
     m_nav_tree_ctrl->SetFocus();
 }
 
-void mmGUIFrame::createStocksAccountPage(int64 accountID)
+void mmGUIFrame::createStocksAccountPage(int64 account_id)
 {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -3751,13 +3749,12 @@ void mmGUIFrame::createStocksAccountPage(int64 accountID)
     const auto time = wxDateTime::UNow();
 
     if (panelCurrent_->GetId() == mmID_STOCKS) {
-        StockPanel* sp = wxDynamicCast(panelCurrent_, StockPanel);
-        sp->DisplayAccountDetails(accountID);
+        wxDynamicCast(panelCurrent_, StockPanel)->displayAccountDetails(account_id);
     }
     else {
         DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new StockPanel(accountID, this, homePanel_);
+        panelCurrent_ = new StockPanel(account_id, this, homePanel_);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -3770,8 +3767,6 @@ void mmGUIFrame::createStocksAccountPage(int64 accountID)
     UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
     menuPrintingEnable(true);
 }
-
-//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnGotoAccount(wxCommandEvent& event)
 {

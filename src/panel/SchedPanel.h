@@ -30,6 +30,8 @@ class wxListEvent;
 
 class SchedPanel : public PanelBase
 {
+    friend class SchedList;
+
     wxDECLARE_EVENT_TABLE();
 
 public:
@@ -42,24 +44,22 @@ public:
         ICON_DOWNARROW
     };
 
-public:
-    SchedModel::DataExtA bills_;
-
 private:
+    SchedModel::DataExtA m_sched_xa;
     wxDate m_today;
-    bool transFilterActive_;
-    wxArrayString tips_;
+    bool m_filter_active;
+    wxArrayString m_tip_a;
 
-    wxSharedPtr<TrxFilterDialog> transFilterDlg_;
-    SchedList* m_lc = nullptr;
-    wxStaticText* m_infoText = nullptr;
-    wxStaticText* m_infoTextMini = nullptr;
-    wxButton* m_bitmapTransFilter = nullptr;
+    wxSharedPtr<TrxFilterDialog> w_filter_dlg;
+    SchedList*    w_list       = nullptr;
+    wxStaticText* w_info_text  = nullptr;
+    wxStaticText* w_mini_text  = nullptr;
+    wxButton*     w_filter_btn = nullptr;
 
 public:
     SchedPanel(
-        wxWindow *parent,
-        wxWindowID winid = wxID_ANY,
+        wxWindow* parent_win,
+        wxWindowID win_id = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
@@ -67,44 +67,44 @@ public:
     );
     ~SchedPanel();
 
-    /* Helper Functions */
-    void updateBottomPanelData(int selIndex);
-    void enableEditDeleteButtons(bool en);
-    // updates the Repeating transactions panel data
-    int initVirtualListControl(int64 id = -1);
-    // Getter for Virtual List Control
-    wxString getItem(long item, int col_id);
-    void RefreshList();
+    // override PanelBase
+    virtual auto buildPage() const -> wxString override {
+        return w_list->buildPage(_t("Scheduled Transactions"));
+    }
+    virtual void sortList() override;
 
-    const wxString GetRemainingDays(const SchedData& item) const;
-
-    wxString BuildPage() const;
-    wxDate getToday() const { return m_today; }
+    void refreshList() { w_list->refreshList(); }
 
 private:
-    void CreateControls();
-    bool Create(
-        wxWindow *parent, wxWindowID winid,
+    bool create(
+        wxWindow* parent_win,
+        wxWindowID win_id,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
         const wxString& name = "SchedPanel"
     );
+    void createControls();
+    auto getToday() const -> wxDate { return m_today; }
+    auto getItem(long item, int col_id) -> wxString;
+    int  initList(int64 sched_id_n = -1);
+    auto getRemainingDays(const SchedData& sched_d) const -> const wxString;
+    auto getRandomTip() -> wxString;
+    void updateBottomPanelData(int selIndex);
+    void enableEditDeleteButtons(bool en);
 
-    /* Event handlers for Buttons */
-    void OnNewBDSeries(wxCommandEvent& event);
-    void OnEditBDSeries(wxCommandEvent& event);
-    void OnDuplicateBDSeries(wxCommandEvent& event);
-    void OnDeleteBDSeries(wxCommandEvent& event);
-
-    void OnEnterBDTransaction(wxCommandEvent& event);
-    void OnSkipBDTransaction(wxCommandEvent& event);
-    void OnOpenAttachment(wxCommandEvent& event);
-
-    //void OnViewPopupSelected(wxCommandEvent& event);
-
-    void sortList();
-    wxString tips();
-
-    void OnFilterTransactions(wxCommandEvent& WXUNUSED(event));
+    void onNewBDSeries(wxCommandEvent& event) { w_list->onNewBDSeries(event); }
+    void onEditBDSeries(wxCommandEvent& event) { w_list->onEditBDSeries(event); }
+    void onDuplicateBDSeries(wxCommandEvent& event) { w_list->onDuplicateBDSeries(event); }
+    void onDeleteBDSeries(wxCommandEvent& event) { w_list->onDeleteBDSeries(event); }
+    void onEnterBDTransaction(wxCommandEvent& event) { w_list->onEnterBDTransaction(event); }
+    void onSkipBDTransaction(wxCommandEvent& event) {
+        w_list->onSkipBDTransaction(event);
+        w_list->SetFocus();
+    }
+    void onOpenAttachment(wxCommandEvent& event) {
+        w_list->onOpenAttachment(event);
+        w_list->SetFocus();
+    }
+    void onFilterTransactions(wxCommandEvent& WXUNUSED(event));
 };

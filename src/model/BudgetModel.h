@@ -41,9 +41,9 @@ public:
 
     void getBudgetEntry(
         int64 bp_id,
-        std::map<int64, BudgetFreq>& budgetFreq,
-        std::map<int64, double>& budgetAmt,
-        std::map<int64, wxString>& budgetNotes
+        std::map<int64, BudgetFreq>& freq_mCatId,
+        std::map<int64, double>& amount_mCatId,
+        std::map<int64, wxString>& notes_mCatId
     );
     void getBudgetStats(
         std::map<int64, std::map<int, double>>& budgetStats,

@@ -65,10 +65,10 @@ static const wxString TOP_CATEGS = R"(
 )";
 
 
-htmlWidgetStocks::htmlWidgetStocks()
-    : title_(_t("Stocks"))
+htmlWidgetStocks::htmlWidgetStocks() :
+    m_title(_t("Stocks")),
+    m_total(0.0)
 {
-    grand_total_ = 0.0;
 }
 
 htmlWidgetStocks::~htmlWidgetStocks()
@@ -124,7 +124,7 @@ const wxString htmlWidgetStocks::getHTMLText()
         grand_gain_lost    += (inv_bal.first - inv_bal.second) * conv_rate;
         grand_market_value += inv_bal.first * conv_rate;
         grand_cash_balance += cash_bal * conv_rate;
-        grand_total_       += (inv_bal.first + cash_bal) * conv_rate;
+        m_total            += (inv_bal.first + cash_bal) * conv_rate;
 
         body += "<tr>";
         body += wxString::Format("<td sorttable_customkey='*%s*'><a href='stock:%lld' oncontextmenu='return false;' target='_blank'>%s</a>%s</td>\n",
@@ -167,37 +167,30 @@ const wxString htmlWidgetStocks::getHTMLText()
             CurrencyModel::instance().toCurrency(grand_cash_balance)
         );
         output += wxString::Format("<td colspan='2' class='money'>%s</td></tr></tfoot></table>\n",
-            CurrencyModel::instance().toCurrency(grand_total_)
+            CurrencyModel::instance().toCurrency(m_total)
         );
         output += "</div>";
     }
     return output;
 }
 
-double htmlWidgetStocks::get_total()
-{
-    return grand_total_;
-}
-
-////////////////////////////////////////////////////////
-
-
 htmlWidgetTop7Categories::htmlWidgetTop7Categories()
 {
-    date_range_ = new mmLast30Days();
-    title_ = wxString::Format(_t("Top Withdrawals: %s"), date_range_->local_title());
+    m_date_range = new mmLast30Days();
+    m_title = wxString::Format(_t("Top Withdrawals: %s"), m_date_range->local_title());
 }
 
 htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
 {
-    if (date_range_) delete date_range_;
+    if (m_date_range)
+        delete m_date_range;
 }
 
 const wxString htmlWidgetTop7Categories::getHTMLText()
 {
 
     std::vector<std::pair<wxString, double> > topCategoryStats;
-    getTopCategoryStats(topCategoryStats, date_range_);
+    getTopCategoryStats(topCategoryStats, m_date_range);
     wxString output, data;
 
     if (!topCategoryStats.empty())
@@ -213,7 +206,7 @@ const wxString htmlWidgetTop7Categories::getHTMLText()
             data += "</tr>\n";
         }
         const wxString idStr = "TOP_CATEGORIES";
-        output += wxString::Format(TOP_CATEGS, title_, idStr, idStr, idStr, idStr, _t("Category"), _t("Summary"), data);
+        output += wxString::Format(TOP_CATEGS, m_title, idStr, idStr, idStr, idStr, _t("Category"), _t("Summary"), data);
         output += "</div>";
     }
 
@@ -290,17 +283,18 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     }
 }
 
-////////////////////////////////////////////////////////
-
-
-htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(const wxString& title, mmDateRange* date_range)
-    : date_range_(date_range)
-    , title_(title)
+htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(
+    const wxString& title,
+    mmDateRange* date_range
+) :
+    m_title(title),
+    m_date_range(date_range)
 {}
 
 htmlWidgetBillsAndDeposits::~htmlWidgetBillsAndDeposits()
 {
-    if (date_range_) delete date_range_;
+    if (m_date_range)
+        delete m_date_range;
 }
 
 const wxString htmlWidgetBillsAndDeposits::getHTMLText()
@@ -362,7 +356,7 @@ const wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         output = R"(<div class="shadow">)";
         output += "<table class='table'>\n<thead>\n<tr class='active'><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></th>\n<th></th>\n", title_);
+        output += wxString::Format("<a href=\"billsdeposits:\" oncontextmenu=\"return false;\" target=\"_blank\">%s</a></th>\n<th></th>\n", m_title);
         output += wxString::Format("<th nowrap class='text-right sorttable_nosort'>%i <a id='%s_label' onclick=\"toggleTable('%s'); \" href='#%s' oncontextmenu='return false;'>[-]</a></th></tr>\n"
             , static_cast<int>(bd_days.size()), idStr, idStr, idStr);
         output += "</thead></table>\n";

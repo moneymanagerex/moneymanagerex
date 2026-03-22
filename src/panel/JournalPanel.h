@@ -31,15 +31,17 @@ Copyright (C) 2025 Klaus Wich
 #include "model/AccountModel.h"
 #include "model/Journal.h"
 #include "_PanelBase.h"
+#include "JournalList.h"
 
-class JournalPanel;
 class TrxFilterDialog;
 class mmGUIFrame;
-class JournalList;
-//----------------------------------------------------------------------------
 
 class JournalPanel : public PanelBase
 {
+    friend class JournalList;
+
+    wxDECLARE_EVENT_TABLE();
+
 public:
     enum EIcons
     {
@@ -59,38 +61,7 @@ public:
         FILTER_ID_DATE_PICKER
     };
 
-public:
-    JournalPanel(
-        mmGUIFrame* frame,
-        wxWindow* parent,
-        int64 checking_id,
-        const std::vector<int64> &group_ids = std::vector<int64>{}
-    );
-
-    ~JournalPanel();
-
-    bool isAllTrans() const;
-    bool isDeletedTrans() const;
-    bool isGroup() const;
-    bool isAccount() const;
-
-    void loadAccount(int64 account_id = -1);
-    void refreshList();
-    wxString BuildPage() const;
-    void resetColumnView();
-    void setSelectedTransaction(JournalKey journal_key);
-    void displaySplitCategories(JournalKey journal_key);
-
-    //static support function
-    static wxString getFilterName(FILTER_ID id);
-    static void loadDateRanges(std::vector<mmDateRange2::Range>* date_range_a, int* date_range_m, bool all_ranges = false);
-    double GetTodayReconciledBalance() const;
-
 private:
-    friend class JournalList;
-
-
-    wxDECLARE_EVENT_TABLE();
     enum
     {
         ID_FILTER = wxID_HIGHEST + 50,
@@ -103,21 +74,20 @@ private:
         ID_DATE_RANGE_EDIT,
         ID_SCHEDULED,
     };
-
-    static const std::vector<std::pair<FILTER_ID, wxString> > FILTER_NAME;
+    static const std::vector<std::pair<FILTER_ID, wxString>> FILTER_NAME;
 
 private:
     // set by constructor or loadAccount()
-    int64 m_checking_id = -1;
-        //  1..   : single account with id m_checking_id
-        // -1     : all transactions
+    int64 m_account_group_id = -1;
+        //  1..   : single account with id equal to m_account_group_id
+        // -1     : all non-deleted transactions
         // -2     : deleted transactions
         // -3     : favorite accounts
         // -(4+X) : accounts of type X
-    int64 m_account_id = -1;                    // applicable if m_checking_id >= 1
-    std::set<int64> m_group_ids = {};           // applicable if m_checking_id <= -3
-    const AccountData* m_account_n = nullptr;   // non-null if m_checking_id >= 1
-    const CurrencyData* m_currency_n = nullptr; // currency of m_account, or base currency
+    int64 m_account_id = -1;                    // applicable if m_account_group_id >= 1
+    std::set<int64> m_account_id_m = {};        // applicable if m_account_group_id <= -3
+    const AccountData* m_account_n = nullptr;   // non-null if m_account_group_id >= 1
+    const CurrencyData* m_currency_n = nullptr; // currency of m_account_id, or base currency
     std::vector<mmDateRange2::Range> m_date_range_a = {};
     int m_date_range_m = -1;
 
@@ -139,37 +109,70 @@ private:
     bool m_show_tips = false;
 
     bool m_use_account_specific_filter;
-
-    mmGUIFrame* m_frame = nullptr;
-    wxButton* m_bitmapTransFilter = nullptr;
-    wxDatePickerCtrl* fromDateCtrl = nullptr;
-    wxDatePickerCtrl* toDateCtrl = nullptr;
-    wxButton* m_btnTransDetailFilter = nullptr;
-    wxBitmapButton* m_btnTransDetailFilterCancel = nullptr;
-    wxButton* m_btnNew = nullptr;
-    wxButton* m_btnEdit = nullptr;
-    wxButton* m_btnDuplicate = nullptr;
-    wxButton* m_btnDelete = nullptr;
-    wxButton* m_btnEnter = nullptr;
-    wxButton* m_btnSkip = nullptr;
-    wxButton* m_btnRestore = nullptr;
-    wxBitmapButton* m_btnAttachment = nullptr;
-    wxStaticText* m_header_text = nullptr;
-    wxBitmapToggleButton* m_header_scheduled = nullptr;
-    wxStaticText* m_header_sortOrder = nullptr;
-    wxGauge* m_header_credit = nullptr;
-    wxStaticText* m_header_balance = nullptr;
-    wxStaticText* m_info_panel = nullptr;
-    wxStaticText* m_info_panel_mini = nullptr;
     wxString m_info_panel_selectedbal;
-    wxVector<wxBitmapBundle> m_images;
-    JournalList* m_lc = nullptr;
-    wxSharedPtr<TrxFilterDialog> m_trans_filter_dlg;
 
+    wxSharedPtr<TrxFilterDialog> w_filter_dlg;
+    wxVector<wxBitmapBundle> w_image_a;
+    JournalList*          w_list             = nullptr;
+    mmGUIFrame*           w_frame            = nullptr;
+    wxButton*             w_range_btn        = nullptr;
+    wxDatePickerCtrl*     w_start_date       = nullptr;
+    wxDatePickerCtrl*     w_end_date         = nullptr;
+    wxButton*             w_filter_btn       = nullptr;
+    wxBitmapButton*       w_filter_reset_btn = nullptr;
+    wxButton*             w_new_btn          = nullptr;
+    wxButton*             w_edit_btn         = nullptr;
+    wxButton*             w_dup_btn          = nullptr;
+    wxButton*             w_delete_btn       = nullptr;
+    wxButton*             w_enter_btn        = nullptr;
+    wxButton*             w_skip_btn         = nullptr;
+    wxButton*             w_restore_btn      = nullptr;
+    wxBitmapButton*       w_attachment_btn   = nullptr;
+    wxStaticText*         w_header_text      = nullptr;
+    wxBitmapToggleButton* w_header_scheduled = nullptr;
+    wxStaticText*         w_header_sortOrder = nullptr;
+    wxGauge*              w_header_credit    = nullptr;
+    wxStaticText*         w_header_balance   = nullptr;
+    wxStaticText*         w_info_text        = nullptr;
+    wxStaticText*         w_mini_text        = nullptr;
+
+public:
+    JournalPanel(
+        mmGUIFrame* frame,
+        wxWindow* parent_win,
+        int64 account_group_id,
+        const std::vector<int64>& group_ids = std::vector<int64>{}
+    );
+    ~JournalPanel();
+
+    //static support function
+    static wxString getFilterName(FILTER_ID id);
+    static void loadDateRanges(
+        std::vector<mmDateRange2::Range>* date_range_a,
+        int* date_range_m,
+        bool all_ranges = false
+    );
+
+    // override PanelBase
+    virtual auto buildPage() const -> wxString override;
+
+    bool isAllTrans() const { return m_account_group_id == -1; }
+    bool isDeletedTrans() const { return m_account_group_id == -2; }
+    bool isGroup() const { return m_account_group_id <= -3; }
+    bool isAccount() const { return m_account_group_id >= 1; }
+
+    void loadAccount(int64 account_id = -1);
+    void refreshList();
+    void resetColumnView();
+    void setSelectedTransaction(JournalKey journal_key);
+    void displaySplitCategories(JournalKey journal_key);
+    auto getTodayReconciledBalance() const -> double { return m_today_reconciled_balance; }
 
 private:
+    static void mmPlayTransactionSound();
+
     bool create(
-        wxWindow* parent,
+        wxWindow* perent_win,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
@@ -192,6 +195,7 @@ private:
     void updateScheduledEnable();
     void updateScheduledToolTip();
     void datePickProceed();
+    auto getPanelTitle() const -> wxString;
 
     void onFilterPopup(wxCommandEvent& event);
     void onFilterDate(wxCommandEvent& event);
@@ -201,26 +205,23 @@ private:
     void onFilterAdvancedCancel(wxCommandEvent& event);
     void onEditDateRanges(wxCommandEvent& event);
     void onScheduled(wxCommandEvent& event);
-    void onNewTransaction(wxCommandEvent& event);
-    void onEditTransaction(wxCommandEvent& event);
-    void onDeleteTransaction(wxCommandEvent& event);
-    void onRestoreTransaction(wxCommandEvent& event);
-    void onDuplicateTransaction(wxCommandEvent& event);
-    void onMoveTransaction(wxCommandEvent& event);
-    void onEnterScheduled(wxCommandEvent& event);
-    void onSkipScheduled(wxCommandEvent& event);
-    void onOpenAttachment(wxCommandEvent& event);
+    void onNewTrx(wxCommandEvent& event) { w_list->onNewTrx(event); }
+    void onEditTrx(wxCommandEvent& event) {
+        w_list->onEditTrx(event);
+        w_list->SetFocus();
+    }
+    void onDeleteTrx(wxCommandEvent& event) { w_list->onDeleteTrx(event); }
+    void onRestoreTrx(wxCommandEvent& event) { w_list->onRestoreTrx(event); }
+    void onDuplicateTrx(wxCommandEvent& event) { w_list->onDuplicateTrx(event); }
+    void onMoveTrx(wxCommandEvent& event) { w_list->onMoveTrx(event); }
+    void onEnterSched(wxCommandEvent& event) { w_list->onEnterSched(event); }
+    void onSkipSched(wxCommandEvent& event) { w_list->onSkipSched(event); }
+    void onOpenAttachment(wxCommandEvent& event) {
+        w_list->onOpenAttachment(event);
+        w_list->SetFocus();
+    }
     void onSearchTxtEntered(wxCommandEvent& event);
     void onButtonRightDown(wxMouseEvent& event);
     void onInfoPanelClick(wxMouseEvent& event, wxStaticText* infoPanel);
     void onReconcile(wxCommandEvent& event);
-
-    wxString getPanelTitle() const;
-    static void mmPlayTransactionSound();
 };
-
-inline bool JournalPanel::isAllTrans() const { return m_checking_id == -1; }
-inline bool JournalPanel::isDeletedTrans() const { return m_checking_id == -2; }
-inline bool JournalPanel::isGroup() const { return m_checking_id <= -3; }
-inline bool JournalPanel::isAccount() const { return m_checking_id >= 1; }
-inline double JournalPanel::GetTodayReconciledBalance() const { return m_today_reconciled_balance; }

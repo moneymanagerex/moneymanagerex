@@ -40,8 +40,8 @@ public:
     static StockModel& instance();
 
 public:
-    // override
-    bool purge_id(int64 id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 id) override;
 
     auto get_id_name(int64 stock_id) -> const wxString;
     auto find_last_hist_date(const Data& stock_d) -> const mmDate;

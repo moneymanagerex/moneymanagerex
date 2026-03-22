@@ -20,8 +20,8 @@
 
 #pragma once
 
-#include "_PanelBase.h"
 #include "model/BudgetModel.h"
+#include "_ListBase.h"
 
 class wxListCtrl;
 class wxListEvent;
@@ -29,7 +29,6 @@ class BudgetPanel;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class BudgetList : public ListBase
-
 {
     DECLARE_NO_COPY_CLASS(BudgetList)
     wxDECLARE_EVENT_TABLE();
@@ -49,21 +48,22 @@ public:
 
 private:
     static const std::vector<ListColumnInfo> LIST_INFO;
-    long selectedIndex_ = -1;
+    long m_select = -1;
 
-    wxSharedPtr<wxListItemAttr> attr3_; // style3
-    BudgetPanel* cp_;
-
-public:
-    BudgetList(BudgetPanel* cp, wxWindow *parent, const wxWindowID id);
+    BudgetPanel* m_panel;
+    wxSharedPtr<wxListItemAttr> w_attr3; // style3
 
 public:
-    /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long col_nr) const;
-    virtual wxListItemAttr *OnGetItemAttr(long item) const;
-    virtual int OnGetItemImage(long item) const;
+    BudgetList(BudgetPanel* panel, wxWindow* parent_win, const wxWindowID win_id);
 
-    void OnListItemSelected(wxListEvent& event);
-    void OnListItemActivated(wxListEvent& event);
-    void OnMouseMove(wxMouseEvent& event);
+public:
+    // override wxListCtrl
+    virtual auto OnGetItemText(long item, long col_nr) const -> wxString override;
+    virtual auto OnGetItemAttr(long item) const -> wxListItemAttr* override;
+    virtual int  OnGetItemImage(long item) const override;
+
+private:
+    void onListItemSelected(wxListEvent& event);
+    void onListItemActivated(wxListEvent& event);
+    void onMouseMove(wxMouseEvent& event);
 };

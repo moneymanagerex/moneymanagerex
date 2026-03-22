@@ -36,22 +36,22 @@
 #include "dialog/AttachmentDialog.h"
 
 wxBEGIN_EVENT_TABLE(AssetList, ListBase)
-    EVT_RIGHT_DOWN(AssetList::OnMouseRightClick)
-    EVT_LEFT_DOWN(AssetList::OnListLeftClick)
+    EVT_RIGHT_DOWN(                               AssetList::onMouseRightClick)
+    EVT_LEFT_DOWN(                                AssetList::onListLeftClick)
 
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY,             AssetList::OnListItemActivated)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,              AssetList::OnListItemSelected)
-    EVT_LIST_END_LABEL_EDIT(wxID_ANY,             AssetList::OnEndLabelEdit)
-    EVT_LIST_KEY_DOWN(wxID_ANY,                   AssetList::OnListKeyDown)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY,             AssetList::onListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,              AssetList::onListItemSelected)
+    EVT_LIST_END_LABEL_EDIT(wxID_ANY,             AssetList::onEndLabelEdit)
+    EVT_LIST_KEY_DOWN(wxID_ANY,                   AssetList::onListKeyDown)
 
-    EVT_MENU(MENU_TREEPOPUP_NEW,                  AssetList::OnNewAsset)
-    EVT_MENU(MENU_TREEPOPUP_EDIT,                 AssetList::OnEditAsset)
-    EVT_MENU(MENU_TREEPOPUP_ADDTRANS,             AssetList::OnAddAssetTrans)
-    EVT_MENU(MENU_TREEPOPUP_VIEWTRANS,            AssetList::OnViewAssetTrans)
-    EVT_MENU(MENU_TREEPOPUP_GOTOACCOUNT,          AssetList::OnGotoAssetAccount)
-    EVT_MENU(MENU_TREEPOPUP_DELETE,               AssetList::OnDeleteAsset)
-    EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, AssetList::OnOrganizeAttachments)
-    EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION,       AssetList::OnDuplicateAsset)
+    EVT_MENU(MENU_TREEPOPUP_NEW,                  AssetList::onNewAsset)
+    EVT_MENU(MENU_TREEPOPUP_EDIT,                 AssetList::onEditAsset)
+    EVT_MENU(MENU_TREEPOPUP_ADDTRANS,             AssetList::onAddAssetTrans)
+    EVT_MENU(MENU_TREEPOPUP_VIEWTRANS,            AssetList::onViewAssetTrans)
+    EVT_MENU(MENU_TREEPOPUP_GOTOACCOUNT,          AssetList::onGotoAssetAccount)
+    EVT_MENU(MENU_TREEPOPUP_DELETE,               AssetList::onDeleteAsset)
+    EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, AssetList::onOrganizeAttachments)
+    EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION,       AssetList::onDuplicateAsset)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> AssetList::LIST_INFO = {
@@ -65,9 +65,13 @@ const std::vector<ListColumnInfo> AssetList::LIST_INFO = {
     { LIST_ID_NOTES,         true, _n("Notes"),         450, _FL, true },
 };
 
-AssetList::AssetList(AssetPanel* cp, wxWindow *parent, wxWindowID winid) :
-    ListBase(parent, winid),
-    m_panel(cp)
+AssetList::AssetList(
+    AssetPanel* panel,
+    wxWindow* parent_win,
+    wxWindowID win_id
+) :
+    ListBase(parent_win, win_id),
+    w_panel(panel)
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
@@ -83,22 +87,23 @@ AssetList::AssetList(AssetPanel* cp, wxWindow *parent, wxWindowID winid) :
 
 int AssetList::getSortIcon(bool asc) const
 {
-    return asc ? AssetPanel::ICON_UPARROW : AssetPanel::ICON_DOWNARROW;
+    return asc
+        ? AssetPanel::ICON_UPARROW
+        : AssetPanel::ICON_DOWNARROW;
 }
 
-void AssetList::OnMouseRightClick(wxMouseEvent& event)
+void AssetList::onMouseRightClick(wxMouseEvent& event)
 {
     if (m_selected_row > -1)
         SetItemState(m_selected_row, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
     int Flags = wxLIST_HITTEST_ONITEM;
     m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
-    if (m_selected_row >= 0)
-    {
+    if (m_selected_row >= 0) {
         SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
     }
-    m_panel->updateExtraAssetData(m_selected_row);
+    w_panel->updateExtraAssetData(m_selected_row);
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Asset…"));
     menu.AppendSeparator();
@@ -113,8 +118,7 @@ void AssetList::OnMouseRightClick(wxMouseEvent& event)
     menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Asset…"));
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
-    if (m_selected_row < 0)
-    {
+    if (m_selected_row < 0) {
         menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
         menu.Enable(MENU_TREEPOPUP_ADDTRANS, false);
         menu.Enable(MENU_TREEPOPUP_VIEWTRANS, false);
@@ -122,10 +126,16 @@ void AssetList::OnMouseRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_DELETE, false);
         menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
     }
-    else
-    {
-        auto asset_account = AccountModel::instance().get_name_data_n(m_panel->m_assets[m_selected_row].m_name);  // ASSETNAME <=> ACCOUNTNAME
-        if (!asset_account) asset_account = AccountModel::instance().get_name_data_n(m_panel->m_assets[m_selected_row].m_type.name());  // ASSETTYPE <=> ACCOUNTNAME
+    else {
+        // ASSETNAME <=> ACCOUNTNAME
+        auto asset_account = AccountModel::instance().get_name_data_n(
+            w_panel->m_asset_a[m_selected_row].m_name
+        );
+        if (!asset_account)
+            // ASSETTYPE <=> ACCOUNTNAME
+            asset_account = AccountModel::instance().get_name_data_n(
+                w_panel->m_asset_a[m_selected_row].m_type.name()
+            );
         menu.Enable(MENU_TREEPOPUP_GOTOACCOUNT, asset_account);
         menu.Enable(MENU_TREEPOPUP_VIEWTRANS, asset_account);
     }
@@ -133,61 +143,58 @@ void AssetList::OnMouseRightClick(wxMouseEvent& event)
     PopupMenu(&menu, event.GetPosition());
 }
 
-void AssetList::OnListLeftClick(wxMouseEvent& event)
+void AssetList::onListLeftClick(wxMouseEvent& event)
 {
     int Flags = wxLIST_HITTEST_ONITEM;
     long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
-    if (index == -1)
-    {
+    if (index == -1) {
         m_selected_row = -1;
-        m_panel->updateExtraAssetData(m_selected_row);
+        w_panel->updateExtraAssetData(m_selected_row);
     }
     event.Skip();
 }
 
 wxString AssetList::OnGetItemText(long item, long col_nr) const
 {
-    return m_panel->getItem(item, getColId_Nr(col_nr));
+    return w_panel->getItem(item, getColId_Nr(col_nr));
 }
 
-void AssetList::OnListItemSelected(wxListEvent& event)
+void AssetList::onListItemSelected(wxListEvent& event)
 {
     m_selected_row = event.GetIndex();
-    m_panel->updateExtraAssetData(m_selected_row);
+    w_panel->updateExtraAssetData(m_selected_row);
 }
 
 int AssetList::OnGetItemImage(long item) const
 {
-    return m_panel->m_assets[item].m_type.id();
+    return w_panel->m_asset_a[item].m_type.id();
 }
 
-void AssetList::OnListKeyDown(wxListEvent& event)
+void AssetList::onListKeyDown(wxListEvent& event)
 {
-    if (event.GetKeyCode() == WXK_DELETE)
-    {
+    if (event.GetKeyCode() == WXK_DELETE) {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE);
-        OnDeleteAsset(evt);
+        onDeleteAsset(evt);
     }
-    else
-    {
+    else {
         event.Skip();
     }
 }
 
-void AssetList::OnNewAsset(wxCommandEvent& /*event*/)
+void AssetList::onNewAsset(wxCommandEvent& /*event*/)
 {
     AssetDialog dlg(this, static_cast<AssetData*>(nullptr));
     if (dlg.ShowModal() == wxID_OK) {
         doRefreshItems(dlg.asset_id());
-        m_panel->m_frame->RefreshNavigationTree();
+        w_panel->w_frame->RefreshNavigationTree();
     }
 }
 
 void AssetList::doRefreshItems(int64 trx_id)
 {
-    int selectedIndex = m_panel->initVirtualListControl(trx_id);
+    int selectedIndex = w_panel->initVirtualListControl(trx_id);
 
-    long cnt = static_cast<long>(m_panel->m_assets.size());
+    long cnt = static_cast<long>(w_panel->m_asset_a.size());
 
     if (selectedIndex >= cnt || selectedIndex < 0)
         selectedIndex = getSortAsc() ? cnt - 1 : 0;
@@ -205,29 +212,30 @@ void AssetList::doRefreshItems(int64 trx_id)
     m_selected_row = selectedIndex;
 }
 
-void AssetList::OnDeleteAsset(wxCommandEvent& /*event*/)
+void AssetList::onDeleteAsset(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0)
         return;
 
-    wxMessageDialog msgDlg(this
-        , _t("Do you want to delete the asset?")
-        , _t("Confirm Asset Deletion")
-        , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+    wxMessageDialog msgDlg(this,
+        _t("Do you want to delete the asset?"),
+        _t("Confirm Asset Deletion"),
+        wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
+    );
 
     if (msgDlg.ShowModal() == wxID_YES) {
-        const AssetData& asset = m_panel->m_assets[m_selected_row];
+        const AssetData& asset = w_panel->m_asset_a[m_selected_row];
         AssetModel::instance().purge_id(asset.m_id);
         mmAttachmentManage::DeleteAllAttachments(AssetModel::s_ref_type, asset.m_id);
         TrxLinkModel::instance().purge_ref(AssetModel::s_ref_type, asset.m_id);
 
-        m_panel->initVirtualListControl();
+        w_panel->initVirtualListControl();
         m_selected_row = -1;
-        m_panel->updateExtraAssetData(m_selected_row);
+        w_panel->updateExtraAssetData(m_selected_row);
     }
 }
 
-void AssetList::OnEditAsset(wxCommandEvent& /*event*/)
+void AssetList::onEditAsset(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0)
         return;
@@ -236,48 +244,48 @@ void AssetList::OnEditAsset(wxCommandEvent& /*event*/)
     AddPendingEvent(evt);
 }
 
-void AssetList::OnDuplicateAsset(wxCommandEvent& /*event*/)
+void AssetList::onDuplicateAsset(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0)
         return;
 
-    const AssetData& asset = m_panel->m_assets[m_selected_row];
+    const AssetData& asset = w_panel->m_asset_a[m_selected_row];
     AssetData duplicate_asset;
     duplicate_asset.clone_from(asset);
 
-    if (EditAsset(&duplicate_asset)) {
-        m_panel->initVirtualListControl();
+    if (editAsset(&duplicate_asset)) {
+        w_panel->initVirtualListControl();
         doRefreshItems(duplicate_asset.m_id);
     }
 }
 
-void AssetList::OnAddAssetTrans(wxCommandEvent& WXUNUSED(event))
+void AssetList::onAddAssetTrans(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0)
         return;
 
-    m_panel->AddAssetTrans(m_selected_row);
+    w_panel->addAssetTrans(m_selected_row);
 }
 
-void AssetList::OnViewAssetTrans(wxCommandEvent& WXUNUSED(event))
+void AssetList::onViewAssetTrans(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 
-    m_panel->ViewAssetTrans(m_selected_row);
+    w_panel->viewAssetTrans(m_selected_row);
 }
 
-void AssetList::OnGotoAssetAccount(wxCommandEvent& WXUNUSED(event))
+void AssetList::onGotoAssetAccount(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selected_row < 0) return;
 
-    m_panel->GotoAssetAccount(m_selected_row);
+    w_panel->gotoAssetAccount(m_selected_row);
 }
 
-void AssetList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+void AssetList::onOrganizeAttachments(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    int64 ref_id = m_panel->m_assets[m_selected_row].m_id;
+    int64 ref_id = w_panel->m_asset_a[m_selected_row].m_id;
 
     AttachmentDialog dlg(this, AssetModel::s_ref_type, ref_id);
     dlg.ShowModal();
@@ -285,42 +293,41 @@ void AssetList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
     doRefreshItems(ref_id);
 }
 
-void AssetList::OnOpenAttachment(wxCommandEvent& /*event*/)
+void AssetList::onOpenAttachment(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0)
         return;
 
-    int64 ref_id = m_panel->m_assets[m_selected_row].m_id;
+    int64 ref_id = w_panel->m_asset_a[m_selected_row].m_id;
     mmAttachmentManage::OpenAttachmentFromPanelIcon(this, AssetModel::s_ref_type, ref_id);
     doRefreshItems(ref_id);
 }
 
-void AssetList::OnListItemActivated(wxListEvent& event)
+void AssetList::onListItemActivated(wxListEvent& event)
 {
     if (m_selected_row < 0) {
         m_selected_row = event.GetIndex();
     }
-    EditAsset(&(m_panel->m_assets[m_selected_row]));
+    editAsset(&(w_panel->m_asset_a[m_selected_row]));
 }
 
-bool AssetList::EditAsset(AssetData* pEntry)
+bool AssetList::editAsset(AssetData* asset_n)
 {
-    AssetDialog dlg(this, pEntry);
-    bool edit = true;
-    if (dlg.ShowModal() == wxID_OK) {
-        doRefreshItems(dlg.asset_id());
-        m_panel->updateExtraAssetData(m_selected_row);
-    }
-    else edit = false;
+    AssetDialog dlg(this, asset_n);
+    if (dlg.ShowModal() != wxID_OK)
+        return false;
 
-    return edit;
+    doRefreshItems(dlg.asset_id());
+    w_panel->updateExtraAssetData(m_selected_row);
+    return true;
 }
 
-void AssetList::OnColClick(wxListEvent& event)
+void AssetList::onColClick(wxListEvent& event)
 {
     int col_nr = (event.GetId() == MENU_HEADER_SORT) ? m_sel_col_nr : event.GetColumn();
     if (!isValidColNr(col_nr))
         return;
+
     int col_id = getColId_Nr(col_nr);
     if (!m_col_info_id[col_id].sortable)
         return;
@@ -332,17 +339,19 @@ void AssetList::OnColClick(wxListEvent& event)
     updateSortIcon();
     savePref();
 
-    int64 trx_id = -1;
-    if (m_selected_row>=0) trx_id = m_panel->m_assets[m_selected_row].m_id;
+    int64 trx_id = (m_selected_row >= 0)
+        ? w_panel->m_asset_a[m_selected_row].m_id
+        : -1;
 
     doRefreshItems(trx_id);
 }
 
-void AssetList::OnEndLabelEdit(wxListEvent& event)
+void AssetList::onEndLabelEdit(wxListEvent& event)
 {
     if (event.IsEditCancelled())
         return;
-    AssetData* asset_n = &m_panel->m_assets[event.GetIndex()];
+
+    AssetData* asset_n = &w_panel->m_asset_a[event.GetIndex()];
     asset_n->m_name = event.m_item.m_text;
     AssetModel::instance().unsafe_save_data_n(asset_n);
     RefreshItems(event.GetIndex(), event.GetIndex());

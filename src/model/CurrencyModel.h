@@ -45,8 +45,8 @@ public:
     // TODO: add to virtual methods in TableFactory
     int  find_id_dep_c(int64 currency_id);
 
-    // override
-    bool purge_id(int64 currency_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 currency_id) override;
 
     auto get_base_data_n() -> const Data*;
     bool get_base_symbol(wxString& symbol);

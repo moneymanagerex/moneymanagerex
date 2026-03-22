@@ -68,8 +68,8 @@ public:
     static auto IS_VOID(bool value) -> SchedCol::STATUS;
 
 public:
-    // override
-    bool purge_id(int64 sched_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 sched_id) override;
 
     auto find_id_qp_a(int64 sched_id) -> const SchedSplitModel::DataA;
     auto find_id_gl_a(int64 sched_id) -> const TagLinkModel::DataA;

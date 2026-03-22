@@ -19,61 +19,64 @@ Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
 
 #pragma once
 
-#include "base/defs.h"
-#include "base/types.h"
 #include <map>
 #include <vector>
+#include "base/defs.h"
+#include "base/types.h"
 #include "util/mmDateRange.h"
 
 class htmlWidgetStocks
 {
-public:
-    ~htmlWidgetStocks();
-    htmlWidgetStocks();
-    double get_total();
-
-    const wxString getHTMLText();
-
 protected:
+    wxString m_title;
+    double m_total;
 
-    wxString title_;
-    double grand_total_;
+public:
+    htmlWidgetStocks();
+    ~htmlWidgetStocks();
+
+    double get_total() { return m_total; }
+    const wxString getHTMLText();
 };
 
 class htmlWidgetTop7Categories
 {
+private:
+    wxString m_title;
+    mmDateRange* m_date_range;
+
 public:
     explicit htmlWidgetTop7Categories();
     ~htmlWidgetTop7Categories();
+
     const wxString getHTMLText();
-
-protected:
-    mmDateRange* date_range_;
-    wxString title_;
     void getTopCategoryStats(
-        std::vector<std::pair<wxString, double> > &categoryStats
-        , const mmDateRange* date_range) const;
+        std::vector<std::pair<wxString, double>>& categoryStats,
+        const mmDateRange* date_range
+    ) const;
 };
-
 
 class htmlWidgetBillsAndDeposits
 {
+private:
+    wxString m_title;
+    mmDateRange* m_date_range;
+
 public:
-
-    explicit htmlWidgetBillsAndDeposits(const wxString& title
-        , mmDateRange* date_range = new mmAllTime());
+    explicit htmlWidgetBillsAndDeposits(
+        const wxString& title,
+        mmDateRange* date_range = new mmAllTime()
+    );
     ~htmlWidgetBillsAndDeposits();
-    const wxString getHTMLText();
 
-protected:
-    mmDateRange* date_range_;
-    wxString title_;
+    const wxString getHTMLText();
 };
 
 class htmlWidgetIncomeVsExpenses
 {
 public:
     ~htmlWidgetIncomeVsExpenses();
+
     const wxString getHTMLText();
 };
 
@@ -81,6 +84,7 @@ class htmlWidgetStatistics
 {
 public:
     ~htmlWidgetStatistics();
+
     const wxString getHTMLText();
 };
 
@@ -88,31 +92,38 @@ class htmlWidgetGrandTotals
 {
 public:
     ~htmlWidgetGrandTotals();
-    const wxString getHTMLText(double tBalance, double tReconciled, double tAssets, double tStocks);
+
+    const wxString getHTMLText(
+        double tBalance, double tReconciled,
+        double tAssets, double tStocks
+    );
 };
 
 class htmlWidgetAssets
 {
 public:
     ~htmlWidgetAssets();
+
     const wxString getHTMLText();
 };
 
 class htmlWidgetAccounts
 {
+private:
+    std::map<int64, std::pair<double, double>> accountStats_;
+
 public:
     htmlWidgetAccounts();
-    const wxString displayAccounts(double& tBalance, double& tReconciled, int type);
     ~htmlWidgetAccounts();
-private:
-    std::map<int64, std::pair<double, double> > accountStats_;
+
+    const wxString displayAccounts(double& tBalance, double& tReconciled, int type);
     void get_account_stats();
 };
-
 
 class htmlWidgetCurrency
 {
 public:
     ~htmlWidgetCurrency();
+
     const wxString getHtmlText();
 };

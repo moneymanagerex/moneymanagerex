@@ -308,6 +308,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     panel/StockList.h
     panel/StockPanel.cpp
     panel/StockPanel.h
+    panel/_ListBase.cpp
+    panel/_ListBase.h
     panel/_PanelBase.cpp
     panel/_PanelBase.h
 

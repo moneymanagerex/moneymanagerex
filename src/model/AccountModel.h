@@ -51,8 +51,8 @@ public:
     static AccountCol::STATUS STATUS(OP op, AccountStatus status);
 
 public:
-    // override
-    bool purge_id(int64 account_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 account_id) override;
 
     // lookup for given Data
     auto get_data_currency_p(const Data& account_d) -> const CurrencyData*;
