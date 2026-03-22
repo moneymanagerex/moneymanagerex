@@ -24,8 +24,6 @@
 typedef wxLongLong int64;
 typedef std::vector<int64> wxArrayInt64;
 
-typedef wxDateTime wxDate;
-
 // make int64 hashable
 template<>
 struct std::hash<int64> {

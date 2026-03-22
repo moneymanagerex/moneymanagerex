@@ -68,8 +68,8 @@ mmQIFImportDialog::mmQIFImportDialog(
     const wxString& file_path
 ) :
     m_FileNameStr(file_path),
-    m_today(wxDate::Today()),
-    m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
+    m_today(wxDateTime::Today()),
+    m_fresh(wxDateTime::Today().Subtract(wxDateSpan::Months(1)))
 {
     decimal_ = CurrencyModel::instance().get_base_data_n()->m_decimal_point;
     payeeIsNotes_ = false;

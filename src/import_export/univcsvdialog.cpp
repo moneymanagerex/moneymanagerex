@@ -3211,7 +3211,7 @@ bool mmUnivCSVDialog::validateCustomFieldData(
     long int_val;
     int index;
     double double_val;
-    wxDate date;
+    wxDateTime date;
     wxDateTime time;
     wxArrayString choices;
     wxStringTokenizer tokenizer;
@@ -3226,8 +3226,8 @@ bool mmUnivCSVDialog::validateCustomFieldData(
         const FieldData* field_n = FieldModel::instance().get_id_data_n(fieldId);
         wxString type_name = field_n->m_type_n.name_n();
         switch (field_n->m_type_n.id_n()) {
-            // Check if string can be read as an integer. Will fail if passed a double.
         case FieldTypeN::e_integer:
+            // Check if string can be read as an integer. Will fail if passed a double.
             value = cleanseNumberString(value, true);
             if (!value.ToCLong(&int_val)) {
                 message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
@@ -3236,8 +3236,8 @@ bool mmUnivCSVDialog::validateCustomFieldData(
             else value = wxString::Format("%i", int_val);
             break;
 
-            // Check if string can be read as a double
         case FieldTypeN::e_decimal:
+            // Check if string can be read as a double
             value = cleanseNumberString(value, true);
             if (!value.ToCDouble(&double_val)) {
                 message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
@@ -3250,8 +3250,8 @@ bool mmUnivCSVDialog::validateCustomFieldData(
             }
             break;
 
-            // Check if string can be interpreted as "True" or "False" (case insensitive)
         case FieldTypeN::e_boolean:
+            // Check if string can be interpreted as "True" or "False" (case insensitive)
             if (bool_true_array.Index(value, false) == wxNOT_FOUND)
                 if (bool_false_array.Index(value, false) == wxNOT_FOUND) {
                     message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
@@ -3261,8 +3261,8 @@ bool mmUnivCSVDialog::validateCustomFieldData(
             else value = "TRUE";
             break;
 
-            // Check if string is a valid choice (case insensitive)
         case FieldTypeN::e_single_choice:
+            // Check if string is a valid choice (case insensitive)
             choices = FieldModel::getChoices(field_n->m_properties);
             index = choices.Index(value, false);
             if (index == wxNOT_FOUND) {
@@ -3272,8 +3272,8 @@ bool mmUnivCSVDialog::validateCustomFieldData(
             else value = choices[index];
             break;
 
-            // Check if all of the ';' delimited strings are valid choices (case insensitive)
         case FieldTypeN::e_multi_choice:
+            // Check if all of the ';' delimited strings are valid choices (case insensitive)
             choices = FieldModel::getChoices(field_n->m_properties);
             tokenizer = wxStringTokenizer(value, ";");
             value.Clear();
@@ -3291,8 +3291,8 @@ bool mmUnivCSVDialog::validateCustomFieldData(
             }
             break;
 
-            // Parse the date using the user specified format. Convert to ISO date
         case FieldTypeN::e_date:
+            // Parse the date using the user specified format. Convert to ISO date
             if (!mmParseDisplayStringToDate(date, value, date_format_)) {
                 message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name) <<
                     " " << wxString::Format(_t("Confirm format matches selection %s."), date_format_);
@@ -3301,8 +3301,8 @@ bool mmUnivCSVDialog::validateCustomFieldData(
             else value = date.FormatISODate();
             break;
 
-            // Parse the time. Convert to ISO Format
         case FieldTypeN::e_time:
+            // Parse the time. Convert to ISO Format
             if (!time.ParseTime(value)) {
                 message << " " << wxString::Format(_t("Value %1$s for custom field '%2$s' is not type %3$s."), value, field_n->m_description, type_name);
                 is_valid = false;
