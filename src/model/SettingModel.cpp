@@ -309,11 +309,11 @@ void SettingModel::shrinkUsageTable()
         return;
 
     const wxString save_point = "SETTINGS_TRIM_USAGE";
-    wxDate date = wxDate::Now().Subtract(wxDateSpan::Months(2));
+    mmDate date = mmDate::today().minusDateSpan(wxDateSpan::Months(2));
     m_db->Savepoint(save_point);
     try {
         wxString sql = wxString::Format("delete from USAGE_V1 where USAGEDATE < \"%s\";",
-            date.FormatISODate()
+            date.isoStart()
         );
         m_db->ExecuteUpdate(sql);
     }

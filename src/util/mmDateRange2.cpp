@@ -490,7 +490,7 @@ bool mmDateRange2::parseReporting(const wxString &buffer)
     return true;
 }
 
-mmDateN mmDateRange2::periodStart(mmDate date, mmDatePeriod period) const
+mmDateN mmDateRange2::periodStartN(mmDate date, mmDatePeriod period) const
 {
     if (period == mmDatePeriod::_A)
         return mmDateN();
@@ -518,7 +518,7 @@ mmDateN mmDateRange2::periodStart(mmDate date, mmDatePeriod period) const
     return mmDate(s);
 }
 
-mmDateN mmDateRange2::periodEnd(mmDate date, mmDatePeriod period) const
+mmDateN mmDateRange2::periodEndN(mmDate date, mmDatePeriod period) const
 {
     if (period == mmDatePeriod::_A)
         return mmDateN();
@@ -547,7 +547,7 @@ mmDateN mmDateRange2::periodEnd(mmDate date, mmDatePeriod period) const
     return mmDate(e);
 }
 
-mmDateN mmDateRange2::rangeStart() const
+mmDateN mmDateRange2::rangeStartN() const
 {
     if (range.sp1 == mmDatePeriod::_A || range.sp2 == mmDatePeriod::_A)
         return defStartDateN;
@@ -557,7 +557,7 @@ mmDateN mmDateRange2::rangeStart() const
     mmDate s1 = s1N.value();
     if (range.so1 != 0)
         s1.addDateSpan(mmDatePeriod::span(range.so1, range.sp1));
-    s1 = periodStart(s1, range.sp1).value();
+    s1 = periodStartN(s1, range.sp1).value();
     if (!range.sp2.has_value())
         return s1;
     mmDateN s2N = (range.sp2 == mmDatePeriod::_S) ? sDateN : tDate;
@@ -568,11 +568,11 @@ mmDateN mmDateRange2::rangeStart() const
         s2.addDateSpan(mmDatePeriod::span(range.so2, range.sp2.value()));
     mmDatePeriod p = range.sp1.toInt() > range.sp2.value().toInt() ? range.sp1
         : range.sp2.value();
-    s2 = periodStart(s2, p).value();
+    s2 = periodStartN(s2, p).value();
     return s1 <= s2 ? s1 : s2;
 }
 
-mmDateN mmDateRange2::rangeEnd() const
+mmDateN mmDateRange2::rangeEndN() const
 {
     if (range.ep1 == mmDatePeriod::_A || range.ep2 == mmDatePeriod::_A)
         return defEndDateN;
@@ -582,7 +582,7 @@ mmDateN mmDateRange2::rangeEnd() const
     mmDate e1 = e1N.value();
     if (range.eo1 != 0)
         e1.addDateSpan(mmDatePeriod::span(range.eo1, range.ep1));
-    e1 = periodEnd(e1, range.ep1).value();
+    e1 = periodEndN(e1, range.ep1).value();
     if (!range.ep2.has_value())
         return e1;
     mmDateN e2N = (range.ep2 == mmDatePeriod::_S) ? sDateN : tDate;
@@ -593,14 +593,14 @@ mmDateN mmDateRange2::rangeEnd() const
         e2.addDateSpan(mmDatePeriod::span(range.eo2, range.ep2.value()));
     mmDatePeriod p = range.ep1.toInt() > range.ep2.value().toInt() ? range.ep1
         : range.ep2.value();
-    e2 = periodEnd(e2, p).value();
+    e2 = periodEndN(e2, p).value();
     return e2 <= e1 ? e1 : e2;
 }
 
-mmDateN mmDateRange2::reportingNext() const
+mmDateN mmDateRange2::reportingNextN() const
 {
-    mmDateN sN = rangeStart();
-    mmDateN eN = rangeEnd();
+    mmDateN sN = rangeStartN();
+    mmDateN eN = rangeEndN();
     if (!sN.has_value() || !eN.has_value())
         return eN;
 
@@ -615,23 +615,22 @@ mmDateN mmDateRange2::reportingNext() const
     if (reporting.m > 0) {
         // return the end of the multi-period aligned at s
         // (i.e., its first period contains s)
-        mmDate next = periodEnd(s, reporting.p).value();
+        mmDate next = periodEndN(s, reporting.p).value();
         if (reporting.m > 1) {
             next.addDateSpan(mmDatePeriod::span(reporting.m - 1, reporting.p));
-            next = periodEnd(next, reporting.p).value();
+            next = periodEndN(next, reporting.p).value();
         }
         return next <= e ? next : e;
     }
     else { // if (reporting.m < 0)
         // return the end of the multi-period aligned at e
         // (i.e., its last period contains e)
-        mmDate next = periodEnd(e, reporting.p).value();
-        mmDate next1 = next;
-        next1.addDateSpan(mmDatePeriod::span(reporting.m, reporting.p));
+        mmDate next = periodEndN(e, reporting.p).value();
+        mmDate next1 = next.plusDateSpan(mmDatePeriod::span(reporting.m, reporting.p));
         while (s <= next1) {
             next = next1;
             next1.addDateSpan(mmDatePeriod::span(reporting.m, reporting.p));
-            next1 = periodEnd(next1, reporting.p).value();
+            next1 = periodEndN(next1, reporting.p).value();
         }
         return next <= e ? next : e;
     }
@@ -642,8 +641,8 @@ const wxString mmDateRange2::checkingTooltip() const
     static StringBuilder sb;
     sb.reset();
 
-    mmDateN s = rangeStart();
-    mmDateN e = rangeEnd();
+    mmDateN s = rangeStartN();
+    mmDateN e = rangeEndN();
     if (s.has_value())
         sb.append(s.value().isoDate());
     sb.sep(); sb.append(".."); sb.sep();
@@ -665,8 +664,8 @@ const wxString mmDateRange2::reportingTooltip() const
 mmDateRange2::ReportingIterator::ReportingIterator(const mmDateRange2* a_new) :
     a(a_new),
     count(0),
-    nextDateN(a_new->reportingNext()),
-    lastDateN(a_new->rangeEnd())
+    nextDateN(a_new->reportingNextN()),
+    lastDateN(a_new->rangeEndN())
 {
 }
 
@@ -694,9 +693,8 @@ void mmDateRange2::ReportingIterator::increment()
     if (rm < 0) rm = -rm;
     mmDatePeriod rp = a->reporting.p;
     // assertion: rp is not mmDatePeriod::_A
-    mmDate next1 = nextDateN.value();
-    next1.addDateSpan(mmDatePeriod::span(rm, rp));
-    next1 = a->periodEnd(next1, rp).value();
+    mmDate next1 = nextDateN.value().plusDateSpan(mmDatePeriod::span(rm, rp));
+    next1 = a->periodEndN(next1, rp).value();
     if (lastDateN.value() < next1)
         next1 = lastDateN.value();
 
@@ -800,7 +798,7 @@ bool mmDateRange2::debug()
             wxLogDebug("test[%d] [%s]: reporting_label=[%s]", i, label, reporting_label);
 
         // check range start
-        wxString range_start = dr.rangeStart().isoDateN();
+        wxString range_start = dr.rangeStartN().isoDateN();
         if (range_start != test[i].range_start) {
             ok = false;
             wxLogDebug("ERROR in test[%d] [%s]: range_start=[%s], expected [%s]",
@@ -809,7 +807,7 @@ bool mmDateRange2::debug()
         }
 
         // check range end
-        wxString range_end = dr.rangeEnd().isoDateN();
+        wxString range_end = dr.rangeEndN().isoDateN();
         if (range_end != test[i].range_end) {
             ok = false;
             wxLogDebug("ERROR in test[%d] [%s]: range_end=[%s], expected [%s]",

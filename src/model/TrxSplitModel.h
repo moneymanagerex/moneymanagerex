@@ -20,12 +20,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/TrxSplitTable.h"
-#include "data/_DataEnum.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/TrxSplitData.h"
 
-#include "_ModelBase.h"
 #include "CurrencyModel.h"
 #include "TagLinkModel.h"
 
@@ -51,8 +49,8 @@ public:
     static TrxSplitModel& instance();
 
 public:
-    // override
-    bool purge_id(int64 tp_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 tp_id) override;
 
     auto find_id_gl_a(int64 tp_id) -> const TagLinkModel::DataA;
     auto find_all_mTrxId() -> std::map<int64, DataA>;

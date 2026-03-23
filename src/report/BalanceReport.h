@@ -20,22 +20,16 @@
 
 #include <vector>
 #include "mmex.h"
-#include "model/_ModelBase.h"
 #include "model/AccountModel.h"
 #include "_ReportBase.h"
 
-class mmHistoryItem
+// FIXME: m_stock_xa is set but mot used
+struct StockDataExt : StockData
 {
-public:
-    mmHistoryItem();
+    StockHistoryModel::DataA m_hist_data_a;
 
-    int64    acctId;
-    int64    stockId;
-    wxDate   purchaseDate;
-    wxString purchaseDateStr;
-    double   purchasePrice;
-    double   numShares;
-    StockHistoryModel::DataA stockHist;
+    StockDataExt() : StockData() {}
+    StockDataExt(const StockData& stock_d) : StockData(stock_d) {}
 };
 
 class BalanceReport : public ReportBase
@@ -49,8 +43,8 @@ public:
 
 private:
     PERIOD_ID m_period_id;
-    std::map<int64, std::map<wxDate, double>> m_account_date_balance;
-    std::vector<mmHistoryItem> m_stock_a;
+    std::map<int64, std::map<mmDate, double>> m_account_balance_mDate_mId;
+    std::vector<StockDataExt> m_stock_xa;
     std::map<wxString, double> m_currencyDateRateCache;
 
 public:
@@ -58,9 +52,9 @@ public:
     wxString getHTMLText();
 
 private:
-    std::map<wxDate, double> loadCheckingDateBalance(const AccountData& account);
-    double getCheckingBalance(const AccountData* account, const wxDate& date);
-    std::pair<double, double> getBalance(const AccountData* account, const mmDate& date);
-    double getCurrencyDateRate(int64 currencyid, const wxDate& date);
+    std::map<mmDate, double> loadAccountBalance_mDate(const AccountData& account_d);
+    double getCheckingBalance(const AccountData* account_n, const mmDate& date);
+    std::pair<double, double> getBalance(const AccountData* account_n, const mmDate& date);
+    double getCurrencyDateRate(int64 currency_id, const mmDate& date);
 };
 

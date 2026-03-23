@@ -21,13 +21,12 @@
 
 #include "base/defs.h"
 #include <wx/sharedptr.h>
-
-#include "table/CategoryTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/CategoryData.h"
 
-#include "_ModelBase.h"
-
 class mmDateRange;
+
 class CategoryModel : public TableFactory<CategoryTable, CategoryData>
 {
 public:
@@ -55,12 +54,12 @@ public:
     auto find_pattern_name_a(const wxString& cat_pattern) -> const wxArrayString;
 
     void getCategoryStats(
-        std::map<int64, std::map<int, double>>& categoryStats,
-        wxSharedPtr<wxArrayString> accountArray,
+        std::map<int64, std::map<int, double>>& amount_mMonth_mCatId,
+        wxSharedPtr<wxArrayString> account_name_a_n,
         mmDateRange* date_range,
         bool ignoreFuture,
         bool group_by_month = true,
-        std::map<int64, double>* budgetAmt = nullptr,
+        std::map<int64, double>* amount_mCatId_n = nullptr,
         bool fin_months = false
     );
 

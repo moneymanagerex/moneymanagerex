@@ -102,7 +102,7 @@ inline wxString getTranslation(bool translate, const wxString& text)
 
 //----------------------------------------------------------------------------
 
-bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
+bool getNewsRSS(std::vector<WebsiteNews>& websiteNews_a);
 enum yahoo_price_type { FIAT = 0, SHARES };
 bool getOnlineCurrencyRates(wxString& msg, const int64 curr_id = -1, const bool used_only = true);
 bool get_yahoo_prices(
@@ -115,7 +115,7 @@ bool get_yahoo_prices(
 bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& price_usd, wxString& output);
 bool getCoincapAssetHistory(
     const wxString& asset_id, wxDateTime begin_date,
-    std::map<wxDateTime, double> &historical_rates, wxString &msg
+    std::map<mmDate, double>& date_rate_m, wxString& msg
 );
 
 wxString cleanseNumberString(const wxString& str, const bool decimal);
@@ -152,48 +152,30 @@ CURLcode getYahooFinanceQuotes(const wxString& URL, wxString& json_data);
 
 class mmDates
 {
-public:
-    mmDates();
-    ~mmDates();
-    void doHandleStatistics(const wxString &dateStr);
-    const wxString getDateMask() const;
-    const wxString getDateFormat() const;
-    void doFinalizeStatistics();
-    int getErrorCount() const;
-    bool isDateFormatFound() const;
 private:
-    std::vector<std::pair<wxString, wxString> > m_date_formats_temp;
-
-    //Numbers of successfully applied Format Specifier for every handled date string
+    std::vector<std::pair<wxString, wxString>> m_date_formats_temp;
+    // Numbers of successfully applied Format Specifier for every handled date string
     std::map<wxString, int> m_date_parsing_stat;
     wxDateTime m_today;
     wxDateTime m_month_ago;
-    wxString m_date_mask; //Human readable date format like DD/MM/YYYY
-    wxString m_date_format; //Date Format Specifier like %d/%m/%Y
+    wxString m_date_mask;   // Human readable date format like DD/MM/YYYY
+    wxString m_date_format; // Date Format Specifier like %d/%m/%Y
     int m_error_count = 0;
     int MAX_ATTEMPTS = 3;
+
+public:
+    mmDates();
+    ~mmDates();
+
+    auto getDateMask() const -> const wxString { return m_date_mask; }
+    auto getDateFormat() const -> const wxString { return m_date_format; }
+    int  getErrorCount() const { return m_error_count; }
+    bool isDateFormatFound() const {
+        return m_date_formats_temp.size() < g_date_formats_map().size();
+    }
+    void doHandleStatistics(const wxString& dateStr);
+    void doFinalizeStatistics();
 };
-
-inline bool mmDates::isDateFormatFound() const
-{
-    return m_date_formats_temp.size() < g_date_formats_map().size();
-}
-
-//Get the most appropriate human readable date mask.
-inline const wxString mmDates::getDateMask() const
-{
-    return m_date_mask;
-}
-
-//Get the most appropriate date Format Specifier.
-inline const wxString mmDates::getDateFormat() const
-{
-    return m_date_format;
-}
-inline int mmDates::getErrorCount() const
-{
-    return m_error_count;
-}
 
 class mmSeparator
 {

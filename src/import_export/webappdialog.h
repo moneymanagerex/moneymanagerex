@@ -74,7 +74,7 @@ private:
     bool isStartup_ = false;
     bool isFilledOnce_ = false;
     int64 m_webtran_id = -1;
-    mmWebApp::WebTranVector WebAppTransactions_;
+    mmWebApp::TrxWebDataA WebAppTransactions_;
 
     mmWebAppDialog(){}
 

@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "table/_TableBase.h"
 #include "table/TagTable.h"
 
 // User-friendly representation of a record in table TAG_V1.

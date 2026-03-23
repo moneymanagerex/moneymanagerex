@@ -290,7 +290,7 @@ wxColour mmColors::userDefColor7;
 //*-------------------------------------------------------------------------*//
 
 //Get unread news or all news for last year
-bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
+bool getNewsRSS(std::vector<WebsiteNews>& websiteNews_a)
 {
     wxString RssContent;
     if (http_get_data(mmex::weblink::NewsRSS, RssContent) != CURLE_OK)
@@ -310,51 +310,48 @@ bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 
     wxLogDebug("{{{ getNewsRSS()");
 
-    const wxString news_last_read_date_str = SettingModel::instance().getString(INIDB_NEWS_LAST_READ_DATE, "");
-    wxDate news_last_read_date;
-    if (!news_last_read_date.ParseISODate(news_last_read_date_str))
-        news_last_read_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
+    mmDate last_date = mmDateN(SettingModel::instance().getString(
+        INIDB_NEWS_LAST_READ_DATE, ""
+    )).value_or(
+        mmDate::today().minusDateSpan(wxDateSpan::Year())
+    );
 
-    wxXmlNode* RssRoot = RssDocument.GetRoot()->GetChildren()->GetChildren();
-    while (RssRoot)
-    {
-        if (RssRoot->GetName() == "item")
-        {
-            WebsiteNews website_news;
-            wxXmlNode* News = RssRoot->GetChildren();
-            while (News)
-            {
-                wxString ElementName = News->GetName();
-
-                if (ElementName == "title")
-                    website_news.Title = News->GetChildren()->GetContent();
-                else if (ElementName == "link")
-                    website_news.Link = News->GetChildren()->GetContent();
-                else if (ElementName == "description")
-                    website_news.Description = News->GetChildren()->GetContent();
-                else if (ElementName == "pubDate")
-                {
-                    wxDateTime Date;
-                    const wxString DateString = News->GetChildren()->GetContent();
-                    if (!DateString.IsEmpty())
-                        Date.ParseDate(DateString);
-                    if (!Date.IsValid())
-                        Date = wxDateTime::Today().Subtract(wxDateSpan::Year()); //Seems invalid date, mark it as 1 year old
-                    website_news.Date = Date;
+    wxXmlNode* news_node = RssDocument.GetRoot()->GetChildren()->GetChildren();
+    while (news_node) {
+        if (news_node->GetName() == "item") {
+            WebsiteNews websiteNews;
+            wxXmlNode* field_node = news_node->GetChildren();
+            while (field_node) {
+                wxString field_name = field_node->GetName();
+                if (field_name == "title")
+                    websiteNews.Title = field_node->GetChildren()->GetContent();
+                else if (field_name == "link")
+                    websiteNews.Link = field_node->GetChildren()->GetContent();
+                else if (field_name == "description")
+                    websiteNews.Description = field_node->GetChildren()->GetContent();
+                else if (field_name == "pubDate") {
+                    websiteNews.Date = mmDateN(
+                        field_node->GetChildren()->GetContent()
+                    ).value_or(
+                        mmDate::today().minusDateSpan(wxDateSpan::Year())
+                    ).getDateTime();
                 }
-                News = News->GetNext();
+                field_node = field_node->GetNext();
             }
-            wxLogDebug("%s - %s", news_last_read_date.FormatISODate(), website_news.Date.FormatISODate());
-            if (news_last_read_date.IsEarlierThan(website_news.Date))
-                WebsiteNewsList.push_back(website_news);
+            wxLogDebug("%s - %s",
+                last_date.isoDate(),
+                mmDate(websiteNews.Date).isoDate()
+            );
+            if (last_date < mmDate(websiteNews.Date))
+                websiteNews_a.push_back(websiteNews);
         }
-        RssRoot = RssRoot->GetNext();
+        news_node = news_node->GetNext();
     }
 
-    wxLogDebug("New articles: %i", static_cast<int>(WebsiteNewsList.size()));
+    wxLogDebug("New articles: %i", static_cast<int>(websiteNews_a.size()));
     wxLogDebug("}}}");
 
-    if (WebsiteNewsList.size() == 0)
+    if (websiteNews_a.size() == 0)
         return false;
 
     return true;
@@ -532,17 +529,19 @@ const wxString mmGetTimeForDisplay(const wxString& datetime_iso)
     return (datetime_iso.Length() == 19) ? datetime_iso.Mid(11, 8) : wxString("00:00:00");
 }
 
-bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, const wxString &sDateMask)
-{
+bool mmParseDisplayStringToDate(
+    wxDateTime& date,
+    const wxString& str_date,
+    const wxString& sDateMask
+) {
     if (date_formats_regex().count(sDateMask) == 0)
         return false;
 
     wxString date_str = str_date;
     wxString mask_str = sDateMask;
 
-    static std::unordered_map<wxString, wxDate> cache;
-    if (const auto it = cache.find(str_date); it != cache.end())
-    {
+    static std::unordered_map<wxString, wxDateTime> cache;
+    if (const auto it = cache.find(str_date); it != cache.end()) {
         date = it->second;
         return true;
     }
@@ -550,8 +549,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
     wxString regex = date_formats_regex().at(mask_str);
     wxRegEx pattern(regex);
 
-    if (pattern.Matches(str_date))
-    {
+    if (pattern.Matches(str_date)) {
         if (mask_str.Contains("%w")) {
             mask_str.Replace("%w ", "");
             regex = R"(^(\D*))";
@@ -562,8 +560,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
         if (mask_str.Contains("Mon")) {
 
             static std::map<wxString, wxString> monCache;
-            if (monCache.empty())
-            {
+            if (monCache.empty()) {
                 int i = 1;
                 for (const auto& m : MONTHS_SHORT) {
                     monCache[m] = wxString::Format("%02d", i);
@@ -580,8 +577,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
             }
 
             bool is_month_ok = false;
-            for (const auto& i : monCache)
-            {
+            for (const auto& i : monCache) {
                 if (month.CmpNoCase(i.first) == 0) {
                     date_str.Replace(month, i.second);
                     mask_str.Replace("%Mon", "%m");
@@ -605,20 +601,28 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& str_date, cons
         }
 
         pattern.Compile(regex);
-        if (pattern.Matches(date_str))
-        {
+        if (pattern.Matches(date_str)) {
             date_str = pattern.GetMatch(date_str);
             date_str.Trim(false);
             const auto& date_formats = g_date_formats_map();
             const auto it2 = std::find_if(date_formats.begin(), date_formats.end(),
-                [&mask_str](const std::pair<wxString, wxString>& element) { return element.first == mask_str; });
+                [&mask_str](const std::pair<wxString, wxString>& element) {
+                    return element.first == mask_str;
+                }
+            );
             if (!it2->second.Contains(" ")) {
                 date_str.Replace(" ", "");
             }
 
             wxString::const_iterator end;
             bool t = date.ParseFormat(date_str, mask_str, &end);
-            wxLogDebug("String:%s Mask:%s OK:%s ISO:%s Pattern:%s", str_date, sDateMask, wxString(t ? "true" : "false"), date.FormatISODate(), regex);
+            wxLogDebug("String:%s Mask:%s OK:%s ISO:%s Pattern:%s",
+                str_date,
+                sDateMask,
+                wxString(t ? "true" : "false"),
+                date.FormatISODate(),
+                regex
+            );
             return t;
         }
     }
@@ -629,9 +633,10 @@ const wxDateTime getUserDefinedFinancialYear(const bool prevDayRequired)
 {
     int day = PrefModel::instance().getFinancialFirstDay();
     wxDateTime::Month month = PrefModel::instance().getFinancialFirstMonth();
-    int year = wxDate::GetCurrentYear();
+    int year = wxDateTime::GetCurrentYear();
 
-    if (wxDate::GetCurrentMonth() < month) year--;
+    if (wxDateTime::GetCurrentMonth() < month)
+        year--;
     if (day < 1 || day > wxDateTime::GetNumberOfDays(month, year))
         day = 1;
 
@@ -659,8 +664,7 @@ const std::map<wxString, wxString> &date_formats_regex()
     const wxString tail = "($|[^0-9])+";
     const wxString head = "^";
 
-    for (const auto &entry : g_date_formats_map())
-    {
+    for (const auto &entry : g_date_formats_map()) {
         wxString regexp = entry.first;
         regexp.Replace(".", R"([.])");
         regexp.Replace("/", R"(\/)");
@@ -1167,16 +1171,22 @@ bool getCoincapInfoFromSymbol(const wxString& symbol, wxString& out_id, double& 
     return false;
 }
 
-bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std::map<wxDateTime, double> &historical_rates, wxString &msg) {
+bool getCoincapAssetHistory(
+    const wxString& asset_id,
+    wxDateTime begin_date,
+    std::map<mmDate, double>& date_rate_m,
+    wxString& msg
+) {
     // coincap uses unix time milliseconds
     long long begin_date_unix = static_cast<long long>(begin_date.GetTicks()) * 1000;
     long long end_date_unix = static_cast<long long>(wxDateTime::Today().GetTicks()) * 1000;
-    wxString url = wxString::Format(mmex::weblink::CoinCapHistory, asset_id, "d1", begin_date_unix, end_date_unix);
+    wxString url = wxString::Format(mmex::weblink::CoinCapHistory,
+        asset_id, "d1", begin_date_unix, end_date_unix
+    );
 
     wxString json_data;
     auto err_code = http_get_data(url, json_data);
-    if (err_code != CURLE_OK)
-    {
+    if (err_code != CURLE_OK) {
         msg = json_data;
         return false;
     }
@@ -1203,38 +1213,40 @@ bool getCoincapAssetHistory(const wxString& asset_id, wxDateTime begin_date, std
     }
 
     // prices in USD are multiplied by this value to convert them to the base currency
-    double multiplier = 1.0;
+    double usd_base_rate = 1.0;
     if (baseCurrencySymbol != _t("USD")) {
-        auto usd = CurrencyModel::instance().get_symbol_data_n("USD");
-        if (usd == nullptr) {
+        auto usd_n = CurrencyModel::instance().get_symbol_data_n("USD");
+        if (!usd_n) {
             msg = _t("Unable to find currency 'USD', required for converting historical prices");
             return false;
         }
 
-        multiplier = usd->m_base_conv_rate;
+        usd_base_rate = usd_n->m_base_conv_rate;
     }
 
 
-    Value history = json_doc["data"].GetArray();
-    for (rapidjson::SizeType i = 0; i < history.Size(); ++i) {
-        if (!history[i].IsObject()) continue;
-        Value entry = history[i].GetObject();
+    Value history_a = json_doc["data"].GetArray();
+    for (rapidjson::SizeType i = 0; i < history_a.Size(); ++i) {
+        if (!history_a[i].IsObject())
+            continue;
+        Value entry = history_a[i].GetObject();
 
         // if the object has both a symbol and id check if the symbol matches the target symbol
-        if (entry.HasMember("priceUsd") && entry["priceUsd"].IsString() && entry.HasMember("time") && entry["time"].IsInt64()) {
-            time_t dt = entry["time"].GetInt64() / 1000;
-            wxDateTime date = wxDateTime(dt).GetDateOnly();
-            double price_usd = -1.0;
-            auto priceUSD = wxString::FromUTF8(entry["priceUsd"].GetString());
+        if (!entry.HasMember("priceUsd") || !entry["priceUsd"].IsString() ||
+            !entry.HasMember("time") || !entry["time"].IsInt64()
+        )
+            continue;
+        time_t dt = entry["time"].GetInt64() / 1000;
+        mmDate date = mmDate(wxDateTime(dt));
+        double price_usd = -1.0;
+        auto price_usd_str = wxString::FromUTF8(entry["priceUsd"].GetString());
 
-            if (!priceUSD.ToCDouble(&price_usd)) {
-                msg = _t("Unable to parse price in asset history");
-                return false;
-            }
-
-            double price_base_currency = price_usd * multiplier;
-            historical_rates[date] = price_base_currency;
+        if (!price_usd_str.ToCDouble(&price_usd)) {
+            msg = _t("Unable to parse price in asset history");
+            return false;
         }
+
+        date_rate_m[date] = price_usd * usd_base_rate;
     }
 
     return true;
@@ -1711,23 +1723,21 @@ const wxRect GetDefaultMonitorRect()
 }
 
 // ----------------------------------------
+mmDates::mmDates() :
+    m_date_formats_temp(g_date_formats_map()),
+    m_today(wxDateTime::Today())
+{
+    m_date_parsing_stat.clear();
+    m_month_ago = wxDateTime::Today().Subtract(wxDateSpan::Months(1));
+}
+
 mmDates::~mmDates()
 {
 }
 
-mmDates::mmDates()
-    : m_date_formats_temp(g_date_formats_map())
-    , m_today(wxDate::Today())
-{
-    m_date_parsing_stat.clear();
-    m_month_ago = wxDate::Today().Subtract(wxDateSpan::Months(1));
-}
-
-
 void mmDates::doFinalizeStatistics()
 {
-    auto result = std::max_element
-    (
+    auto result = std::max_element(
         m_date_parsing_stat.begin(),
         m_date_parsing_stat.end(),
         [](const std::pair<wxString, int>& p1, const std::pair<wxString, int>& p2) {
@@ -1740,7 +1750,10 @@ void mmDates::doFinalizeStatistics()
         const auto& date_formats = g_date_formats_map();
         wxString date_format = m_date_format;
         const auto it = std::find_if(date_formats.begin(), date_formats.end(),
-            [&date_format](const std::pair<wxString, wxString>& element) { return element.first == date_format; });
+            [&date_format](const std::pair<wxString, wxString>& element) {
+                return element.first == date_format;
+            }
+        );
         m_date_mask = it->second;
     }
     else
@@ -1749,48 +1762,43 @@ void mmDates::doFinalizeStatistics()
 
 void mmDates::doHandleStatistics(const wxString &dateStr)
 {
+    if (m_error_count > MAX_ATTEMPTS || m_date_formats_temp.size() <= 1)
+        return;
 
-    if (m_error_count <= MAX_ATTEMPTS && m_date_formats_temp.size() > 1)
-    {
-        wxArrayString invalidMask;
-        std::vector<std::pair<wxString, wxString> > date_formats = m_date_formats_temp;
-        for (const auto& date_mask : date_formats)
-        {
-            const wxString mask = date_mask.first;
-            wxDateTime dtdt = m_today;
-            if (mmParseDisplayStringToDate(dtdt, dateStr, mask))
-            {
+    wxArrayString invalidMask;
+    std::vector<std::pair<wxString, wxString>> date_formats = m_date_formats_temp;
+    for (const auto& date_mask : date_formats) {
+        const wxString mask = date_mask.first;
+        wxDateTime dtdt = m_today;
+        if (mmParseDisplayStringToDate(dtdt, dateStr, mask)) {
+            m_date_parsing_stat[mask] ++;
+            //Increase the date mask rating if parse date is recent (1 month ago) date
+            if (dtdt <= m_today && dtdt >= m_month_ago)
                 m_date_parsing_stat[mask] ++;
-                //Increase the date mask rating if parse date is recent (1 month ago) date
-                if (dtdt <= m_today && dtdt >= m_month_ago)
-                    m_date_parsing_stat[mask] ++;
 
-                //Decrease the data mask rating if parsed date is in future
-                if (dtdt > m_today)
-                    m_date_parsing_stat[mask] -= 2;
-            }
-            else {
-                invalidMask.Add(mask);
-                m_date_parsing_stat.erase(mask);
-            }
-        }
-
-        if (invalidMask.size() < m_date_formats_temp.size())
-        {
-            for (const auto &i : invalidMask) {
-                auto it = std::find_if(m_date_formats_temp.begin(), m_date_formats_temp.end(),
-                    [&i](const std::pair<wxString, wxString>& element) { return element.first == i; });
-                m_date_formats_temp.erase(it);
-            }
+            //Decrease the data mask rating if parsed date is in future
+            if (dtdt > m_today)
+                m_date_parsing_stat[mask] -= 2;
         }
         else {
-            m_error_count++;
+            invalidMask.Add(mask);
+            m_date_parsing_stat.erase(mask);
         }
     }
-}
 
-mmSeparator::~mmSeparator()
-{
+    if (invalidMask.size() < m_date_formats_temp.size()) {
+        for (const auto &i : invalidMask) {
+            auto it = std::find_if(m_date_formats_temp.begin(), m_date_formats_temp.end(),
+                [&i](const std::pair<wxString, wxString>& element) {
+                    return element.first == i;
+                }
+            );
+            m_date_formats_temp.erase(it);
+        }
+    }
+    else {
+        m_error_count++;
+    }
 }
 
 mmSeparator::mmSeparator()
@@ -1803,11 +1811,17 @@ mmSeparator::mmSeparator()
     m_separators[def_delim] = 0;
 }
 
+mmSeparator::~mmSeparator()
+{
+}
+
 const wxString mmSeparator::getSeparator() const
 {
     auto x = std::max_element(m_separators.begin(), m_separators.end(),
         [](const std::pair<wxString, int>& p1, const std::pair<wxString, int>& p2) {
-            return p1.second < p2.second; });
+            return p1.second < p2.second;
+        }
+    );
     return x->first;
 }
 
@@ -1815,11 +1829,9 @@ bool mmSeparator::isStringHasSeparator(const wxString &string)
 {
     bool result = false;
 
-    for (const auto& entry : m_separators)
-    {
+    for (const auto& entry : m_separators) {
         bool skip = false;
-        for (const auto& letter : string)
-        {
+        for (const auto& letter : string) {
             if (letter == '"') {
                 skip = !skip;
             }
@@ -1853,13 +1865,14 @@ const wxString getVFname4print(const wxString& name, const wxString& data)
     wxString txt = data;
     txt.Replace("memory:", "");
 
-    const auto f = wxString::Format("%s%s%shtml", mmex::getTempFolder()
-        , name
-        , wxString(wxFILE_SEP_EXT));
+    const auto f = wxString::Format("%s%s%shtml",
+        mmex::getTempFolder(),
+        name,
+        wxString(wxFILE_SEP_EXT)
+    );
 
     wxFileOutputStream index_output(f);
-    if (index_output.IsOk())
-    {
+    if (index_output.IsOk()) {
         wxTextOutputStream index_file(index_output);
         index_file << txt;
         index_output.Close();
@@ -1922,33 +1935,35 @@ const wxString md2html(const wxString& md)
 
 wxImageList* createImageList(const int size)
 {
-    int x = (size > 0) ? size : PrefModel::instance().getIconSize();
-    return(new wxImageList(x, x, false));   // No mask creation, not needed and causes image correuption on Mac
-
+    int x = (size > 0)
+        ? size
+        : PrefModel::instance().getIconSize();
+    // No mask creation, not needed and causes image correuption on Mac
+    return (new wxImageList(x, x, false));
 }
 
 // Ideally we would use wxToolTip::Enable() to enable or disable tooltips globally.
 // but this only works on some platforms!
 void mmToolTip(wxWindow* widget, const wxString& tip)
 {
-    if (PrefModel::instance().getShowToolTips()) widget->SetToolTip(tip);
+    if (PrefModel::instance().getShowToolTips())
+        widget->SetToolTip(tip);
 }
 
 wxString HTMLEncode(const wxString& input)
 {
     wxString output;
-    for(size_t pos = 0; pos < input.Len(); ++pos)
-    {
+    for(size_t pos = 0; pos < input.Len(); ++pos) {
         wxUniChar c = input.GetChar(pos);
         if (c.IsAscii())
             switch(static_cast<char>(c))
             {
-                case '&':  output.Append("&amp;");      break;
-                case '\"': output.Append("&quot;");     break;
-                case '\'': output.Append("&apos;");     break;
-                case '<':  output.Append("&lt;");       break;
-                case '>':  output.Append("&gt;");       break;
-                default:   output.Append(c);            break;
+            case '&':  output.Append("&amp;");      break;
+            case '\"': output.Append("&quot;");     break;
+            case '\'': output.Append("&apos;");     break;
+            case '<':  output.Append("&lt;");       break;
+            case '>':  output.Append("&gt;");       break;
+            default:   output.Append(c);            break;
             }
         else
             output.Append(c);
@@ -2027,8 +2042,7 @@ void mmSetSize(wxWindow* w)
 void mmFontSize(wxWindow* widget)
 {
     int x = PrefModel::instance().getFontSize();
-    for (int i = 0; i < x; i++)
-    {
+    for (int i = 0; i < x; i++) {
         widget->SetFont(widget->GetFont().Larger());
     }
 }
@@ -2037,9 +2051,15 @@ void mmFontSize(wxWindow* widget)
 // mmHtmlWindow just adds a right click menu to save text to the system clipboard
 //
 
-mmHtmlWindow::mmHtmlWindow( wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSize &size
-                    , long style, const wxString &name)
-            : wxHtmlWindow(parent, id, pos, size, style, name)
+mmHtmlWindow::mmHtmlWindow(
+    wxWindow* parent,
+    wxWindowID id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) :
+    wxHtmlWindow(parent, id, pos, size, style, name)
 {
     this->Bind(wxEVT_RIGHT_DOWN, &mmHtmlWindow::OnMouseRightClick, this);
     this->Bind(wxEVT_MENU, &mmHtmlWindow::OnMenuSelected, this);
@@ -2050,40 +2070,36 @@ void mmHtmlWindow::OnMouseRightClick(wxMouseEvent& /*event*/)
     wxMenu menu;
     menu.Append(wxID_HIGHEST + 1, _t("Copy all text to clipboard"));
     PopupMenu(&menu);
-
 }
 
 void mmHtmlWindow::OnMenuSelected(wxCommandEvent& event)
 {
     int i = event.GetId() - wxID_HIGHEST;
-    if (i == 1) // There is only one anyway
-    {
-        if (wxTheClipboard->Open())
-        {
-            wxTheClipboard->SetData(new wxTextDataObject(this->ToText()));
-            wxTheClipboard->Close();
-        }
+    // There is only one anyway
+    if (i == 1 && wxTheClipboard->Open()) {
+        wxTheClipboard->SetData(new wxTextDataObject(this->ToText()));
+        wxTheClipboard->Close();
     }
 }
 
-// -------------------
 wxChar ExtractHotkeyChar(const wxString& input, wxChar defaultChar)
 {
-    wxChar result = defaultChar;
     const wxString patternStart = "(Ctrl+";
-
     int startPos = input.Find(patternStart);
-    if (startPos != wxNOT_FOUND) {
-        int keyPos = startPos + patternStart.Length();
-        if (keyPos < static_cast<int>(input.Length())) {
-            int endPos = input.find(")", keyPos);
-            if (endPos != wxNOT_FOUND) {
-                wxString keyPart = input.SubString(keyPos, endPos - 1);
-                keyPart.Trim(true).Trim(false);
-                if (keyPart.Length() == 1)
-                    result = keyPart[0];
-            }
-        }
-    }
-    return result;
+    if (startPos == wxNOT_FOUND)
+        return defaultChar;
+
+    int keyPos = startPos + patternStart.Length();
+    if (keyPos >= static_cast<int>(input.Length()))
+        return defaultChar;
+
+    int endPos = input.find(")", keyPos);
+    if (endPos == wxNOT_FOUND)
+        return defaultChar;
+
+    wxString keyPart = input.SubString(keyPos, endPos - 1);
+    keyPart.Trim(true).Trim(false);
+    return (keyPart.Length() == 1)
+        ? keyPart[0]
+        : defaultChar;
 }

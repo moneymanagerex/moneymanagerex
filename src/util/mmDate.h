@@ -63,6 +63,10 @@ public:
     auto isoStart() const -> const wxString;
     auto isoEnd() const -> const wxString;
     void addDateSpan(wxDateSpan dateSpan);
+    auto plusDateSpan(wxDateSpan dateSpan) -> mmDate;
+    auto minusDateSpan(wxDateSpan dateSpan) -> mmDate;
+    int  daysSince(const mmDate& other) const;
+    int  daysUntil(const mmDate& other) const;
 
 public:
     bool operator== (const mmDate& other) const;
@@ -160,6 +164,25 @@ inline void mmDate::addDateSpan(wxDateSpan dateSpan)
 {
     // assumption: dateSpan has granularity of a day or larger
     m_dateTime += dateSpan;
+}
+inline mmDate mmDate::plusDateSpan(wxDateSpan dateSpan)
+{
+    return mmDate(m_dateTime + dateSpan);
+}
+inline mmDate mmDate::minusDateSpan(wxDateSpan dateSpan)
+{
+    return mmDate(m_dateTime - dateSpan);
+}
+
+inline int mmDate::daysSince(const mmDate& other) const
+{
+    wxTimeSpan dt = m_dateTime.Subtract(other.m_dateTime) + htol;
+    return dt.IsPositive() ? dt.GetDays() : dt.GetDays() - 1;
+}
+inline int mmDate::daysUntil(const mmDate& other) const
+{
+    wxTimeSpan dt = other.m_dateTime.Subtract(m_dateTime) + htol;
+    return dt.IsPositive() ? dt.GetDays() : dt.GetDays() - 1;
 }
 
 // The time in both operands is set to noon, therefore

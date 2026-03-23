@@ -19,11 +19,9 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/ReportTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/ReportData.h"
-
-#include "_ModelBase.h"
 
 class ReportRecord : public std::map<std::wstring, std::wstring>
 {

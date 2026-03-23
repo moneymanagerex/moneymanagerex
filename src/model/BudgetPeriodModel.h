@@ -19,11 +19,9 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/BudgetPeriodTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/BudgetPeriodData.h"
-
-#include "_ModelBase.h"
 
 class BudgetPeriodModel : public TableFactory<BudgetPeriodTable, BudgetPeriodData>
 {
@@ -36,8 +34,8 @@ public:
     static BudgetPeriodModel& instance();
 
 public:
-    // override
-    bool purge_id(int64 bp_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 bp_id) override;
 
     auto get_id_name_n(int64 bp_id) -> const wxString;
     auto get_name_id_n(const wxString& bp_name) -> int64;

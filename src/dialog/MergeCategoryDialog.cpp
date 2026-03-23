@@ -198,7 +198,7 @@ void MergeCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         }
         PayeeModel::instance().save_data_a(payee_a);
         m_changedRecords += payee_a.size();
-        mmWebApp::MMEX_WebApp_UpdatePayee();
+        mmWebApp::uploadPayee();
 
         for (auto& qp_d : qp_a) {
             qp_d.m_category_id = m_destCatID;
@@ -220,7 +220,7 @@ void MergeCategoryDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 
             cbSourceCategory_->mmDoReInitialize();
             cbDestCategory_->mmDoReInitialize();
-            mmWebApp::MMEX_WebApp_UpdateCategory();
+            mmWebApp::uploadCategory();
         }
 
         IsOkOk();

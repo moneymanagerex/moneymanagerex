@@ -66,51 +66,48 @@ const std::vector<std::pair<JournalPanel::FILTER_ID, wxString> > JournalPanel::F
 //----------------------------------------------------------------------------
 
 wxBEGIN_EVENT_TABLE(JournalPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW,           JournalPanel::onNewTransaction)
-    EVT_BUTTON(wxID_EDIT,          JournalPanel::onEditTransaction)
-    EVT_BUTTON(wxID_DUPLICATE,     JournalPanel::onDuplicateTransaction)
-    EVT_BUTTON(wxID_UNDELETE,      JournalPanel::onRestoreTransaction)
-    EVT_BUTTON(wxID_REMOVE,        JournalPanel::onDeleteTransaction)
-    EVT_BUTTON(wxID_PASTE,         JournalPanel::onEnterScheduled)
-    EVT_BUTTON(wxID_IGNORE,        JournalPanel::onSkipScheduled)
-    EVT_BUTTON(wxID_FILE,          JournalPanel::onOpenAttachment)
-    EVT_BUTTON(ID_FILTER,          JournalPanel::onFilterPopup)
-    EVT_BUTTON(ID_FILTER_TRANS,    JournalPanel::onFilterAdvanced)
-    EVT_MENU(ID_FILTER_ADVANCED,   JournalPanel::onFilterAdvanced)
-    EVT_MENU(ID_DATE_RANGE_EDIT,   JournalPanel::onEditDateRanges)
-    EVT_TOGGLEBUTTON(ID_SCHEDULED, JournalPanel::onScheduled)
+    EVT_BUTTON(wxID_NEW,                  JournalPanel::onNewTrx)
+    EVT_BUTTON(wxID_EDIT,                 JournalPanel::onEditTrx)
+    EVT_BUTTON(wxID_DUPLICATE,            JournalPanel::onDuplicateTrx)
+    EVT_BUTTON(wxID_UNDELETE,             JournalPanel::onRestoreTrx)
+    EVT_BUTTON(wxID_REMOVE,               JournalPanel::onDeleteTrx)
+    EVT_BUTTON(wxID_PASTE,                JournalPanel::onEnterSched)
+    EVT_BUTTON(wxID_IGNORE,               JournalPanel::onSkipSched)
+    EVT_BUTTON(wxID_FILE,                 JournalPanel::onOpenAttachment)
+    EVT_BUTTON(ID_FILTER,                 JournalPanel::onFilterPopup)
+    EVT_BUTTON(ID_FILTER_TRANS,           JournalPanel::onFilterAdvanced)
+    EVT_MENU(ID_FILTER_ADVANCED,          JournalPanel::onFilterAdvanced)
+    EVT_MENU(ID_DATE_RANGE_EDIT,          JournalPanel::onEditDateRanges)
+    EVT_TOGGLEBUTTON(ID_SCHEDULED,        JournalPanel::onScheduled)
     EVT_MENU_RANGE(
         ID_DATE_RANGE_MIN,
-        ID_DATE_RANGE_MAX,
-        JournalPanel::onFilterDate)
+        ID_DATE_RANGE_MAX,                JournalPanel::onFilterDate)
     EVT_MENU_RANGE(
         TrxType::e_withdrawal,
-        TrxType::e_transfer,
-        JournalPanel::onNewTransaction
-    )
+        TrxType::e_transfer,              JournalPanel::onNewTrx)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND,  JournalPanel::onSearchTxtEntered)
     EVT_DATE_CHANGED(ID_DATE_PICKER_LOW,  JournalPanel::onDatePickLow)
     EVT_DATE_CHANGED(ID_DATE_PICKER_HIGH, JournalPanel::onDatePickHigh)
-    wxEND_EVENT_TABLE()
+wxEND_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
 
 JournalPanel::JournalPanel(
     mmGUIFrame* frame,
-    wxWindow* parent,
-    int64 checking_id,
-    const std::vector<int64>& group_ids // = {}
+    wxWindow* perent_win,
+    int64 account_group_id,
+    const std::vector<int64>& group_ids /*={}*/
 ) :
-    m_checking_id(checking_id),
-    m_frame(frame)
+    m_account_group_id(account_group_id),
+    w_frame(frame)
 {
     if (isAccount()) {
-        m_account_id = m_checking_id;
+        m_account_id = m_account_group_id;
         m_account_n = AccountModel::instance().get_id_data_n(m_account_id);
         m_currency_n = AccountModel::instance().get_data_currency_p(*m_account_n);
     }
     else if (isGroup()) {
-        m_group_ids = std::set<int64>(group_ids.begin(), group_ids.end());
+        m_account_id_m = std::set<int64>(group_ids.begin(), group_ids.end());
         m_currency_n = CurrencyModel::instance().get_base_data_n();
     }
     else {
@@ -119,7 +116,7 @@ JournalPanel::JournalPanel(
     m_use_account_specific_filter = PrefModel::instance().getUsePerAccountFilter();
     loadDateRanges(&m_date_range_a, &m_date_range_m, isAccount());
 
-    create(parent);
+    create(perent_win);
     mmThemeAutoColour(this);
     Fit();
 }
@@ -130,12 +127,14 @@ JournalPanel::~JournalPanel()
 }
 
 bool JournalPanel::create(
-    wxWindow* parent,
-    const wxPoint& pos, const wxSize& size,
-    long style, const wxString& name
+    wxWindow* perent_win,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
 ) {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    if (!wxPanel::Create(parent, mmID_CHECKING, pos, size, style, name))
+    if (!wxPanel::Create(perent_win, mmID_CHECKING, pos, size, style, name))
         return false;
 
     this->windowsFreezeThaw();
@@ -153,10 +152,10 @@ void JournalPanel::loadAccount(int64 account_id)
 {
     wxASSERT (account_id >= 1);
 
-    m_lc->setVisibleItemIndex(-1);
-    m_checking_id = account_id;
+    w_list->setVisibleItemIndex(-1);
+    m_account_group_id = account_id;
     m_account_id = account_id;
-    m_group_ids = {};
+    m_account_id_m = {};
     m_account_n = AccountModel::instance().get_id_data_n(m_account_id);
     m_currency_n = AccountModel::instance().get_data_currency_p(*m_account_n);
     m_use_account_specific_filter = PrefModel::instance().getUsePerAccountFilter();
@@ -183,62 +182,76 @@ void JournalPanel::createControls()
     sizerVHeader->AddGrowableCol(0, 0);
     sizerV->Add(sizerVHeader, g_flagsBorder1V);
 
-    m_header_text = new wxStaticText(this, wxID_STATIC, "");
-    m_header_text->SetFont(this->GetFont().Larger().Bold());
-    sizerVHeader->Add(m_header_text, g_flagsExpandBorder1);
+    w_header_text = new wxStaticText(this, wxID_STATIC, "");
+    w_header_text->SetFont(this->GetFont().Larger().Bold());
+    sizerVHeader->Add(w_header_text, g_flagsExpandBorder1);
 
     wxBoxSizer* sizerHInfo = new wxBoxSizer(wxHORIZONTAL);
-    m_header_balance = new wxStaticText(this, wxID_STATIC, "");
-    sizerHInfo->Add(m_header_balance, g_flagsH);
-    m_header_credit = new wxGauge(this, wxID_ANY, 100, wxDefaultPosition, wxSize(100,-1));
-    sizerHInfo->Add(m_header_credit, g_flagsH);
+    w_header_balance = new wxStaticText(this, wxID_STATIC, "");
+    sizerHInfo->Add(w_header_balance, g_flagsH);
+    w_header_credit = new wxGauge(this, wxID_ANY, 100, wxDefaultPosition, wxSize(100,-1));
+    sizerHInfo->Add(w_header_credit, g_flagsH);
     sizerVHeader->Add(sizerHInfo, g_flagsBorder1V);
 
     wxBoxSizer* sizerHCtrl = new wxBoxSizer(wxHORIZONTAL);
-    m_bitmapTransFilter = new wxButton(this, ID_FILTER);
-    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
-    sizerHCtrl->Add(m_bitmapTransFilter, g_flagsH);
+    w_range_btn = new wxButton(this, ID_FILTER);
+    w_range_btn->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+    sizerHCtrl->Add(w_range_btn, g_flagsH);
 
-    m_bitmapTransFilter->SetMinSize(wxSize(200 + PrefModel::instance().getIconSize() * 2, -1));
+    w_range_btn->SetMinSize(wxSize(200 + PrefModel::instance().getIconSize() * 2, -1));
 
     mmDateRange2 tmprange = mmDateRange2();
     tmprange.setRange(m_date_range_a[0]);  // set to all
 
-    fromDateCtrl = new wxDatePickerCtrl(this, ID_DATE_PICKER_LOW, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
-    fromDateCtrl->SetValue(
-        tmprange.rangeStart().value_or(mmDate::min()).getDateTime()
+    w_start_date = new wxDatePickerCtrl(this, ID_DATE_PICKER_LOW, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
+    w_start_date->SetValue(
+        tmprange.rangeStartN().value_or(mmDate::min()).getDateTime()
     );
-    fromDateCtrl->SetRange(wxInvalidDateTime, wxDateTime::Now());
-    sizerHCtrl->Add(fromDateCtrl, g_flagsH);
+    w_start_date->SetRange(wxInvalidDateTime, wxDateTime::Now());
+    sizerHCtrl->Add(w_start_date, g_flagsH);
 
-    toDateCtrl = new wxDatePickerCtrl(this, ID_DATE_PICKER_HIGH, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
-    toDateCtrl->SetValue(
-        tmprange.rangeEnd().value_or(mmDate::today()).getDateTime()
+    w_end_date = new wxDatePickerCtrl(this, ID_DATE_PICKER_HIGH, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN|wxDP_ALLOWNONE);
+    w_end_date->SetValue(
+        tmprange.rangeEndN().value_or(mmDate::today()).getDateTime()
     );
-    sizerHCtrl->Add(toDateCtrl, g_flagsH);
+    sizerHCtrl->Add(w_end_date, g_flagsH);
 
     // Filter for transaction details
-    m_btnTransDetailFilter = new wxButton(this, ID_FILTER_TRANS, _tu("Filter…"));
-    m_btnTransDetailFilter->SetMinSize(wxSize(150 + PrefModel::instance().getIconSize() * 2, -1));
-    sizerHCtrl->Add(m_btnTransDetailFilter, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxUP | wxDOWN | wxLEFT, 5);
+    w_filter_btn = new wxButton(this, ID_FILTER_TRANS, _tu("Filter…"));
+    w_filter_btn->SetMinSize(wxSize(150 + PrefModel::instance().getIconSize() * 2, -1));
+    sizerHCtrl->Add(
+        w_filter_btn,
+        0,
+        wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxUP | wxDOWN | wxLEFT,
+        5
+    );
 
-    m_btnTransDetailFilterCancel = new wxBitmapButton(this, wxID_ANY, mmBitmapBundle(png::CLEAR, mmBitmapButtonSize));
-    mmToolTip(m_btnTransDetailFilterCancel, _t("Reset filter"));
-    m_btnTransDetailFilterCancel->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &JournalPanel::onFilterAdvancedCancel, this);
-    sizerHCtrl->Add(m_btnTransDetailFilterCancel, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
+    w_filter_reset_btn = new wxBitmapButton(this, wxID_ANY,
+        mmBitmapBundle(png::CLEAR, mmBitmapButtonSize)
+    );
+    mmToolTip(w_filter_reset_btn, _t("Reset filter"));
+    w_filter_reset_btn->Bind(wxEVT_COMMAND_BUTTON_CLICKED,
+        &JournalPanel::onFilterAdvancedCancel, this
+    );
+    sizerHCtrl->Add(
+        w_filter_reset_btn,
+        0,
+        wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,
+        2
+    );
 
     if (!isDeletedTrans()) {
         sizerHCtrl->AddSpacer(15);
-        const auto& size = m_bitmapTransFilter->GetSize().GetY();
-        m_header_scheduled = new wxBitmapToggleButton(
+        const auto& size = w_range_btn->GetSize().GetY();
+        w_header_scheduled = new wxBitmapToggleButton(
             this, ID_SCHEDULED, mmBitmapBundle(png::RECURRING),
             wxDefaultPosition, wxSize(size, size)
         );
-        sizerHCtrl->Add(m_header_scheduled, g_flagsH);
+        sizerHCtrl->Add(w_header_scheduled, g_flagsH);
         sizerHCtrl->AddSpacer(10);
     }
-    m_header_sortOrder = new wxStaticText(this, wxID_STATIC, "");
-    sizerHCtrl->Add(m_header_sortOrder, g_flagsH);
+    w_header_sortOrder = new wxStaticText(this, wxID_STATIC, "");
+    sizerHCtrl->Add(w_header_sortOrder, g_flagsH);
 
     if (isAccount()) {
         sizerHCtrl->AddStretchSpacer(1);
@@ -252,7 +265,7 @@ void JournalPanel::createControls()
 
     sizerV->Add(sizerHCtrl, 0, wxEXPAND | wxALL, 10);
 
-    m_bitmapTransFilter->Connect(wxEVT_RIGHT_DOWN,
+    w_range_btn->Connect(wxEVT_RIGHT_DOWN,
         wxMouseEventHandler(JournalPanel::onButtonRightDown), nullptr, this);
 
     /* ---------------------- */
@@ -262,24 +275,24 @@ void JournalPanel::createControls()
         wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER, mmThemeMetaColour(meta::COLOR_LISTPANEL)
     );
 
-    m_images.push_back(mmBitmapBundle(png::UNRECONCILED));
-    m_images.push_back(mmBitmapBundle(png::RECONCILED));
-    m_images.push_back(mmBitmapBundle(png::VOID_STAT));
-    m_images.push_back(mmBitmapBundle(png::FOLLOW_UP));
-    m_images.push_back(mmBitmapBundle(png::DUPLICATE_STAT));
-    m_images.push_back(mmBitmapBundle(png::UPARROW));
-    m_images.push_back(mmBitmapBundle(png::DOWNARROW));
+    w_image_a.push_back(mmBitmapBundle(png::UNRECONCILED));
+    w_image_a.push_back(mmBitmapBundle(png::RECONCILED));
+    w_image_a.push_back(mmBitmapBundle(png::VOID_STAT));
+    w_image_a.push_back(mmBitmapBundle(png::FOLLOW_UP));
+    w_image_a.push_back(mmBitmapBundle(png::DUPLICATE_STAT));
+    w_image_a.push_back(mmBitmapBundle(png::UPARROW));
+    w_image_a.push_back(mmBitmapBundle(png::DOWNARROW));
 
-    m_lc = new JournalList(this, splitterListFooter);
-    m_lc->SetSmallImages(m_images);
-    m_lc->SetNormalImages(m_images);
+    w_list = new JournalList(this, splitterListFooter);
+    w_list->SetSmallImages(w_image_a);
+    w_list->SetNormalImages(w_image_a);
 
     wxPanel* panelFooter = new wxPanel(
         splitterListFooter, wxID_ANY, wxDefaultPosition, wxDefaultSize,
         wxNO_BORDER | wxTAB_TRAVERSAL
     );
 
-    splitterListFooter->SplitHorizontally(m_lc, panelFooter);
+    splitterListFooter->SplitHorizontally(w_list, panelFooter);
     splitterListFooter->SetMinimumPaneSize(100);
     splitterListFooter->SetSashGravity(1.0);
 
@@ -293,71 +306,71 @@ void JournalPanel::createControls()
     wxBoxSizer* sizerHButtons = new wxBoxSizer(wxHORIZONTAL);
     sizerVFooter->Add(sizerHButtons, wxSizerFlags(g_flagsExpandBorder1).Proportion(0));
 
-    m_btnDelete = new wxButton(panelFooter, wxID_REMOVE, _t("&Delete "));
-    mmToolTip(m_btnDelete, _t("Delete all selected transactions"));
+    w_delete_btn = new wxButton(panelFooter, wxID_REMOVE, _t("&Delete "));
+    mmToolTip(w_delete_btn, _t("Delete all selected transactions"));
 
     if (!isDeletedTrans()) {
-        m_btnNew = new wxButton(panelFooter, wxID_NEW, _t("&New "));
-        mmToolTip(m_btnNew, _t("New Transaction"));
-        sizerHButtons->Add(m_btnNew, 0, wxRIGHT, 2);
+        w_new_btn = new wxButton(panelFooter, wxID_NEW, _t("&New "));
+        mmToolTip(w_new_btn, _t("New Transaction"));
+        sizerHButtons->Add(w_new_btn, 0, wxRIGHT, 2);
 
-        m_btnEdit = new wxButton(panelFooter, wxID_EDIT, _t("&Edit "));
-        mmToolTip(m_btnEdit, _t("Edit all selected transactions"));
-        sizerHButtons->Add(m_btnEdit, 0, wxRIGHT, 2);
-        m_btnEdit->Enable(false);
+        w_edit_btn = new wxButton(panelFooter, wxID_EDIT, _t("&Edit "));
+        mmToolTip(w_edit_btn, _t("Edit all selected transactions"));
+        sizerHButtons->Add(w_edit_btn, 0, wxRIGHT, 2);
+        w_edit_btn->Enable(false);
 
-        m_btnDuplicate = new wxButton(panelFooter, wxID_DUPLICATE, _t("D&uplicate "));
-        mmToolTip(m_btnDuplicate, _t("Duplicate selected transaction"));
-        sizerHButtons->Add(m_btnDuplicate, 0, wxRIGHT, 2);
-        m_btnDuplicate->Enable(false);
+        w_dup_btn = new wxButton(panelFooter, wxID_DUPLICATE, _t("D&uplicate "));
+        mmToolTip(w_dup_btn, _t("Duplicate selected transaction"));
+        sizerHButtons->Add(w_dup_btn, 0, wxRIGHT, 2);
+        w_dup_btn->Enable(false);
 
-        sizerHButtons->Add(m_btnDelete, 0, wxRIGHT, 2);
-        m_btnDelete->Enable(false);
+        sizerHButtons->Add(w_delete_btn, 0, wxRIGHT, 2);
+        w_delete_btn->Enable(false);
 
-        m_btnEnter = new wxButton(panelFooter, wxID_PASTE, _t("Ente&r"));
-        mmToolTip(m_btnEnter, _t("Enter Next Scheduled Transaction Occurrence"));
-        sizerHButtons->Add(m_btnEnter, 0, wxRIGHT, 2);
-        m_btnEnter->Enable(false);
+        w_enter_btn = new wxButton(panelFooter, wxID_PASTE, _t("Ente&r"));
+        mmToolTip(w_enter_btn, _t("Enter Next Scheduled Transaction Occurrence"));
+        sizerHButtons->Add(w_enter_btn, 0, wxRIGHT, 2);
+        w_enter_btn->Enable(false);
 
-        m_btnSkip = new wxButton(panelFooter, wxID_IGNORE, _t("&Skip"));
-        mmToolTip(m_btnSkip, _t("Skip Next Scheduled Transaction Occurrence"));
-        sizerHButtons->Add(m_btnSkip, 0, wxRIGHT, 2);
-        m_btnSkip->Enable(false);
+        w_skip_btn = new wxButton(panelFooter, wxID_IGNORE, _t("&Skip"));
+        mmToolTip(w_skip_btn, _t("Skip Next Scheduled Transaction Occurrence"));
+        sizerHButtons->Add(w_skip_btn, 0, wxRIGHT, 2);
+        w_skip_btn->Enable(false);
 
-        const auto& btnDupSize = m_btnDuplicate->GetSize();
-        m_btnAttachment = new wxBitmapButton(
+        const auto& btnDupSize = w_dup_btn->GetSize();
+        w_attachment_btn = new wxBitmapButton(
             panelFooter, wxID_FILE, mmBitmapBundle(png::CLIP), wxDefaultPosition,
             wxSize(30, btnDupSize.GetY())
         );
-        mmToolTip(m_btnAttachment, _t("Open attachments"));
-        sizerHButtons->Add(m_btnAttachment, 0, wxRIGHT, 5);
-        m_btnAttachment->Enable(false);
+        mmToolTip(w_attachment_btn, _t("Open attachments"));
+        sizerHButtons->Add(w_attachment_btn, 0, wxRIGHT, 5);
+        w_attachment_btn->Enable(false);
 
-        m_btnAttachment->Connect(
+        w_attachment_btn->Connect(
             wxEVT_RIGHT_DOWN,
             wxMouseEventHandler(JournalPanel::onButtonRightDown),
             nullptr, this
         );
-        m_btnNew->Connect(
+        w_new_btn->Connect(
             wxEVT_RIGHT_DOWN,
             wxMouseEventHandler(JournalPanel::onButtonRightDown),
             nullptr, this
         );
     }
     else {
-        m_btnRestore = new wxButton(panelFooter, wxID_UNDELETE, _t("&Restore "));
-        mmToolTip(m_btnRestore, _t("Restore selected transaction"));
-        sizerHButtons->Add(m_btnRestore, 0, wxRIGHT, 5);
-        m_btnRestore->Enable(false);
+        w_restore_btn = new wxButton(panelFooter, wxID_UNDELETE, _t("&Restore "));
+        mmToolTip(w_restore_btn, _t("Restore selected transaction"));
+        sizerHButtons->Add(w_restore_btn, 0, wxRIGHT, 5);
+        w_restore_btn->Enable(false);
 
-        sizerHButtons->Add(m_btnDelete, 0, wxRIGHT, 5);
-        m_btnDelete->Enable(false);
+        sizerHButtons->Add(w_delete_btn, 0, wxRIGHT, 5);
+        w_delete_btn->Enable(false);
     }
 
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(
         panelFooter,
         wxID_FIND, wxEmptyString, wxDefaultPosition,
-        wxSize(100, m_btnDelete->GetSize().GetHeight()),
+        wxSize(100, w_delete_btn->GetSize().GetHeight()),
         wxTE_NOHIDESEL, wxDefaultValidator
     );
     searchCtrl->SetDescriptiveText(_t("Search"));
@@ -372,19 +385,19 @@ void JournalPanel::createControls()
     );
 
     // Infobar-mini
-    m_info_panel_mini = new wxStaticText(panelFooter, wxID_STATIC, "");
-    sizerHButtons->Add(m_info_panel_mini, 1, wxGROW | wxTOP | wxLEFT, 5);
+    w_mini_text = new wxStaticText(panelFooter, wxID_STATIC, "");
+    sizerHButtons->Add(w_mini_text, 1, wxGROW | wxTOP | wxLEFT, 5);
 
     // Infobar
-    m_info_panel = new wxStaticText(
+    w_info_text = new wxStaticText(
         panelFooter, wxID_STATIC, "", wxDefaultPosition, wxSize(200, -1),
         wxTE_MULTILINE | wxTE_WORDWRAP
     );
-    sizerVFooter->Add(m_info_panel, g_flagsExpandBorder1);
-    mmToolTip(m_info_panel, _t("Click to copy to clipboard"));
+    sizerVFooter->Add(w_info_text, g_flagsExpandBorder1);
+    mmToolTip(w_info_text, _t("Click to copy to clipboard"));
 
-    m_info_panel->Bind(wxEVT_LEFT_DOWN,
-                       [this, infoPanel = m_info_panel](wxMouseEvent& event)
+    w_info_text->Bind(wxEVT_LEFT_DOWN,
+                       [this, infoPanel = w_info_text](wxMouseEvent& event)
                        {
                            onInfoPanelClick(event, infoPanel);
                        });
@@ -396,8 +409,8 @@ void JournalPanel::createControls()
 
 void JournalPanel::updateHeader()
 {
-    m_header_text->SetLabelText(getPanelTitle());
-    m_header_credit->Hide();
+    w_header_text->SetLabelText(getPanelTitle());
+    w_header_credit->Hide();
     if (m_account_n) {
         wxString summary = wxString::Format("%s%s",
             _t("Account Bal: "),
@@ -419,9 +432,9 @@ void JournalPanel::updateHeader()
                 _t("Credit Limit:"),
                 limit
             ));
-            m_header_credit->SetRange(std::max(100.0, limit));
-            m_header_credit->SetValue(limit);
-            m_header_credit->Show();
+            w_header_credit->SetRange(std::max(100.0, limit));
+            w_header_credit->SetValue(limit);
+            w_header_credit->Show();
         }
         if (AccountModel::type_id(*m_account_n) == NavigatorTypes::TYPE_ID_INVESTMENT ||
             AccountModel::type_id(*m_account_n) == NavigatorTypes::TYPE_ID_ASSET
@@ -436,7 +449,7 @@ void JournalPanel::updateHeader()
                 AccountModel::instance().value_number_currency(*m_account_n, investment_bal.second)
             ));
         }
-        m_header_balance->SetLabelText(summary);
+        w_header_balance->SetLabelText(summary);
     }
     this->Layout();
 }
@@ -444,58 +457,62 @@ void JournalPanel::updateHeader()
 void JournalPanel::updateFilter(bool firstinit)
 {
     if (m_filter_id == FILTER_ID_DATE_RANGE) {
-        m_bitmapTransFilter->SetLabel(m_current_date_range.rangeName());
+        w_range_btn->SetLabel(m_current_date_range.rangeName());
         // Set active if other than 'all'
-        m_bitmapTransFilter->SetBitmap(mmBitmapBundle(
+        w_range_btn->SetBitmap(mmBitmapBundle(
             (m_current_date_range.rangeName() == m_date_range_a[0].getName())
                 ? png::TRANSFILTER : png::TRANSFILTER_ACTIVE,
             mmBitmapButtonSize
         ));
-        fromDateCtrl->SetValue(
-            m_current_date_range.rangeStart().value_or(mmDate::min()).getDateTime()
+        w_start_date->SetValue(
+            m_current_date_range.rangeStartN().value_or(mmDate::min()).getDateTime()
         );
-        toDateCtrl->SetValue(
-            m_current_date_range.rangeEnd().value_or(mmDate::today()).getDateTime()
+        w_end_date->SetValue(
+            m_current_date_range.rangeEndN().value_or(mmDate::today()).getDateTime()
         );
     }
     else if (m_filter_id == FILTER_ID_DATE_PICKER) {
-        m_bitmapTransFilter->SetLabel(_t("Date range"));
-        m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+        w_range_btn->SetLabel(_t("Date range"));
+        w_range_btn->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
         if (firstinit) {
             // FIXME: get[ST]Date are not the start and end date
-            fromDateCtrl->SetValue(
+            w_start_date->SetValue(
                 m_current_date_range.getSDateN().getDateTimeN()
             );
-            toDateCtrl->SetValue(
+            w_end_date->SetValue(
                 m_current_date_range.getTDate().getDateTime()
             );
         }
     }
     else if (firstinit) {
         m_current_date_range.setRange(m_date_range_a[0]); // init with 'all'
-        m_bitmapTransFilter->SetLabel(m_current_date_range.rangeName());
-        m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+        w_range_btn->SetLabel(m_current_date_range.rangeName());
+        w_range_btn->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     }
 
-    m_btnTransDetailFilter->SetBitmap(mmBitmapBundle(m_filter_advanced ?
-                                png::TRANSFILTER_ACTIVE : png::TRANSFILTER, mmBitmapButtonSize));
+    w_filter_btn->SetBitmap(mmBitmapBundle(
+        m_filter_advanced
+            ? png::TRANSFILTER_ACTIVE
+            : png::TRANSFILTER,
+        mmBitmapButtonSize
+    ));
 
-    m_btnTransDetailFilterCancel->Enable(m_filter_advanced);
+    w_filter_reset_btn->Enable(m_filter_advanced);
 
     if (!isDeletedTrans()) {
-        m_header_scheduled->SetValue(m_scheduled_selected);
-        m_header_scheduled->Enable(m_scheduled_enable);
+        w_header_scheduled->SetValue(m_scheduled_selected);
+        w_header_scheduled->Enable(m_scheduled_enable);
         updateScheduledToolTip();
     }
 }
 
 void JournalPanel::updateFilterTooltip()
 {
-    if (m_trans_filter_dlg && m_trans_filter_dlg->mmIsSomethingChecked()) {
-        m_btnTransDetailFilter->SetToolTip(m_trans_filter_dlg->mmGetDescriptionToolTip());
+    if (w_filter_dlg && w_filter_dlg->mmIsSomethingChecked()) {
+        w_filter_btn->SetToolTip(w_filter_dlg->mmGetDescriptionToolTip());
     }
     else {
-        m_btnTransDetailFilter->UnsetToolTip();
+        w_filter_btn->UnsetToolTip();
     }
 }
 
@@ -507,7 +524,7 @@ void JournalPanel::setFilterDate(mmDateRange2::Range& range)
         m_current_date_range.setSDateN(m_account_n->m_stmt_date_n);
     }
     m_current_date_range.setRange(range);
-    m_scheduled_enable = !isDeletedTrans() && m_current_date_range.rangeEnd().has_value();
+    m_scheduled_enable = !isDeletedTrans() && m_current_date_range.rangeEndN().has_value();
     saveFilterSettings();
     updateFilter();
 }
@@ -527,7 +544,7 @@ void JournalPanel::loadFilterSettings()
     Document j_doc;
     m_scheduled_selected = false;
 
-    j_doc = InfoModel::instance().getJdoc(m_use_account_specific_filter ? wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_checking_id) : "CHECK_FILTER_ALL", "{}");
+    j_doc = InfoModel::instance().getJdoc(m_use_account_specific_filter ? wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_account_group_id) : "CHECK_FILTER_ALL", "{}");
     int fid = 0;
 
     if (JSON_GetIntValue(j_doc, "FILTER_ID", fid)) {
@@ -584,9 +601,9 @@ void JournalPanel::loadFilterSettings()
     }
 
     wxString j_str = InfoModel::instance().getString(
-            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),"{}");
-    m_trans_filter_dlg.reset(new TrxFilterDialog(this, m_account_id, false, j_str));
-    m_filter_advanced = m_trans_filter_dlg->mmIsSomethingChecked();
+            wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_account_group_id),"{}");
+    w_filter_dlg.reset(new TrxFilterDialog(this, m_account_id, false, j_str));
+    m_filter_advanced = w_filter_dlg->mmIsSomethingChecked();
     updateScheduledEnable();
 }
 
@@ -596,39 +613,39 @@ void  JournalPanel::updateScheduledEnable()
     m_scheduled_enable = !isDeletedTrans() && (
         m_filter_id == FILTER_ID_DATE_PICKER
         ? m_current_date_range.getTDate() >= mmDate::today()
-        : !m_current_date_range.rangeEnd().has_value()
-            || m_current_date_range.rangeEnd().value() >= mmDate::today()
+        : !m_current_date_range.rangeEndN().has_value()
+            || m_current_date_range.rangeEndN().value() >= mmDate::today()
     );
 }
 
 void JournalPanel::saveFilterSettings()
 {
-    wxString key = m_use_account_specific_filter ? wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_checking_id) : "CHECK_FILTER_ALL";
+    wxString key = m_use_account_specific_filter ? wxString::Format("CHECK_FILTER_DEDICATED_%lld", m_account_group_id) : "CHECK_FILTER_ALL";
     Document j_doc = InfoModel::instance().getJdoc(key, "{}");
     InfoModel::saveFilterInt(j_doc, "FILTER_ID", m_filter_id);
     InfoModel::saveFilterString(j_doc, "FILTER_NAME", FILTER_NAME[m_filter_id].second);
     InfoModel::saveFilterString(j_doc, "FILTER_DATE", m_current_date_range.getRange().getName());
-    InfoModel::saveFilterString(j_doc, "FILTER_DATE_BEGIN", fromDateCtrl->GetValue().IsValid() ? fromDateCtrl->GetValue().FormatISODate() : "");
-    InfoModel::saveFilterString(j_doc, "FILTER_DATE_END", toDateCtrl->GetValue().IsValid() ? toDateCtrl->GetValue().FormatISODate() : "");
+    InfoModel::saveFilterString(j_doc, "FILTER_DATE_BEGIN", w_start_date->GetValue().IsValid() ? w_start_date->GetValue().FormatISODate() : "");
+    InfoModel::saveFilterString(j_doc, "FILTER_DATE_END", w_end_date->GetValue().IsValid() ? w_end_date->GetValue().FormatISODate() : "");
     if (!isDeletedTrans()) {
         InfoModel::saveFilterBool(j_doc, "SCHEDULED", m_scheduled_selected);
     }
     InfoModel::instance().setJdoc(key, j_doc);
 
-    key = wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id);
-    InfoModel::instance().setString(key, m_filter_advanced ? m_trans_filter_dlg->mmGetJsonSettings() : "{}");
+    key = wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_account_group_id);
+    InfoModel::instance().setString(key, m_filter_advanced ? w_filter_dlg->mmGetJsonSettings() : "{}");
 }
 
 //----------------------------------------------------------------------------
 
 void JournalPanel::refreshList()
 {
-    m_lc->refreshVisualList();
+    w_list->refreshVisualList();
 }
 
 void JournalPanel::filterList()
 {
-    m_lc->m_journal_xa.clear();
+    w_list->m_journal_xa.clear();
 
     int sn = 0; // sequence number
     m_flow = 0.0;
@@ -669,26 +686,24 @@ void JournalPanel::filterList()
         TrxModel::s_ref_type
     );
 
-    wxString date_start_str, date_end_str;
-    mmDate date_end = mmDate::today();
-    date_end.addDateSpan(wxDateSpan::Days(30));
+    mmDateN range_start_n, range_end_n;
+    mmDate range_end_default = mmDate::today().plusDateSpan(wxDateSpan::Days(30));
     if (m_filter_id == FILTER_ID_DATE_PICKER) {
-        date_start_str = mmDateN(fromDateCtrl->GetValue()).value_or(mmDate::min()).isoStart();
-        date_end_str = mmDateN(toDateCtrl->GetValue()).value_or(date_end).isoEnd();
+        range_start_n = mmDateN(w_start_date->GetValue()).value_or(mmDate::min());
+        range_end_n = mmDateN(w_end_date->GetValue()).value_or(range_end_default);
     } else {
-        date_start_str = m_current_date_range.rangeStartIsoStartN();
+        range_start_n = m_current_date_range.rangeStartN();
         // find last un-deleted transaction and use that if later than current date + 30 days
         for (auto it = trx_a.rbegin(); it != trx_a.rend(); ++it) {
             const TrxData* trx_n = &(*it);
             if (trx_n && (isDeletedTrans() || !trx_n->is_deleted())) {
-                if (date_end < trx_n->m_date())
-                    date_end = trx_n->m_date();
+                if (range_end_default < trx_n->m_date())
+                    range_end_default = trx_n->m_date();
                 // FIXME: early break
                 break;
             }
         }
-        date_end_str = m_current_date_range.rangeEnd()
-            .value_or(date_end).isoEnd();
+        range_end_n = m_current_date_range.rangeEndN().value_or(range_end_default);
     }
     std::map<int64, SchedSplitModel::DataA> schedId_qpA_m;
     std::map<int64, TagLinkModel::DataA> schedId_glA_m;
@@ -696,7 +711,7 @@ void JournalPanel::filterList()
     SchedModel::DataA sched_a;
     typedef std::tuple<
         int      /* i */,
-        wxString /* date */,
+        wxString /* date; TODO: mmDateTime */,
         int      /* repeat_id */
     > bills_index_t;
     std::vector<bills_index_t> bills_index;
@@ -713,9 +728,9 @@ void JournalPanel::filterList()
             : SchedModel::instance().find_all();
         for (unsigned int i = 0; i < sched_a.size(); ++i) {
             int limit = 1000;  // this is enough for daily repetitions for one year
-            auto dates = sched_a[i].unroll(date_end_str, limit);
-            for (unsigned int repeat_id = 1; repeat_id <= dates.size(); ++repeat_id)
-                bills_index.push_back({i, dates[repeat_id-1], repeat_id});
+            auto date_time_a = sched_a[i].unroll(range_end_n.value(), limit);
+            for (unsigned int repeat_id = 1; repeat_id <= date_time_a.size(); ++repeat_id)
+                bills_index.push_back({i, date_time_a[repeat_id-1].isoDateTime(), repeat_id});
         }
         std::stable_sort(
             bills_index.begin(), bills_index.end(),
@@ -746,14 +761,14 @@ void JournalPanel::filterList()
             bill_i = std::get<0>(*bills_it);
             tran_date = std::get<1>(*bills_it);
             repeat_id = std::get<2>(*bills_it);
-            bill_tran = Journal::execute_bill(sched_a[bill_i], tran_date);
+            bill_tran = Journal::execute_bill(sched_a[bill_i], mmDateTime(tran_date));
             trx_n = &bill_tran;
             bills_it++;
         }
 
         if (isGroup() &&
-            m_group_ids.find(trx_n->m_account_id) == m_group_ids.end() &&
-            m_group_ids.find(trx_n->m_to_account_id_n) == m_group_ids.end()
+            m_account_id_m.find(trx_n->m_account_id) == m_account_id_m.end() &&
+            m_account_id_m.find(trx_n->m_to_account_id_n) == m_account_id_m.end()
         )
             continue;
         if (isDeletedTrans() != trx_n->is_deleted())
@@ -776,7 +791,7 @@ void JournalPanel::filterList()
                 m_show_reconciled = true;
         }
 
-        if (tran_date < date_start_str || tran_date > date_end_str)
+        if (tran_date < range_start_n.isoStartN() || tran_date > range_end_n.isoEndN())
             continue;
 
         Journal::DataExt journal_dx = (repeat_id < 0) ?
@@ -785,7 +800,7 @@ void JournalPanel::filterList()
 
         bool expandSplits = false;
         if (m_filter_advanced) {
-            int txnMatch = m_trans_filter_dlg->mmIsRecordMatches(*trx_n, journal_dx.m_tp_a);
+            int txnMatch = w_filter_dlg->mmIsRecordMatches(*trx_n, journal_dx.m_tp_a);
             if (txnMatch) {
                 expandSplits = (txnMatch < static_cast<int>(journal_dx.m_tp_a.size()) + 1);
             }
@@ -856,7 +871,7 @@ void JournalPanel::filterList()
             journal_dx.displayID = wxString::Format("%s%ld", marker, journal_dx.m_sched_id);
 
         if (!expandSplits) {
-            m_lc->m_journal_xa.push_back(journal_dx);
+            w_list->m_journal_xa.push_back(journal_dx);
             if (isAccount())
                 m_flow += account_flow;
             continue;
@@ -868,7 +883,7 @@ void JournalPanel::filterList()
         wxString tranDisplayID = journal_dx.displayID;
         for (const auto& tp_d : journal_dx.m_tp_a) {
             if (m_filter_advanced) {
-              if (!m_trans_filter_dlg->mmIsSplitRecordMatches<TrxSplitModel>(tp_d))
+              if (!w_filter_dlg->mmIsSplitRecordMatches<TrxSplitModel>(tp_d))
                   continue;
             }
             journal_dx.displaySN = tranDisplaySN + "." + wxString::Format("%i", splitIndex);
@@ -883,8 +898,8 @@ void JournalPanel::filterList()
             TrxData journal_split_dx = journal_dx;
             journal_split_dx.m_notes = tp_d.m_notes;
             if (m_filter_advanced &&
-                !m_trans_filter_dlg->mmIsRecordMatches<TrxModel>(journal_split_dx, true) &&
-                !m_trans_filter_dlg->mmIsRecordMatches<TrxModel>(journal_trx_dx, true)
+                !w_filter_dlg->mmIsRecordMatches<TrxModel>(journal_split_dx, true) &&
+                !w_filter_dlg->mmIsRecordMatches<TrxModel>(journal_trx_dx, true)
             ) {
                 continue;
             }
@@ -905,14 +920,14 @@ void JournalPanel::filterList()
                     (journal_dx.TAGNAMES.IsEmpty() ? "" : ", ") +
                     tag_names.Trim()
                 );
-            m_lc->m_journal_xa.push_back(journal_dx);
+            w_list->m_journal_xa.push_back(journal_dx);
         }
     }
 }
 
 void JournalPanel::sortList()
 {
-    m_lc->sortList();
+    w_list->sortList();
 }
 
 //----------------------------------------------------------------------------
@@ -930,23 +945,23 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
         );
 
         long x = -1;
-        for (x = 0; x < m_lc->GetItemCount(); x++) {
-            if (m_lc->GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+        for (x = 0; x < w_list->GetItemCount(); x++) {
+            if (w_list->GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
                 break;
         }
 
-        Journal::DataExt journal_dx(m_lc->m_journal_xa[x]);
+        Journal::DataExt journal_dx(w_list->m_journal_xa[x]);
         wxString miniStr = journal_dx.info();
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty()) {
-            m_info_panel_mini->SetLabelText(
+            w_mini_text->SetLabelText(
                 miniStr.substr(0, miniStr.Find("\n")) + wxString::FromUTF8Unchecked(" …")
             );
-            mmToolTip(m_info_panel_mini, miniStr);
+            mmToolTip(w_mini_text, miniStr);
         }
         else {
-            m_info_panel_mini->SetLabelText(miniStr);
-            mmToolTip(m_info_panel_mini, miniStr);
+            w_mini_text->SetLabelText(miniStr);
+            mmToolTip(w_mini_text, miniStr);
         }
 
         wxString notesStr = journal_dx.m_notes;
@@ -986,12 +1001,12 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
                 }
             }
         }
-        m_info_panel_selectedbal.clear(); // Not displaying any selected transactions in m_info_panel, clear selected transaction balance var
-        m_info_panel->SetLabelText(notesStr);
+        m_info_panel_selectedbal.clear(); // Not displaying any selected transactions in w_info_text, clear selected transaction balance var
+        w_info_text->SetLabelText(notesStr);
     }
     else /* !single */ {
-        m_info_panel_mini->SetLabelText("");
-        const auto selected_a = m_lc->getSelectedId();
+        w_mini_text->SetLabelText("");
+        const auto selected_a = w_list->getSelectKeyA();
         if (selected_a.size() > 0) {
             bool selected_bill = false;
             for (const auto& journal_key : selected_a)
@@ -1010,37 +1025,34 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
             );
 
             double flow = 0;
-            wxString maxDate;
-            wxString minDate;
+            mmDateN min_date;
+            mmDateN max_date;
             long item = -1;
             while (true) {
-                item = m_lc->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+                item = w_list->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
                 if (item == -1) break;
                 const CurrencyData* curr = AccountModel::instance().get_id_currency_p(
-                    m_lc->m_journal_xa[item].m_account_id
+                    w_list->m_journal_xa[item].m_account_id
                 );
-                if (m_account_id < 0 && m_lc->m_journal_xa[item].is_transfer())
+                if (m_account_id < 0 && w_list->m_journal_xa[item].is_transfer())
                     continue;
                 double convrate = (curr != m_currency_n)
                     ? CurrencyHistoryModel::instance().get_id_date_rate(
                         curr->m_id,
-                        m_lc->m_journal_xa[item].m_date()
+                        w_list->m_journal_xa[item].m_date()
                     )
                     : 1.0;
-                flow += convrate * m_lc->m_journal_xa[item].account_flow(
-                    (m_account_id < 0) ? m_lc->m_journal_xa[item].m_account_id : m_account_id
+                flow += convrate * w_list->m_journal_xa[item].account_flow(
+                    (m_account_id < 0) ? w_list->m_journal_xa[item].m_account_id : m_account_id
                 );
-                wxString transdate = m_lc->m_journal_xa[item].m_date_time.isoDateTime();
-                if (minDate > transdate || minDate.empty())
-                    minDate = transdate;
-                if (maxDate < transdate || maxDate.empty())
-                    maxDate = transdate;
+                mmDate date = w_list->m_journal_xa[item].m_date();
+                if (!min_date.has_value() || date < min_date.value())
+                    min_date = date;
+                if (!max_date.has_value() || max_date.value() < date)
+                    max_date = date;
             }
 
-            wxDateTime min_date, max_date;
-            min_date.ParseISODate(minDate);
-            max_date.ParseISODate(maxDate);
-            int days = max_date.Subtract(min_date).GetDays();
+            int days = max_date.value().daysSince(min_date.value());
 
             wxString msg;
             wxString selectedBal = CurrencyModel::instance().toCurrency(flow, m_currency_n);
@@ -1059,7 +1071,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
 #ifdef __WXMAC__    // See issue #2914
             msg = "";
 #endif
-            m_info_panel->SetLabelText(msg);
+            w_info_text->SetLabelText(msg);
         }
         else /* selected.size() == 0 */ {
             enableButtons(false, false, false, false, false, false);
@@ -1071,16 +1083,16 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
 void JournalPanel::enableButtons(bool edit, bool dup, bool del, bool enter, bool skip, bool attach)
 {
     if (!isDeletedTrans()) {
-        m_btnEdit->Enable(edit);
-        m_btnDuplicate->Enable(dup);
-        m_btnDelete->Enable(del);
-        m_btnEnter->Enable(enter);
-        m_btnSkip->Enable(skip);
-        m_btnAttachment->Enable(attach);
+        w_edit_btn->Enable(edit);
+        w_dup_btn->Enable(dup);
+        w_delete_btn->Enable(del);
+        w_enter_btn->Enable(enter);
+        w_skip_btn->Enable(skip);
+        w_attachment_btn->Enable(attach);
     }
     else {
-        m_btnRestore->Enable(edit);
-        m_btnDelete->Enable(del);
+        w_restore_btn->Enable(edit);
+        w_delete_btn->Enable(del);
     }
 }
 
@@ -1088,37 +1100,40 @@ void JournalPanel::enableButtons(bool edit, bool dup, bool del, bool enter, bool
 
 void JournalPanel::showTips()
 {
-    m_info_panel_selectedbal.clear(); // Not displaying any selected transactions in m_info_panel, clear selected transaction balance var
+    // Not displaying any selected transactions in w_info_text,
+    // clear selected transaction balance var
+    m_info_panel_selectedbal.clear();
 
     if (m_show_tips) {
         m_show_tips = false;
         return;
     }
 
-    if (PrefModel::instance().getShowMoneyTips())
-        m_info_panel->SetLabelText(
-            wxGetTranslation(wxString::FromUTF8(
-                mmTips[rand() % (sizeof(mmTips) / sizeof(wxString))]
-                .ToStdString()
-            ))
-        );
-    else
-        m_info_panel->SetLabelText("");
+    wxString tip = PrefModel::instance().getShowMoneyTips()
+        ? wxGetTranslation(wxString::FromUTF8(
+            mmTips[rand() % (sizeof(mmTips) / sizeof(wxString))].ToStdString()
+        ))
+        : "";
+    w_info_text->SetLabelText(tip);
 }
 
 void JournalPanel::showTips(const wxString& tip)
 {
-    m_info_panel_selectedbal.clear(); // Not displaying any selected transactions in m_info_panel, clear selected transaction balance var
-    if (PrefModel::instance().getShowMoneyTips())
-        m_info_panel->SetLabelText(tip);
-    else
-        m_info_panel->SetLabelText("");
+    // Not displaying any selected transactions in w_info_text,
+    // clear selected transaction balance var
+    m_info_panel_selectedbal.clear();
+
+    w_info_text->SetLabelText(
+        PrefModel::instance().getShowMoneyTips()
+            ? tip
+            : ""
+    );
     m_show_tips = true;
 }
 
 void JournalPanel::updateScheduledToolTip()
 {
-   mmToolTip(m_header_scheduled,
+   mmToolTip(w_header_scheduled,
         !m_scheduled_enable ?
         _t("Scheduled transactions are not available, because the current filter ends in the past") : !m_scheduled_selected ? _t("Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month).") :
         _t("Click to hide scheduled transactions."));
@@ -1151,7 +1166,7 @@ void JournalPanel::onFilterPopup(wxCommandEvent& event)
     menu.Append(ID_DATE_RANGE_EDIT, _tu("Edit date ranges…"));
 
     PopupMenu(&menu);
-    m_bitmapTransFilter->Layout();
+    w_range_btn->Layout();
     event.Skip();
 }
 
@@ -1171,14 +1186,14 @@ void JournalPanel::onFilterDate(wxCommandEvent& event)
     saveFilterSettings();
     updateFilter();
 
-    m_bitmapTransFilter->SetLabel(m_current_date_range.rangeName());
-    m_bitmapTransFilter->SetBitmap(mmBitmapBundle((i > 0 ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
+    w_range_btn->SetLabel(m_current_date_range.rangeName());
+    w_range_btn->SetBitmap(mmBitmapBundle((i > 0 ? png::TRANSFILTER_ACTIVE : png::TRANSFILTER), mmBitmapButtonSize));
 
-    fromDateCtrl->SetValue(
-        m_current_date_range.rangeStart().value_or(mmDate::min()).getDateTime()
+    w_start_date->SetValue(
+        m_current_date_range.rangeStartN().value_or(mmDate::min()).getDateTime()
     );
-    toDateCtrl->SetValue(
-        m_current_date_range.rangeEnd().value_or(mmDate::today()).getDateTime()
+    w_end_date->SetValue(
+        m_current_date_range.rangeEndN().value_or(mmDate::today()).getDateTime()
     );
 
     refreshList();
@@ -1186,35 +1201,35 @@ void JournalPanel::onFilterDate(wxCommandEvent& event)
 
 void JournalPanel::onDatePickLow(wxDateEvent& event) {
     // Check if low date < = high date
-    if (toDateCtrl->GetValue().IsValid() && event.GetDate().IsLaterThan(toDateCtrl->GetValue())) {
+    if (w_end_date->GetValue().IsValid() && event.GetDate().IsLaterThan(w_end_date->GetValue())) {
         wxLogDebug("onDatePickLow to Date =>: %s", event.GetDate().FormatISODate());
-        toDateCtrl->SetValue(event.GetDate());
+        w_end_date->SetValue(event.GetDate());
     }
     datePickProceed();
 }
 
 void JournalPanel::onDatePickHigh(wxDateEvent& event) {
     // Check if high date <= low date
-    if (fromDateCtrl->GetValue().IsValid() && event.GetDate().IsEarlierThan(fromDateCtrl->GetValue())) {
-        fromDateCtrl->SetValue(event.GetDate());
+    if (w_start_date->GetValue().IsValid() && event.GetDate().IsEarlierThan(w_start_date->GetValue())) {
+        w_start_date->SetValue(event.GetDate());
     }
     datePickProceed();
 }
 
 void JournalPanel::datePickProceed() {
-    m_bitmapTransFilter->SetLabel(_t("Date range"));
+    w_range_btn->SetLabel(_t("Date range"));
     m_filter_id = FILTER_ID_DATE_PICKER;
     // FIXME: setSDateN is the account statement date, not the start date
     m_current_date_range.setSDateN(
-        mmDateN(fromDateCtrl->GetValue()).value_or(mmDate::min())
+        mmDateN(w_start_date->GetValue()).value_or(mmDate::min())
     );
     // FIXME: setTDate is the date of today, should not be changed here
     m_current_date_range.setTDate(
-        mmDateN(toDateCtrl->GetValue())
+        mmDateN(w_end_date->GetValue())
             .value_or(mmDate(wxDateTime::Now().Add(wxDateSpan(0,0,0,30))))
     );
 
-    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+    w_range_btn->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
     updateScheduledEnable();
     saveFilterSettings();
     updateFilter();
@@ -1224,20 +1239,20 @@ void JournalPanel::datePickProceed() {
 void JournalPanel::onFilterAdvanced(wxCommandEvent& WXUNUSED(event))
 {
     wxString j_str = InfoModel::instance().getString(
-        wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
+        wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_account_group_id),
         "{}"
     );
-    m_trans_filter_dlg.reset(
-        new TrxFilterDialog(this, m_checking_id, false, j_str)
+    w_filter_dlg.reset(
+        new TrxFilterDialog(this, m_account_group_id, false, j_str)
     );
-    m_trans_filter_dlg->ShowModal();
+    w_filter_dlg->ShowModal();
     setFilterAdvanced();
 }
 
 void JournalPanel::onFilterAdvancedCancel(wxCommandEvent& WXUNUSED(event))
 {
     InfoModel::instance().setString(
-        wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_checking_id),
+        wxString::Format("CHECK_FILTER_ID_ADV_%lld", m_account_group_id),
         ""
     );
     setFilterAdvanced();
@@ -1271,7 +1286,7 @@ void JournalPanel::onEditDateRanges(wxCommandEvent& WXUNUSED(event))
 void JournalPanel::onScheduled(wxCommandEvent&)
 {
     if (!isDeletedTrans()) {
-        m_scheduled_selected = m_header_scheduled->GetValue();
+        m_scheduled_selected = w_header_scheduled->GetValue();
         updateScheduledToolTip();
         saveFilterSettings();
     }
@@ -1280,58 +1295,12 @@ void JournalPanel::onScheduled(wxCommandEvent&)
 
 //----------------------------------------------------------------------------
 
-void JournalPanel::onNewTransaction(wxCommandEvent& event)
-{
-    m_lc->onNewTransaction(event);
-}
-
-void JournalPanel::onEditTransaction(wxCommandEvent& event)
-{
-    m_lc->onEditTransaction(event);
-    m_lc->SetFocus();
-}
-
-void JournalPanel::onDeleteTransaction(wxCommandEvent& event)
-{
-    m_lc->onDeleteTransaction(event);
-}
-
-void JournalPanel::onRestoreTransaction(wxCommandEvent& event)
-{
-    m_lc->onRestoreTransaction(event);
-}
-
-void JournalPanel::onDuplicateTransaction(wxCommandEvent& event)
-{
-    m_lc->onDuplicateTransaction(event);
-}
-
-void JournalPanel::onMoveTransaction(wxCommandEvent& event)
-{
-    m_lc->onMoveTransaction(event);
-}
-
-void JournalPanel::onEnterScheduled(wxCommandEvent& event)
-{
-    m_lc->onEnterScheduled(event);
-}
-
-void JournalPanel::onSkipScheduled(wxCommandEvent& event)
-{
-    m_lc->onSkipScheduled(event);
-}
-
-void JournalPanel::onOpenAttachment(wxCommandEvent& event)
-{
-    m_lc->onOpenAttachment(event);
-    m_lc->SetFocus();
-}
-
 void JournalPanel::onSearchTxtEntered(wxCommandEvent& event)
 {
     const wxString search_string = event.GetString();
-    if (search_string.IsEmpty()) return;
-    m_lc->doSearchText(search_string);
+    if (search_string.IsEmpty())
+        return;
+    w_list->doSearchText(search_string);
 }
 
 void JournalPanel::onButtonRightDown(wxMouseEvent& event)
@@ -1344,7 +1313,7 @@ void JournalPanel::onButtonRightDown(wxMouseEvent& event)
         break;
     }
     case wxID_FILE: {
-        auto selected_a = m_lc->getSelectedId();
+        auto selected_a = w_list->getSelectKeyA();
         if (selected_a.size() == 1) {
             AttachmentDialog dlg(this,
                 selected_a[0].ref_type(), selected_a[0].ref_id()
@@ -1405,10 +1374,10 @@ wxString JournalPanel::getPanelTitle() const
     else if (isDeletedTrans())
         return _t("Deleted Transactions");
     else if (isGroup()) {
-        if (m_checking_id == -3)
+        if (m_account_group_id == -3)
             return _t("Favorites");
         else {
-            int account_Type = -(static_cast<int>(m_checking_id.GetValue()) + 4);
+            int account_Type = -(static_cast<int>(m_account_group_id.GetValue()) + 4);
             if (account_Type >= NavigatorTypes::TYPE_ID_size) {
                 account_Type += NavigatorTypes::NAV_IDXDIFF;
             }
@@ -1421,24 +1390,24 @@ wxString JournalPanel::getPanelTitle() const
         return "";
 }
 
-wxString JournalPanel::BuildPage() const
+wxString JournalPanel::buildPage() const
 {
-    return m_lc->BuildPage((m_account_n ? getPanelTitle() : ""));
+    return w_list->buildPage(m_account_n ? getPanelTitle() : "");
 }
 
 void JournalPanel::resetColumnView()
 {
-    m_lc->DeleteAllColumns();
-    m_lc->setColumnsInfo();
-    m_lc->createColumns();
-    m_lc->refreshVisualList();
+    w_list->DeleteAllColumns();
+    w_list->setColumnsInfo();
+    w_list->createColumns();
+    w_list->refreshVisualList();
 }
 
 void JournalPanel::setSelectedTransaction(JournalKey journal_key)
 {
-    m_lc->setSelectedId(journal_key);
+    w_list->setSelectedId(journal_key);
     refreshList();
-    m_lc->SetFocus();
+    w_list->SetFocus();
 }
 
 void JournalPanel::displaySplitCategories(JournalKey journal_key)
@@ -1462,7 +1431,8 @@ void JournalPanel::displaySplitCategories(JournalKey journal_key)
 void JournalPanel::mmPlayTransactionSound()
 {
     int play = SettingModel::instance().getInt(INIDB_USE_TRANSACTION_SOUND, 0);
-    if (!play) return;
+    if (!play)
+        return;
 
     wxString wav_path = mmex::getPathResource(
       (play == 2) ? mmex::TRANS_SOUND2 : mmex::TRANS_SOUND1
@@ -1473,7 +1443,6 @@ void JournalPanel::mmPlayTransactionSound()
     if (registerSound.IsOk())
         registerSound.Play(wxSOUND_ASYNC);
 }
-
 
 //--- static support function -----------------------------------------------------
 wxString JournalPanel::getFilterName(FILTER_ID id) {

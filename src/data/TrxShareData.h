@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "table/_TableBase.h"
 #include "table/TrxShareTable.h"
 
 // User-friendly representation of a record in table SHAREINFO_V1.

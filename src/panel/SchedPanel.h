@@ -23,88 +23,18 @@
 
 #include "model/SchedModel.h"
 #include "_PanelBase.h"
+#include "SchedList.h"
 #include "dialog/TrxFilterDialog.h"
 
 class wxListEvent;
-class SchedPanel;
-
-/* Custom ListCtrl class that implements virtual LC style */
-class SchedList: public ListBase
-{
-    DECLARE_NO_COPY_CLASS(SchedList)
-    wxDECLARE_EVENT_TABLE();
-
-public:
-    enum LIST_ID
-    {
-        LIST_ID_ICON = 0,
-        LIST_ID_ID,
-        LIST_ID_PAYMENT_DATE,
-        LIST_ID_DUE_DATE,
-        LIST_ID_ACCOUNT,
-        LIST_ID_PAYEE,
-        LIST_ID_STATUS,
-        LIST_ID_CATEGORY,
-        LIST_ID_TAGS,
-        LIST_ID_WITHDRAWAL,
-        LIST_ID_DEPOSIT,
-        LIST_ID_FREQUENCY,
-        LIST_ID_REPEATS,
-        LIST_ID_AUTO,
-        LIST_ID_REMAINING,
-        LIST_ID_NUMBER,
-        LIST_ID_NOTES,
-        LIST_ID_size, // number of columns
-    };
-
-private:
-    static const std::vector<ListColumnInfo> LIST_INFO;
-    SchedPanel* m_bdp;
-    long m_selected_row = -1;
-
-public:
-    SchedList(SchedPanel* bdp, wxWindow *parent, wxWindowID winid = wxID_ANY);
-    ~SchedList();
-
-    void OnNewBDSeries(wxCommandEvent& event);
-    void OnEditBDSeries(wxCommandEvent& event);
-    void OnDuplicateBDSeries(wxCommandEvent& event);
-    void OnDeleteBDSeries(wxCommandEvent& event);
-    void OnEnterBDTransaction(wxCommandEvent& event);
-    void OnSkipBDTransaction(wxCommandEvent& event);
-    void OnOpenAttachment(wxCommandEvent& event);
-    void OnOrganizeAttachments(wxCommandEvent& event);
-    void RefreshList();
-
-protected:
-    virtual int getSortIcon(bool asc) const override;
-    virtual void OnColClick(wxListEvent& event) override;
-    virtual wxListItemAttr *OnGetItemAttr(long item) const override;
-
-private:
-    static int col_sort();
-    void refreshVisualList(int selected_index = -1);
-
-    /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long col_nr) const override;
-    virtual int OnGetItemImage(long item) const override;
-
-    void OnItemRightClick(wxMouseEvent& event);
-    void OnListLeftClick(wxMouseEvent& event);
-    void OnListItemActivated(wxListEvent& event);
-    void OnMarkTransaction(wxCommandEvent& event);
-    void OnMarkAllTransactions(wxCommandEvent& event);
-    void OnListKeyDown(wxListEvent& event);
-    void OnListItemSelected(wxListEvent& event);
-    void OnSetUserColour(wxCommandEvent& event);
-};
 
 class SchedPanel : public PanelBase
 {
+    friend class SchedList;
+
     wxDECLARE_EVENT_TABLE();
 
 public:
-
     enum EIcons
     {
         ICON_FOLLOWUP,
@@ -114,68 +44,66 @@ public:
         ICON_DOWNARROW
     };
 
-    SchedPanel(wxWindow *parent
-        , wxWindowID winid = wxID_ANY
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxDefaultSize
-        , long style = wxTAB_TRAVERSAL | wxNO_BORDER
-        , const wxString& name = "SchedPanel" 
-    );
-    ~SchedPanel();
-
-    /* Helper Functions/data */
-    SchedModel::DataExtA bills_;
-    void updateBottomPanelData(int selIndex);
-    void enableEditDeleteButtons(bool en);
-    /* updates the Repeating transactions panel data */
-    int initVirtualListControl(int64 id = -1);
-    /* Getter for Virtual List Control */
-    wxString getItem(long item, int col_id);
-    void RefreshList();
-
-    const wxString GetRemainingDays(const SchedData& item) const;
-
-    wxString BuildPage() const;
-    wxDate getToday() const;
-
 private:
-    void CreateControls();
-    bool Create(wxWindow *parent, wxWindowID winid,
+    SchedModel::DataExtA m_sched_xa;
+    mmDate m_today;
+    bool m_filter_active;
+    wxArrayString m_tip_a;
+
+    wxSharedPtr<TrxFilterDialog> w_filter_dlg;
+    SchedList*    w_list       = nullptr;
+    wxStaticText* w_info_text  = nullptr;
+    wxStaticText* w_mini_text  = nullptr;
+    wxButton*     w_filter_btn = nullptr;
+
+public:
+    SchedPanel(
+        wxWindow* parent_win,
+        wxWindowID win_id = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = "SchedPanel");
+        const wxString& name = "SchedPanel" 
+    );
+    ~SchedPanel();
 
-    /* Event handlers for Buttons */
-    void OnNewBDSeries(wxCommandEvent& event);
-    void OnEditBDSeries(wxCommandEvent& event);
-    void OnDuplicateBDSeries(wxCommandEvent& event);
-    void OnDeleteBDSeries(wxCommandEvent& event);
+    // override PanelBase
+    virtual auto buildPage() const -> wxString override {
+        return w_list->buildPage(_t("Scheduled Transactions"));
+    }
+    virtual void sortList() override;
 
-    void OnEnterBDTransaction(wxCommandEvent& event);
-    void OnSkipBDTransaction(wxCommandEvent& event);
-    void OnOpenAttachment(wxCommandEvent& event);
-
-    //void OnViewPopupSelected(wxCommandEvent& event);
-
-    void sortList();
-    wxString tips();
+    void refreshList() { w_list->refreshList(); }
 
 private:
-    wxSharedPtr<TrxFilterDialog> transFilterDlg_;
-    SchedList* m_lc = nullptr;
-    wxStaticText* m_infoText = nullptr;
-    wxStaticText* m_infoTextMini = nullptr;
-    wxDate m_today;
+    bool create(
+        wxWindow* parent_win,
+        wxWindowID win_id,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = "SchedPanel"
+    );
+    void createControls();
+    auto getItem(long item, int col_id) -> wxString;
+    int  initList(int64 sched_id_n = -1);
+    auto getRemainingDays(const SchedData& sched_d) const -> const wxString;
+    auto getRandomTip() -> wxString;
+    void updateBottomPanelData(int selIndex);
+    void enableEditDeleteButtons(bool en);
 
-    bool transFilterActive_;
-    void OnFilterTransactions(wxCommandEvent& WXUNUSED(event));
-    wxButton* m_bitmapTransFilter = nullptr;
-
-    wxArrayString tips_;
+    void onNewBDSeries(wxCommandEvent& event) { w_list->onNewBDSeries(event); }
+    void onEditBDSeries(wxCommandEvent& event) { w_list->onEditBDSeries(event); }
+    void onDuplicateBDSeries(wxCommandEvent& event) { w_list->onDuplicateBDSeries(event); }
+    void onDeleteBDSeries(wxCommandEvent& event) { w_list->onDeleteBDSeries(event); }
+    void onEnterBDTransaction(wxCommandEvent& event) { w_list->onEnterBDTransaction(event); }
+    void onSkipBDTransaction(wxCommandEvent& event) {
+        w_list->onSkipBDTransaction(event);
+        w_list->SetFocus();
+    }
+    void onOpenAttachment(wxCommandEvent& event) {
+        w_list->onOpenAttachment(event);
+        w_list->SetFocus();
+    }
+    void onFilterTransactions(wxCommandEvent& WXUNUSED(event));
 };
-
-inline int SchedList::col_sort() { return LIST_ID_PAYMENT_DATE; }
-
-inline wxDate SchedPanel::getToday() const { return m_today; }
-

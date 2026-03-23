@@ -75,25 +75,36 @@ void BudgetYearEntryDialog::CreateControls()
     wxStaticText* itemStaticText3 = new wxStaticText( this, wxID_STATIC, _t("Budget Year"));
     itemGridSizer2->Add(itemStaticText3, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
-    int year = wxDate::GetCurrentYear();
-    textYear_ = new wxSpinCtrl( this, wxID_ANY
-        , wxEmptyString, wxDefaultPosition, wxSize(100,-1), wxSP_ARROW_KEYS, 1900, 3000, year);
+    int year = wxDateTime::GetCurrentYear();
+    textYear_ = new wxSpinCtrl( this, wxID_ANY,
+        wxEmptyString, wxDefaultPosition, wxSize(100,-1),
+        wxSP_ARROW_KEYS,
+        1900, 3000, year
+    );
     textYear_->SetValue(year);
     textYear_->SetToolTip(_t("Specify the required year.\n"
-        "Use Spin buttons to increase or decrease the year."));
+        "Use Spin buttons to increase or decrease the year."
+    ));
     itemGridSizer2->Add(textYear_, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
-    if (withMonth_)
-    {
-        wxStaticText* itemStaticTextMonth = new wxStaticText(this
-            , wxID_STATIC, _t("Budget Month"), wxDefaultPosition, wxDefaultSize, 0);
-        itemGridSizer2->Add(itemStaticTextMonth, 0
-            , wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    if (withMonth_) {
+        wxStaticText* itemStaticTextMonth = new wxStaticText(this,
+            wxID_STATIC,
+            _t("Budget Month"),
+            wxDefaultPosition, wxDefaultSize, 0
+        );
+        itemGridSizer2->Add(
+            itemStaticTextMonth,
+            0,
+            wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,
+            5
+        );
 
-        int month = wxDate::GetCurrentMonth() + 1; // we require months(1..12)
-        textMonth_ = new wxSpinCtrl(this, wxID_ANY
-            , wxEmptyString, wxDefaultPosition, textYear_->GetSize()
-            , wxSP_ARROW_KEYS, 1, 12, month);
+        int month = wxDateTime::GetCurrentMonth() + 1; // we require months(1..12)
+        textMonth_ = new wxSpinCtrl(this, wxID_ANY,
+            wxEmptyString, wxDefaultPosition, textYear_->GetSize(),
+            wxSP_ARROW_KEYS, 1, 12, month
+        );
         textMonth_->SetValue(month);
         textMonth_->SetToolTip(_t("Specify the required month.\n"
             "Use Spin buttons to increase or decrease the month."));
@@ -101,10 +112,15 @@ void BudgetYearEntryDialog::CreateControls()
         itemGridSizer2->Add(textMonth_, 0, wxALIGN_LEFT |wxALIGN_CENTER_VERTICAL|wxALL, 5);
     }
 
-    wxStaticText* itemStaticText51 = new wxStaticText(this
-        , wxID_STATIC, _t("Base Budget On"));
-    itemGridSizer2->Add(itemStaticText51, 0
-        , wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    wxStaticText* itemStaticText51 = new wxStaticText(this,
+        wxID_STATIC, _t("Base Budget On")
+    );
+    itemGridSizer2->Add(
+        itemStaticText51,
+        0,
+        wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,
+        5
+    );
 
     wxArrayString itemYearStrings;
     itemYearStrings.Add("None");
@@ -121,7 +137,11 @@ void BudgetYearEntryDialog::CreateControls()
         itemChoice_->Insert(budgetYearString, index++);
     }
     
-    wxStaticLine* line = new wxStaticLine ( this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
+    wxStaticLine* line = new wxStaticLine(this,
+        wxID_STATIC,
+        wxDefaultPosition, wxDefaultSize,
+        wxLI_HORIZONTAL
+    );
     itemBoxSizer2->Add(line, 0, wxGROW|wxALL, 5);
 
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
@@ -130,7 +150,9 @@ void BudgetYearEntryDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton( this, wxID_OK, _t("&OK ") );
     itemBoxSizer9->Add(itemButtonOK, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-    wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL, wxGetTranslation(g_CancelLabel) );
+    wxButton* itemButtonCancel = new wxButton(this,
+        wxID_CANCEL, wxGetTranslation(g_CancelLabel)
+    );
     itemBoxSizer9->Add(itemButtonCancel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 }
 

@@ -20,95 +20,20 @@
 
 #pragma once
 
-#include "_PanelBase.h"
 #include "model/BudgetModel.h"
+#include "_PanelBase.h"
+#include "BudgetList.h"
 
 class wxListCtrl;
 class wxListEvent;
-class BudgetPanel;
-
-/* Custom ListCtrl class that implements virtual LC style */
-class BudgetList : public ListBase
-
-{
-    DECLARE_NO_COPY_CLASS(BudgetList)
-    wxDECLARE_EVENT_TABLE();
-
-public:
-    enum LIST_ID
-    {
-        LIST_ID_ICON = 0,
-        LIST_ID_CATEGORY,
-        LIST_ID_FREQUENCY,
-        LIST_ID_AMOUNT,
-        LIST_ID_ESTIMATED,
-        LIST_ID_ACTUAL,
-        LIST_ID_NOTES,
-        LIST_ID_size, // number of columns
-    };
-
-private:
-    static const std::vector<ListColumnInfo> LIST_INFO;
-
-public:
-    BudgetList(BudgetPanel* cp, wxWindow *parent, const wxWindowID id);
-
-public:
-    /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long col_nr) const;
-    virtual wxListItemAttr *OnGetItemAttr(long item) const;
-    virtual int OnGetItemImage(long item) const;
-
-    void OnListItemSelected(wxListEvent& event);
-    void OnListItemActivated(wxListEvent& event);
-    void OnMouseMove(wxMouseEvent& event);
-
-private:
-    wxSharedPtr<wxListItemAttr> attr3_; // style3
-    BudgetPanel* cp_;
-    long selectedIndex_ = -1;
-};
 
 class BudgetPanel : public PanelBase
 {
+    friend class BudgetList;
+
     wxDECLARE_EVENT_TABLE();
 
 public:
-    BudgetPanel(int64 budgetYearID
-        , wxWindow *parent
-        , wxWindowID winid = wxID_ANY
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxDefaultSize
-        , long style = wxTAB_TRAVERSAL | wxNO_BORDER
-        , const wxString& name = "BudgetPanel");
-    ~BudgetPanel();
-
-    /* updates the checking panel data */
-    void initVirtualListControl();
-
-    /* Getter for Virtual List Control */
-    wxString getItem(long item, int col_id);
-
-    void DisplayBudgetingDetails(int64 budgetYearID);
-    int64 GetBudgetYearID()
-    {
-        return budgetYearID_;
-    }
-    wxString GetCurrentView()
-    {
-        return currentView_;
-    }
-    int GetItemImage(long item) const;
-    void OnListItemActivated(int selectedIndex);
-    int64 GetTransID(long item)
-    {
-        return budget_[item].first;
-    }
-
-    void RefreshList();
-
-    wxString BuildPage() const { return m_lc->BuildPage(GetPanelTitle()); }
-
     enum EIcons
     {
         ICON_RECONCILLED,
@@ -116,44 +41,84 @@ public:
         ICON_FOLLOWUP
     };
 
+public:
+    static const wxString VIEW_ALL;
+    static const wxString VIEW_NON_ZERO;
+    static const wxString VIEW_PLANNED;
+    static const wxString VIEW_INCOME;
+    static const wxString VIEW_EXPENSE;
+    static const wxString VIEW_SUMM;
+
 private:
-    std::vector<std::pair<int64, int64> > budget_;
-    std::map<int64, std::pair<int, bool > > displayDetails_; //map categid to level of the category, whether category is visible, and whether any subtree is visible 
-    std::map<int64, std::pair<double, double> > budgetTotals_;
-    std::map<int64, BudgetFreq> budgetPeriod_;
-    std::map<int64, double> budgetAmt_;
-    std::map<int64, wxString> budgetNotes_;
-    std::map<int64, std::map<int,double> > categoryStats_;
-    bool monthlyBudget_;
-    wxSharedPtr<BudgetList> m_lc;
-    wxString currentView_;
-    int64 budgetYearID_;
-    wxString m_monthName;
-    wxString m_budget_offset_date;
-    wxStaticText* budgetReportHeading_ = nullptr;
-    wxStaticText* income_estimated_ = nullptr;
-    wxStaticText* income_actual_ = nullptr;
-    wxStaticText* income_diff_ = nullptr;
-    wxStaticText* expenses_estimated_ = nullptr;
-    wxStaticText* expenses_actual_ = nullptr;
-    wxStaticText* expenses_diff_ = nullptr;
-    wxButton* m_bitmapTransFilter = nullptr;
+    int64 m_bp_id;
+    bool m_is_monthly;
+    wxString m_month_name;
+    wxString m_start_date;
+    wxString m_current_view;
+    std::vector<std::pair<int64, int64>> m_catId_subcatId_a;
 
-    bool Create(wxWindow *parent, wxWindowID winid
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxDefaultSize
-        , long style = wxTAB_TRAVERSAL | wxNO_BORDER
-        , const wxString& name = "BudgetPanel");
+    std::map<int64, std::pair<int, bool>>      m_level_visible_mCatId;
+    std::map<int64, std::pair<double, double>> m_estimate_actual_mCatId;
+    std::map<int64, BudgetFreq>                m_freq_mCatId;
+    std::map<int64, double>                    m_amount_mCatId;
+    std::map<int64, wxString>                  m_notes_mCatId;
+    std::map<int64, std::map<int, double>>     m_amount_mMonth_mCatId;
 
-    void CreateControls();
-    void sortList();
-    bool DisplayEntryAllowed(int64 categoryID, int64 subcategoryID);
-    void UpdateBudgetHeading();
-    double getEstimate(int64 category) const;
-    wxString GetPanelTitle() const;
+    wxSharedPtr<BudgetList> w_list;
+    wxStaticText* w_header             = nullptr;
+    wxStaticText* w_income_estimated   = nullptr;
+    wxStaticText* w_income_actual      = nullptr;
+    wxStaticText* w_income_diff        = nullptr;
+    wxStaticText* w_expenses_estimated = nullptr;
+    wxStaticText* w_expenses_actual    = nullptr;
+    wxStaticText* w_expenses_diff      = nullptr;
+    wxButton*     w_filter_btn         = nullptr;
 
-    /* Event handlers for Buttons */
-    void OnViewPopupSelected(wxCommandEvent& event);
-    void OnMouseLeftDown(wxCommandEvent& event);
+public:
+    BudgetPanel(
+        int64 bp_id,
+        wxWindow* parent_win,
+        wxWindowID win_id = wxID_ANY,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = "BudgetPanel"
+    );
+    ~BudgetPanel();
+
+public:
+    // override PanelBase
+    virtual auto buildPage() const -> wxString override {
+        return w_list->buildPage(getPanelTitle());
+    }
+    virtual void sortList() override;
+
+    void refreshList();
+    void displayBudgetingDetails(int64 budgetYearID);
+
+private:
+    bool create(
+        wxWindow* parent_win,
+        wxWindowID win_id,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = "BudgetPanel"
+    );
+    void createControls();
+    bool displayEntryAllowed(int64 cat_id, int64 subcat_id);
+    void updateBudgetHeading();
+    auto getEstimate(int64 category) const -> double;
+    auto getPanelTitle() const -> wxString;
+    void initVirtualListControl();
+    auto getItem(long item, int col_id) -> wxString;
+    auto getBudgetYearID() -> int64 { return m_bp_id; }
+    auto getCurrentView() -> wxString { return m_current_view; }
+    int  getItemImage(long item) const;
+    void onListItemActivated(int selectedIndex);
+    auto getCatId(long item) -> int64 { return m_catId_subcatId_a[item].first; }
+
+    // Event handlers
+    void onViewPopupSelected(wxCommandEvent& event);
+    void onMouseLeftDown(wxCommandEvent& event);
 };
-

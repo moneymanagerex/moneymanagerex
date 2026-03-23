@@ -714,16 +714,15 @@ void CurrencyChoiceDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
     bool isCheckDate = (msgResult == wxNO);
 
     wxString msg;
-    const std::map<wxDateTime, int> DatesList = CurrencyModel::instance().find_id_date_m(m_currency_id);
-    wxDateTime begin_date = wxDateTime::Now().Subtract(wxDateSpan::Years(1));
-    if (isCheckDate && !DatesList.empty()) {
-        begin_date = DatesList.begin()->first;
-    }
+    const std::set<mmDate> date_m = CurrencyModel::instance().find_id_date_m(m_currency_id);
+    wxDateTime begin_date = (isCheckDate && !date_m.empty())
+        ? date_m.begin()->getDateTime()
+        : wxDateTime::Now().Subtract(wxDateSpan::Years(1));
     wxLogDebug("Begin Date: %s", begin_date.FormatISODate());
 
-    std::map<wxDateTime, double> historical_rates;
+    std::map<mmDate, double> date_rate_m;
     bool isUpdStatus = GetOnlineHistory(
-        currency_n->m_symbol, begin_date, historical_rates, msg
+        currency_n->m_symbol, begin_date, date_rate_m, msg
     );
 
     if (!isUpdStatus && !g_fiat_curr().Contains(currency_n->m_symbol)) {
@@ -733,7 +732,7 @@ void CurrencyChoiceDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
             currency_n->m_symbol, coincap_id, coincap_price_usd, msg
         );
         if (isUpdStatus)
-            isUpdStatus = getCoincapAssetHistory(coincap_id, begin_date, historical_rates, msg);
+            isUpdStatus = getCoincapAssetHistory(coincap_id, begin_date, date_rate_m, msg);
     }
 
     if (!isUpdStatus) {
@@ -745,7 +744,7 @@ void CurrencyChoiceDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
         );
     }
 
-    if (historical_rates.empty()) {
+    if (date_rate_m.empty()) {
         mmErrorDialogs::MessageError(this,
             wxString::Format(_t("Unable to download history for symbol %s. Historical rates unavailable!"),
                 currency_n->m_symbol
@@ -757,26 +756,24 @@ void CurrencyChoiceDialog::OnHistoryUpdate(wxCommandEvent& WXUNUSED(event))
 
     CurrencyHistoryModel::instance().db_savepoint();
     if (isCheckDate) {
-        for (const auto entry : DatesList) {
-            const wxDate date = entry.first;
-            wxLogDebug("%s %s", date.FormatISODate(), date.FormatISOTime());
-            if (historical_rates.find(date) == historical_rates.end())
+        for (const mmDate& date : date_m) {
+            if (date_rate_m.find(date) == date_rate_m.end())
                 continue;
-            wxLogDebug("%s", date.FormatISODate());
+            wxLogDebug("%s", date.isoDate());
             CurrencyHistoryModel::instance().save_record(
                 m_currency_id,
-                mmDate(date),
-                historical_rates[date],
+                date,
+                date_rate_m[date],
                 UpdateType(UpdateType::e_online)
             );
         }
     }
     else {
-        for (auto& entry : historical_rates) {
+        for (auto& date_rate : date_rate_m) {
             CurrencyHistoryModel::instance().save_record(
                 m_currency_id,
-                mmDate(entry.first),
-                entry.second,
+                date_rate.first,
+                date_rate.second,
                 UpdateType(UpdateType::e_online)
             );
         }
@@ -793,8 +790,7 @@ void CurrencyChoiceDialog::OnHistoryDeleteUnused(wxCommandEvent& WXUNUSED(event)
     if (m_static_dialog)
         return;
     CurrencyHistoryModel::instance().db_savepoint();
-    auto currency_a = CurrencyModel::instance().find_all();
-    for (const auto& currency_d : currency_a) {
+    for (const auto& currency_d : CurrencyModel::instance().find_all()) {
         if (CurrencyModel::instance().find_id_dep_c(currency_d.m_id) == 0) {
             for (const auto& uh_d : CurrencyHistoryModel::instance().find(
                 CurrencyHistoryCol::CURRENCYID(currency_d.m_id)
@@ -802,12 +798,11 @@ void CurrencyChoiceDialog::OnHistoryDeleteUnused(wxCommandEvent& WXUNUSED(event)
                 CurrencyHistoryModel::instance().purge_id(uh_d.m_id);
         }
         else {
-            std::map<wxDateTime, int> date_used_m = CurrencyModel::instance().find_id_date_m(currency_d.m_id);
+            std::set<mmDate> date_m = CurrencyModel::instance().find_id_date_m(currency_d.m_id);
             for (const auto& uh_d : CurrencyHistoryModel::instance().find(
                 CurrencyHistoryCol::CURRENCYID(currency_d.m_id)
             )) {
-                wxDateTime date = uh_d.m_date.getDateTime();
-                if (date_used_m.find(date) == date_used_m.end())
+                if (date_m.find(uh_d.m_date) == date_m.end())
                     CurrencyHistoryModel::instance().purge_id(uh_d.m_id);
             }
         }
@@ -852,11 +847,11 @@ bool CurrencyChoiceDialog::SetBaseCurrency(int64& baseCurrencyID)
 
     PrefModel::instance().setBaseCurrencyID(baseCurrencyID);
 
-    // Update baseconvrate
+    // Update base_conv_rate
     CurrencyModel::instance().db_savepoint();
-    auto currency_a = CurrencyModel::instance().find_all();
+    CurrencyModel::DataA currency_a = CurrencyModel::instance().find_all();
     for (auto& currency_d : currency_a) {
-        currency_d.m_base_conv_rate = 1;
+        currency_d.m_base_conv_rate = 1.0;
         CurrencyModel::instance().save_data_n(currency_d);
     }
     CurrencyModel::instance().db_release_savepoint();
@@ -928,7 +923,7 @@ void CurrencyChoiceDialog::OnTextChanged(wxCommandEvent& event)
 bool CurrencyChoiceDialog::GetOnlineHistory(
     const wxString& symbol,
     wxDateTime begin_date,
-    std::map<wxDateTime, double>& historical_rates,
+    std::map<mmDate, double>& date_rate_m,
     wxString& msg
 ) {
     wxString base_currency_symbol;
@@ -995,28 +990,29 @@ bool CurrencyChoiceDialog::GetOnlineHistory(
     if (timestamp.Size() != quotes_closed.Size())
         return false;
 
-    std::map<wxDate, double> history;
-    const wxDateTime today = wxDateTime::Today();
-    wxDateTime first_date = today;
-    double first_price = 0;
+    std::map<mmDate, double> date_close_m;
+    const mmDate today = mmDate::today();
+    mmDate first_date = today;
+    double first_rate = 0;
 
     bool only_1 = true;
     for (rapidjson::SizeType i = 0; i < timestamp.Size(); i++) {
         wxASSERT(timestamp[i].IsInt());
-        const auto time = wxDateTime(static_cast<time_t>(timestamp[i].GetInt())).GetDateOnly();
+        const mmDate date = mmDate(wxDateTime(static_cast<time_t>(timestamp[i].GetInt())));
         if (quotes_closed[i].IsFloat()) {
             double rate = quotes_closed[i].GetFloat();
-            history[time] = rate;
-            if (first_date > time) {
-                first_date = time;
-                first_price = rate;
+            date_close_m[date] = rate;
+            if (date < first_date) {
+                first_date = date;
+                first_rate = rate;
             }
-            if (rate != 1) only_1 = false;
+            if (rate != 1)
+                only_1 = false;
         }
         else {
             wxLogDebug("%s %s",
-                time.FormatISODate(),
-                wxDateTime::GetWeekDayName(time.GetWeekDay())
+                date.isoDate(),
+                wxDateTime::GetWeekDayName(date.getDateTime().GetWeekDay())
             );
         }
     }
@@ -1025,20 +1021,15 @@ bool CurrencyChoiceDialog::GetOnlineHistory(
     if (only_1)
         return false;
 
-    double closed_price = first_price;
-    for (wxDateTime i = first_date; i < today; i.Add(wxDateSpan::Days(1))) {
-        wxLogDebug("Date: %s %s", i.FormatISODate(), i.FormatISOTime());
-        double rate = closed_price;
-        if (history.find(i) != history.end()) {
-            rate = history[i];
-            closed_price = rate;
+    double rate = first_rate;
+    for (mmDate date = first_date; date < today; date.addDateSpan(wxDateSpan::Days(1))) {
+        wxLogDebug("Date: %s", date.isoDate());
+        if (date_close_m.find(date) != date_close_m.end()) {
+            rate = date_close_m[date];
         }
-        historical_rates[i] = rate;
+        date_rate_m[date] = rate;
     }
 
-    wxLogDebug("Date: %s %s Today: %s %s",
-        first_date.FormatISODate(), first_date.FormatISOTime(),
-        today.FormatISODate(), today.FormatISOTime()
-    );
+    wxLogDebug("Date: %s Today: %s", first_date.isoDate(), today.isoDate());
     return true;
 }

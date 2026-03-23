@@ -46,7 +46,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 {
     // Grab the data 
     int startDay;
-    wxDate::Month startMonth;
+    wxDateTime::Month startMonth;
     if (PrefModel::instance().getBudgetFinancialYears()) {
         GetFinancialYearValues(startDay, startMonth);
     }
@@ -59,7 +59,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     int startYear = wxDateTime::Today().GetYear();
 
     wxString bp_name_n = BudgetPeriodModel::instance().get_id_name_n(m_date_selection);
-    wxString budget_month, budget_year = bp_name_n;
+    wxString budget_month;
+    wxString budget_year = bp_name_n;
 
     wxRegEx pattern("^([0-9]{4})(-([0-9]{2}))?$");
     if (pattern.Matches(bp_name_n)) {
@@ -70,31 +71,31 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     if (budget_year.ToLong(&tmp))
         startYear = static_cast<int>(tmp); // 0 <= tmp <= 9999
 
-    budget_year = wxString::Format("%d", startYear);
-
     long budgetMonth = 0;
     if (budget_month.ToLong(&budgetMonth)) {
         if (startMonth != wxDateTime::Jan)
-            startMonth = wxDateTime(1, startMonth, startYear).Add(wxDateSpan::Months(--budgetMonth)).GetMonth();
+            startMonth = wxDateTime(1, startMonth, startYear).Add(
+                wxDateSpan::Months(--budgetMonth)
+            ).GetMonth();
         else
             startMonth = static_cast<wxDateTime::Month>(--budgetMonth);
     }
 
-    wxDateTime yearBegin(startDay, startMonth, startYear);
-    wxDateTime yearEnd = yearBegin;
-
     bool monthlyBudget = (!budget_month.empty());
-    if (monthlyBudget) {
-        yearEnd.Add(wxDateSpan::Month()).Subtract(wxDateSpan::Day());
-        budget_year = wxString::Format("%i-%ld", startYear, budgetMonth);
-    }
-    else
-        yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
+
+    budget_year = monthlyBudget
+        ? wxString::Format("%i-%ld", startYear, budgetMonth)
+        : wxString::Format("%d", startYear);
+
+    mmDate yearBegin = wxDateTime(startDay, startMonth, startYear);
+    mmDate yearEnd = monthlyBudget
+        ? yearBegin.plusDateSpan(wxDateSpan::Month()).minusDateSpan(wxDateSpan::Day())
+        : yearBegin.plusDateSpan(wxDateSpan::Year()).minusDateSpan(wxDateSpan::Day());
 
     // Readjust dates by the Budget Offset Option
     PrefModel::instance().addBudgetDateOffset(yearBegin);
     PrefModel::instance().addBudgetDateOffset(yearEnd);
-    mmSpecifiedRange date_range(yearBegin, yearEnd);
+    mmSpecifiedRange date_range(yearBegin.getDateTime(), yearEnd.getDateTime());
 
     bool evaluateTransfer = false;
     if (PrefModel::instance().getBudgetIncludeTransfers()) {
@@ -124,14 +125,14 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.init();
     wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, budget_year);
     bool amply = PrefModel::instance().getBudgetSummaryWithoutCategories();
-    const wxString headerStartupMsg = amply
-        ? _t("Budget Categories for %s")
-        : _t("Budget Category Summary for %s");
-
-    headingStr = wxString::Format(headerStartupMsg
-        , headingStr + "<br>" + _t("(Estimated vs. Actual)"));
+    headingStr = wxString::Format(
+        amply
+            ? _t("Budget Categories for %s")
+            : _t("Budget Category Summary for %s"),
+        headingStr + "<br>" + _t("(Estimated vs. Actual)")
+    );
     hb.addReportHeader(headingStr, 1, PrefModel::instance().getIgnoreFutureTransactions());
-    hb.displayDateHeading(yearBegin, yearEnd);
+    hb.displayDateHeading(yearBegin.getDateTime(), yearEnd.getDateTime());
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(yearBegin, yearEnd);
@@ -177,6 +178,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             gd.series.clear();
         }
     }
+
     hb.addDivContainer("shadow");
     {
         double estIncome = 0.0, estExpenses = 0.0, actIncome = 0.0, actExpenses = 0.0;

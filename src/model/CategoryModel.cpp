@@ -258,12 +258,12 @@ const wxArrayString CategoryModel::find_pattern_name_a(const wxString& cat_patte
 }
 
 void CategoryModel::getCategoryStats(
-    std::map<int64, std::map<int, double>>& categoryStats,
-    wxSharedPtr<wxArrayString> accountArray,
+    std::map<int64, std::map<int, double>>& amount_mMonth_mCatId,
+    wxSharedPtr<wxArrayString> account_name_a_n,
     mmDateRange* date_range,
     bool WXUNUSED(ignoreFuture), //TODO: deprecated
     bool group_by_month,
-    std::map<int64, double>* budgetAmt,
+    std::map<int64, double>* amount_mCatId_n,
     [[maybe_unused]] bool fin_months
 ) {
     mmDate startDate = mmDate(date_range->start_date());
@@ -271,22 +271,20 @@ void CategoryModel::getCategoryStats(
 
     // Initialization
     // Set std::map with zerros
-    const auto& allcategories = find_all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
 
     std::vector<std::pair<mmDate, int>> date_month_a;
     for (int m = 0; m < columns; m++) {
-        mmDate date = startDate;
-        date.addDateSpan(wxDateSpan::Months(m));
+        mmDate date = startDate.plusDateSpan(wxDateSpan::Months(m));
         date_month_a.emplace_back(date, m);
     }
     std::reverse(date_month_a.begin(), date_month_a.end());
 
-    for (const auto& category : allcategories) {
+    for (const auto& cat_d : find_all()) {
         for (int m = 0; m < columns; m++) {
             int month = group_by_month ? m : 0;
-            categoryStats[category.m_id][month] = value;
+            amount_mMonth_mCatId[cat_d.m_id][month] = value;
         }
     }
 
@@ -300,11 +298,11 @@ void CategoryModel::getCategoryStats(
         if (trx_d.is_deleted())
             continue;
 
-        if (accountArray) {
+        if (account_name_a_n) {
             const AccountData* account_n = AccountModel::instance().get_id_data_n(
                 trx_d.m_account_id
             );
-            if (accountArray->Index(account_n->m_name) == wxNOT_FOUND)
+            if (account_name_a_n->Index(account_n->m_name) == wxNOT_FOUND)
                 continue;
         }
 
@@ -324,26 +322,26 @@ void CategoryModel::getCategoryStats(
             month = it->second;
         }
 
-        int64 categID = trx_d.m_category_id_n;
+        int64 cat_id_n = trx_d.m_category_id_n;
 
         if (trxId_tpA_m[trx_d.m_id].empty()) {
             if (!trx_d.is_transfer()) {
                 // Do not include asset or stock transfers in income expense calculations.
                 if (TrxModel::is_foreignAsTransfer(trx_d))
                     continue;
-                categoryStats[categID][month] += trx_d.account_flow(trx_d.m_account_id) * convRate;
+                amount_mMonth_mCatId[cat_id_n][month] += trx_d.account_flow(trx_d.m_account_id) * convRate;
             }
-            else if (budgetAmt != 0) {
-                double amt = trx_d.m_amount * convRate;
-                if ((*budgetAmt)[categID] < 0)
-                    categoryStats[categID][month] -= amt;
+            else if (amount_mCatId_n) {
+                double amount = trx_d.m_amount * convRate;
+                if ((*amount_mCatId_n)[cat_id_n] < 0)
+                    amount_mMonth_mCatId[cat_id_n][month] -= amount;
                 else
-                    categoryStats[categID][month] += amt;
+                    amount_mMonth_mCatId[cat_id_n][month] += amount;
             }
         }
         else {
             for (const auto& tp_d : trxId_tpA_m[trx_d.m_id]) {
-                categoryStats[tp_d.m_category_id][month] +=
+                amount_mMonth_mCatId[tp_d.m_category_id][month] +=
                     (trx_d.is_withdrawal() ? -tp_d.m_amount : tp_d.m_amount) *
                     convRate;
             }

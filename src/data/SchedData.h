@@ -22,7 +22,6 @@
 #include "util/mmDate.h"
 #include "_DataEnum.h"
 #include "_Repeat.h"
-#include "table/_TableBase.h"
 #include "table/SchedTable.h"
 
 // User-friendly representation of a record in table BILLSDEPOSITS_V1.
@@ -79,7 +78,7 @@ struct SchedData
     bool is_void()       const { return m_status.id() == TrxStatus::e_void; }
 
     bool is_due() const;
-    auto unroll(const wxString end_date, int limit = -1) const -> const wxArrayString;
+    auto unroll(const mmDate end_date, int limit = -1) const -> const std::vector<mmDateTime>;
 
     struct SorterById
     {

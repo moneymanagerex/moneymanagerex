@@ -16,87 +16,17 @@
 
 #pragma once
 
-#include "mmframe.h"
-#include "_PanelBase.h"
 #include "model/AssetModel.h"
 #include "model/AccountModel.h"
+#include "_PanelBase.h"
+#include "AssetList.h"
+#include "mmframe.h"
 
-class wxListEvent;
-class AssetPanel;
 class wxButton;
-
-/* Custom ListCtrl class that implements virtual LC style */
-class AssetList: public ListBase
-{
-public:
-    enum LIST_ID
-    {
-        LIST_ID_ICON = 0,
-        LIST_ID_ID,
-        LIST_ID_NAME,
-        LIST_ID_DATE,
-        LIST_ID_TYPE,
-        LIST_ID_VALUE_INITIAL,
-        LIST_ID_VALUE_CURRENT,
-        LIST_ID_NOTES,
-        LIST_ID_size, // number of columns
-    };
-
-private:
-    DECLARE_NO_COPY_CLASS(AssetList)
-    wxDECLARE_EVENT_TABLE();
-    enum {
-        MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1200,
-        MENU_TREEPOPUP_ADDTRANS,
-        MENU_TREEPOPUP_VIEWTRANS,
-        MENU_TREEPOPUP_GOTOACCOUNT,
-        MENU_TREEPOPUP_EDIT,
-        MENU_TREEPOPUP_DELETE,
-        MENU_ON_DUPLICATE_TRANSACTION,
-        MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
-    };
-
-private:
-    static const std::vector<ListColumnInfo> LIST_INFO;
-    AssetPanel* m_panel = nullptr;
-    long m_selected_row = -1;
-
-public:
-    AssetList(AssetPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
-
-    void OnNewAsset(wxCommandEvent& event);
-    void OnEditAsset(wxCommandEvent& event);
-    void OnDeleteAsset(wxCommandEvent& event);
-    void OnDuplicateAsset(wxCommandEvent& event);
-    void OnOrganizeAttachments(wxCommandEvent& event);
-    void OnOpenAttachment(wxCommandEvent& event);
-    void OnAddAssetTrans(wxCommandEvent& WXUNUSED(event));
-    void OnViewAssetTrans(wxCommandEvent& WXUNUSED(event));
-    void OnGotoAssetAccount(wxCommandEvent& WXUNUSED(event));
-
-    void doRefreshItems(int64 trx_id = -1);
-
-protected:
-    virtual int getSortIcon(bool asc) const override;
-    virtual void OnColClick(wxListEvent& event) override;
-
-private:
-    /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long col_nr) const override;
-    virtual int OnGetItemImage(long item) const override;
-
-    void OnMouseRightClick(wxMouseEvent& event);
-    void OnListLeftClick(wxMouseEvent& event);
-    void OnListItemActivated(wxListEvent& event);
-    void OnListKeyDown(wxListEvent& event);
-    void OnListItemSelected(wxListEvent& event);
-    void OnEndLabelEdit(wxListEvent& event);
-    bool EditAsset(AssetData* pEntry);
-};
 
 class AssetPanel : public PanelBase
 {
-    wxDECLARE_EVENT_TABLE();
+    friend class AssetList;
 
 public:
     enum EIcons
@@ -112,68 +42,72 @@ public:
         ICON_DOWNARROW
     };
 
-    AssetPanel(
-        mmGUIFrame* frame,
-        wxWindow *parent,
-        wxWindowID winid,
-        const wxString& name="AssetPanel"
-    );
-    mmGUIFrame* m_frame = nullptr;
-
-    void updateExtraAssetData(int selIndex);
-    int initVirtualListControl(int64 trx_id = -1);
-    wxString getItem(long item, int col_id);
-
-    AssetModel::DataA m_assets;
-    int m_filter_type; // -1 (All), AssetType
-
-    wxString BuildPage() const { return m_lc->BuildPage(_t("Assets")); }
-
-    void AddAssetTrans(const int selected_index);
-    void ViewAssetTrans(const int selected_index);
-    wxListCtrl* InitAssetTxnListCtrl(wxWindow* parent);
-    void LoadAssetTransactions(wxListCtrl* listCtrl, int64 assetId);
-    void FillAssetListRow(wxListCtrl* listCtrl, long index, const TrxData& txn);
-    void BindAssetListEvents(wxListCtrl* listCtrl);
-    void CopySelectedRowsToClipboard(wxListCtrl* listCtrl);
-    void GotoAssetAccount(const int selected_index);
-    void RefreshList();
-
 private:
-    void enableEditDeleteButtons(bool enable);
-    void OnSearchTxtEntered(wxCommandEvent& event);
-    
-    AssetList* m_lc = nullptr;
-    wxButton* m_bitmapTransFilter = nullptr;
-    wxStaticText* header_text_ = nullptr;
-
-    bool Create(wxWindow *parent
-        , wxWindowID winid
-        , const wxPoint& pos
-        , const wxSize& size
-        , long style
-        , const wxString &name);
-    void CreateControls();
-
-    /* Event handlers for Buttons */
-    void OnNewAsset(wxCommandEvent& event);
-    void OnDeleteAsset(wxCommandEvent& event);
-    void OnEditAsset(wxCommandEvent& event);
-    void OnOpenAttachment(wxCommandEvent& event);
-    void OnMouseLeftDown(wxCommandEvent& event);
-    void OnAddAssetTrans(wxCommandEvent& event);
-    void OnViewAssetTrans(wxCommandEvent& event);
-
-    void OnViewPopupSelected(wxCommandEvent& event);
-    void sortList();
-    void SetAccountParameters(const AccountData* account);
-
-private:
-    wxString tips_;
+    wxDECLARE_EVENT_TABLE();
     enum {
         IDC_PANEL_ASSET_STATIC_DETAILS = wxID_HIGHEST + 1220,
         IDC_PANEL_ASSET_STATIC_DETAILS_MINI,
     };
-};
 
-inline void AssetPanel::RefreshList(){ m_lc->doRefreshItems(); }
+private:
+    AssetModel::DataA m_asset_a;
+    int m_asset_type_id_n; // -1 (All), AssetType
+    wxString m_tip;
+
+    mmGUIFrame*   w_frame      = nullptr;
+    AssetList*    w_list       = nullptr;
+    wxStaticText* w_header     = nullptr;
+    wxButton*     w_filter_btn = nullptr;
+
+public:
+    AssetPanel(
+        mmGUIFrame* frame,
+        wxWindow* parent_win,
+        wxWindowID win_id,
+        const wxString& name="AssetPanel"
+    );
+
+public:
+    // override PanelBase
+    virtual auto buildPage() const -> wxString override {
+        return w_list->buildPage(_t("Assets"));
+    }
+    virtual void sortList() override;
+
+    void refreshList() { w_list->doRefreshItems(); }
+
+private:
+    bool create(
+        wxWindow* parent_win,
+        wxWindowID win_id,
+        const wxPoint& pos,
+        const wxSize& size,
+        long style,
+        const wxString& name
+    );
+    void createControls();
+    void setAccountParameters(const AccountData* account);
+    void enableEditDeleteButtons(bool enable);
+    void addAssetTrans(const int selected_index);
+    void viewAssetTrans(const int selected_index);
+    auto initAssetTxnListCtrl(wxWindow* parent) -> wxListCtrl*;
+    void loadAssetTransactions(wxListCtrl* listCtrl, int64 assetId);
+    void fillAssetListRow(wxListCtrl* listCtrl, long index, const TrxData& txn);
+    void bindAssetListEvents(wxListCtrl* listCtrl);
+    void copySelectedRowsToClipboard(wxListCtrl* listCtrl);
+    void gotoAssetAccount(const int selected_index);
+    void updateExtraAssetData(int selIndex);
+    int  initVirtualListControl(int64 trx_id = -1);
+    auto getItem(long item, int col_id) -> wxString;
+
+    // Event handlers
+    void onNewAsset(wxCommandEvent& event) { w_list->onNewAsset(event); }
+    void onDeleteAsset(wxCommandEvent& event) { w_list->onDeleteAsset(event); }
+    void onEditAsset(wxCommandEvent& event) { w_list->onEditAsset(event); }
+    void onOpenAttachment(wxCommandEvent& event) { w_list->onOpenAttachment(event); }
+    void onAddAssetTrans(wxCommandEvent& event) { w_list->onAddAssetTrans(event); }
+    void onViewAssetTrans(wxCommandEvent& event) { w_list->onViewAssetTrans(event); }
+    void onMouseLeftDown(wxCommandEvent& event);
+    void onViewPopupSelected(wxCommandEvent& event);
+    void onSearchTxtEntered(wxCommandEvent& event);
+};

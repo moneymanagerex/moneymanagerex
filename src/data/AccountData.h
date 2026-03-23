@@ -20,7 +20,6 @@
 
 #include "util/mmDate.h"
 #include "_DataEnum.h"
-#include "table/_TableBase.h"
 #include "table/AccountTable.h"
 
 // User-friendly representation of a record in table ACCOUNTLIST_V1.

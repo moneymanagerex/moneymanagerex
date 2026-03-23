@@ -44,12 +44,10 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 {
 
     int startDay;
-    wxDate::Month startMonth;
-    if (PrefModel::instance().getBudgetFinancialYears())
-    {
+    wxDateTime::Month startMonth;
+    if (PrefModel::instance().getBudgetFinancialYears()) {
         GetFinancialYearValues(startDay, startMonth);
-    } else
-    {
+    } else {
         startDay = 1;
         startMonth = wxDateTime::Jan;
     }
@@ -71,19 +69,16 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         budget_year = wxString::Format("%ld", startYear);
     }
 
-    wxDateTime yearBegin(startDay, startMonth
-        , static_cast<int>(startYear));
-    wxDateTime yearEnd = yearBegin;
-    yearEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
+    mmDate yearBegin = wxDateTime(startDay, startMonth, static_cast<int>(startYear));
+    mmDate yearEnd = yearBegin.plusDateSpan(wxDateSpan::Year()).minusDateSpan(wxDateSpan::Day());
 
     // Readjust dates by the Budget Offset Option
     PrefModel::instance().addBudgetDateOffset(yearBegin);
     PrefModel::instance().addBudgetDateOffset(yearEnd);
-    mmSpecifiedRange date_range(yearBegin, yearEnd);
+    mmSpecifiedRange date_range(yearBegin.getDateTime(), yearEnd.getDateTime());
 
     bool evaluateTransfer = false;
-    if (PrefModel::instance().getBudgetIncludeTransfers())
-    {
+    if (PrefModel::instance().getBudgetIncludeTransfers()) {
         evaluateTransfer = true;
     }
     //Get statistics
@@ -111,14 +106,13 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     std::map<int64, double> estimateTotal;
 
     const wxString& headingStr = wxString::Format(_t("Budget Performance for %s"),
-        AdjustYearValues(startDay
-            , startMonth, startYear, budget_year)
+        AdjustYearValues(startDay, startMonth, startYear, budget_year)
     );
     mmHTMLBuilder hb;
     hb.init();
 
     hb.addReportHeader(headingStr, 1, PrefModel::instance().getIgnoreFutureTransactions());
-    hb.displayDateHeading(yearBegin, yearEnd);
+    hb.displayDateHeading(yearBegin.getDateTime(), yearEnd.getDateTime());
     // Prime the filter
     m_filter.clear();
     m_filter.setDateRange(yearBegin, yearEnd);

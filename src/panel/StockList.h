@@ -22,9 +22,8 @@
 
 #include "base/defs.h"
 #include <wx/tglbtn.h>
-
 #include "model/StockModel.h"
-#include "_PanelBase.h"
+#include "_ListBase.h"
 
 class wxListEvent;
 class StockPanel;
@@ -32,6 +31,8 @@ class StockPanel;
 /* Custom ListCtrl class that implements virtual LC style */
 class StockList: public ListBase
 {
+    friend class StockPanel;
+
     DECLARE_NO_COPY_CLASS(StockList)
     wxDECLARE_EVENT_TABLE();
 
@@ -56,61 +57,66 @@ public:
         LIST_ID_size, // number of columns
     };
 
-public:
-    StockModel::DataA m_stocks;
-
 private:
     static const std::vector<ListColumnInfo> LIST_INFO;
-    StockPanel* m_stock_panel;
-    long m_selected_row = -1;
-    double m_investedVal;
-    double m_marketVal;
+
+    StockModel::DataA m_stock_a;
+    long m_select_n = -1;
+    double m_invest_value;
+    double m_market_value;
+
+    StockPanel* w_panel;
+    wxSharedPtr<wxListItemAttr> w_loss_attr1;  // Style for loss
+    wxSharedPtr<wxListItemAttr> w_loss_attr2;  // style for loss alternate
 
 public:
-    StockList(StockPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
+    StockList(
+        StockPanel* panel,
+        wxWindow* parent_win,
+        wxWindowID win_id = wxID_ANY
+    );
     ~StockList();
 
-    void doRefreshItems(int64 trx_id = -1);
-    long get_selectedIndex();
-    wxString getStockInfo(int selectedIndex, bool addtotal) const;
-    int initVirtualListControl(int64 trx_id = -1);
-    void getInvestmentBalance(double& invested, double& current);
+    // override ListBase
+    virtual void onColClick(wxListEvent& event) override;
+    virtual int  getSortIcon(bool asc) const override;
 
-    void OnNewStocks(wxCommandEvent& event);
-    void OnDeleteStocks(wxCommandEvent& event);
-    void OnMoveStocks(wxCommandEvent& event);
-    void OnEditStocks(wxCommandEvent& event);
-    void OnOrganizeAttachments(wxCommandEvent& event);
-    void OnStockWebPage(wxCommandEvent& event);
-    void OnOpenAttachment(wxCommandEvent& event);
+    // override wxListCtrl
+    virtual auto OnGetItemText(long item, long col_nr) const -> wxString override;
+    virtual int  OnGetItemImage(long item) const override;
+    virtual auto OnGetItemAttr(long item) const -> wxListItemAttr* override;
+
+    void doRefreshItems(int64 trx_id = -1);
+    long get_selectedIndex() { return m_select_n; }
+    auto getStockInfo(int selectedIndex, bool addtotal) const -> wxString;
+    int  initVirtualListControl(int64 trx_id = -1);
+    void getInvestmentBalance(double& invest_value, double& market_value);
 
 private:
-    static int col_sort();
-    double GetGainLoss(long item) const;
-    static double getGainLoss(const StockData& stock);
-    double GetRealGainLoss(long item) const;
-    static double getRealGainLoss(const StockData& stock);
+    static int  col_sort() { return LIST_ID_DATE; }
+    static auto getRealGainLoss(const StockData& stock_d) -> double;
+
     void sortList();
     void createSummary();
-    wxSharedPtr<wxListItemAttr> m_attr1;  // Style for loss
-    wxSharedPtr<wxListItemAttr> m_attr2;  // style for loss alternate
+    auto getGainLoss(long item) const -> double {
+        return m_stock_a[item].current_gain();
+    }
+    auto getRealGainLoss(long item) const -> double {
+        return StockList::getRealGainLoss(m_stock_a[item]);
+    }
 
-    // required overrides for virtual style list control
-    virtual int getSortIcon(bool asc) const override;
-    virtual wxString OnGetItemText(long item, long col_nr) const override;
-    virtual int OnGetItemImage(long item) const override;
-    virtual wxListItemAttr* OnGetItemAttr(long item) const override;
-    void OnColClick(wxListEvent& event) override;
-
-    void OnMouseRightClick(wxMouseEvent& event);
-    void OnListLeftClick(wxMouseEvent& event);
-    void OnListItemActivated(wxListEvent& event);
-    void OnMarkTransaction(wxCommandEvent& event);
-    void OnMarkAllTransactions(wxCommandEvent& event);
-    void OnListKeyDown(wxListEvent& event);
-    void OnListItemSelected(wxListEvent& event);
+    void onNewStocks(wxCommandEvent& event);
+    void onDeleteStocks(wxCommandEvent& event);
+    void onMoveStocks(wxCommandEvent& event);
+    void onEditStocks(wxCommandEvent& event);
+    void onOrganizeAttachments(wxCommandEvent& event);
+    void onStockWebPage(wxCommandEvent& event);
+    void onOpenAttachment(wxCommandEvent& event);
+    void onMouseRightClick(wxMouseEvent& event);
+    void onListLeftClick(wxMouseEvent& event);
+    void onListItemActivated(wxListEvent& event);
+    void onMarkTransaction(wxCommandEvent& event);
+    void onMarkAllTransactions(wxCommandEvent& event);
+    void onListKeyDown(wxListEvent& event);
+    void onListItemSelected(wxListEvent& event);
 };
-
-inline int StockList::col_sort() { return LIST_ID_DATE; }
-inline long StockList::get_selectedIndex() { return m_selected_row; }
-

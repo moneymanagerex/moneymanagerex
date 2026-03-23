@@ -122,30 +122,26 @@ bool SchedData::is_due() const
     );
 }
 
-// TODO: return std::vector<wxDateTime>
 // TODO: return iterator
-const wxArrayString SchedData::unroll(const wxString end_date, int limit) const
+// Note: end_date is inclusive, i.e., SchedData is unrolled until the end of end_date.
+const std::vector<mmDateTime> SchedData::unroll(const mmDate end_date, int limit) const
 {
-    wxArrayString dates;
+    std::vector<mmDateTime> date_time_a;
 
     Repeat repeat = m_repeat;
-    wxString date = m_date_time.isoDateTime();
-    while (date <= end_date && limit != 0) {
+    mmDateTime date = m_date_time;
+    while (mmDate(date) <= end_date && limit != 0) {
         if (limit > 0)
             --limit;
-        dates.push_back(date);
+        date_time_a.push_back(date);
 
         if (repeat.m_num == 1)
             break;
 
-        wxDateTime date_curr;
-        date_curr.ParseDateTime(date) || date_curr.ParseDate(date);
-        const wxDateTime& date_next = repeat.next_datetime(date_curr);
-        date = date_next.FormatISOCombined();
-
+        date = mmDateTime(repeat.next_datetime(date.getDateTime()));
         repeat.next_repeat();
     }
 
-    return dates;
+    return date_time_a;
 }
 

@@ -19,12 +19,9 @@
 #pragma once
 
 #include "base/defs.h"
-#include "util/mmChoice.h"
-
-#include "table/FieldTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/FieldData.h"
-
-#include "_ModelBase.h"
 
 class FieldModel : public TableFactory<FieldTable, FieldData>
 {
@@ -53,8 +50,8 @@ public:
     ) -> const wxString;
 
 public:
-    // override
-    bool purge_id(int64 field_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 field_id) override;
 
     auto find_id_value_a(const int64 FieldID) -> wxArrayString;
     auto get_udfc_data_n(RefTypeN ref_type, const wxString& udfc) -> const Data*;

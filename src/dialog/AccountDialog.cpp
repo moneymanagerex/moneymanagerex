@@ -56,12 +56,15 @@ enum {
 wxIMPLEMENT_DYNAMIC_CLASS(AccountDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(AccountDialog, wxDialog)
-EVT_BUTTON(wxID_OK, AccountDialog::OnOk)
-EVT_BUTTON(wxID_CANCEL, AccountDialog::OnCancel)
-EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, AccountDialog::OnCurrency)
-EVT_BUTTON(wxID_FILE, AccountDialog::OnAttachments)
-EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + static_cast<int>(acc_img::MAX_ACC_ICON), AccountDialog::OnCustonImage)
-EVT_CHOICE(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS, AccountDialog::OnAccountStatus)
+    EVT_BUTTON(wxID_OK,                            AccountDialog::OnOk)
+    EVT_BUTTON(wxID_CANCEL,                        AccountDialog::OnCancel)
+    EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY,  AccountDialog::OnCurrency)
+    EVT_BUTTON(wxID_FILE,                          AccountDialog::OnAttachments)
+    EVT_MENU_RANGE(
+        wxID_HIGHEST,
+        wxID_HIGHEST + static_cast<int>(acc_img::MAX_ACC_ICON),
+                                                   AccountDialog::OnCustonImage)
+    EVT_CHOICE(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS, AccountDialog::OnAccountStatus)
 wxEND_EVENT_TABLE()
 
 AccountDialog::AccountDialog()
@@ -621,5 +624,5 @@ void AccountDialog::OnOk(wxCommandEvent& /*event*/)
     AccountModel::instance().unsafe_save_data_n(m_account_n);
 
     EndModal(wxID_OK);
-    mmWebApp::MMEX_WebApp_UpdateAccount();
+    mmWebApp::uploadAccount();
 }

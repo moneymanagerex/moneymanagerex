@@ -19,12 +19,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/SchedSplitTable.h"
-#include "data/_DataEnum.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/SchedSplitData.h"
 
-#include "_ModelBase.h"
 #include "TagLinkModel.h"
 
 class SchedSplitModel : public TableFactory<SchedSplitTable, SchedSplitData>
@@ -41,7 +39,7 @@ public:
     static SchedSplitModel& instance();
 
 public:
-    bool purge_id(int64 qp_id) override;
+    virtual bool purge_id(int64 qp_id) override;
 
     auto get_data_amount(const DataA& qp_a) -> double;
     auto find_id_gl_a(int64 qp_id) -> const TagLinkModel::DataA;

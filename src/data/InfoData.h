@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "table/_TableBase.h"
 #include "table/InfoTable.h"
 
 // User-friendly representation of a record in table INFOTABLE_V1.

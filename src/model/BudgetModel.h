@@ -19,15 +19,12 @@
 
 #pragma once
 
-#include "base/defs.h"
 #include <float.h>
-
+#include "base/defs.h"
 #include "util/mmDateRange.h"
-
-#include "table/BudgetTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/BudgetData.h"
-
-#include "_ModelBase.h"
 
 class BudgetModel : public TableFactory<BudgetTable, BudgetData>
 {
@@ -44,9 +41,9 @@ public:
 
     void getBudgetEntry(
         int64 bp_id,
-        std::map<int64, BudgetFreq>& budgetFreq,
-        std::map<int64, double>& budgetAmt,
-        std::map<int64, wxString>& budgetNotes
+        std::map<int64, BudgetFreq>& freq_mCatId,
+        std::map<int64, double>& amount_mCatId,
+        std::map<int64, wxString>& notes_mCatId
     );
     void getBudgetStats(
         std::map<int64, std::map<int, double>>& budgetStats,

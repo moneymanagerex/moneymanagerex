@@ -66,8 +66,6 @@ private:
     bool m_cleanup;
     int m_shift = 0;
     bool m_use_account_specific_filter;
-    wxString u_html_report;
-    bool u_cleanup_mem = false;
 
 private:
     mmGUIFrame*       w_frame              = nullptr;
@@ -86,14 +84,13 @@ private:
     wxBitmapButton*   w_filter_cancel      = nullptr;
     wxChoice*         w_selection_choice   = nullptr;
 
-
 public:
     ReportPanel(
         ReportBase* rb,
         bool cleanup,
-        wxWindow *parent,
-        mmGUIFrame *frame,
-        wxWindowID winid = wxID_ANY,
+        wxWindow* parent_win,
+        mmGUIFrame* frame,
+        wxWindowID win_id = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
@@ -101,26 +98,33 @@ public:
     );
     ~ReportPanel();
 
-public:
-    bool Create(
-        wxWindow *parent, wxWindowID winid,
+    static void loadDateRanges(
+        std::vector<mmDateRange2::Range>* date_range_a,
+        int* date_range_m,
+        bool all_ranges = false
+    );
+
+    // override PanelBase
+    virtual void printPage() override;
+    virtual void sortList() override {}
+
+    auto getReportBase() -> ReportBase* { return m_rb; }
+
+private:
+    bool create(
+        wxWindow* parent_win,
+        wxWindowID win_id,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
         const wxString& name = "ReportPanel"
     );
-    void CreateControls();
+    void createControls();
     void loadFilterSettings();
     void saveFilterSettings();
-    void sortList() {}
     bool saveReportText();
-    ReportBase* getReportBase();
-    void PrintPage();
+    void updateFilter();
 
-public:
-    static void loadDateRanges(std::vector<mmDateRange2::Range>* date_range_a, int* date_range_m, bool all_ranges = false);
-
-private:
     void onNewWindow(wxWebViewEvent& evt);
     void onYearChanged(wxCommandEvent& event);
     void onBudgetChanged(wxCommandEvent & event);
@@ -139,8 +143,4 @@ private:
     void onFilterTextChanged(wxCommandEvent& event);
     void onFilterCancel(wxCommandEvent& event);
     void onSelectionChanged(wxCommandEvent& event);
-
-    void updateFilter();
 };
-
-inline ReportBase* ReportPanel::getReportBase() { return m_rb; }

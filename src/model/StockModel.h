@@ -20,11 +20,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/StockTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/StockData.h"
 
-#include "_ModelBase.h"
 #include "AccountModel.h"
 
 class StockModel : public TableFactory<StockTable, StockData>
@@ -41,8 +40,8 @@ public:
     static StockModel& instance();
 
 public:
-    // override
-    bool purge_id(int64 id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 id) override;
 
     auto get_id_name(int64 stock_id) -> const wxString;
     auto find_last_hist_date(const Data& stock_d) -> const mmDate;

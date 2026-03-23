@@ -472,7 +472,7 @@ int mmGUIApp::OnExit()
     wxLogDebug("RapidJson\n%s", rj);
 
     UsageData new_usage_d = UsageData();
-    new_usage_d.m_date = wxDate::Today().FormatISODate();
+    new_usage_d.m_date = mmDate::today().isoDate();
     new_usage_d.m_json_content = rj;
     UsageModel::instance().add_data_n(new_usage_d);
 

@@ -118,17 +118,14 @@ void mmToolbarArt::DrawButton(wxDC& dc, wxWindow* wnd, const wxAuiToolBarItem& i
     bmpX = rect.x + (rect.width / 2) - (bmpSize.x / 2);
     bmpY = rect.y + (rect.height / 2) - (bmpSize.y / 2);
 
-    if (!(item.GetState() & wxAUI_BUTTON_STATE_DISABLED))
-    {
+    if (!(item.GetState() & wxAUI_BUTTON_STATE_DISABLED)) {
 
-        if (item.GetState() & wxAUI_BUTTON_STATE_PRESSED)
-        {
+        if (item.GetState() & wxAUI_BUTTON_STATE_PRESSED) {
             dc.SetPen(wxPen(m_highlightColour));
             dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(dark ? 10 : 140)));
             dc.DrawRectangle(rect);
         }
-        else if (item.GetState() & wxAUI_BUTTON_STATE_HOVER)
-        {
+        else if (item.GetState() & wxAUI_BUTTON_STATE_HOVER) {
             dc.SetPen(wxPen(m_highlightColour));
             dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(dark ? 40 : 170)));
             dc.DrawRectangle(rect);
@@ -254,14 +251,8 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF,     mmGUIFrame::OnImportQIF)
 
 EVT_MENU_RANGE(
     MENU_TREEPOPUP_ACCOUNT_VIEWALL,
-    MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,
-    mmGUIFrame::OnViewAccountsTemporaryChange
-)
-EVT_MENU_RANGE(
-    MENU_LANG + 1,
-    MENU_LANG_MAX,
-    mmGUIFrame::OnChangeGUILanguage
-)
+    MENU_TREEPOPUP_ACCOUNT_VIEWCLOSED,         mmGUIFrame::OnViewAccountsTemporaryChange)
+EVT_MENU_RANGE(MENU_LANG + 1, MENU_LANG_MAX,   mmGUIFrame::OnChangeGUILanguage)
 
 /*Automatic processing of repeat transactions*/
 EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID,   mmGUIFrame::OnAutoRepeatTransactionsTimer)
@@ -550,10 +541,10 @@ void mmGUIFrame::setNavTreeSectionById(int sectionid)
 }
 
 
-void mmGUIFrame::selectNavTreeItem(const wxString& accountName)
+void mmGUIFrame::selectNavTreeItem(const wxString& account_name)
 {
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    if (!findAndSelectNavTreeItem(m_nav_tree_ctrl->GetRootItem(), accountName)) {
+    if (!findAndSelectNavTreeItem(m_nav_tree_ctrl->GetRootItem(), account_name)) {
         m_nav_tree_ctrl->SelectItem(m_nav_tree_ctrl->GetRootItem());
     }
     m_nav_tree_ctrl->SetEvtHandlerEnabled(true);
@@ -593,7 +584,7 @@ bool mmGUIFrame::findAndSelectNavTreeItem(const wxTreeItemId& treeitem, const wx
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
     // WebApp check
-    if (mmWebApp::WebApp_CheckEnabled()) {
+    if (mmWebApp::isEnabled()) {
         if (OnRefreshWebApp(true)) {
             mmWebAppDialog dlg(this, true);
             dlg.ShowModal();
@@ -783,7 +774,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_ASSETS)->Enable(enable);
     menuBar_->FindItem(MENU_BUDGETSETUPDIALOG)->Enable(enable);
     menuBar_->FindItem(MENU_TRANSACTIONREPORT)->Enable(enable);
-    menuBar_->FindItem(MENU_REFRESH_WEBAPP)->Enable(enable && mmWebApp::WebApp_CheckEnabled());
+    menuBar_->FindItem(MENU_REFRESH_WEBAPP)->Enable(enable && mmWebApp::isEnabled());
 
     menuBar_->FindItem(MENU_VIEW_HIDE_SHARE_ACCOUNTS)->Enable(enable);
     menuBar_->FindItem(MENU_VIEW_HIDE_DELETED_TRANSACTIONS)->Enable(enable);
@@ -3104,16 +3095,16 @@ void mmGUIFrame::refreshPanelData()
         wxDynamicCast(panelCurrent_, JournalPanel)->refreshList();
         break;
     case mmID_STOCKS:
-        wxDynamicCast(panelCurrent_, StockPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, StockPanel)->refreshList();
         break;
     case mmID_ASSETS:
-        wxDynamicCast(panelCurrent_, AssetPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, AssetPanel)->refreshList();
         break;
     case mmID_BILLS:
-        wxDynamicCast(panelCurrent_, SchedPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, SchedPanel)->refreshList();
         break;
     case mmID_BUDGET:
-        wxDynamicCast(panelCurrent_, BudgetPanel)->RefreshList();
+        wxDynamicCast(panelCurrent_, BudgetPanel)->refreshList();
         break;
     case mmID_REPORTS:
         if (activeReport_) {
@@ -3342,9 +3333,9 @@ void mmGUIFrame::OnDateRangeManager(wxCommandEvent& WXUNUSED(event))
 
 bool mmGUIFrame::OnRefreshWebApp(bool is_silent)
 {
-    if (mmWebApp::MMEX_WebApp_UpdateAccount()
-        && mmWebApp::MMEX_WebApp_UpdateCategory()
-        && mmWebApp::MMEX_WebApp_UpdatePayee()) {
+    if (mmWebApp::uploadAccount()
+        && mmWebApp::uploadCategory()
+        && mmWebApp::uploadPayee()) {
         if (!is_silent) {
             wxMessageBox(_t("Accounts, Payees, and Categories Updated"), _t("Refresh WebApp"), wxOK | wxICON_INFORMATION);
         }
@@ -3386,28 +3377,31 @@ void mmGUIFrame::OnSimpleURLOpen(wxCommandEvent& event)
 {
     wxString url;
     switch (event.GetId()) {
-    case MENU_FACEBOOK: url = mmex::weblink::Facebook; break;
-    case MENU_TWITTER: url = mmex::weblink::Twitter; break;
-    case MENU_WEBSITE: url = mmex::weblink::WebSite; break;
-    case MENU_WIKI: url = mmex::weblink::Wiki; break;
-    case MENU_DONATE: url = mmex::weblink::Donate; break;
-    case MENU_CROWDIN: url = mmex::weblink::Crowdin; break;
-    case MENU_REPORTISSUES: url = mmex::weblink::Forum; break;
-    case MENU_APPLE_APPSTORE: url = mmex::weblink::AppleAppStore; break;
-    case MENU_GOOGLEPLAY: url = mmex::weblink::GooglePlay; break;
-    case MENU_BUY_COFFEE: url = mmex::weblink::SquareCashGuan; break;
-    case MENU_RSS: url = mmex::weblink::NewsRSS; break;
-    case MENU_YOUTUBE: url = mmex::weblink::YouTube; break;
-    case MENU_GITHUB: url = mmex::weblink::GitHub; break;
-    case MENU_SLACK: url = mmex::weblink::Slack; break;
+    case MENU_FACEBOOK:       url = mmex::weblink::Facebook;       break;
+    case MENU_TWITTER:        url = mmex::weblink::Twitter;        break;
+    case MENU_WEBSITE:        url = mmex::weblink::WebSite;        break;
+    case MENU_WIKI:           url = mmex::weblink::Wiki;           break;
+    case MENU_DONATE:         url = mmex::weblink::Donate;         break;
+    case MENU_CROWDIN:        url = mmex::weblink::Crowdin;        break;
+    case MENU_REPORTISSUES:   url = mmex::weblink::Forum;          break;
+    case MENU_APPLE_APPSTORE: url = mmex::weblink::AppleAppStore;  break;
+    case MENU_GOOGLEPLAY:     url = mmex::weblink::GooglePlay;     break;
+    case MENU_BUY_COFFEE:     url = mmex::weblink::SquareCashGuan; break;
+    case MENU_RSS:            url = mmex::weblink::NewsRSS;        break;
+    case MENU_YOUTUBE:        url = mmex::weblink::YouTube;        break;
+    case MENU_GITHUB:         url = mmex::weblink::GitHub;         break;
+    case MENU_SLACK:          url = mmex::weblink::Slack;          break;
     }
-    if (!url.IsEmpty()) wxLaunchDefaultBrowser(url);
+    if (!url.IsEmpty())
+        wxLaunchDefaultBrowser(url);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
-    SettingModel::instance().setString(INIDB_NEWS_LAST_READ_DATE, wxDate::Today().FormatISODate());
+    SettingModel::instance().setString(INIDB_NEWS_LAST_READ_DATE,
+        mmDate::today().isoDate()
+    );
     wxLaunchDefaultBrowser(mmex::weblink::News);
 
     int toolbar_icon_size = PrefModel::instance().getToolbarIconSize();
@@ -3440,7 +3434,7 @@ void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnPrintPage(wxCommandEvent& WXUNUSED(event))
 {
-    panelCurrent_->PrintPage();
+    panelCurrent_->printPage();
 }
 
 //----------------------------------------------------------------------------
@@ -3497,7 +3491,7 @@ void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
     );
 
     if (!fileName.empty()) {
-        wxString htmlText = panelCurrent_->BuildPage();
+        wxString htmlText = panelCurrent_->buildPage();
         correctEmptyFileExt("html", fileName);
         wxFileOutputStream output(fileName);
         wxTextOutputStream text(output);
@@ -3612,8 +3606,7 @@ void mmGUIFrame::createBillsDeposits()
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_ && panelCurrent_->GetId() == mmID_BILLS) {
-        SchedPanel* billsDepositsPanel = wxDynamicCast(panelCurrent_, SchedPanel);
-        billsDepositsPanel->RefreshList();
+        wxDynamicCast(panelCurrent_, SchedPanel)->refreshList();
     }
     else {
         DoWindowsFreezeThaw(homePanel_);
@@ -3651,8 +3644,7 @@ void mmGUIFrame::createBudgetingPage(int64 budgetYearID)
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_ && panelCurrent_->GetId() == mmID_BUDGET) {
-        BudgetPanel* budgetingPage = wxDynamicCast(panelCurrent_, BudgetPanel);
-        budgetingPage->DisplayBudgetingDetails(budgetYearID);
+        wxDynamicCast(panelCurrent_, BudgetPanel)->displayBudgetingDetails(budgetYearID);
     }
     else {
         DoWindowsFreezeThaw(homePanel_);
@@ -3739,7 +3731,7 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
     m_nav_tree_ctrl->SetFocus();
 }
 
-void mmGUIFrame::createStocksAccountPage(int64 accountID)
+void mmGUIFrame::createStocksAccountPage(int64 account_id)
 {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -3751,13 +3743,12 @@ void mmGUIFrame::createStocksAccountPage(int64 accountID)
     const auto time = wxDateTime::UNow();
 
     if (panelCurrent_ && panelCurrent_->GetId() == mmID_STOCKS) {
-        StockPanel* sp = wxDynamicCast(panelCurrent_, StockPanel);
-        sp->DisplayAccountDetails(accountID);
+        wxDynamicCast(panelCurrent_, StockPanel)->displayAccountDetails(account_id);
     }
     else {
         DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new StockPanel(accountID, this, homePanel_);
+        panelCurrent_ = new StockPanel(account_id, this, homePanel_);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -3770,8 +3761,6 @@ void mmGUIFrame::createStocksAccountPage(int64 accountID)
     UsageModel::instance().append_usage(wxString::FromUTF8(json_buffer.GetString()));
     menuPrintingEnable(true);
 }
-
-//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnGotoAccount(wxCommandEvent& event)
 {

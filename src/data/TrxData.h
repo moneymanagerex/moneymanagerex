@@ -21,7 +21,6 @@
 #include "util/mmDateTime.h"
 #include "util/mmDate.h"
 #include "_DataEnum.h"
-#include "table/_TableBase.h"
 #include "table/TrxTable.h"
 
 // User-friendly representation of a record in table CHECKINGACCOUNT_V1.

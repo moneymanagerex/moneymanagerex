@@ -21,14 +21,13 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/TrxLinkTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/TrxLinkData.h"
 
-#include "_ModelBase.h"
-#include "TrxModel.h"
-#include "StockModel.h"
 #include "AssetModel.h"
+#include "StockModel.h"
+#include "TrxModel.h"
 #include "AttachmentModel.h"
 
 class TrxLinkModel : public TableFactory<TrxLinkTable, TrxLinkData>

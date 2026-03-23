@@ -34,12 +34,15 @@ Copyright (C) 2016, 2020 - 2022 Nikolay Akimov
 wxIMPLEMENT_DYNAMIC_CLASS(FieldManager, wxDialog);
 
 wxBEGIN_EVENT_TABLE( FieldManager, wxDialog )
-    EVT_BUTTON(wxID_OK, FieldManager::OnClose)
-    EVT_BUTTON(wxID_APPLY, FieldManager::OnMagicButton)
+    EVT_BUTTON(wxID_OK,                      FieldManager::OnClose)
+    EVT_BUTTON(wxID_APPLY,                   FieldManager::OnMagicButton)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, FieldManager::OnListItemSelected)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, FieldManager::OnItemRightClick)
-    EVT_MENU_RANGE(MENU_NEW_FIELD, MENU_UPDATE_FIELD, FieldManager::OnMenuSelected)
-    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, FieldManager::OnListItemActivated)
+    EVT_MENU_RANGE(
+        MENU_NEW_FIELD,
+        MENU_UPDATE_FIELD,                   FieldManager::OnMenuSelected)
+    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY,    FieldManager::OnListItemActivated)
+
 wxEND_EVENT_TABLE()
 
 

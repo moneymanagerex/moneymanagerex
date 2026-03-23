@@ -20,15 +20,14 @@
 #pragma once
 
 #include <map>
+#include <set>
 
 #include "base/defs.h"
-#include "util/mmChoice.h"
-
-#include "table/CurrencyTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/CurrencyData.h"
 
-#include "_ModelBase.h"
-#include "InfoModel.h" // detect base currency setting BASECURRENCYID
+#include "InfoModel.h"
 
 class CurrencyModel : public TableFactory<CurrencyTable, CurrencyData>
 {
@@ -46,13 +45,13 @@ public:
     // TODO: add to virtual methods in TableFactory
     int  find_id_dep_c(int64 currency_id);
 
-    // override
-    bool purge_id(int64 currency_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 currency_id) override;
 
     auto get_base_data_n() -> const Data*;
     bool get_base_symbol(wxString& symbol);
     auto get_symbol_data_n(const wxString& symbol) -> const Data*;
-    auto find_id_date_m(int64 CurrencyID) -> std::map<wxDateTime, int>;
+    auto find_id_date_m(int64 currency_id) -> std::set<mmDate>;
     auto find_all_name_a() -> const wxArrayString;
     auto find_all_symbol_a() -> const wxArrayString;
     auto find_all_name_id_m() -> const std::map<wxString, int64>;

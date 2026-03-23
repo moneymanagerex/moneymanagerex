@@ -38,41 +38,45 @@ Copyright (C) 2026 Klaus Wich
 #include "SchedPanel.h"
 
 wxBEGIN_EVENT_TABLE(DashboardPanel, wxPanel)
-    EVT_WEBVIEW_NAVIGATING(wxID_ANY, DashboardPanel::OnLinkClicked)
+    EVT_WEBVIEW_NAVIGATING(wxID_ANY, DashboardPanel::onLinkClicked)
 wxEND_EVENT_TABLE()
 
-DashboardPanel::DashboardPanel(wxWindow *parent, mmGUIFrame *frame
-    , wxWindowID winid
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style
-    , const wxString& name)
-    : m_frame(frame)
+DashboardPanel::DashboardPanel(
+    wxWindow* parent_win,
+    mmGUIFrame* frame,
+    wxWindowID win_id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) :
+    w_frame(frame)
 {
-    Create(parent, winid, pos, size, style, name);
-    m_frame->menuPrintingEnable(true);
+    create(parent_win, win_id, pos, size, style, name);
+    w_frame->menuPrintingEnable(true);
 }
 
 DashboardPanel::~DashboardPanel()
 {
-    m_frame->menuPrintingEnable(false);
+    w_frame->menuPrintingEnable(false);
     clearVFprintedFiles("hp");
 }
 
-wxString DashboardPanel::GetHomePageText() const
+wxString DashboardPanel::getHomePageText() const
 {
     return m_templateText;
 }
 
-bool DashboardPanel::Create(wxWindow *parent
-    , wxWindowID winid
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style
-    , const wxString& name)
-{
+bool DashboardPanel::create(
+    wxWindow* parent_win,
+    wxWindowID win_id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    PanelBase::Create(parent, winid, pos, size, style, name);
+    PanelBase::Create(parent_win, win_id, pos, size, style, name);
 
     createControls();
     GetSizer()->Fit(this);
@@ -85,15 +89,14 @@ bool DashboardPanel::Create(wxWindow *parent
     return true;
 }
 
-void  DashboardPanel::createHtml()
+void DashboardPanel::createHtml()
 {
     // Read template from file
     m_templateText.clear();
     const wxString template_path = mmex::getPathResource(mmex::HOME_PAGE_TEMPLATE);
     wxFileInputStream input(template_path);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
-    while (input.IsOk() && !input.Eof())
-    {
+    while (input.IsOk() && !input.Eof()) {
         m_templateText += text.ReadLine() + "\n";
     }
 
@@ -106,45 +109,45 @@ void DashboardPanel::createControls()
 {
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
-    browser_ = wxWebView::New();
+    w_browser = wxWebView::New();
 #ifdef __WXMAC__
     // With WKWebView handlers need to be registered before creation
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser_->Create(this, mmID_BROWSER);
+    w_browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    w_browser->Create(this, mmID_BROWSER);
 #else
-    browser_->Create(this, mmID_BROWSER);
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    w_browser->Create(this, mmID_BROWSER);
+    w_browser->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
 #endif
 #ifndef _DEBUG
-    browser_->EnableContextMenu(false);
+    w_browser->EnableContextMenu(false);
 #endif
 
-    Bind(wxEVT_WEBVIEW_NEWWINDOW, &DashboardPanel::OnNewWindow, this, mmID_BROWSER);
+    Bind(wxEVT_WEBVIEW_NEWWINDOW, &DashboardPanel::onNewWindow, this, mmID_BROWSER);
 
-    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
-    mmThemeAutoColour(browser_, false);
-}
-
-void DashboardPanel::PrintPage()
-{
-    browser_->Print();
+    itemBoxSizer2->Add(w_browser, 1, wxGROW | wxALL, 0);
+    mmThemeAutoColour(w_browser, false);
 }
 
 void DashboardPanel::insertDataIntoTemplate()
 {
-    m_frames["HTMLSCALE"] = wxString::Format("%d", PrefModel::instance().getHtmlScale());
+    m_htmlText_mLabel["HTMLSCALE"] = wxString::Format("%d",
+        PrefModel::instance().getHtmlScale()
+    );
 
     // Get curreny details to pass to report for Apexcharts
-    int64 baseCurrencyID = PrefModel::instance().getBaseCurrencyID();
-    const CurrencyData* baseCurrency = CurrencyModel::instance().get_id_data_n(baseCurrencyID);
+    int64 base_currency_id = PrefModel::instance().getBaseCurrencyID();
+    const CurrencyData* base_currency_n = CurrencyModel::instance().get_id_data_n(
+        base_currency_id
+    );
 
     // Get locale to pass to reports for Apexcharts
-    wxString locale = InfoModel::instance().getString("LOCALE", "en-US"); // Stay blank of not set, currency override handled in Apexcharts call.
+    // Stay blank of not set, currency override handled in Apexcharts call.
+    wxString locale = InfoModel::instance().getString("LOCALE", "en-US");
     if (locale == "") {
         locale = "en-US";
     }
     locale.Replace("_", "-");
-    m_frames["LOCALE"] = locale;
+    m_htmlText_mLabel["LOCALE"] = locale;
 
     double tBalance = 0.0, tAccountBalance = 0.0, tReconciled = 0.0;
 
@@ -163,19 +166,20 @@ void DashboardPanel::insertDataIntoTemplate()
                 isAccount = true;
                 accountCount++;
                 AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
-                m_frames[AccountsInfo] = R"(<div class="shadow">)";
+                m_htmlText_mLabel[AccountsInfo] = R"(<div class="shadow">)";
             }
-            m_frames[AccountsInfo] += account_stats.displayAccounts(tAccountBalance, tReconciled, navinfo->type);
+            m_htmlText_mLabel[AccountsInfo] +=
+                account_stats.displayAccounts(tAccountBalance, tReconciled, navinfo->type);
         }
         else if (navinfo->type == NavigatorTypes::TYPE_ID_INVESTMENT) {
             if (isAccount) {
-               m_frames[AccountsInfo] += "</div>";
+               m_htmlText_mLabel[AccountsInfo] += "</div>";
             }
             isAccount = false;
             accountCount++;
             AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
 
-            m_frames[AccountsInfo]= stocks_widget.getHTMLText();
+            m_htmlText_mLabel[AccountsInfo]= stocks_widget.getHTMLText();
             tBalance += stocks_widget.get_total();
 
             account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_SHARES);
@@ -183,25 +187,25 @@ void DashboardPanel::insertDataIntoTemplate()
         }
         else if (navinfo->type == NavigatorTypes::TYPE_ID_ASSET) {
             if (isAccount) {
-               m_frames[AccountsInfo] += "</div>";
+               m_htmlText_mLabel[AccountsInfo] += "</div>";
             }
             isAccount = false;
             accountCount++;
             AccountsInfo = wxString::Format("ACCOUNTS_%d", accountCount);
 
             htmlWidgetAssets assets;
-            m_frames[AccountsInfo] = assets.getHTMLText();
+            m_htmlText_mLabel[AccountsInfo] = assets.getHTMLText();
             tBalance += AssetModel::instance().find_all_balance();
             account_stats.displayAccounts(tBalance, tReconciled, NavigatorTypes::TYPE_ID_ASSET);
         }
         navinfo = NavigatorTypes::instance().getNextActiveEntry(navinfo);
     }
     if (isAccount) {
-        m_frames[AccountsInfo] +="</div>";
+        m_htmlText_mLabel[AccountsInfo] +="</div>";
     }
 
     htmlWidgetGrandTotals grand_totals;
-    m_frames["GRAND_TOTAL"] = grand_totals.getHTMLText(
+    m_htmlText_mLabel["GRAND_TOTAL"] = grand_totals.getHTMLText(
         tBalance + tAccountBalance,
         PrefModel::instance().getShowReconciledInHomePage() ? tReconciled : tAccountBalance,
         AssetModel::instance().find_all_balance(),
@@ -210,29 +214,42 @@ void DashboardPanel::insertDataIntoTemplate()
 
     //
     htmlWidgetIncomeVsExpenses income_vs_expenses;
-    m_frames["INCOME_VS_EXPENSES"] = income_vs_expenses.getHTMLText();
-    m_frames["INCOME_VS_EXPENSES_FORECOLOR"] = mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR);
-    m_frames["INCOME_VS_EXPENSES_COLORS"] = wxString::Format("'%s', '%s'", mmThemeMetaString(meta::COLOR_REPORT_CREDIT)
-                                                , mmThemeMetaString(meta::COLOR_REPORT_DEBIT));
-    m_frames["INCOME_VS_EXPENSES_CURR_PFX_SYMBOL"] = baseCurrency ? baseCurrency->m_prefix_symbol : "$";
-    m_frames["INCOME_VS_EXPENSES_CURR_SFX_SYMBOL"] = baseCurrency ? baseCurrency->m_suffix_symbol : "";
-    m_frames["INCOME_VS_EXPENSES_CURR_GROUP_SEPARATOR"] = baseCurrency ? baseCurrency->m_group_separator : ",";
-    m_frames["INCOME_VS_EXPENSES_CURR_DECIMAL_POINT"] = baseCurrency ? baseCurrency->m_decimal_point : ".";
-    m_frames["INCOME_VS_EXPENSES_CURR_SCALE"] = baseCurrency ? wxString::Format("%d", static_cast<int>(log10(baseCurrency->m_scale.GetValue()))) : "";
-
+    m_htmlText_mLabel["INCOME_VS_EXPENSES"] = income_vs_expenses.getHTMLText();
+    m_htmlText_mLabel["INCOME_VS_EXPENSES_FORECOLOR"] =
+        mmThemeMetaString(meta::COLOR_REPORT_FORECOLOR);
+    m_htmlText_mLabel["INCOME_VS_EXPENSES_COLORS"] =
+        wxString::Format("'%s', '%s'",
+            mmThemeMetaString(meta::COLOR_REPORT_CREDIT),
+            mmThemeMetaString(meta::COLOR_REPORT_DEBIT)
+        );
+    m_htmlText_mLabel["INCOME_VS_EXPENSES_CURR_PFX_SYMBOL"] = base_currency_n
+        ? base_currency_n->m_prefix_symbol
+        : "$";
+    m_htmlText_mLabel["INCOME_VS_EXPENSES_CURR_SFX_SYMBOL"] = base_currency_n
+        ? base_currency_n->m_suffix_symbol
+        : "";
+    m_htmlText_mLabel["INCOME_VS_EXPENSES_CURR_GROUP_SEPARATOR"] = base_currency_n
+        ? base_currency_n->m_group_separator
+        : ",";
+    m_htmlText_mLabel["INCOME_VS_EXPENSES_CURR_DECIMAL_POINT"] = base_currency_n
+        ? base_currency_n->m_decimal_point
+        : ".";
+    m_htmlText_mLabel["INCOME_VS_EXPENSES_CURR_SCALE"] = base_currency_n
+        ? wxString::Format("%d", static_cast<int>(log10(base_currency_n->m_scale.GetValue())))
+        : "";
 
     htmlWidgetBillsAndDeposits bills_and_deposits(_t("Upcoming Transactions"));
-    m_frames["BILLS_AND_DEPOSITS"] = bills_and_deposits.getHTMLText();
+    m_htmlText_mLabel["BILLS_AND_DEPOSITS"] = bills_and_deposits.getHTMLText();
 
     htmlWidgetTop7Categories top_trx;
-    m_frames["TOP_CATEGORIES"] = top_trx.getHTMLText();
+    m_htmlText_mLabel["TOP_CATEGORIES"] = top_trx.getHTMLText();
 
     htmlWidgetStatistics stat_widget;
-    m_frames["STATISTICS"] = stat_widget.getHTMLText();
-    m_frames["TOGGLES"] = getToggles();
+    m_htmlText_mLabel["STATISTICS"] = stat_widget.getHTMLText();
+    m_htmlText_mLabel["TOGGLES"] = getToggles();
 
     htmlWidgetCurrency currency_rates;
-    m_frames["CURRENCY_RATES"] = currency_rates.getHtmlText();
+    m_htmlText_mLabel["CURRENCY_RATES"] = currency_rates.getHtmlText();
 }
 
 const wxString DashboardPanel::getToggles()
@@ -243,46 +260,39 @@ const wxString DashboardPanel::getToggles()
 
 void DashboardPanel::fillData()
 {
-    for (const auto& entry : m_frames)
-    {
+    for (const auto& entry : m_htmlText_mLabel) {
         m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
     }
 
     const auto name = getVFname4print("hp", m_templateText);
-    browser_->LoadURL(name);
+    w_browser->LoadURL(name);
 }
 
-void DashboardPanel::OnNewWindow(wxWebViewEvent& evt)
+void DashboardPanel::onNewWindow(wxWebViewEvent& evt)
 {
     const wxString uri = evt.GetURL();
     wxString sData = "";
     int cmdInt = -1;
 
     wxRegEx pattern(R"(^(https?:)|(file:)\/\/)");
-    if (pattern.Matches(uri))
-    {
+    if (pattern.Matches(uri)) {
         wxLaunchDefaultBrowser(uri);
         evt.Veto();
     }
-    else if (uri.StartsWith("memory:", &sData))
-    {
+    else if (uri.StartsWith("memory:", &sData)) {
         wxLaunchDefaultBrowser(sData);
         evt.Veto();
     }
-    else if (uri.StartsWith("assets:", &sData))
-    {
+    else if (uri.StartsWith("assets:", &sData)) {
         cmdInt = NavigatorTypes::TYPE_ID_ASSET;
     }
-    else if (uri.StartsWith("billsdeposits:", &sData))
-    {
+    else if (uri.StartsWith("billsdeposits:", &sData)) {
         cmdInt = NavigatorTypes::NAV_ENTRY_SCHEDULED_TRANSACTIONS;
     }
-    else if (uri.StartsWith("acct:", &sData))
-    {
+    else if (uri.StartsWith("acct:", &sData)) {
         cmdInt = NavigatorTypes::TYPE_ID_CHECKING;
     }
-    else if (uri.StartsWith("stock:", &sData))
-    {
+    else if (uri.StartsWith("stock:", &sData)) {
         cmdInt = NavigatorTypes::TYPE_ID_INVESTMENT;
     }
 
@@ -290,18 +300,18 @@ void DashboardPanel::OnNewWindow(wxWebViewEvent& evt)
         wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
         event.SetInt(cmdInt);
         event.SetString(sData);
-        wxPostEvent(m_frame, event);
+        wxPostEvent(w_frame, event);
         evt.Veto();  // Inhibit a wxEVT_WEBVIEW_NEWWINDOW_FEATURES event, which will crash!
     }
 }
 
-void DashboardPanel::OnLinkClicked(wxWebViewEvent& event)
+void DashboardPanel::onLinkClicked(wxWebViewEvent& event)
 {
     const wxString& url = wxURI::Unescape(event.GetURL());
     if (!url.Contains("#"))
         return;
 
-    wxLogDebug("{{{ DashboardPanel::OnLinkClicked()");
+    wxLogDebug("{{{ DashboardPanel::onLinkClicked()");
     wxString name = url.AfterLast('#');
     wxLogDebug("Name = %s", name);
 

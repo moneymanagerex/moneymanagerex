@@ -121,11 +121,14 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
 
         grid_sizer_custom->Add(Description, g_flagsH);
 
-        switch (field_d.m_type_n.id_n()) {
-        case FieldTypeN::e_string:
+        switch (field_d.m_type_n.id_n())
         {
+        case FieldTypeN::e_string: {
             const auto& data = fv_d.m_content;
-            wxTextCtrl* CustomString = new wxTextCtrl(scrolled_window, controlID, data, wxDefaultPosition, wxDefaultSize);
+            wxTextCtrl* CustomString = new wxTextCtrl(
+                scrolled_window, controlID, data,
+                wxDefaultPosition, wxDefaultSize
+            );
             mmToolTip(CustomString, FieldModel::getTooltip(field_d.m_properties));
             if (FieldModel::getAutocomplete(field_d.m_properties)) {
                 const wxArrayString& values = FieldModel::instance().find_id_value_a(field_d.m_id);
@@ -138,12 +141,14 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
                     SetWidgetChanged(controlID, data);
             }
 
-            CustomString->Connect(controlID, wxEVT_TEXT, wxCommandEventHandler(FieldValueDialog::OnStringChanged), nullptr, this);
+            CustomString->Connect(controlID, wxEVT_TEXT,
+                wxCommandEventHandler(FieldValueDialog::OnStringChanged),
+                nullptr, this
+            );
             break;
         }
         case FieldTypeN::e_integer:
-        case FieldTypeN::e_decimal:
-        {
+        case FieldTypeN::e_decimal: {
             int digitScale = FieldModel::getDigitScale(field_d.m_properties);
             wxString content = cleanseNumberString(fv_d.m_content, digitScale > 0);
 
@@ -172,16 +177,21 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
 
             break;
         }
-        case FieldTypeN::e_boolean:
-        {
-            wxRadioButton* CustomBooleanF = new wxRadioButton(scrolled_window, controlID
-                , _t("False"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
-            wxRadioButton* CustomBooleanT = new wxRadioButton(scrolled_window, controlID + 1
-                , _t("True"), wxDefaultPosition, wxDefaultSize);
+        case FieldTypeN::e_boolean: {
+            wxRadioButton* CustomBooleanF = new wxRadioButton(scrolled_window, controlID,
+                _t("False"),
+                wxDefaultPosition, wxDefaultSize, wxRB_GROUP
+            );
+            wxRadioButton* CustomBooleanT = new wxRadioButton(scrolled_window, controlID + 1,
+                _t("True"),
+                wxDefaultPosition, wxDefaultSize
+            );
 
             const auto& data = fv_d.m_content;
             if (!data.empty()) {
-                data == "TRUE" ? CustomBooleanT->SetValue(true) : CustomBooleanF->SetValue(true);
+                data == "TRUE"
+                    ? CustomBooleanT->SetValue(true)
+                    : CustomBooleanF->SetValue(true);
                 if (nonDefaultData) 
                     SetWidgetChanged(controlID, data);
             }
@@ -193,32 +203,41 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
             boolsizer->Add(CustomBooleanT);
             grid_sizer_custom->Add(boolsizer, g_flagsExpand);
 
-            CustomBooleanF->Connect(controlID, wxEVT_RADIOBUTTON, wxCommandEventHandler(FieldValueDialog::OnRadioButtonChanged), nullptr, this);
-            CustomBooleanT->Connect(controlID + 1, wxEVT_RADIOBUTTON, wxCommandEventHandler(FieldValueDialog::OnRadioButtonChanged), nullptr, this);
+            CustomBooleanF->Connect(controlID,
+                wxEVT_RADIOBUTTON,
+                wxCommandEventHandler(FieldValueDialog::OnRadioButtonChanged),
+                nullptr, this
+            );
+            CustomBooleanT->Connect(controlID + 1,
+                wxEVT_RADIOBUTTON,
+                wxCommandEventHandler(FieldValueDialog::OnRadioButtonChanged),
+                nullptr, this
+            );
 
             break;
         }
-        case FieldTypeN::e_date:
-        {
-            wxDate value;
-            if (!value.ParseDate(fv_d.m_content)) {
-                value = wxDate::Today();
-            }
-            else {
-                if (nonDefaultData) 
-                    SetWidgetChanged(controlID, value.FormatISODate());
+        case FieldTypeN::e_date: {
+            mmDateN date_n = mmDateN(fv_d.m_content);
+            if (date_n.has_value() && nonDefaultData) {
+                SetWidgetChanged(controlID, date_n.value().isoDate());
             }
 
-            mmDatePickerCtrl* CustomDate = new mmDatePickerCtrl(scrolled_window, controlID, value);
+            mmDatePickerCtrl* CustomDate = new mmDatePickerCtrl(
+                scrolled_window, controlID,
+                date_n.value_or(mmDate::today()).getDateTime()
+            );
             mmToolTip(CustomDate, FieldModel::getTooltip(field_d.m_properties));
             grid_sizer_custom->Add(CustomDate->mmGetLayout(false));
 
-            CustomDate->Connect(controlID, wxEVT_DATE_CHANGED, wxDateEventHandler(FieldValueDialog::OnDateChanged), nullptr, this);
+            CustomDate->Connect(controlID,
+                wxEVT_DATE_CHANGED,
+                wxDateEventHandler(FieldValueDialog::OnDateChanged),
+                nullptr, this
+            );
 
             break;
         }
-        case FieldTypeN::e_time:
-        {
+        case FieldTypeN::e_time: {
             wxDateTime value;
             if (!value.ParseTime(fv_d.m_content)) {
                 value.ParseTime("00:00:00");
@@ -228,17 +247,23 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
                     SetWidgetChanged(controlID, value.FormatISOTime());
             }
 
-            wxTimePickerCtrl* CustomTime = new wxTimePickerCtrl(scrolled_window, controlID
-                , value, wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
+            wxTimePickerCtrl* CustomTime = new wxTimePickerCtrl(
+                scrolled_window, controlID,
+                value,
+                wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN
+            );
             mmToolTip(CustomTime, FieldModel::getTooltip(field_d.m_properties));
             grid_sizer_custom->Add(CustomTime, g_flagsExpand);
 
-            CustomTime->Connect(controlID, wxEVT_TIME_CHANGED, wxDateEventHandler(FieldValueDialog::OnTimeChanged), nullptr, this);
+            CustomTime->Connect(controlID,
+                wxEVT_TIME_CHANGED,
+                wxDateEventHandler(FieldValueDialog::OnTimeChanged),
+                nullptr, this
+            );
 
             break;
         }
-        case FieldTypeN::e_single_choice:
-        {
+        case FieldTypeN::e_single_choice: {
             wxArrayString Choices = FieldModel::getChoices(field_d.m_properties);
             Choices.Sort();
 
@@ -259,30 +284,39 @@ bool FieldValueDialog::FillCustomFields(wxBoxSizer* box_sizer)
                     SetWidgetChanged(controlID, data);
             }
 
-            CustomChoice->Connect(controlID, wxEVT_CHOICE, wxCommandEventHandler(FieldValueDialog::OnSingleChoice), nullptr, this);
+            CustomChoice->Connect(controlID,
+                wxEVT_CHOICE,
+                wxCommandEventHandler(FieldValueDialog::OnSingleChoice),
+                nullptr, this
+            );
             break;
         }
-        case FieldTypeN::e_multi_choice:
-        {
+        case FieldTypeN::e_multi_choice: {
             const auto& content = fv_d.m_content;
             const auto& name = field_d.m_description;
 
-            wxButton* multi_choice_button = new wxButton(scrolled_window, controlID, content
-                , wxDefaultPosition, wxDefaultSize, 0L, wxDefaultValidator, name);
+            wxButton* multi_choice_button = new wxButton(
+                scrolled_window,
+                controlID, content,
+                wxDefaultPosition, wxDefaultSize, 0L, wxDefaultValidator, name
+            );
             mmToolTip(multi_choice_button, FieldModel::getTooltip(field_d.m_properties));
             grid_sizer_custom->Add(multi_choice_button, g_flagsExpand);
 
-            if (!content.empty()) {
-                if (nonDefaultData) 
-                    SetWidgetChanged(controlID, content);
+            if (!content.empty() && nonDefaultData) {
+                SetWidgetChanged(controlID, content);
             }
 
-            multi_choice_button->Connect(controlID, wxEVT_COMMAND_BUTTON_CLICKED
-                , wxCommandEventHandler(FieldValueDialog::OnMultiChoice), nullptr, this);
+            multi_choice_button->Connect(controlID,
+                wxEVT_COMMAND_BUTTON_CLICKED,
+                wxCommandEventHandler(FieldValueDialog::OnMultiChoice),
+                nullptr, this
+            );
 
             break;
         }
-        default: break;
+        default:
+            break;
         }
     }
 

@@ -20,11 +20,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/TrxShareTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/TrxShareData.h"
 
-#include "_ModelBase.h"
 #include "TrxSplitModel.h"
 
 class TrxShareModel : public TableFactory<TrxShareTable, TrxShareData>

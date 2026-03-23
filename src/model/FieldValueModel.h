@@ -19,11 +19,9 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/FieldValueTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/FieldValueData.h"
-
-#include "_ModelBase.h"
 
 class FieldValueModel : public TableFactory<FieldValueTable, FieldValueData>
 {

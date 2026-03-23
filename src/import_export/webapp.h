@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2014 Gabriele-V
+Copyright (C) 2026 George Ef (george.a.ef@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,103 +25,92 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/string.h>
 #include <wx/datetime.h>
 
-//Parameters used in services.php
+// Parameters used in services.php
 namespace WebAppParam
 {
-    extern const wxString ServicesPage;
     extern const wxString ApiExpectedVersion;
-    extern const wxString CheckGuid;
     extern const wxString CheckApiVersion;
+    extern const wxString CheckGuid;
     extern const wxString DeleteAccount;
-    extern const wxString ImportAccount;
-    extern const wxString DeletePayee;
-    extern const wxString ImportPayee;
-    extern const wxString DeleteCategory;
-    extern const wxString ImportCategory;
-    extern const wxString DeleteOneTransaction;
-    extern const wxString DownloadNewTransaction;
-    extern const wxString DownloadAttachments;
     extern const wxString DeleteAttachment;
+    extern const wxString DeleteCategory;
+    extern const wxString DeletePayee;
+    extern const wxString DeleteTrx;
+    extern const wxString DownloadAttachment;
+    extern const wxString DownloadNewTransaction;
+    extern const wxString UploadAccount;
+    extern const wxString UploadCategory;
+    extern const wxString UploadPayee;
     extern const wxString MessageSuccedeed;
     extern const wxString MessageWrongGuid;
+    extern const wxString ServicesPage;
 }
 
 class mmWebApp
 {
-
-    /** Return services page URL with GUID inserted */
-    const static wxString getServicesPageURL();
-
-    //Internal function
-    const static wxString WebApp_getApiVersion();
-    static int WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output);
-    static bool WebApp_DeleteAllAccount();
-    static bool WebApp_DeleteAllPayee();
-    static bool WebApp_DeleteAllCategory();
-    static wxString WebApp_DownloadOneAttachment(const wxString& AttachmentName, int64 DesktopTransactionID, int AttachmentNr, wxString& Error);
+public:
+    // WebApp transaction Structure
+    struct TrxWebData
+    {
+        int64      ID;
+        wxDateTime Date;
+        wxString   Account;
+        wxString   ToAccount;
+        wxString   Status;
+        wxString   Type;
+        wxString   Payee;
+        wxString   Category;
+        wxString   SubCategory;
+        int64      ParentCategory;
+        double     Amount;
+        wxString   Notes;
+        wxString   Attachments;
+    };
+    typedef std::vector<TrxWebData> TrxWebDataA;
 
 public:
-    const static wxString getUrl();
-    const static wxString getGuid();
-    /*WebApp transaction Structure*/
-    struct webtran_holder
-    {
-        int64 ID;
-        wxDateTime Date;
-        wxString Account;
-        wxString ToAccount;
-        wxString Status;
-        wxString Type;
-        wxString Payee;
-        wxString Category;
-        wxString SubCategory;
-        int64 ParentCategory;
-        double Amount;
-        wxString Notes;
-        wxString Attachments;
-    };
-    typedef std::vector<webtran_holder> WebTranVector;
+    static const wxString url();
+    static const wxString guid();
+    static const wxString services();
+    static const wxString apiVersion();
 
-    static bool returnResult(int& ErrorCode, wxString& outputMessage);
+    static bool result(int& error_code, wxString& output_message);
+    static bool isEnabled();
+    static bool checkGuid();
+    static bool checkApiVersion();
 
-    /** Return true if WebApp is enabled */
-    static bool WebApp_CheckEnabled();
+    static int postData(
+        const wxString& website,
+        const wxString& data_json,
+        wxString& output
+    );
 
-    /** Return true if WebApp Guid is correct */
-    static bool WebApp_CheckGuid();
+    static bool deleteAccount();
+    static bool deletePayee();
+    static bool deleteCategory();
+    static bool deleteTrxWebId(int64 trx_w_id);
 
-    /** Return true if WebApp API Version is correct */
-    static bool WebApp_CheckApiVersion();
+    static bool uploadAccount();
+    static bool uploadPayee();
+    static bool uploadCategory();
 
-    /** Update all accounts on WebApp */
-    static bool WebApp_UpdateAccount();
+    static bool downloadNewTrx(
+        TrxWebDataA& new_trx_wa,
+        const bool check_only,
+        wxString& error
+    );
+    static wxString downloadAttachment(
+        const wxString& attachment_w_name,
+        int64 trx_id,
+        int attachment_number,
+        wxString& error
+    );
+    static bool downloadAttachmentFile(
+        wxString& file_name,
+        wxString& error
+    );
 
-    /** Update all payees on WebApp */
-    static bool WebApp_UpdatePayee();
+    static int64 insertNewTrx(TrxWebData& trx_w);
 
-    /** Update all categories on WebApp */
-    static bool WebApp_UpdateCategory();
-
-    /** Download new transaction */
-    static bool WebApp_DownloadNewTransaction(WebTranVector& WebAppTransactions_, const bool CheckOnly, wxString& Error);
-
-    /** Insert transaction in MMEX desktop, returns transaction ID */
-    static int64 MMEX_InsertNewTransaction(webtran_holder& WebAppTrans);
-
-    /** Delete transaction from WebApp */
-    static bool WebApp_DeleteOneTransaction(int64 WebAppTransactionId);
-
-    /* Return attachment URL */
-    static bool WebApp_DownloadAttachment(wxString& AttachmentFileName, wxString& Error);
-
-    //FUNCTIONS CALLED IN MMEX TO UPDATE ON CHANGE
-    /** Update all payees on WebApp if enabled */
-    static bool MMEX_WebApp_UpdatePayee();
-
-    /** Update all accounts on WebApp if enabled */
-    static bool MMEX_WebApp_UpdateAccount();
-
-    /** Update all categories on WebApp if enabled */
-    static bool MMEX_WebApp_UpdateCategory();
 };
 

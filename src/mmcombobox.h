@@ -99,7 +99,7 @@ public:
                 PayeeData new_payee_d = PayeeData();
                 new_payee_d.m_name = this->GetValue();
                 PayeeModel::instance().add_data_n(new_payee_d);
-                mmWebApp::MMEX_WebApp_UpdatePayee();
+                mmWebApp::uploadPayee();
             }
         }
         else {

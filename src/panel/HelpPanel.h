@@ -29,33 +29,39 @@ class HelpPanel : public PanelBase
 {
     wxDECLARE_EVENT_TABLE();
 
-public:
-    HelpPanel(wxWindow *parent, mmGUIFrame* frame,
-                 wxWindowID winid = wxID_ANY,
-                 const wxPoint& pos = wxDefaultPosition,
-                 const wxSize& size = wxDefaultSize,
-                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                 const wxString& name = "HelpPanel");
-
-    wxString BuildPage() const { return ""; }
-    void PrintPage();
-
-public:
-    mmGUIFrame *m_frame;
 private:
-    wxWebView* browser_;
+    mmGUIFrame* w_frame;
+    wxWebView*  w_browser;
 
-    bool Create(wxWindow *parent, wxWindowID winid
-        , const wxPoint& pos = wxDefaultPosition
-        , const wxSize& size = wxDefaultSize
-        , long style = wxTAB_TRAVERSAL | wxNO_BORDER
-        , const wxString& name = "HelpPanel");
+public:
+    HelpPanel(
+        wxWindow* parent_win,
+        mmGUIFrame* frame,
+        wxWindowID win_id = wxID_ANY,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = "HelpPanel"
+    );
 
-    void CreateControls();
-    virtual void sortList();
+    // override PanelBase
+    virtual auto buildPage() const -> wxString override { return ""; }
+    virtual void printPage() override { w_browser->Print(); }
+    virtual void sortList() override {}
 
-    void OnHelpPageBack(wxCommandEvent& event);
-    void OnHelpPageForward(wxCommandEvent& event);
-    void OnNewWindow(wxWebViewEvent& evt);
+private:
+    bool create(
+        wxWindow* parent_win,
+        wxWindowID win_id,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = "HelpPanel"
+    );
+    void createControls();
+
+    void onHelpPageBack(wxCommandEvent& event);
+    void onHelpPageForward(wxCommandEvent& event);
+    void onNewWindow(wxWebViewEvent& evt);
 };
 

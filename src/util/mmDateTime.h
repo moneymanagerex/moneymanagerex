@@ -53,6 +53,10 @@ public:
     auto utcDateTime() const -> const wxString;
     void addDateSpan(wxDateSpan dateSpan);
     void addTimeSpan(wxTimeSpan timeSpan);
+    auto plusDateSpan(wxDateSpan dateSpan) -> mmDateTime;
+    auto plusTimeSpan(wxTimeSpan timeSpan) -> mmDateTime;
+    auto minusDateSpan(wxDateSpan dateSpan) -> mmDateTime;
+    auto minusTimeSpan(wxTimeSpan timeSpan) -> mmDateTime;
 
 public:
     bool operator== (const mmDateTime& other) const;
@@ -126,6 +130,22 @@ inline void mmDateTime::addTimeSpan(wxTimeSpan timeSpan)
 {
     // assumption: timeSpan has granularity of a second or larger
     m_dateTime += timeSpan;
+}
+inline mmDateTime mmDateTime::plusDateSpan(wxDateSpan dateSpan)
+{
+    return mmDateTime(m_dateTime + dateSpan);
+}
+inline mmDateTime mmDateTime::plusTimeSpan(wxTimeSpan timeSpan)
+{
+    return mmDateTime(m_dateTime + timeSpan);
+}
+inline mmDateTime mmDateTime::minusDateSpan(wxDateSpan dateSpan)
+{
+    return mmDateTime(m_dateTime - dateSpan);
+}
+inline mmDateTime mmDateTime::minusTimeSpan(wxTimeSpan timeSpan)
+{
+    return mmDateTime(m_dateTime - timeSpan);
 }
 
 // The milliseconds in both operands is set to zero, therefore

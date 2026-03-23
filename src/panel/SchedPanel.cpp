@@ -20,247 +20,111 @@
 
 #include "base/constants.h"
 #include "base/images_list.h"
-#include "model/_all.h"
-
+#include "model/CategoryModel.h"
+#include "model/AttachmentModel.h"
+#include "model/UsageModel.h"
 #include "SchedPanel.h"
-
 #include "dialog/AttachmentDialog.h"
 #include "dialog/SchedDialog.h"
 
-enum
-{
-    MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1300,
-    MENU_TREEPOPUP_EDIT,
-    MENU_TREEPOPUP_DUPLICATE,
-    MENU_TREEPOPUP_DELETE,
-    MENU_POPUP_BD_ENTER_OCCUR,
-    MENU_POPUP_BD_SKIP_OCCUR,
-    MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
-    MENU_ON_SET_UDC0,
-    MENU_ON_SET_UDC1,
-    MENU_ON_SET_UDC2,
-    MENU_ON_SET_UDC3,
-    MENU_ON_SET_UDC4,
-    MENU_ON_SET_UDC5,
-    MENU_ON_SET_UDC6,
-    MENU_ON_SET_UDC7
-};
-
-const wxString BILLSDEPOSITS_REPEATS[] =
-{
-    _n("Once"),
-    _n("Weekly"),
-    _n("Fortnightly"),
-    _n("Monthly"),
-    _n("Every 2 Months"),
-    _n("Quarterly"),
-    _n("Half-Yearly"),
-    _n("Yearly"),
-    _n("Four Months"),
-    _n("Four Weeks"),
-    _n("Daily"),
-    _n("In %s Days"),
-    _n("In %s Months"),
-    _n("Every %s Days"),
-    _n("Every %s Months"),
-    _n("Monthly (last day)"),
-    _n("Monthly (last business day)")
-};
-
 wxBEGIN_EVENT_TABLE(SchedPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW,       SchedPanel::OnNewBDSeries)
-    EVT_BUTTON(wxID_EDIT,      SchedPanel::OnEditBDSeries)
-    EVT_BUTTON(wxID_DUPLICATE, SchedPanel::OnDuplicateBDSeries)
-    EVT_BUTTON(wxID_DELETE,    SchedPanel::OnDeleteBDSeries)
-    EVT_BUTTON(wxID_PASTE,     SchedPanel::OnEnterBDTransaction)
-    EVT_BUTTON(wxID_IGNORE,    SchedPanel::OnSkipBDTransaction)
-    EVT_BUTTON(wxID_FILE,      SchedPanel::OnOpenAttachment)
-    EVT_BUTTON(wxID_FILE2,     SchedPanel::OnFilterTransactions)
+    EVT_BUTTON(wxID_NEW,       SchedPanel::onNewBDSeries)
+    EVT_BUTTON(wxID_EDIT,      SchedPanel::onEditBDSeries)
+    EVT_BUTTON(wxID_DUPLICATE, SchedPanel::onDuplicateBDSeries)
+    EVT_BUTTON(wxID_DELETE,    SchedPanel::onDeleteBDSeries)
+    EVT_BUTTON(wxID_PASTE,     SchedPanel::onEnterBDTransaction)
+    EVT_BUTTON(wxID_IGNORE,    SchedPanel::onSkipBDTransaction)
+    EVT_BUTTON(wxID_FILE,      SchedPanel::onOpenAttachment)
+    EVT_BUTTON(wxID_FILE2,     SchedPanel::onFilterTransactions)
 wxEND_EVENT_TABLE()
 
-wxBEGIN_EVENT_TABLE(SchedList, ListBase)
-    EVT_LEFT_DOWN(SchedList::OnListLeftClick)
-    EVT_RIGHT_DOWN(SchedList::OnItemRightClick)
-
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, SchedList::OnListItemActivated)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,  SchedList::OnListItemSelected)
-    EVT_LIST_KEY_DOWN(wxID_ANY,       SchedList::OnListKeyDown)
-
-    EVT_MENU(MENU_TREEPOPUP_NEW,                  SchedList::OnNewBDSeries)
-    EVT_MENU(MENU_TREEPOPUP_EDIT,                 SchedList::OnEditBDSeries)
-    EVT_MENU(MENU_TREEPOPUP_DUPLICATE,            SchedList::OnDuplicateBDSeries)
-    EVT_MENU(MENU_TREEPOPUP_DELETE,               SchedList::OnDeleteBDSeries)
-    EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, SchedList::OnOrganizeAttachments)
-    EVT_MENU(MENU_POPUP_BD_ENTER_OCCUR,           SchedList::OnEnterBDTransaction)
-    EVT_MENU(MENU_POPUP_BD_SKIP_OCCUR,            SchedList::OnSkipBDTransaction)
-    EVT_MENU_RANGE(
-        MENU_ON_SET_UDC0, MENU_ON_SET_UDC7,
-        SchedList::OnSetUserColour
-    )
-wxEND_EVENT_TABLE()
-
-const std::vector<ListColumnInfo> SchedList::LIST_INFO = {
-    { LIST_ID_ICON,         true, _n("Icon"),        25,  _FC, false },
-    { LIST_ID_ID,           true, _n("ID"),          _WA, _FR, true },
-    { LIST_ID_PAYMENT_DATE, true, _n("Date Paid"),   _WH, _FL, true },
-    { LIST_ID_DUE_DATE,     true, _n("Date Due"),    _WH, _FL, true },
-    { LIST_ID_ACCOUNT,      true, _n("Account"),     _WH, _FL, true },
-    { LIST_ID_PAYEE,        true, _n("Payee"),       _WH, _FL, true },
-    { LIST_ID_STATUS,       true, _n("Status"),      _WH, _FC, true },
-    { LIST_ID_CATEGORY,     true, _n("Category"),    _WH, _FL, true },
-    { LIST_ID_TAGS,         true, _n("Tags"),        200, _FL, true },
-    { LIST_ID_WITHDRAWAL,   true, _n("Withdrawal"),  _WH, _FR, true },
-    { LIST_ID_DEPOSIT,      true, _n("Deposit"),     _WH, _FR, true },
-    { LIST_ID_FREQUENCY,    true, _n("Frequency"),   _WH, _FL, true },
-    { LIST_ID_REPEATS,      true, _n("Repetitions"), _WH, _FR, true },
-    { LIST_ID_AUTO,         true, _n("Autorepeat"),  _WH, _FL, true },
-    { LIST_ID_REMAINING,    true, _n("Remaining"),   _WH, _FL, true },
-    { LIST_ID_NUMBER,       true, _n("Number"),      _WH, _FL, true },
-    { LIST_ID_NOTES,        true, _n("Notes"),       150, _FL, true },
-};
-
-SchedList::SchedList(
-    SchedPanel* bdp, wxWindow *parent, wxWindowID winid
+SchedPanel::SchedPanel(
+    wxWindow* parent_win,
+    wxWindowID winid,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
 ) :
-    ListBase(parent, winid),
-    m_bdp(bdp)
+    m_today(mmDate::today())
 {
-    mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
-
-    const wxAcceleratorEntry entries[] = {
-        wxAcceleratorEntry(wxACCEL_CTRL, 'N', MENU_TREEPOPUP_NEW),
-        wxAcceleratorEntry(wxACCEL_CTRL, 'E', MENU_TREEPOPUP_EDIT),
-        wxAcceleratorEntry(wxACCEL_CTRL, 'U', MENU_TREEPOPUP_DUPLICATE),
-        wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_TREEPOPUP_DELETE),
-        wxAcceleratorEntry(wxACCEL_CTRL, '0', MENU_ON_SET_UDC0),
-        wxAcceleratorEntry(wxACCEL_CTRL, '1', MENU_ON_SET_UDC1),
-        wxAcceleratorEntry(wxACCEL_CTRL, '2', MENU_ON_SET_UDC2),
-        wxAcceleratorEntry(wxACCEL_CTRL, '3', MENU_ON_SET_UDC3),
-        wxAcceleratorEntry(wxACCEL_CTRL, '4', MENU_ON_SET_UDC4),
-        wxAcceleratorEntry(wxACCEL_CTRL, '5', MENU_ON_SET_UDC5),
-        wxAcceleratorEntry(wxACCEL_CTRL, '6', MENU_ON_SET_UDC6),
-        wxAcceleratorEntry(wxACCEL_CTRL, '7', MENU_ON_SET_UDC7)
-    };
-    wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
-    SetAcceleratorTable(tab);
-
-    m_setting_name = "SCHEDULED";
-    o_col_order_prefix = "BD";
-    o_col_width_prefix = "BD_COL";
-    o_sort_prefix = "BD";
-    m_col_info_id = LIST_INFO;
-    m_col_id_nr = ListColumnInfo::getListId(LIST_INFO);
-    m_sort_col_id = { col_sort() };
-    createColumns();
-}
-
-SchedList::~SchedList()
-{
-    wxLogDebug("Exit SchedList");
-}
-
-int SchedList::getSortIcon(bool asc) const
-{
-    return asc ? SchedPanel::ICON_UPARROW : SchedPanel::ICON_DOWNARROW;
-}
-
-void SchedList::OnColClick(wxListEvent& event)
-{
-    int col_nr = (event.GetId() == MENU_HEADER_SORT) ? m_sel_col_nr : event.GetColumn();
-    if (!isValidColNr(col_nr))
-        return;
-    int col_id = getColId_Nr(col_nr);
-    if (!m_col_info_id[col_id].sortable)
-        return;
-
-    if (m_sort_col_id[0] != col_id)
-        m_sort_col_id[0] = col_id;
-    else if (event.GetId() != MENU_HEADER_SORT)
-        m_sort_asc[0] = !m_sort_asc[0];
-    updateSortIcon();
-    savePref();
-
-    if (m_selected_row >= 0)
-        refreshVisualList(m_bdp->initVirtualListControl(m_bdp->bills_[m_selected_row].m_id));
-    else
-        refreshVisualList(m_bdp->initVirtualListControl(-1));
-}
-
-SchedPanel::SchedPanel(wxWindow *parent, wxWindowID winid
-    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-{
-    m_today = wxDate::Today();
-    this->tips_.Add(_t("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits,"
+    m_tip_a.Add(_t("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits,"
         " or transfers that will occur at some future time. These transactions act as a reminder that an event is about to occur,"
         " and appears on the Dashboard 14 days before the transaction is due."));
-    this->tips_.Add(_t("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
+    m_tip_a.Add(_t("Tip: These transactions can be set up to activate - allowing the user to adjust any values on the due date."));
 
-    Create(parent, winid, pos, size, style, name);
+    create(parent_win, winid, pos, size, style, name);
     mmThemeAutoColour(this);
-}
-
-bool SchedPanel::Create(wxWindow *parent
-    , wxWindowID winid, const wxPoint& pos
-    , const wxSize& size, long style, const wxString& name)
-{
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxPanel::Create(parent, winid, pos, size, style, name);
-
-    CreateControls();
-    GetSizer()->Fit(this);
-    GetSizer()->SetSizeHints(this);
-
-    /* Set up the transaction filter.  The transFilter dialog will be destroyed
-       when the checking panel is destroyed. */
-    transFilterActive_ = false;
-    transFilterDlg_ = new TrxFilterDialog(this, -1, false);
-
-    initVirtualListControl();
-
-    UsageModel::instance().pageview(this);
-
-    return true;
 }
 
 SchedPanel::~SchedPanel()
 {
 }
 
-void SchedPanel::CreateControls()
+bool SchedPanel::create(
+    wxWindow* parent_win,
+    wxWindowID winid,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) {
+    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
+    wxPanel::Create(parent_win, winid, pos, size, style, name);
+
+    createControls();
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
+
+    // Set up the transaction filter.
+    // The transFilter dialog will be destroyed when the checking panel is destroyed.
+    m_filter_active = false;
+    w_filter_dlg = new TrxFilterDialog(this, -1, false);
+
+    initList();
+
+    UsageModel::instance().pageview(this);
+
+    return true;
+}
+
+void SchedPanel::createControls()
 {
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer9);
 
-    /* ---------------------- */
-    wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
-        , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    wxPanel* headerPanel = new wxPanel(this, wxID_ANY,
+        wxDefaultPosition, wxDefaultSize,
+        wxNO_BORDER | wxTAB_TRAVERSAL
+    );
     itemBoxSizer9->Add(headerPanel, g_flagsBorder1V);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
-    wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY
-        , _t("Scheduled Transactions"));
+    wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY,
+        _t("Scheduled Transactions")
+    );
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
 
     /* Disable feature to judge reaction :-)
        https://github.com/moneymanagerex/moneymanagerex/issues/5281
 
-    wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
+        wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
+        itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
-
-    m_bitmapTransFilter = new wxButton(headerPanel, wxID_FILE2);
-    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
-    m_bitmapTransFilter->SetLabel(_t("Transaction Filter"));
-    itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
+        w_filter_btn = new wxButton(headerPanel, wxID_FILE2);
+        w_filter_btn->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+        w_filter_btn->SetLabel(_t("Transaction Filter"));
+        itemBoxSizerHHeader2->Add(w_filter_btn, g_flagsBorder1H);
     */
 
-    /* ---------------------- */
-    mmSplitterWindow* itemSplitterWindowBillsDeposit = new mmSplitterWindow(this
-        , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
-        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER, mmThemeMetaColour(meta::COLOR_LISTPANEL));
+    mmSplitterWindow* itemSplitterWindowBillsDeposit = new mmSplitterWindow(this,
+        wxID_ANY, wxDefaultPosition, wxSize(200, 200),
+        wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER,
+        mmThemeMetaColour(meta::COLOR_LISTPANEL)
+    );
 
     wxVector<wxBitmapBundle> images;
     images.push_back(mmBitmapBundle(png::FOLLOW_UP));
@@ -269,14 +133,16 @@ void SchedPanel::CreateControls()
     images.push_back(mmBitmapBundle(png::UPARROW));
     images.push_back(mmBitmapBundle(png::DOWNARROW));
 
-    m_lc = new SchedList(this, itemSplitterWindowBillsDeposit);
+    w_list = new SchedList(this, itemSplitterWindowBillsDeposit);
     
-    m_lc->SetSmallImages(images);
+    w_list->SetSmallImages(images);
 
-    wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
-        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY,
+        wxDefaultPosition, wxDefaultSize,
+        wxNO_BORDER | wxTAB_TRAVERSAL
+    );
 
-    itemSplitterWindowBillsDeposit->SplitHorizontally(m_lc, bdPanel);
+    itemSplitterWindowBillsDeposit->SplitHorizontally(w_list, bdPanel);
     itemSplitterWindowBillsDeposit->SetMinimumPaneSize(100);
     itemSplitterWindowBillsDeposit->SetSashGravity(1.0);
     itemBoxSizer9->Add(itemSplitterWindowBillsDeposit, g_flagsExpandBorder1);
@@ -316,135 +182,66 @@ void SchedPanel::CreateControls()
     itemBoxSizer5->Add(buttonSkipTrans, 0, wxRIGHT, 2);
     buttonSkipTrans->Enable(false);
 
-    wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE
-        , mmBitmapBundle(png::CLIP, mmBitmapButtonSize), wxDefaultPosition
-        , wxSize(30, itemButton8->GetSize().GetY()));
+    wxBitmapButton* btnAttachment_ = new wxBitmapButton(bdPanel, wxID_FILE,
+        mmBitmapBundle(png::CLIP, mmBitmapButtonSize), wxDefaultPosition,
+        wxSize(30, itemButton8->GetSize().GetY())
+    );
     mmToolTip(btnAttachment_, _t("Open attachments"));
     itemBoxSizer5->Add(btnAttachment_, 0, wxRIGHT, 2);
     btnAttachment_->Enable(false);
 
-    //Infobar-mini
-    m_infoTextMini = new wxStaticText(bdPanel, wxID_STATIC, "");
-    itemBoxSizer5->Add(m_infoTextMini, 1, wxGROW | wxTOP | wxLEFT, 5);
+    // Infobar-mini
+    w_mini_text = new wxStaticText(bdPanel, wxID_STATIC, "");
+    itemBoxSizer5->Add(w_mini_text, 1, wxGROW | wxTOP | wxLEFT, 5);
 
     //Infobar
-    m_infoText = new wxStaticText(bdPanel, wxID_ANY, ""
-        , wxPoint(-1, -1), wxSize(200, -1), wxNO_BORDER | wxTE_MULTILINE | wxTE_WORDWRAP | wxST_NO_AUTORESIZE);
-    itemBoxSizer4->Add(m_infoText, g_flagsExpandBorder1);
+    w_info_text = new wxStaticText(bdPanel, wxID_ANY,
+        "",
+        wxPoint(-1, -1), wxSize(200, -1),
+        wxNO_BORDER | wxTE_MULTILINE | wxTE_WORDWRAP | wxST_NO_AUTORESIZE
+    );
+    itemBoxSizer4->Add(w_info_text, g_flagsExpandBorder1);
 
     SchedPanel::updateBottomPanelData(-1);
 }
 
-int SchedPanel::initVirtualListControl(int64 id)
+int SchedPanel::initList(int64 sched_id_n)
 {
-    m_lc->DeleteAllItems();
+    w_list->DeleteAllItems();
 
-    bills_.clear();
+    m_sched_xa.clear();
     const auto schedId_qpA_m = SchedSplitModel::instance().find_all_mSchedId();
     for (const SchedData& data : SchedModel::instance().find_all(
         SchedCol::COL_ID_NEXTOCCURRENCEDATE
     )) {
-        if (transFilterActive_ && !transFilterDlg_->mmIsRecordMatches(data, schedId_qpA_m))
+        if (m_filter_active && !w_filter_dlg->mmIsRecordMatches(data, schedId_qpA_m))
             continue;
         SchedModel::DataExt r(data);
-        bills_.push_back(r);
+        m_sched_xa.push_back(r);
     }
 
     sortList();
 
-    int cnt = 0, selected_item = -1;
-    for (const auto& entry: bills_) {
-        if (id == entry.m_id) {
-            selected_item = cnt;
+    int item = 0;
+    int selected_item = -1;
+    for (const auto& sched_dx : m_sched_xa) {
+        if (sched_dx.m_id == sched_id_n) {
+            selected_item = item;
             break;
         }
-        ++cnt;
+        ++item;
     }
 
-    m_lc->SetItemCount(static_cast<long>(bills_.size()));
+    w_list->SetItemCount(static_cast<long>(m_sched_xa.size()));
     return selected_item;
-}
-
-void SchedPanel::OnNewBDSeries(wxCommandEvent& event)
-{
-    m_lc->OnNewBDSeries(event);
-}
-
-void SchedPanel::OnEditBDSeries(wxCommandEvent& event)
-{
-    m_lc->OnEditBDSeries(event);
-}
-
-void SchedPanel::OnDuplicateBDSeries(wxCommandEvent& event)
-{
-    m_lc->OnDuplicateBDSeries(event);
-}
-
-void SchedPanel::OnDeleteBDSeries(wxCommandEvent& event)
-{
-    m_lc->OnDeleteBDSeries(event);
-}
-
-void SchedPanel::OnEnterBDTransaction(wxCommandEvent& event)
-{
-    m_lc->OnEnterBDTransaction(event);
-}
-
-void SchedPanel::OnSkipBDTransaction(wxCommandEvent& event)
-{
-    m_lc->OnSkipBDTransaction(event);
-    m_lc->SetFocus();
-}
-
-void SchedPanel::OnOpenAttachment(wxCommandEvent& event)
-{
-    m_lc->OnOpenAttachment(event);
-    m_lc->SetFocus();
-}
-
-/*******************************************************/
-void SchedList::OnItemRightClick(wxMouseEvent& event)
-{
-    if (m_selected_row > -1)
-        SetItemState(m_selected_row, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
-    int Flags = wxLIST_HITTEST_ONITEM;
-    m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
-
-    if (m_selected_row >= 0) {
-        SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-    }
-    m_bdp->updateBottomPanelData(m_selected_row);
-    bool item_active = (m_selected_row >= 0);
-    wxMenu menu;
-    menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _tu("Enter next Occurrence…"));
-    menu.AppendSeparator();
-    menu.Append(MENU_POPUP_BD_SKIP_OCCUR, _t("Skip next Occurrence"));
-    menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_NEW, _tu("&New Scheduled Transaction…"));
-    menu.Append(MENU_TREEPOPUP_EDIT, _tu("&Edit Scheduled Transaction…"));
-    menu.Append(MENU_TREEPOPUP_DUPLICATE, _tu("D&uplicate Scheduled Transaction…"));
-    menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Scheduled Transaction…"));
-    menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
-
-    menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
-    menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);
-    menu.Enable(MENU_TREEPOPUP_EDIT, item_active);
-    menu.Enable(MENU_TREEPOPUP_DUPLICATE, item_active);
-    menu.Enable(MENU_TREEPOPUP_DELETE, item_active);
-    menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, item_active);
-
-    PopupMenu(&menu, event.GetPosition());
-    this->SetFocus();
 }
 
 wxString SchedPanel::getItem(long item, int col_id)
 {
-    const SchedModel::DataExt& sched_dx = this->bills_.at(item);
+    const SchedModel::DataExt& sched_dx = this->m_sched_xa.at(item);
 
-    switch (col_id) {
+    switch (col_id)
+    {
     case SchedList::LIST_ID_ID:
         return wxString::Format("%lld", sched_dx.m_id).Trim();
     case SchedList::LIST_ID_PAYMENT_DATE:
@@ -518,7 +315,7 @@ wxString SchedPanel::getItem(long item, int col_id)
         return wxGetTranslation(sched_dx.m_repeat.m_mode.name());
     }
     case SchedList::LIST_ID_REMAINING:
-        return GetRemainingDays(sched_dx);
+        return getRemainingDays(sched_dx);
     case SchedList::LIST_ID_NUMBER:
         return sched_dx.m_number;
     case SchedList::LIST_ID_NOTES: {
@@ -533,393 +330,162 @@ wxString SchedPanel::getItem(long item, int col_id)
     }
 }
 
-const wxString SchedPanel::GetRemainingDays(const SchedData& sched_d) const
+const wxString SchedPanel::getRemainingDays(const SchedData& sched_d) const
 {
-    int daysRemaining = sched_d.m_date_time.getDateTime().
-        Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
-    int daysOverdue = sched_d.m_due_date.getDateTime().
-        Subtract(this->getToday()).GetSeconds().GetValue() / 86400;
+    int payment_days = sched_d.m_date().daysSince(m_today);
+    int due_days = sched_d.m_due_date.daysSince(m_today);
 
     // add a warning marker (*) in front, such that it is visible
     // to the user even when the Remaining column is too narrow.
-    wxString text = (daysOverdue < 0)
-        ? "*" + wxString::Format(wxPLURAL( "%d day overdue", "%d days overdue", -daysOverdue),
-            -daysOverdue)
-        : (daysRemaining < 0)
-        ? "*" + wxString::Format(wxPLURAL("%d day delay", "%d days delay", -daysRemaining),
-            -daysRemaining)
-        : wxString::Format(wxPLURAL("%d day", "%d days", daysRemaining), daysRemaining);
-
-    return text;
-}
-
-wxString SchedList::OnGetItemText(long item, long col_nr) const
-{
-    return m_bdp->getItem(item, getColId_Nr(static_cast<int>(col_nr)));
-}
-
-void SchedList::OnListItemSelected(wxListEvent& event)
-{
-    m_selected_row = event.GetIndex();
-    m_bdp->updateBottomPanelData(m_selected_row);
-}
-
-void SchedList::OnListLeftClick(wxMouseEvent& event)
-{
-    int Flags = wxLIST_HITTEST_ONITEM;
-    long index = HitTest(wxPoint(event.m_x, event.m_y), Flags);
-    if (index == -1) {
-        m_selected_row = -1;
-        m_bdp->updateBottomPanelData(m_selected_row);
-    }
-    event.Skip();
-}
-
-int SchedList::OnGetItemImage(long item) const
-{
-    SchedData& sched_d = m_bdp->bills_[item];
-    int daysRemaining = m_bdp->bills_[item].m_due_date.getDateTime().
-        Subtract(m_bdp->getToday()).GetSeconds().GetValue()
-    / 86400;
-
-    // Returns the icon to be shown for each entry
-    if (daysRemaining < 0)
-        return SchedPanel::ICON_FOLLOWUP;
-    if (sched_d.m_repeat.m_mode.id() == RepeatMode::e_automated)
-        return SchedPanel::ICON_RUN_AUTO;
-    if (sched_d.m_repeat.m_mode.id() == RepeatMode::e_suggested)
-        return SchedPanel::ICON_RUN;
-    return -1;
-}
-
-void SchedList::OnListKeyDown(wxListEvent& event)
-{
-    switch ( event.GetKeyCode() ) {
-    case WXK_DELETE: {
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED,
-            MENU_TREEPOPUP_DELETE);
-        OnDeleteBDSeries(evt);
-        break;
-    }
-    default:
-        event.Skip();
-    }
-}
-
-void SchedList::OnNewBDSeries(wxCommandEvent& /*event*/)
-{
-    SchedDialog dlg(this, 0, false, false);
-    if ( dlg.ShowModal() == wxID_OK )
-        refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
-}
-
-void SchedList::OnEditBDSeries(wxCommandEvent& /*event*/)
-{
-    if (m_selected_row == -1)
-        return;
-
-    SchedDialog dlg(this, m_bdp->bills_[m_selected_row].m_id, false, false);
-    if ( dlg.ShowModal() == wxID_OK )
-        refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
-}
-
-void SchedList::OnDuplicateBDSeries(wxCommandEvent& /*event*/)
-{
-    if (m_selected_row == -1) return;
-
-    SchedDialog dlg(this, m_bdp->bills_[m_selected_row].m_id, true, false);
-    if ( dlg.ShowModal() == wxID_OK )
-        refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
-}
-
-void SchedList::OnDeleteBDSeries(wxCommandEvent& WXUNUSED(event))
-{
-    if (m_bdp->bills_.empty())
-        return;
-    if (m_selected_row < 0)
-        return;
-
-    wxMessageDialog msgDlg(this,
-        _t("Do you want to delete the scheduled transaction?"),
-        _t("Confirm Deletion"),
-        wxYES_NO | wxNO_DEFAULT | wxICON_ERROR
-    );
-    if (msgDlg.ShowModal() == wxID_YES) {
-        int64 sched_id = m_bdp->bills_[m_selected_row].m_id;
-        SchedModel::instance().purge_id(sched_id);
-        mmAttachmentManage::DeleteAllAttachments(SchedModel::s_ref_type, sched_id);
-        FieldValueModel::instance().purge_ref(SchedModel::s_ref_type, sched_id);
-        m_bdp->initVirtualListControl();
-        refreshVisualList(m_selected_row);
-    }
-}
-
-void SchedList::OnEnterBDTransaction(wxCommandEvent& /*event*/)
-{
-    if (m_selected_row == -1)
-        return;
-
-    int64 id = m_bdp->bills_[m_selected_row].m_id;
-    SchedDialog dlg(this, id, false, true);
-    if ( dlg.ShowModal() == wxID_OK ) {
-        if (++m_selected_row < long(m_bdp->bills_.size()))
-            id = m_bdp->bills_[m_selected_row].m_id;
-        refreshVisualList(m_bdp->initVirtualListControl(id));
-    }
-}
-
-void SchedList::OnSkipBDTransaction(wxCommandEvent& /*event*/)
-{
-    if (m_selected_row == -1)
-        return;
-
-    int64 sched_id = m_bdp->bills_[m_selected_row].m_id;
-    SchedModel::instance().reschedule_id(sched_id);
-    if (++m_selected_row < long(m_bdp->bills_.size()))
-        sched_id = m_bdp->bills_[m_selected_row].m_id;
-    refreshVisualList(m_bdp->initVirtualListControl(sched_id));
-}
-
-void SchedList::OnOrganizeAttachments(wxCommandEvent& /*event*/)
-{
-    if (m_selected_row == -1)
-        return;
-
-    int64 ref_id = m_bdp->bills_[m_selected_row].m_id;
-
-    AttachmentDialog dlg(this, SchedModel::s_ref_type, ref_id);
-    dlg.ShowModal();
-
-    refreshVisualList(m_bdp->initVirtualListControl(ref_id));
-}
-
-void SchedList::OnOpenAttachment(wxCommandEvent& WXUNUSED(event))
-{
-    if (m_selected_row == -1)
-        return;
-
-    int64 ref_id = m_bdp->bills_[m_selected_row].m_id;
-    mmAttachmentManage::OpenAttachmentFromPanelIcon(this, SchedModel::s_ref_type, ref_id);
-    refreshVisualList(m_bdp->initVirtualListControl(ref_id));
-}
-
-void SchedList::OnListItemActivated(wxListEvent& WXUNUSED(event))
-{
-    if (m_selected_row == -1)
-        return;
-
-    SchedDialog dlg(this, m_bdp->bills_[m_selected_row].m_id, false, false);
-    if ( dlg.ShowModal() == wxID_OK )
-        refreshVisualList(m_bdp->initVirtualListControl(dlg.GetTransID()));
+    return (due_days < 0)
+        ? "*" + wxString::Format(
+            wxPLURAL( "%d day overdue", "%d days overdue", -due_days),
+            -due_days
+        )
+        : (payment_days < 0)
+        ? "*" + wxString::Format(
+            wxPLURAL("%d day delay", "%d days delay", -payment_days),
+            -payment_days
+        )
+        : wxString::Format(
+            wxPLURAL("%d day", "%d days", payment_days),
+            payment_days
+        );
 }
 
 void SchedPanel::updateBottomPanelData(int selIndex)
 {
     enableEditDeleteButtons(selIndex >= 0);
     if (selIndex != -1) {
-        m_infoTextMini->SetLabelText(CategoryModel::instance().get_id_fullname(
-            bills_[selIndex].m_category_id_n
+        w_mini_text->SetLabelText(CategoryModel::instance().get_id_fullname(
+            m_sched_xa[selIndex].m_category_id_n
         ));
-        m_infoText->SetLabelText(bills_[selIndex].m_notes);
+        w_info_text->SetLabelText(m_sched_xa[selIndex].m_notes);
     }
 }
 
 void SchedPanel::enableEditDeleteButtons(bool en)
 {
-    wxButton* bE = static_cast<wxButton*>(FindWindow(wxID_EDIT));
-    wxButton* bD = static_cast<wxButton*>(FindWindow(wxID_DELETE));
-    wxButton* bDup = static_cast<wxButton*>(FindWindow(wxID_DUPLICATE));
-    wxButton* bN = static_cast<wxButton*>(FindWindow(wxID_PASTE));
-    wxButton* bS = static_cast<wxButton*>(FindWindow(wxID_IGNORE));
-    wxButton* bA = static_cast<wxButton*>(FindWindow(wxID_FILE));
-    if (bE) bE->Enable(en);
-    if (bD) bD->Enable(en);
-    if (bDup) bDup->Enable(en);
-    if (bN) bN->Enable(en);
-    if (bS) bS->Enable(en);
-    if (bA) bA->Enable(en);
+    wxButton* edit_btn = static_cast<wxButton*>(FindWindow(wxID_EDIT));
+    if (edit_btn)
+        edit_btn->Enable(en);
 
-    m_infoText->SetLabelText(this->tips());
-    m_infoTextMini->ClearBackground();
+    wxButton* delete_btn = static_cast<wxButton*>(FindWindow(wxID_DELETE));
+    if (delete_btn)
+        delete_btn->Enable(en);
+
+    wxButton* dup_btn = static_cast<wxButton*>(FindWindow(wxID_DUPLICATE));
+    if (dup_btn)
+        dup_btn->Enable(en);
+
+    wxButton* paste_btn = static_cast<wxButton*>(FindWindow(wxID_PASTE));
+    if (paste_btn)
+        paste_btn->Enable(en);
+
+    wxButton* ignore_btn = static_cast<wxButton*>(FindWindow(wxID_IGNORE));
+    if (ignore_btn)
+        ignore_btn->Enable(en);
+
+    wxButton* file_btn = static_cast<wxButton*>(FindWindow(wxID_FILE));
+    if (file_btn)
+        file_btn->Enable(en);
+
+    w_info_text->SetLabelText(this->getRandomTip());
+    w_mini_text->ClearBackground();
 }
 
 void SchedPanel::sortList()
 {
-    std::sort(bills_.begin(), bills_.end());
-    switch (m_lc->getSortColId()) {
+    std::sort(m_sched_xa.begin(), m_sched_xa.end());
+    switch (w_list->getSortColId()) {
     case SchedList::LIST_ID_ID:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterById());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedData::SorterById());
         break;
     case SchedList::LIST_ID_PAYMENT_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByDateTime());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedData::SorterByDateTime());
         break;
     case SchedList::LIST_ID_DUE_DATE:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByDueDate());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedData::SorterByDueDate());
         break;
     case SchedList::LIST_ID_ACCOUNT:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByACCOUNTNAME());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedModel::SorterByACCOUNTNAME());
         break;
     case SchedList::LIST_ID_PAYEE:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByPAYEENAME());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedModel::SorterByPAYEENAME());
         break;
     case SchedList::LIST_ID_STATUS:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByStatus());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedData::SorterByStatus());
         break;
     case SchedList::LIST_ID_CATEGORY:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByCATEGNAME());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedModel::SorterByCATEGNAME());
         break;
     case SchedList::LIST_ID_WITHDRAWAL:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByWITHDRAWAL());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedModel::SorterByWITHDRAWAL());
         break;
     case SchedList::LIST_ID_DEPOSIT:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedModel::SorterByDEPOSIT());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedModel::SorterByDEPOSIT());
         break;
     case SchedList::LIST_ID_FREQUENCY:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByRepeatFreq());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedData::SorterByRepeatFreq());
         break;
     case SchedList::LIST_ID_REPEATS:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByRepeatNum());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedData::SorterByRepeatNum());
         break;
     case SchedList::LIST_ID_AUTO:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByRepeatMode());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedData::SorterByRepeatMode());
         break;
     case SchedList::LIST_ID_REMAINING:
         // in almost all cases, sorting by remaining days is equivalent to sorting by TRANSDATE
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByDateTime());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedData::SorterByDateTime());
         break;
     case SchedList::LIST_ID_NOTES:
-        std::stable_sort(bills_.begin(), bills_.end(), SchedData::SorterByNotes());
+        std::stable_sort(m_sched_xa.begin(), m_sched_xa.end(), SchedData::SorterByNotes());
         break;
     default:
         break;
     }
-    if (!m_lc->getSortAsc())
-        std::reverse(bills_.begin(), bills_.end());
+    if (!w_list->getSortAsc())
+        std::reverse(m_sched_xa.begin(), m_sched_xa.end());
 }
 
-wxString SchedPanel::tips()
+wxString SchedPanel::getRandomTip()
 {
-    return this->tips_[rand() % this->tips_.GetCount()];
+    return this->m_tip_a[rand() % this->m_tip_a.GetCount()];
 }
 
 void SchedList::refreshVisualList(int selected_index)
 {
 
-    if (selected_index >= static_cast<long>(m_bdp->bills_.size()) || selected_index < 0)
+    if (selected_index >= static_cast<long>(w_panel->m_sched_xa.size()) || selected_index < 0)
         selected_index = - 1;
 
-    if (!m_bdp->bills_.empty()) {
-        RefreshItems(0, m_bdp->bills_.size() - 1);
+    if (!w_panel->m_sched_xa.empty()) {
+        RefreshItems(0, w_panel->m_sched_xa.size() - 1);
     }
     else {
         selected_index = -1;
     }
 
-    if (selected_index >= 0 && !m_bdp->bills_.empty()) {
+    if (selected_index >= 0 && !w_panel->m_sched_xa.empty()) {
         SetItemState(selected_index, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(selected_index, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
         EnsureVisible(selected_index);
     }
-    m_selected_row = selected_index;
-    m_bdp->updateBottomPanelData(selected_index);
+    m_select_n = selected_index;
+    w_panel->updateBottomPanelData(selected_index);
 }
 
-void SchedList::RefreshList()
-{
-    if (m_bdp->bills_.size() == 0) return;
-    int64 id = -1;
-    if (m_selected_row != -1) {
-        id = m_bdp->bills_[m_selected_row].m_id;
-    }
-    refreshVisualList(m_bdp->initVirtualListControl(id));
-}
-
-wxListItemAttr* SchedList::OnGetItemAttr(long item) const
-{
-    if (item < 0 || item >= static_cast<int>(m_bdp->bills_.size()))
-        return 0;
-
-    int color_id = m_bdp->bills_[item].m_color.GetValue();
-
-    static std::map<int, wxSharedPtr<wxListItemAttr> > cache;
-    if (color_id > 0) {
-        color_id = std::min(7, color_id);
-        if (const auto it = cache.find(color_id); it != cache.end())
-            return it->second.get();
-        else {
-            switch (color_id) {
-            case 1: cache[color_id] = new wxListItemAttr(
-                *bestFontColour(mmColors::userDefColor1), mmColors::userDefColor1, wxNullFont
-            ); break;
-            case 2: cache[color_id] = new wxListItemAttr(
-                *bestFontColour(mmColors::userDefColor2), mmColors::userDefColor2, wxNullFont
-            ); break;
-            case 3: cache[color_id] = new wxListItemAttr(
-                *bestFontColour(mmColors::userDefColor3), mmColors::userDefColor3, wxNullFont
-            ); break;
-            case 4: cache[color_id] = new wxListItemAttr(
-                *bestFontColour(mmColors::userDefColor4), mmColors::userDefColor4, wxNullFont
-            ); break;
-            case 5: cache[color_id] = new wxListItemAttr(
-                *bestFontColour(mmColors::userDefColor5), mmColors::userDefColor5, wxNullFont
-            ); break;
-            case 6: cache[color_id] = new wxListItemAttr(
-                *bestFontColour(mmColors::userDefColor6), mmColors::userDefColor6, wxNullFont
-            ); break;
-            case 7: cache[color_id] = new wxListItemAttr(
-                *bestFontColour(mmColors::userDefColor7), mmColors::userDefColor7, wxNullFont
-            ); break;
-            }
-            return cache[color_id].get();
-        }
-    }
-
-    /* Returns the alternating background pattern */
-    return (item % 2) ? attr2_.get() : attr1_.get();
-}
-
-void SchedList::OnSetUserColour(wxCommandEvent& event)
-{
-    if (m_selected_row == -1) return;
-    int64 id = m_bdp->bills_[m_selected_row].m_id;
-
-    int user_color_id = event.GetId();
-    user_color_id -= MENU_ON_SET_UDC0;
-    wxLogDebug("id: %i", user_color_id);
-
-    SchedModel::instance().db_savepoint();
-
-    SchedData* sched_n = SchedModel::instance().unsafe_get_id_data_n(id);
-    if (sched_n) {
-        sched_n->m_color = user_color_id;
-        SchedModel::instance().unsafe_update_data_n(sched_n);
-    }
-    SchedModel::instance().db_release_savepoint();
-
-    RefreshList();
-}
-
-void SchedPanel::RefreshList()
-{
-    m_lc->RefreshList();
-}
-
-void SchedPanel::OnFilterTransactions(wxCommandEvent& WXUNUSED(event))
+void SchedPanel::onFilterTransactions(wxCommandEvent& WXUNUSED(event))
 {
 
-    if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->mmIsSomethingChecked()) {
-        transFilterActive_ = true;
-        m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
+    if (w_filter_dlg->ShowModal() == wxID_OK && w_filter_dlg->mmIsSomethingChecked()) {
+        m_filter_active = true;
+        w_filter_btn->SetBitmap(mmBitmapBundle(png::TRANSFILTER_ACTIVE, mmBitmapButtonSize));
     }
     else {
-        transFilterActive_ = false;
-        m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+        m_filter_active = false;
+        w_filter_btn->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
     }
 
-    initVirtualListControl();
-}
-
-wxString  SchedPanel::BuildPage() const
-{
-    return m_lc->BuildPage(_t("Scheduled Transactions"));
+    initList();
 }

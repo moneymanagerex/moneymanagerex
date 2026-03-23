@@ -19,11 +19,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/CurrencyHistoryTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/CurrencyHistoryData.h"
-
-#include "_ModelBase.h"
 
 class CurrencyHistoryModel : public TableFactory<CurrencyHistoryTable, CurrencyHistoryData>
 {

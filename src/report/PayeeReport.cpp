@@ -65,8 +65,8 @@ void PayeeReport::loadData()
 
     const auto trxId_tpA_m = TrxSplitModel::instance().find_all_mTrxId();
     for (const auto& trx_d : TrxModel::instance().find(
-        TrxModel::DATE(OP_GE, m_date_range2.rangeStart().value()),
-        TrxModel::DATE(OP_LE, m_date_range2.rangeEnd().value()),
+        TrxModel::DATE(OP_GE, m_date_range2.rangeStartN().value()),
+        TrxModel::DATE(OP_LE, m_date_range2.rangeEndN().value()),
         TrxModel::IS_VOID(false),
         TrxModel::IS_DELETED(false)
     )) {

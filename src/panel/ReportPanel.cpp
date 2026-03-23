@@ -18,23 +18,18 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "base/defs.h"
 #include <vector>
 #include <string>
 #include <iomanip>
 #include <wx/wrapsizer.h>
-
-#include "mmex.h"
+#include "base/defs.h"
 #include "base/platfdep.h"
 #include "base/paths.h"
 #include "base/images_list.h"
 #include "util/_util.h"
-
-#include "model/_all.h"
+//#include "model/_all.h"
 #include "model/PrefModel.h"
 #include "model/TrxFilter.h"
-
-#include "mmframe.h"
 #include "ReportPanel.h"
 
 #include "manager/DateRangeManager.h"
@@ -45,6 +40,8 @@
 #include "dialog/BudgetEntryDialog.h"
 #include "report/htmlbuilder.h"
 #include "uicontrols/navigatortypes.h"
+#include "mmframe.h"
+#include "mmex.h"
 
 wxBEGIN_EVENT_TABLE(ReportPanel, wxPanel)
     EVT_CHOICE(ID_YEAR_CHOICE,               ReportPanel::onYearChanged)
@@ -66,22 +63,26 @@ wxBEGIN_EVENT_TABLE(ReportPanel, wxPanel)
     EVT_MENU(ID_DATE_RANGE_EDIT,             ReportPanel::onDateRangeEdit)
     EVT_MENU_RANGE(
         ID_DATE_RANGE_MIN,
-        ID_DATE_RANGE_MAX,
-        ReportPanel::onDateRangeSelect)
-    EVT_BUTTON(wxID_ANY, ReportPanel::onShiftPressed)
+        ID_DATE_RANGE_MAX,                   ReportPanel::onDateRangeSelect)
+    EVT_BUTTON(wxID_ANY,                     ReportPanel::onShiftPressed)
 wxEND_EVENT_TABLE()
 
 ReportPanel::ReportPanel(
-    ReportBase* rb, bool cleanup, wxWindow *parent, mmGUIFrame* frame,
-    wxWindowID winid, const wxPoint& pos,
-    const wxSize& size, long style,
+    ReportBase* rb,
+    bool cleanup,
+    wxWindow* parent_win,
+    mmGUIFrame* frame,
+    wxWindowID win_id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
     const wxString& name
 ) :
     m_rb(rb),
     m_cleanup(cleanup),
     w_frame(frame)
 {
-    Create(parent, winid, pos, size, style, name);
+    create(parent_win, win_id, pos, size, style, name);
 }
 
 ReportPanel::~ReportPanel()
@@ -93,13 +94,16 @@ ReportPanel::~ReportPanel()
     clearVFprintedFiles("rep");
 }
 
-bool ReportPanel::Create(
-    wxWindow *parent, wxWindowID winid,
-    const wxPoint& pos, const wxSize& size, long style,
+bool ReportPanel::create(
+    wxWindow* parent_win,
+    wxWindowID win_id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
     const wxString& name
 ) {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
-    wxPanel::Create(parent, winid, pos, size, style, name);
+    wxPanel::Create(parent_win, win_id, pos, size, style, name);
 
     m_use_account_specific_filter = PrefModel::instance().getUsePerAccountFilter();
 
@@ -108,7 +112,7 @@ bool ReportPanel::Create(
     m_rb->extractParameters();
     m_rb->restoreReportSettings();
 
-    CreateControls();
+    createControls();
 
     if (m_rb->getParameters() > 0) {
         loadFilterSettings();
@@ -119,8 +123,10 @@ bool ReportPanel::Create(
 
     saveReportText();
 
-    ReportBase::REPORT_ID id = m_rb->getReportId();
-    this->SetLabel(id < 0 ? "Custom Report" : m_rb->getTitle(false));
+    this->SetLabel(m_rb->getReportId() < 0
+        ? "Custom Report"
+        : m_rb->getTitle(false)
+    );
 
     return true;
 }
@@ -140,7 +146,8 @@ bool ReportPanel::saveReportText()
         wxString id_str = "0";
         wxStringClientData* obj =
             static_cast<wxStringClientData*>(w_year_choice->GetClientObject(selectedItem));
-        if (obj) id_str = obj->GetData();
+        if (obj)
+            id_str = obj->GetData();
         int64 id = std::stoll(id_str.ToStdString());
         m_rb->setDateSelection(id);
     }
@@ -166,7 +173,9 @@ bool ReportPanel::saveReportText()
     const auto t = wxString::FromUTF8(json_buffer.GetString());
     wxLogDebug("%s", t);
     UsageModel::instance().append_usage(t);
-    UsageModel::instance().pageview(this, m_rb, (wxDateTime::UNow() - time).GetMilliseconds().ToLong());
+    UsageModel::instance().pageview(this, m_rb,
+        (wxDateTime::UNow() - time).GetMilliseconds().ToLong()
+    );
 
     return true;
 }
@@ -255,7 +264,9 @@ void ReportPanel::loadFilterSettings() {
 
     if (w_filter) {
         auto map = m_rb->getFilterMap();
-        wxString token = map.count("name") > 0 ? "FILTER_STRING_" + removeQuotes(map["name"]) : "FILTER_STRING_VALUE";
+        wxString token = map.count("name") > 0
+            ? "FILTER_STRING_" + removeQuotes(map["name"])
+            : "FILTER_STRING_VALUE";
         wxString filter_str;
         if (JSON_GetStringValue(j_doc, token.ToUTF8(), filter_str)) {
             w_filter->SetValue(filter_str);
@@ -304,12 +315,16 @@ void ReportPanel::saveFilterSettings() {
     }
 
     if (w_stocks_choice) {
-        InfoModel::saveFilterInt(j_doc, "FILTER_STOCK_NAME_IDX", w_stocks_choice->GetSelection());
+        InfoModel::saveFilterInt(j_doc, "FILTER_STOCK_NAME_IDX",
+            w_stocks_choice->GetSelection()
+        );
     }
 
     if (w_filter) {
         auto map = m_rb->getFilterMap();
-        wxString token = map.count("name") > 0 ? "FILTER_STRING_" + removeQuotes(map["name"]) : "FILTER_STRING_VALUE";
+        wxString token = map.count("name") > 0
+            ? "FILTER_STRING_" + removeQuotes(map["name"])
+            : "FILTER_STRING_VALUE";
         InfoModel::saveFilterString(j_doc, token.ToUTF8(), w_filter->GetValue());
     }
 
@@ -338,10 +353,10 @@ void ReportPanel::updateFilter()
         m_date_range.setDefEndDateN(mmDate::max());
         // copy from date range to start/end pickers
         w_start_date_picker->SetValue(
-            m_date_range.rangeStart().value().getDateTime()
+            m_date_range.rangeStartN().value().getDateTime()
         );
         w_end_date_picker->SetValue(
-            m_date_range.rangeEnd().value().getDateTime()
+            m_date_range.rangeEndN().value().getDateTime()
         );
     }
     else if (m_filter_id == JournalPanel::FILTER_ID_DATE_PICKER) {
@@ -360,7 +375,7 @@ void ReportPanel::updateFilter()
     }
 }
 
-void ReportPanel::CreateControls()
+void ReportPanel::createControls()
 {
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     SetSizer(itemBoxSizer2);
@@ -371,7 +386,12 @@ void ReportPanel::CreateControls()
     wxWrapSizer* itemBoxSizerHeader = new wxWrapSizer();
     itemPanel3->SetSizer(itemBoxSizerHeader);
 
-    itemBoxSizerHeader->Add(new wxStaticText(itemPanel3, wxID_ANY, ""), 0, wxALL | wxALIGN_CENTER_VERTICAL, 2); // Placeholder
+    itemBoxSizerHeader->Add(
+        new wxStaticText(itemPanel3, wxID_ANY, ""),
+        0,
+        wxALL | wxALIGN_CENTER_VERTICAL,
+        2
+    );
 
     if (m_rb) {
         int rp = m_rb->getParameters();
@@ -459,7 +479,6 @@ void ReportPanel::CreateControls()
         }
 
         if (rp & ReportBase::M_YEAR) {
-            u_cleanup_mem = true;
             wxStaticText* itemStaticTextH1 = new wxStaticText(
                 itemPanel3, wxID_ANY, _t("Year:")
             );
@@ -487,7 +506,6 @@ void ReportPanel::CreateControls()
             itemBoxSizerHeader->AddSpacer(30);
         }
         else if (rp & ReportBase::M_BUDGET) {
-            u_cleanup_mem = true;
             wxStaticText* itemStaticTextH1 = new wxStaticText(
                 itemPanel3, wxID_ANY, _t("Budget:")
             );
@@ -651,7 +669,12 @@ void ReportPanel::CreateControls()
         }
     }
 
-    itemBoxSizerHeader->Add(new wxStaticText(itemPanel3, wxID_ANY, ""), 0, wxALL | wxALIGN_CENTER_VERTICAL, 2); // Placeholder
+    itemBoxSizerHeader->Add(
+        new wxStaticText(itemPanel3, wxID_ANY, ""),
+        0,
+        wxALL | wxALIGN_CENTER_VERTICAL,
+        2
+    );
 
     w_browser = wxWebView::New();
 #ifdef __WXMAC__
@@ -667,7 +690,7 @@ void ReportPanel::CreateControls()
     itemBoxSizer2->Add(w_browser, 1, wxGROW | wxALL, 1);
 }
 
-void ReportPanel::PrintPage()
+void ReportPanel::printPage()
 {
     w_browser->Print();
 }
@@ -693,8 +716,8 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         int64 sub_id = -1;
         int64 payee_id = -1;
         // categoryID, subcategoryID, payee_id
-        //      subcategoryID = -2 means inlude all sub categories for the given category
-        while ( tokenizer.HasMoreTokens() ) {
+        //   subcategoryID = -2 means inlude all sub categories for the given category
+        while (tokenizer.HasMoreTokens()) {
             switch (i++) {
             case 0:
                 cat_id = std::stoll(tokenizer.GetNextToken().ToStdString());
@@ -738,9 +761,11 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
         if (sData.ToLongLong(&transID)) {
             const TrxData* trx_n = TrxModel::instance().get_id_data_n(transID);
             if (trx_n && trx_n->m_id > -1) {
-                const AccountData* account = AccountModel::instance().get_id_data_n(trx_n->m_account_id);
-                if (account) {
-                    w_frame->selectNavTreeItem(account->m_name);
+                const AccountData* account_n = AccountModel::instance().get_id_data_n(
+                    trx_n->m_account_id
+                );
+                if (account_n) {
+                    w_frame->selectNavTreeItem(account_n->m_name);
                     w_frame->setGotoAccountID(trx_n->m_account_id, JournalKey(-1, transID));
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
                     w_frame->GetEventHandler()->AddPendingEvent(event);
@@ -839,9 +864,13 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
             budget_d = budget_a[0];
 
         double estimated;
-        CurrencyModel::instance().fromString(parms[0], estimated, CurrencyModel::instance().get_base_data_n());
+        CurrencyModel::instance().fromString(
+            parms[0], estimated, CurrencyModel::instance().get_base_data_n()
+        );
         double actual;
-        CurrencyModel::instance().fromString(parms[1], actual, CurrencyModel::instance().get_base_data_n());
+        CurrencyModel::instance().fromString(
+            parms[1], actual, CurrencyModel::instance().get_base_data_n()
+        );
 
         //open budgetEntry dialog
         BudgetEntryDialog dlg(w_frame, &budget_d,
@@ -887,25 +916,27 @@ void ReportPanel::onAccountChanged(wxCommandEvent& WXUNUSED(event))
 
 void ReportPanel::onStockChanged(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_rb) {
-        int sel = w_stocks_choice->GetSelection();
-        if ((sel == 1) || (sel != m_rb->getStockSelection())) {
-            m_rb->setStockName(w_stocks_choice->GetStringSelection());
-            m_rb->setStockSelection(sel);
-            saveReportText();
-            saveFilterSettings();
-            m_rb->saveReportSettings();
-        }
+    if (!m_rb)
+        return;
+
+    int sel = w_stocks_choice->GetSelection();
+    if ((sel == 1) || (sel != m_rb->getStockSelection())) {
+        m_rb->setStockName(w_stocks_choice->GetStringSelection());
+        m_rb->setStockSelection(sel);
+        saveReportText();
+        saveFilterSettings();
+        m_rb->saveReportSettings();
     }
 }
 
 void ReportPanel::onFilterChanged(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_rb) {
-        saveReportText();
-        saveFilterSettings();
-        m_rb->saveReportSettings();
-    }
+    if (!m_rb)
+        return;
+
+    saveReportText();
+    saveFilterSettings();
+    m_rb->saveReportSettings();
 }
 
 void ReportPanel::onFilterTextChanged(wxCommandEvent& WXUNUSED(event))
@@ -915,26 +946,29 @@ void ReportPanel::onFilterTextChanged(wxCommandEvent& WXUNUSED(event))
 
 void ReportPanel::onFilterCancel(wxCommandEvent& event)
 {
-    if (m_rb) {
-        w_filter->SetValue("");
-        onFilterChanged(event);
-    }
+    if (!m_rb)
+        return;
+
+    w_filter->SetValue("");
+    onFilterChanged(event);
 }
 
 void ReportPanel::onSelectionChanged(wxCommandEvent& WXUNUSED(event))
 {
-    if (m_rb) {
-        saveReportText();
-        m_rb->saveReportSettings();
-    }
+    if (!m_rb)
+        return;
+
+    saveReportText();
+    m_rb->saveReportSettings();
 }
 
 void ReportPanel::onSingleDateChanged(wxDateEvent& WXUNUSED(event))
 {
-    if (m_rb) {
-        saveReportText();
-        m_rb->saveReportSettings();
-    }
+    if (!m_rb)
+        return;
+
+    saveReportText();
+    m_rb->saveReportSettings();
 }
 
 void ReportPanel::onChartChanged(wxCommandEvent& WXUNUSED(event))

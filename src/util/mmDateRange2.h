@@ -222,11 +222,11 @@ public:
     auto rangeName() const -> const wxString;
     auto rangeLabelName() const -> const wxString;
     auto reportingLabel() const -> const wxString;
-    auto periodStart(mmDate date, mmDatePeriod period) const -> mmDateN;
-    auto periodEnd(mmDate date, mmDatePeriod period) const -> mmDateN;
-    auto rangeStart() const -> mmDateN;
-    auto rangeEnd() const -> mmDateN;
-    auto reportingNext() const -> mmDateN;
+    auto periodStartN(mmDate date, mmDatePeriod period) const -> mmDateN;
+    auto periodEndN(mmDate date, mmDatePeriod period) const -> mmDateN;
+    auto rangeStartN() const -> mmDateN;
+    auto rangeEndN() const -> mmDateN;
+    auto reportingNextN() const -> mmDateN;
     auto rangeStartIsoStartN() const -> const wxString;
     auto rangeEndIsoEndN() const -> const wxString;
     auto reportingNextIsoEndN() const -> const wxString;
@@ -387,15 +387,15 @@ inline const wxString mmDateRange2::reportingLabel() const
 
 inline const wxString mmDateRange2::rangeStartIsoStartN() const
 {
-    return rangeStart().isoStartN();
+    return rangeStartN().isoStartN();
 }
 inline const wxString mmDateRange2::rangeEndIsoEndN() const
 {
-    return rangeEnd().isoEndN();
+    return rangeEndN().isoEndN();
 }
 inline const wxString mmDateRange2::reportingNextIsoEndN() const
 {
-    return reportingNext().isoEndN();
+    return reportingNextN().isoEndN();
 }
 
 inline const mmDateN& mmDateRange2::ReportingIterator::operator*()

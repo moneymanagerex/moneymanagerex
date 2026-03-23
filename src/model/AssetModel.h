@@ -20,12 +20,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/AssetTable.h"
-#include "data/_DataEnum.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/AssetData.h"
 
-#include "_ModelBase.h"
 #include "CurrencyModel.h"
 
 class AssetModel : public TableFactory<AssetTable, AssetData>

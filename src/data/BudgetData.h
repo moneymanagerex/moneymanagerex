@@ -19,7 +19,6 @@
 #pragma once
 
 #include "_DataEnum.h"
-#include "table/_TableBase.h"
 #include "table/BudgetTable.h"
 
 // User-friendly representation of a record in table BUDGETTABLE_V1.

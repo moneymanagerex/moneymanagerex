@@ -45,9 +45,7 @@ wxBEGIN_EVENT_TABLE( AttachmentDialog, wxDialog )
     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY,    AttachmentDialog::OnListItemActivated)
     EVT_MENU_RANGE(
         MENU_NEW_ATTACHMENT,
-        MENU_DELETE_ATTACHMENT,
-        AttachmentDialog::OnMenuSelected
-    )
+        MENU_DELETE_ATTACHMENT,              AttachmentDialog::OnMenuSelected)
 wxEND_EVENT_TABLE()
 
 AttachmentDialog::AttachmentDialog(

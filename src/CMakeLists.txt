@@ -278,12 +278,14 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/TrxSplitModel.h
     model/UsageModel.cpp
     model/UsageModel.h
-    model/_ModelBase.cpp
-    model/_ModelBase.h
     model/_all.h
 
+    panel/AssetList.cpp
+    panel/AssetList.h
     panel/AssetPanel.cpp
     panel/AssetPanel.h
+    panel/BudgetList.cpp
+    panel/BudgetList.h
     panel/BudgetPanel.cpp
     panel/BudgetPanel.h
     panel/DashboardPanel.cpp
@@ -298,12 +300,16 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     panel/JournalPanel.h
     panel/ReportPanel.cpp
     panel/ReportPanel.h
+    panel/SchedList.cpp
+    panel/SchedList.h
     panel/SchedPanel.cpp
     panel/SchedPanel.h
     panel/StockList.cpp
     panel/StockList.h
     panel/StockPanel.cpp
     panel/StockPanel.h
+    panel/_ListBase.cpp
+    panel/_ListBase.h
     panel/_PanelBase.cpp
     panel/_PanelBase.h
 

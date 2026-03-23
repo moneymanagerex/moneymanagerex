@@ -19,17 +19,14 @@
 #pragma once
 
 #include "base/defs.h"
-#include "util/mmChoice.h"
-#include "util/mmDate.h"
-
-#include "table/TrxTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/TrxData.h"
+// cannot include "util/util.h"
 
-#include "_ModelBase.h"
 #include "TrxSplitModel.h"
 #include "FieldModel.h"
 #include "TagLinkModel.h"
-// cannot include "util/util.h"
 
 class TrxModel : public TableFactory<TrxTable, TrxData>
 {
@@ -115,8 +112,8 @@ public:
     static bool is_foreignAsTransfer(const Data& this_d);
 
 public:
-    // override
-    bool purge_id(int64 id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 id) override;
 
     void save_timestamp(int64 id);
     void update_timestamp(Data& trx_d);

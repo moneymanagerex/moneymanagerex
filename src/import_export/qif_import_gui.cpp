@@ -54,20 +54,22 @@ enum tab_id {
 wxIMPLEMENT_DYNAMIC_CLASS(mmQIFImportDialog, wxDialog);
 
 wxBEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
-EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick)
-EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
-EVT_MENU(wxID_HIGHEST, mmQIFImportDialog::OnMenuSelected)
-EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
-EVT_CHOICE(ID_ACCOUNT, mmQIFImportDialog::OnAccountChanged)
-EVT_CLOSE(mmQIFImportDialog::OnQuit)
+    EVT_CHECKBOX(wxID_ANY,  mmQIFImportDialog::OnCheckboxClick)
+    EVT_BUTTON(wxID_OK,     mmQIFImportDialog::OnOk)
+    EVT_MENU(wxID_HIGHEST,  mmQIFImportDialog::OnMenuSelected)
+    EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
+    EVT_CHOICE(ID_ACCOUNT,  mmQIFImportDialog::OnAccountChanged)
+    EVT_CLOSE(              mmQIFImportDialog::OnQuit)
 wxEND_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(
-    wxWindow* parent, int64 account_id, const wxString& file_path
+    wxWindow* parent,
+    int64 account_id,
+    const wxString& file_path
 ) :
     m_FileNameStr(file_path),
-    m_today(wxDate::Today()),
-    m_fresh(wxDate::Today().Subtract(wxDateSpan::Months(1)))
+    m_today(wxDateTime::Today()),
+    m_fresh(wxDateTime::Today().Subtract(wxDateSpan::Months(1)))
 {
     decimal_ = CurrencyModel::instance().get_base_data_n()->m_decimal_point;
     payeeIsNotes_ = false;
@@ -1093,16 +1095,16 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& WXUNUSED(event))
         wxProgressDialog progressDlg(_tu("Please wait…"), _t("Importing")
             , nTransactions + 1, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
         progressDlg.Update(1, _t("Importing Accounts"));
-        bool is_webbapp_enabled = mmWebApp::MMEX_WebApp_UpdateAccount();
+        bool is_webbapp_enabled = mmWebApp::uploadAccount();
 
         progressDlg.Update(1, _t("Importing Payees"));
         getOrCreatePayees();
         if (is_webbapp_enabled)
-            is_webbapp_enabled = mmWebApp::MMEX_WebApp_UpdatePayee();
+            is_webbapp_enabled = mmWebApp::uploadPayee();
         progressDlg.Update(1, _t("Importing Categories"));
         getOrCreateCategories();
         if (is_webbapp_enabled)
-            mmWebApp::MMEX_WebApp_UpdateCategory();
+            mmWebApp::uploadCategory();
 
         TrxModel::DataA trx_a;
         TrxModel::DataA trx_to_a;

@@ -25,6 +25,7 @@
 #include <wx/webviewfshandler.h>
 #include <vector>
 #include <wx/dataview.h>
+#include "panel/_ListBase.h"
 #include "panel/_PanelBase.h"
 
 #ifndef _WIN32

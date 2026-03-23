@@ -19,11 +19,9 @@ Copyright (C) 2018 Stefano Giorgio (stef145g)
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/UsageTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/UsageData.h"
-
-#include "_ModelBase.h"
 
 class ReportBase;
 

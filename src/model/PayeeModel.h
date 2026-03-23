@@ -21,12 +21,10 @@
 #pragma once
 
 #include "base/defs.h"
-
-#include "table/PayeeTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/_DataEnum.h"
 #include "data/PayeeData.h"
-
-#include "_ModelBase.h"
 
 class PayeeModel : public TableFactory<PayeeTable, PayeeData>
 {
@@ -46,8 +44,8 @@ public:
     int find_id_aux_c(int64 payee_id);
     int find_id_dep_c(int64 payee_id);
 
-    // override
-    bool purge_id(int64 payee_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 payee_id) override;
 
     // lookup for given id
     auto get_id_name(int64 payee_id) -> const wxString;

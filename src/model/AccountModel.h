@@ -22,11 +22,10 @@
 
 #include "base/defs.h"
 #include "util/mmDate.h"
-
-#include "table/AccountTable.h"
+#include "util/mmSingleton.h"
+#include "table/_TableFactory.h"
 #include "data/AccountData.h"
 
-#include "_ModelBase.h"
 #include "CurrencyModel.h"
 #include "TrxModel.h"
 #include "SchedModel.h"
@@ -52,8 +51,8 @@ public:
     static AccountCol::STATUS STATUS(OP op, AccountStatus status);
 
 public:
-    // override
-    bool purge_id(int64 account_id) override;
+    // override TableFactory
+    virtual bool purge_id(int64 account_id) override;
 
     // lookup for given Data
     auto get_data_currency_p(const Data& account_d) -> const CurrencyData*;

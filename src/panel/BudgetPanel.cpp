@@ -48,124 +48,115 @@ enum
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
 };
 
-static const wxString VIEW_ALL      = _n("View All Budget Categories");
-static const wxString VIEW_NON_ZERO = _n("View Non-Zero Budget Categories");
-static const wxString VIEW_PLANNED  = _n("View Planned Budget Categories");
-static const wxString VIEW_INCOME   = _n("View Income Budget Categories");
-static const wxString VIEW_EXPENSE  = _n("View Expense Budget Categories");
-static const wxString VIEW_SUMM     = _n("View Budget Category Summary");
+const wxString BudgetPanel::VIEW_ALL      = _n("View All Budget Categories");
+const wxString BudgetPanel::VIEW_NON_ZERO = _n("View Non-Zero Budget Categories");
+const wxString BudgetPanel::VIEW_PLANNED  = _n("View Planned Budget Categories");
+const wxString BudgetPanel::VIEW_INCOME   = _n("View Income Budget Categories");
+const wxString BudgetPanel::VIEW_EXPENSE  = _n("View Expense Budget Categories");
+const wxString BudgetPanel::VIEW_SUMM     = _n("View Budget Category Summary");
 
 wxBEGIN_EVENT_TABLE(BudgetPanel, wxPanel)
-    EVT_BUTTON(wxID_FILE2, BudgetPanel::OnMouseLeftDown)
-    EVT_MENU(wxID_ANY,     BudgetPanel::OnViewPopupSelected)
+    EVT_BUTTON(wxID_FILE2, BudgetPanel::onMouseLeftDown)
+    EVT_MENU(wxID_ANY,     BudgetPanel::onViewPopupSelected)
 wxEND_EVENT_TABLE()
 
-wxBEGIN_EVENT_TABLE(BudgetList, ListBase)
-    EVT_LIST_ITEM_SELECTED(wxID_ANY,  BudgetList::OnListItemSelected)
-    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, BudgetList::OnListItemActivated)
-    EVT_MOTION(BudgetList::OnMouseMove)
-wxEND_EVENT_TABLE()
-
-const std::vector<ListColumnInfo> BudgetList::LIST_INFO = {
-    { LIST_ID_ICON,      true, _n("Icon"),      _WH, _FL, false },
-    { LIST_ID_CATEGORY,  true, _n("Category"),  _WH, _FL, false },
-    { LIST_ID_FREQUENCY, true, _n("Frequency"), _WH, _FL, false },
-    { LIST_ID_AMOUNT,    true, _n("Amount"),    _WH, _FR, false },
-    { LIST_ID_ESTIMATED, true, _n("Estimated"), _WH, _FR, false },
-    { LIST_ID_ACTUAL,    true, _n("Actual"),    _WH, _FR, false },
-    { LIST_ID_NOTES,     true, _n("Notes"),     _WH, _FL, false },
-};
-
-BudgetPanel::BudgetPanel(int64 budgetYearID
-    , wxWindow *parent
-    , wxWindowID winid
-    , const wxPoint& pos, const wxSize& size
-    , long style, const wxString& name)
-    : m_lc(nullptr)
-    , budgetYearID_(budgetYearID)
+BudgetPanel::BudgetPanel(
+    int64 bp_id,
+    wxWindow* parent_win,
+    wxWindowID win_id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) :
+    w_list(nullptr),
+    m_bp_id(bp_id)
 {
-    Create(parent, winid, pos, size, style, name);
+    create(parent_win, win_id, pos, size, style, name);
     mmThemeAutoColour(this);
 }
 
-bool BudgetPanel::Create(wxWindow *parent
-    , wxWindowID winid, const wxPoint& pos
-    , const wxSize& size, long style, const wxString& name)
+BudgetPanel::~BudgetPanel()
 {
+}
+
+bool BudgetPanel::create(
+    wxWindow *parent_win,
+    wxWindowID win_id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style,
+    const wxString& name
+) {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxPanel::Create(parent, winid, pos, size, style, name);
+    wxPanel::Create(parent_win, win_id, pos, size, style, name);
 
     this->windowsFreezeThaw();
-    CreateControls();
+    createControls();
     mmThemeAutoColour(this);
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
     initVirtualListControl();
-    if (!budget_.empty())
-        m_lc->EnsureVisible(0);
+    if (!m_catId_subcatId_a.empty())
+        w_list->EnsureVisible(0);
 
     this->windowsFreezeThaw();
     UsageModel::instance().pageview(this);
     return true;
 }
 
-BudgetPanel::~BudgetPanel()
-{
-
-}
-
-void BudgetPanel::OnViewPopupSelected(wxCommandEvent& event)
+void BudgetPanel::onViewPopupSelected(wxCommandEvent& event)
 {
     int evt =  event.GetId();
     if (evt ==  MENU_VIEW_ALLBUDGETENTRIES)
-        currentView_ = VIEW_ALL;
+        m_current_view = BudgetPanel::VIEW_ALL;
     else if (evt == MENU_VIEW_NONZEROBUDGETENTRIES)
-        currentView_ = VIEW_NON_ZERO;
+        m_current_view = BudgetPanel::VIEW_NON_ZERO;
     else if (evt == MENU_VIEW_PLANNEDBUDGETENTRIES)
-        currentView_ = VIEW_PLANNED;
+        m_current_view = BudgetPanel::VIEW_PLANNED;
     else if (evt == MENU_VIEW_INCOMEBUDGETENTRIES)
-        currentView_ = VIEW_INCOME;
+        m_current_view = BudgetPanel::VIEW_INCOME;
     else if (evt == MENU_VIEW_EXPENSEBUDGETENTRIES)
-        currentView_ = VIEW_EXPENSE;
+        m_current_view = BudgetPanel::VIEW_EXPENSE;
     else if (evt == MENU_VIEW_SUMMARYBUDGETENTRIES)
-        currentView_ = VIEW_SUMM;
+        m_current_view = BudgetPanel::VIEW_SUMM;
     else {
         wxASSERT(false);
     }
 
-    InfoModel::instance().setString("BUDGET_FILTER", currentView_);
+    InfoModel::instance().setString("BUDGET_FILTER", m_current_view);
 
-    RefreshList();
+    refreshList();
 }
 
-void BudgetPanel::RefreshList()
+void BudgetPanel::refreshList()
 {
     initVirtualListControl();
-    m_lc->Refresh();
-    m_lc->Update();
-    if (!budget_.empty())
-        m_lc->EnsureVisible(0);
+    w_list->Refresh();
+    w_list->Update();
+    if (!m_catId_subcatId_a.empty())
+        w_list->EnsureVisible(0);
 }
 
-void BudgetPanel::OnMouseLeftDown(wxCommandEvent& event)
+void BudgetPanel::onMouseLeftDown(wxCommandEvent& event)
 {
     wxMenu menu;
-    menu.Append(MENU_VIEW_ALLBUDGETENTRIES, wxGetTranslation(VIEW_ALL));
-    menu.Append(MENU_VIEW_PLANNEDBUDGETENTRIES, wxGetTranslation(VIEW_PLANNED));
-    menu.Append(MENU_VIEW_NONZEROBUDGETENTRIES, wxGetTranslation(VIEW_NON_ZERO));
-    menu.Append(MENU_VIEW_INCOMEBUDGETENTRIES, wxGetTranslation(VIEW_INCOME));
-    menu.Append(MENU_VIEW_EXPENSEBUDGETENTRIES, wxGetTranslation(VIEW_EXPENSE));
+    menu.Append(MENU_VIEW_ALLBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_ALL));
+    menu.Append(MENU_VIEW_PLANNEDBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_PLANNED));
+    menu.Append(MENU_VIEW_NONZEROBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_NON_ZERO));
+    menu.Append(MENU_VIEW_INCOMEBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_INCOME));
+    menu.Append(MENU_VIEW_EXPENSEBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_EXPENSE));
     menu.AppendSeparator();
-    menu.Append(MENU_VIEW_SUMMARYBUDGETENTRIES, wxGetTranslation(VIEW_SUMM));
+    menu.Append(MENU_VIEW_SUMMARYBUDGETENTRIES, wxGetTranslation(BudgetPanel::VIEW_SUMM));
     PopupMenu(&menu);
 
     event.Skip();
 }
 
-wxString BudgetPanel::GetPanelTitle() const
+wxString BudgetPanel::getPanelTitle() const
 {
-    wxString bp_name_n = BudgetPeriodModel::instance().get_id_name_n(budgetYearID_);
+    wxString bp_name_n = BudgetPeriodModel::instance().get_id_name_n(m_bp_id);
     wxString title;
     if ((bp_name_n.length() < 5)) {
         if (PrefModel::instance().getBudgetFinancialYears()) {
@@ -180,13 +171,13 @@ wxString BudgetPanel::GetPanelTitle() const
     }
     else {
         title = wxString::Format(_t("Month: %s"), bp_name_n);
-        title += wxString::Format(" (%s)", m_monthName);
+        title += wxString::Format(" (%s)", m_month_name);
     }
 
     if (PrefModel::instance().getBudgetDaysOffset() != 0) {
         title = wxString::Format(_t("%1$s    Start Date of: %2$s"),
             title,
-            mmGetDateTimeForDisplay(m_budget_offset_date)
+            mmGetDateTimeForDisplay(m_start_date)
         );
     }
 
@@ -195,13 +186,13 @@ wxString BudgetPanel::GetPanelTitle() const
     return title;
 }
 
-void BudgetPanel::UpdateBudgetHeading()
+void BudgetPanel::updateBudgetHeading()
 {
-    budgetReportHeading_->SetLabel(GetPanelTitle());
-    m_bitmapTransFilter->SetLabel(wxGetTranslation(currentView_));
+    w_header->SetLabel(getPanelTitle());
+    w_filter_btn->SetLabel(wxGetTranslation(m_current_view));
 }
 
-void BudgetPanel::CreateControls()
+void BudgetPanel::createControls()
 {
     wxSizerFlags flags;
     flags.Align(wxALIGN_LEFT).Border(wxLEFT|wxTOP, 4);
@@ -216,54 +207,64 @@ void BudgetPanel::CreateControls()
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     itemPanel3->SetSizer(itemBoxSizerVHeader);
 
-    budgetReportHeading_ = new wxStaticText(itemPanel3, wxID_ANY, "");
+    w_header = new wxStaticText(itemPanel3, wxID_ANY, "");
 
-    budgetReportHeading_->SetFont(this->GetFont().Larger().Bold());
+    w_header->SetFont(this->GetFont().Larger().Bold());
 
     wxBoxSizer* budgetReportHeadingSizer = new wxBoxSizer(wxHORIZONTAL);
-    budgetReportHeadingSizer->Add(budgetReportHeading_, 1);
+    budgetReportHeadingSizer->Add(w_header, 1);
     itemBoxSizerVHeader->Add(budgetReportHeadingSizer, 0, wxALL, 1);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2, 0, wxALL, 1);
 
-    m_bitmapTransFilter = new wxButton(itemPanel3, wxID_FILE2);
-    m_bitmapTransFilter->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
-    m_bitmapTransFilter->SetMinSize(wxSize(300, -1));
-    itemBoxSizerHHeader2->Add(m_bitmapTransFilter, g_flagsBorder1H);
+    w_filter_btn = new wxButton(itemPanel3, wxID_FILE2);
+    w_filter_btn->SetBitmap(mmBitmapBundle(png::TRANSFILTER, mmBitmapButtonSize));
+    w_filter_btn->SetMinSize(wxSize(300, -1));
+    itemBoxSizerHHeader2->Add(w_filter_btn, g_flagsBorder1H);
 
     wxFlexGridSizer* itemIncomeSizer = new wxFlexGridSizer(0, 7, 5, 10);
     itemBoxSizerVHeader->Add(itemIncomeSizer);
 
-    income_estimated_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_EST, "$", wxDefaultPosition, wxSize(120, -1));
-    income_actual_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_ACT, "$", wxDefaultPosition, wxSize(120, -1));
-    income_diff_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_DIF, "$");
+    w_income_estimated = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_EST, "$",
+        wxDefaultPosition, wxSize(120, -1)
+    );
+    w_income_actual = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_ACT, "$",
+        wxDefaultPosition, wxSize(120, -1)
+    );
+    w_income_diff = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_DIF, "$"
+    );
 
-    expenses_estimated_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST, "$", wxDefaultPosition, wxSize(120, -1));
-    expenses_actual_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT, "$", wxDefaultPosition, wxSize(120, -1));
-    expenses_diff_ = new wxStaticText(itemPanel3
-        , ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF, "$");
+    w_expenses_estimated = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST, "$",
+        wxDefaultPosition, wxSize(120, -1)
+    );
+    w_expenses_actual = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT, "$",
+        wxDefaultPosition, wxSize(120, -1)
+    );
+    w_expenses_diff = new wxStaticText(itemPanel3,
+        ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF, "$"
+    );
 
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Income: ")));
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Estimated: ")));
-    itemIncomeSizer->Add(income_estimated_);
+    itemIncomeSizer->Add(w_income_estimated);
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Actual: ")));
-    itemIncomeSizer->Add(income_actual_);
+    itemIncomeSizer->Add(w_income_actual);
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Difference: ")));
-    itemIncomeSizer->Add(income_diff_);
+    itemIncomeSizer->Add(w_income_diff);
 
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Expenses: ")));
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Estimated: ")));
-    itemIncomeSizer->Add(expenses_estimated_);
+    itemIncomeSizer->Add(w_expenses_estimated);
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Actual: ")));
-    itemIncomeSizer->Add(expenses_actual_);
+    itemIncomeSizer->Add(w_expenses_actual);
     itemIncomeSizer->Add(new wxStaticText(itemPanel3, wxID_STATIC, _t("Difference: ")));
-    itemIncomeSizer->Add(expenses_diff_);
+    itemIncomeSizer->Add(w_expenses_diff);
     /* ---------------------- */
 
     wxVector<wxBitmapBundle> images;
@@ -271,27 +272,11 @@ void BudgetPanel::CreateControls()
     images.push_back(mmBitmapBundle(png::VOID_STAT));
     images.push_back(mmBitmapBundle(png::FOLLOW_UP));
 
-    m_lc = new BudgetList(this, this, wxID_ANY);
-    m_lc->SetSmallImages(images);
-    m_lc->createColumns();
+    w_list = new BudgetList(this, this, wxID_ANY);
+    w_list->SetSmallImages(images);
+    w_list->createColumns();
 
-    itemBoxSizer2->Add(m_lc.get(), 1, wxGROW | wxALL, 1);
-}
-
-BudgetList::BudgetList(
-    BudgetPanel* cp, wxWindow *parent, const wxWindowID id
-) :
-    ListBase(parent, id),
-    attr3_(new wxListItemAttr(
-        wxNullColour, mmThemeMetaColour(meta::COLOR_LISTTOTAL), wxNullFont
-    )),
-    cp_(cp)
-{
-    mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
-
-    m_setting_name = "BUDGET";
-    m_col_info_id = LIST_INFO;
-    o_col_width_prefix = "BUDGET_COL";
+    itemBoxSizer2->Add(w_list.get(), 1, wxGROW | wxALL, 1);
 }
 
 void BudgetPanel::sortList()
@@ -299,52 +284,52 @@ void BudgetPanel::sortList()
     //TODO: Sort budget panel
 }
 
-bool BudgetPanel::DisplayEntryAllowed(int64 cat_id, int64 subcategoryID)
+bool BudgetPanel::displayEntryAllowed(int64 cat_id, int64 subcat_id)
 {
-    bool result = false;
+    bool is_visible = false;
 
-    double actual = 0;
     double estimated = 0;
+    double actual = 0;
     if (cat_id < 0) {
-        actual = budgetTotals_[subcategoryID].second;
-        estimated = budgetTotals_[subcategoryID].first;
+        estimated = m_estimate_actual_mCatId[subcat_id].first;
+        actual = m_estimate_actual_mCatId[subcat_id].second;
     }
     else {
-        actual = categoryStats_[cat_id][0];
         estimated = getEstimate(cat_id);
+        actual = m_amount_mMonth_mCatId[cat_id][0];
     }
 
-    if (currentView_ == VIEW_NON_ZERO)
-        result = ((estimated != 0.0) || (actual != 0.0));
-    else if (currentView_ == VIEW_INCOME)
-        result = ((estimated > 0.0) || (actual > 0.0));
-    else if (currentView_ == VIEW_PLANNED)
-        result = (estimated != 0.0);
-    else if (currentView_ == VIEW_EXPENSE)
-        result = ((estimated < 0.0) || (actual < 0.0));
-    else if (currentView_ == VIEW_SUMM)
-        result = (cat_id < 0);
+    if (m_current_view == BudgetPanel::VIEW_NON_ZERO)
+        is_visible = (estimated != 0.0 || actual != 0.0);
+    else if (m_current_view == BudgetPanel::VIEW_INCOME)
+        is_visible = (estimated > 0.0 || actual > 0.0);
+    else if (m_current_view == BudgetPanel::VIEW_PLANNED)
+        is_visible = (estimated != 0.0);
+    else if (m_current_view == BudgetPanel::VIEW_EXPENSE)
+        is_visible = (estimated < 0.0 || actual < 0.0);
+    else if (m_current_view == BudgetPanel::VIEW_SUMM)
+        is_visible = (cat_id < 0);
     else
-        result = true;
+        is_visible = true;
 
     if (cat_id > 0) {
         const CategoryData* cat_n = CategoryModel::instance().get_id_data_n(cat_id);
-        displayDetails_[cat_id].second = result;
+        m_level_visible_mCatId[cat_id].second = is_visible;
         for (const auto& subcat_d : CategoryModel::instance().find_data_subtree_a(*cat_n)) {
-            result = result || DisplayEntryAllowed(subcat_d.m_id, -1);
+            is_visible = is_visible || displayEntryAllowed(subcat_d.m_id, -1);
         }
     }
-    return result;
+    return is_visible;
 }
 
 void BudgetPanel::initVirtualListControl()
 {
-    budget_.clear();
-    budgetTotals_.clear();
-    budgetPeriod_.clear();
-    budgetAmt_.clear();
-    categoryStats_.clear();
-    budgetNotes_.clear();
+    m_catId_subcatId_a.clear();
+    m_estimate_actual_mCatId.clear();
+    m_freq_mCatId.clear();
+    m_amount_mCatId.clear();
+    m_amount_mMonth_mCatId.clear();
+    m_notes_mCatId.clear();
     double estIncome = 0.0;
     double estExpenses = 0.0;
     double actIncome = 0.0;
@@ -356,43 +341,45 @@ void BudgetPanel::initVirtualListControl()
         evaluateTransfer = true;
     }
 
-    currentView_ = InfoModel::instance().getString("BUDGET_FILTER", VIEW_ALL);
-    const wxString bp_name_n = BudgetPeriodModel::instance().get_id_name_n(budgetYearID_);
+    m_current_view = InfoModel::instance().getString("BUDGET_FILTER", BudgetPanel::VIEW_ALL);
+    const wxString bp_name_n = BudgetPeriodModel::instance().get_id_name_n(m_bp_id);
     long year = 0;
     bp_name_n.ToLong(&year);
 
     int startDay = 1;
-    wxDate::Month startMonth = wxDateTime::Jan;
+    wxDateTime::Month startMonth = wxDateTime::Jan;
     if (PrefModel::instance().getBudgetFinancialYears())
         budgetDetails.GetFinancialYearValues(startDay, startMonth);
     wxDateTime dtBegin(startDay, startMonth, year);
     wxDateTime dtEnd = dtBegin;
     dtEnd.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
 
-    monthlyBudget_ = (bp_name_n.length() > 5);
+    m_is_monthly = (bp_name_n.length() > 5);
 
-    if (monthlyBudget_) {
+    if (m_is_monthly) {
         budgetDetails.SetBudgetMonth(bp_name_n, dtBegin, dtEnd);
-        m_monthName = wxGetTranslation(wxDateTime::GetEnglishMonthName(dtBegin.GetMonth()));
+        m_month_name = wxGetTranslation(wxDateTime::GetEnglishMonthName(dtBegin.GetMonth()));
     }
 
     // Readjust dates by the Budget Offset Option
     PrefModel::instance().addBudgetDateOffset(dtBegin);
-    m_budget_offset_date = dtBegin.FormatISODate();   
+    m_start_date = dtBegin.FormatISODate();   
     PrefModel::instance().addBudgetDateOffset(dtEnd);
     mmDateRange date_range;
     date_range.start_date(dtBegin.ResetTime()); // Start of Day
     date_range.end_date(dtEnd.ResetTime().Add(wxTimeSpan(23,59,59,999))); // End of Day
 
     //Get statistics
-    BudgetModel::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_, budgetNotes_);
+    BudgetModel::instance().getBudgetEntry(
+        m_bp_id, m_freq_mCatId, m_amount_mCatId, m_notes_mCatId
+    );
     CategoryModel::instance().getCategoryStats(
-        categoryStats_,
+        m_amount_mMonth_mCatId,
         static_cast<wxSharedPtr<wxArrayString>>(nullptr),
         &date_range,
         PrefModel::instance().getIgnoreFutureTransactions(),
         false,
-        (evaluateTransfer ? &budgetAmt_ : nullptr)
+        (evaluateTransfer ? &m_amount_mCatId : nullptr)
     );
 
     //start with only the root categories
@@ -401,7 +388,7 @@ void BudgetPanel::initVirtualListControl()
     );
     std::stable_sort(cat_a.begin(), cat_a.end(), CategoryData::SorterByCATEGNAME());
     for (const auto& cat_d : cat_a) {
-        displayDetails_[cat_d.m_id].first = 0;
+        m_level_visible_mCatId[cat_d.m_id].first = 0;
         double estimated = getEstimate(cat_d.m_id);
         if (estimated < 0)
             estExpenses += estimated;
@@ -409,9 +396,8 @@ void BudgetPanel::initVirtualListControl()
             estIncome += estimated;
 
         double actual = 0;
-        if (currentView_ != VIEW_PLANNED || estimated != 0)
-        {
-            actual = categoryStats_[cat_d.m_id][0];
+        if (m_current_view != BudgetPanel::VIEW_PLANNED || estimated != 0) {
+            actual = m_amount_mMonth_mCatId[cat_d.m_id][0];
             if (actual < 0)
                 actExpenses += actual;
             else
@@ -419,11 +405,11 @@ void BudgetPanel::initVirtualListControl()
         }
 
 
-        budgetTotals_[cat_d.m_id].first = estimated;
-        budgetTotals_[cat_d.m_id].second = actual;
+        m_estimate_actual_mCatId[cat_d.m_id].first = estimated;
+        m_estimate_actual_mCatId[cat_d.m_id].second = actual;
 
-        if (DisplayEntryAllowed(cat_d.m_id, -1))
-            budget_.emplace_back(cat_d.m_id, -1);
+        if (displayEntryAllowed(cat_d.m_id, -1))
+            m_catId_subcatId_a.emplace_back(cat_d.m_id, -1);
 
         std::vector<int> totals_queue;
         //now a depth-first walk of the subtree of this root cat_d
@@ -436,50 +422,54 @@ void BudgetPanel::initVirtualListControl()
                 estIncome += estimated;
 
             actual = 0;
-            if (currentView_ != VIEW_PLANNED || estimated != 0) {
-                actual = categoryStats_[subcat_a[i].m_id][0];
+            if (m_current_view != BudgetPanel::VIEW_PLANNED || estimated != 0) {
+                actual = m_amount_mMonth_mCatId[subcat_a[i].m_id][0];
                 if (actual < 0)
                     actExpenses += actual;
                 else
                     actIncome += actual;
             }
-            //save totals for this subcategory
-            budgetTotals_[subcat_a[i].m_id].first = estimated;
-            budgetTotals_[subcat_a[i].m_id].second = actual;
+            // save totals for this subcategory
+            m_estimate_actual_mCatId[subcat_a[i].m_id].first = estimated;
+            m_estimate_actual_mCatId[subcat_a[i].m_id].second = actual;
 
-            //update totals of the category
-            budgetTotals_[cat_d.m_id].first += estimated;
-            budgetTotals_[cat_d.m_id].second += actual;
+            // update totals of the category
+            m_estimate_actual_mCatId[cat_d.m_id].first += estimated;
+            m_estimate_actual_mCatId[cat_d.m_id].second += actual;
 
-            //walk up the hierarchy and update all the parent totals as well
-            int64 nextParent = subcat_a[i].m_parent_id_n;
-            displayDetails_[subcat_a[i].m_id].first = 1;
-            for (int j = i; j > 0; j--) {
-                if (subcat_a[j - 1].m_id == nextParent) {
-                    displayDetails_[subcat_a[i].m_id].first++;
-                    budgetTotals_[subcat_a[j - 1].m_id].first += estimated;
-                    budgetTotals_[subcat_a[j - 1].m_id].second += actual;
-                    nextParent = subcat_a[j - 1].m_parent_id_n;
-                    if (nextParent == cat_d.m_id)
-                        break;
-                }
+            // walk up the hierarchy and update all the parent totals as well
+            int64 parent_id_n = subcat_a[i].m_parent_id_n;
+            m_level_visible_mCatId[subcat_a[i].m_id].first = 1;
+            for (int j = i; j > 0; --j) {
+                if (subcat_a[j - 1].m_id != parent_id_n)
+                    continue;
+                m_level_visible_mCatId[subcat_a[i].m_id].first++;
+                m_estimate_actual_mCatId[parent_id_n].first += estimated;
+                m_estimate_actual_mCatId[parent_id_n].second += actual;
+                parent_id_n = subcat_a[j - 1].m_parent_id_n;
+                if (parent_id_n == cat_d.m_id)
+                    break;
             }
 
             // add the subcategory row to the display list
-            if (DisplayEntryAllowed(subcat_a[i].m_id, -1))
-                budget_.emplace_back(subcat_a[i].m_id, -1);
+            if (displayEntryAllowed(subcat_a[i].m_id, -1))
+                m_catId_subcatId_a.emplace_back(subcat_a[i].m_id, -1);
 
             // check if we need to show any total rows before the next subcategory
             if (i < static_cast<int>(subcat_a.size()) - 1) { //not the last subcategory
                 //if next subcategory is our child, queue the total for after the children
-                if (subcat_a[i].m_id == subcat_a[i + 1].m_parent_id_n) totals_queue.emplace_back(i);
+                if (subcat_a[i].m_id == subcat_a[i + 1].m_parent_id_n)
+                    totals_queue.emplace_back(i);
                 else if (subcat_a[i].m_parent_id_n != subcat_a[i + 1].m_parent_id_n) {
-                    // last sibling -- we've exhausted this branch, so display all the totals we held on to
-                    while (!totals_queue.empty() && subcat_a[totals_queue.back()].m_id != subcat_a[i + 1].m_parent_id_n) {
-                        if (DisplayEntryAllowed(-1, subcat_a[totals_queue.back()].m_id)) {
-                            budget_.emplace_back(-1, subcat_a[totals_queue.back()].m_id);
-                            size_t transCatTotalIndex = budget_.size() - 1;
-                            m_lc->RefreshItem(transCatTotalIndex);
+                    // last sibling -- we've exhausted this branch,
+                    // so display all the totals we held on to
+                    while (!totals_queue.empty() &&
+                        subcat_a[totals_queue.back()].m_id != subcat_a[i + 1].m_parent_id_n
+                    ) {
+                        if (displayEntryAllowed(-1, subcat_a[totals_queue.back()].m_id)) {
+                            m_catId_subcatId_a.emplace_back(-1, subcat_a[totals_queue.back()].m_id);
+                            size_t transCatTotalIndex = m_catId_subcatId_a.size() - 1;
+                            w_list->RefreshItem(transCatTotalIndex);
                         }
                         totals_queue.pop_back();
                     }
@@ -488,10 +478,10 @@ void BudgetPanel::initVirtualListControl()
             // the very last subcategory, so show the rest of the queued totals
             else {
                 while (!totals_queue.empty()) {
-                    if (DisplayEntryAllowed(-1, subcat_a[totals_queue.back()].m_id)) {
-                        budget_.emplace_back(-1, subcat_a[totals_queue.back()].m_id);
-                        size_t transCatTotalIndex = budget_.size() - 1;
-                        m_lc->RefreshItem(transCatTotalIndex);
+                    if (displayEntryAllowed(-1, subcat_a[totals_queue.back()].m_id)) {
+                        m_catId_subcatId_a.emplace_back(-1, subcat_a[totals_queue.back()].m_id);
+                        size_t transCatTotalIndex = m_catId_subcatId_a.size() - 1;
+                        w_list->RefreshItem(transCatTotalIndex);
                     }
                     totals_queue.pop_back();
                 }
@@ -499,23 +489,23 @@ void BudgetPanel::initVirtualListControl()
         }
 
         // show the total of the category after all subcats have been shown
-        if (DisplayEntryAllowed(-1, cat_d.m_id)) {
-            budget_.emplace_back(-1, cat_d.m_id);
-            size_t transCatTotalIndex = budget_.size() - 1;
-            m_lc->RefreshItem(transCatTotalIndex);
+        if (displayEntryAllowed(-1, cat_d.m_id)) {
+            m_catId_subcatId_a.emplace_back(-1, cat_d.m_id);
+            size_t transCatTotalIndex = m_catId_subcatId_a.size() - 1;
+            w_list->RefreshItem(transCatTotalIndex);
         }
     }
 
-    m_lc->SetItemCount(budget_.size());
+    w_list->SetItemCount(m_catId_subcatId_a.size());
 
     wxString est_amount, act_amount, diff_amount;
     est_amount = CurrencyModel::instance().toCurrency(estIncome);
     act_amount = CurrencyModel::instance().toCurrency(actIncome);
     diff_amount = CurrencyModel::instance().toCurrency(actIncome - estIncome);
 
-    income_estimated_->SetLabelText(est_amount);
-    income_actual_->SetLabelText(act_amount);
-    income_diff_->SetLabelText(diff_amount);
+    w_income_estimated->SetLabelText(est_amount);
+    w_income_actual->SetLabelText(act_amount);
+    w_income_diff->SetLabelText(diff_amount);
 
     if (estExpenses < 0.0) estExpenses = -estExpenses;
     if (actExpenses < 0.0) actExpenses = -actExpenses;
@@ -523,20 +513,20 @@ void BudgetPanel::initVirtualListControl()
     act_amount = CurrencyModel::instance().toCurrency(actExpenses);
     diff_amount = CurrencyModel::instance().toCurrency(estExpenses - actExpenses);
 
-    expenses_estimated_->SetLabelText(est_amount);
-    expenses_actual_->SetLabelText(act_amount);
-    expenses_diff_->SetLabelText(diff_amount);
-    UpdateBudgetHeading();
+    w_expenses_estimated->SetLabelText(est_amount);
+    w_expenses_actual->SetLabelText(act_amount);
+    w_expenses_diff->SetLabelText(diff_amount);
+    updateBudgetHeading();
 }
 
-double BudgetPanel::getEstimate(int64 category_id) const
+double BudgetPanel::getEstimate(int64 cat_id) const
 {
     try {
-        BudgetFreq freq = budgetPeriod_.at(category_id);
-        double amt = budgetAmt_.at(category_id);
-        return monthlyBudget_
-            ? amt * freq.times_per_month()
-            : amt * freq.times_per_year();
+        BudgetFreq freq = m_freq_mCatId.at(cat_id);
+        double amount = m_amount_mCatId.at(cat_id);
+        return m_is_monthly
+            ? amount * freq.times_per_month()
+            : amount * freq.times_per_year();
     }
     catch (std::out_of_range const& exc) {
         wxASSERT(false);
@@ -545,17 +535,12 @@ double BudgetPanel::getEstimate(int64 category_id) const
     }
 }
 
-void BudgetPanel::DisplayBudgetingDetails(int64 budgetYearID)
+void BudgetPanel::displayBudgetingDetails(int64 budgetYearID)
 {
     this->windowsFreezeThaw();
-    budgetYearID_ = budgetYearID;
-    RefreshList();
+    m_bp_id = budgetYearID;
+    refreshList();
     this->windowsFreezeThaw();
-}
-
-void BudgetList::OnListItemSelected(wxListEvent& event)
-{
-    selectedIndex_ = event.GetIndex();
 }
 
 wxString BudgetPanel::getItem(long item, int col_id)
@@ -565,11 +550,13 @@ wxString BudgetPanel::getItem(long item, int col_id)
         return " ";
     case BudgetList::LIST_ID_CATEGORY: {
         const CategoryData* category_n = CategoryModel::instance().get_id_data_n(
-            budget_[item].first > 0 ? budget_[item].first : budget_[item].second
+            m_catId_subcatId_a[item].first > 0
+                ? m_catId_subcatId_a[item].first
+                : m_catId_subcatId_a[item].second
         );
         if (category_n) {
             wxString name = category_n->m_name;
-            for (int64 i = displayDetails_[category_n->m_id].first; i > 0; i--) {
+            for (int64 i = m_level_visible_mCatId[category_n->m_id].first; i > 0; i--) {
                 name.Prepend("    ");
             }
             return name;
@@ -577,46 +564,50 @@ wxString BudgetPanel::getItem(long item, int col_id)
         return wxEmptyString;
     }
     case BudgetList::LIST_ID_FREQUENCY: {
-        if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
-            BudgetFreq freq = budgetPeriod_[budget_[item].first];
+        if (m_catId_subcatId_a[item].first >= 0 && m_level_visible_mCatId[m_catId_subcatId_a[item].first].second) {
+            BudgetFreq freq = m_freq_mCatId[m_catId_subcatId_a[item].first];
             return wxGetTranslation(freq.name());
         }
         return wxEmptyString;
     }
     case BudgetList::LIST_ID_AMOUNT: {
-        if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
-            double amt = budgetAmt_[budget_[item].first];
-            return CurrencyModel::instance().toCurrency(amt);
+        if (m_catId_subcatId_a[item].first >= 0 && m_level_visible_mCatId[m_catId_subcatId_a[item].first].second) {
+            double amount = m_amount_mCatId[m_catId_subcatId_a[item].first];
+            return CurrencyModel::instance().toCurrency(amount);
         }
         return wxEmptyString;
     }
     case BudgetList::LIST_ID_ESTIMATED: {
-        if (budget_[item].first < 0) {
-            double estimated = budgetTotals_[budget_[item].second].first;
+        if (m_catId_subcatId_a[item].first < 0) {
+            double estimated = m_estimate_actual_mCatId[m_catId_subcatId_a[item].second].first;
             return CurrencyModel::instance().toCurrency(estimated);
         }
-        else if (displayDetails_[budget_[item].first].second) {
-            double estimated = getEstimate(budget_[item].first);
+        else if (m_level_visible_mCatId[m_catId_subcatId_a[item].first].second) {
+            double estimated = getEstimate(m_catId_subcatId_a[item].first);
             return CurrencyModel::instance().toCurrency(estimated);
         }
         return wxEmptyString;
     }
     case BudgetList::LIST_ID_ACTUAL: {
-        if (budget_[item].first < 0) {
-            double actual = budgetTotals_[budget_[item].second].second;
+        if (m_catId_subcatId_a[item].first < 0) {
+            double actual = m_estimate_actual_mCatId[m_catId_subcatId_a[item].second].second;
             return CurrencyModel::instance().toCurrency(actual);
         }
-        else if (displayDetails_[budget_[item].first].second) {
-            double actual = categoryStats_[budget_[item].second >= 0 ? budget_[item].second
-                : budget_[item].first][0];
+        else if (m_level_visible_mCatId[m_catId_subcatId_a[item].first].second) {
+            double actual = m_amount_mMonth_mCatId[m_catId_subcatId_a[item].second >= 0
+                ? m_catId_subcatId_a[item].second
+                : m_catId_subcatId_a[item].first
+            ][0];
             return CurrencyModel::instance().toCurrency(actual);
         }
         return wxEmptyString;
     }
     case BudgetList::LIST_ID_NOTES:
-        if (budget_[item].first >= 0 && displayDetails_[budget_[item].first].second) {
-            wxString value = budgetNotes_[budget_[item].second >= 0 ? budget_[item].second
-                : budget_[item].first];
+        if (m_catId_subcatId_a[item].first >= 0 && m_level_visible_mCatId[m_catId_subcatId_a[item].first].second) {
+            wxString value = m_notes_mCatId[m_catId_subcatId_a[item].second >= 0
+                ? m_catId_subcatId_a[item].second
+                : m_catId_subcatId_a[item].first
+            ];
             value.Replace("\n", " ");
             return value;
         }
@@ -626,144 +617,82 @@ wxString BudgetPanel::getItem(long item, int col_id)
     }
 }
 
-int BudgetList::OnGetItemImage(long item) const
+int BudgetPanel::getItemImage(long item) const
 {
-    return cp_->GetItemImage(item);
-}
-
-int BudgetPanel::GetItemImage(long item) const
-{
-    try
-    {
+    try {
 
         double estimated = 0;
         double actual = 0;
-        if (budget_[item].first < 0)
-        {
-            estimated = budgetTotals_.at(budget_[item].second).first;
-            actual = budgetTotals_.at(budget_[item].second).second;
+        if (m_catId_subcatId_a[item].first < 0) {
+            estimated = m_estimate_actual_mCatId.at(m_catId_subcatId_a[item].second).first;
+            actual = m_estimate_actual_mCatId.at(m_catId_subcatId_a[item].second).second;
         }
-        else
-        {
-            estimated = getEstimate(budget_[item].second >= 0 ? budget_[item].second
-            : budget_[item].first);
-            actual = categoryStats_.at(budget_[item].second >= 0 ? budget_[item].second
-                : budget_[item].first).at(0);
+        else {
+            estimated = getEstimate(m_catId_subcatId_a[item].second >= 0
+                ? m_catId_subcatId_a[item].second
+                : m_catId_subcatId_a[item].first
+            );
+            actual = m_amount_mMonth_mCatId.at(m_catId_subcatId_a[item].second >= 0
+                ? m_catId_subcatId_a[item].second
+                : m_catId_subcatId_a[item].first
+            ).at(0);
         }
 
-        if ((estimated == 0.0) && (actual == 0.0)) return -1;
-        if ((estimated == 0.0) && (actual != 0.0)) return ICON_FOLLOWUP;
-        if (estimated < actual) return ICON_RECONCILLED;
-        if (std::fabs(estimated - actual) < 0.001) return ICON_RECONCILLED;
+        if (estimated == 0.0 && actual == 0.0)
+            return -1;
+        if (estimated == 0.0 && actual != 0.0)
+            return ICON_FOLLOWUP;
+        if (estimated < actual)
+            return ICON_RECONCILLED;
+        if (std::fabs(estimated - actual) < 0.001)
+            return ICON_RECONCILLED;
         return ICON_VOID;
     }
-    catch (std::out_of_range const& exc)
-    {
+    catch (std::out_of_range const& exc) {
         wxASSERT(false);
         wxLogDebug(wxString::FromUTF8(exc.what()));
         return 1;
     }
 }
 
-wxString BudgetList::OnGetItemText(long item, long col_nr) const
+void BudgetPanel::onListItemActivated(int item)
 {
-    return cp_->getItem(item, getColId_Nr(static_cast<int>(col_nr)));
-}
-
-wxListItemAttr* BudgetList::OnGetItemAttr(long item) const
-{
-    if ((cp_->GetTransID(item) < 0) &&
-        (cp_->GetCurrentView() != VIEW_SUMM))
-    {
-        return attr3_.get();
-    }
-
-    /* Returns the alternating background pattern */
-    return (item % 2) ? attr2_.get() : attr1_.get();
-}
-
-void BudgetList::OnListItemActivated(wxListEvent& event)
-{
-    selectedIndex_ = event.GetIndex();
-    cp_->OnListItemActivated(selectedIndex_);
-}
-
-void BudgetPanel::OnListItemActivated(int selectedIndex)
-{
-    /***************************************************************************
-     A TOTALS entry does not contain a budget entry, therefore ignore the event.
-     ***************************************************************************/
-    BudgetModel::DataA budget_a = BudgetModel::instance().find(
-        BudgetCol::BUDGETYEARID(GetBudgetYearID()),
-        BudgetCol::CATEGID(budget_[selectedIndex].second > 0
-            ? budget_[selectedIndex].second
-            : budget_[selectedIndex].first
-        )
-    );
-
-    if (budget_[selectedIndex].first == -1)
+    // A TOTALS entry does not contain a budget entry, therefore ignore the event.
+    if (m_catId_subcatId_a[item].first == -1)
         return;
+
+    int64 subcat_id = (m_catId_subcatId_a[item].second >= 0)
+            ? m_catId_subcatId_a[item].second
+            : m_catId_subcatId_a[item].first;
+
+    BudgetModel::DataA budget_a = BudgetModel::instance().find(
+        BudgetCol::BUDGETYEARID(getBudgetYearID()),
+        BudgetCol::CATEGID(subcat_id)
+    );
 
     BudgetData budget_d = BudgetData();
     if (budget_a.empty()) {
+        // CHECK: budget_d.m_category_id
         budget_d = BudgetData();
-        budget_d.m_period_id   = GetBudgetYearID();
-        budget_d.m_category_id = budget_[selectedIndex].first;
+        budget_d.m_period_id   = getBudgetYearID();
+        budget_d.m_category_id = m_catId_subcatId_a[item].first;
         budget_d.m_amount      = 0.0;
         BudgetModel::instance().add_data_n(budget_d);
     }
     else
         budget_d = budget_a[0];
 
-    double estimated = getEstimate(budget_[selectedIndex].second >= 0
-        ? budget_[selectedIndex].second
-        : budget_[selectedIndex].first
-    );
-    double actual = categoryStats_[budget_[selectedIndex].second >= 0
-        ? budget_[selectedIndex].second
-        : budget_[selectedIndex].first
-    ][0];
-
+    double estimate = getEstimate(subcat_id);
+    double actual = m_amount_mMonth_mCatId[subcat_id][0];
     BudgetEntryDialog dlg(this, &budget_d,
-        CurrencyModel::instance().toCurrency(estimated),
+        CurrencyModel::instance().toCurrency(estimate),
         CurrencyModel::instance().toCurrency(actual)
     );
+
     if (dlg.ShowModal() == wxID_OK) {
         initVirtualListControl();
-        m_lc->Refresh();
-        m_lc->Update();
-        m_lc->EnsureVisible(selectedIndex);
+        w_list->Refresh();
+        w_list->Update();
+        w_list->EnsureVisible(item);
     }
 }
-/* ===================== Tooltip logic ===================== */
-
-void BudgetList::OnMouseMove(wxMouseEvent& event)
-{
-    long row = -1;
-    long column = -1;
-    int flags = 0;
-
-    row = HitTest(event.GetPosition(), flags, &column);
-
-    if (LIST_ID_ICON == column && row >= 0) {
-        wxString tooltip;
-        int icon = cp_->GetItemImage(row);
-
-        if (-1 == icon)
-            tooltip = _("No budget defined");
-        else if (BudgetPanel::ICON_VOID == icon)
-            tooltip = _("Critical: budget exceeded! Stop spending");
-        else if (BudgetPanel::ICON_RECONCILLED == icon)
-            tooltip = _("Within budget limits");
-        else if (BudgetPanel::ICON_FOLLOWUP == icon)
-            tooltip = _("Alert: budget close to or over limit");
-
-        mmToolTip(this, tooltip);
-    }
-    else {
-        UnsetToolTip();
-    }
-
-    event.Skip();
-}
-
