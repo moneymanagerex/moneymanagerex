@@ -3605,7 +3605,7 @@ void mmGUIFrame::createBillsDeposits()
     const auto time = wxDateTime::UNow();
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    if (panelCurrent_->GetId() == mmID_BILLS) {
+    if (panelCurrent_ && panelCurrent_->GetId() == mmID_BILLS) {
         wxDynamicCast(panelCurrent_, SchedPanel)->refreshList();
     }
     else {
@@ -3643,7 +3643,7 @@ void mmGUIFrame::createBudgetingPage(int64 budgetYearID)
     const auto time = wxDateTime::UNow();
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
-    if (panelCurrent_->GetId() == mmID_BUDGET) {
+    if (panelCurrent_ && panelCurrent_->GetId() == mmID_BUDGET) {
         wxDynamicCast(panelCurrent_, BudgetPanel)->displayBudgetingDetails(budgetYearID);
     }
     else {
@@ -3691,7 +3691,7 @@ void mmGUIFrame::createCheckingPage(int64 checking_id, const std::vector<int64> 
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     bool done = false;
-    if (panelCurrent_->GetId() == mmID_CHECKING) {
+    if (panelCurrent_ && panelCurrent_->GetId() == mmID_CHECKING) {
         JournalPanel* cp = wxDynamicCast(panelCurrent_, JournalPanel);
         if ((checking_id == -1 && cp->isAllTrans()) ||
             (checking_id == -2 && cp->isDeletedTrans()) ||
@@ -3742,7 +3742,7 @@ void mmGUIFrame::createStocksAccountPage(int64 account_id)
 
     const auto time = wxDateTime::UNow();
 
-    if (panelCurrent_->GetId() == mmID_STOCKS) {
+    if (panelCurrent_ && panelCurrent_->GetId() == mmID_STOCKS) {
         wxDynamicCast(panelCurrent_, StockPanel)->displayAccountDetails(account_id);
     }
     else {
@@ -3824,7 +3824,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 
     const auto time = wxDateTime::UNow();
 
-    if (panelCurrent_->GetId() == mmID_ASSETS)
+    if (panelCurrent_ && panelCurrent_->GetId() == mmID_ASSETS)
         refreshPanelData();
     else {
         DoWindowsFreezeThaw(homePanel_);
