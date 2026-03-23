@@ -628,7 +628,8 @@ mmDateN mmDateRange2::reportingNextN() const
         mmDate next = periodEndN(e, reporting.p).value();
         mmDate next1 = next.plusDateSpan(mmDatePeriod::span(reporting.m, reporting.p));
         while (s <= next1) {
-            next = next1.plusDateSpan(mmDatePeriod::span(reporting.m, reporting.p));
+            next = next1;
+            next1.addDateSpan(mmDatePeriod::span(reporting.m, reporting.p));
             next1 = periodEndN(next1, reporting.p).value();
         }
         return next <= e ? next : e;

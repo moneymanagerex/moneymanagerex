@@ -1025,8 +1025,8 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
             );
 
             double flow = 0;
-            wxString maxDate;
-            wxString minDate;
+            mmDateN min_date;
+            mmDateN max_date;
             long item = -1;
             while (true) {
                 item = w_list->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
@@ -1045,17 +1045,14 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
                 flow += convrate * w_list->m_journal_xa[item].account_flow(
                     (m_account_id < 0) ? w_list->m_journal_xa[item].m_account_id : m_account_id
                 );
-                wxString transdate = w_list->m_journal_xa[item].m_date_time.isoDateTime();
-                if (minDate > transdate || minDate.empty())
-                    minDate = transdate;
-                if (maxDate < transdate || maxDate.empty())
-                    maxDate = transdate;
+                mmDate date = w_list->m_journal_xa[item].m_date();
+                if (!min_date.has_value() || date < min_date.value())
+                    min_date = date;
+                if (!max_date.has_value() || max_date.value() < date)
+                    max_date = date;
             }
 
-            wxDateTime min_date, max_date;
-            min_date.ParseISODate(minDate);
-            max_date.ParseISODate(maxDate);
-            int days = max_date.Subtract(min_date).GetDays();
+            int days = max_date.daysSince(min_date);
 
             wxString msg;
             wxString selectedBal = CurrencyModel::instance().toCurrency(flow, m_currency_n);

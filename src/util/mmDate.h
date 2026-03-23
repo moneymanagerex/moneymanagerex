@@ -176,11 +176,13 @@ inline mmDate mmDate::minusDateSpan(wxDateSpan dateSpan)
 
 inline int mmDate::daysSince(const mmDate& other) const
 {
-    return m_dateTime.Subtract(other.m_dateTime).GetDays();
+    wxTimeSpan dt = m_dateTime.Subtract(other.m_dateTime) + htol;
+    return dt.IsPositive() ? dt.GetDays() : dt.GetDays() - 1;
 }
 inline int mmDate::daysUntil(const mmDate& other) const
 {
-    return other.m_dateTime.Subtract(m_dateTime).GetDays();
+    wxTimeSpan dt = other.m_dateTime.Subtract(m_dateTime) + htol;
+    return dt.IsPositive() ? dt.GetDays() : dt.GetDays() - 1;
 }
 
 // The time in both operands is set to noon, therefore
