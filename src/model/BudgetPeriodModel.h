@@ -35,7 +35,7 @@ public:
 
 public:
     // override TableFactory
-    virtual virtual bool purge_id(int64 bp_id) override;
+    virtual bool purge_id(int64 bp_id) override;
 
     auto get_id_name_n(int64 bp_id) -> const wxString;
     auto get_name_id_n(const wxString& bp_name) -> int64;
