@@ -1052,7 +1052,7 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
                     max_date = date;
             }
 
-            int days = max_date.daysSince(min_date);
+            int days = max_date.value().daysSince(min_date.value());
 
             wxString msg;
             wxString selectedBal = CurrencyModel::instance().toCurrency(flow, m_currency_n);
