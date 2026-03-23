@@ -106,7 +106,7 @@ public:
 
 private:
     static const std::vector<std::pair<NavigatorTypes::TYPE_ID, wxString> > ACCOUNT_SECTION_TABLE;
-    static wxArrayString account_section_all();
+    //static wxArrayString account_section_all();
 
 private:
     std::vector<WebsiteNews> websiteNewsArray_;
@@ -183,9 +183,6 @@ private:
     void createBudgetingPage(int64 budgetYearID);
     void autocleanDeletedTransactions();
     void createControls();
-    /*Set nav tree items status from JSON data with stored in DB*/
-    void loadNavigationTreeItemsStatusFromJson();
-    /*save Settings LASTFILENAME AUIPERSPECTIVE SIZES*/
     void saveSettings();
     void menuEnableItems(bool enable);
     void toolbarEnableItems(bool enable);
@@ -308,6 +305,11 @@ private:
     void OnDropFiles(wxDropFilesEvent& event);
 
     void navTreeStateToJson();
+    void collectNavTreeExpanded(wxTreeCtrl* tree, wxTreeItemId item, rapidjson::Value& array, rapidjson::Document::AllocatorType& alloc);
+    std::string getNavTreeItemPath(wxTreeCtrl* tree, wxTreeItemId item);
+    void loadNavigationTreeItemsStatusFromJson();
+    wxTreeItemId FindItemByPath(wxTreeCtrl* tree, const std::string& path);
+
     void processPendingEvents();
     void ReallocateAccount(int64 accountID);
     void mmDoHideReportsDialog();
