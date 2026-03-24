@@ -269,7 +269,7 @@ void CurrencyChoiceDialog::CreateControls()
     wxStaticBoxSizer* historyStaticBox_Sizer = new wxStaticBoxSizer(w_hostory_box, wxVERTICAL);
     rightBoxSizer->Add(historyStaticBox_Sizer, g_flagsExpand);
 
-    w_history_list = new wxListCtrl(w_hostory_box, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
+    w_history_list = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
     historyStaticBox_Sizer->Add(w_history_list, g_flagsExpand);
 
     wxListItem col0, col1, col2;
@@ -313,7 +313,7 @@ void CurrencyChoiceDialog::CreateControls()
     itemBoxSizerD->Add(w_value_text, g_flagsExpand);
     w_value_text->Disable();
 
-    wxPanel* buttons_panel = new wxPanel(w_hostory_box, wxID_ANY);
+    wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
     historyStaticBox_Sizer->Add(buttons_panel, wxSizerFlags(g_flagsV).Centre());
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
