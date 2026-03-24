@@ -269,7 +269,7 @@ void CurrencyChoiceDialog::CreateControls()
     wxStaticBoxSizer* historyStaticBox_Sizer = new wxStaticBoxSizer(w_hostory_box, wxVERTICAL);
     rightBoxSizer->Add(historyStaticBox_Sizer, g_flagsExpand);
 
-    w_history_list = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
+    w_history_list = new wxListCtrl(w_hostory_box, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
     historyStaticBox_Sizer->Add(w_history_list, g_flagsExpand);
 
     wxListItem col0, col1, col2;
@@ -313,7 +313,7 @@ void CurrencyChoiceDialog::CreateControls()
     itemBoxSizerD->Add(w_value_text, g_flagsExpand);
     w_value_text->Disable();
 
-    wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
+    wxPanel* buttons_panel = new wxPanel(w_hostory_box, wxID_ANY);
     historyStaticBox_Sizer->Add(buttons_panel, wxSizerFlags(g_flagsV).Centre());
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
@@ -562,8 +562,8 @@ void CurrencyChoiceDialog::OnItemRightClick(wxDataViewEvent& event)
     // disable this function when setting base currency
     if (m_static_dialog) return;
 
-    wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
-    ev.SetEventObject(this);
+    //wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
+    //ev.SetEventObject(this);
 
     wxMenu* mainMenu = new wxMenu;
 
@@ -581,7 +581,9 @@ void CurrencyChoiceDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->Enable(MENU_ITEM2, baseCurrencyID != m_currency_id && is_selected);
 
     const CurrencyData* currency_n = CurrencyModel::instance().get_id_data_n(m_currency_id);
-    mainMenu->Enable(wxID_REMOVE, CurrencyModel::instance().find_id_dep_c(currency_n->m_id) == 0 && is_selected);
+    if (currency_n) {
+        mainMenu->Enable(wxID_REMOVE, CurrencyModel::instance().find_id_dep_c(currency_n->m_id) == 0 && is_selected);
+    }
 
     mainMenu->Enable(wxID_EDIT, is_selected);
 
