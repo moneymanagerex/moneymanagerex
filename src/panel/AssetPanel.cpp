@@ -19,8 +19,6 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#pragma once
-
 #include "base/defs.h"
 #include <wx/srchctrl.h>
 
@@ -50,9 +48,9 @@ END_EVENT_TABLE()
 AssetPanel::AssetPanel(
     mmGUIFrame* frame, wxWindow* parent_win, wxWindowID win_id, const wxString& name
 ) :
-    w_frame(frame),
     m_asset_type_id_n(-1),
-    m_tip()
+    m_tip(),
+    w_frame(frame)
 {
     create(parent_win, win_id, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, name);
     mmThemeAutoColour(this);

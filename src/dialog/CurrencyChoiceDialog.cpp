@@ -562,8 +562,8 @@ void CurrencyChoiceDialog::OnItemRightClick(wxDataViewEvent& event)
     // disable this function when setting base currency
     if (m_static_dialog) return;
 
-    wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
-    ev.SetEventObject(this);
+    //wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY);
+    //ev.SetEventObject(this);
 
     wxMenu* mainMenu = new wxMenu;
 
@@ -581,7 +581,9 @@ void CurrencyChoiceDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->Enable(MENU_ITEM2, baseCurrencyID != m_currency_id && is_selected);
 
     const CurrencyData* currency_n = CurrencyModel::instance().get_id_data_n(m_currency_id);
-    mainMenu->Enable(wxID_REMOVE, CurrencyModel::instance().find_id_dep_c(currency_n->m_id) == 0 && is_selected);
+    if (currency_n) {
+        mainMenu->Enable(wxID_REMOVE, CurrencyModel::instance().find_id_dep_c(currency_n->m_id) == 0 && is_selected);
+    }
 
     mainMenu->Enable(wxID_EDIT, is_selected);
 

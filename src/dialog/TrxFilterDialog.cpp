@@ -104,9 +104,11 @@ TrxFilterDialog::~TrxFilterDialog()
         InfoModel::instance().setSize("TRANSACTION_FILTER_SIZE", GetSize());
 }
 
-TrxFilterDialog::TrxFilterDialog(wxWindow* parent, int64 accountID, bool isReport, wxString selected)
-    : isMultiAccount_(accountID == -1), accountID_(accountID), isReportMode_(isReport),
-      m_filter_key(isReport ? "TRANSACTIONS_FILTER" : "ALL_TRANSACTIONS_FILTER")
+TrxFilterDialog::TrxFilterDialog(wxWindow* parent, int64 accountID, bool isReport, wxString selected) :
+    m_filter_key(isReport ? "TRANSACTIONS_FILTER" : "ALL_TRANSACTIONS_FILTER"),
+    isMultiAccount_(accountID == -1),
+    accountID_(accountID),
+    isReportMode_(isReport)
 {
     this->SetFont(parent->GetFont());
     mmDoInitVariables();
@@ -118,10 +120,10 @@ TrxFilterDialog::TrxFilterDialog(wxWindow* parent, int64 accountID, bool isRepor
 }
 
 TrxFilterDialog::TrxFilterDialog(wxWindow* parent, const wxString& json) :
+    m_filter_key("TRANSACTIONS_FILTER"),
     isMultiAccount_(true),
     accountID_(-1),
-    isReportMode_(true),
-    m_filter_key("TRANSACTIONS_FILTER")
+    isReportMode_(true)
 {
     this->SetFont(parent->GetFont());
     mmDoInitVariables();
