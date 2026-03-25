@@ -1425,7 +1425,7 @@ void SchedDialog::OnsetPrevOrNextRepeatDate(wxCommandEvent& event)
     repeat.m_x = 1;
     wxString num_str = w_repeat_num_text->GetValue();
     bool goPrev = (event.GetId() == ID_DIALOG_TRANS_BUTTONTRANSNUMPREV);
-    bool ok = true;
+    //bool ok = true;
 
     if (repeat.m_freq.has_x()) {
         repeat.m_x = wxAtoi(num_str);

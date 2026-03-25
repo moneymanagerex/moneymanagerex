@@ -409,6 +409,8 @@ mmGUIFrame::mmGUIFrame(
 
 mmGUIFrame::~mmGUIFrame()
 {
+    navTreeStateToJson();
+
     try {
         cleanup();
     }
@@ -1143,64 +1145,66 @@ void mmGUIFrame::DoRecreateNavTreeControl(bool home_page)
 
 void mmGUIFrame::loadNavigationTreeItemsStatusFromJson()
 {
-    /* Load Nav Tree Control */
     SetEvtHandlerEnabled(false);
-    wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
-    //m_nav_tree_ctrl->Expand(root);
 
-    const wxString& str = InfoModel::instance().getString("NAV_TREE_STATUS", "");
-    Document json_doc;
-    if (json_doc.Parse(str.utf8_str()).HasParseError()) {
-        json_doc.Parse("{}");
-    }
+    const wxString& json = InfoModel::instance().getString("NAV_TREE_STATUS", "");
+    rapidjson::Document doc;
+    doc.Parse(json.c_str());
 
-    std::stack<wxTreeItemId> items;
-    if (root.IsOk()) {
-        items.push(root);
-    }
-
-    while (!items.empty()) {
-        wxTreeItemId next = items.top();
-        items.pop();
-
-        wxTreeItemIdValue cookie;
-        wxTreeItemId nextChild = m_nav_tree_ctrl->GetFirstChild(next, cookie);
-        while (nextChild.IsOk()) {
-            if (m_nav_tree_ctrl->HasChildren(nextChild)) items.push(nextChild);
-            nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
-        }
-
-        if (next == root)
-            continue;
-        mmTreeItemData* iData =
-            dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-        if (!iData)
-            continue;
-
-        const wxString nav_key = iData->getString();
-        if (json_doc.HasMember(nav_key.utf8_str())) {
-            Value json_key(nav_key.utf8_str(), json_doc.GetAllocator());
-            if (json_doc[json_key].IsBool() && json_doc[json_key].GetBool())
-                m_nav_tree_ctrl->Expand(next);
+    if (doc.IsArray()) {
+        for (auto& v : doc.GetArray()) {
+            if (!v.IsString()) continue;
+            std::string path = v.GetString();
+            wxTreeItemId item = FindItemByPath(m_nav_tree_ctrl, path);
+            if (item.IsOk()) {
+                m_nav_tree_ctrl->Expand(item);
+            }
         }
     }
 
     SetEvtHandlerEnabled(true);
 }
 
-void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
+wxTreeItemId mmGUIFrame::FindItemByPath(wxTreeCtrl* tree, const std::string& path)
 {
-    mmTreeItemData* iData =
-        dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(event.GetItem()));
-    if (!iData) return;
+    std::stringstream ss(path);
+    std::string segment;
+
+    wxTreeItemId current = tree->GetRootItem();
+
+    if (!std::getline(ss, segment, '/')) return wxTreeItemId();
+    if (tree->GetItemText(current).ToStdString() != segment)
+        return wxTreeItemId();
+
+    while (std::getline(ss, segment, '/')) {
+        bool found = false;
+        wxTreeItemIdValue cookie;
+        wxTreeItemId child = tree->GetFirstChild(current, cookie);
+
+        while (child.IsOk())
+        {
+            if (tree->GetItemText(child).ToStdString() == segment)
+            {
+                current = child;
+                found = true;
+                break;
+            }
+            child = tree->GetNextChild(current, cookie);
+        }
+
+        if (!found) return wxTreeItemId();
+    }
+
+    return current;
+}
+
+void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& WXUNUSED(event))
+{
     navTreeStateToJson();
 }
 
-void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
+void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& WXUNUSED(event))
 {
-    mmTreeItemData* iData =
-        dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(event.GetItem()));
-    if (!iData) return;
     navTreeStateToJson();
 }
 //----------------------------------------------------------------------------
@@ -1247,43 +1251,60 @@ void mmGUIFrame::OnDropFiles(wxDropFilesEvent& event)
 
 void mmGUIFrame::navTreeStateToJson()
 {
-    StringBuffer json_buffer;
-    PrettyWriter<StringBuffer> json_writer(json_buffer);
-    json_writer.StartObject();
+    rapidjson::Document doc;
+    doc.SetArray();
+    auto& alloc = doc.GetAllocator();
 
     wxTreeItemId root = m_nav_tree_ctrl->GetRootItem();
-    std::stack<wxTreeItemId> items;
-    if (root.IsOk())
-        items.push(root);
+    collectNavTreeExpanded(m_nav_tree_ctrl, root, doc, alloc);
 
-    while (!items.empty()) {
-        wxTreeItemId next = items.top();
-        items.pop();
-
-        wxTreeItemIdValue cookie;
-        wxTreeItemId nextChild = m_nav_tree_ctrl->GetFirstChild(next, cookie);
-        while (nextChild.IsOk()) {
-            if (m_nav_tree_ctrl->HasChildren(nextChild)) items.push(nextChild);
-            nextChild = m_nav_tree_ctrl->GetNextSibling(nextChild);
-        }
-
-        if (next == root)
-            continue;
-        mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(m_nav_tree_ctrl->GetItemData(next));
-        if (iData && !iData->getString().empty() && m_nav_tree_ctrl->IsExpanded(next)) {
-            json_writer.Key(iData->getString().utf8_str());
-            json_writer.Bool(m_nav_tree_ctrl->IsExpanded(next));
-        }
-    };
-    json_writer.EndObject();
-
-    const wxString nav_tree_status = wxString::FromUTF8(json_buffer.GetString());
-    wxLogDebug("=========== navTreeStateToJson =============================");
-    wxLogDebug(nav_tree_status);
-    InfoModel::instance().setString("NAV_TREE_STATUS", nav_tree_status);
+    rapidjson::StringBuffer nav_tree_status;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(nav_tree_status);
+    doc.Accept(writer);
+    InfoModel::instance().setString("NAV_TREE_STATUS", nav_tree_status.GetString());
+    //wxLogDebug("=========== navTreeStateToJson =============================");
+    //wxLogDebug(nav_tree_status.GetString());
 }
-//----------------------------------------------------------------------------
 
+void mmGUIFrame::collectNavTreeExpanded(wxTreeCtrl* tree, wxTreeItemId item, rapidjson::Value& array, rapidjson::Document::AllocatorType& alloc)
+{
+    if (!item.IsOk()) return;
+
+    if (item != tree->GetRootItem() && tree->IsExpanded(item)) {
+        std::string path = getNavTreeItemPath(tree, item);
+        rapidjson::Value str;
+        str.SetString(path.c_str(), alloc);
+        array.PushBack(str, alloc);
+    }
+
+    wxTreeItemIdValue cookie;
+    wxTreeItemId child = tree->GetFirstChild(item, cookie);
+
+    while (child.IsOk()) {
+        collectNavTreeExpanded(tree, child, array, alloc);
+        child = tree->GetNextChild(item, cookie);
+    }
+}
+
+
+std::string mmGUIFrame::getNavTreeItemPath(wxTreeCtrl* tree, wxTreeItemId item)
+{
+    std::vector<std::string> parts;
+    while (item.IsOk()) {
+        parts.push_back(tree->GetItemText(item).ToStdString());
+        item = tree->GetItemParent(item);
+    }
+
+    std::reverse(parts.begin(), parts.end());
+    std::string path;
+    for (size_t i = 0; i < parts.size(); ++i) {
+        if (i > 0) path += "/";
+        path += parts[i];
+    }
+    return path;
+}
+
+//----------------------------------------------------------------------------
 void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 {
     if (m_db) {

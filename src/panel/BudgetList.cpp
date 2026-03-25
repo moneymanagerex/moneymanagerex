@@ -46,10 +46,10 @@ BudgetList::BudgetList(
     const wxWindowID win_id
 ) :
     ListBase(parent_win, win_id),
+    m_panel(panel),
     w_attr3(new wxListItemAttr(
         wxNullColour, mmThemeMetaColour(meta::COLOR_LISTTOTAL), wxNullFont
-    )),
-    m_panel(panel)
+    ))
 {
     mmThemeMetaColour(this, meta::COLOR_LISTPANEL);
 
