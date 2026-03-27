@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-03-25 10:56+0000\n"
-"PO-Revision-Date: 2026-03-26 10:34\n"
+"PO-Revision-Date: 2026-03-27 01:28\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -120,12 +120,12 @@ msgstr "Warnung"
 #: base/images_list.cpp:438
 #, c-format
 msgid "File '%1$s' missing or invalid in chosen theme '%2$s'"
-msgstr "Datei '%1$s' fehlt oder ungültig im gewählten Thema '%2$s'"
+msgstr "Datei '%1$s' fehlt oder ist ungültig im gewählten Thema '%2$s'"
 
 #: base/images_list.cpp:449
 #, c-format
 msgid "Metadata '%1$s' missing in chosen theme '%2$s'"
-msgstr "Metadaten '%1$s' fehlt im gewählten Thema '%2$s'"
+msgstr "Metadaten '%1$s' fehlen im gewählten Thema '%2$s'"
 
 #: base/images_list.cpp:482
 msgid "and more…"
@@ -6346,7 +6346,7 @@ msgstr "Jahr:"
 
 #: model/ReportModel.cpp:59 panel/ReportPanel.cpp:599
 msgid "Stock name:"
-msgstr "Wertpapiername;"
+msgstr "Wertpapiername:"
 
 #: model/ReportModel.cpp:61 pref/OtherPref.cpp:188
 msgid "Filter"
@@ -6489,7 +6489,7 @@ msgstr "Verwenden Sie den Stern (*), um eine beliebige Anzahl von Zeichen zu fin
 #: panel/AssetPanel.cpp:306 panel/StockList.cpp:748 panel/StockPanel.cpp:473
 #, c-format
 msgid "Total: %s"
-msgstr "Gesamt: %s"
+msgstr "Gesamtwert: %s"
 
 #: panel/AssetPanel.cpp:307
 #, c-format
@@ -6634,7 +6634,7 @@ msgstr "Marktwert"
 
 #: panel/DashboardWidget.cpp:97 panel/DashboardWidget.cpp:612
 msgid "Cash Balance"
-msgstr "Kontostand"
+msgstr "Guthaben-Saldo"
 
 #: panel/DashboardWidget.cpp:98 panel/DashboardWidget.cpp:613
 #: panel/StockPanel.cpp:293 report/CategoryReport.cpp:254
@@ -7353,12 +7353,12 @@ msgstr "Wertpapierdepot: %s"
 
 #: panel/StockPanel.cpp:462
 msgid "Stock Portfolios Overview"
-msgstr "Aktienportfolios Übersicht"
+msgstr "Alle Wertpapierdepots"
 
 #: panel/StockPanel.cpp:474
 #, c-format
 msgid "Cash Balance: %s"
-msgstr "Zahlungsbilanz: %s"
+msgstr "Kontostand: %s"
 
 #: panel/StockPanel.cpp:475
 #, c-format
@@ -7968,7 +7968,7 @@ msgstr "Navigator und Kontentypen"
 
 #: pref/ViewPref.cpp:113
 msgid "Show cash ledger for portfolios"
-msgstr "Cash Ledger für Portfolios anzeigen"
+msgstr "Kontoblatt für Portfolios anzeigen"
 
 #: pref/ViewPref.cpp:121
 msgid "Do not use color for future transactions"

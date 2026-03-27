@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-03-25 10:56+0000\n"
-"PO-Revision-Date: 2026-03-26 10:34\n"
+"PO-Revision-Date: 2026-03-27 01:28\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -94,7 +94,7 @@ msgstr "Aperti"
 
 #: base/constants.cpp:215 data/_DataEnum.cpp:26 data/_DataEnum.cpp:45
 msgid "Closed"
-msgstr "Chiuso"
+msgstr "Chiusi"
 
 #: base/constants.cpp:216 panel/JournalPanel.cpp:1378
 #: uicontrols/navigatortypes.cpp:56
