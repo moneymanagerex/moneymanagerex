@@ -240,7 +240,6 @@ const std::map<wxString, int64> CategoryModel::find_all_id_mFullname(bool only_a
     for (const auto& cat_d : find_all(Col::COL_ID_CATEGID)) {
         if (only_active && !cat_d.m_active)
             continue;
-wxLogDebug("CategoryModel::find_all_id_mFullname: %lld, %s\n", cat_d.m_id.GetValue(), cat_d.m_name);
         wxString fullname = get_id_fullname(cat_d.m_id);
         fullname_id_m[fullname] = cat_d.m_id;
     }
