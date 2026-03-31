@@ -125,6 +125,9 @@ const wxString CategoryModel::get_data_fullname(
     wxString fullname = cat_n->m_name;
     while (cat_n->m_parent_id_n > 0) {
         cat_n = get_id_data_n(cat_n->m_parent_id_n);
+        // #8276: temporary fix for corrupted CATEGORY_V1 (parent does not exist)
+        if (!cat_n)
+            break;
         fullname = cat_n->m_name + delimiter + fullname;
     }
 
@@ -237,6 +240,7 @@ const std::map<wxString, int64> CategoryModel::find_all_id_mFullname(bool only_a
     for (const auto& cat_d : find_all(Col::COL_ID_CATEGID)) {
         if (only_active && !cat_d.m_active)
             continue;
+wxLogDebug("CategoryModel::find_all_id_mFullname: %lld, %s\n", cat_d.m_id.GetValue(), cat_d.m_name);
         wxString fullname = get_id_fullname(cat_d.m_id);
         fullname_id_m[fullname] = cat_d.m_id;
     }
