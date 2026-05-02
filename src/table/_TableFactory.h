@@ -41,8 +41,8 @@ protected:
 // -- constructor
 
 public:
-    TableFactory<TableType, DataType>() : m_cache(mmCache<int64, Data>()) {}
-    ~TableFactory<TableType, DataType>() { m_cache.reset(); }
+    TableFactory() : m_cache(mmCache<int64, Data>()) {}
+    ~TableFactory() { m_cache.reset(); }
 
 // -- methods
 
