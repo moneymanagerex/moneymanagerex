@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-05-06 23:48+0000\n"
-"PO-Revision-Date: 2026-05-08 02:12\n"
+"POT-Creation-Date: 2026-05-16 10:35+0000\n"
+"PO-Revision-Date: 2026-05-22 02:36\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -3324,19 +3324,19 @@ msgstr ""
 msgid "&Done"
 msgstr ""
 
-#: dialog/ReconcileDialog.cpp:649
+#: dialog/ReconcileDialog.cpp:650
 msgid "Show &status column"
 msgstr ""
 
-#: dialog/ReconcileDialog.cpp:650
+#: dialog/ReconcileDialog.cpp:651
 msgid "Show &number column"
 msgstr ""
 
-#: dialog/ReconcileDialog.cpp:652
+#: dialog/ReconcileDialog.cpp:653
 msgid "Include &void transactions"
 msgstr "Geçersiz işlemleri dahil et"
 
-#: dialog/ReconcileDialog.cpp:653
+#: dialog/ReconcileDialog.cpp:654
 msgid "Include &duplicate transactions"
 msgstr "Yinelenen işlemleri dahil et"
 
