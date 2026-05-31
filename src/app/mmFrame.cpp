@@ -3544,7 +3544,12 @@ void mmFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 
 void mmFrame::OnPrintPage(wxCommandEvent& WXUNUSED(event))
 {
-    panelCurrent_->printPage();
+    if (panelCurrent_) {
+        panelCurrent_->printPage();
+    }
+    else {
+        wxLogDebug("Print: No panel selected");
+    }
 }
 
 //----------------------------------------------------------------------------
