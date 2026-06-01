@@ -188,7 +188,6 @@ bool SchedDialog::create(
     if (sz.GetWidth() > GetSize().GetWidth())
         SetSize(sz);
     SetIcon(mmPath::getProgramIcon());
-    Centre(wxCENTER_ON_SCREEN);
 
     return true;
 }
@@ -218,18 +217,18 @@ void SchedDialog::createControls()
 
     // Date Due
 
-    w_due_date = new mmDatePicker(this, ID_DIALOG_BD_DUE_DATE);
+    w_due_date = new mmDatePicker(repeatDetailsStaticBox, ID_DIALOG_BD_DUE_DATE);
     mmToolTip(w_due_date, _t("Specify the date when this bill or deposit is due"));
-    itemFlexGridSizer5->Add(new wxStaticText(this, wxID_STATIC, _t("Date Due")), g_flagsH);
+    itemFlexGridSizer5->Add(new wxStaticText(repeatDetailsStaticBox, wxID_STATIC, _t("Date Due")), g_flagsH);
     itemFlexGridSizer5->Add(w_due_date->mmGetLayout(false));
 
     // Repeats
 
-    w_static_freq = new wxStaticText(this, wxID_STATIC, _t("Repeats"));
+    w_static_freq = new wxStaticText(repeatDetailsStaticBox, wxID_STATIC, _t("Repeats"));
     itemFlexGridSizer5->Add(w_static_freq, g_flagsH);
     itemFlexGridSizer5->AddSpacer(1);
 
-    w_repeat_prev_btn = new wxBitmapButton(this,
+    w_repeat_prev_btn = new wxBitmapButton(repeatDetailsStaticBox,
         ID_DIALOG_TRANS_BUTTONTRANSNUMPREV,
         mmImage::bitmapBundle(mmImage::png::LEFTARROW, mmImage::bitmapButtonSize)
     );
@@ -237,7 +236,7 @@ void SchedDialog::createControls()
         _t("Back to the last occurring date with the specified values")
     );
 
-    w_freq_choice = new wxChoice(this, ID_DIALOG_BD_COMBOBOX_REPEATS);
+    w_freq_choice = new wxChoice(repeatDetailsStaticBox, ID_DIALOG_BD_COMBOBOX_REPEATS);
     for (int i = 0; i < RepeatFreq::size; ++i) {
         RepeatFreq freq = RepeatFreq(i);
         wxString freq_name = wxGetTranslation(freq.name());
@@ -248,7 +247,7 @@ void SchedDialog::createControls()
     w_freq_choice->SetSelection(RepeatFreq::e_1_month);
 
     wxBoxSizer* repeatBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    w_repeat_next_btn = new wxBitmapButton(this,
+    w_repeat_next_btn = new wxBitmapButton(repeatDetailsStaticBox,
         ID_DIALOG_TRANS_BUTTONTRANSNUM,
         mmImage::bitmapBundle(mmImage::png::RIGHTARROW, mmImage::bitmapButtonSize)
     );
@@ -266,7 +265,7 @@ void SchedDialog::createControls()
 
     // Repeat Times
 
-    w_static_repeat_num = new wxStaticText(this, wxID_STATIC, _t("Payments Left"));
+    w_static_repeat_num = new wxStaticText(repeatDetailsStaticBox, wxID_STATIC, _t("Payments Left"));
     itemFlexGridSizer52->Add(w_static_repeat_num, g_flagsH);
 
     wxBoxSizer* repeatTimesBoxSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -274,7 +273,7 @@ void SchedDialog::createControls()
 
     wxIntegerValidator<int> intValidator(nullptr, wxNUM_VAL_ZERO_AS_BLANK);
     intValidator.SetMin(0);
-    w_repeat_num_text = new wxTextCtrl(this,
+    w_repeat_num_text = new wxTextCtrl(repeatDetailsStaticBox,
         ID_DIALOG_BD_TEXTCTRL_NUM_TIMES,
         "",
         wxDefaultPosition, wxDefaultSize, 0, intValidator
@@ -285,7 +284,7 @@ void SchedDialog::createControls()
 
     // Auto Execution
 
-    w_mode_suggested_cb = new wxCheckBox(this,
+    w_mode_suggested_cb = new wxCheckBox(repeatDetailsStaticBox,
         ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK,
         _t("Request user to enter payment"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
@@ -294,7 +293,7 @@ void SchedDialog::createControls()
         _t("User requested to enter this transaction on the 'Date Paid'")
     );
 
-    w_mode_automated_cb = new wxCheckBox(this,
+    w_mode_automated_cb = new wxCheckBox(repeatDetailsStaticBox,
         ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT,
         _t("Grant automatic execute"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
@@ -322,17 +321,17 @@ void SchedDialog::createControls()
 
     // Trans Date
 
-    w_pay_date = new mmDatePicker(this, ID_DIALOG_TRANS_BUTTON_PAYDATE);
+    w_pay_date = new mmDatePicker(transDetailsStaticBox, ID_DIALOG_TRANS_BUTTON_PAYDATE);
     mmToolTip(w_pay_date,
         _t("Specify the date the user is requested to enter this transaction")
     );
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Date Paid")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(transDetailsStaticBox, wxID_STATIC, _t("Date Paid")), g_flagsH);
     transPanelSizer->Add(w_pay_date->mmGetLayout());
     transPanelSizer->AddSpacer(1);
 
     // Status
 
-    w_status_choice = new wxChoice(this, ID_DIALOG_TRANS_STATUS);
+    w_status_choice = new wxChoice(transDetailsStaticBox, ID_DIALOG_TRANS_STATUS);
 
     for (int i = 0; i < TrxStatus::size; ++i) {
         wxString status_name = TrxStatus(i).name();
@@ -344,13 +343,13 @@ void SchedDialog::createControls()
     w_status_choice->SetSelection(PrefModel::instance().getTrxStatus().id());
     mmToolTip(w_status_choice, _t("Specify the status for the transaction"));
 
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Status")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(transDetailsStaticBox, wxID_STATIC, _t("Status")), g_flagsH);
     transPanelSizer->Add(w_status_choice, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
 
     // Type
 
-    w_type_choice = new wxChoice(this, wxID_VIEW_DETAILS);
+    w_type_choice = new wxChoice(transDetailsStaticBox, wxID_VIEW_DETAILS);
     std::size_t account_c = AccountModel::instance().find_count();
     for (int i = 0; i < TrxType::size; ++i) {
         if (i == TrxType::e_transfer && account_c < 2)
@@ -366,7 +365,7 @@ void SchedDialog::createControls()
 
     // Advanced
 
-    w_advanced_cb = new wxCheckBox(this,
+    w_advanced_cb = new wxCheckBox(transDetailsStaticBox,
         ID_DIALOG_TRANS_ADVANCED_CHECKBOX,
         _t("&Advanced"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE
@@ -380,16 +379,16 @@ void SchedDialog::createControls()
     typeSizer->Add(w_type_choice, g_flagsExpand);
     typeSizer->Add(w_advanced_cb, g_flagsH);
 
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Type")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(transDetailsStaticBox, wxID_STATIC, _t("Type")), g_flagsH);
     transPanelSizer->Add(typeSizer, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
 
     // Amount Fields
 
-    wxStaticText* amount_label = new wxStaticText(this, wxID_STATIC, _t("Amount"));
+    wxStaticText* amount_label = new wxStaticText(transDetailsStaticBox, wxID_STATIC, _t("Amount"));
     amount_label->SetFont(this->GetFont().Bold());
 
-    w_amount_text = new mmTextCtrl(this,
+    w_amount_text = new mmTextCtrl(transDetailsStaticBox,
         ID_DIALOG_TRANS_TEXTAMOUNT,
         "",
         wxDefaultPosition, wxDefaultSize,
@@ -398,7 +397,7 @@ void SchedDialog::createControls()
     );
     mmToolTip(w_amount_text, s_amountNormalTip);
 
-    w_to_amount_text = new mmTextCtrl(this,
+    w_to_amount_text = new mmTextCtrl(transDetailsStaticBox,
         ID_DIALOG_TRANS_TOTEXTAMOUNT,
         "",
         wxDefaultPosition, wxDefaultSize,
@@ -414,7 +413,7 @@ void SchedDialog::createControls()
     transPanelSizer->Add(amount_label, g_flagsH);
     transPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
-    w_calc_btn = new wxBitmapButton(this, wxID_ANY,
+    w_calc_btn = new wxBitmapButton(transDetailsStaticBox, wxID_ANY,
         mmImage::bitmapBundle(mmImage::png::CALCULATOR, mmImage::bitmapButtonSize)
     );
     w_calc_btn->Connect(wxID_ANY,
@@ -427,13 +426,13 @@ void SchedDialog::createControls()
     w_calc = new mmCalcPopup(w_calc_btn, w_calculator_text);
 
     // Account
-    wxStaticText* acc_label = new wxStaticText(this,
+    wxStaticText* acc_label = new wxStaticText(transDetailsStaticBox,
         ID_DIALOG_TRANS_STATIC_ACCOUNT,
         _t("Account")
     );
     acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(acc_label, g_flagsH);
-    w_account_text = new mmComboBoxAccount(this,
+    w_account_text = new mmComboBoxAccount(transDetailsStaticBox,
         mmID_ACCOUNTNAME,
         wxDefaultSize,
         m_sched_d.m_account_id
@@ -447,13 +446,13 @@ void SchedDialog::createControls()
 
     // To Account
 
-    wxStaticText* to_acc_label = new wxStaticText(this,
+    wxStaticText* to_acc_label = new wxStaticText(transDetailsStaticBox,
         ID_DIALOG_TRANS_STATIC_TOACCOUNT,
         _t("To")
     );
     to_acc_label->SetFont(this->GetFont().Bold());
     transPanelSizer->Add(to_acc_label, g_flagsH);
-    w_to_account_text = new mmComboBoxAccount(this,
+    w_to_account_text = new mmComboBoxAccount(transDetailsStaticBox,
         mmID_TOACCOUNTNAME,
         wxDefaultSize,
         m_sched_d.m_to_account_id_n
@@ -465,13 +464,13 @@ void SchedDialog::createControls()
 
     // Payee
 
-    wxStaticText* payee_label = new wxStaticText(this,
+    wxStaticText* payee_label = new wxStaticText(transDetailsStaticBox,
         ID_DIALOG_TRANS_STATIC_PAYEE,
         _t("Payee")
     );
     payee_label->SetFont(this->GetFont().Bold());
 
-    w_payee_text = new mmComboBoxPayee(this,
+    w_payee_text = new mmComboBoxPayee(transDetailsStaticBox,
         mmID_PAYEE, wxDefaultSize,
         m_sched_d.m_payee_id_n, true
     );
@@ -483,17 +482,17 @@ void SchedDialog::createControls()
 
     // Category
 
-    wxStaticText* categ_label2 = new wxStaticText(this,
+    wxStaticText* categ_label2 = new wxStaticText(transDetailsStaticBox,
         ID_DIALOG_TRANS_CATEGLABEL,
         _t("Category")
     );
     categ_label2->SetFont(this->GetFont().Bold());
-    w_cat_text = new mmComboBoxCategory(this,
+    w_cat_text = new mmComboBoxCategory(transDetailsStaticBox,
         mmID_CATEGORY, wxDefaultSize,
         m_sched_d.m_category_id_n, true
     );
     w_cat_text->SetMinSize(w_cat_text->GetSize());
-    w_split_btn = new wxBitmapButton(this,
+    w_split_btn = new wxBitmapButton(transDetailsStaticBox,
         ID_DIALOG_TRANS_BUTTONSPLIT,
         mmImage::bitmapBundle(mmImage::png::NEW_TRX, mmImage::bitmapButtonSize)
     );
@@ -505,8 +504,8 @@ void SchedDialog::createControls()
 
     // Tags
 
-    wxStaticText* tag_label = new wxStaticText(this, wxID_ANY, _t("Tags"));
-    w_tag_text = new mmTagTextCtrl(this);
+    wxStaticText* tag_label = new wxStaticText(transDetailsStaticBox, wxID_ANY, _t("Tags"));
+    w_tag_text = new mmTagTextCtrl(transDetailsStaticBox);
 
     transPanelSizer->Add(tag_label, g_flagsH);
     transPanelSizer->Add(w_tag_text, g_flagsExpand);
@@ -514,7 +513,7 @@ void SchedDialog::createControls()
 
     // Number
 
-    w_number_text = new wxTextCtrl(this,
+    w_number_text = new wxTextCtrl(transDetailsStaticBox,
         ID_DIALOG_TRANS_TEXTNUMBER,
         "",
         wxDefaultPosition, wxDefaultSize
@@ -523,13 +522,13 @@ void SchedDialog::createControls()
         _t("Specify any associated check number or transaction number")
     );
 
-    transPanelSizer->Add(new wxStaticText(this, wxID_STATIC, _t("Number")), g_flagsH);
+    transPanelSizer->Add(new wxStaticText(transDetailsStaticBox, wxID_STATIC, _t("Number")), g_flagsH);
     transPanelSizer->Add(w_number_text, g_flagsExpand);
     transPanelSizer->AddSpacer(1);
 
     // Frequently Used Notes
 
-    wxButton* bFrequentUsedNotes = new wxButton(this,
+    wxButton* bFrequentUsedNotes = new wxButton(transDetailsStaticBox,
         ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
         "...",
         wxDefaultPosition, w_split_btn->GetSize()
@@ -542,34 +541,34 @@ void SchedDialog::createControls()
         nullptr, this
     );
 
-    // Colours
+    // Colors
 
-    w_color_btn = new mmColorButton(this, wxID_LOWEST, w_split_btn->GetSize());
+    w_color_btn = new mmColorButton(transDetailsStaticBox, wxID_LOWEST, w_split_btn->GetSize());
     mmToolTip(w_color_btn, _t("User Colors"));
 
     // Attachments
 
-    w_attachment_btn = new wxBitmapButton(this, wxID_FILE,
+    w_attachment_btn = new wxBitmapButton(transDetailsStaticBox, wxID_FILE,
         mmImage::bitmapBundle(mmImage::png::CLIP, mmImage::bitmapButtonSize)
     );
     mmToolTip(w_attachment_btn,
         _t("Organize attachments of this scheduled transaction")
     );
 
-    // Display the Frequntly Used Notes, Colour, Attachment buttons
+    // Display the Frequently Used Notes, Colour, Attachment buttons
     wxBoxSizer* notes_sizer = new wxBoxSizer(wxHORIZONTAL);
     transPanelSizer->Add(notes_sizer);
-    notes_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Notes")), g_flagsH);
+    notes_sizer->Add(new wxStaticText(transDetailsStaticBox, wxID_STATIC, _t("Notes")), g_flagsH);
     notes_sizer->Add(bFrequentUsedNotes, g_flagsH);
 
     wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
     transPanelSizer->Add(RightAlign_sizer, wxSizerFlags(g_flagsH).Align(wxALIGN_RIGHT));
-    RightAlign_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Color")), g_flagsH);
+    RightAlign_sizer->Add(new wxStaticText(transDetailsStaticBox, wxID_STATIC, _t("Color")), g_flagsH);
     RightAlign_sizer->Add(w_color_btn, wxSizerFlags());
     transPanelSizer->Add(w_attachment_btn, g_flagsH);
 
     // Notes
-    w_notes_text = new wxTextCtrl(this,
+    w_notes_text = new wxTextCtrl(transDetailsStaticBox,
         ID_DIALOG_TRANS_TEXTNOTES,
         "",
         wxDefaultPosition,
