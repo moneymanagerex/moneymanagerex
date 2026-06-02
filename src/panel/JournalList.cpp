@@ -1635,21 +1635,12 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 
         wxMenu* subGlobalOpMenuMark = new wxMenu();
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _t("&Unreconciled"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _t("&Reconciled"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _t("&Void"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _t("&Follow Up"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _t("D&uplicate"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-        menu.AppendSubMenu(subGlobalOpMenuMark, _t("Mar&k as"));
+        wxMenuItem* mi = menu.AppendSubMenu(subGlobalOpMenuMark, _t("Mar&k as"));
+        mi->Enable(!is_nothing_selected);
 
         // Disable menu items not ment for foreign transactions
         if (is_foreign) {
