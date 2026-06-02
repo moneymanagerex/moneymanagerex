@@ -1290,7 +1290,20 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 {
     m_filter = "";
     m_copy_text = "";
-    //wxLogDebug("onMouseRightClick: %i selected", GetSelectedItemCount());
+    // Determine if right click is on selected entry, otherwise change selection first:
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long si = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (si > -1) {
+        int is = GetItemState(si, wxLIST_STATE_SELECTED);
+        if (is == 0) {
+            SetItemState(-1, 0, wxLIST_STATE_SELECTED); // unselect all
+            SetItemState(si, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        }
+    }
+    else {
+        SetItemState(-1, 0, wxLIST_STATE_SELECTED); // unselect all
+    }
+
     int selected = GetSelectedItemCount();
 
     bool is_nothing_selected = (selected < 1);
