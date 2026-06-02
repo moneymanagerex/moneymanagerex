@@ -1331,6 +1331,13 @@ void JournalPanel::displaySplitCategories(JournalKey journal_key)
         split_d.m_category_id = tp_d.m_category_id;
         split_d.m_amount      = tp_d.m_amount;
         split_d.m_notes       = tp_d.m_notes;
+        // add tags
+        for (const TagLinkData& gl_d : TagLinkModel::instance().find_data_a(
+            //TagLinkCol::WHERE_REFTYPE(OP_EQ, split_ref_type.key_n()),
+            TagLinkCol::WHERE_REFID(OP_EQ, tp_d.m_id))
+        ) {
+            split_d.m_tag_id_a.push_back(gl_d.m_tag_id);
+        }
         splits.push_back(split_d);
     }
     if (splits.empty()) return;
