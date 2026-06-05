@@ -75,7 +75,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 * [Get it on F-Droid](https://f-droid.org/packages/com.money.manager.ex/)
 * [Get it on Google Play](https://play.google.com/store/apps/details?id=com.money.manager.ex.android)
 
-[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
+[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/latest/total)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
 
 ## Screenshots
