@@ -3,7 +3,7 @@
  Copyright (C) 2011-2022 Nikolay Akimov
  Copyright (C) 2011-2017 Stefano Giorgio [stef145g]
  Copyright (C) 2021-2026 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025-2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -103,11 +103,9 @@ TrxDialog::TrxDialog(
             duplicate                        ? MODE_ADD   :
                                                MODE_UPDATE;
 
-        RefTypeN split_ref_type = m_journal_d.key().ref_type();
         for (const auto& tp_d : Journal::split(m_journal_d)) {
             wxArrayInt64 tag_id_a;
             for (const TagLinkData& gl_d : TagLinkModel::instance().find_data_a(
-                TagLinkCol::WHERE_REFTYPE(OP_EQ, split_ref_type.key_n()),
                 TagLinkCol::WHERE_REFID(OP_EQ, tp_d.m_id))
             )
                 tag_id_a.push_back(gl_d.m_tag_id);

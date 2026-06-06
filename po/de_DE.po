@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-05-16 10:35+0000\n"
-"PO-Revision-Date: 2026-06-05 02:38\n"
+"PO-Revision-Date: 2026-05-22 02:36\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -7091,8 +7091,8 @@ msgstr "&Buchungen bearbeiten…"
 #: panel/JournalList.cpp:1329
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
-msgstr[0] "Buchung &kopieren"
-msgstr[1] "Buchung &kopieren"
+msgstr[0] "&Buchung kopieren"
+msgstr[1] "&Buchung kopieren"
 
 #: panel/JournalList.cpp:1339
 #, c-format
@@ -7103,7 +7103,7 @@ msgstr[1] "Buchungen &einfügen (%d)"
 
 #: panel/JournalList.cpp:1349
 msgid "D&uplicate Transaction…"
-msgstr "Buchung &duplizieren…"
+msgstr "Buchung D&uplizieren…"
 
 #: panel/JournalList.cpp:1354
 msgid "&Move Transaction…"
@@ -7510,15 +7510,15 @@ msgstr "&Neue geplante Buchung…"
 
 #: panel/SchedList.cpp:194
 msgid "&Edit Scheduled Transaction…"
-msgstr "Geplante Buchung &bearbeiten…"
+msgstr "&Geplante Buchung bearbeiten…"
 
 #: panel/SchedList.cpp:195
 msgid "D&uplicate Scheduled Transaction…"
-msgstr "Geplante Buchung &duplizieren…"
+msgstr "&Geplante Buchung duplizieren…"
 
 #: panel/SchedList.cpp:197
 msgid "&Delete Scheduled Transaction…"
-msgstr "Geplante Buchung &löschen…"
+msgstr "&Geplante Buchung löschen…"
 
 #: panel/SchedList.cpp:298
 msgid "Do you want to delete the scheduled transaction?"
@@ -8146,7 +8146,7 @@ msgstr "Wählen Sie hier aus, ob das aktuelle oder das Original-Datum beim Kopie
 
 #: pref/TrxPref.cpp:142
 msgid "Use Original State when Duplicating or Pasting Transactions"
-msgstr "Originalstatus beim Duplizieren oder Kopieren und Einfügen einer Buchung verwenden"
+msgstr "Orginalstatus beim Duplizieren oder Kopieren und Einfügen einer Buchung verwenden"
 
 #: pref/TrxPref.cpp:144
 msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"

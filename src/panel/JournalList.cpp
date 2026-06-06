@@ -1290,7 +1290,20 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 {
     m_filter = "";
     m_copy_text = "";
-    //wxLogDebug("onMouseRightClick: %i selected", GetSelectedItemCount());
+    // Determine if right click is on selected entry, otherwise change selection first:
+    int Flags = wxLIST_HITTEST_ONITEM;
+    long si = HitTest(wxPoint(event.m_x, event.m_y), Flags);
+    if (si > -1) {
+        int is = GetItemState(si, wxLIST_STATE_SELECTED);
+        if (is == 0) {
+            SetItemState(-1, 0, wxLIST_STATE_SELECTED); // unselect all
+            SetItemState(si, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        }
+    }
+    else {
+        SetItemState(-1, 0, wxLIST_STATE_SELECTED); // unselect all
+    }
+
     int selected = GetSelectedItemCount();
 
     bool is_nothing_selected = (selected < 1);
@@ -1622,21 +1635,12 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
 
         wxMenu* subGlobalOpMenuMark = new wxMenu();
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKUNRECONCILED, _t("&Unreconciled"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKUNRECONCILED, false);
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKRECONCILED, _t("&Reconciled"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKRECONCILED, false);
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKVOID, _t("&Void"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKVOID, false);
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, _t("&Follow Up"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, false);
         subGlobalOpMenuMark->Append(MENU_TREEPOPUP_MARKDUPLICATE, _t("D&uplicate"));
-        if (is_nothing_selected)
-            subGlobalOpMenuMark->Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
-        menu.AppendSubMenu(subGlobalOpMenuMark, _t("Mar&k as"));
+        wxMenuItem* mi = menu.AppendSubMenu(subGlobalOpMenuMark, _t("Mar&k as"));
+        mi->Enable(!is_nothing_selected);
 
         // Disable menu items not ment for foreign transactions
         if (is_foreign) {
