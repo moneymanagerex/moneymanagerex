@@ -2,7 +2,7 @@
 
 [![stable]][GitHubLatest] [![unstable]][GitHubDL] [![a]][AppVeyor]
 [![ci]][CircleCI] [![s]][SourceForgeDL] [![gha]][GitHubDL] [![ghl]][GitHubLatest]
-[![p]][packagecloud] [![w]][website] [![i]][GitHubIssues] [![cd]][CodeDocs]
+[![w]][website] [![i]][GitHubIssues] [![cd]][CodeDocs]
 [![c]][contributors] [![l]](LICENSE) [![o]][OpenHub]
 
 [Money Manager Ex (MMEX)](https://moneymanagerex.org/) is a free/libre, open-source, cross-platform, easy-to-use personal
@@ -75,7 +75,7 @@ simplicity and user-friendliness – an application that can be used everyday.
 * [Get it on F-Droid](https://f-droid.org/packages/com.money.manager.ex/)
 * [Get it on Google Play](https://play.google.com/store/apps/details?id=com.money.manager.ex.android)
 
-[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
+[![Github All Releases](https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/latest/total)](https://tooomm.github.io/github-release-stats/?username=moneymanagerex&repository=moneymanagerex)
 
 
 ## Screenshots
@@ -178,7 +178,6 @@ MMEX is mainly written in C++17 and uses the following open-source packages:
 [GitHubDL]: https://ci.appveyor.com/project/whalley/moneymanagerex/history "appveyor"
 [contributors]: https://github.com/moneymanagerex/moneymanagerex/graphs/contributors "contributors to Git repo"
 [GitHubLatest]: https://github.com/moneymanagerex/moneymanagerex/releases/latest "GitHub latest stable downloads"
-[packagecloud]: https://packagecloud.io/moneymanagerex/ "packagecloud DEB & RPM repository"
 [CodeDocs]: https://codedocs.xyz/moneymanagerex/moneymanagerex/ "doxygen generated source code documentation"
 [Slack]: http://slack.moneymanagerex.org/
 [Forum]: https://forum.moneymanagerex.org
@@ -211,8 +210,7 @@ MMEX is mainly written in C++17 and uses the following open-source packages:
 [s]: https://img.shields.io/sourceforge/dt/moneymanagerex.svg?label=%20sf&logoWidth=8&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAMAAABe34GAAAAACVBMVEUAAAAAAAD%2F%2F%2F%2BD3c%2FSAAAAAnRSTlMATX7%2B8BUAAABeSURBVHgB7coxCoBAAAOw0%2F8%2FWtA1tLs0c85Et21vb%2F9pe1jsyP7OrSOzI5eOfL1K%2FlLuyO7O7s7oLbs7uzu7O7s7uzv37uzu7O7sjly6szty6s7uzoZcurMhJ87nAdpRCKWC0tGVAAAAAElFTkSuQmCC
 [gha]: https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/total.svg?label=%20gh&logoWidth=8&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAMAAABe34GAAAAACVBMVEUAAAAAAAD%2F%2F%2F%2BD3c%2FSAAAAAnRSTlMATX7%2B8BUAAABeSURBVHgB7coxCoBAAAOw0%2F8%2FWtA1tLs0c85Et21vb%2F9pe1jsyP7OrSOzI5eOfL1K%2FlLuyO7O7s7oLbs7uzu7O7s7uzv37uzu7O7sjly6szty6s7uzoZcurMhJ87nAdpRCKWC0tGVAAAAAElFTkSuQmCC
 [ghl]: https://img.shields.io/github/downloads/moneymanagerex/moneymanagerex/latest/total.svg?label=%20gh%20latest&logoWidth=8&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAMAAABe34GAAAAACVBMVEUAAAAAAAD%2F%2F%2F%2BD3c%2FSAAAAAnRSTlMATX7%2B8BUAAABeSURBVHgB7coxCoBAAAOw0%2F8%2FWtA1tLs0c85Et21vb%2F9pe1jsyP7OrSOzI5eOfL1K%2FlLuyO7O7s7oLbs7uzu7O7s7uzv37uzu7O7sjly6szty6s7uzoZcurMhJ87nAdpRCKWC0tGVAAAAAElFTkSuQmCC
-[w]: https://img.shields.io/website-up-down-brightgreen-red/https/moneymanagerex.org/.svg
-[p]: https://img.shields.io/website-up-down-brightgreen-red/https/packagecloud.io/moneymanagerex/.svg?label=deb%20rpm%20repo
+[w]: https://img.shields.io/website?url=https%3A%2F%2Fmoneymanagerex.org
 [stable]: https://img.shields.io/github/release/moneymanagerex/moneymanagerex.svg?label=stable
 
 [unstable]: https://img.shields.io/badge/unstable-beta-yellow
