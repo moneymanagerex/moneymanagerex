@@ -3,7 +3,7 @@
  Copyright (C) 2016 Stefano Giorgio
  Copyright (C) 2016 - 2022 Nikolay Akimov
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 KLaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -188,7 +188,6 @@ bool SchedDialog::create(
     if (sz.GetWidth() > GetSize().GetWidth())
         SetSize(sz);
     SetIcon(mmPath::getProgramIcon());
-    Centre(wxCENTER_ON_SCREEN);
 
     return true;
 }
@@ -542,7 +541,7 @@ void SchedDialog::createControls()
         nullptr, this
     );
 
-    // Colours
+    // Colors
 
     w_color_btn = new mmColorButton(this, wxID_LOWEST, w_split_btn->GetSize());
     mmToolTip(w_color_btn, _t("User Colors"));
@@ -556,7 +555,7 @@ void SchedDialog::createControls()
         _t("Organize attachments of this scheduled transaction")
     );
 
-    // Display the Frequntly Used Notes, Colour, Attachment buttons
+    // Display the Frequently Used Notes, Colour, Attachment buttons
     wxBoxSizer* notes_sizer = new wxBoxSizer(wxHORIZONTAL);
     transPanelSizer->Add(notes_sizer);
     notes_sizer->Add(new wxStaticText(this, wxID_STATIC, _t("Notes")), g_flagsH);
@@ -750,7 +749,10 @@ void SchedDialog::setDialogParameters(int64 trx_id)
     m_sched_d.m_number          = trx_dx.m_number;
     m_sched_d.m_notes           = trx_dx.m_notes;
     // m_sched_d.m_followup_id  : default
-    // m_sched_d.m_color        : default
+    if (trx_n->m_color > -1) {
+        m_sched_d.m_color       = trx_n->m_color;
+        w_color_btn->SetColor(m_sched_d.m_color.GetValue());
+    }
     // m_sched_d.m_due_date     : already set by constructor
     // m_sched_d.m_repeat       : default
 
@@ -761,10 +763,19 @@ void SchedDialog::setDialogParameters(int64 trx_id)
         split_d.m_category_id = tp_d.m_category_id;
         split_d.m_amount      = tp_d.m_amount;
         split_d.m_notes       = tp_d.m_notes;
+        // copy split tags:
+        for (const TagLinkData& gl_d : TagLinkModel::instance().find_data_a(
+            TagLinkCol::WHERE_REFID(OP_EQ, tp_d.m_id))
+        ) {
+            split_d.m_tag_id_a.push_back(gl_d.m_tag_id);
+        }
         m_split_a.push_back(split_d);
     }
 
-    // TODO: copy tags
+    // copy tags
+    if (!trx_dx.TAGNAMES.IsEmpty()) {
+        w_tag_text->SetText(trx_dx.TAGNAMES);
+    }
     // TODO: copy custom fields
 
     w_account_text->SetValue(trx_dx.ACCOUNTNAME);
@@ -904,7 +915,7 @@ void SchedDialog::setCategoryLabel()
 {
     w_split_btn->UnsetToolTip();
     if (!m_split_a.empty()) {
-        w_cat_text->SetLabelText(_t("Split Transaction"));
+        w_cat_text->ChangeValue(_t("Split Transaction"));
         w_amount_text->SetValue(TrxSplitModel::instance().get_total(m_split_a));
         m_sched_d.m_category_id_n = -1;
     }
@@ -1101,6 +1112,7 @@ void SchedDialog::onPayee(wxCommandEvent& WXUNUSED(event))
     // used for payee.
     // If this is a Split Transaction, ignore displaying last category for payee
     if (m_split_a.empty() &&
+        m_sched_d.m_category_id_n == -1 &&
         ( PrefModel::instance().getTransCategoryNone() == PrefModel::LASTUSED ||
             PrefModel::instance().getTransCategoryNone() == PrefModel::DEFAULT
         ) &&
