@@ -52,7 +52,7 @@ bool FileCSV::Load(const wxString& fileName, unsigned int itemsInLine)
     // Parse rows
     wxString line;
     int row = 0;
-    wxRegEx splitLinePattern(delimiter_ + "[\x1a]?\"[^\"]*?$");
+    wxRegEx splitLinePattern("\\" + delimiter_ + "[\x1a]?\"[^\"]*?$");
     for (line = txtFile.GetFirstLine(); !txtFile.Eof(); line = txtFile.GetNextLine())
     {
         // remove double sets of quotes which parse as the double quote literal
