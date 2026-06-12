@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-05-16 10:35+0000\n"
-"PO-Revision-Date: 2026-05-22 02:36\n"
+"POT-Creation-Date: 2026-06-06 16:15+0000\n"
+"PO-Revision-Date: 2026-06-12 02:44\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -41,7 +41,7 @@ msgstr "현금 원장"
 
 #: app/mmFrame.cpp:1544 app/mmFrame.cpp:2827 app/mmFrame.cpp:2894
 #: app/mmFrame.cpp:2912 dialog/FieldDialog.cpp:244 dialog/FieldDialog.cpp:265
-#: dialog/TrxDialog.cpp:908 dialog/TrxDialog.cpp:932
+#: dialog/TrxDialog.cpp:906 dialog/TrxDialog.cpp:930
 #: dialog/TrxFilterDialog.cpp:1348 import_export/univcsvdialog.cpp:2557
 #: manager/CategoryManager.cpp:566 manager/PayeeManager.cpp:805
 #: manager/TagManager.cpp:366 model/SchedModel.cpp:140
@@ -89,7 +89,7 @@ msgstr "계정을 삭제하시겠습니까?"
 msgid "This will also delete any associated Shares."
 msgstr "관련된 모든 주식도 삭제됩니다."
 
-#: app/mmFrame.cpp:1651 app/mmFrame.cpp:4105
+#: app/mmFrame.cpp:1651 app/mmFrame.cpp:4110
 msgid "Confirm Account Deletion"
 msgstr "계정 삭제 확인"
 
@@ -554,7 +554,7 @@ msgstr "지불 및 입금"
 msgid "&Assets"
 msgstr "자산(&A)"
 
-#: app/mmFrame.cpp:2136 app/mmFrame.cpp:3949
+#: app/mmFrame.cpp:2136 app/mmFrame.cpp:3954
 #: manager/GeneralReportManager.cpp:1241 panel/AssetPanel.cpp:108
 #: panel/AssetPanel.h:73 panel/DashboardWidget.cpp:579
 #: panel/DashboardWidget.cpp:609 pref/OtherPref.cpp:106
@@ -1131,114 +1131,114 @@ msgstr "계정, 거래처 및 범주 업데이트"
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "WebApp 업데이트 중 문제가 발생했습니다. 웹 서버 및 WebApp 설정을 확인하십시오"
 
-#: app/mmFrame.cpp:3529 app/mmFrame.cpp:4747 app/mmFrame.cpp:4771
+#: app/mmFrame.cpp:3529 app/mmFrame.cpp:4752 app/mmFrame.cpp:4776
 #: manager/GeneralReportManager.cpp:350 report/UsageReport.cpp:147
 #: report/UsageReport.cpp:164 util/mmNavigatorList.cpp:70
 msgid "Reports"
 msgstr "보고서"
 
-#: app/mmFrame.cpp:3597
+#: app/mmFrame.cpp:3602
 msgid "Choose HTML file to export"
 msgstr "내보낼 HTML 파일 선택"
 
-#: app/mmFrame.cpp:3740 panel/SchedPanel.cpp:109 panel/SchedPanel.h:73
+#: app/mmFrame.cpp:3745 panel/SchedPanel.cpp:109 panel/SchedPanel.h:73
 #: util/mmNavigatorList.cpp:56
 msgid "Scheduled Transactions"
 msgstr "예약된 거래"
 
-#: app/mmFrame.cpp:3974 app/mmFrame.cpp:3981
+#: app/mmFrame.cpp:3979 app/mmFrame.cpp:3986
 msgid "Downloading stock prices from Yahoo"
 msgstr "Yahoo에서 주가 내려받기"
 
-#: app/mmFrame.cpp:3975 import_export/qif_export.cpp:498
+#: app/mmFrame.cpp:3980 import_export/qif_export.cpp:498
 #: import_export/qif_import_gui.cpp:468 import_export/qif_import_gui.cpp:1109
 msgid "Please wait…"
 msgstr "잠시 기다려 주십시오…"
 
-#: app/mmFrame.cpp:4028 panel/StockPanel.cpp:666
+#: app/mmFrame.cpp:4033 panel/StockPanel.cpp:666
 #, c-format
 msgid "%1$s on %2$s"
 msgstr "%1$s on %2$s"
 
-#: app/mmFrame.cpp:4049
+#: app/mmFrame.cpp:4054
 msgid "No account available to edit!"
 msgstr "편집할 수 있는 계정이 없습니다!"
 
-#: app/mmFrame.cpp:4050 app/mmFrame.cpp:4058 app/mmFrame.cpp:4083
-#: app/mmFrame.cpp:4091 import_export/qif_export.cpp:153
+#: app/mmFrame.cpp:4055 app/mmFrame.cpp:4063 app/mmFrame.cpp:4088
+#: app/mmFrame.cpp:4096 import_export/qif_export.cpp:153
 #: panel/DashboardWidget.cpp:576 report/BalanceReport.cpp:41
 msgid "Accounts"
 msgstr "계정"
 
-#: app/mmFrame.cpp:4057
+#: app/mmFrame.cpp:4062
 msgid "Choose Account to Edit"
 msgstr "편집할 계정 선택"
 
-#: app/mmFrame.cpp:4082
+#: app/mmFrame.cpp:4087
 msgid "No account available to delete!"
 msgstr "삭제할 수 있는 계정이 없습니다!"
 
-#: app/mmFrame.cpp:4090
+#: app/mmFrame.cpp:4095
 msgid "Choose Account to Delete"
 msgstr "삭제할 계정 선택"
 
-#: app/mmFrame.cpp:4099
+#: app/mmFrame.cpp:4104
 #, c-format
 msgid "Do you you want to delete\n"
 "%1$s account: %2$s?"
 msgstr "%1$s의 %2$s 계정을 삭제하시겠습니까?"
 
-#: app/mmFrame.cpp:4120
+#: app/mmFrame.cpp:4125
 msgid "Select account"
 msgstr "계정 선택"
 
-#: app/mmFrame.cpp:4121 app/mmFrame.cpp:4144
+#: app/mmFrame.cpp:4126 app/mmFrame.cpp:4149
 msgid "Change Account Type"
 msgstr "계정 유형 변경"
 
-#: app/mmFrame.cpp:4143
+#: app/mmFrame.cpp:4148
 #, c-format
 msgid "Select new account type for %s"
 msgstr "%s의 새 계정 유형을 선택"
 
-#: app/mmFrame.cpp:4310 manager/CategoryManager.cpp:739
+#: app/mmFrame.cpp:4315 manager/CategoryManager.cpp:739
 msgid "Merge categories completed"
 msgstr "범주 병합 완료"
 
-#: app/mmFrame.cpp:4311 app/mmFrame.cpp:4325 app/mmFrame.cpp:4340
+#: app/mmFrame.cpp:4316 app/mmFrame.cpp:4330 app/mmFrame.cpp:4345
 #: manager/CategoryManager.cpp:740 manager/PayeeManager.cpp:877
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "데이터베이스에서 레코드가 업데이트되었습니다: %i"
 
-#: app/mmFrame.cpp:4313 manager/CategoryManager.cpp:742
+#: app/mmFrame.cpp:4318 manager/CategoryManager.cpp:742
 msgid "Merge categories result"
 msgstr "범주 병합 결과"
 
-#: app/mmFrame.cpp:4324 manager/PayeeManager.cpp:876
+#: app/mmFrame.cpp:4329 manager/PayeeManager.cpp:876
 msgid "Merge payees completed"
 msgstr "거래처 병합 완료"
 
-#: app/mmFrame.cpp:4328 manager/PayeeManager.cpp:880
+#: app/mmFrame.cpp:4333 manager/PayeeManager.cpp:880
 msgid "Merge payees result"
 msgstr "거래처 병합 결과"
 
-#: app/mmFrame.cpp:4339
+#: app/mmFrame.cpp:4344
 msgid "Merge tags completed"
 msgstr "태그 병합 완료"
 
-#: app/mmFrame.cpp:4343
+#: app/mmFrame.cpp:4348
 msgid "Merge tags result"
 msgstr "태그 병합 결과"
 
-#: app/mmFrame.cpp:4409
+#: app/mmFrame.cpp:4414
 #, c-format
 msgid "File %s not found."
 msgstr "%s 파일을 찾을 수 없습니다."
 
-#: app/mmFrame.cpp:4410 dialog/CurrencyChoiceDialog.cpp:516
+#: app/mmFrame.cpp:4415 dialog/CurrencyChoiceDialog.cpp:516
 #: dialog/IconManagerDialog.cpp:540 dialog/IconManagerDialog.cpp:559
-#: dialog/IconManagerDialog.cpp:580 dialog/SchedDialog.cpp:1586
+#: dialog/IconManagerDialog.cpp:580 dialog/SchedDialog.cpp:1598
 #: dialog/SplitDialog.cpp:422 import_export/ofx_import_gui.cpp:298
 #: import_export/ofx_import_gui.cpp:338 import_export/ofx_import_gui.cpp:350
 #: import_export/ofx_import_gui.cpp:391 import_export/ofx_import_gui.cpp:1183
@@ -1251,90 +1251,90 @@ msgstr "%s 파일을 찾을 수 없습니다."
 msgid "Error"
 msgstr "오류"
 
-#: app/mmFrame.cpp:4456 dialog/StartupDialog.cpp:255 pref/GeneralPref.cpp:412
+#: app/mmFrame.cpp:4461 dialog/StartupDialog.cpp:255 pref/GeneralPref.cpp:412
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "이 응용 프로그램의 언어가 변경되었습니다. 변경 사항은 응용 프로그램이 다음번에 시작될 때 적용됩니다."
 
-#: app/mmFrame.cpp:4458 dialog/StartupDialog.cpp:258 pref/GeneralPref.cpp:414
+#: app/mmFrame.cpp:4463 dialog/StartupDialog.cpp:258 pref/GeneralPref.cpp:414
 msgid "Language change"
 msgstr "언어 변경"
 
-#: app/mmFrame.cpp:4525
+#: app/mmFrame.cpp:4530
 msgid "Cash Flow"
 msgstr "현금 흐름"
 
-#: app/mmFrame.cpp:4528 data/_DataEnum.cpp:69 data/_DataEnum.cpp:110
+#: app/mmFrame.cpp:4533 data/_DataEnum.cpp:69 data/_DataEnum.cpp:110
 msgid "Daily"
 msgstr "매일"
 
-#: app/mmFrame.cpp:4531 app/mmFrame.cpp:4545 app/mmFrame.cpp:4573
-#: app/mmFrame.cpp:4600 data/_DataEnum.cpp:64 data/_DataEnum.cpp:114
+#: app/mmFrame.cpp:4536 app/mmFrame.cpp:4550 app/mmFrame.cpp:4578
+#: app/mmFrame.cpp:4605 data/_DataEnum.cpp:64 data/_DataEnum.cpp:114
 msgid "Monthly"
 msgstr "매월"
 
-#: app/mmFrame.cpp:4534 import_export/parsers.cpp:230
+#: app/mmFrame.cpp:4539 import_export/parsers.cpp:230
 #: manager/PrefManager.cpp:41 pref/ViewPref.cpp:121
 msgid "Transactions"
 msgstr "거래"
 
-#: app/mmFrame.cpp:4542 import_export/qif_export.cpp:147
+#: app/mmFrame.cpp:4547 import_export/qif_export.cpp:147
 #: manager/CategoryManager.cpp:203
 msgid "Categories"
 msgstr "범주"
 
-#: app/mmFrame.cpp:4548 app/mmFrame.cpp:4650 panel/DashboardWidget.cpp:209
+#: app/mmFrame.cpp:4553 app/mmFrame.cpp:4655 panel/DashboardWidget.cpp:209
 msgid "Summary"
 msgstr "요약"
 
-#: app/mmFrame.cpp:4551 report/CategoryReport.cpp:334
+#: app/mmFrame.cpp:4556 report/CategoryReport.cpp:334
 msgid "Where the Money Goes"
 msgstr "나가는 돈"
 
-#: app/mmFrame.cpp:4554 report/CategoryReport.cpp:340
+#: app/mmFrame.cpp:4559 report/CategoryReport.cpp:340
 msgid "Where the Money Comes From"
 msgstr "들어오는 돈"
 
-#: app/mmFrame.cpp:4562
+#: app/mmFrame.cpp:4567
 msgid "Forecast Report"
 msgstr "예측 보고서"
 
-#: app/mmFrame.cpp:4570 pref/DashboardPref.cpp:83
+#: app/mmFrame.cpp:4575 pref/DashboardPref.cpp:83
 msgid "Income vs. Expenses"
 msgstr "수입 vs. 지출"
 
-#: app/mmFrame.cpp:4581
+#: app/mmFrame.cpp:4586
 msgid "My Usage"
 msgstr "나의 사용량"
 
-#: app/mmFrame.cpp:4589 report/PayeeReport.cpp:172
+#: app/mmFrame.cpp:4594 report/PayeeReport.cpp:172
 msgid "Payees"
 msgstr "거래처"
 
-#: app/mmFrame.cpp:4597
+#: app/mmFrame.cpp:4602
 msgid "Summary of Accounts"
 msgstr "계정 요약"
 
-#: app/mmFrame.cpp:4608 data/_DataEnum.cpp:68 data/_DataEnum.cpp:121
+#: app/mmFrame.cpp:4613 data/_DataEnum.cpp:68 data/_DataEnum.cpp:121
 msgid "Yearly"
 msgstr "매년"
 
-#: app/mmFrame.cpp:4621
+#: app/mmFrame.cpp:4626
 msgid "Budgets"
 msgstr "예산"
 
-#: app/mmFrame.cpp:4624
+#: app/mmFrame.cpp:4629
 msgid "Budget Performance"
 msgstr "예산 달성"
 
-#: app/mmFrame.cpp:4627
+#: app/mmFrame.cpp:4632
 msgid "Budget Category Summary"
 msgstr "예산 범주 요약"
 
-#: app/mmFrame.cpp:4640
+#: app/mmFrame.cpp:4645
 msgid "Stocks Report"
 msgstr "주식 보고서"
 
-#: app/mmFrame.cpp:4747 panel/ReportPanel.cpp:390
+#: app/mmFrame.cpp:4752 panel/ReportPanel.cpp:390
 msgid "Hide"
 msgstr "숨기기"
 
@@ -1348,7 +1348,7 @@ msgstr "확인"
 #: dialog/AccountDialog.cpp:305 dialog/AssetDialog.cpp:312
 #: dialog/AttachmentDialog.cpp:174 dialog/BudgetEntryDialog.cpp:182
 #: dialog/BudgetYearDialog.cpp:120 dialog/BudgetYearEntryDialog.cpp:152
-#: dialog/FieldDialog.cpp:202 dialog/SchedDialog.cpp:594
+#: dialog/FieldDialog.cpp:202 dialog/SchedDialog.cpp:593
 #: dialog/SplitDialog.cpp:111 dialog/SplitDialog.cpp:291
 #: dialog/StartupDialog.cpp:172 dialog/TrxFilterDialog.cpp:818
 #: dialog/TrxShareDialog.cpp:313 dialog/TrxUpdateDialog.cpp:297
@@ -1705,7 +1705,7 @@ msgstr "부울형"
 #: data/_DataEnum.cpp:82 dialog/AssetDialog.cpp:149
 #: dialog/CurrencyChoiceDialog.cpp:274 dialog/CurrencyChoiceDialog.cpp:291
 #: dialog/ReconcileDialog.cpp:180 dialog/StockDialog.cpp:233
-#: dialog/StockDialog.cpp:728 dialog/TrxDialog.cpp:249
+#: dialog/StockDialog.cpp:728 dialog/TrxDialog.cpp:247
 #: dialog/TrxFilterDialog.cpp:981 dialog/TrxFilterDialog.cpp:992
 #: dialog/TrxLinkDialog.cpp:116 dialog/TrxUpdateDialog.cpp:142
 #: import_export/ofx_import_gui.cpp:1937 import_export/qif_export.cpp:674
@@ -1755,7 +1755,7 @@ msgid "Transfer"
 msgstr "이체"
 
 #: data/_DataEnum.cpp:95 dialog/TrxFilterDialog.cpp:59
-#: panel/JournalList.cpp:2285
+#: panel/JournalList.cpp:2289
 msgid "Unreconciled"
 msgstr "미조정"
 
@@ -1769,7 +1769,7 @@ msgid "Void"
 msgstr "무효"
 
 #: data/_DataEnum.cpp:98 dialog/TrxFilterDialog.cpp:62
-#: panel/JournalList.cpp:2273
+#: panel/JournalList.cpp:2277
 msgid "Follow Up"
 msgstr "후속조치"
 
@@ -1841,9 +1841,9 @@ msgstr "주식"
 msgid "Asset"
 msgstr "자산"
 
-#: data/_DataEnum.cpp:132 dialog/SchedDialog.cpp:432 dialog/SchedDialog.cpp:822
-#: dialog/SchedDialog.cpp:834 dialog/TrxDialog.cpp:317 dialog/TrxDialog.cpp:604
-#: dialog/TrxDialog.cpp:608 dialog/TrxDialog.cpp:801
+#: data/_DataEnum.cpp:132 dialog/SchedDialog.cpp:431 dialog/SchedDialog.cpp:833
+#: dialog/SchedDialog.cpp:845 dialog/TrxDialog.cpp:315 dialog/TrxDialog.cpp:602
+#: dialog/TrxDialog.cpp:606 dialog/TrxDialog.cpp:799
 #: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:578
 #: dialog/TrxFilterDialog.cpp:968 dialog/TrxFilterDialog.cpp:1840
 #: dialog/TrxLinkDialog.cpp:120 import_export/qif_export.cpp:677
@@ -1860,8 +1860,8 @@ msgid "Schedule"
 msgstr "일정"
 
 #: data/_DataEnum.cpp:134 dialog/ReconcileDialog.cpp:182
-#: dialog/SchedDialog.cpp:470 dialog/SchedDialog.cpp:823
-#: dialog/TrxDialog.cpp:352 dialog/TrxDialog.cpp:605
+#: dialog/SchedDialog.cpp:469 dialog/SchedDialog.cpp:834
+#: dialog/TrxDialog.cpp:350 dialog/TrxDialog.cpp:603
 #: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:615
 #: dialog/TrxFilterDialog.cpp:1005 dialog/TrxFilterDialog.cpp:1883
 #: dialog/TrxLinkDialog.cpp:199 dialog/TrxUpdateDialog.cpp:215
@@ -2099,9 +2099,9 @@ msgid "Select whether this is an account that is used often. This is used to fil
 msgstr "자주 사용하는 계정인지 선택하세요. 이것은 계정 표시 보기를 필터링하는 데 사용됩니다."
 
 #: dialog/AccountDialog.cpp:190 dialog/AssetDialog.cpp:251
-#: dialog/BudgetEntryDialog.cpp:170 dialog/SchedDialog.cpp:562
+#: dialog/BudgetEntryDialog.cpp:170 dialog/SchedDialog.cpp:561
 #: dialog/SplitDialog.cpp:102 dialog/SplitDialog.cpp:362
-#: dialog/StockDialog.cpp:200 dialog/TrxDialog.cpp:453
+#: dialog/StockDialog.cpp:200 dialog/TrxDialog.cpp:451
 #: dialog/TrxFilterDialog.cpp:698 dialog/TrxFilterDialog.cpp:1971
 #: dialog/TrxLinkDialog.cpp:231 dialog/TrxShareDialog.cpp:249
 #: dialog/TrxUpdateDialog.cpp:272 import_export/qif_export.cpp:683
@@ -2270,8 +2270,8 @@ msgstr "개설 날짜는 미래가 아니어야 합니다"
 
 #: dialog/AccountDialog.cpp:626 dialog/AccountDialog.cpp:639
 #: dialog/AccountDialog.cpp:649 dialog/AccountDialog.cpp:662
-#: dialog/SchedDialog.cpp:1387 dialog/SchedDialog.cpp:1394
-#: dialog/StockDialog.cpp:534 dialog/TrxDialog.cpp:816 dialog/TrxDialog.cpp:893
+#: dialog/SchedDialog.cpp:1399 dialog/SchedDialog.cpp:1406
+#: dialog/StockDialog.cpp:534 dialog/TrxDialog.cpp:814 dialog/TrxDialog.cpp:891
 #: dialog/TrxLinkDialog.cpp:538 import_export/webapp.cpp:603
 msgid "Invalid Date"
 msgstr "잘못된 날짜"
@@ -2689,8 +2689,8 @@ msgstr "통화 이력 설정"
 msgid "Price"
 msgstr "가격"
 
-#: dialog/CurrencyChoiceDialog.cpp:284 dialog/SchedDialog.cpp:383
-#: dialog/TrxDialog.cpp:287 dialog/TrxFilterDialog.cpp:68
+#: dialog/CurrencyChoiceDialog.cpp:284 dialog/SchedDialog.cpp:382
+#: dialog/TrxDialog.cpp:285 dialog/TrxFilterDialog.cpp:68
 #: dialog/TrxFilterDialog.cpp:659 dialog/TrxFilterDialog.cpp:1054
 #: dialog/TrxFilterDialog.cpp:1924 dialog/TrxLinkDialog.cpp:151
 #: dialog/TrxUpdateDialog.cpp:180 import_export/qif_export.cpp:135
@@ -2773,15 +2773,15 @@ msgid "Online Update Currency Rate"
 msgstr "환율 온라인 업데이트"
 
 #: dialog/CurrencyChoiceDialog.cpp:670 dialog/ReconcileDialog.cpp:183
-#: dialog/SchedDialog.cpp:389 dialog/SplitDialog.cpp:95
-#: dialog/SplitDialog.cpp:228 dialog/TrxDialog.cpp:304
+#: dialog/SchedDialog.cpp:388 dialog/SplitDialog.cpp:95
+#: dialog/SplitDialog.cpp:228 dialog/TrxDialog.cpp:302
 #: dialog/TrxFilterDialog.cpp:1086 dialog/TrxFilterDialog.cpp:1097
 #: dialog/TrxLinkDialog.cpp:155 dialog/TrxUpdateDialog.cpp:202
 #: import_export/ofx_import_gui.cpp:1938 import_export/qif_export.cpp:680
 #: import_export/univcsvdialog.cpp:112 import_export/webappdialog.cpp:149
 #: model/TrxFilter.cpp:210 panel/BudgetList.cpp:37
 #: panel/DashboardWidget.cpp:382 panel/DashboardWidget.cpp:462
-#: panel/JournalList.cpp:1579 report/CategoryReport.cpp:251
+#: panel/JournalList.cpp:1592 report/CategoryReport.cpp:251
 #: report/FlowReport.cpp:417 report/InExReport.cpp:112 report/TrxReport.cpp:244
 msgid "Amount"
 msgstr "금액"
@@ -2885,8 +2885,8 @@ msgstr "이름:"
 msgid "Range:"
 msgstr "범위:"
 
-#: dialog/DateRangeDialog.cpp:93 dialog/SchedDialog.cpp:814
-#: dialog/SchedDialog.cpp:835 dialog/TrxDialog.cpp:600 dialog/TrxDialog.cpp:609
+#: dialog/DateRangeDialog.cpp:93 dialog/SchedDialog.cpp:825
+#: dialog/SchedDialog.cpp:846 dialog/TrxDialog.cpp:598 dialog/TrxDialog.cpp:607
 msgid "From"
 msgstr "From"
 
@@ -2898,7 +2898,7 @@ msgstr " to "
 msgid "Range code:"
 msgstr "범위 코드:"
 
-#: dialog/DateRangeDialog.cpp:121 dialog/TrxDialog.cpp:492
+#: dialog/DateRangeDialog.cpp:121 dialog/TrxDialog.cpp:490
 #: manager/DateRangeManager.cpp:164
 msgid "&Save"
 msgstr "저장(&S) "
@@ -3265,8 +3265,8 @@ msgstr "계정 조정"
 msgid "Statement ending balance:"
 msgstr "장부 최종 잔액:"
 
-#: dialog/ReconcileDialog.cpp:141 dialog/SchedDialog.cpp:424
-#: dialog/TrxDialog.cpp:311
+#: dialog/ReconcileDialog.cpp:141 dialog/SchedDialog.cpp:423
+#: dialog/TrxDialog.cpp:309
 msgid "Open Calculator"
 msgstr "계산기 열기"
 
@@ -3274,8 +3274,8 @@ msgstr "계산기 열기"
 msgid "&All (un)cleared"
 msgstr "모든 (미)정산됨(&A)"
 
-#: dialog/ReconcileDialog.cpp:181 dialog/SchedDialog.cpp:526
-#: dialog/TrxDialog.cpp:421 dialog/TrxFilterDialog.cpp:691
+#: dialog/ReconcileDialog.cpp:181 dialog/SchedDialog.cpp:525
+#: dialog/TrxDialog.cpp:419 dialog/TrxFilterDialog.cpp:691
 #: dialog/TrxFilterDialog.cpp:1949 dialog/TrxLinkDialog.cpp:227
 #: import_export/qif_export.cpp:682 import_export/qif_import_gui.cpp:109
 #: import_export/univcsvdialog.cpp:117 model/TrxFilter.cpp:204
@@ -3283,8 +3283,8 @@ msgstr "모든 (미)정산됨(&A)"
 msgid "Number"
 msgstr "번호"
 
-#: dialog/ReconcileDialog.cpp:184 dialog/SchedDialog.cpp:347
-#: dialog/TrxDialog.cpp:401 dialog/TrxFilterDialog.cpp:647
+#: dialog/ReconcileDialog.cpp:184 dialog/SchedDialog.cpp:346
+#: dialog/TrxDialog.cpp:399 dialog/TrxFilterDialog.cpp:647
 #: dialog/TrxFilterDialog.cpp:1049 dialog/TrxFilterDialog.cpp:1915
 #: dialog/TrxLinkDialog.cpp:195 dialog/TrxUpdateDialog.cpp:160
 #: import_export/qif_export.cpp:675 import_export/qif_import_gui.cpp:308
@@ -3341,99 +3341,99 @@ msgstr "무효 거래 포함(&V)"
 msgid "Include &duplicate transactions"
 msgstr "중복 거래 포함(&D)"
 
-#: dialog/SchedDialog.cpp:207
+#: dialog/SchedDialog.cpp:206
 msgid "Scheduled Transaction Details"
 msgstr "예약된 거래 상세 정보"
 
-#: dialog/SchedDialog.cpp:222
+#: dialog/SchedDialog.cpp:221
 msgid "Specify the date when this bill or deposit is due"
 msgstr "청구서 또는 예금의 만기일을 지정"
 
-#: dialog/SchedDialog.cpp:223 panel/SchedList.cpp:75
+#: dialog/SchedDialog.cpp:222 panel/SchedList.cpp:75
 msgid "Date Due"
 msgstr "마감일"
 
-#: dialog/SchedDialog.cpp:228 dialog/SchedDialog.cpp:1028
+#: dialog/SchedDialog.cpp:227 dialog/SchedDialog.cpp:1039
 msgid "Repeats"
 msgstr "반복"
 
-#: dialog/SchedDialog.cpp:237
+#: dialog/SchedDialog.cpp:236
 msgid "Back to the last occurring date with the specified values"
 msgstr "지정된 값을 사용하여 마지막 발생 날짜로 돌아가기"
 
-#: dialog/SchedDialog.cpp:256
+#: dialog/SchedDialog.cpp:255
 msgid "Advance the next occurring date with the specified values"
 msgstr "지정된 값으로 다음 발생 날짜를 앞당깁니다"
 
-#: dialog/SchedDialog.cpp:269 dialog/SchedDialog.cpp:1046
-#: dialog/SchedDialog.cpp:1051
+#: dialog/SchedDialog.cpp:268 dialog/SchedDialog.cpp:1057
+#: dialog/SchedDialog.cpp:1062
 msgid "Payments Left"
 msgstr "남은 횟수"
 
-#: dialog/SchedDialog.cpp:290
+#: dialog/SchedDialog.cpp:289
 msgid "Request user to enter payment"
 msgstr "사용자에게 지불 입력 요청"
 
-#: dialog/SchedDialog.cpp:294
+#: dialog/SchedDialog.cpp:293
 msgid "User requested to enter this transaction on the 'Date Paid'"
 msgstr "사용자가 '지불 날짜'에 이 거래를 입력하도록 요청했습니다"
 
-#: dialog/SchedDialog.cpp:299
+#: dialog/SchedDialog.cpp:298
 msgid "Grant automatic execute"
 msgstr "자동 실행 허용"
 
-#: dialog/SchedDialog.cpp:303
+#: dialog/SchedDialog.cpp:302
 msgid "The requested payment will occur without user interaction"
 msgstr "요청된 지불은 사용자의 개입 없이 발생합니다"
 
-#: dialog/SchedDialog.cpp:312 dialog/TrxDialog.cpp:240 model/TrxFilter.cpp:192
+#: dialog/SchedDialog.cpp:311 dialog/TrxDialog.cpp:238 model/TrxFilter.cpp:192
 msgid "Transaction Details"
 msgstr "거래 세부 정보"
 
-#: dialog/SchedDialog.cpp:327
+#: dialog/SchedDialog.cpp:326
 msgid "Specify the date the user is requested to enter this transaction"
 msgstr "사용자가 이 거래를 입력하도록 요청받은 날짜를 지정하십시오"
 
-#: dialog/SchedDialog.cpp:329 panel/SchedList.cpp:74
+#: dialog/SchedDialog.cpp:328 panel/SchedList.cpp:74
 msgid "Date Paid"
 msgstr "지불한 날짜"
 
-#: dialog/SchedDialog.cpp:345 dialog/TrxDialog.cpp:1016
+#: dialog/SchedDialog.cpp:344 dialog/TrxDialog.cpp:1014
 #: dialog/TrxFilterDialog.cpp:656
 msgid "Specify the status for the transaction"
 msgstr "거래 상태를 지정합니다"
 
-#: dialog/SchedDialog.cpp:365 dialog/TrxDialog.cpp:1017
+#: dialog/SchedDialog.cpp:364 dialog/TrxDialog.cpp:1015
 msgid "Specify the type of transactions to be created."
 msgstr "만들 거래 유형을 지정합니다."
 
-#: dialog/SchedDialog.cpp:371 dialog/TrxDialog.cpp:281
+#: dialog/SchedDialog.cpp:370 dialog/TrxDialog.cpp:279
 msgid "&Advanced"
 msgstr "고급(&A)"
 
-#: dialog/SchedDialog.cpp:376 dialog/TrxDialog.cpp:1020
+#: dialog/SchedDialog.cpp:375 dialog/TrxDialog.cpp:1018
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "출금 계정과 입금 계정에서 서로 다른 금액을 설정할 수 있습니다."
 
-#: dialog/SchedDialog.cpp:408 dialog/TrxDialog.cpp:1003
+#: dialog/SchedDialog.cpp:407 dialog/TrxDialog.cpp:1001
 msgid "Specify the transfer amount in the To Account"
 msgstr "입금 계정에 이체할 금액 기입"
 
-#: dialog/SchedDialog.cpp:443
+#: dialog/SchedDialog.cpp:442
 msgid "Specify the Account that will own the scheduled transaction"
 msgstr "예약 거래를 소유할 계정 지정"
 
-#: dialog/SchedDialog.cpp:452 dialog/TrxDialog.cpp:340 dialog/TrxDialog.cpp:601
+#: dialog/SchedDialog.cpp:451 dialog/TrxDialog.cpp:338 dialog/TrxDialog.cpp:599
 msgid "To"
 msgstr "입금 계정"
 
-#: dialog/SchedDialog.cpp:462
+#: dialog/SchedDialog.cpp:461
 msgid "Specify which account the transfer is going to"
 msgstr "입금 계정을 지정합니다"
 
-#: dialog/SchedDialog.cpp:488 dialog/SchedDialog.cpp:1295
+#: dialog/SchedDialog.cpp:487 dialog/SchedDialog.cpp:1307
 #: dialog/SplitDialog.cpp:88 dialog/SplitDialog.cpp:226
-#: dialog/TrxDialog.cpp:366 dialog/TrxDialog.cpp:825 dialog/TrxDialog.cpp:1313
+#: dialog/TrxDialog.cpp:364 dialog/TrxDialog.cpp:823 dialog/TrxDialog.cpp:1311
 #: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:624
 #: dialog/TrxFilterDialog.cpp:1038 dialog/TrxFilterDialog.cpp:1043
 #: dialog/TrxFilterDialog.cpp:1889 dialog/TrxLinkDialog.cpp:206
@@ -3450,14 +3450,14 @@ msgstr "입금 계정을 지정합니다"
 msgid "Category"
 msgstr "범주"
 
-#: dialog/SchedDialog.cpp:500 dialog/SchedDialog.cpp:900
-#: dialog/TrxDialog.cpp:377 dialog/TrxDialog.cpp:976
+#: dialog/SchedDialog.cpp:499 dialog/SchedDialog.cpp:911
+#: dialog/TrxDialog.cpp:375 dialog/TrxDialog.cpp:974
 msgid "Use split Categories"
 msgstr "분할 범주 사용"
 
-#: dialog/SchedDialog.cpp:508 dialog/SchedDialog.cpp:1305
+#: dialog/SchedDialog.cpp:507 dialog/SchedDialog.cpp:1317
 #: dialog/SplitDialog.cpp:230 dialog/SplitDialog.cpp:581
-#: dialog/TrxDialog.cpp:385 dialog/TrxDialog.cpp:792
+#: dialog/TrxDialog.cpp:383 dialog/TrxDialog.cpp:790
 #: dialog/TrxFilterDialog.cpp:640 dialog/TrxFilterDialog.cpp:1062
 #: dialog/TrxFilterDialog.cpp:1070 dialog/TrxFilterDialog.cpp:1668
 #: dialog/TrxFilterDialog.cpp:1680 dialog/TrxFilterDialog.cpp:1772
@@ -3468,25 +3468,25 @@ msgstr "분할 범주 사용"
 msgid "Tags"
 msgstr "태그"
 
-#: dialog/SchedDialog.cpp:523 dialog/TrxDialog.cpp:1018
+#: dialog/SchedDialog.cpp:522 dialog/TrxDialog.cpp:1016
 msgid "Specify any associated check number or transaction number"
 msgstr "관련된 수표 번호 또는 거래 번호를 지정하세요"
 
-#: dialog/SchedDialog.cpp:537 dialog/TrxDialog.cpp:432
+#: dialog/SchedDialog.cpp:536 dialog/TrxDialog.cpp:430
 #: dialog/TrxLinkDialog.cpp:242
 msgid "Select one of the frequently used notes"
 msgstr "자주 사용하는 내용 중 하나를 선택"
 
-#: dialog/SchedDialog.cpp:548 dialog/TrxDialog.cpp:441
+#: dialog/SchedDialog.cpp:547 dialog/TrxDialog.cpp:439
 #: dialog/TrxUpdateDialog.cpp:266
 msgid "User Colors"
 msgstr "사용자 색상"
 
-#: dialog/SchedDialog.cpp:556
+#: dialog/SchedDialog.cpp:555
 msgid "Organize attachments of this scheduled transaction"
 msgstr "이 예약된 거래의 첨부 파일 구성"
 
-#: dialog/SchedDialog.cpp:567 dialog/TrxDialog.cpp:458
+#: dialog/SchedDialog.cpp:566 dialog/TrxDialog.cpp:456
 #: dialog/TrxFilterDialog.cpp:712 dialog/TrxFilterDialog.cpp:1977
 #: dialog/TrxUpdateDialog.cpp:263 dialog/TrxUpdateDialog.cpp:461
 #: import_export/qif_import_gui.cpp:400 import_export/univcsvdialog.cpp:586
@@ -3495,80 +3495,80 @@ msgstr "이 예약된 거래의 첨부 파일 구성"
 msgid "Color"
 msgstr "색상"
 
-#: dialog/SchedDialog.cpp:580 dialog/TrxDialog.cpp:469
-#: dialog/TrxDialog.cpp:1019 dialog/TrxLinkDialog.cpp:249
+#: dialog/SchedDialog.cpp:579 dialog/TrxDialog.cpp:467
+#: dialog/TrxDialog.cpp:1017 dialog/TrxLinkDialog.cpp:249
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "거래에 추가할 내용을 지정합니다."
 
-#: dialog/SchedDialog.cpp:603 dialog/TrxDialog.cpp:486
+#: dialog/SchedDialog.cpp:602 dialog/TrxDialog.cpp:484
 #: dialog/TrxFilterDialog.cpp:824 dialog/TrxUpdateDialog.cpp:304
 msgid "Show/Hide custom fields window"
 msgstr "사용자 지정 필드 창 표시/숨기기"
 
-#: dialog/SchedDialog.cpp:700 dialog/SchedDialog.h:173 panel/SchedPanel.cpp:160
+#: dialog/SchedDialog.cpp:699 dialog/SchedDialog.h:173 panel/SchedPanel.cpp:160
 msgid "New Scheduled Transaction"
 msgstr "예약된 거래 생성"
 
-#: dialog/SchedDialog.cpp:702 panel/SchedPanel.cpp:169
+#: dialog/SchedDialog.cpp:701 panel/SchedPanel.cpp:169
 msgid "Duplicate Scheduled Transaction"
 msgstr "예약된 거래 복제"
 
-#: dialog/SchedDialog.cpp:704 panel/SchedPanel.cpp:164
+#: dialog/SchedDialog.cpp:703 panel/SchedPanel.cpp:164
 msgid "Edit Scheduled Transaction"
 msgstr "예약된 거래 편집"
 
-#: dialog/SchedDialog.cpp:708
+#: dialog/SchedDialog.cpp:707
 msgid "Enter Scheduled Transaction"
 msgstr "예약된 거래 입력"
 
-#: dialog/SchedDialog.cpp:836 dialog/TrxDialog.cpp:1011
+#: dialog/SchedDialog.cpp:847 dialog/TrxDialog.cpp:1009
 msgid "Specify where the transaction is coming from"
 msgstr "거래의 수입원을 지정합니다"
 
-#: dialog/SchedDialog.cpp:907 dialog/SplitDialog.h:84 dialog/TrxDialog.cpp:695
+#: dialog/SchedDialog.cpp:918 dialog/SplitDialog.h:84 dialog/TrxDialog.cpp:693
 #: dialog/TrxLinkDialog.cpp:291 dialog/TrxLinkDialog.cpp:611
 msgid "Split Transaction"
 msgstr "분할 거래"
 
-#: dialog/SchedDialog.cpp:1018
+#: dialog/SchedDialog.cpp:1029
 msgid "Specify the transfer amount in the From Account"
 msgstr "출금 계정에서 이체할 금액 기입"
 
-#: dialog/SchedDialog.cpp:1034
+#: dialog/SchedDialog.cpp:1045
 msgid "Period: Days"
 msgstr "기간: 일"
 
-#: dialog/SchedDialog.cpp:1035
+#: dialog/SchedDialog.cpp:1046
 msgid "Specify period in Days."
 msgstr "기간을 일 단위로 지정하세요."
 
-#: dialog/SchedDialog.cpp:1041
+#: dialog/SchedDialog.cpp:1052
 msgid "Period: Months"
 msgstr "기간: 월"
 
-#: dialog/SchedDialog.cpp:1042
+#: dialog/SchedDialog.cpp:1053
 msgid "Specify period in Months."
 msgstr "기간을 월 단위로 지정하세요."
 
-#: dialog/SchedDialog.cpp:1047
+#: dialog/SchedDialog.cpp:1058
 msgid "Ignored (leave blank)."
 msgstr "무시됨(공란으로 두기)."
 
-#: dialog/SchedDialog.cpp:1052
+#: dialog/SchedDialog.cpp:1063
 msgid "Specify the number of payments to be made.\n"
 "Leave blank if the payments continue forever."
 msgstr "수행 할 지불 횟수를 지정하세요.\n"
 "지불이 계속되는 경우 공백으로 두세요."
 
-#: dialog/SchedDialog.cpp:1218
+#: dialog/SchedDialog.cpp:1230
 msgid "The payment date is after the due date. Is this intended?"
 msgstr "결일이 만기일 이후입니다. 이것이 의도된 것인가요?"
 
-#: dialog/SchedDialog.cpp:1219
+#: dialog/SchedDialog.cpp:1231
 msgid "Looks like a late payment"
 msgstr "연체금처럼 보입니다"
 
-#: dialog/SchedDialog.cpp:1274 dialog/TrxDialog.cpp:849
+#: dialog/SchedDialog.cpp:1286 dialog/TrxDialog.cpp:847
 #: dialog/TrxUpdateDialog.cpp:366
 #, c-format
 msgid "Payee name has not been used before. Is the name correct?\n"
@@ -3576,15 +3576,15 @@ msgid "Payee name has not been used before. Is the name correct?\n"
 msgstr "거래처 이름은 이전에 사용되지 않았습니다. 이름이 맞습니까?\n"
 "%s"
 
-#: dialog/SchedDialog.cpp:1275 dialog/TrxDialog.cpp:850
+#: dialog/SchedDialog.cpp:1287 dialog/TrxDialog.cpp:848
 #: dialog/TrxUpdateDialog.cpp:367
 msgid "Confirm payee name"
 msgstr "거래처 이름 확인"
 
-#: dialog/SchedDialog.cpp:1294 dialog/SchedDialog.cpp:1304
-#: dialog/SchedDialog.cpp:1585 dialog/SplitDialog.cpp:581
-#: dialog/TrxDialog.cpp:791 dialog/TrxDialog.cpp:800 dialog/TrxDialog.cpp:824
-#: dialog/TrxDialog.cpp:1312 dialog/TrxFilterDialog.cpp:969
+#: dialog/SchedDialog.cpp:1306 dialog/SchedDialog.cpp:1316
+#: dialog/SchedDialog.cpp:1597 dialog/SplitDialog.cpp:581
+#: dialog/TrxDialog.cpp:789 dialog/TrxDialog.cpp:798 dialog/TrxDialog.cpp:822
+#: dialog/TrxDialog.cpp:1310 dialog/TrxFilterDialog.cpp:969
 #: dialog/TrxFilterDialog.cpp:982 dialog/TrxFilterDialog.cpp:993
 #: dialog/TrxFilterDialog.cpp:1025 dialog/TrxFilterDialog.cpp:1043
 #: dialog/TrxFilterDialog.cpp:1049 dialog/TrxFilterDialog.cpp:1054
@@ -3598,8 +3598,8 @@ msgstr "거래처 이름 확인"
 msgid "Invalid value"
 msgstr "잘못된 값"
 
-#: dialog/SchedDialog.cpp:1386 dialog/SchedDialog.cpp:1393
-#: dialog/StockDialog.cpp:533 dialog/TrxDialog.cpp:815 dialog/TrxDialog.cpp:892
+#: dialog/SchedDialog.cpp:1398 dialog/SchedDialog.cpp:1405
+#: dialog/StockDialog.cpp:533 dialog/TrxDialog.cpp:813 dialog/TrxDialog.cpp:890
 #: dialog/TrxLinkDialog.cpp:537 import_export/univcsvdialog.cpp:1539
 #: import_export/webapp.cpp:600
 msgid "The opening date for the account is later than the date of this transaction"
@@ -3609,7 +3609,7 @@ msgstr "계정의 시작 날짜가 거래 날짜보다 이후입니다"
 msgid "Specify where the transaction is going to"
 msgstr "거래 대상을 지정합니다"
 
-#: dialog/SchedDialog.h:101 dialog/TrxDialog.cpp:1006
+#: dialog/SchedDialog.h:101 dialog/TrxDialog.cpp:1004
 #: dialog/TrxLinkDialog.cpp:162
 msgid "Specify the amount for this transaction"
 msgstr "거래 금액을 지정합니다"
@@ -3980,44 +3980,44 @@ msgid "Do you really want to restore the default values?\n\n"
 msgstr "정말 기본값으로 복원하시겠습니까?\n\n"
 "모든 맞춤 설정이 손실됩니다!"
 
-#: dialog/TrxDialog.cpp:216 panel/JournalPanel.cpp:359 pref/TrxPref.cpp:61
+#: dialog/TrxDialog.cpp:214 panel/JournalPanel.cpp:359 pref/TrxPref.cpp:61
 msgid "New Transaction"
 msgstr "거래 새로 만들기"
 
-#: dialog/TrxDialog.cpp:217
+#: dialog/TrxDialog.cpp:215
 msgid "Duplicate Transaction"
 msgstr "거래 복제"
 
-#: dialog/TrxDialog.cpp:218
+#: dialog/TrxDialog.cpp:216
 msgid "Enter Transaction"
 msgstr "거래 입력"
 
-#: dialog/TrxDialog.cpp:219
+#: dialog/TrxDialog.cpp:217
 msgid "Edit Transaction"
 msgstr "거래 편집"
 
-#: dialog/TrxDialog.cpp:260
+#: dialog/TrxDialog.cpp:258
 msgid "Set date to today (Ctrl+;)"
 msgstr "날짜를 오늘로 설정(Ctrl+;)"
 
-#: dialog/TrxDialog.cpp:336
+#: dialog/TrxDialog.cpp:334
 msgid "Exchange to and from accounts"
 msgstr "계정 간 환전"
 
-#: dialog/TrxDialog.cpp:419
+#: dialog/TrxDialog.cpp:417
 msgid "Populate Transaction #"
 msgstr "거래 채우기 #"
 
-#: dialog/TrxDialog.cpp:448 dialog/TrxLinkDialog.cpp:235
+#: dialog/TrxDialog.cpp:446 dialog/TrxLinkDialog.cpp:235
 msgid "Manage transaction attachments"
 msgstr "거래 첨부 파일 관리"
 
-#: dialog/TrxDialog.cpp:497
+#: dialog/TrxDialog.cpp:495
 msgid "Save and &New"
 msgstr "저장 후 새 거래(&N)"
 
-#: dialog/TrxDialog.cpp:661 dialog/TrxDialog.cpp:664 dialog/TrxDialog.cpp:669
-#: dialog/TrxDialog.cpp:1033 dialog/TrxDialog.cpp:1037
+#: dialog/TrxDialog.cpp:659 dialog/TrxDialog.cpp:662 dialog/TrxDialog.cpp:667
+#: dialog/TrxDialog.cpp:1031 dialog/TrxDialog.cpp:1035
 #: import_export/qif_import_gui.cpp:451 import_export/qif_import_gui.cpp:454
 #: import_export/qif_import_gui.cpp:530 import_export/qif_import_gui.cpp:679
 #: import_export/qif_import_gui.cpp:844 import_export/qif_import_gui.cpp:1590
@@ -4031,48 +4031,48 @@ msgstr "저장 후 새 거래(&N)"
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: dialog/TrxDialog.cpp:908
+#: dialog/TrxDialog.cpp:906
 #, c-format
 msgid "Lock transaction to date: %s"
 msgstr "해당 날짜까지 거래 잠금: %s"
 
-#: dialog/TrxDialog.cpp:910 dialog/TrxDialog.cpp:933 panel/JournalList.cpp:1200
+#: dialog/TrxDialog.cpp:908 dialog/TrxDialog.cpp:931 panel/JournalList.cpp:1200
 msgid "MMEX Transaction Check"
 msgstr "MMEX 거래 점검"
 
-#: dialog/TrxDialog.cpp:931
+#: dialog/TrxDialog.cpp:929
 msgid "The transaction will exceed the account limit."
 msgstr "거래가 계정 한도를 초과합니다."
 
-#: dialog/TrxDialog.cpp:998
+#: dialog/TrxDialog.cpp:996
 msgid "Specify account the money is taken from"
 msgstr "돈을 인출한 계정을 지정합니다"
 
-#: dialog/TrxDialog.cpp:999
+#: dialog/TrxDialog.cpp:997
 msgid "Specify account the money is moved to"
 msgstr "돈을 입금할 계정을 지정합니다"
 
-#: dialog/TrxDialog.cpp:1000
+#: dialog/TrxDialog.cpp:998
 msgid "Specify the transfer amount in the From Account."
 msgstr "출금 계정에서 이체 금액을 지정합니다."
 
-#: dialog/TrxDialog.cpp:1007
+#: dialog/TrxDialog.cpp:1005
 msgid "Specify account for the transaction"
 msgstr "거래에 대한 계정을 지정합니다"
 
-#: dialog/TrxDialog.cpp:1009
+#: dialog/TrxDialog.cpp:1007
 msgid "Specify to whom the transaction is going to"
 msgstr "거래 대상을 지정합니다"
 
-#: dialog/TrxDialog.cpp:1015 dialog/TrxLinkDialog.cpp:111
+#: dialog/TrxDialog.cpp:1013 dialog/TrxLinkDialog.cpp:111
 msgid "Specify the date of the transaction"
 msgstr "거래 날짜를 지정합니다"
 
-#: dialog/TrxDialog.cpp:1431
+#: dialog/TrxDialog.cpp:1429
 msgid "The two accounts have different currencies, but no advanced transaction is defined. Is this correct?"
 msgstr "두 계정의 통화는 다르지만 고급 거래가 정의되어 있지 않습니다. 이게 맞나요?"
 
-#: dialog/TrxDialog.cpp:1432
+#: dialog/TrxDialog.cpp:1430
 msgid "Currencies are different"
 msgstr "통화가 다릅니다"
 
@@ -5932,7 +5932,7 @@ msgstr "정말 기본 범위를 복원하시겠습니까?\n\n"
 msgid "Default date ranges"
 msgstr "기본 날짜 범위"
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1360
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1367
 #: panel/ReportPanel.cpp:1095
 msgid "More date ranges…"
 msgstr "더 많은 날짜 범위…"
@@ -6721,7 +6721,7 @@ msgstr "자산 편집(&E)…"
 msgid "&Delete Asset…"
 msgstr "자산 삭제(&D)…"
 
-#: panel/AssetList.cpp:120 panel/JournalList.cpp:1375 panel/SchedList.cpp:199
+#: panel/AssetList.cpp:120 panel/JournalList.cpp:1388 panel/SchedList.cpp:199
 #: panel/StockList.cpp:169
 msgid "&Organize Attachments…"
 msgstr "첨부 파일 구성(&O)…"
@@ -7057,238 +7057,238 @@ msgid "Locked transaction to date: %s\n\n"
 msgstr "현재까지 잠긴 거래: %s\n\n"
 "조정된 거래입니다."
 
-#: panel/JournalList.cpp:1314
+#: panel/JournalList.cpp:1327
 msgid "New &Withdrawal…"
 msgstr "출금 생성(&W)…"
 
-#: panel/JournalList.cpp:1315
+#: panel/JournalList.cpp:1328
 msgid "New &Deposit…"
 msgstr "입금 생성(&D)…"
 
-#: panel/JournalList.cpp:1317
+#: panel/JournalList.cpp:1330
 msgid "New &Transfer…"
 msgstr "이체 생성(&T)…"
 
-#: panel/JournalList.cpp:1322
+#: panel/JournalList.cpp:1335
 msgid "&Edit Transaction…"
 msgstr "거래 편집(&E)…"
 
-#: panel/JournalList.cpp:1323
+#: panel/JournalList.cpp:1336
 msgid "&Edit Transactions…"
 msgstr "거래 편집(&E)…"
 
-#: panel/JournalList.cpp:1329
+#: panel/JournalList.cpp:1342
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "거래 복사(&C)"
 
-#: panel/JournalList.cpp:1339
+#: panel/JournalList.cpp:1352
 #, c-format
 msgid "&Paste Transaction"
 msgid_plural "&Paste Transactions (%d)"
 msgstr[0] "거래 붙여넣기(&P)"
 
-#: panel/JournalList.cpp:1349
+#: panel/JournalList.cpp:1362
 msgid "D&uplicate Transaction…"
 msgstr "거래 복제(&U)…"
 
-#: panel/JournalList.cpp:1354
+#: panel/JournalList.cpp:1367
 msgid "&Move Transaction…"
 msgstr "거래 이동(&M)…"
 
-#: panel/JournalList.cpp:1355
+#: panel/JournalList.cpp:1368
 msgid "&Move Transactions…"
 msgstr "거래 이동(&M)…"
 
-#: panel/JournalList.cpp:1365
+#: panel/JournalList.cpp:1378
 msgid "&View In Other Account"
 msgstr "다른 계정에서 보기(&V)"
 
-#: panel/JournalList.cpp:1371
+#: panel/JournalList.cpp:1384
 msgid "&View Split Categories"
 msgstr "범주 분할 보기(&V)"
 
-#: panel/JournalList.cpp:1381
+#: panel/JournalList.cpp:1394
 msgid "Create Scheduled T&ransaction…"
 msgstr "예약된 거래 생성(&R)…"
 
-#: panel/JournalList.cpp:1388
+#: panel/JournalList.cpp:1401
 msgid "&Restore selected transaction…"
 msgstr "선택한 거래 복원(&R)…"
 
-#: panel/JournalList.cpp:1389
+#: panel/JournalList.cpp:1402
 msgid "&Restore selected transactions…"
 msgstr "선택한 거래 복원(&R)…"
 
-#: panel/JournalList.cpp:1395
+#: panel/JournalList.cpp:1408
 msgid "Restore &all transactions in current view…"
 msgstr "현재 보기의 모든 거래 복원(&A)…"
 
-#: panel/JournalList.cpp:1578
+#: panel/JournalList.cpp:1591
 #, c-format
 msgid "&Find all transactions with %s '%s'"
 msgstr "%s '%s'인 모든 거래 찾기(&F)"
 
-#: panel/JournalList.cpp:1584
+#: panel/JournalList.cpp:1597
 msgid "Cop&y Text to Clipboard"
 msgstr "텍스트를 클립보드에 복사(&Y)"
 
-#: panel/JournalList.cpp:1592
+#: panel/JournalList.cpp:1605
 msgid "&Delete selected transaction…"
 msgstr "선택한 거래 삭제(&D)…"
 
-#: panel/JournalList.cpp:1593
+#: panel/JournalList.cpp:1606
 msgid "&Delete selected transactions…"
 msgstr "선택한 거래 삭제(&D)…"
 
-#: panel/JournalList.cpp:1595
+#: panel/JournalList.cpp:1608
 msgid "&Permanently delete selected transaction…"
 msgstr "선택한 거래내역을 영구적으로 삭제(&P)…"
 
-#: panel/JournalList.cpp:1596
+#: panel/JournalList.cpp:1609
 msgid "&Permanently delete selected transactions…"
 msgstr "선택한 거래내역을 영구적으로 삭제(&P)…"
 
-#: panel/JournalList.cpp:1605
+#: panel/JournalList.cpp:1618
 msgid "Delete &all transactions in current view…"
 msgstr "현재 보기의 모든 거래 삭제(&A)…"
 
-#: panel/JournalList.cpp:1606
+#: panel/JournalList.cpp:1619
 msgid "Permanently delete &all transactions in current view…"
 msgstr "현재 보기의 모든 거래를 영구적으로 삭제(&A)…"
 
-#: panel/JournalList.cpp:1611
+#: panel/JournalList.cpp:1624
 msgid "Delete Viewed “&Follow Up” Transactions…"
 msgstr "확인된 “후속 조치” 거래 삭제(&F)…"
 
-#: panel/JournalList.cpp:1615
+#: panel/JournalList.cpp:1628
 msgid "Delete Viewed “&Unreconciled” Transactions…"
 msgstr "확인된 “미조정” 거래 삭제(&U)…"
 
-#: panel/JournalList.cpp:1618
+#: panel/JournalList.cpp:1631
 msgid "De&lete "
 msgstr "삭제(&L) "
 
-#: panel/JournalList.cpp:1624
+#: panel/JournalList.cpp:1637
 msgid "&Unreconciled"
 msgstr "미조정(&U)"
 
-#: panel/JournalList.cpp:1627
+#: panel/JournalList.cpp:1638
 msgid "&Reconciled"
 msgstr "조정됨(&R)"
 
-#: panel/JournalList.cpp:1630
+#: panel/JournalList.cpp:1639
 msgid "&Void"
 msgstr "무효(&V)"
 
-#: panel/JournalList.cpp:1633
+#: panel/JournalList.cpp:1640
 msgid "&Follow Up"
 msgstr "후속조치(&F)"
 
-#: panel/JournalList.cpp:1636
+#: panel/JournalList.cpp:1641
 msgid "D&uplicate"
 msgstr "중복(&U)"
 
-#: panel/JournalList.cpp:1639
+#: panel/JournalList.cpp:1642
 msgid "Mar&k as"
 msgstr "상태 표시(&K)"
 
-#: panel/JournalList.cpp:1786
+#: panel/JournalList.cpp:1790
 #, c-format
 msgid "Do you want to permanently delete the selected transaction?"
 msgid_plural "Do you want to permanently delete the %i selected transactions?"
 msgstr[0] "선택한 %i개의 거래를 영구적으로 삭제하시겠습니까?"
 
-#: panel/JournalList.cpp:1792
+#: panel/JournalList.cpp:1796
 #, c-format
 msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] "선택한 %i개의 거래를 삭제하시겠습니까?"
 
-#: panel/JournalList.cpp:1800 panel/JournalList.cpp:2259
+#: panel/JournalList.cpp:1804 panel/JournalList.cpp:2263
 msgid "Unable to undo this action."
 msgstr "이 작업은 취소할 수 없습니다."
 
-#: panel/JournalList.cpp:1801 panel/JournalList.cpp:2258
+#: panel/JournalList.cpp:1805 panel/JournalList.cpp:2262
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "삭제된 거래는 일시적으로 저장되며 삭제된 거래 보기에서 복원할 수 있습니다."
 
-#: panel/JournalList.cpp:1805 panel/JournalList.cpp:2263
-#: panel/JournalList.cpp:2275 panel/JournalList.cpp:2287
+#: panel/JournalList.cpp:1809 panel/JournalList.cpp:2267
+#: panel/JournalList.cpp:2279 panel/JournalList.cpp:2291
 msgid "Confirm Transaction Deletion"
 msgstr "거래 삭제 확인"
 
-#: panel/JournalList.cpp:1878
+#: panel/JournalList.cpp:1882
 #, c-format
 msgid "Do you want to restore the selected transaction?"
 msgid_plural "Do you want to restore the %i selected transactions?"
 msgstr[0] "선택한 %i개의 거래를 복원하시겠습니까?"
 
-#: panel/JournalList.cpp:1887 panel/JournalList.cpp:1929
+#: panel/JournalList.cpp:1891 panel/JournalList.cpp:1933
 msgid "Confirm Transaction Restore"
 msgstr "거래 복원 확인"
 
-#: panel/JournalList.cpp:1928
+#: panel/JournalList.cpp:1932
 msgid "Do you want to restore all of the transactions shown?"
 msgstr "표시된 모든 거래를 복원하시겠습니까?"
 
-#: panel/JournalList.cpp:2034
+#: panel/JournalList.cpp:2038
 #, c-format
 msgid "Do you want to move the selected transaction?"
 msgid_plural "Do you want to move the %i selected transactions?"
 msgstr[0] "선택한 %i개의 거래를 이동하시겠습니까?"
 
-#: panel/JournalList.cpp:2042
+#: panel/JournalList.cpp:2046
 msgid "Confirm Transaction Move"
 msgstr "거래 이동 확인"
 
-#: panel/JournalList.cpp:2048
+#: panel/JournalList.cpp:2052
 msgid "Moving transaction to…"
 msgstr "거래를 이동하는 중…"
 
-#: panel/JournalList.cpp:2049
+#: panel/JournalList.cpp:2053
 #, c-format
 msgid "Moving %i transactions to…"
 msgstr "%i 거래를 이동하는 중…"
 
-#: panel/JournalList.cpp:2052 panel/StockList.cpp:377
+#: panel/JournalList.cpp:2056 panel/StockList.cpp:377
 msgid "Select the destination Account "
 msgstr "대상 계정 선택 "
 
-#: panel/JournalList.cpp:2086
+#: panel/JournalList.cpp:2090
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "이는 이동을 허용하지 않는 거래 또는 계정 세부정보의 일부 요소로 인해 발생합니다"
 
-#: panel/JournalList.cpp:2087
+#: panel/JournalList.cpp:2091
 msgid "Moved"
 msgstr "이동됨"
 
-#: panel/JournalList.cpp:2089
+#: panel/JournalList.cpp:2093
 msgid "Not moved"
 msgstr "이동되지 않음"
 
-#: panel/JournalList.cpp:2094
+#: panel/JournalList.cpp:2098
 msgid "Unable to move some transactions."
 msgstr "일부 거래를 이동할 수 없습니다."
 
-#: panel/JournalList.cpp:2159
+#: panel/JournalList.cpp:2163
 msgid "Scheduled transaction saved."
 msgstr "예약된 거래가 저장되었습니다."
 
-#: panel/JournalList.cpp:2173 panel/JournalPanel.cpp:142
+#: panel/JournalList.cpp:2177 panel/JournalPanel.cpp:142
 #: util/mmNavigatorList.cpp:55
 msgid "All Transactions"
 msgstr "모든 거래"
 
-#: panel/JournalList.cpp:2253
+#: panel/JournalList.cpp:2257
 msgid "Do you want to delete all the transactions shown?"
 msgstr "표시된 모든 거래를 삭제하시겠습니까?"
 
-#: panel/JournalList.cpp:2254
+#: panel/JournalList.cpp:2258
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr "표시된 모든 거래를 영구적으로 삭제하시겠습니까?"
 
-#: panel/JournalList.cpp:2272 panel/JournalList.cpp:2284
+#: panel/JournalList.cpp:2276 panel/JournalList.cpp:2288
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr "표시된 모든 “%s” 거래를 삭제하시겠습니까?"
@@ -7419,19 +7419,19 @@ msgstr "선택한 거래 총액: %s"
 msgid "Days between selected transactions: %d"
 msgstr "선택한 거래 사이의 일 수: %d"
 
-#: panel/JournalPanel.cpp:1367 panel/ReportPanel.cpp:1102
+#: panel/JournalPanel.cpp:1374 panel/ReportPanel.cpp:1102
 msgid "Edit date ranges…"
 msgstr "날짜 범위 편집…"
 
-#: panel/JournalPanel.cpp:1515
+#: panel/JournalPanel.cpp:1522
 msgid "&New Withdrawal…"
 msgstr "출금 생성(&N)…"
 
-#: panel/JournalPanel.cpp:1516
+#: panel/JournalPanel.cpp:1523
 msgid "&New Deposit…"
 msgstr "입금 생성(&N)…"
 
-#: panel/JournalPanel.cpp:1517
+#: panel/JournalPanel.cpp:1524
 msgid "&New Transfer…"
 msgstr "이체 생성(&N)…"
 
