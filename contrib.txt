@@ -242,6 +242,10 @@ Simon Kölle
 Laurent Cape
 Rudolf Frei
 Roberto Pasqui
+Janusz Kossek
+Dragan Miščević
+Markus Egg
+Lukas Kropf
 
 ### 2025
 Renato
