@@ -2470,6 +2470,6 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
 
 void JournalList::onSize(wxSizeEvent& event)
 {
-    setAutomaticColumnSize();
+    //setAutomaticColumnSize();
     event.Skip();
 }
