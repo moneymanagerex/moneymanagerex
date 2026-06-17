@@ -1235,7 +1235,7 @@ void JournalList::setAutomaticColumnSize()
     // calculate and apply diff:
     int diff = this->GetSize().GetWidth() - twidth;
     if (abs(diff) > 5) {
-        int diffdelta = diff / resizable_ids.size();
+        int diffdelta = diff / static_cast<int>(resizable_ids.size());
         for (colInfo col: resizable_ids) {
             this->SetColumnWidth(col.id, col.width + diffdelta);
         }
@@ -2470,6 +2470,6 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
 
 void JournalList::onSize(wxSizeEvent& event)
 {
-    //setAutomaticColumnSize();
+    setAutomaticColumnSize();
     event.Skip();
 }
