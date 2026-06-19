@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-06-06 16:15+0000\n"
-"PO-Revision-Date: 2026-06-12 02:44\n"
+"PO-Revision-Date: 2026-06-19 03:31\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -139,11 +139,11 @@ msgstr "Archivo &QIF…"
 
 #: app/mmFrame.cpp:1704
 msgid "&Customize Report…"
-msgstr "Personalizar Reporte…"
+msgstr "&Personalizar informe…"
 
 #: app/mmFrame.cpp:1705
 msgid "&Rename Report…"
-msgstr "Renombrar reporte…"
+msgstr "&Renombrar informe…"
 
 #: app/mmFrame.cpp:1706
 msgid "&Delete Report…"
@@ -159,7 +159,7 @@ msgstr "&Abrir sitio web de la cuenta"
 
 #: app/mmFrame.cpp:1725 app/mmFrame.cpp:1744
 msgid "&Attachment Manager…"
-msgstr "&Administrador de adjuntos…"
+msgstr "&Gestor de adjuntos…"
 
 #: app/mmFrame.cpp:1727 app/mmFrame.cpp:1748 app/mmFrame.cpp:1771
 #: app/mmFrame.cpp:2056
@@ -205,7 +205,7 @@ msgstr "Cuentas &visibles"
 
 #: app/mmFrame.cpp:1804
 msgid "Co&llapse All"
-msgstr "Co&lapsar todo"
+msgstr "Con&traer todo"
 
 #: app/mmFrame.cpp:1814
 msgid "&Expand All"
@@ -360,7 +360,7 @@ msgstr "Mostrar/Esconder transacciones eliminadas en la navegación"
 
 #: app/mmFrame.cpp:1941
 msgid "Budgets: As Financial &Years"
-msgstr "Presupuestos: como ejercicios &económicos"
+msgstr "Presupuestos: &Por ejercicio y año"
 
 #: app/mmFrame.cpp:1942
 msgid "Display Budgets in Financial Year Format"
@@ -376,7 +376,7 @@ msgstr "Incluir las transferencias en los totales del presupuesto"
 
 #: app/mmFrame.cpp:1955
 msgid "Budget Category Report: with &Summaries"
-msgstr "Informe de categorías del presupuesto: con Re&súmenes"
+msgstr "Informe de categorías del presupuesto: Con re&súmenes"
 
 #: app/mmFrame.cpp:1956
 msgid "Include the category summaries in the Budget Category Summary"
@@ -467,27 +467,27 @@ msgstr "Descargar tasas de divisas y acciones"
 
 #: app/mmFrame.cpp:2091
 msgid "&Payee Manager…"
-msgstr "&Administrador de beneficiarios…"
+msgstr "&Gestor de beneficiarios…"
 
 #: app/mmFrame.cpp:2091 manager/PayeeManager.cpp:539
 msgid "Payee Manager"
-msgstr "Administrador de beneficiarios"
+msgstr "Gestor de beneficiarios"
 
 #: app/mmFrame.cpp:2095
 msgid "&Category Manager…"
-msgstr "&Administrador de categorías…"
+msgstr "&Gestor de categorías…"
 
 #: app/mmFrame.cpp:2095 manager/CategoryManager.h:68
 msgid "Category Manager"
-msgstr "Administrador de categorías"
+msgstr "Gestor de categorías"
 
 #: app/mmFrame.cpp:2099
 msgid "&Tag Manager…"
-msgstr "&Administrador de etiquetas…"
+msgstr "&Gestor de etiquetas…"
 
 #: app/mmFrame.cpp:2099 manager/TagManager.h:70
 msgid "Tag Manager"
-msgstr "Administrador de etiquetas"
+msgstr "Gestor de etiquetas"
 
 #: app/mmFrame.cpp:2103
 msgid "Curre&ncy Manager…"
@@ -568,11 +568,11 @@ msgstr "Gestor de temas"
 
 #: app/mmFrame.cpp:2145
 msgid "Date Range Manager"
-msgstr "Administrador de rango de fechas"
+msgstr "Gestor de rango de fechas"
 
 #: app/mmFrame.cpp:2145
 msgid "Date Range Manager…"
-msgstr "Administrador de rango de fechas…"
+msgstr "Gestor de rango de fechas…"
 
 #: app/mmFrame.cpp:2150
 msgid "Tra&nsaction Report…"
@@ -580,22 +580,22 @@ msgstr "Informe de tra&nsacciones…"
 
 #: app/mmFrame.cpp:2156
 msgid "&General Report Manager…"
-msgstr "&Administrador de informes generales…"
+msgstr "&Gestor de informes generales…"
 
 #: app/mmFrame.cpp:2156 manager/GeneralReportManager.cpp:754
 #: manager/GeneralReportManager.cpp:906 manager/GeneralReportManager.cpp:984
 #: manager/GeneralReportManager.cpp:1051 manager/GeneralReportManager.cpp:1211
 #: manager/GeneralReportManager.h:78 util/mmNavigatorList.cpp:71
 msgid "General Report Manager"
-msgstr "Administrador de informes generales"
+msgstr "Gestor de informes generales"
 
 #: app/mmFrame.cpp:2160
 msgid "C&ustom Field Manager…"
-msgstr "Administrador de campos p&ersonalizados…"
+msgstr "Gestor de campos p&ersonalizados…"
 
 #: app/mmFrame.cpp:2160 manager/FieldManager.cpp:67
 msgid "Custom Field Manager"
-msgstr "Administrador de campos personalizados"
+msgstr "Gestor de campos personalizados"
 
 #: app/mmFrame.cpp:2166
 msgid "Refresh &WebApp…"
@@ -661,7 +661,7 @@ msgstr "Base de &datos"
 
 #: app/mmFrame.cpp:2198
 msgid "Database management"
-msgstr "Administración de la base de datos"
+msgstr "Gestor de la base de datos"
 
 #: app/mmFrame.cpp:2205 app/mmFrame.cpp:2300
 msgid "&Help"
@@ -805,7 +805,7 @@ msgstr "Informar un &error"
 
 #: app/mmFrame.cpp:2275
 msgid "Report an error in application to the developers"
-msgstr "Reportar un error en la aplicación a los desarrolladores"
+msgstr "Notificar un error de la aplicación a los desarrolladores"
 
 #: app/mmFrame.cpp:2279
 msgid "View &Diagnostics"
@@ -1454,7 +1454,7 @@ msgstr "Consejo: Si el archivo de base de datos no está cifrado, cualquiera que
 
 #: base/mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
-msgstr "Consejo: Para marcar una transacción como conciliada, simplemente seleccione la transacción y pulse la tecla 'R'. Para marcar una transacción como sin conciliar, selecciónela y pulse 'U'."
+msgstr "Consejo: Para marcar una transacción como conciliada, simplemente seleccione la transacción y pulse la tecla \"R'\" Para marcar una transacción como sin conciliar, selecciónela y pulse \"U\"."
 
 #: base/mmTips.h:28
 msgid "Tip: To mark a transaction as requiring followup, select the transaction and press the “F” key."
@@ -1478,7 +1478,7 @@ msgstr "Consejo: Establezca los tipos de cambio de la moneda si hay cuentas con 
 
 #: base/mmTips.h:34
 msgid "Category Manager tip: Pressing the “H” key will cycle through all categories starting with the letter h."
-msgstr "Consejo del administrador de categorías: Al pulsar la tecla “H” pasará por todas las categorías que empiezan con la letra h."
+msgstr "Consejo del gestor de categorías: Al pulsar la tecla “H” pasará por todas las categorías que empiezan con la letra h."
 
 #: base/mmTips.h:35
 msgid "Category Manager tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc…"
@@ -1486,11 +1486,11 @@ msgstr "Consejo para el administrador de categorías: Al pulsar una combinación
 
 #: base/mmTips.h:37
 msgid "Never endorse a loan. If the borrower, whether a friend, a family member, a significant other, or someone else, misses payments, your credit score will take a plunge, the lender can come after you for the money, and it will likely destroy your relationship. Plus, if the bank is requiring a cosigner, the bank does not trust the person to make the payments."
-msgstr "Nunca avales un préstamo. Si el prestatario ya sea un amigo, un familiar, tu pareja o cualquier otra persona incumple los pagos, tu puntuación crediticia se desplomará, la entidad crediticia podrá reclamarte el dinero a ti y, además, es probable que esto arruine vuestra relación. Además, si el banco exige un avalista, es porque no confía en que esa persona vaya a hacer frente a los pagos."
+msgstr "Nunca te hagas avalista de un préstamo. Si el prestatario —ya sea un amigo, un familiar, tu pareja o cualquier otra persona— incumple los pagos, tu puntuación crediticia se desplomará, la entidad crediticia podrá reclamarte el dinero a ti y, muy probablemente, esto acabará con vuestra relación. Además, si el banco exige un avalista, es porque no confía en que esa persona vaya a hacer frente a los pagos."
 
 #: base/mmTips.h:39
 msgid "Grocery tip: Avoid grocery shopping when hungry or stressed. Hunger and stress can make you do strange things, like buying lots of chocolate or gimmicky processed foods. Plan to go to the store when you are well-fed and relaxed. That way, you can stick to your list and not overspend on food you do not need."
-msgstr "Consejo para la lista de la compra: Evite hacer la compra cuando tenga hambre o estrés. El hambre y el estrés le pueden forzar a darse más caprichos de la cuenta, como comprar mucho chocolate o alimentos procesados. Planifique ir a la tienda cuando no haga mucho que ha comido y esté relajado. De esta manera, usted puede limitarse a su lista y no gastar en alimentos que no necesita."
+msgstr "Consejo para comprar: Evite hacer la compra cuando tenga hambre o estrés. El hambre y el estrés le pueden forzar a darse más caprichos de la cuenta, como comprar mucho chocolate o alimentos procesados. Planifique ir a la tienda cuando no haga mucho que ha comido y esté relajado. De esta manera, usted puede limitarse a su lista y no gastar en alimentos que no necesita."
 
 #: base/mmTips.h:40
 msgid "Grocery tip: Make a shopping list. A shopping list saves money by helping to avoid buying products that are not required. The simplest way is to track consumables as they are used. A magnetic notepad on the fridge can help to write down items that need to be bought."
@@ -1498,19 +1498,19 @@ msgstr "Consejo para comprar: Haga una lista de compras. La lista de compras aho
 
 #: base/mmTips.h:41
 msgid "Grocery tip: Buy fruits and vegetables in season."
-msgstr "Consejo para la lista de la compra: Compre frutas y verduras de temporada."
+msgstr "Consejo para comprar: Compre frutas y verduras de temporada."
 
 #: base/mmTips.h:42
 msgid "Grocery tip: Ensure your family consumes everything you purchase. Every month or so, hold a pantry challenge during which you use up as many pantry goods as possible before you shop again. A pantry challenge cuts down on waste and lets you get a sense of how much you are overbuying."
-msgstr "Consejo para la lista de la compra: Procure que su familia consume todo lo que compra. Cada mes más o menos, consuma la mayor cantidad posible de artículos de la despensa antes de comprar de nuevo. Esto reduce el tirar posibles residuos y le permite tener una idea de cuánto está comprando en exceso."
+msgstr "Consejo para comprar: Procure que su familia consume todo lo que compra. Cada mes más o menos, consuma la mayor cantidad posible de artículos de la despensa antes de comprar de nuevo. Esto reduce el tirar posibles residuos y le permite tener una idea de cuánto está comprando en exceso."
 
 #: base/mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr "Consejo para la lista de la compra: Reduzca los residuos. Adoptar mejores hábitos de compra es una forma de reducir los desperdicios de alimentos y dinero. Haga una lista de todo lo que tira sin usar, como restos estropeados o lechugas podridas, para tener una sensación de la magnitud completa del problema."
+msgstr "Consejo para la compra: Reduce el desperdicio. Adoptar mejores hábitos a la hora de hacer la compra es una forma de reducir el desperdicio de comida y el gasto innecesario. Haz una lista de todo lo que tiras sin usar, como las sobras en mal estado o la lechuga mustia, para hacerte una idea de la magnitud real del problema."
 
 #: base/mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
-msgstr "Consejos para la compra: Leer los catálogos de ofertas. Revise los catálogos de ofertas y compre en cada tienda lo que esté de oferta que esté en su lista de compra. A veces es más rentable visitar múltiples tiendas en una misma semana para obtener el mejor precio de cada producto."
+msgstr "Consejo para comprar: Leer los catálogos de ofertas. Revise los catálogos de ofertas y compre en cada tienda lo que esté de oferta que esté en su lista de compra. A veces es más rentable visitar múltiples tiendas en una misma semana para obtener el mejor precio de cada producto."
 
 #: base/mmTips.h:46
 msgid "Cut back on subscriptions. Is a subscription to every streaming service required? Is the paid service expense required, or is an advertising-supported free service sufficient? Is the book club membership required, or is a visit to the library once per month sufficient?"
@@ -1527,7 +1527,7 @@ msgstr "Sugerencia para padres: Si se le pide que sea el aval para un préstamo 
 #: base/mmTips.h:51
 #, c-format
 msgid "Get out of debt tip: Pay yourself 10% first. Put this into an account that is hard to touch. Ensure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."
-msgstr "Consejo para salir de las deudas: Resérvate el 10% en primer lugar, ingresa ese dinero en una cuenta a la que te resulte difícil acceder. Asegúrate de que sacar el dinero sea una tarea complicada (por ejemplo, que tengas que ir al banco), para que solo recurras a ella de forma consciente y para gastos importantes."
+msgstr "Consejo para salir del endeudamiento: Resérvate el 10% en primer lugar, ingresa ese dinero en una cuenta a la que te resulte difícil acceder. Asegúrate de que sacar el dinero sea una tarea complicada (por ejemplo, que tengas que ir al banco), para que solo recurras a ella de forma consciente y para gastos importantes."
 
 #: base/mmTips.h:52
 msgid "Get out of debt tip: Establish an emergency fund."
@@ -1932,7 +1932,7 @@ msgstr "Base de datos MMEX actualizada correctamente a la versión %i"
 
 #: db/dbupgrade.cpp:121
 msgid "It is recommended to optimize the database with Tools → Database → Optimize Database…"
-msgstr "Se recomienda optimizar la base de datos con Herramientas → Base de datos → Optimizar Base de datos…"
+msgstr "Se recomienda optimizar la base de datos con Herramientas → Base de datos → Optimizar base de datos…"
 
 #: db/dbupgrade.cpp:183
 msgid "Load debug file"
@@ -2443,17 +2443,17 @@ msgstr "Carpeta de adjuntos no encontrada."
 #: dialog/AttachmentDialog.cpp:117
 #, c-format
 msgid "Attachment Manager | %1$s | %2$lld"
-msgstr "Administrador de adjuntos | %1$s | %2$lld"
+msgstr "Gestor de adjuntos | %1$s | %2$lld"
 
 #: dialog/AttachmentDialog.cpp:121
 #, c-format
 msgid "Attachment Manager | %1$s | %2$s"
-msgstr "Administrador de adjuntos | %1$s | %2$s"
+msgstr "Gestor de adjuntos | %1$s | %2$s"
 
 #: dialog/AttachmentDialog.cpp:126
 #, c-format
 msgid "Attachment Manager | New %s"
-msgstr "Administrador de adjuntos | Nuevo %s"
+msgstr "Gestor de adjuntos | Nuevo %s"
 
 #: dialog/AttachmentDialog.cpp:185 manager/FieldManager.cpp:100
 #: manager/PayeeManager.cpp:597
@@ -2470,7 +2470,7 @@ msgstr "Escriba una descripción para el nuevo adjunto:"
 
 #: dialog/AttachmentDialog.cpp:236
 msgid "Attachment Manager: Add Attachment"
-msgstr "Administrador de adjuntos: Añadir adjunto"
+msgstr "Gestor de adjuntos: Añadir adjunto"
 
 #: dialog/AttachmentDialog.cpp:297
 msgid "Enter a new description for the attachment:"
@@ -2478,7 +2478,7 @@ msgstr "Introduzca una nueva descripción para el adjunto:"
 
 #: dialog/AttachmentDialog.cpp:298
 msgid "Attachment Manager: Edit Attachment"
-msgstr "Administrador de adjuntos: Editar archivo adjunto"
+msgstr "Gestor de adjuntos: Editar archivo adjunto"
 
 #: dialog/AttachmentDialog.cpp:327
 msgid "Do you want to delete this attachment?"
@@ -3420,7 +3420,7 @@ msgstr "Permite establecer importes diferentes en las cuentas \"DE\" y \"A\"."
 
 #: dialog/SchedDialog.cpp:407 dialog/TrxDialog.cpp:1001
 msgid "Specify the transfer amount in the To Account"
-msgstr "Especifique la cantidad a transferir en la Cuenta de Destino"
+msgstr "Especifique la cantidad a transferir en la cuenta de destino"
 
 #: dialog/SchedDialog.cpp:442
 msgid "Specify the Account that will own the scheduled transaction"
@@ -3535,7 +3535,7 @@ msgstr "Transacción dividida"
 
 #: dialog/SchedDialog.cpp:1029
 msgid "Specify the transfer amount in the From Account"
-msgstr "Especifique la cantidad a transferir en la Cuenta de origen"
+msgstr "Especifique la cantidad a transferir en la cuenta de origen"
 
 #: dialog/SchedDialog.cpp:1045
 msgid "Period: Days"
@@ -3772,7 +3772,7 @@ msgstr "Introduzca el precio actual de acción."
 
 #: dialog/StockDialog.cpp:204 dialog/TrxShareDialog.cpp:256
 msgid "Manage stock attachments"
-msgstr "Administrar los archivos adjuntos de acciones"
+msgstr "Gestionar los archivos adjuntos de acciones"
 
 #: dialog/StockDialog.cpp:206 dialog/TrxShareDialog.cpp:264
 msgid "Display the web page for the specified Stock symbol"
@@ -4009,11 +4009,11 @@ msgstr "Intercambiar desde y hacia cuentas"
 
 #: dialog/TrxDialog.cpp:417
 msgid "Populate Transaction #"
-msgstr "Rellenar # de transacción"
+msgstr "Introducir # de transacción"
 
 #: dialog/TrxDialog.cpp:446 dialog/TrxLinkDialog.cpp:235
 msgid "Manage transaction attachments"
-msgstr "Administrar los archivos adjuntos de transacción"
+msgstr "Gestionar los archivos adjuntos de transacción"
 
 #: dialog/TrxDialog.cpp:495
 msgid "Save and &New"
@@ -4057,7 +4057,7 @@ msgstr "Especificar la cuenta a la que va el dinero"
 
 #: dialog/TrxDialog.cpp:998
 msgid "Specify the transfer amount in the From Account."
-msgstr "Especifique la cantidad a transferir en la Cuenta de origen."
+msgstr "Especifique la cantidad a transferir en la cuenta de origen."
 
 #: dialog/TrxDialog.cpp:1005
 msgid "Specify account for the transaction"
@@ -4261,7 +4261,7 @@ msgstr "Desde"
 
 #: dialog/TrxFilterDialog.cpp:1864
 msgid "Before"
-msgstr "Antes"
+msgstr "Hasta"
 
 #: dialog/TrxFilterDialog.cpp:1874
 msgid "Period"
@@ -4308,7 +4308,7 @@ msgstr "Personalizar informe de transacción"
 
 #: dialog/TrxLinkDialog.cpp:121
 msgid "Select Account"
-msgstr "Seleccionar Cuenta"
+msgstr "Seleccionar cuenta"
 
 #: dialog/TrxLinkDialog.cpp:123
 msgid "Specify the associated Account that will contain this transaction"
@@ -4365,11 +4365,11 @@ msgstr "Diálogo de enlace de transacción"
 
 #: dialog/TrxShareDialog.cpp:59
 msgid "Add Share Transaction"
-msgstr "Añadir Transacción de Valores"
+msgstr "Añadir transacción de valores"
 
 #: dialog/TrxShareDialog.cpp:72 dialog/TrxShareDialog.h:93
 msgid "Edit Share Transaction"
-msgstr "Editar Transacción de Valores"
+msgstr "Editar transacción de valores"
 
 #: dialog/TrxShareDialog.cpp:192
 msgid "Share Lot"
@@ -4438,7 +4438,7 @@ msgstr "No se pueden actualizar algunas transacciones."
 
 #: dialog/TrxUpdateDialog.h:84
 msgid "Multi Transactions Update"
-msgstr "Actualización de Transacciones Múltiples"
+msgstr "Actualización de transacciones múltiples"
 
 #: import_export/ofx_import_gui.cpp:93
 msgid "Unable to set “Uncategorized” as the default category for the payee"
@@ -4463,7 +4463,7 @@ msgstr "Por favor, seleccione un beneficiario existente o introduzca un nuevo no
 #: import_export/ofx_import_gui.cpp:389
 #, c-format
 msgid "Invalid regular expression “%1$s” in row %2$d: please correct the pattern"
-msgstr "Expresión regular '%1$s' en la fila %2$d no válida: por favor, corrija el patrón"
+msgstr "Expresión regular \"%1$s\" en la fila %2$d no válida: por favor, corrija el patrón"
 
 #: import_export/ofx_import_gui.cpp:609
 msgid "Payee Confirmation Required"
@@ -4524,7 +4524,7 @@ msgstr "Intervalo de confianza de la coincidencia: %.1f%% (%s)"
 #: import_export/ofx_import_gui.cpp:700
 #, c-format
 msgid "Suggested Payee: “%s”"
-msgstr "Beneficiario sugerido: '%s”"
+msgstr "Beneficiario sugerido: \"%s\""
 
 #: import_export/ofx_import_gui.cpp:720
 msgid "Do you want to use an existing payee or create a new one?"
@@ -5343,7 +5343,7 @@ msgstr "Transacciones importadas en la cuenta %s: %ld"
 #: import_export/univcsvdialog.cpp:1512
 #, c-format
 msgid "Line %ld: Empty"
-msgstr "Línea %ld: vacía"
+msgstr "Línea %ld: Vacía"
 
 #: import_export/univcsvdialog.cpp:1522
 #, c-format
@@ -5358,7 +5358,7 @@ msgstr "Línea %ld: %s"
 #: import_export/univcsvdialog.cpp:1593
 #, c-format
 msgid "Line %ld: OK, imported."
-msgstr "Línea %ld: OK, importado."
+msgstr "Línea %ld: Correcto, importado."
 
 #: import_export/univcsvdialog.cpp:1601
 msgid "Rejected rows:"
@@ -5372,7 +5372,7 @@ msgstr "Líneas seleccionadas para importar: %ld"
 #: import_export/univcsvdialog.cpp:1610
 #, c-format
 msgid "Empty lines: %ld"
-msgstr "Las líneas vacías: %ld"
+msgstr "Líneas vacías: %ld"
 
 #: import_export/univcsvdialog.cpp:1612
 #, c-format
@@ -5677,7 +5677,7 @@ msgstr "El carácter de dos puntos (:) se utiliza para separar categorías y sub
 
 #: manager/CategoryManager.cpp:368
 msgid "Category Manager: Invalid Name"
-msgstr "Administrador de categorías: Nombre inválido"
+msgstr "Gestor de categorías: Nombre inválido"
 
 #: manager/CategoryManager.cpp:376
 msgid "Enter the name for the new category:"
@@ -5694,7 +5694,7 @@ msgstr "Ya existe una categoría con el mismo nombre en la matriz"
 
 #: manager/CategoryManager.cpp:393 manager/CategoryManager.cpp:407
 msgid "Category Manager: Adding Error"
-msgstr "Administrador de categorías: Error al añadir"
+msgstr "Gestor de categorías: Error al añadir"
 
 #: manager/CategoryManager.cpp:472
 msgid "Unable to move a subcategory to a category that already has a subcategory with that name. Consider renaming before moving."
@@ -5751,7 +5751,7 @@ msgstr "Herramientas → Fusionar → Categorías"
 
 #: manager/CategoryManager.cpp:530
 msgid "Category Manager: Delete Error"
-msgstr "Administrador de categorías: Error al eliminar"
+msgstr "Gestor de categorías: Error al eliminar"
 
 #: manager/CategoryManager.cpp:564
 msgid "Deleted transactions exist which use this category or one of its descendants."
@@ -5776,7 +5776,7 @@ msgstr "Editar categoría"
 
 #: manager/CategoryManager.cpp:680
 msgid "Category Manager: Editing Error"
-msgstr "Administrador de categorías: Error al editar"
+msgstr "Gestor de categorías: Error al editar"
 
 #: manager/CategoryManager.cpp:831
 msgid "Do you want to show all categories?"
@@ -6067,7 +6067,7 @@ msgstr "Cargar archivo de informe:"
 
 #: manager/GeneralReportManager.cpp:690 manager/GeneralReportManager.cpp:1274
 msgid "General Report Manager files (*.grm)"
-msgstr "Archivos del administrador de informes generales (*.grm)"
+msgstr "Archivos del gestor de informes generales (*.grm)"
 
 #: manager/GeneralReportManager.cpp:690 manager/GeneralReportManager.cpp:1274
 msgid "ZIP files (*.zip)"
@@ -6087,7 +6087,7 @@ msgstr "Nuevo informe vacío…"
 
 #: manager/GeneralReportManager.cpp:846
 msgid "Duplicate Report"
-msgstr "Duplicar reporte"
+msgstr "Duplicar informe"
 
 #: manager/GeneralReportManager.cpp:847
 msgid "New Sample Report"
@@ -6307,7 +6307,7 @@ msgstr "Herramientas → Fusionar → Beneficiarios"
 
 #: manager/PayeeManager.cpp:790
 msgid "Payee Manager: Delete Error"
-msgstr "Administrador de beneficiarios: Error al eliminar"
+msgstr "Gestor de beneficiarios: Error al eliminar"
 
 #: manager/PayeeManager.cpp:803
 msgid "Deleted transactions exist which use this payee."
@@ -6347,7 +6347,7 @@ msgstr "Fusionar &beneficiarios"
 
 #: manager/PayeeManager.cpp:975
 msgid "&Transaction Report"
-msgstr "Informe de &transacciones…"
+msgstr "Informe de &transacciones"
 
 #: manager/PrefManager.cpp:41 util/mmNavigatorList.cpp:54
 msgid "Dashboard"
@@ -6372,7 +6372,7 @@ msgstr "&Aplicar "
 #: manager/PrefManager.cpp:222
 #, c-format
 msgid "%s page has been saved."
-msgstr "%s página salvada."
+msgstr "La página %s se ha guardado."
 
 #: manager/TagManager.cpp:153
 msgid "Add a new tag"
@@ -6400,7 +6400,7 @@ msgstr "Los nombres de etiquetas no pueden ser los caracteres '&' o '|' porque e
 
 #: manager/TagManager.cpp:217 manager/TagManager.cpp:223
 msgid "Tag Manager: Invalid Name"
-msgstr "Administrador de etiquetas: Nombre inválido"
+msgstr "Gestor de etiquetas: Nombre inválido"
 
 #: manager/TagManager.cpp:221
 msgid "Name contains tag delimiter."
@@ -6424,7 +6424,7 @@ msgstr "Ya existe una etiqueta con este nombre"
 
 #: manager/TagManager.cpp:256
 msgid "Tag Manager: Adding Error"
-msgstr "Administrador de etiquetas: Error al añadir"
+msgstr "Gestor de etiquetas: Error al añadir"
 
 #: manager/TagManager.cpp:283 manager/TagManager.cpp:286
 msgid "Edit Tag"
@@ -6432,7 +6432,7 @@ msgstr "Editar etiqueta"
 
 #: manager/TagManager.cpp:294
 msgid "Tag Manager: Editing Error"
-msgstr "Administrador de etiquetas: Error al editar"
+msgstr "Gestor de etiquetas: Error al editar"
 
 #: manager/TagManager.cpp:335
 #, c-format
@@ -6441,7 +6441,7 @@ msgstr "Etiqueta '%s' en uso"
 
 #: manager/TagManager.cpp:336
 msgid "Tag Manager: Delete Error"
-msgstr "Administrador de etiquetas: Error al eliminar"
+msgstr "Gestor de etiquetas: Error al eliminar"
 
 #: manager/TagManager.cpp:362
 #, c-format
@@ -6458,7 +6458,7 @@ msgstr "Confirmar eliminación de la etiqueta"
 
 #: manager/ThemeManager.cpp:198
 msgid "&Use"
-msgstr "&Usar"
+msgstr "&Seleccionar"
 
 #: manager/ThemeManager.cpp:244
 msgid "No description available"
@@ -6502,15 +6502,15 @@ msgstr "Error de beneficiario"
 
 #: model/PrefModel.cpp:59 model/PrefModel.cpp:93
 msgid "All to week"
-msgstr "Todo a la semana"
+msgstr "Todo la semana"
 
 #: model/PrefModel.cpp:60 model/PrefModel.cpp:94
 msgid "All to month"
-msgstr "Todo al mes"
+msgstr "Todo este mes"
 
 #: model/PrefModel.cpp:61 model/PrefModel.cpp:96
 msgid "All to year"
-msgstr "Todo al año"
+msgstr "Todo el año"
 
 #: model/PrefModel.cpp:62 model/PrefModel.cpp:97
 msgid "Current year"
@@ -6642,7 +6642,7 @@ msgstr "Filtro"
 
 #: model/ReportModel.cpp:66
 msgid "Selection"
-msgstr ""
+msgstr "Selección"
 
 #: model/ReportModel.cpp:248
 msgid "Template is empty"
@@ -6864,7 +6864,7 @@ msgstr "Ver resumen de categorías del presupuesto"
 #: panel/BudgetPanel.cpp:164
 #, c-format
 msgid "Financial Year: %s - %li"
-msgstr "Año Fiscal: %s - %li"
+msgstr "Año fiscal: %s - %li"
 
 #: panel/BudgetPanel.cpp:167 report/budget.cpp:109
 #, c-format
@@ -6972,7 +6972,7 @@ msgstr "Saldos"
 #: panel/DashboardWidget.cpp:456
 #, c-format
 msgid "Income vs. Expenses: %s"
-msgstr "Ingresos vs. Gastos: %s"
+msgstr "Ingresos frente a gastos: %s"
 
 #: panel/DashboardWidget.cpp:468 report/CategoryReport.cpp:188
 #: report/CategoryReport.cpp:221 report/CategoryReport.cpp:463
@@ -7044,7 +7044,7 @@ msgstr "El ID (número de identificación) aumenta con el tiempo de creación en
 
 #: panel/JournalList.cpp:555
 msgid "Balance is calculated in the order of SN (Sequence Number)."
-msgstr "El saldo se calcula con el orden del NS (número de secuencia)."
+msgstr "El saldo se calcula con el orden del NS (número de serie)."
 
 #: panel/JournalList.cpp:1172
 #, c-format
@@ -7092,7 +7092,7 @@ msgstr "&Editar transacciones…"
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "&Copiar transacción"
-msgstr[1] "&Copiar Transacciones"
+msgstr[1] "&Copiar transacciones"
 
 #: panel/JournalList.cpp:1352
 #, c-format
@@ -7172,7 +7172,7 @@ msgstr "Borrar permanentemente todas las transacciones en la vista actual…"
 
 #: panel/JournalList.cpp:1624
 msgid "Delete Viewed “&Follow Up” Transactions…"
-msgstr "Eliminar las transacciones de seguimiento mostradas…"
+msgstr "Eliminar las transacciones vistas y \"&Pendientes de seguimiento\"…"
 
 #: panel/JournalList.cpp:1628
 msgid "Delete Viewed “&Unreconciled” Transactions…"
@@ -7482,7 +7482,7 @@ msgstr "Filtro:"
 
 #: panel/ReportPanel.cpp:469
 msgid "Selection:"
-msgstr ""
+msgstr "Selección:"
 
 #: panel/ReportPanel.cpp:738
 msgid "Report"
@@ -7550,7 +7550,7 @@ msgstr "&Nueva compra de acciones…"
 
 #: panel/StockList.cpp:162
 msgid "&Adjust Trade"
-msgstr "Ajustar Comercio"
+msgstr "&Ajustar operación"
 
 #: panel/StockList.cpp:163
 msgid "&View Stock Transactions"
@@ -7592,7 +7592,7 @@ msgstr "Acciones no nulas"
 
 #: panel/StockPanel.cpp:194
 msgid "&Adjust Trade "
-msgstr "Ajustar Comercio "
+msgstr "&Ajustar operación"
 
 #: panel/StockPanel.cpp:195
 msgid "Add Stock Transactions"
@@ -7803,7 +7803,7 @@ msgstr "Seleccione para no eliminar el archivo cuando se borre el adjunto, sin m
 
 #: pref/AttachmentPref.cpp:192
 msgid "When duplicating transactions duplicate the attachments also"
-msgstr "Al duplicar transacciones duplicar también los archivos adjuntos"
+msgstr "Al duplicar transacciones, duplica también los archivos adjuntos"
 
 #: pref/AttachmentPref.cpp:194
 msgid "Select if you want to copy the attachments to new transactions when they are duplicated or pasted"
@@ -7883,13 +7883,13 @@ msgstr "Seleccionar divisa"
 
 #: pref/GeneralPref.cpp:170
 msgid "Set default database currency using 'Currency Manager'"
-msgstr "Establecer la moneda por defecto de la base de datos usando 'Administrador de divisas'"
+msgstr "Establecer la moneda por defecto de la base de datos usando 'Gestor de divisas'"
 
 #: pref/GeneralPref.cpp:201
 msgid "Format derived from locale.\n"
 "Leave blank to manually set format via 'Currency Manager | Edit'"
 msgstr "Formato derivado de la configuración regional.\n"
-"Déjelo en blanco para establecer el formato manualmente a través de 'Administrador de divisas | Editar'"
+"Déjelo en blanco para establecer el formato manualmente a través de 'Gestor de divisas | Editar'"
 
 #: pref/GeneralPref.cpp:216
 msgid "Use historical currency"
@@ -7966,7 +7966,7 @@ msgstr "Puerto"
 
 #: pref/NetworkPref.cpp:121
 msgid "Usage Statistics"
-msgstr "Estadísticas de Uso"
+msgstr "Estadísticas de uso"
 
 #: pref/NetworkPref.cpp:138
 msgid "Check for latest news on startup"
@@ -8380,7 +8380,7 @@ msgstr "Contraer todo"
 
 #: report/CategoryReport.cpp:239
 msgid "Expand All"
-msgstr "Ampliar todo"
+msgstr "Expandir todo"
 
 #: report/CategoryReport.cpp:314
 msgid "Total Expenses:"
@@ -8554,7 +8554,7 @@ msgstr "Resumen de categorías presupuestarias de %s"
 
 #: report/budgetcategorysummary.cpp:130
 msgid "(Estimated vs. Actual)"
-msgstr "(Estimado contra real)"
+msgstr "(Estimado frente a real)"
 
 #: report/budgetcategorysummary.cpp:365
 msgid "Estimated Income:"
@@ -8913,635 +8913,635 @@ msgstr "Fusionar"
 
 #: table/CurrencyTable.cpp:236
 msgid "US dollar"
-msgstr ""
+msgstr "Dólar estadounidense"
 
 #: table/CurrencyTable.cpp:237
 msgid "Euro"
-msgstr ""
+msgstr "Euro"
 
 #: table/CurrencyTable.cpp:238
 msgid "British pound"
-msgstr ""
+msgstr "Libra esterlina"
 
 #: table/CurrencyTable.cpp:239
 msgid "Russian ruble"
-msgstr ""
+msgstr "Rublo ruso"
 
 #: table/CurrencyTable.cpp:240
 msgid "Ukrainian hryvnia"
-msgstr ""
+msgstr "Grivna de Ucrania"
 
 #: table/CurrencyTable.cpp:241
 msgid "Afghan afghani"
-msgstr ""
+msgstr "Afgani afgano"
 
 #: table/CurrencyTable.cpp:242
 msgid "Albanian lek"
-msgstr ""
+msgstr "Lek albanés"
 
 #: table/CurrencyTable.cpp:243
 msgid "Algerian dinar"
-msgstr ""
+msgstr "Dinar argelino"
 
 #: table/CurrencyTable.cpp:244
 msgid "Angolan kwanza"
-msgstr ""
+msgstr "Kwanza angoleño"
 
 #: table/CurrencyTable.cpp:245
 msgid "East Caribbean dollar"
-msgstr ""
+msgstr "Dólar del Caribe Oriental"
 
 #: table/CurrencyTable.cpp:246
 msgid "Argentine peso"
-msgstr ""
+msgstr "Peso argentino"
 
 #: table/CurrencyTable.cpp:247
 msgid "Armenian dram"
-msgstr ""
+msgstr "Drama armenio"
 
 #: table/CurrencyTable.cpp:248
 msgid "Aruban florin"
-msgstr ""
+msgstr "Flórin arubeño"
 
 #: table/CurrencyTable.cpp:249
 msgid "Australian dollar"
-msgstr ""
+msgstr "Dólar australiano"
 
 #: table/CurrencyTable.cpp:250
 msgid "Azerbaijani manat"
-msgstr ""
+msgstr "Manat azerbaiyano"
 
 #: table/CurrencyTable.cpp:251
 msgid "Bahamian dollar"
-msgstr ""
+msgstr "Dólar bahameño"
 
 #: table/CurrencyTable.cpp:252
 msgid "Bahraini dinar"
-msgstr ""
+msgstr "Dinar bahreiní"
 
 #: table/CurrencyTable.cpp:253
 msgid "Bangladeshi taka"
-msgstr ""
+msgstr "Taka bangladesí"
 
 #: table/CurrencyTable.cpp:254
 msgid "Barbadian dollar"
-msgstr ""
+msgstr "Dólar barbadense"
 
 #: table/CurrencyTable.cpp:255
 msgid "Belarusian ruble (2000-2016)"
-msgstr ""
+msgstr "Rublo bielorruso (2000-2016)"
 
 #: table/CurrencyTable.cpp:256
 msgid "Belize dollar"
-msgstr ""
+msgstr "Dólar de Belice"
 
 #: table/CurrencyTable.cpp:257
 msgid "West African CFA franc"
-msgstr ""
+msgstr "Franco CFA de África Occidental"
 
 #: table/CurrencyTable.cpp:258
 msgid "Bermudan dollar"
-msgstr ""
+msgstr "Dólar bermudeño"
 
 #: table/CurrencyTable.cpp:259
 msgid "Bhutanese ngultrum"
-msgstr ""
+msgstr "Ngultrum butanés"
 
 #: table/CurrencyTable.cpp:260
 msgid "Bolivian boliviano"
-msgstr ""
+msgstr "Bolivian boliviano"
 
 #: table/CurrencyTable.cpp:261
 msgid "Bosnia-Herzegovina convertible mark"
-msgstr ""
+msgstr "Marco convertible de Bosnia y Herzegovina"
 
 #: table/CurrencyTable.cpp:262
 msgid "Botswanan pula"
-msgstr ""
+msgstr "Pula de Botsuana"
 
 #: table/CurrencyTable.cpp:263
 msgid "Brazilian real"
-msgstr ""
+msgstr "Real brasileño"
 
 #: table/CurrencyTable.cpp:264
 msgid "Brunei dollar"
-msgstr ""
+msgstr "Dólar de Brunei"
 
 #: table/CurrencyTable.cpp:265
 msgid "Bulgarian lev"
-msgstr ""
+msgstr "Lev búlgaro"
 
 #: table/CurrencyTable.cpp:266
 msgid "Burundian franc"
-msgstr ""
+msgstr "Franco burundés"
 
 #: table/CurrencyTable.cpp:267
 msgid "Cambodian riel"
-msgstr ""
+msgstr "Riel camboyano"
 
 #: table/CurrencyTable.cpp:268
 msgid "Central African CFA franc"
-msgstr ""
+msgstr "Franco CFA centroafricano"
 
 #: table/CurrencyTable.cpp:269
 msgid "Canadian dollar"
-msgstr ""
+msgstr "Dólar canadiense"
 
 #: table/CurrencyTable.cpp:270
 msgid "Cape Verdean escudo"
-msgstr ""
+msgstr "Escudo caboverdiano"
 
 #: table/CurrencyTable.cpp:271
 msgid "Cayman Islands dollar"
-msgstr ""
+msgstr "Dólar de las Islas Caimán"
 
 #: table/CurrencyTable.cpp:272
 msgid "Chilean peso"
-msgstr ""
+msgstr "Peso chileno"
 
 #: table/CurrencyTable.cpp:273
 msgid "Chinese yuan"
-msgstr ""
+msgstr "Yuan chino"
 
 #: table/CurrencyTable.cpp:274
 msgid "Colombian peso"
-msgstr ""
+msgstr "Peso colombiano"
 
 #: table/CurrencyTable.cpp:275
 msgid "Comorian franc"
-msgstr ""
+msgstr "Franco comorano"
 
 #: table/CurrencyTable.cpp:276
 msgid "Congolese franc"
-msgstr ""
+msgstr "Franco congoleño"
 
 #: table/CurrencyTable.cpp:278
 msgid "Croatian kuna"
-msgstr ""
+msgstr "Kuna croata"
 
 #: table/CurrencyTable.cpp:279
 msgid "Czech koruna"
-msgstr ""
+msgstr "Corona checa"
 
 #: table/CurrencyTable.cpp:280
 msgid "Danish krone"
-msgstr ""
+msgstr "Corona danesa"
 
 #: table/CurrencyTable.cpp:281
 msgid "Djiboutian franc"
-msgstr ""
+msgstr "Franco yibutiano"
 
 #: table/CurrencyTable.cpp:282
 msgid "Dominican peso"
-msgstr ""
+msgstr "Peso dominicano"
 
 #: table/CurrencyTable.cpp:283
 msgid "Egyptian pound"
-msgstr ""
+msgstr "Libra egipcia"
 
 #: table/CurrencyTable.cpp:284
 msgid "Eritrean nakfa"
-msgstr ""
+msgstr "Nakfa eritrea"
 
 #: table/CurrencyTable.cpp:285
 msgid "Ethiopian birr"
-msgstr ""
+msgstr "Birr etíope"
 
 #: table/CurrencyTable.cpp:286
 msgid "Falkland Islands pound"
-msgstr ""
+msgstr "Libra de las Islas Falkland"
 
 #: table/CurrencyTable.cpp:287
 msgid "Fijian dollar"
-msgstr ""
+msgstr "Dólar fiyiano"
 
 #: table/CurrencyTable.cpp:288
 msgid "CFP franc"
-msgstr ""
+msgstr "Franco de la PPC"
 
 #: table/CurrencyTable.cpp:289
 msgid "Gambian dalasi"
-msgstr ""
+msgstr "Dalasi gambiano"
 
 #: table/CurrencyTable.cpp:290
 msgid "Georgian lari"
-msgstr ""
+msgstr "Lari georgiano"
 
 #: table/CurrencyTable.cpp:291
 msgid "Ghanaian cedi"
-msgstr ""
+msgstr "Cedi ghanés"
 
 #: table/CurrencyTable.cpp:292
 msgid "Gibraltar pound"
-msgstr ""
+msgstr "Libra giblantareña"
 
 #: table/CurrencyTable.cpp:293
 msgid "Guatemalan quetzal"
-msgstr ""
+msgstr "Quetzal guatemalteco"
 
 #: table/CurrencyTable.cpp:294
 msgid "Guinean franc"
-msgstr ""
+msgstr "Franco guineano"
 
 #: table/CurrencyTable.cpp:295
 msgid "Guyanaese dollar"
-msgstr ""
+msgstr "Dólar guyanés"
 
 #: table/CurrencyTable.cpp:296
 msgid "Haitian gourde"
-msgstr ""
+msgstr "Gourde haitiano"
 
 #: table/CurrencyTable.cpp:297
 msgid "Honduran lempira"
-msgstr ""
+msgstr "Lempira hondureña"
 
 #: table/CurrencyTable.cpp:298
 msgid "Hong Kong dollar"
-msgstr ""
+msgstr "Dólar hongkonés"
 
 #: table/CurrencyTable.cpp:299
 msgid "Hungarian forint"
-msgstr ""
+msgstr "Florín húngaro"
 
 #: table/CurrencyTable.cpp:301
 msgid "Indian rupee"
-msgstr ""
+msgstr "Rupia india"
 
 #: table/CurrencyTable.cpp:302
 msgid "Indonesian rupiah"
-msgstr ""
+msgstr "Rupia indonesia"
 
 #: table/CurrencyTable.cpp:303
 msgid "Special drawing rights"
-msgstr ""
+msgstr "Derechos especiales de giro"
 
 #: table/CurrencyTable.cpp:304
 msgid "Iranian rial"
-msgstr ""
+msgstr "Rial iraní"
 
 #: table/CurrencyTable.cpp:305
 msgid "Iraqi dinar"
-msgstr ""
+msgstr "Dinar iraquí"
 
 #: table/CurrencyTable.cpp:306
 msgid "Israeli new shekel"
-msgstr ""
+msgstr "Nuevo shekel israelí"
 
 #: table/CurrencyTable.cpp:307
 msgid "Jamaican dollar"
-msgstr ""
+msgstr "Dólar jamaicano"
 
 #: table/CurrencyTable.cpp:308
 msgid "Japanese yen"
-msgstr ""
+msgstr "Yen japonés"
 
 #: table/CurrencyTable.cpp:309
 msgid "Jordanian dinar"
-msgstr ""
+msgstr "Dinar jordano"
 
 #: table/CurrencyTable.cpp:310
 msgid "Kazakhstani tenge"
-msgstr ""
+msgstr "Tenge kazajo"
 
 #: table/CurrencyTable.cpp:311
 msgid "Kenyan shilling"
-msgstr ""
+msgstr "Chelín keniano"
 
 #: table/CurrencyTable.cpp:312
 msgid "North Korean won"
-msgstr ""
+msgstr "Won norcoreano"
 
 #: table/CurrencyTable.cpp:313
 msgid "South Korean won"
-msgstr ""
+msgstr "Won surcoreano"
 
 #: table/CurrencyTable.cpp:314
 msgid "Kuwaiti dinar"
-msgstr ""
+msgstr "Dinar kuwaití"
 
 #: table/CurrencyTable.cpp:315
 msgid "Kyrgystani som"
-msgstr ""
+msgstr "Som de Kirguistán"
 
 #: table/CurrencyTable.cpp:316
 msgid "Laotian kip"
-msgstr ""
+msgstr "Kip laosiano"
 
 #: table/CurrencyTable.cpp:317
 msgid "Latvian lats"
-msgstr ""
+msgstr "Lats letón"
 
 #: table/CurrencyTable.cpp:318
 msgid "Lebanese pound"
-msgstr ""
+msgstr "Libra libanesa"
 
 #: table/CurrencyTable.cpp:319
 msgid "Lesotho loti"
-msgstr ""
+msgstr "Loti de Lesoto"
 
 #: table/CurrencyTable.cpp:320
 msgid "Liberian dollar"
-msgstr ""
+msgstr "Dólar liberiano"
 
 #: table/CurrencyTable.cpp:321
 msgid "Libyan dinar"
-msgstr ""
+msgstr "Dinar libio"
 
 #: table/CurrencyTable.cpp:322
 msgid "Lithuanian litas"
-msgstr ""
+msgstr "Litas lituana"
 
 #: table/CurrencyTable.cpp:323
 msgid "Macanese pataca"
-msgstr ""
+msgstr "Pataca macaense"
 
 #: table/CurrencyTable.cpp:324
 msgid "Macedonian denar"
-msgstr ""
+msgstr "Denar macedonio"
 
 #: table/CurrencyTable.cpp:325
 msgid "Malagasy ariary"
-msgstr ""
+msgstr "Ariary malgache"
 
 #: table/CurrencyTable.cpp:326
 msgid "Malawian kwacha"
-msgstr ""
+msgstr "Kwacha malawiano"
 
 #: table/CurrencyTable.cpp:327
 msgid "Malaysian ringgit"
-msgstr ""
+msgstr "Ringgit malayo"
 
 #: table/CurrencyTable.cpp:328
 msgid "Maldivian rufiyaa"
-msgstr ""
+msgstr "Rufiyaa maldivo"
 
 #: table/CurrencyTable.cpp:329
 msgid "Mauritanian ouguiya (1973-2017)"
-msgstr ""
+msgstr "Ouguiya mauritana (1973-2017)"
 
 #: table/CurrencyTable.cpp:330
 msgid "Mauritian rupee"
-msgstr ""
+msgstr "Rupia mauriciana"
 
 #: table/CurrencyTable.cpp:331
 msgid "Mexican peso"
-msgstr ""
+msgstr "Peso mexicano"
 
 #: table/CurrencyTable.cpp:332
 msgid "Moldovan leu"
-msgstr ""
+msgstr "Leu moldavo"
 
 #: table/CurrencyTable.cpp:333
 msgid "Mongolian tugrik"
-msgstr ""
+msgstr "Tugrik mongolés"
 
 #: table/CurrencyTable.cpp:334
 msgid "Moroccan dirham"
-msgstr ""
+msgstr "Dírham marroquí"
 
 #: table/CurrencyTable.cpp:335
 msgid "Myanmar kyat"
-msgstr ""
+msgstr "Kyat birmano"
 
 #: table/CurrencyTable.cpp:336
 msgid "Namibian dollar"
-msgstr ""
+msgstr "Dólar namibio"
 
 #: table/CurrencyTable.cpp:337
 msgid "Nepalese rupee"
-msgstr ""
+msgstr "Rupia nepalí"
 
 #: table/CurrencyTable.cpp:338
 msgid "Netherlands Antillean guilder"
-msgstr ""
+msgstr "Florín antillano neerlandés"
 
 #: table/CurrencyTable.cpp:339
 msgid "New Zealand dollar"
-msgstr ""
+msgstr "Dólar neozelandés"
 
 #: table/CurrencyTable.cpp:341
 msgid "Nigerian naira"
-msgstr ""
+msgstr "Naira nigeriana"
 
 #: table/CurrencyTable.cpp:342
 msgid "Norwegian krone"
-msgstr ""
+msgstr "Corona noruega"
 
 #: table/CurrencyTable.cpp:343
 msgid "Omani rial"
-msgstr ""
+msgstr "Rial omaní"
 
 #: table/CurrencyTable.cpp:344
 msgid "Pakistani rupee"
-msgstr ""
+msgstr "Rupia paquistaní"
 
 #: table/CurrencyTable.cpp:345
 msgid "Panamanian balboa"
-msgstr ""
+msgstr "Balboa panameño"
 
 #: table/CurrencyTable.cpp:346
 msgid "Papua New Guinean kina"
-msgstr ""
+msgstr "Kina de Papúa Nueva Guinea"
 
 #: table/CurrencyTable.cpp:347
 msgid "Paraguayan guarani"
-msgstr ""
+msgstr "Guaraní paraguayo"
 
 #: table/CurrencyTable.cpp:348
 msgid "Peruvian sol"
-msgstr ""
+msgstr "Sol peruano"
 
 #: table/CurrencyTable.cpp:349
 msgid "Philippine peso"
-msgstr ""
+msgstr "Peso filipino"
 
 #: table/CurrencyTable.cpp:350
 msgid "Polish zloty"
-msgstr ""
+msgstr "Zloty polaco"
 
 #: table/CurrencyTable.cpp:351
 msgid "Qatari riyal"
-msgstr ""
+msgstr "Riyal catarí"
 
 #: table/CurrencyTable.cpp:352
 msgid "Romanian leu"
-msgstr ""
+msgstr "Leu rumano"
 
 #: table/CurrencyTable.cpp:353
 msgid "Rwandan franc"
-msgstr ""
+msgstr "Franco ruandés"
 
 #: table/CurrencyTable.cpp:355
 msgid "Saudi riyal"
-msgstr ""
+msgstr "Riyal saudí"
 
 #: table/CurrencyTable.cpp:356
 msgid "Serbian dinar"
-msgstr ""
+msgstr "Dinar serbio"
 
 #: table/CurrencyTable.cpp:357
 msgid "Seychellois rupee"
-msgstr ""
+msgstr "Rupia seychellense"
 
 #: table/CurrencyTable.cpp:358
 msgid "Sierra Leonean leone (1964-2022)"
-msgstr ""
+msgstr "Leone de Sierra Leona (1964-2022)"
 
 #: table/CurrencyTable.cpp:359
 msgid "Singapore dollar"
-msgstr ""
+msgstr "Dólar de Singapur"
 
 #: table/CurrencyTable.cpp:360
 msgid "Solomon Islands dollar"
-msgstr ""
+msgstr "Dólar de las Islas Salomón"
 
 #: table/CurrencyTable.cpp:361
 msgid "Somali shilling"
-msgstr ""
+msgstr "Chelín somalí"
 
 #: table/CurrencyTable.cpp:362
 msgid "South African rand"
-msgstr ""
+msgstr "Rand sudafricano"
 
 #: table/CurrencyTable.cpp:363
 msgid "Sri Lankan rupee"
-msgstr ""
+msgstr "Rupia de Sri Lanka"
 
 #: table/CurrencyTable.cpp:364
 msgid "St. Helena pound"
-msgstr ""
+msgstr "Libra de Santa Elena"
 
 #: table/CurrencyTable.cpp:365
 msgid "Sudanese pound"
-msgstr ""
+msgstr "Libra sudanesa"
 
 #: table/CurrencyTable.cpp:366
 msgid "Surinamese dollar"
-msgstr ""
+msgstr "Dólar surinamés"
 
 #: table/CurrencyTable.cpp:367
 msgid "Swazi lilangeni"
-msgstr ""
+msgstr "Lilangeni swazilandés"
 
 #: table/CurrencyTable.cpp:368
 msgid "Swedish krona"
-msgstr ""
+msgstr "Corona sueca"
 
 #: table/CurrencyTable.cpp:369
 msgid "Swiss franc"
-msgstr ""
+msgstr "Franco suizo"
 
 #: table/CurrencyTable.cpp:370
 msgid "Syrian pound"
-msgstr ""
+msgstr "Libra siria"
 
 #: table/CurrencyTable.cpp:371
 msgid "New Taiwan dollar"
-msgstr ""
+msgstr "Nuevo dólar taiwanés"
 
 #: table/CurrencyTable.cpp:372
 msgid "Tajikistani somoni"
-msgstr ""
+msgstr "Somoni tayiquistaní"
 
 #: table/CurrencyTable.cpp:373
 msgid "Tanzanian shilling"
-msgstr ""
+msgstr "Chelín tanzano"
 
 #: table/CurrencyTable.cpp:374
 msgid "Thai baht"
-msgstr ""
+msgstr "Baht tailandés"
 
 #: table/CurrencyTable.cpp:375
 msgid "Trinidad & Tobago dollar"
-msgstr ""
+msgstr "Dólar de Trinidad y Tobago"
 
 #: table/CurrencyTable.cpp:376
 msgid "Tunisian dinar"
-msgstr ""
+msgstr "Dinar tunecino"
 
 #: table/CurrencyTable.cpp:377
 msgid "Turkish lira"
-msgstr ""
+msgstr "Lira turca"
 
 #: table/CurrencyTable.cpp:378
 msgid "Turkmenistani manat"
-msgstr ""
+msgstr "Manat turcomano"
 
 #: table/CurrencyTable.cpp:379
 msgid "Ugandan shilling"
-msgstr ""
+msgstr "Chelín ugandés"
 
 #: table/CurrencyTable.cpp:380
 msgid "UAE dirham"
-msgstr ""
+msgstr "Dírham de los EAU"
 
 #: table/CurrencyTable.cpp:381
 msgid "Uruguayan peso"
-msgstr ""
+msgstr "Peso uruguayo"
 
 #: table/CurrencyTable.cpp:382
 msgid "Uzbekistani som"
-msgstr ""
+msgstr "Sum uzbekistaní"
 
 #: table/CurrencyTable.cpp:383
 msgid "Vanuatu vatu"
-msgstr ""
+msgstr "Vanuatu vatu"
 
 #: table/CurrencyTable.cpp:384
 msgid "Vietnamese dong"
-msgstr ""
+msgstr "Dong vietnamita"
 
 #: table/CurrencyTable.cpp:385
 msgid "Samoan tala"
-msgstr ""
+msgstr "Tala samoano"
 
 #: table/CurrencyTable.cpp:386
 msgid "Yemeni rial"
-msgstr ""
+msgstr "Rial yemení"
 
 #: table/CurrencyTable.cpp:388
 msgid "Bitcoin"
-msgstr ""
+msgstr "Bitcoin"
 
 #: table/CurrencyTable.cpp:389
 msgid "Belarusian ruble"
-msgstr ""
+msgstr "Rublo bielorruso"
 
 #: table/CurrencyTable.cpp:390
 msgid "Cuban convertible peso"
-msgstr ""
+msgstr "Peso cubano convertible"
 
 #: table/CurrencyTable.cpp:391
 msgid "Cuban peso"
-msgstr ""
+msgstr "Peso cubano"
 
 #: table/CurrencyTable.cpp:392
 msgid "Mauritanian ouguiya"
-msgstr ""
+msgstr "Uguiya mauritano"
 
 #: table/CurrencyTable.cpp:393
 msgid "Mozambican metical"
-msgstr ""
+msgstr "Metical mozambiqueño"
 
 #: table/CurrencyTable.cpp:394
 msgid "Sierra Leonean leone"
-msgstr ""
+msgstr "Leone de Sierra Leona"
 
 #: table/CurrencyTable.cpp:395
 msgid "South Sudanese pound"
-msgstr ""
+msgstr "Libra sudsudanesa"
 
 #: table/CurrencyTable.cpp:399
 msgid "Uruguayan nominal wage index unit"
-msgstr ""
+msgstr "Unidad del índice de salarios nominal de Uruguay"
 
 #: table/CurrencyTable.cpp:402
 msgid "Zambian kwacha"
-msgstr ""
+msgstr "Kwacha zambiano"
 
 #: table/CurrencyTable.cpp:403
 msgid "Zimbabwean dollar (2009)"
-msgstr ""
+msgstr "Dólar zimbabuense (2009)"
 
 #: util/_primitive.cpp:64
 msgid "February"
@@ -10024,7 +10024,7 @@ msgstr "Añadir un año"
 #: util/mmImage.cpp:347
 #, c-format
 msgid "Metadata JSON in Theme “%s” is unable to be parsed and looks badly constructed, please correct."
-msgstr "El archivo JSON de metadatos del tema '%s' no puede ser analizado y parece mal construido, por favor corríjalo."
+msgstr "El archivo JSON de metadatos del tema \"%s\" no puede ser analizado y parece mal construido, por favor corríjalo."
 
 #: util/mmImage.cpp:439
 #, c-format
@@ -10069,11 +10069,11 @@ msgstr "Cuenta corriente"
 
 #: util/mmNavigatorList.cpp:60
 msgid "Credit Card"
-msgstr ""
+msgstr "Tarjeta de crédito"
 
 #: util/mmNavigatorList.cpp:60
 msgid "Credit Card Accounts"
-msgstr ""
+msgstr "Cuentas de tarjetas de crédito"
 
 #: util/mmNavigatorList.cpp:61
 msgid "Cash Accounts"
@@ -10085,15 +10085,15 @@ msgstr "Préstamo"
 
 #: util/mmNavigatorList.cpp:62
 msgid "Loan Accounts"
-msgstr ""
+msgstr "Cuentas de préstamos"
 
 #: util/mmNavigatorList.cpp:63
 msgid "Term"
-msgstr ""
+msgstr "Plazo"
 
 #: util/mmNavigatorList.cpp:63
 msgid "Term Accounts"
-msgstr ""
+msgstr "Cuentas a plazo"
 
 #: util/mmNavigatorList.cpp:64
 msgid "Stock Portfolios"
@@ -10124,8 +10124,7 @@ msgstr "Asistente para añadir una cuenta"
 #: wizard/wizard_newaccount.cpp:41
 #, c-format
 msgid "%s models all transactions as belonging to accounts."
-msgstr "%s modelos de todas las transacciones como pertenecientes\n"
-"a las cuentas."
+msgstr "%s considera que todas las transacciones pertenecen a cuentas."
 
 #: wizard/wizard_newaccount.cpp:42
 msgid "The next pages will help create a new account. To help get started, begin by making a list of all the financial institutions where the accounts are held."
@@ -10185,7 +10184,7 @@ msgstr "No se ha seleccionado divisa base para la cuenta."
 
 #: wizard/wizard_newaccount.cpp:173
 msgid "Set that first using Tools → Settings… menu and then add a new account."
-msgstr "Establezcalo primero usando el menú Herramientas → Opciones y luego añada una nueva cuenta."
+msgstr "Configúralo primero en el menú Herramientas → Configuración… y, a continuación, añade una nueva cuenta."
 
 #: wizard/wizard_newdb.cpp:32
 msgid "New Database Wizard"
@@ -10199,10 +10198,10 @@ msgstr "Las siguientes páginas le ayudarán a crear una nueva base de datos.\n\
 "El archivo de la base de datos se almacena con la extensión .mmb.\n"
 "Como este archivo contiene información financiera importante,\n"
 "le recomendamos crear copias de seguridad diarias con las Opciones\n"
-"de configuración: 'Copia de seguridad antes de abrir', y almacenando\n"
+"de configuración: \"Copia de seguridad antes de abrir\", y almacenando\n"
 "estas copias de seguridad en una localización diferente.\n\n"
 "La base de datos .mmb. se puede cifrar más tarde usando\n"
-"la opción: 'Guardar base de datos como…' y cambiando el tipo de\n"
+"la opción: \"Guardar base de datos como…\" y cambiando el tipo de\n"
 "archivo antes de guardarla."
 
 #: wizard/wizard_newdb.cpp:106
