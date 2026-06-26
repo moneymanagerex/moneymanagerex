@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-06-06 16:15+0000\n"
-"PO-Revision-Date: 2026-06-19 03:31\n"
+"PO-Revision-Date: 2026-06-26 02:35\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -147,7 +147,7 @@ msgstr "&Renombrar informe…"
 
 #: app/mmFrame.cpp:1706
 msgid "&Delete Report…"
-msgstr "Eliminar infrome…"
+msgstr "&Eliminar infrome…"
 
 #: app/mmFrame.cpp:1722 app/mmFrame.cpp:1741
 msgid "&Reconcile Account"
@@ -320,7 +320,7 @@ msgstr "Imprimir vista actual"
 
 #: app/mmFrame.cpp:1905
 msgid "E&xit"
-msgstr "Salir"
+msgstr "&Salir"
 
 #: app/mmFrame.cpp:1905
 msgid "Quit this program"
@@ -416,7 +416,7 @@ msgstr "Intercambiar pantalla completa"
 
 #: app/mmFrame.cpp:2011
 msgid "&Reset View"
-msgstr "Restablecer vista"
+msgstr "&Restablecer vista"
 
 #: app/mmFrame.cpp:2012
 msgid "Reset view and dock tools"
@@ -681,7 +681,7 @@ msgstr "Visita la página web de MMEX para las últimas noticias y actualizacion
 
 #: app/mmFrame.cpp:2213
 msgid "Face&book"
-msgstr "Facebook"
+msgstr "Face&book"
 
 #: app/mmFrame.cpp:2213
 msgid "Visit MMEX Facebook page"
@@ -745,7 +745,7 @@ msgstr "Visita el foro de MMEX para leer y publicar comentarios y para obtener s
 
 #: app/mmFrame.cpp:2230
 msgid "MMEX for &iOS"
-msgstr "MMEX para & iOS"
+msgstr "MMEX para &iOS"
 
 #: app/mmFrame.cpp:2231
 msgid "Install MMEX on iPads and iPhones"
@@ -777,7 +777,7 @@ msgstr "Conectar los servicios RSS web al agregador de noticias"
 
 #: app/mmFrame.cpp:2241
 msgid "Make a &Donation"
-msgstr "Realiza una donación"
+msgstr "Hacer una &donación"
 
 #: app/mmFrame.cpp:2242
 msgid "Donate to the MMEX team to support infrastructure and development"
@@ -785,11 +785,11 @@ msgstr "Dona al equipo MMEX para ayudar al equipo y la infraestructura"
 
 #: app/mmFrame.cpp:2244
 msgid "&Buy us a Coffee"
-msgstr "&Invítanos un café"
+msgstr "&Invítanos a un café"
 
 #: app/mmFrame.cpp:2245
 msgid "Buy a key developer a coffee"
-msgstr "Cómprale un cafe a un desarrollador clave"
+msgstr "Invita a un café a un desarrollador clave"
 
 #: app/mmFrame.cpp:2248
 msgid "&Community"
@@ -801,7 +801,7 @@ msgstr "Mantenerse en contacto con la comunidad MMEX"
 
 #: app/mmFrame.cpp:2274
 msgid "Report a &Bug"
-msgstr "Informar un &error"
+msgstr "Informar de un &error"
 
 #: app/mmFrame.cpp:2275
 msgid "Report an error in application to the developers"
@@ -1725,7 +1725,7 @@ msgstr "Fecha"
 #: panel/JournalList.cpp:101 report/TrxReport.cpp:228
 #: wizard/wizard_update.cpp:141
 msgid "Time"
-msgstr "Tiempo"
+msgstr "Hora"
 
 #: data/_DataEnum.cpp:84
 msgid "Single Choice"
@@ -1764,7 +1764,7 @@ msgstr "Sin conciliar"
 #: data/_DataEnum.cpp:96 dialog/TrxFilterDialog.cpp:60
 #: panel/DashboardWidget.cpp:576 panel/DashboardWidget.cpp:753
 msgid "Reconciled"
-msgstr "Conciliado"
+msgstr "Conciliada"
 
 #: data/_DataEnum.cpp:97 dialog/TrxFilterDialog.cpp:61
 msgid "Void"
@@ -3997,7 +3997,7 @@ msgstr "Introducir transacción"
 
 #: dialog/TrxDialog.cpp:217
 msgid "Edit Transaction"
-msgstr "Editar Transacción"
+msgstr "Editar transacción"
 
 #: dialog/TrxDialog.cpp:258
 msgid "Set date to today (Ctrl+;)"
@@ -6279,7 +6279,7 @@ msgstr "En uso"
 
 #: manager/PayeeManager.cpp:600
 msgid "Show &hidden"
-msgstr "Mostrar ocultos"
+msgstr "&Mostrar ocultos"
 
 #: manager/PayeeManager.cpp:603
 msgid "Show hidden payees"
@@ -6614,11 +6614,11 @@ msgstr "Todo por un cuarto"
 
 #: model/ReportModel.cpp:50
 msgid "Begin date:"
-msgstr "Desde:"
+msgstr "Fecha inicio:"
 
 #: model/ReportModel.cpp:52
 msgid "End date:"
-msgstr "Hasta:"
+msgstr "Fecha final:"
 
 #: model/ReportModel.cpp:54 panel/ReportPanel.cpp:228 panel/ReportPanel.cpp:247
 msgid "Date:"
@@ -7135,7 +7135,7 @@ msgstr "&Restaurar transacciones seleccionadas…"
 
 #: panel/JournalList.cpp:1408
 msgid "Restore &all transactions in current view…"
-msgstr "Restaura todas las transacciones en la vista actual…"
+msgstr "Restaura &todas las transacciones en la vista actual…"
 
 #: panel/JournalList.cpp:1591
 #, c-format
@@ -7164,7 +7164,7 @@ msgstr "Eliminar &permanentemente las transacciones seleccionadas…"
 
 #: panel/JournalList.cpp:1618
 msgid "Delete &all transactions in current view…"
-msgstr "Eliminar todas las transacciones en la vista actual…"
+msgstr "Eliminar &todas las transacciones en la vista actual…"
 
 #: panel/JournalList.cpp:1619
 msgid "Permanently delete &all transactions in current view…"
@@ -7192,7 +7192,7 @@ msgstr "&Conciliado"
 
 #: panel/JournalList.cpp:1639
 msgid "&Void"
-msgstr "&Nula"
+msgstr "&Anulada"
 
 #: panel/JournalList.cpp:1640
 msgid "&Follow Up"
@@ -8137,7 +8137,7 @@ msgstr "Selecciónelo para usar la fecha original de la transacción o la fecha 
 
 #: pref/TrxPref.cpp:137
 msgid "Use Original Date when Duplicating Transactions"
-msgstr "Duplicar transacciones utilizando la fecha original"
+msgstr "Utilizar la fecha original al duplicar transacciones"
 
 #: pref/TrxPref.cpp:139
 msgid "Select whether to use the original transaction date or current date when duplicating transactions"
@@ -8145,7 +8145,7 @@ msgstr "Seleccione si desea utilizar la fecha original de la transacción o la f
 
 #: pref/TrxPref.cpp:142
 msgid "Use Original State when Duplicating or Pasting Transactions"
-msgstr "Usar estado original al duplicar o pegar transacciones"
+msgstr "Utilizar el estado original al duplicar o pegar transacciones"
 
 #: pref/TrxPref.cpp:144
 msgid "Select whether to use the original state or default state when duplicating or copy and paste transactions"
@@ -10236,7 +10236,7 @@ msgstr "Asistente de actualización"
 
 #: wizard/wizard_update.cpp:106
 msgid "Historical releases:"
-msgstr "Versiones históricas:"
+msgstr "Lanzamientos anteriores:"
 
 #: wizard/wizard_update.cpp:141
 msgid "Version"
