@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-06-06 16:15+0000\n"
-"PO-Revision-Date: 2026-06-12 02:44\n"
+"PO-Revision-Date: 2026-06-26 02:35\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -33,7 +33,7 @@ msgstr "Barra degli Strumenti"
 
 #: app/mmFrame.cpp:631
 msgid "Auto Repeat Transactions"
-msgstr "Transazioni Ricorrenti"
+msgstr "Transazioni Ricorrenti Automatiche"
 
 #: app/mmFrame.cpp:1088
 msgid "Cash Ledger"
@@ -54,7 +54,7 @@ msgstr "L'elemento selezionato verrà eliminato."
 
 #: app/mmFrame.cpp:1545 dialog/TrxFilterDialog.cpp:1349
 msgid "Settings item deletion"
-msgstr "Eliminazione dell'impostazione"
+msgstr "Parametri di eliminazione dell'elemento"
 
 #: app/mmFrame.cpp:1573 dialog/TrxFilterDialog.cpp:2174
 msgid "Please Enter"
@@ -193,11 +193,11 @@ msgstr "&Preferiti"
 
 #: app/mmFrame.cpp:1795
 msgid "&Open"
-msgstr "&Aperti"
+msgstr "&Apri"
 
 #: app/mmFrame.cpp:1799
 msgid "&Closed"
-msgstr "&Chiusi"
+msgstr "&Chiuso"
 
 #: app/mmFrame.cpp:1801
 msgid "Accounts &Visible"
