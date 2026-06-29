@@ -1234,10 +1234,14 @@ void JournalList::setAutomaticColumnSize()
 
     // calculate and apply diff:
     int diff = this->GetSize().GetWidth() - twidth;
+    wxLogDebug("Panel width: %04i: Total width: %04i: Resizable width: %04i: Diff: %04i", this->GetSize().GetWidth(), twidth, rwidth, diff);
     if (abs(diff) > 5) {
         int diffdelta = diff / static_cast<int>(resizable_ids.size());
         for (colInfo col: resizable_ids) {
-            this->SetColumnWidth(col.id, col.width + diffdelta);
+            if (col.width + diffdelta > 0) {
+                SetColumnWidth(col.id, col.width + diffdelta);
+                wxLogDebug("Column idx: %04i Column width: %04i: Column diff: %04i", col.id, col.width, diffdelta);
+            }
         }
     }
 }
