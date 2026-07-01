@@ -495,12 +495,26 @@ int mmNavigatorList::GetDefaultImage(int navTyp)
     return navTyp < mmNavigatorItem::NAV_ENTRY_size ? defaultTyp[navTyp] : mmImage::img::SAVINGS_ACC_NORMAL_PNG;
 }
 
-bool mmNavigatorList::isAssetAccountActive()  // If used for other types, create general proc
+mmNavigatorItem* mmNavigatorList::getAccountByNavType(int navTyp)
 {
     for (int i = 0; i < static_cast<int>(m_account_type_entries.size()); i++) {
-        if (m_account_type_entries[i]->type == mmNavigatorItem::TYPE_ID_ASSET) {
-            return m_account_type_entries[i]->active;
+        if (m_account_type_entries[i]->type == navTyp) {
+            return m_account_type_entries[i];
         }
     }
-    return false;
+    return NULL;
+}
+
+bool mmNavigatorList::isAssetAccountActive()
+{
+    mmNavigatorItem* item = getAccountByNavType(mmNavigatorItem::TYPE_ID_ASSET);
+    return item ? item->active : false;
+}
+
+void mmNavigatorList::setAssetAccountActive()
+{
+     mmNavigatorItem* item = getAccountByNavType(mmNavigatorItem::TYPE_ID_ASSET);
+     if (item) {
+        item->active = true;
+     }
 }

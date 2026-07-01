@@ -29,6 +29,7 @@
 #include "util/mmImage.h"
 #include "util/mmAttachment.h"
 #include "util/_simple.h"
+#include "util/mmNavigatorList.h"
 
 #include "model/_all.h"
 
@@ -187,6 +188,7 @@ void AssetList::onNewAsset(wxCommandEvent& /*event*/)
     AssetDialog dlg(this, static_cast<AssetData*>(nullptr));
     if (dlg.ShowModal() == wxID_OK) {
         doRefreshItems(dlg.asset_id());
+        mmNavigatorList::instance().setAssetAccountActive();
         w_panel->w_frame->RefreshNavigationTree();
     }
 }

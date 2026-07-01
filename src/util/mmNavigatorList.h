@@ -124,6 +124,7 @@ public:
     wxString getAccountTypeName(int idx);
     bool isAccountTypeAsset(int idx);
     bool isAssetAccountActive();
+    void setAssetAccountActive();
     mmNavigatorItem* getAccountTypeItem(int idx);
     wxArrayString getAccountSelectionNames(wxString filter = "");
     wxString getAccountDbTypeFromChoice(const wxString& choiceName);
@@ -161,4 +162,5 @@ public:
 private:
     void sortEntriesBySeq();
     int getMaxId();
+    mmNavigatorItem* getAccountByNavType(int navTyp);
 };
