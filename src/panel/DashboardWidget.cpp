@@ -575,9 +575,11 @@ const wxString htmlWidgetGrandTotals::getHTMLText(double tBalance, double tRecon
     output += wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , ( PrefModel::instance().getShowReconciledInHomePage() ? _t("Reconciled") : _t("Accounts"))
                                         , CurrencyModel::instance().toCurrency(tReconciled));
-    output +=  wxString::Format("<th>%s: <span class='money'>%s</span></th>"
-                                        , _t("Assets")
-                                        , CurrencyModel::instance().toCurrency(tAssets));
+    if (mmNavigatorList::instance().isAssetAccountActive()) {
+        output +=  wxString::Format("<th>%s: <span class='money'>%s</span></th>"
+                                            , _t("Assets")
+                                            , CurrencyModel::instance().toCurrency(tAssets));
+    }
     output +=  wxString::Format("<th>%s: <span class='money'>%s</span></th>"
                                         , _t("Stock")
                                         , CurrencyModel::instance().toCurrency(tStocks));

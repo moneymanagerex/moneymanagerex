@@ -494,3 +494,13 @@ int mmNavigatorList::GetDefaultImage(int navTyp)
 
     return navTyp < mmNavigatorItem::NAV_ENTRY_size ? defaultTyp[navTyp] : mmImage::img::SAVINGS_ACC_NORMAL_PNG;
 }
+
+bool mmNavigatorList::isAssetAccountActive()  // If used for other types, create general proc
+{
+    for (int i = 0; i < static_cast<int>(m_account_type_entries.size()); i++) {
+        if (m_account_type_entries[i]->type == mmNavigatorItem::TYPE_ID_ASSET) {
+            return m_account_type_entries[i]->active;
+        }
+    }
+    return false;
+}
