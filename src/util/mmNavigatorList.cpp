@@ -78,13 +78,6 @@ bool mmNavigatorList::DeleteEntry(mmNavigatorItem* info)
     bool result = false;
     for (int i = 0; i < static_cast<int>(m_navigator_entries.size()); i++) {
         if  (m_navigator_entries[i] == info) {
-            // change account type of all affected accounts to Banking
-            // FIXME: This is very dangerous; account types are significant
-            // in many parts of the application (e.g., reports).
-            // Changing the type of an account can break functionality.
-            // Not all account types are immediately convertible to Checking.
-            //
-            // No need to fix, all accounts addressed here are based on Checking account (KW)
             AccountModel::instance().dangerous_reset_type(info->dbaccid);
             m_navigator_entries.erase(m_navigator_entries.begin() + i);
             result = true;
