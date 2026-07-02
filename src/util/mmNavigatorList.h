@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@ private:
     long unsigned int   m_lastIdx;
     mmNavigatorItem* m_previous;
 
-// -- costructor
+// -- constructor
 
 public:
     mmNavigatorList();
@@ -123,6 +123,8 @@ public:
     int getAccountTypeIdx(int account_type);
     wxString getAccountTypeName(int idx);
     bool isAccountTypeAsset(int idx);
+    bool isAssetAccountActive();
+    void setAssetAccountActive();
     mmNavigatorItem* getAccountTypeItem(int idx);
     wxArrayString getAccountSelectionNames(wxString filter = "");
     wxString getAccountDbTypeFromChoice(const wxString& choiceName);
@@ -160,4 +162,5 @@ public:
 private:
     void sortEntriesBySeq();
     int getMaxId();
+    mmNavigatorItem* getAccountByNavType(int navTyp);
 };

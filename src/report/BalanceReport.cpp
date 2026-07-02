@@ -3,7 +3,7 @@
  Copyright (C) 2013 - 2022 Nikolay Akimov
  Copyright (C) 2017 James Higley
  Copyright (C) 2021 - 2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 
 #include "model/_all.h"
 #include "BalanceReport.h"
+#include "util/mmNavigatorList.h"
 
 BalanceReport::BalanceReport(BalanceReport::PERIOD_ID period_id) :
     ReportBase(wxString::Format(
@@ -186,7 +187,8 @@ wxString BalanceReport::getHTMLText()
         }
     }
 
-    const bool include_asset_series = view_accounts && !asset_a.empty();
+    const bool include_assets = mmNavigatorList::instance().isAssetAccountActive();
+    const bool include_asset_series = view_accounts && !asset_a.empty() && include_assets;
     if (include_asset_series)
         series_name_a.push_back(_t("Assets"));
 
@@ -284,13 +286,15 @@ wxString BalanceReport::getHTMLText()
             }
         }
         else {
-            type_idx = mmNavigatorList::instance().getAccountTypeIdx(mmNavigatorItem::TYPE_ID_ASSET);
-            if (type_idx > -1) {
-                for (const auto& asset_d : asset_a) {
-                    double rate = getCurrencyDateRate(asset_d.m_currency_id_n, end_date);
-                    balance_a[type_idx] += AssetModel::instance().get_data_value_date(
-                        asset_d, end_date
-                    ).second * rate;
+            if (include_assets) {
+                type_idx = mmNavigatorList::instance().getAccountTypeIdx(mmNavigatorItem::TYPE_ID_ASSET);
+                if (type_idx > -1) {
+                    for (const auto& asset_d : asset_a) {
+                        double rate = getCurrencyDateRate(asset_d.m_currency_id_n, end_date);
+                        balance_a[type_idx] += AssetModel::instance().get_data_value_date(
+                            asset_d, end_date
+                        ).second * rate;
+                    }
                 }
             }
         }

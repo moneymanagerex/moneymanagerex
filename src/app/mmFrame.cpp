@@ -2688,6 +2688,7 @@ void mmFrame::OnNew(wxCommandEvent& /*event*/)
     if (!fileName.EndsWith(".mmb"))
         fileName += ".mmb";
 
+    mmNavigatorList::instance().SetToDefault();
     SetDatabaseFile(fileName, true);
     SettingModel::instance().saveString("LASTFILENAME", fileName);
     loadGrmIconMapping();
