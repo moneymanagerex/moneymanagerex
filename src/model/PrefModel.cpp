@@ -538,6 +538,17 @@ void PrefModel::saveDoSpecialColorReconciled(const bool value)
     m_do_special_color_reconciled = value;
 }
 
+void PrefModel::loadDoPanelResize()
+{
+    m_do_panel_resize = SettingModel::instance().getBool("RESIZE_TRANSACTION_PANEL", true);
+}
+void PrefModel::saveDoPanelResize(const bool value)
+{
+    SettingModel::instance().saveBool("RESIZE_TRANSACTION_PANEL", value);
+    m_do_panel_resize = value;
+}
+
+
 void PrefModel::loadUsePerAccountFilter()
 {
     m_store_account_specific_filter = SettingModel::instance().getBool("USE_PER_ACCOUNT_FILTER", true);

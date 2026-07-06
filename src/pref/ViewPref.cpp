@@ -128,6 +128,11 @@ void ViewPref::Create()
     m_doSpecialColorReconciled->SetValue(PrefModel::instance().getDoSpecialColorReconciled());
     viewChoiceSizer->Add(m_doSpecialColorReconciled, g_flagsV);
 
+    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, " "), g_flagsH);  //Placeholder
+    m_doPanelResize = new wxCheckBox(viewBox, wxID_STATIC, _t("Resize columns to fit transaction panel"));
+    m_doPanelResize->SetValue(PrefModel::instance().getDoPanelResize());
+    viewChoiceSizer->Add(m_doPanelResize, g_flagsV);
+
     viewSizer->AddSpacer(10);
 
     m_showToolTips = new wxCheckBox(viewBox, wxID_STATIC, _t("Show Tooltips"));
@@ -344,6 +349,8 @@ bool ViewPref::SaveSettings()
 
     PrefModel::instance().saveDoNotColorFuture(m_doNotColorFuture->GetValue());
     PrefModel::instance().saveDoSpecialColorReconciled(m_doSpecialColorReconciled->GetValue());
+    PrefModel::instance().saveDoPanelResize(m_doPanelResize->GetValue());
+
 
     PrefModel::instance().saveShowToolTips(m_showToolTips->GetValue());
     PrefModel::instance().saveShowMoneyTips(m_showMoneyTips->GetValue());

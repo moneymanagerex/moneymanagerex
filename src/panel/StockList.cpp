@@ -802,33 +802,36 @@ void StockList::onSize(wxSizeEvent& event)
         int width;
     };
 
-    // get total column width:
-    int twidth = 0;
-    int rwidth = 0;
-    std::vector<colInfo> resizable_ids;
-    for (int i = 0; i < GetColumnCount(); i++) {
-        int col_id = getColId_Nr(i);
-        if (!isHiddenColId(col_id)) {
-            int cw = GetColumnWidth(i);
-            twidth += cw;
+    if (PrefModel::instance().getDoPanelResize())
+    {
+        int twidth = 0;
+        int rwidth = 0;
+        std::vector<colInfo> resizable_ids;
+        for (int i = 0; i < GetColumnCount(); i++) {
+            int col_id = getColId_Nr(i);
+            if (!isHiddenColId(col_id)) {
+                int cw = GetColumnWidth(i);
+                twidth += cw;
 
-            switch (col_id) {
-                case LIST_ID_NAME:
-                case LIST_ID_NOTES:
-                    resizable_ids.push_back({i, cw});
-                    rwidth += cw;
-                    break;
+                switch (col_id) {
+                    case LIST_ID_NAME:
+                    case LIST_ID_NOTES:
+                        resizable_ids.push_back({i, cw});
+                        rwidth += cw;
+                        break;
+                }
+            }
+        }
+
+        // calculate and apply diff:
+        int diff = this->GetSize().GetWidth() - twidth;
+        if (abs(diff) > 5) {
+            int diffdelta = diff / static_cast<int>(resizable_ids.size());
+            for (colInfo col: resizable_ids) {
+                this->SetColumnWidth(col.id, col.width + diffdelta);
             }
         }
     }
 
-    // calculate and apply diff:
-    int diff = this->GetSize().GetWidth() - twidth;
-    if (abs(diff) > 5) {
-        int diffdelta = diff / static_cast<int>(resizable_ids.size());
-        for (colInfo col: resizable_ids) {
-            this->SetColumnWidth(col.id, col.width + diffdelta);
-        }
-    }
     event.Skip();
 }

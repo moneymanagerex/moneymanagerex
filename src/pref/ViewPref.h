@@ -68,6 +68,7 @@ private:
 
     wxCheckBox* m_doNotColorFuture = nullptr;
     wxCheckBox* m_doSpecialColorReconciled = nullptr;
+    wxCheckBox* m_doPanelResize = nullptr;
 
     wxCheckBox* m_showToolTips = nullptr;
     wxCheckBox* m_showMoneyTips = nullptr;
