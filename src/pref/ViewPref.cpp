@@ -77,7 +77,7 @@ void ViewPref::Create()
     wxStaticBoxSizer* viewSizer = new wxStaticBoxSizer(viewBox, wxVERTICAL);
     panelSizer->Add(viewSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxFlexGridSizer* viewChoiceSizer = new wxFlexGridSizer(0, 2, 0, 5);
+    wxFlexGridSizer* viewChoiceSizer = new wxFlexGridSizer(0, 2, 0, 6);
     viewSizer->Add(viewChoiceSizer);
 
     viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, _t("Accounts Visible")), g_flagsH);
@@ -133,7 +133,7 @@ void ViewPref::Create()
     m_doSpecialColorReconciled->SetValue(PrefModel::instance().getDoSpecialColorReconciled());
     viewChoiceSizer->Add(m_doSpecialColorReconciled, g_flagsV);
 
-     viewSizer->AddSpacer(10);
+    viewSizer->AddSpacer(10);
 
     m_showToolTips = new wxCheckBox(viewBox, wxID_STATIC, _t("Show Tooltips"));
     m_showToolTips->SetValue(PrefModel::instance().getShowToolTips());
