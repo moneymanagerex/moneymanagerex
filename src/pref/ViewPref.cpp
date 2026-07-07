@@ -115,6 +115,11 @@ void ViewPref::Create()
     m_navShowCashLedger->SetValue(PrefModel::instance().getShowNavigatorCashLedger());
     viewChoiceSizer->Add(m_navShowCashLedger, g_flagsH);
 
+    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, " "), g_flagsH);  //Placeholder
+    m_doPanelResize = new wxCheckBox(viewBox, wxID_STATIC, _t("Automatically resize columns to fit panel"));
+    m_doPanelResize->SetValue(PrefModel::instance().getDoPanelResize());
+    viewChoiceSizer->Add(m_doPanelResize, g_flagsH);
+
     viewChoiceSizer->AddSpacer(10);
     viewChoiceSizer->AddSpacer(10);
 
@@ -128,12 +133,7 @@ void ViewPref::Create()
     m_doSpecialColorReconciled->SetValue(PrefModel::instance().getDoSpecialColorReconciled());
     viewChoiceSizer->Add(m_doSpecialColorReconciled, g_flagsV);
 
-    viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, " "), g_flagsH);  //Placeholder
-    m_doPanelResize = new wxCheckBox(viewBox, wxID_STATIC, _t("Resize columns to fit transaction panel"));
-    m_doPanelResize->SetValue(PrefModel::instance().getDoPanelResize());
-    viewChoiceSizer->Add(m_doPanelResize, g_flagsV);
-
-    viewSizer->AddSpacer(10);
+     viewSizer->AddSpacer(10);
 
     m_showToolTips = new wxCheckBox(viewBox, wxID_STATIC, _t("Show Tooltips"));
     m_showToolTips->SetValue(PrefModel::instance().getShowToolTips());
