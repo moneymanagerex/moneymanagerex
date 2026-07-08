@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2013-2022 Nikolay Akimov
  Copyright (C) 2021-2024 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025-2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -89,6 +89,7 @@ bool isDark(wxColour c)
 void mmThemeAutoColour([[maybe_unused]] wxWindow* object, [[maybe_unused]] bool recursive)
 {
 #ifndef __WXOSX__
+#ifndef __WXGTK__
     bool darkMode = mmPlatform::isDarkMode();
     size_t type = typeid(*object).hash_code();
     wxString bg, fg;
@@ -149,6 +150,7 @@ void mmThemeAutoColour([[maybe_unused]] wxWindow* object, [[maybe_unused]] bool 
             mmThemeAutoColour(child, recursive);
 
     enableMSWDarkMode(object, darkMode);
+#endif
 #endif
 }
 
