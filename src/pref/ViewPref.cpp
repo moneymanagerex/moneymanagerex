@@ -111,12 +111,12 @@ void ViewPref::Create()
     viewChoiceSizer->Add(new wxButton(viewBox, ID_DIALOG_NAVIGATOR_CONFIG, _t("Edit")), g_flagsH);
 
     viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, " "), g_flagsH);  //Placeholder
-    m_navShowCashLedger = new wxCheckBox(viewBox, wxID_STATIC, _t("Show cash ledger for portfolios"));
+    m_navShowCashLedger = new wxCheckBox(viewBox, wxID_ANY, _t("Show cash ledger for portfolios"));
     m_navShowCashLedger->SetValue(PrefModel::instance().getShowNavigatorCashLedger());
     viewChoiceSizer->Add(m_navShowCashLedger, g_flagsH);
 
     viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, " "), g_flagsH);  //Placeholder
-    m_doPanelResize = new wxCheckBox(viewBox, wxID_STATIC, _t("Automatically resize columns to fit panel"));
+    m_doPanelResize = new wxCheckBox(viewBox, wxID_ANY, _t("Automatically resize columns to fit panel"));
     m_doPanelResize->SetValue(PrefModel::instance().getDoPanelResize());
     viewChoiceSizer->Add(m_doPanelResize, g_flagsH);
 
@@ -124,18 +124,18 @@ void ViewPref::Create()
     viewChoiceSizer->AddSpacer(10);
 
     viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, _t("Transactions")), g_flagsH);
-    m_doNotColorFuture = new wxCheckBox(viewBox, wxID_STATIC, _t("Do not use color for future transactions"));
+    m_doNotColorFuture = new wxCheckBox(viewBox, wxID_ANY, _t("Do not use color for future transactions"));
     m_doNotColorFuture->SetValue(PrefModel::instance().getDoNotColorFuture());
     viewChoiceSizer->Add(m_doNotColorFuture, g_flagsH);
 
     viewChoiceSizer->Add(new wxStaticText(viewBox, wxID_STATIC, " "), g_flagsH);  //Placeholder
-    m_doSpecialColorReconciled = new wxCheckBox(viewBox, wxID_STATIC, _t("Emphasize not reconciled transactions"));
+    m_doSpecialColorReconciled = new wxCheckBox(viewBox, wxID_ANY, _t("Emphasize not reconciled transactions"));
     m_doSpecialColorReconciled->SetValue(PrefModel::instance().getDoSpecialColorReconciled());
     viewChoiceSizer->Add(m_doSpecialColorReconciled, g_flagsV);
 
     viewSizer->AddSpacer(10);
 
-    m_showToolTips = new wxCheckBox(viewBox, wxID_STATIC, _t("Show Tooltips"));
+    m_showToolTips = new wxCheckBox(viewBox, wxID_ANY, _t("Show Tooltips"));
     m_showToolTips->SetValue(PrefModel::instance().getShowToolTips());
     viewSizer->Add(m_showToolTips, g_flagsV);
 
