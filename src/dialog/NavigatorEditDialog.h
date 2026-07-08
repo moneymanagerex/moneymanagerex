@@ -32,8 +32,6 @@ public:
     void OnNewText(wxCommandEvent& event);
 
 private:
-    bool m_hasChanged = false;
-
     wxTextCtrl* m_nameTextCtrl;
     wxStaticText* m_choiceLabel;
     wxTextCtrl* m_choiceTextCtrl;

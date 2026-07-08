@@ -50,7 +50,7 @@ public:
     };
 
 private:
-    int type_;
+    int type_ = -1;
     int64 id_ = -1;
     wxString stringData_;
     wxSharedPtr<ReportBase> report_;

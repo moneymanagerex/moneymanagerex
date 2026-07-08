@@ -27,6 +27,10 @@ else()
         add_compile_options(-Werror=old-style-cast
             $<$<BOOL:${Wuseless-cast}>:-Werror=useless-cast>)
     endif()
+
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+        add_compile_options( -Wno-deprecated-copy)
+    endif()
 endif()
 
 if(MSVC)
