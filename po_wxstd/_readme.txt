@@ -7,4 +7,4 @@ The following files belong to the MMEX project:
 The .po and .pot files have been copied from:
     https://github.com/wxWidgets/wxWidgets/
 
-Last copy: 2026-03-10, from wxWidgets v3.3.2
+Last copy: 2026-07-07, from wxWidgets v3.3.3
