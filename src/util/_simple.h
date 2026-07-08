@@ -172,8 +172,10 @@ private:
     wxColour borderColor_ = wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWFRAME);
     wxBitmap dropArrow_;
     wxBitmap dropArrowInactive_;
+#ifdef __WXMSW__
     bool repaint_allowed_ = true;
     bool initialRefreshDone_ = false;
+#endif
     int panelHeight_, textOffset_;
     wxColour bgColorEnabled_ = wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX);
     wxColour bgColorDisabled_ = wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE);

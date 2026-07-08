@@ -139,11 +139,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # Detect Linux distribution (if possible)
     find_program(LSB_RELEASE lsb_release
         DOC "tool to read linux distribution name")
-	if(EXISTS /etc/arch-release)
-		execute_process(COMMAND  uname -r
-			OUTPUT_VARIABLE LINUX_DISTRO_REL
-			OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-		set(LINUX_DISTRO "Arch")
+    if(EXISTS /etc/arch-release)
+        execute_process(COMMAND  uname -r
+            OUTPUT_VARIABLE LINUX_DISTRO_REL
+            OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+        set(LINUX_DISTRO "Arch")
     elseif(LSB_RELEASE)
         execute_process(COMMAND lsb_release -is
             OUTPUT_VARIABLE LINUX_DISTRO
@@ -159,20 +159,20 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
             OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
         string(REPLACE "\"" "" LINUX_DISTRO_DESCRIPTION "${LINUX_DISTRO_DESCRIPTION}")
         string(REPLACE " " "." LINUX_DISTRO_DESCRIPTION "${LINUX_DISTRO_DESCRIPTION}")
-	elseif(EXISTS /etc/slackware-version)
-		file(STRINGS /etc/slackware-version LINUX_DISTRO LIMIT_COUNT 1)
-		if(LINUX_DISTRO MATCHES "^([^.]+) +([0-9.]+)")
-			set(LINUX_DISTRO "${CMAKE_MATCH_1}")
-			set(LINUX_DISTRO_REL ${CMAKE_MATCH_2})
-		endif()
+    elseif(EXISTS /etc/slackware-version)
+        file(STRINGS /etc/slackware-version LINUX_DISTRO LIMIT_COUNT 1)
+        if(LINUX_DISTRO MATCHES "^([^.]+) +([0-9.]+)")
+            set(LINUX_DISTRO "${CMAKE_MATCH_1}")
+            set(LINUX_DISTRO_REL ${CMAKE_MATCH_2})
+        endif()
     # Check if cmake is new enough for querying host-specific system information:
     # https://cmake.org/cmake/help/latest/command/cmake_host_system_information.html
     elseif(EXISTS /etc/os-release AND ${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.22.0")
         cmake_host_system_information(RESULT LINUX_DISTRO QUERY DISTRIB_NAME)
         cmake_host_system_information(RESULT LINUX_DISTRO_REL QUERY DISTRIB_VERSION)
-	else()
-		message(SEND_ERROR "OS information not found.")
-	endif()
+    else()
+        message(SEND_ERROR "OS information not found.")
+    endif()
     if(NOT LINUX_DISTRO OR NOT LINUX_DISTRO_REL)
         message(SEND_ERROR "Could not find a GNU/Linux distribution info")
     endif()

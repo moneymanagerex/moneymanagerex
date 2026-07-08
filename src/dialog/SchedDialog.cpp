@@ -60,7 +60,7 @@ wxBEGIN_EVENT_TABLE(SchedDialog, wxDialog)
     EVT_BUTTON(wxID_CANCEL,                         SchedDialog::onCancel)
     EVT_BUTTON(mmID_CATEGORY,                       SchedDialog::onCategs)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONSPLIT,         SchedDialog::onCategs)
-    EVT_TEXT(mmID_PAYEE,                            SchedDialog::onPayee)
+    EVT_TEXT(ID_DIALOG_mmID_PAYEE,                  SchedDialog::onPayee)
     EVT_BUTTON(wxID_FILE,                           SchedDialog::onAttachments)
     EVT_BUTTON(ID_BTN_CUSTOMFIELDS,                 SchedDialog::onMoreFields)
     EVT_CHOICE(wxID_VIEW_DETAILS,                   SchedDialog::onTypeChanged)
@@ -471,7 +471,7 @@ void SchedDialog::createControls()
     payee_label->SetFont(this->GetFont().Bold());
 
     w_payee_text = new mmComboBoxPayee(this,
-        mmID_PAYEE, wxDefaultSize,
+        ID_DIALOG_mmID_PAYEE, wxDefaultSize,
         m_sched_d.m_payee_id_n, true
     );
     mmToolTip(w_payee_text, s_payeeWithdrawalTip);
@@ -1141,7 +1141,7 @@ void SchedDialog::onComboKey(wxKeyEvent& event)
     if (event.GetKeyCode() == WXK_RETURN) {
         auto id = event.GetId();
         switch (id) {
-        case mmID_PAYEE: {
+        case ID_DIALOG_mmID_PAYEE: {
             const auto payeeName = w_payee_text->GetValue();
             if (payeeName.empty()) {
                 mmPayeeDialog dlg(this, true);
@@ -1676,7 +1676,7 @@ void SchedDialog::onFocusChange(wxChildFocusEvent& event)
             setAmountCurrencies(-1, m_sched_d.m_to_account_id_n);
         }
         break;
-    case mmID_PAYEE:
+    case ID_DIALOG_mmID_PAYEE:
         w_payee_text->ChangeValue(w_payee_text->GetValue());
         break;
     case mmID_CATEGORY:

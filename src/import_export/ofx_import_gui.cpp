@@ -634,7 +634,6 @@ mmPayeeSelectionDialog::mmPayeeSelectionDialog(
     shouldUpdateRegex_(false),
     updatePayeeCategory_(false),
     memoAdded_(false),
-    initialCategoryId_(-1),
     currentTransaction_(currentTransaction),
     newTransactions_(newTransactions),
     importStartTime_(importStartTime),

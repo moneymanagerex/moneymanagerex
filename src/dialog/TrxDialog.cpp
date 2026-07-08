@@ -62,8 +62,8 @@ wxIMPLEMENT_DYNAMIC_CLASS(TrxDialog, wxDialog);
 wxBEGIN_EVENT_TABLE(TrxDialog, wxDialog)
     EVT_CHAR_HOOK(                                  TrxDialog::onComboKey)
     EVT_CHILD_FOCUS(                                TrxDialog::onFocusChange)
-    EVT_COMBOBOX(mmID_PAYEE,                        TrxDialog::onPayeeChanged)
-    EVT_TEXT(mmID_PAYEE,                            TrxDialog::onPayeeChanged)
+    EVT_COMBOBOX(ID_DIALOG_PAYEE,                   TrxDialog::onPayeeChanged)
+    EVT_TEXT(ID_DIALOG_PAYEE,                       TrxDialog::onPayeeChanged)
     EVT_BUTTON(mmID_CATEGORY_SPLIT,                 TrxDialog::onCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE,                TrxDialog::onTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, TrxDialog::onAdvanceChecked)
@@ -347,10 +347,10 @@ void TrxDialog::createControls()
     flex_sizer->AddSpacer(1);
 
     // Payee ---------------------------------------------
-    w_payee_label = new wxStaticText(static_box, mmID_PAYEE_LABEL, _t("Payee"));
+    w_payee_label = new wxStaticText(static_box, ID_DIALOG_PAYEE_LABEL, _t("Payee"));
     w_payee_label->SetFont(bold);
 
-    w_payee_text = new mmComboBoxPayee(static_box, mmID_PAYEE,
+    w_payee_text = new mmComboBoxPayee(static_box, ID_DIALOG_PAYEE,
         wxDefaultSize,
         m_journal_d.m_payee_id_n,
         true
@@ -1119,7 +1119,7 @@ void TrxDialog::onFocusChange(wxChildFocusEvent& event)
             m_skip_account_init = false;
         }
         break;
-    case mmID_PAYEE:
+    case ID_DIALOG_PAYEE:
         w_payee_text->ChangeValue(w_payee_text->GetValue());
         m_journal_d.m_payee_id_n = w_payee_text->mmGetId();
         setCategoryForPayee();
@@ -1202,7 +1202,7 @@ void TrxDialog::onComboKey(wxKeyEvent& event)
         auto id = event.GetId();
         switch (id)
         {
-        case mmID_PAYEE: {
+        case ID_DIALOG_PAYEE: {
             const auto payeeName = w_payee_text->GetValue();
             if (payeeName.empty()) {
                 mmPayeeDialog dlg(this, true);

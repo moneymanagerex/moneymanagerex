@@ -138,7 +138,9 @@ private:
     wxWebView* browser_ = nullptr;
 
     wxButton* m_buttonImport = nullptr;
+#ifdef MMEX_USE_REPORT_SYNC
     wxButton* m_buttonSync = nullptr;
+#endif
     wxButton* m_buttonSave = nullptr;
     wxButton* m_buttonExport = nullptr;
     wxButton* m_buttonRun = nullptr;
