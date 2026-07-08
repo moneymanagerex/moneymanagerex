@@ -39,7 +39,7 @@ NavigatorEditDialog::NavigatorEditDialog(wxWindow* parent, const mmNavigatorItem
     SetIcon(mmPath::getProgramIcon());
 
     if (info) {
-        m_nameTextCtrl->SetValue(info->name);
+        m_nameTextCtrl->SetValue(wxGetTranslation(info->name));
         switch(info->navTyp) {
             case mmNavigatorItem::NAV_TYP_PANEL:
                 m_activeCheckBox->SetValue(info->active);
@@ -57,7 +57,7 @@ NavigatorEditDialog::NavigatorEditDialog(wxWindow* parent, const mmNavigatorItem
             default:
                 m_aktivLabel->Show(false);
                 m_activeCheckBox->Show(false);
-                m_choiceTextCtrl->SetValue(info->choice);
+                m_choiceTextCtrl->SetValue(wxGetTranslation(info->choice));
         }
         m_cbIcon->SetSelection(info->imageId);
     }

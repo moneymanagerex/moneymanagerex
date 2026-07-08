@@ -138,25 +138,28 @@ void JournalPanel::mmPlayTransactionSound()
 
 wxString JournalPanel::getPanelTitle() const
 {
-    if (isAllTrans())
-        return _t("All Transactions");
-    else if (isDeletedTrans())
-        return _t("Deleted Transactions");
-    else if (isGroup()) {
-        if (m_account_group_id == -3)
-            return _t("Favorites");
-        else {
-            int account_Type = -(static_cast<int>(m_account_group_id.GetValue()) + 4);
-            if (account_Type >= mmNavigatorItem::TYPE_ID_size) {
-                account_Type += mmNavigatorItem::NAV_IDXDIFF;
-            }
-            return mmNavigatorList::instance().getAccountSectionName(account_Type);
-        }
-    }
-    else if (m_account_n)
+    if (m_account_n)
         return wxString::Format(_t("Account View: %s"), m_account_n->m_name);
-    else
-        return "";
+    else {
+        int account_Type = -1;
+        if (isAllTrans()) {
+            account_Type =  mmNavigatorItem::NAV_ENTRY_ALL_TRANSACTIONS;
+        }
+        else if (isDeletedTrans()) {
+            account_Type =  mmNavigatorItem::NAV_ENTRY_DELETED_TRANSACTIONS;
+        }
+        else if (isGroup()) {
+            if (m_account_group_id == -3)
+                account_Type =  mmNavigatorItem::NAV_ENTRY_FAVORITES;
+            else {
+                account_Type = -(static_cast<int>(m_account_group_id.GetValue()) + 4);
+                if (account_Type >= mmNavigatorItem::TYPE_ID_size) {
+                    account_Type += mmNavigatorItem::NAV_IDXDIFF;
+                }
+            }
+        }
+        return account_Type != -1 ? wxGetTranslation(mmNavigatorList::instance().getAccountSectionName(account_Type)) : "";
+    }
 }
 
 // -- constructor
