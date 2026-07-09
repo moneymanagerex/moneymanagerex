@@ -22,6 +22,7 @@ jobs:
         id: init
         run: |
           echo "wxVer=3.3.3" >> $GITHUB_OUTPUT
+          echo "wxVerDirInZip=3.3.3.1" >> $GITHUB_OUTPUT
           sudo apt update
           sudo apt install -y --no-install-recommends \
           cmake build-essential libssl-dev gettext git pkg-config lsb-release file ccache \
@@ -40,7 +41,7 @@ jobs:
           cd /home/runner/work
           wget https://github.com/wxWidgets/wxWidgets/releases/download/v${{steps.init.outputs.wxVer}}/wxWidgets-${{steps.init.outputs.wxVer}}.tar.bz2
           tar -xjf wxWidgets-${{steps.init.outputs.wxVer}}.tar.bz2
-          mv wxWidgets-${{steps.init.outputs.wxVer}}\* wxWidgets
+          mv wxWidgets-${{steps.init.outputs.wxVerDirInZip}}\* wxWidgets
           cd wxWidgets
           mkdir -p build-linux && cd build-linux
           ../configure --enable-std_containers --disable-shared --with-cxx=17 --enable-webview --with-gtk=3 --enable-intl
