@@ -507,7 +507,7 @@ void StockPanel::updateHeader()
         }
     }
     else {
-        w_header_title->SetLabelText(wxString::Format(_t("Stock Portfolios Overview")));
+        w_header_title->SetLabelText(wxGetTranslation(mmNavigatorList::instance().getAccountSectionName(mmNavigatorItem::TYPE_ID_INVESTMENT)));
         if (w_list) {
             w_list->getInvestmentBalance(InvestedVal, marketValue);
         }

@@ -106,7 +106,7 @@ void SchedPanel::createControls()
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
     wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY,
-        _t("Scheduled Transactions")
+        wxGetTranslation(mmNavigatorList::instance().getAccountSectionName(mmNavigatorItem::NAV_ENTRY_SCHEDULED_TRANSACTIONS))
     );
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
@@ -137,7 +137,7 @@ void SchedPanel::createControls()
     images.push_back(mmImage::bitmapBundle(mmImage::png::DOWNARROW));
 
     w_list = new SchedList(this, itemSplitterWindowBillsDeposit);
-    
+
     w_list->SetSmallImages(images);
 
     wxPanel* bdPanel = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY,

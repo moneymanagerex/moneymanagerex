@@ -168,7 +168,6 @@ private:
     bool shouldUpdateRegex_;
     bool updatePayeeCategory_;
     bool memoAdded_;
-    long long initialCategoryId_;
     std::map<long long, CategoryData> categoryMap;
     int currentTransaction_;
     int newTransactions_;
@@ -230,4 +229,3 @@ private:
     wxLongLong importStartTime_;
     wxScrolledWindow* scrolledWindow;
 };
-

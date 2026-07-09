@@ -40,9 +40,6 @@ public:
     };
 
 private:
-    // FIXME: not used
-    std::vector<mmDateRange2::Range>* m_date_ranges_ptr;
-    int m_selected_row;
     wxString* m_name_ptr;
     wxString* m_range_ptr;
     wxColour m_defBColor;

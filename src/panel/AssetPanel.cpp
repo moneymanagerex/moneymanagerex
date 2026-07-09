@@ -105,7 +105,8 @@ void AssetPanel::createControls()
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
-    wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_STATIC, _t("Assets"));
+    wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_STATIC,
+        wxGetTranslation(mmNavigatorList::instance().getAccountSectionName(mmNavigatorItem::TYPE_ID_ASSET)));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, g_flagsBorder1V);
 

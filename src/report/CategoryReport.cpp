@@ -91,7 +91,6 @@ void CategoryReport::refreshData()
     );
 
     data_holder line;
-    int groupID = 0;
     for (const auto& cat_d : CategoryModel::instance().find_data_a(
         CategoryCol::WHERE_PARENTID(OP_EQ, -1),
         TableClause::ORDERBY(CategoryCol::NAME_CATEGNAME, true)
@@ -122,8 +121,6 @@ void CategoryReport::refreshData()
                 cat_d.m_id, -1, cat_d.m_name,
                 amount, cat_d.m_id, 0
             });
-
-        groupID++;
     }
 }
 

@@ -805,7 +805,6 @@ void StockList::onSize(wxSizeEvent& event)
     if (PrefModel::instance().getDoPanelResize())
     {
         int twidth = 0;
-        int rwidth = 0;
         std::vector<colInfo> resizable_ids;
         for (int i = 0; i < GetColumnCount(); i++) {
             int col_id = getColId_Nr(i);
@@ -817,7 +816,6 @@ void StockList::onSize(wxSizeEvent& event)
                     case LIST_ID_NAME:
                     case LIST_ID_NOTES:
                         resizable_ids.push_back({i, cw});
-                        rwidth += cw;
                         break;
                 }
             }
