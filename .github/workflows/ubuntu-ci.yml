@@ -22,7 +22,7 @@ jobs:
         id: init
         run: |
           echo "wxVer=3.3.3" >> $GITHUB_OUTPUT
-          echo "wxVerDirInZip=3.3.3.1" >> $GITHUB_OUTPUT
+          echo "wxVerDirInZip=v3.3.3.1" >> $GITHUB_OUTPUT
           sudo apt update
           sudo apt install -y --no-install-recommends \
           cmake build-essential libssl-dev gettext git pkg-config lsb-release file ccache \
