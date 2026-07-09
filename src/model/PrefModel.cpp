@@ -175,6 +175,7 @@ void PrefModel::load(bool include_infotable)
     loadShowReconciledInHomePage();
     loadUseTransDateTime();
     loadTreatDateAsSN();
+    loadDoPanelResize();
     loadDoNotColorFuture();
     loadDoSpecialColorReconciled();
     loadUsePerAccountFilter();
@@ -537,6 +538,17 @@ void PrefModel::saveDoSpecialColorReconciled(const bool value)
     SettingModel::instance().saveBool("SPECIAL_COLOR_RECONCILED_TRANSACTIONS", value);
     m_do_special_color_reconciled = value;
 }
+
+void PrefModel::loadDoPanelResize()
+{
+    m_do_panel_resize = SettingModel::instance().getBool("RESIZE_TRANSACTION_PANEL", false);
+}
+void PrefModel::saveDoPanelResize(const bool value)
+{
+    SettingModel::instance().saveBool("RESIZE_TRANSACTION_PANEL", value);
+    m_do_panel_resize = value;
+}
+
 
 void PrefModel::loadUsePerAccountFilter()
 {

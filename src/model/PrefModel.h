@@ -91,6 +91,7 @@ private:
     bool m_show_reconciled_in_home_page = true;         // SHOW_RECONCILED_IN_HOME_PAGE
     bool m_do_not_color_future = true;                  // DO_NOT_COLOR_FUTURE_TRANSACTIONS
     bool m_do_special_color_reconciled = true;          // SPECIAL_COLOR_RECONCILED_TRANSACTIONS
+    bool m_do_panel_resize = false;                     // RESIZE_TRANSACTION_PANEL
     bool m_store_account_specific_filter = false;       // USE_PER_ACCOUNT_FILTER
     bool m_show_tooltips = true;                        // IGNORE_SHOW_TOOLTIPS
     bool m_show_moneytips = true;                       // IGNORE_SHOW_MONEYTIPS
@@ -347,6 +348,11 @@ public:
     void saveDoSpecialColorReconciled(const bool value);
     bool getDoSpecialColorReconciled() const noexcept;
 
+    // m_doPanelResize
+    void loadDoPanelResize();
+    void saveDoPanelResize(const bool value);
+    bool getDoPanelResize() const noexcept;
+
     // m_store_account_specific_filter
     void loadUsePerAccountFilter();
     void saveUsePerAccountFilter(const bool value);
@@ -594,6 +600,11 @@ inline bool PrefModel::getDoNotColorFuture() const noexcept
 inline bool PrefModel::getDoSpecialColorReconciled() const noexcept
 {
     return m_do_special_color_reconciled;
+}
+
+inline bool PrefModel::getDoPanelResize() const noexcept
+{
+    return m_do_panel_resize;
 }
 
 inline bool PrefModel::getUsePerAccountFilter() const noexcept

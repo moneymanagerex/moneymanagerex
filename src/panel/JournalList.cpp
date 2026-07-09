@@ -2474,6 +2474,7 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
 
 void JournalList::onSize(wxSizeEvent& event)
 {
-    setAutomaticColumnSize();
+    if (PrefModel::instance().getDoPanelResize())
+        setAutomaticColumnSize();
     event.Skip();
 }
