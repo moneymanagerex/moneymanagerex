@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-07-02 12:46+0000\n"
-"PO-Revision-Date: 2026-07-03 02:06\n"
+"POT-Creation-Date: 2026-07-08 18:40+0000\n"
+"PO-Revision-Date: 2026-07-10 02:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -555,10 +555,10 @@ msgid "&Assets"
 msgstr "&Activos"
 
 #: app/mmFrame.cpp:2136 app/mmFrame.cpp:3955
-#: manager/GeneralReportManager.cpp:1241 panel/AssetPanel.cpp:108
-#: panel/AssetPanel.h:73 panel/DashboardWidget.cpp:580
-#: panel/DashboardWidget.cpp:611 pref/OtherPref.cpp:106
-#: report/BalanceReport.cpp:193 util/mmNavigatorList.cpp:66
+#: manager/GeneralReportManager.cpp:1241 panel/AssetPanel.h:73
+#: panel/DashboardWidget.cpp:580 panel/DashboardWidget.cpp:611
+#: pref/OtherPref.cpp:106 report/BalanceReport.cpp:193
+#: util/mmNavigatorList.cpp:66
 msgid "Assets"
 msgstr "Activos"
 
@@ -1142,8 +1142,7 @@ msgstr "Informes"
 msgid "Choose HTML file to export"
 msgstr "Seleccionar el fichero HTML a exportar"
 
-#: app/mmFrame.cpp:3746 panel/SchedPanel.cpp:109 panel/SchedPanel.h:73
-#: util/mmNavigatorList.cpp:56
+#: app/mmFrame.cpp:3746 panel/SchedPanel.h:73 util/mmNavigatorList.cpp:56
 msgid "Scheduled Transactions"
 msgstr "Transacciones programadas"
 
@@ -1243,9 +1242,9 @@ msgstr "Archivo %s no encontrado."
 #: dialog/IconManagerDialog.cpp:580 dialog/SchedDialog.cpp:1598
 #: dialog/SplitDialog.cpp:422 import_export/ofx_import_gui.cpp:298
 #: import_export/ofx_import_gui.cpp:338 import_export/ofx_import_gui.cpp:350
-#: import_export/ofx_import_gui.cpp:391 import_export/ofx_import_gui.cpp:1183
-#: import_export/ofx_import_gui.cpp:1189 import_export/ofx_import_gui.cpp:1197
-#: import_export/ofx_import_gui.cpp:1203 import_export/ofx_import_gui.cpp:1214
+#: import_export/ofx_import_gui.cpp:391 import_export/ofx_import_gui.cpp:1182
+#: import_export/ofx_import_gui.cpp:1188 import_export/ofx_import_gui.cpp:1196
+#: import_export/ofx_import_gui.cpp:1202 import_export/ofx_import_gui.cpp:1213
 #: import_export/univcsvdialog.cpp:1712 import_export/webappdialog.cpp:189
 #: import_export/webappdialog.cpp:193 manager/ThemeManager.cpp:326
 #: manager/ThemeManager.cpp:346 panel/StockPanel.cpp:563
@@ -1288,11 +1287,11 @@ msgstr "Categorías"
 msgid "Summary"
 msgstr "Resumen"
 
-#: app/mmFrame.cpp:4557 report/CategoryReport.cpp:334
+#: app/mmFrame.cpp:4557 report/CategoryReport.cpp:331
 msgid "Where the Money Goes"
 msgstr "Dónde va el dinero"
 
-#: app/mmFrame.cpp:4560 report/CategoryReport.cpp:340
+#: app/mmFrame.cpp:4560 report/CategoryReport.cpp:337
 msgid "Where the Money Comes From"
 msgstr "De dónde viene el dinero"
 
@@ -1419,8 +1418,7 @@ msgstr "Abierta"
 msgid "Closed"
 msgstr "Cerrada"
 
-#: base/_constants.cpp:209 panel/JournalPanel.cpp:147
-#: util/mmNavigatorList.cpp:57
+#: base/_constants.cpp:209 util/mmNavigatorList.cpp:57
 msgid "Favorites"
 msgstr "Favoritas"
 
@@ -1710,10 +1708,10 @@ msgstr "Booleano"
 #: dialog/StockDialog.cpp:728 dialog/TrxDialog.cpp:247
 #: dialog/TrxFilterDialog.cpp:981 dialog/TrxFilterDialog.cpp:992
 #: dialog/TrxLinkDialog.cpp:116 dialog/TrxUpdateDialog.cpp:142
-#: import_export/ofx_import_gui.cpp:1937 import_export/qif_export.cpp:674
+#: import_export/ofx_import_gui.cpp:1936 import_export/qif_export.cpp:674
 #: import_export/qif_import_gui.cpp:108 import_export/univcsvdialog.cpp:107
 #: import_export/webapp.cpp:599 import_export/webappdialog.cpp:143
-#: model/TrxFilter.cpp:203 panel/AssetList.cpp:62 panel/AssetPanel.cpp:557
+#: model/TrxFilter.cpp:203 panel/AssetList.cpp:62 panel/AssetPanel.cpp:558
 #: panel/JournalList.cpp:100 panel/StockPanel.cpp:324
 #: report/BalanceReport.cpp:361 report/FlowReport.cpp:284
 #: report/FlowReport.cpp:413 report/InExReport.cpp:256 report/TrxReport.cpp:226
@@ -1852,7 +1850,7 @@ msgstr "Activo"
 #: import_export/qif_import_gui.cpp:107 import_export/qif_import_gui.cpp:180
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:110
 #: import_export/webapp.cpp:598 import_export/webappdialog.cpp:144
-#: model/TrxFilter.cpp:205 panel/AssetPanel.cpp:556 panel/JournalList.cpp:103
+#: model/TrxFilter.cpp:205 panel/AssetPanel.cpp:557 panel/JournalList.cpp:103
 #: panel/SchedList.cpp:76 report/FlowReport.cpp:414 report/TrxReport.cpp:232
 msgid "Account"
 msgstr "Cuenta"
@@ -2201,7 +2199,7 @@ msgstr "Límite inferior del saldo de la cuenta. 0 para deshabilitar"
 msgid "Credit"
 msgstr "Crédito"
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1007
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1010
 msgid "Credit Limit:"
 msgstr "Límite de crédito:"
 
@@ -2291,16 +2289,16 @@ msgstr "Existen compras de acciones para esta cuenta anteriores a esta fecha"
 msgid "Scheduled transactions for this account are scheduled before this date."
 msgstr "Las transacciones programadas para esta cuenta están programadas antes de esta fecha."
 
-#: dialog/AssetDialog.cpp:62 dialog/AssetDialog.cpp:85 panel/AssetPanel.cpp:171
+#: dialog/AssetDialog.cpp:62 dialog/AssetDialog.cpp:85 panel/AssetPanel.cpp:172
 msgid "Add Asset Transaction"
 msgstr "Añadir Transacción de Valores"
 
-#: dialog/AssetDialog.cpp:63 panel/AssetPanel.cpp:183
+#: dialog/AssetDialog.cpp:63 panel/AssetPanel.cpp:184
 msgid "Edit Asset"
 msgstr "Editar activo"
 
 #: dialog/AssetDialog.cpp:64 dialog/AssetDialog.cpp:535 dialog/AssetDialog.h:57
-#: panel/AssetPanel.cpp:165
+#: panel/AssetPanel.cpp:166
 msgid "New Asset"
 msgstr "Nuevo activo"
 
@@ -2502,7 +2500,7 @@ msgstr "&Abrir "
 #: dialog/AttachmentDialog.cpp:422 dialog/CurrencyChoiceDialog.cpp:574
 #: manager/CategoryManager.cpp:340 manager/FieldManager.cpp:281
 #: manager/PayeeManager.cpp:960 manager/TagManager.cpp:155
-#: panel/AssetPanel.cpp:182 panel/JournalPanel.cpp:362 panel/SchedPanel.cpp:163
+#: panel/AssetPanel.cpp:183 panel/JournalPanel.cpp:365 panel/SchedPanel.cpp:163
 #: panel/StockPanel.cpp:204
 msgid "&Edit "
 msgstr "&Editar "
@@ -2521,11 +2519,11 @@ msgstr "Introducción de año"
 msgid "Category: "
 msgstr "Categoría: "
 
-#: dialog/BudgetEntryDialog.cpp:128 report/budgetingperf.cpp:349
+#: dialog/BudgetEntryDialog.cpp:128 report/budgetingperf.cpp:347
 msgid "Estimated:"
 msgstr "Estimado:"
 
-#: dialog/BudgetEntryDialog.cpp:130 report/budgetingperf.cpp:350
+#: dialog/BudgetEntryDialog.cpp:130 report/budgetingperf.cpp:348
 msgid "Actual:"
 msgstr "Real:"
 
@@ -2538,8 +2536,8 @@ msgid "Expense"
 msgstr "Gastos"
 
 #: dialog/BudgetEntryDialog.cpp:137 panel/DashboardWidget.cpp:464
-#: report/CategoryReport.cpp:202 report/CategoryReport.cpp:226
-#: report/CategoryReport.cpp:464 report/InExReport.cpp:88
+#: report/CategoryReport.cpp:199 report/CategoryReport.cpp:223
+#: report/CategoryReport.cpp:461 report/InExReport.cpp:88
 #: report/InExReport.cpp:224 report/InExReport.cpp:257
 #: table/CategoryTable.cpp:206
 msgid "Income"
@@ -2591,8 +2589,8 @@ msgstr "Añadir nuevo mes de presupuesto"
 
 #: dialog/BudgetYearDialog.cpp:107 dialog/CurrencyChoiceDialog.cpp:325
 #: dialog/StockDialog.cpp:278 manager/CategoryManager.cpp:344
-#: manager/TagManager.cpp:160 panel/AssetPanel.cpp:187
-#: panel/JournalPanel.cpp:354 panel/SchedPanel.cpp:173 panel/StockPanel.cpp:209
+#: manager/TagManager.cpp:160 panel/AssetPanel.cpp:188
+#: panel/JournalPanel.cpp:357 panel/SchedPanel.cpp:173 panel/StockPanel.cpp:209
 msgid "&Delete "
 msgstr "&Borrar "
 
@@ -2673,8 +2671,8 @@ msgid "Show all even the unused currencies"
 msgstr "Mostrar todas incluyendo las divisas no utilizadas"
 
 #: dialog/CurrencyChoiceDialog.cpp:229 manager/CategoryManager.cpp:325
-#: manager/TagManager.cpp:140 panel/AssetPanel.cpp:203 panel/AssetPanel.cpp:205
-#: panel/JournalPanel.cpp:421
+#: manager/TagManager.cpp:140 panel/AssetPanel.cpp:204 panel/AssetPanel.cpp:206
+#: panel/JournalPanel.cpp:424
 msgid "Search"
 msgstr "Buscar"
 
@@ -2710,7 +2708,7 @@ msgid "Specify the date of currency value"
 msgstr "Especificar la fecha de valor de la divisa"
 
 #: dialog/CurrencyChoiceDialog.cpp:301 import_export/qif_import_gui.cpp:114
-#: panel/AssetPanel.cpp:559
+#: panel/AssetPanel.cpp:560
 msgid "Value"
 msgstr "Valor"
 
@@ -2780,11 +2778,11 @@ msgstr "Actualización online del tipo de cambio"
 #: dialog/SplitDialog.cpp:228 dialog/TrxDialog.cpp:302
 #: dialog/TrxFilterDialog.cpp:1086 dialog/TrxFilterDialog.cpp:1097
 #: dialog/TrxLinkDialog.cpp:155 dialog/TrxUpdateDialog.cpp:202
-#: import_export/ofx_import_gui.cpp:1938 import_export/qif_export.cpp:680
+#: import_export/ofx_import_gui.cpp:1937 import_export/qif_export.cpp:680
 #: import_export/univcsvdialog.cpp:112 import_export/webappdialog.cpp:149
 #: model/TrxFilter.cpp:210 panel/BudgetList.cpp:37
 #: panel/DashboardWidget.cpp:382 panel/DashboardWidget.cpp:462
-#: panel/JournalList.cpp:1596 report/CategoryReport.cpp:251
+#: panel/JournalList.cpp:1596 report/CategoryReport.cpp:248
 #: report/FlowReport.cpp:417 report/InExReport.cpp:112 report/TrxReport.cpp:244
 msgid "Amount"
 msgstr "Importe"
@@ -2848,8 +2846,8 @@ msgstr "Nuevo rango de fechas"
 #: dialog/TrxFilterDialog.cpp:2305 import_export/qif_export.cpp:80
 #: import_export/qif_export.cpp:81 import_export/qif_export.cpp:155
 #: manager/DateRangeManager.cpp:305 model/PrefModel.cpp:58
-#: model/PrefModel.cpp:92 panel/AssetPanel.cpp:117 panel/AssetPanel.cpp:404
-#: panel/AssetPanel.cpp:421 panel/StockPanel.cpp:109
+#: model/PrefModel.cpp:92 panel/AssetPanel.cpp:118 panel/AssetPanel.cpp:405
+#: panel/AssetPanel.cpp:422 panel/StockPanel.cpp:109
 msgid "All"
 msgstr "Todas"
 
@@ -2906,8 +2904,8 @@ msgstr "Código de rango:"
 msgid "&Save"
 msgstr "&Guardar"
 
-#: dialog/DateRangeDialog.cpp:122 import_export/ofx_import_gui.cpp:817
-#: import_export/ofx_import_gui.cpp:998 manager/DateRangeManager.cpp:166
+#: dialog/DateRangeDialog.cpp:122 import_export/ofx_import_gui.cpp:816
+#: import_export/ofx_import_gui.cpp:997 manager/DateRangeManager.cpp:166
 msgid "&Cancel"
 msgstr "&Cancelar"
 
@@ -3440,16 +3438,16 @@ msgstr "Especifique la cuenta a la que va la transferencia"
 #: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:624
 #: dialog/TrxFilterDialog.cpp:1038 dialog/TrxFilterDialog.cpp:1043
 #: dialog/TrxFilterDialog.cpp:1889 dialog/TrxLinkDialog.cpp:206
-#: dialog/TrxUpdateDialog.cpp:239 import_export/ofx_import_gui.cpp:1943
+#: dialog/TrxUpdateDialog.cpp:239 import_export/ofx_import_gui.cpp:1942
 #: import_export/qif_export.cpp:679 import_export/qif_import_gui.cpp:112
 #: import_export/qif_import_gui.cpp:324 import_export/univcsvdialog.cpp:114
 #: import_export/univcsvdialog.cpp:650 import_export/webappdialog.cpp:148
 #: manager/PayeeManager.cpp:203 model/TrxFilter.cpp:208 panel/BudgetList.cpp:35
 #: panel/DashboardWidget.cpp:209 panel/JournalList.cpp:106
-#: panel/SchedList.cpp:79 report/CategoryReport.cpp:250
-#: report/CategoryReport.cpp:494 report/FlowReport.cpp:416
+#: panel/SchedList.cpp:79 report/CategoryReport.cpp:247
+#: report/CategoryReport.cpp:491 report/FlowReport.cpp:416
 #: report/TrxReport.cpp:238 report/budgetcategorysummary.cpp:191
-#: report/budgetingperf.cpp:125
+#: report/budgetingperf.cpp:123
 msgid "Category"
 msgstr "Categoría"
 
@@ -3565,7 +3563,7 @@ msgstr "Especificar el número de pagos a realizar.\n"
 
 #: dialog/SchedDialog.cpp:1230
 msgid "The payment date is after the due date. Is this intended?"
-msgstr "La fecha de pago es posterior a la fecha de vencimiento, ¿es esto lo que usted pretendía?"
+msgstr "La fecha de pago es posterior a la fecha de vencimiento. ¿Es esto lo previsto?"
 
 #: dialog/SchedDialog.cpp:1231
 msgid "Looks like a late payment"
@@ -3983,7 +3981,7 @@ msgid "Do you really want to restore the default values?\n\n"
 msgstr "¿Seguro que desea restablecer los valores predeterminados?\n\n"
 "¡Se perderán todos los ajustes personalizados!"
 
-#: dialog/TrxDialog.cpp:214 panel/JournalPanel.cpp:359 pref/TrxPref.cpp:61
+#: dialog/TrxDialog.cpp:214 panel/JournalPanel.cpp:362 pref/TrxPref.cpp:61
 msgid "New Transaction"
 msgstr "Nueva transacción"
 
@@ -4166,7 +4164,7 @@ msgid "Enter any string to find it in transaction notes."
 msgstr "Escribe cualquier cadena de texto para buscarla en las notas de las transacciones."
 
 #: dialog/TrxFilterDialog.cpp:704 manager/PayeeManager.cpp:139
-#: panel/AssetPanel.cpp:209 panel/JournalPanel.cpp:425
+#: panel/AssetPanel.cpp:210 panel/JournalPanel.cpp:428
 msgid "Tip: Wildcard characters such as the question mark (?) and the asterisk (*) can be used in search criteria."
 msgstr "Consejo: En los criterios de búsqueda se pueden utilizar caracteres comodín, como el signo de interrogación (?) y el asterisco (*)."
 
@@ -4179,7 +4177,7 @@ msgid "The asterisk (*) matches any number of characters, for example \"s*d\" fi
 msgstr "El asterisco (*) sustituye a cualquier número de caracteres; por ejemplo, \"s*d\" encuentra tanto \"sad\" como \"started\"."
 
 #: dialog/TrxFilterDialog.cpp:707 manager/PayeeManager.cpp:143
-#: panel/JournalPanel.cpp:429
+#: panel/JournalPanel.cpp:432
 msgid "Use regex: to match using regular expressions."
 msgstr "Usar expresiones regulares: para coincidir con el uso de expresiones regulares."
 
@@ -4444,7 +4442,7 @@ msgstr "Actualización de transacciones múltiples"
 msgid "Unable to set “Uncategorized” as the default category for the payee"
 msgstr "No se puede establecer “Sin categorizar” como la categoría predeterminada para el beneficiario"
 
-#: import_export/ofx_import_gui.cpp:98 import_export/ofx_import_gui.cpp:794
+#: import_export/ofx_import_gui.cpp:98 import_export/ofx_import_gui.cpp:793
 msgid "Toggle to update payee’s default category (P) or apply to this transaction only"
 msgstr "Cambiar para actualizar la categoría predeterminada (P) del beneficiario o aplicar solo a esta transacción"
 
@@ -4469,188 +4467,188 @@ msgstr "Expresión regular \"%1$s\" en la fila %2$d no válida: por favor, corri
 msgid "Payee Confirmation Required"
 msgstr "Se requiere confirmar el beneficiario"
 
-#: import_export/ofx_import_gui.cpp:662
+#: import_export/ofx_import_gui.cpp:661
 #, c-format
 msgid "Transaction %1$d of %2$d (%3$d total in file)"
 msgstr "Transacción %1$d de %2$d (%3$d total en archivo)"
 
-#: import_export/ofx_import_gui.cpp:668
+#: import_export/ofx_import_gui.cpp:667
 #, c-format
 msgid "Estimated completion time: %.1f minutes"
 msgstr "Tiempo estimado de finalización: %.1f minutos"
 
-#: import_export/ofx_import_gui.cpp:669
+#: import_export/ofx_import_gui.cpp:668
 msgid "Estimating time…"
 msgstr "Estimando tiempo…"
 
-#: import_export/ofx_import_gui.cpp:673
+#: import_export/ofx_import_gui.cpp:672
 #, c-format
 msgid "Financial Institution Transaction Identification (FITID): %s"
 msgstr "Identificación de la transacción de la institución financiera (FITID): %s"
 
-#: import_export/ofx_import_gui.cpp:674
+#: import_export/ofx_import_gui.cpp:673
 #, c-format
 msgid "Date: %s"
 msgstr "Fecha: %s"
 
-#: import_export/ofx_import_gui.cpp:675
+#: import_export/ofx_import_gui.cpp:674
 #, c-format
 msgid "Amount: %s"
 msgstr "Importe: %s"
 
-#: import_export/ofx_import_gui.cpp:676
+#: import_export/ofx_import_gui.cpp:675
 #, c-format
 msgid "Type: %s"
 msgstr "Tipo: %s"
 
-#: import_export/ofx_import_gui.cpp:681
+#: import_export/ofx_import_gui.cpp:680
 msgid "Regex Pattern"
 msgstr "Patrón de expresión regular"
 
-#: import_export/ofx_import_gui.cpp:692
+#: import_export/ofx_import_gui.cpp:691
 #, c-format
 msgid "Memo: %s"
 msgstr "Nota: %s"
 
-#: import_export/ofx_import_gui.cpp:694
+#: import_export/ofx_import_gui.cpp:693
 msgid "No matching payee found."
 msgstr "No se encontró ningún beneficiario coincidente."
 
-#: import_export/ofx_import_gui.cpp:695 import_export/ofx_import_gui.cpp:701
+#: import_export/ofx_import_gui.cpp:694 import_export/ofx_import_gui.cpp:700
 #, c-format
 msgid "Match Confidence: %.1f%% (%s)"
 msgstr "Intervalo de confianza de la coincidencia: %.1f%% (%s)"
 
-#: import_export/ofx_import_gui.cpp:700
+#: import_export/ofx_import_gui.cpp:699
 #, c-format
 msgid "Suggested Payee: “%s”"
 msgstr "Beneficiario sugerido: \"%s\""
 
-#: import_export/ofx_import_gui.cpp:720
+#: import_export/ofx_import_gui.cpp:719
 msgid "Do you want to use an existing payee or create a new one?"
 msgstr "¿Desea utilizar un beneficiario existente o crear uno nuevo?"
 
-#: import_export/ofx_import_gui.cpp:724
+#: import_export/ofx_import_gui.cpp:723
 msgid "Use Existing Payee"
 msgstr "Usar beneficiario existente"
 
-#: import_export/ofx_import_gui.cpp:728
+#: import_export/ofx_import_gui.cpp:727
 msgid "Create New Payee"
 msgstr "Crear nuevo beneficiario"
 
-#: import_export/ofx_import_gui.cpp:735
+#: import_export/ofx_import_gui.cpp:734
 msgid "Select Existing Payee:"
 msgstr "Seleccionar beneficiario existente:"
 
-#: import_export/ofx_import_gui.cpp:768
+#: import_export/ofx_import_gui.cpp:767
 msgid "New Payee Name:"
 msgstr "Nuevo nombre de beneficiario:"
 
-#: import_export/ofx_import_gui.cpp:771
+#: import_export/ofx_import_gui.cpp:770
 msgid "Convert to Title Case"
 msgstr "Convertir a mayúsculas"
 
-#: import_export/ofx_import_gui.cpp:779 import_export/ofx_import_gui.h:95
+#: import_export/ofx_import_gui.cpp:778 import_export/ofx_import_gui.h:95
 msgid "Uncategorized"
 msgstr "Sin categorizar"
 
-#: import_export/ofx_import_gui.cpp:798
+#: import_export/ofx_import_gui.cpp:797
 msgid "Select Category for Payee:"
 msgstr "Seleccionar categoría para beneficiario:"
 
-#: import_export/ofx_import_gui.cpp:801
+#: import_export/ofx_import_gui.cpp:800
 msgid "Define/Update Regex Patterns"
 msgstr "Establecer/actualizar patrones de expresión regular"
 
-#: import_export/ofx_import_gui.cpp:804
+#: import_export/ofx_import_gui.cpp:803
 msgid "Edit Regex Patterns:"
 msgstr "Editar patrones de expresión regular:"
 
-#: import_export/ofx_import_gui.cpp:808
+#: import_export/ofx_import_gui.cpp:807
 msgid "&Insert Row"
 msgstr "&Insertar fila"
 
-#: import_export/ofx_import_gui.cpp:809
+#: import_export/ofx_import_gui.cpp:808
 msgid "&Delete Row"
 msgstr "&Eliminar fila"
 
-#: import_export/ofx_import_gui.cpp:815 import_export/ofx_import_gui.cpp:2014
+#: import_export/ofx_import_gui.cpp:814 import_export/ofx_import_gui.cpp:2013
 msgid "&OK"
 msgstr "&Aceptar"
 
-#: import_export/ofx_import_gui.cpp:924
+#: import_export/ofx_import_gui.cpp:923
 msgid "Import OFX file"
 msgstr "Importar archivo OFX"
 
-#: import_export/ofx_import_gui.cpp:930
+#: import_export/ofx_import_gui.cpp:929
 msgid "&OFX File:"
 msgstr "Archivo &OFX:"
 
-#: import_export/ofx_import_gui.cpp:932 import_export/qif_export.cpp:204
+#: import_export/ofx_import_gui.cpp:931 import_export/qif_export.cpp:204
 #: import_export/qif_import_gui.cpp:157 import_export/univcsvdialog.cpp:233
 msgid "&Browse…"
 msgstr "&Examinar…"
 
-#: import_export/ofx_import_gui.cpp:938
+#: import_export/ofx_import_gui.cpp:937
 msgid "&Account:"
 msgstr "&Cuenta:"
 
-#: import_export/ofx_import_gui.cpp:954
+#: import_export/ofx_import_gui.cpp:953
 msgid "Use &existing regex patterns to automatically match payees"
 msgstr "Utiliza las &expresiones regulares existentes para identificar automáticamente a los beneficiarios"
 
-#: import_export/ofx_import_gui.cpp:962
+#: import_export/ofx_import_gui.cpp:961
 msgid "Use &fuzzy payee matching if exact match and regex matching are unsuccessful"
 msgstr "&Utiliza la coincidencia aproximada de beneficiarios si la coincidencia exacta y la coincidencia mediante expresiones regulares no dan resultado"
 
-#: import_export/ofx_import_gui.cpp:969
+#: import_export/ofx_import_gui.cpp:968
 msgid "Minimum Fuzzy Match &Confidence Level:"
 msgstr "&Coincidencia difusa mínima y nivel de confianza:"
 
-#: import_export/ofx_import_gui.cpp:983
+#: import_export/ofx_import_gui.cpp:982
 msgid "&Mark transactions automatically imported with Fuzzy Match as “Follow Up”"
 msgstr "&Marcar las transacciones importadas automáticamente usando coincidencia inexacta como \"Requiere seguimiento”"
 
-#: import_export/ofx_import_gui.cpp:990
+#: import_export/ofx_import_gui.cpp:989
 msgid "Prompt to &confirm each fuzzy match"
 msgstr "Solicitar &confirmación para cada coincidencia aproximada"
 
-#: import_export/ofx_import_gui.cpp:997 import_export/univcsvdialog.cpp:670
+#: import_export/ofx_import_gui.cpp:996 import_export/univcsvdialog.cpp:670
 #: import_export/webappdialog.cpp:407 manager/GeneralReportManager.cpp:455
 #: manager/ThemeManager.cpp:194
 msgid "&Import"
 msgstr "&Importar"
 
-#: import_export/ofx_import_gui.cpp:1087
+#: import_export/ofx_import_gui.cpp:1086
 msgid "Choose OFX file"
 msgstr "Elegir archivo OFX"
 
-#: import_export/ofx_import_gui.cpp:1183
+#: import_export/ofx_import_gui.cpp:1182
 msgid "No OFX file selected."
 msgstr "Ningún archivo OFX seleccionado."
 
-#: import_export/ofx_import_gui.cpp:1189
+#: import_export/ofx_import_gui.cpp:1188
 msgid "No account selected."
 msgstr "Ninguna cuenta seleccionada."
 
-#: import_export/ofx_import_gui.cpp:1197
+#: import_export/ofx_import_gui.cpp:1196
 msgid "Invalid account selection."
 msgstr "Cuenta seleccionada no válida."
 
-#: import_export/ofx_import_gui.cpp:1203
+#: import_export/ofx_import_gui.cpp:1202
 msgid "Invalid account ID."
 msgstr "ID de cuenta no válida."
 
-#: import_export/ofx_import_gui.cpp:1213
+#: import_export/ofx_import_gui.cpp:1212
 #, c-format
 msgid "Account ID %s does not exist."
 msgstr "El ID de cuenta %s no existe."
 
-#: import_export/ofx_import_gui.cpp:1890
+#: import_export/ofx_import_gui.cpp:1889
 msgid "OFX Import Summary"
 msgstr "Resumen de importación OFX"
 
-#: import_export/ofx_import_gui.cpp:1913
+#: import_export/ofx_import_gui.cpp:1912
 #, c-format
 msgid "Import Statistics:\n"
 "- Total Transactions: %1$d\n"
@@ -4665,46 +4663,46 @@ msgstr "Estadísticas de la importación:\n"
 "- Asignadas manualmente a beneficiarios: %4$d\n"
 "- Tiempo usado: %5$s"
 
-#: import_export/ofx_import_gui.cpp:1936
+#: import_export/ofx_import_gui.cpp:1935
 msgid "FITID"
 msgstr "FITID"
 
-#: import_export/ofx_import_gui.cpp:1939
+#: import_export/ofx_import_gui.cpp:1938
 msgid "OFX Payee"
 msgstr "Beneficiario OFX"
 
-#: import_export/ofx_import_gui.cpp:1940
+#: import_export/ofx_import_gui.cpp:1939
 msgid "Imported Payee"
 msgstr "Beneficiario importado"
 
-#: import_export/ofx_import_gui.cpp:1941
+#: import_export/ofx_import_gui.cpp:1940
 msgid "Match Mode"
 msgstr "Modo de coincidencia"
 
-#: import_export/ofx_import_gui.cpp:1942
+#: import_export/ofx_import_gui.cpp:1941
 msgid "Match Pattern/Confidence"
 msgstr "Coincidir patrón/intervalo de confianza"
 
-#: import_export/ofx_import_gui.cpp:1944
+#: import_export/ofx_import_gui.cpp:1943
 msgid "Transaction Type"
 msgstr "Tipo de transacción"
 
-#: import_export/ofx_import_gui.cpp:2068
+#: import_export/ofx_import_gui.cpp:2067
 #, c-format
 msgid "%d hours"
 msgstr "%d horas"
 
-#: import_export/ofx_import_gui.cpp:2074
+#: import_export/ofx_import_gui.cpp:2073
 #, c-format
 msgid "%d minutes"
 msgstr "%d minutos"
 
-#: import_export/ofx_import_gui.cpp:2080
+#: import_export/ofx_import_gui.cpp:2079
 #, c-format
 msgid "%d seconds"
 msgstr "%d segundos"
 
-#: import_export/ofx_import_gui.cpp:2084
+#: import_export/ofx_import_gui.cpp:2083
 msgid "0 sec"
 msgstr "0 seg"
 
@@ -5564,8 +5562,8 @@ msgstr "Transacción no descargada: vuelva a intentar descargar las transaccione
 msgid "Attachment download error"
 msgstr "Error en la descarga del adjunto"
 
-#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1164
-#: panel/JournalPanel.cpp:1182
+#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1167
+#: panel/JournalPanel.cpp:1185
 msgid "Attachment"
 msgstr "Adjunto"
 
@@ -5646,8 +5644,8 @@ msgstr "Eliminar Ajustes"
 msgid "Remove hidden setting from all categories"
 msgstr "Eliminar ajustes ocultos de todas las categorías"
 
-#: manager/CategoryManager.cpp:336 panel/AssetPanel.cpp:163
-#: panel/JournalPanel.cpp:358 panel/SchedPanel.cpp:159 panel/StockPanel.cpp:190
+#: manager/CategoryManager.cpp:336 panel/AssetPanel.cpp:164
+#: panel/JournalPanel.cpp:361 panel/SchedPanel.cpp:159 panel/StockPanel.cpp:190
 msgid "&New "
 msgstr "&Nuevo "
 
@@ -5937,7 +5935,7 @@ msgstr "¿Desea restaurar los rangos predeterminados?\n\n"
 msgid "Default date ranges"
 msgstr "Rangos de fechas por defecto"
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1367
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1370
 #: panel/ReportPanel.cpp:1095
 msgid "More date ranges…"
 msgstr "Más rangos de fechas…"
@@ -6260,8 +6258,8 @@ msgid "Enter any string to match this payee on import.\n"
 msgstr "Introduzca cualquier cadena que coincida con este beneficiario en la importación.\n"
 "Los patrones son comprobados por el orden puesto aquí."
 
-#: manager/PayeeManager.cpp:142 panel/AssetPanel.cpp:212
-#: panel/JournalPanel.cpp:428
+#: manager/PayeeManager.cpp:142 panel/AssetPanel.cpp:213
+#: panel/JournalPanel.cpp:431
 msgid "Use the asterisk (*) at the beginning to find any string in the middle of the sentence."
 msgstr "Use el asterisco (*) al principio para encontrar cualquier cadena de caracteres, en medio de un párrafo."
 
@@ -6745,65 +6743,65 @@ msgstr "Corfirme el borrado del activo"
 msgid "MMEX allows fixed assets like cars, houses, land, and others to be tracked. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."
 msgstr "MMEX permite el seguimiento de activos fijos como autos, casas, terrenos y otros. Cada activo puede tener su valor apreciado en una tasa determinada por año, depreciado en una tasa determinada por año, o no en un cambio de valor. Los activos totales se añaden a su valor financiero total."
 
-#: panel/AssetPanel.cpp:169
+#: panel/AssetPanel.cpp:170
 msgid "&Add Trans "
 msgstr "&Añadir transacción "
 
-#: panel/AssetPanel.cpp:176 panel/StockPanel.cpp:199
+#: panel/AssetPanel.cpp:177 panel/StockPanel.cpp:199
 msgid "&View Trans "
 msgstr "&Ver transacción "
 
-#: panel/AssetPanel.cpp:178 panel/AssetPanel.cpp:517
+#: panel/AssetPanel.cpp:179 panel/AssetPanel.cpp:518
 msgid "View Asset Transactions"
 msgstr "Ver transacciones del valor"
 
-#: panel/AssetPanel.cpp:188
+#: panel/AssetPanel.cpp:189
 msgid "Delete Asset"
 msgstr "Eliminar activo"
 
-#: panel/AssetPanel.cpp:196 panel/JournalPanel.cpp:390 panel/SchedPanel.cpp:192
+#: panel/AssetPanel.cpp:197 panel/JournalPanel.cpp:393 panel/SchedPanel.cpp:192
 #: panel/StockPanel.cpp:223
 msgid "Open attachments"
 msgstr "Abrir adjuntos"
 
-#: panel/AssetPanel.cpp:208
+#: panel/AssetPanel.cpp:209
 msgid "Enter any string to find related assets"
 msgstr "Escriba cualquier cadena para buscar valores relacionados"
 
-#: panel/AssetPanel.cpp:210 panel/JournalPanel.cpp:426
+#: panel/AssetPanel.cpp:211 panel/JournalPanel.cpp:429
 msgid "The question mark (?) is used to match a single character, for example \"s?t\" finds both \"sat\" and \"set\"."
 msgstr "El signo de interrogación (?) se utiliza para buscar un solo carácter; por ejemplo, \"s?t\" encuentra tanto \"sat\" como \"set\"."
 
-#: panel/AssetPanel.cpp:211 panel/JournalPanel.cpp:427
+#: panel/AssetPanel.cpp:212 panel/JournalPanel.cpp:430
 msgid "The asterisk (*) is used to match any number of characters, for example \"s*d\" finds both \"sad\" and \"started\"."
 msgstr "El asterisco (*) se utiliza para buscar cualquier número de caracteres; por ejemplo, \"s*d\" encuentra tanto \"sad\" como \"started\"."
 
-#: panel/AssetPanel.cpp:309 panel/StockList.cpp:773 panel/StockPanel.cpp:521
+#: panel/AssetPanel.cpp:310 panel/StockList.cpp:773 panel/StockPanel.cpp:521
 #, c-format
 msgid "Total: %s"
 msgstr "Total: %s"
 
-#: panel/AssetPanel.cpp:310
+#: panel/AssetPanel.cpp:311
 #, c-format
 msgid "Initial: %s"
 msgstr "Inicial: %s"
 
-#: panel/AssetPanel.cpp:365
+#: panel/AssetPanel.cpp:366
 #, c-format
 msgid "Change in Value: %1$s %2$s"
 msgstr "Cambio en el valor: %1$s %2$s"
 
-#: panel/AssetPanel.cpp:495
+#: panel/AssetPanel.cpp:496
 msgid "This asset does not have its own account\n\n"
 "Multiple transactions for this asset are not recommended."
 msgstr "Este activo no tiene su propia cuenta.\n\n"
 "No se recomiendan múltiples transacciones para este activo."
 
-#: panel/AssetPanel.cpp:498
+#: panel/AssetPanel.cpp:499
 msgid "Asset Management"
 msgstr "Gestión del valor"
 
-#: panel/AssetPanel.cpp:558 panel/StockPanel.cpp:327
+#: panel/AssetPanel.cpp:559 panel/StockPanel.cpp:327
 msgid "Trade Type"
 msgstr "Tipo de operación"
 
@@ -6899,7 +6897,7 @@ msgid "Actual: "
 msgstr "Real: "
 
 #: panel/BudgetPanel.cpp:256 panel/BudgetPanel.cpp:264
-#: report/budgetingperf.cpp:351
+#: report/budgetingperf.cpp:349
 msgid "Difference: "
 msgstr "Diferencia: "
 
@@ -6929,9 +6927,9 @@ msgid "Cash Balance"
 msgstr "Saldo de efectivo"
 
 #: panel/DashboardWidget.cpp:98 panel/DashboardWidget.cpp:615
-#: panel/StockPanel.cpp:330 report/CategoryReport.cpp:252
-#: report/CategoryReport.cpp:538 report/FlowReport.cpp:285
-#: report/budgetingperf.cpp:136
+#: panel/StockPanel.cpp:330 report/CategoryReport.cpp:249
+#: report/CategoryReport.cpp:535 report/FlowReport.cpp:285
+#: report/budgetingperf.cpp:134
 msgid "Total"
 msgstr "Total"
 
@@ -6974,9 +6972,9 @@ msgstr "Saldos"
 msgid "Income vs. Expenses: %s"
 msgstr "Ingresos frente a gastos: %s"
 
-#: panel/DashboardWidget.cpp:468 report/CategoryReport.cpp:188
-#: report/CategoryReport.cpp:221 report/CategoryReport.cpp:463
-#: report/CategoryReport.cpp:537 report/InExReport.cpp:91
+#: panel/DashboardWidget.cpp:468 report/CategoryReport.cpp:185
+#: report/CategoryReport.cpp:218 report/CategoryReport.cpp:460
+#: report/CategoryReport.cpp:534 report/InExReport.cpp:91
 #: report/InExReport.cpp:225 report/InExReport.cpp:258
 #: report/PayeeReport.cpp:191
 msgid "Expenses"
@@ -7292,8 +7290,7 @@ msgstr "No se pueden mover algunas transacciones."
 msgid "Scheduled transaction saved."
 msgstr "Transacción programada guardada."
 
-#: panel/JournalList.cpp:2181 panel/JournalPanel.cpp:142
-#: util/mmNavigatorList.cpp:55
+#: panel/JournalList.cpp:2181 util/mmNavigatorList.cpp:55
 msgid "All Transactions"
 msgstr "Todas las transacciones"
 
@@ -7310,145 +7307,141 @@ msgstr "¿Desea eliminar permanentemente todas las transacciones mostradas?"
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr "¿Desea eliminar todas las transacciones de “%s” mostradas?"
 
-#: panel/JournalPanel.cpp:144 util/mmNavigatorList.cpp:72
-msgid "Deleted Transactions"
-msgstr "Transacciones eliminadas"
-
-#: panel/JournalPanel.cpp:157
+#: panel/JournalPanel.cpp:142
 #, c-format
 msgid "Account View: %s"
 msgstr "Vista de cuenta: %s"
 
-#: panel/JournalPanel.cpp:261
+#: panel/JournalPanel.cpp:264
 msgid "Filter…"
 msgstr "Filtrar…"
 
-#: panel/JournalPanel.cpp:273 panel/ReportPanel.cpp:450
+#: panel/JournalPanel.cpp:276 panel/ReportPanel.cpp:450
 #: panel/StockPanel.cpp:135
 msgid "Reset filter"
 msgstr "Restablecer filtro"
 
-#: panel/JournalPanel.cpp:302
+#: panel/JournalPanel.cpp:305
 msgid "Reconcile"
 msgstr "Reconciliar"
 
-#: panel/JournalPanel.cpp:355
+#: panel/JournalPanel.cpp:358
 msgid "Delete all selected transactions"
 msgstr "Eliminar todas las transacciones seleccionadas"
 
-#: panel/JournalPanel.cpp:363
+#: panel/JournalPanel.cpp:366
 msgid "Edit all selected transactions"
 msgstr "Editar todas las transacciones seleccionadas"
 
-#: panel/JournalPanel.cpp:367 panel/SchedPanel.cpp:168
+#: panel/JournalPanel.cpp:370 panel/SchedPanel.cpp:168
 msgid "D&uplicate "
 msgstr "D&uplicar "
 
-#: panel/JournalPanel.cpp:368
+#: panel/JournalPanel.cpp:371
 msgid "Duplicate selected transaction"
 msgstr "Duplicar transacción seleccionada"
 
-#: panel/JournalPanel.cpp:375 panel/SchedPanel.cpp:178
+#: panel/JournalPanel.cpp:378 panel/SchedPanel.cpp:178
 msgid "Ente&r"
 msgstr "Entrar"
 
-#: panel/JournalPanel.cpp:376 panel/SchedPanel.cpp:179
+#: panel/JournalPanel.cpp:379 panel/SchedPanel.cpp:179
 msgid "Enter Next Scheduled Transaction Occurrence"
 msgstr "Registrar la siguiente aparición de la transacción programada"
 
-#: panel/JournalPanel.cpp:380 panel/SchedPanel.cpp:183
+#: panel/JournalPanel.cpp:383 panel/SchedPanel.cpp:183
 msgid "&Skip"
 msgstr "&Omitir"
 
-#: panel/JournalPanel.cpp:381 panel/SchedPanel.cpp:184
+#: panel/JournalPanel.cpp:384 panel/SchedPanel.cpp:184
 msgid "Skip Next Scheduled Transaction Occurrence"
 msgstr "Omitir la siguiente aparición de la transacción programada"
 
-#: panel/JournalPanel.cpp:406
+#: panel/JournalPanel.cpp:409
 msgid "&Restore "
 msgstr "&Restaurar "
 
-#: panel/JournalPanel.cpp:407
+#: panel/JournalPanel.cpp:410
 msgid "Restore selected transaction"
 msgstr "Restaurar transacción seleccionada"
 
-#: panel/JournalPanel.cpp:424
+#: panel/JournalPanel.cpp:427
 msgid "Enter any string to find it in the nearest transaction data"
 msgstr "Introduzca cualquier texto para encontrarlo en los datos de transacción más cercanos"
 
-#: panel/JournalPanel.cpp:442
+#: panel/JournalPanel.cpp:445
 msgid "Click to copy to clipboard"
 msgstr "Haga clic para copiar al portapapeles"
 
-#: panel/JournalPanel.cpp:983
+#: panel/JournalPanel.cpp:986
 msgid "Account Bal: "
 msgstr "Saldo de cuenta: "
 
-#: panel/JournalPanel.cpp:987
+#: panel/JournalPanel.cpp:990
 msgid "Reconciled Bal: "
 msgstr "Saldo conciliado: "
 
-#: panel/JournalPanel.cpp:992
+#: panel/JournalPanel.cpp:995
 msgid "Diff: "
 msgstr "Diferencia: "
 
-#: panel/JournalPanel.cpp:999
+#: panel/JournalPanel.cpp:1002
 msgid "Filtered Flow: "
 msgstr "Flujo filtrado: "
 
-#: panel/JournalPanel.cpp:1020
+#: panel/JournalPanel.cpp:1023
 msgid "Market Value: "
 msgstr "Valor del mercado: "
 
-#: panel/JournalPanel.cpp:1027
+#: panel/JournalPanel.cpp:1030
 msgid "Invested: "
 msgstr "Invertido: "
 
-#: panel/JournalPanel.cpp:1066 panel/JournalPanel.cpp:1074
+#: panel/JournalPanel.cpp:1069 panel/JournalPanel.cpp:1077
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr "Rango de fechas"
 
-#: panel/JournalPanel.cpp:1113
+#: panel/JournalPanel.cpp:1116
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Haga clic para mostrar las transacciones programadas. Esta característica funciona mejor con opciones de filtros que continúan en el futuro (por ejemplo, el mes actual)."
 
-#: panel/JournalPanel.cpp:1113
+#: panel/JournalPanel.cpp:1116
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "Las transacciones programadas no están disponibles porque el filtro actual termina en una fecha pasada"
 
-#: panel/JournalPanel.cpp:1114
+#: panel/JournalPanel.cpp:1117
 msgid "Click to hide scheduled transactions."
 msgstr "Haga clic para ocultar las transacciones programadas."
 
-#: panel/JournalPanel.cpp:1245
+#: panel/JournalPanel.cpp:1248
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Transacciones seleccionadas: %zu"
 
-#: panel/JournalPanel.cpp:1248
+#: panel/JournalPanel.cpp:1251
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr "Total de transacciones seleccionadas: %s"
 
-#: panel/JournalPanel.cpp:1253
+#: panel/JournalPanel.cpp:1256
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Días entre las transacciones seleccionadas: %d"
 
-#: panel/JournalPanel.cpp:1374 panel/ReportPanel.cpp:1102
+#: panel/JournalPanel.cpp:1377 panel/ReportPanel.cpp:1102
 msgid "Edit date ranges…"
 msgstr "Editar rangos de fechas…"
 
-#: panel/JournalPanel.cpp:1522
+#: panel/JournalPanel.cpp:1525
 msgid "&New Withdrawal…"
 msgstr "&Nuevo gasto…"
 
-#: panel/JournalPanel.cpp:1523
+#: panel/JournalPanel.cpp:1526
 msgid "&New Deposit…"
 msgstr "&Nuevo ingreso…"
 
-#: panel/JournalPanel.cpp:1524
+#: panel/JournalPanel.cpp:1527
 msgid "&New Transfer…"
 msgstr "&Nueva transferencia…"
 
@@ -7634,10 +7627,6 @@ msgstr "Acciones"
 #, c-format
 msgid "Stock Portfolio: %s"
 msgstr "Cartera de acciones: %s"
-
-#: panel/StockPanel.cpp:510
-msgid "Stock Portfolios Overview"
-msgstr "Vista general de la cartera de acciones"
 
 #: panel/StockPanel.cpp:522 panel/StockPanel.cpp:528
 #, c-format
@@ -8374,45 +8363,45 @@ msgstr "Informe Mensual"
 msgid "Yearly Report"
 msgstr "Informe anual"
 
-#: report/CategoryReport.cpp:236
+#: report/CategoryReport.cpp:233
 msgid "Collapse All"
 msgstr "Contraer todo"
 
-#: report/CategoryReport.cpp:239
+#: report/CategoryReport.cpp:236
 msgid "Expand All"
 msgstr "Expandir todo"
 
-#: report/CategoryReport.cpp:314
+#: report/CategoryReport.cpp:311
 msgid "Total Expenses:"
 msgstr "Gastos Totales:"
 
-#: report/CategoryReport.cpp:315
+#: report/CategoryReport.cpp:312
 msgid "Total Income:"
 msgstr "Ingresos totales:"
 
-#: report/CategoryReport.cpp:317 report/StocksReport.cpp:195
+#: report/CategoryReport.cpp:314 report/StocksReport.cpp:195
 #: report/TrxReport.cpp:72
 msgid "Grand Total:"
 msgstr "Suma total:"
 
-#: report/CategoryReport.cpp:346
+#: report/CategoryReport.cpp:343
 msgid "Categories Summary"
 msgstr "Resumen de categorías"
 
-#: report/CategoryReport.cpp:353
+#: report/CategoryReport.cpp:350
 msgid "Category Income/Expenses"
 msgstr "Categoría ingresos/gastos"
 
-#: report/CategoryReport.cpp:462 report/FlowReport.cpp:286
+#: report/CategoryReport.cpp:459 report/FlowReport.cpp:286
 #: report/InExReport.cpp:223 report/InExReport.cpp:259
 msgid "Difference"
 msgstr "Diferencia"
 
-#: report/CategoryReport.cpp:505
+#: report/CategoryReport.cpp:502
 msgid "Overall"
 msgstr "Global"
 
-#: report/CategoryReport.cpp:536 report/PayeeReport.cpp:190
+#: report/CategoryReport.cpp:533 report/PayeeReport.cpp:190
 msgid "Incomes"
 msgstr "Ingresos"
 
@@ -8580,16 +8569,16 @@ msgstr "Gastos reales:"
 msgid "Difference Expenses:"
 msgstr "Diferencia de gastos:"
 
-#: report/budgetingperf.cpp:104
+#: report/budgetingperf.cpp:102
 #, c-format
 msgid "Budget Performance for %s"
 msgstr "Ejecución del presupuesto para %s"
 
-#: report/budgetingperf.cpp:144 report/budgetingperf.cpp:146
+#: report/budgetingperf.cpp:142 report/budgetingperf.cpp:144
 msgid "Act."
 msgstr "Real."
 
-#: report/budgetingperf.cpp:144 report/budgetingperf.cpp:146
+#: report/budgetingperf.cpp:142 report/budgetingperf.cpp:144
 msgid "Est."
 msgstr "Est."
 
@@ -10102,6 +10091,10 @@ msgstr "Carteras de acciones"
 #: util/mmNavigatorList.cpp:65
 msgid "Share Accounts"
 msgstr "Cuentas compartidas"
+
+#: util/mmNavigatorList.cpp:72
+msgid "Deleted Transactions"
+msgstr "Transacciones eliminadas"
 
 #: util/mmTextCtrl.cpp:118
 msgid "Please enter a calculated value."
