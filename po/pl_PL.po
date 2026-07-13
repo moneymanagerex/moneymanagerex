@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-07-08 18:40+0000\n"
-"PO-Revision-Date: 2026-07-10 02:06\n"
+"POT-Creation-Date: 2026-07-10 08:57+0000\n"
+"PO-Revision-Date: 2026-07-13 17:12\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -394,7 +394,7 @@ msgstr ""
 msgid "Show T&ooltips"
 msgstr "Pokaż &podpowiedzi"
 
-#: app/mmFrame.cpp:1970 pref/ViewPref.cpp:133
+#: app/mmFrame.cpp:1970 pref/ViewPref.cpp:138
 msgid "Show Tooltips"
 msgstr "&Pokaż podpowiedzi"
 
@@ -402,7 +402,7 @@ msgstr "&Pokaż podpowiedzi"
 msgid "Show &Money Tips"
 msgstr "Pokazuj porady &finansowe"
 
-#: app/mmFrame.cpp:1977 pref/ViewPref.cpp:137
+#: app/mmFrame.cpp:1977 pref/ViewPref.cpp:142
 msgid "Show Money Tips"
 msgstr "Pokazuj porady &finansowe"
 
@@ -1270,7 +1270,7 @@ msgid "Monthly"
 msgstr "Co miesiąc"
 
 #: app/mmFrame.cpp:4540 import_export/parsers.cpp:230
-#: manager/PrefManager.cpp:41 pref/ViewPref.cpp:121
+#: manager/PrefManager.cpp:41 pref/ViewPref.cpp:126
 msgid "Transactions"
 msgstr "Transakcje"
 
@@ -2823,7 +2823,7 @@ msgid "Unable to download history for base symbol %s. Historical rates unavailab
 msgstr ""
 
 #: dialog/CurrencyChoiceDialog.cpp:942 panel/StockPanel.cpp:593
-#: util/_util.cpp:780
+#: util/_util.cpp:782
 msgid "Unable to find base currency symbol!"
 msgstr ""
 
@@ -2981,7 +2981,7 @@ msgstr "Auto-uzupełnianie"
 msgid "Enables autocomplete on custom field"
 msgstr "Włącza autouzupełnianie we własnych polach"
 
-#: dialog/FieldDialog.cpp:173 pref/TrxPref.cpp:292 util/_util.cpp:170
+#: dialog/FieldDialog.cpp:173 pref/TrxPref.cpp:292 util/_util.cpp:172
 msgid "Default"
 msgstr "Domyślnie"
 
@@ -3589,7 +3589,7 @@ msgstr "Potwierdź nazwę beneficjenta"
 #: dialog/TrxUpdateDialog.cpp:385 dialog/TrxUpdateDialog.cpp:461
 #: import_export/univcsvdialog.cpp:1465 manager/PayeeManager.cpp:203
 #: manager/PayeeManager.cpp:208 pref/GeneralPref.cpp:335
-#: pref/GeneralPref.cpp:367 util/_util.cpp:873
+#: pref/GeneralPref.cpp:367 util/_util.cpp:875
 msgid "Invalid value"
 msgstr "Nieprawidłowa wartość"
 
@@ -7673,7 +7673,7 @@ msgstr ""
 msgid "Last updated %s"
 msgstr "Ostatnia aktualizacja %s"
 
-#: panel/StockPanel.cpp:598 util/_util.cpp:806 util/_util.cpp:1001
+#: panel/StockPanel.cpp:598 util/_util.cpp:808 util/_util.cpp:1003
 msgid "Nothing to update"
 msgstr "Brak elementów do aktualizacji"
 
@@ -8252,107 +8252,111 @@ msgstr ""
 msgid "Show cash ledger for portfolios"
 msgstr ""
 
-#: pref/ViewPref.cpp:122
+#: pref/ViewPref.cpp:119
+msgid "Automatically resize columns to fit panel"
+msgstr ""
+
+#: pref/ViewPref.cpp:127
 msgid "Do not use color for future transactions"
 msgstr "Nie używaj koloru dla przyszłych transakcji"
 
-#: pref/ViewPref.cpp:127
+#: pref/ViewPref.cpp:132
 msgid "Emphasize not reconciled transactions"
 msgstr "Podkreśl nierozliczone transakcje"
 
-#: pref/ViewPref.cpp:142
+#: pref/ViewPref.cpp:147
 msgid "User Interface"
 msgstr "Interfejs użytkownika"
 
-#: pref/ViewPref.cpp:149
+#: pref/ViewPref.cpp:154
 msgid "Style Template"
 msgstr "Szablon wyglądu"
 
-#: pref/ViewPref.cpp:150
+#: pref/ViewPref.cpp:155
 msgid "Open Theme Manager"
 msgstr "Otwórz Menedżera motywów"
 
-#: pref/ViewPref.cpp:153
+#: pref/ViewPref.cpp:158
 msgid "Theme"
 msgstr "Motyw"
 
-#: pref/ViewPref.cpp:155
+#: pref/ViewPref.cpp:160
 msgid "System"
 msgstr "Systemowy"
 
-#: pref/ViewPref.cpp:156
+#: pref/ViewPref.cpp:161
 msgid "Light"
 msgstr "Jasny"
 
-#: pref/ViewPref.cpp:157
+#: pref/ViewPref.cpp:162
 msgid "Dark"
 msgstr "Ciemny"
 
-#: pref/ViewPref.cpp:163
+#: pref/ViewPref.cpp:168
 msgid "Specify preferred theme variant to use if supported"
 msgstr "Określ preferowany wariant motywu do użycia, jeśli jest obsługiwany"
 
-#: pref/ViewPref.cpp:167
+#: pref/ViewPref.cpp:172
 msgid "HTML Scale Factor"
 msgstr "Współczynnik skali HTML"
 
-#: pref/ViewPref.cpp:185
+#: pref/ViewPref.cpp:190
 msgid "Specify which scale factor is used for the report pages"
 msgstr "Określ współczynnik skali dla stron raportów"
 
-#: pref/ViewPref.cpp:188
+#: pref/ViewPref.cpp:193
 msgid "Font Size"
 msgstr "Rozmiar czcionki"
 
-#: pref/ViewPref.cpp:190
+#: pref/ViewPref.cpp:195
 msgid "Normal"
 msgstr "Normalny"
 
-#: pref/ViewPref.cpp:191
+#: pref/ViewPref.cpp:196
 msgid "Enlarged"
 msgstr "Powiększony"
 
-#: pref/ViewPref.cpp:192
+#: pref/ViewPref.cpp:197
 msgid "Large"
 msgstr "Duży"
 
-#: pref/ViewPref.cpp:193
+#: pref/ViewPref.cpp:198
 msgid "Huge"
 msgstr "Ogromny"
 
-#: pref/ViewPref.cpp:202
+#: pref/ViewPref.cpp:207
 msgid "Custom Icons"
 msgstr ""
 
-#: pref/ViewPref.cpp:203
+#: pref/ViewPref.cpp:208
 msgid "Open Icon Manager"
 msgstr ""
 
-#: pref/ViewPref.cpp:210
+#: pref/ViewPref.cpp:215
 msgid "Toolbar Icon Size"
 msgstr "Rozmiar ikon paska narzędzi"
 
-#: pref/ViewPref.cpp:211
+#: pref/ViewPref.cpp:216
 msgid "Navigator Icon Size"
 msgstr "Rozmiar ikon drzewa nawigacyjnego"
 
-#: pref/ViewPref.cpp:212
+#: pref/ViewPref.cpp:217
 msgid "Others Icon Size"
 msgstr "Rozmiar innych ikon"
 
-#: pref/ViewPref.cpp:215
+#: pref/ViewPref.cpp:220
 msgid "Small (16 px)"
 msgstr "Mały (16 px)"
 
-#: pref/ViewPref.cpp:216
+#: pref/ViewPref.cpp:221
 msgid "Normal (24 px)"
 msgstr "Średni (24 px)"
 
-#: pref/ViewPref.cpp:217
+#: pref/ViewPref.cpp:222
 msgid "Large (32 px)"
 msgstr "Duży (32 px)"
 
-#: pref/ViewPref.cpp:218
+#: pref/ViewPref.cpp:223
 msgid "Huge (48 px)"
 msgstr "Ogromny (48 px)"
 
@@ -9772,87 +9776,87 @@ msgstr "Utworzyć nowy tag '%s'?"
 msgid "New tag entered"
 msgstr "Wprowadzono nowy tag"
 
-#: util/_util.cpp:848
+#: util/_util.cpp:850
 msgid "Currency rates have been updated"
 msgstr "Notowania walut zaktualizowane"
 
-#: util/_util.cpp:964 util/_util.cpp:1067 util/_util.cpp:1073
-#: util/_util.cpp:1104 util/_util.cpp:1171
+#: util/_util.cpp:966 util/_util.cpp:1069 util/_util.cpp:1075
+#: util/_util.cpp:1106 util/_util.cpp:1173
 msgid "JSON Parse Error"
 msgstr "Błąd przetwarzania JSON"
 
-#: util/_util.cpp:1112 util/_util.cpp:1179
+#: util/_util.cpp:1114 util/_util.cpp:1181
 msgid "Expected response to contain a data or error string"
 msgstr "Oczekiwano odpowiedzi na podanie danych lub ciągu błędów"
 
-#: util/_util.cpp:1143
+#: util/_util.cpp:1145
 msgid "Unable to find asset for symbol."
 msgstr ""
 
-#: util/_util.cpp:1186
+#: util/_util.cpp:1188
 msgid "Unable to get base currency!"
 msgstr ""
 
-#: util/_util.cpp:1192
+#: util/_util.cpp:1194
 msgid "USD"
 msgstr "USD"
 
-#: util/_util.cpp:1195
+#: util/_util.cpp:1197
 msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr ""
 
-#: util/_util.cpp:1220
+#: util/_util.cpp:1222
 msgid "Unable to parse price in asset history"
 msgstr ""
 
-#: util/_util.cpp:1591 wizard/wizard_update.cpp:183
+#: util/_util.cpp:1593 wizard/wizard_update.cpp:183
 #, c-format
 msgid "Version: %s"
 msgstr "Wersja: %s"
 
-#: util/_util.cpp:1592
+#: util/_util.cpp:1594
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr "Zbudowano: %1$s %2$s"
 
-#: util/_util.cpp:1593
+#: util/_util.cpp:1595
 #, c-format
 msgid "Database version: %d"
 msgstr "Wersja bazy danych: %d"
 
-#: util/_util.cpp:1600
+#: util/_util.cpp:1602
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr "Zatwierdzenie Git: %1$s (%2$s)"
 
-#: util/_util.cpp:1603
+#: util/_util.cpp:1605
 #, c-format
 msgid "Git branch: %s"
 msgstr "Gałąź Git: %s"
 
-#: util/_util.cpp:1607
+#: util/_util.cpp:1609
 msgid "MMEX is using the following support products:"
 msgstr "MMEX wykorzystuje następujące produkty:"
 
-#: util/_util.cpp:1624
+#: util/_util.cpp:1626
 msgid "Built with:"
 msgstr "Wykorzystane technologie:"
 
-#: util/_util.cpp:1643
+#: util/_util.cpp:1645
 msgid "Running on:"
 msgstr "Uruchomiony w:"
 
-#: util/_util.cpp:1657
+#: util/_util.cpp:1659
 #, c-format
 msgid "System Locale: %s"
 msgstr "Język systemu: %s"
 
-#: util/_util.cpp:1658
+#: util/_util.cpp:1660
 #, c-format
 msgid "User Interface Language: %s"
 msgstr "Język interfejsu użytkownika: %s"
 
-#: util/_util.cpp:1826
+#: util/_util.cpp:1828
 msgid "The complete list of closed issues is available at this link"
 msgstr "Pełna lista zamkniętych problemów jest dostępna pod tym linkiem"
 

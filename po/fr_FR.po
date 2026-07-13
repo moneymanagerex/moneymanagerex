@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-07-08 18:40+0000\n"
-"PO-Revision-Date: 2026-07-10 02:06\n"
+"POT-Creation-Date: 2026-07-10 08:57+0000\n"
+"PO-Revision-Date: 2026-07-13 17:12\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -394,7 +394,7 @@ msgstr "Ignorer les prochaines transactions"
 msgid "Show T&ooltips"
 msgstr "Afficher les infobulles"
 
-#: app/mmFrame.cpp:1970 pref/ViewPref.cpp:133
+#: app/mmFrame.cpp:1970 pref/ViewPref.cpp:138
 msgid "Show Tooltips"
 msgstr "Afficher les infobulles"
 
@@ -402,7 +402,7 @@ msgstr "Afficher les infobulles"
 msgid "Show &Money Tips"
 msgstr "Afficher les astuces financières"
 
-#: app/mmFrame.cpp:1977 pref/ViewPref.cpp:137
+#: app/mmFrame.cpp:1977 pref/ViewPref.cpp:142
 msgid "Show Money Tips"
 msgstr "Afficher les astuces financières"
 
@@ -1271,7 +1271,7 @@ msgid "Monthly"
 msgstr "Mensuel"
 
 #: app/mmFrame.cpp:4540 import_export/parsers.cpp:230
-#: manager/PrefManager.cpp:41 pref/ViewPref.cpp:121
+#: manager/PrefManager.cpp:41 pref/ViewPref.cpp:126
 msgid "Transactions"
 msgstr "Opérations"
 
@@ -2826,7 +2826,7 @@ msgid "Unable to download history for base symbol %s. Historical rates unavailab
 msgstr "Impossible de télécharger l'historique pour le symbole %s. Historique des taux non disponible !"
 
 #: dialog/CurrencyChoiceDialog.cpp:942 panel/StockPanel.cpp:593
-#: util/_util.cpp:780
+#: util/_util.cpp:782
 msgid "Unable to find base currency symbol!"
 msgstr "Impossible de trouver le symbole de la devise de base !"
 
@@ -2984,7 +2984,7 @@ msgstr "Remplissage automatique"
 msgid "Enables autocomplete on custom field"
 msgstr "Activer le remplissage automatique des champs personnalisés"
 
-#: dialog/FieldDialog.cpp:173 pref/TrxPref.cpp:292 util/_util.cpp:170
+#: dialog/FieldDialog.cpp:173 pref/TrxPref.cpp:292 util/_util.cpp:172
 msgid "Default"
 msgstr "Par défaut"
 
@@ -3592,7 +3592,7 @@ msgstr "Confirmer le nom du bénéficiaire"
 #: dialog/TrxUpdateDialog.cpp:385 dialog/TrxUpdateDialog.cpp:461
 #: import_export/univcsvdialog.cpp:1465 manager/PayeeManager.cpp:203
 #: manager/PayeeManager.cpp:208 pref/GeneralPref.cpp:335
-#: pref/GeneralPref.cpp:367 util/_util.cpp:873
+#: pref/GeneralPref.cpp:367 util/_util.cpp:875
 msgid "Invalid value"
 msgstr "Valeur incorrecte"
 
@@ -7649,7 +7649,7 @@ msgstr ""
 msgid "Last updated %s"
 msgstr "Dernière mise à jour %s"
 
-#: panel/StockPanel.cpp:598 util/_util.cpp:806 util/_util.cpp:1001
+#: panel/StockPanel.cpp:598 util/_util.cpp:808 util/_util.cpp:1003
 msgid "Nothing to update"
 msgstr "Rien à mettre à jour"
 
@@ -8229,107 +8229,111 @@ msgstr "Types de navigateur et de compte"
 msgid "Show cash ledger for portfolios"
 msgstr "Afficher la trésorerie en espèces pour les portefeuilles"
 
-#: pref/ViewPref.cpp:122
+#: pref/ViewPref.cpp:119
+msgid "Automatically resize columns to fit panel"
+msgstr "Redimensionner automatiquement les colonnes pour s'adapter à l'écran"
+
+#: pref/ViewPref.cpp:127
 msgid "Do not use color for future transactions"
 msgstr "Ne pas utiliser de couleur pour les opérations futures"
 
-#: pref/ViewPref.cpp:127
+#: pref/ViewPref.cpp:132
 msgid "Emphasize not reconciled transactions"
 msgstr "Surligner les transactions non rapprochées"
 
-#: pref/ViewPref.cpp:142
+#: pref/ViewPref.cpp:147
 msgid "User Interface"
 msgstr "Interface utilisateur"
 
-#: pref/ViewPref.cpp:149
+#: pref/ViewPref.cpp:154
 msgid "Style Template"
 msgstr "Modèle de style"
 
-#: pref/ViewPref.cpp:150
+#: pref/ViewPref.cpp:155
 msgid "Open Theme Manager"
 msgstr "Ouvrir le gestionnaire de thème"
 
-#: pref/ViewPref.cpp:153
+#: pref/ViewPref.cpp:158
 msgid "Theme"
 msgstr "Thème"
 
-#: pref/ViewPref.cpp:155
+#: pref/ViewPref.cpp:160
 msgid "System"
 msgstr "Système"
 
-#: pref/ViewPref.cpp:156
+#: pref/ViewPref.cpp:161
 msgid "Light"
 msgstr "Clair"
 
-#: pref/ViewPref.cpp:157
+#: pref/ViewPref.cpp:162
 msgid "Dark"
 msgstr "Foncé"
 
-#: pref/ViewPref.cpp:163
+#: pref/ViewPref.cpp:168
 msgid "Specify preferred theme variant to use if supported"
 msgstr "Spécifier le choix de thème à utiliser si pris en charge"
 
-#: pref/ViewPref.cpp:167
+#: pref/ViewPref.cpp:172
 msgid "HTML Scale Factor"
 msgstr "Facteur d’échelle HTML"
 
-#: pref/ViewPref.cpp:185
+#: pref/ViewPref.cpp:190
 msgid "Specify which scale factor is used for the report pages"
 msgstr "Indiquez quel est le facteur d'échelle est utilisé pour ce rapport"
 
-#: pref/ViewPref.cpp:188
+#: pref/ViewPref.cpp:193
 msgid "Font Size"
 msgstr "Taille de police"
 
-#: pref/ViewPref.cpp:190
+#: pref/ViewPref.cpp:195
 msgid "Normal"
 msgstr "Normal"
 
-#: pref/ViewPref.cpp:191
+#: pref/ViewPref.cpp:196
 msgid "Enlarged"
 msgstr "Agrandi"
 
-#: pref/ViewPref.cpp:192
+#: pref/ViewPref.cpp:197
 msgid "Large"
 msgstr "Grande"
 
-#: pref/ViewPref.cpp:193
+#: pref/ViewPref.cpp:198
 msgid "Huge"
 msgstr "Très grande"
 
-#: pref/ViewPref.cpp:202
+#: pref/ViewPref.cpp:207
 msgid "Custom Icons"
 msgstr "Icônes personnalisées"
 
-#: pref/ViewPref.cpp:203
+#: pref/ViewPref.cpp:208
 msgid "Open Icon Manager"
 msgstr "Ouvrir le gestionnaire d'icône"
 
-#: pref/ViewPref.cpp:210
+#: pref/ViewPref.cpp:215
 msgid "Toolbar Icon Size"
 msgstr "Taille des icônes de la barre d'outils"
 
-#: pref/ViewPref.cpp:211
+#: pref/ViewPref.cpp:216
 msgid "Navigator Icon Size"
 msgstr "Taille de l'icône du navigateur"
 
-#: pref/ViewPref.cpp:212
+#: pref/ViewPref.cpp:217
 msgid "Others Icon Size"
 msgstr "Taille des autres icônes"
 
-#: pref/ViewPref.cpp:215
+#: pref/ViewPref.cpp:220
 msgid "Small (16 px)"
 msgstr "Petit (16 px)"
 
-#: pref/ViewPref.cpp:216
+#: pref/ViewPref.cpp:221
 msgid "Normal (24 px)"
 msgstr "Normal (24 px)"
 
-#: pref/ViewPref.cpp:217
+#: pref/ViewPref.cpp:222
 msgid "Large (32 px)"
 msgstr "Grand (32 px)"
 
-#: pref/ViewPref.cpp:218
+#: pref/ViewPref.cpp:223
 msgid "Huge (48 px)"
 msgstr "Énorme (48 px)"
 
@@ -9746,87 +9750,87 @@ msgstr "Créer une nouvelle étiquette \"%s\" ?"
 msgid "New tag entered"
 msgstr "Nouvelle étiquette saisie"
 
-#: util/_util.cpp:848
+#: util/_util.cpp:850
 msgid "Currency rates have been updated"
 msgstr "Taux des devises mis à jour"
 
-#: util/_util.cpp:964 util/_util.cpp:1067 util/_util.cpp:1073
-#: util/_util.cpp:1104 util/_util.cpp:1171
+#: util/_util.cpp:966 util/_util.cpp:1069 util/_util.cpp:1075
+#: util/_util.cpp:1106 util/_util.cpp:1173
 msgid "JSON Parse Error"
 msgstr "Erreur d'analyse JSON"
 
-#: util/_util.cpp:1112 util/_util.cpp:1179
+#: util/_util.cpp:1114 util/_util.cpp:1181
 msgid "Expected response to contain a data or error string"
 msgstr "La réponse attendue doit contenir une chaîne de données ou une chaîne d'erreur"
 
-#: util/_util.cpp:1143
+#: util/_util.cpp:1145
 msgid "Unable to find asset for symbol."
 msgstr "Impossible de trouver la ressource pour le symbole."
 
-#: util/_util.cpp:1186
+#: util/_util.cpp:1188
 msgid "Unable to get base currency!"
 msgstr "Impossible d'obtenir la devise de base !"
 
-#: util/_util.cpp:1192
+#: util/_util.cpp:1194
 msgid "USD"
 msgstr "USD"
 
-#: util/_util.cpp:1195
+#: util/_util.cpp:1197
 msgid "Unable to find currency 'USD', required for converting historical prices"
 msgstr "Impossible de trouver la devise 'USD', requis pour la conversion des prix historiques"
 
-#: util/_util.cpp:1220
+#: util/_util.cpp:1222
 msgid "Unable to parse price in asset history"
 msgstr "Impossible d'analyser le prix dans l'historique de l'actif"
 
-#: util/_util.cpp:1591 wizard/wizard_update.cpp:183
+#: util/_util.cpp:1593 wizard/wizard_update.cpp:183
 #, c-format
 msgid "Version: %s"
 msgstr "Version: %s"
 
-#: util/_util.cpp:1592
+#: util/_util.cpp:1594
 #, c-format
 msgid "Built on: %1$s %2$s"
 msgstr "Basé sur : %1$s %2$s"
 
-#: util/_util.cpp:1593
+#: util/_util.cpp:1595
 #, c-format
 msgid "Database version: %d"
 msgstr "Version de la base de données : %d"
 
-#: util/_util.cpp:1600
+#: util/_util.cpp:1602
 #, c-format
 msgid "Git commit: %1$s (%2$s)"
 msgstr "Git commit : %1$s (%2$s)"
 
-#: util/_util.cpp:1603
+#: util/_util.cpp:1605
 #, c-format
 msgid "Git branch: %s"
 msgstr "Git branch : %s"
 
-#: util/_util.cpp:1607
+#: util/_util.cpp:1609
 msgid "MMEX is using the following support products:"
 msgstr "MMEX utilise les produits suivant:"
 
-#: util/_util.cpp:1624
+#: util/_util.cpp:1626
 msgid "Built with:"
 msgstr "Développé avec :"
 
-#: util/_util.cpp:1643
+#: util/_util.cpp:1645
 msgid "Running on:"
 msgstr "Mis en marche le:"
 
-#: util/_util.cpp:1657
+#: util/_util.cpp:1659
 #, c-format
 msgid "System Locale: %s"
 msgstr "Paramètres d'affichage locaux %s"
 
-#: util/_util.cpp:1658
+#: util/_util.cpp:1660
 #, c-format
 msgid "User Interface Language: %s"
 msgstr "Langue Interface Utilisateur : %s"
 
-#: util/_util.cpp:1826
+#: util/_util.cpp:1828
 msgid "The complete list of closed issues is available at this link"
 msgstr "La liste complète des problèmes réglés peut être consultée via ce lien"
 
