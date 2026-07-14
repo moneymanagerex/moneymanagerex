@@ -56,14 +56,14 @@ wxBEGIN_EVENT_TABLE(AssetList, ListBase)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> AssetList::LIST_INFO = {
-    { LIST_ID_ICON,          true, _n("Icon"),          25,  _FL, false },
-    { LIST_ID_ID,            true, _n("ID"),            _WA, _FR, true },
-    { LIST_ID_NAME,          true, _n("Name"),          150, _FL, true },
-    { LIST_ID_DATE,          true, _n("Date"),          _WH, _FL, true },
-    { LIST_ID_TYPE,          true, _n("Type"),          _WH, _FL, true },
-    { LIST_ID_VALUE_INITIAL, true, _n("Initial Value"), _WH, _FR, true },
-    { LIST_ID_VALUE_CURRENT, true, _n("Current Value"), _WH, _FR, true },
-    { LIST_ID_NOTES,         true, _n("Notes"),         450, _FL, true },
+    { LIST_ID_ICON,          true, _n("Icon"),          25,  _FL, false, false  },
+    { LIST_ID_ID,            true, _n("ID"),            _WA, _FR, true, false  },
+    { LIST_ID_NAME,          true, _n("Name"),          150, _FL, true, true  },
+    { LIST_ID_DATE,          true, _n("Date"),          _WH, _FL, true, false  },
+    { LIST_ID_TYPE,          true, _n("Type"),          _WH, _FL, true, false  },
+    { LIST_ID_VALUE_INITIAL, true, _n("Initial Value"), _WH, _FR, true, false  },
+    { LIST_ID_VALUE_CURRENT, true, _n("Current Value"), _WH, _FR, true, false  },
+    { LIST_ID_NOTES,         true, _n("Notes"),         450, _FL, true, true  }
 };
 
 AssetList::AssetList(

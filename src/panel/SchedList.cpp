@@ -2,6 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2014 - 2022 Nikolay Akimov
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -69,23 +70,23 @@ wxBEGIN_EVENT_TABLE(SchedList, ListBase)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> SchedList::LIST_INFO = {
-    { LIST_ID_ICON,         true, _n("Icon"),        25,  _FC, false },
-    { LIST_ID_ID,           true, _n("ID"),          _WA, _FR, true },
-    { LIST_ID_PAYMENT_DATE, true, _n("Date Paid"),   _WH, _FL, true },
-    { LIST_ID_DUE_DATE,     true, _n("Date Due"),    _WH, _FL, true },
-    { LIST_ID_ACCOUNT,      true, _n("Account"),     _WH, _FL, true },
-    { LIST_ID_PAYEE,        true, _n("Payee"),       _WH, _FL, true },
-    { LIST_ID_STATUS,       true, _n("Status"),      _WH, _FC, true },
-    { LIST_ID_CATEGORY,     true, _n("Category"),    _WH, _FL, true },
-    { LIST_ID_TAGS,         true, _n("Tags"),        200, _FL, true },
-    { LIST_ID_WITHDRAWAL,   true, _n("Withdrawal"),  _WH, _FR, true },
-    { LIST_ID_DEPOSIT,      true, _n("Deposit"),     _WH, _FR, true },
-    { LIST_ID_FREQUENCY,    true, _n("Frequency"),   _WH, _FL, true },
-    { LIST_ID_REPEATS,      true, _n("Repetitions"), _WH, _FR, true },
-    { LIST_ID_AUTO,         true, _n("Autorepeat"),  _WH, _FL, true },
-    { LIST_ID_REMAINING,    true, _n("Remaining"),   _WH, _FL, true },
-    { LIST_ID_NUMBER,       true, _n("Number"),      _WH, _FL, true },
-    { LIST_ID_NOTES,        true, _n("Notes"),       150, _FL, true },
+    { LIST_ID_ICON,         true, _n("Icon"),        25,  _FC, false, false },
+    { LIST_ID_ID,           true, _n("ID"),          _WA, _FR, true, false },
+    { LIST_ID_PAYMENT_DATE, true, _n("Date Paid"),   _WH, _FL, true, false },
+    { LIST_ID_DUE_DATE,     true, _n("Date Due"),    _WH, _FL, true, false },
+    { LIST_ID_ACCOUNT,      true, _n("Account"),     _WH, _FL, true, true },
+    { LIST_ID_PAYEE,        true, _n("Payee"),       _WH, _FL, true, true },
+    { LIST_ID_STATUS,       true, _n("Status"),      _WH, _FC, true, false },
+    { LIST_ID_CATEGORY,     true, _n("Category"),    _WH, _FL, true, true },
+    { LIST_ID_TAGS,         true, _n("Tags"),        200, _FL, true, true },
+    { LIST_ID_WITHDRAWAL,   true, _n("Withdrawal"),  _WH, _FR, true, false },
+    { LIST_ID_DEPOSIT,      true, _n("Deposit"),     _WH, _FR, true, false },
+    { LIST_ID_FREQUENCY,    true, _n("Frequency"),   _WH, _FL, true, false },
+    { LIST_ID_REPEATS,      true, _n("Repetitions"), _WH, _FR, true, false },
+    { LIST_ID_AUTO,         true, _n("Autorepeat"),  _WH, _FL, true, false },
+    { LIST_ID_REMAINING,    true, _n("Remaining"),   _WH, _FR, true, false },
+    { LIST_ID_NUMBER,       true, _n("Number"),      _WH, _FL, true, false },
+    { LIST_ID_NOTES,        true, _n("Notes"),       150, _FL, true, true },
 };
 
 SchedList::SchedList(

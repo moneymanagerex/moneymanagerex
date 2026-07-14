@@ -1,7 +1,7 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2010-2021 Nikolay Akimov
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025-2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -113,6 +113,4 @@ private:
     void onMarkAllTransactions(wxCommandEvent& event);
     void onListKeyDown(wxListEvent& event);
     void onListItemSelected(wxListEvent& event);
-    void onSize(wxSizeEvent& event);
-
 };

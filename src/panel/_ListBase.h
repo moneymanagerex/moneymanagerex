@@ -3,7 +3,7 @@
  Copyright (C) 2015 James Higley
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  Copyright (C) 2025 George Ef (george.a.ef@gmail.com)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025-2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -45,6 +45,7 @@ struct ListColumnInfo
     int default_width;
     int format;
     bool sortable;
+    bool expandable;
 
     static const std::vector<int> getListId(const std::vector<ListColumnInfo>& a_info);
 };
@@ -94,6 +95,8 @@ public:
 private:
     std::vector<int> c_sort_col_nr;            // sorting col_nr (cache)
     int c_icon_col_nr = -1;                    // sort icon col_nr (cache)
+    std::vector<int> c_expandable_col_ids;
+    bool m_hasExpandableCols = false;
 
 public:
     ListBase(wxWindow* parent_win, wxWindowID win_id);
@@ -152,6 +155,7 @@ protected:
 
 private:
     void shiftColumn(int col_vo, int offset);
+    void setColumnSize();
     void headerMoveBeginEnd(bool dir);
 
     void onItemResize(wxListEvent& event);
@@ -163,6 +167,7 @@ private:
     void onHeaderShow(wxCommandEvent& WXUNUSED(event));
     void onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir);
     void onHeaderReset(wxCommandEvent& WXUNUSED(event));
+    void onSize(wxSizeEvent& event);
 };
 
 inline int ListBase::getColIdSize() const

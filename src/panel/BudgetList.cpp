@@ -3,6 +3,7 @@
  Copyright (C) 2012 Stefano Giorgio
  Copyright (C) 2013 - 2022 Nikolay Akimov
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
+ Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -31,13 +32,13 @@ wxBEGIN_EVENT_TABLE(BudgetList, ListBase)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> BudgetList::LIST_INFO = {
-    { LIST_ID_ICON,      true, _n("Icon"),      _WH, _FL, false },
-    { LIST_ID_CATEGORY,  true, _n("Category"),  _WH, _FL, false },
-    { LIST_ID_FREQUENCY, true, _n("Frequency"), _WH, _FL, false },
-    { LIST_ID_AMOUNT,    true, _n("Amount"),    _WH, _FR, false },
-    { LIST_ID_ESTIMATED, true, _n("Estimated"), _WH, _FR, false },
-    { LIST_ID_ACTUAL,    true, _n("Actual"),    _WH, _FR, false },
-    { LIST_ID_NOTES,     true, _n("Notes"),     _WH, _FL, false },
+    { LIST_ID_ICON,      true, _n("Icon"),      _WH, _FL, false, false },
+    { LIST_ID_CATEGORY,  true, _n("Category"),  _WH, _FL, false, true },
+    { LIST_ID_FREQUENCY, true, _n("Frequency"), _WH, _FL, false, false },
+    { LIST_ID_AMOUNT,    true, _n("Amount"),    _WH, _FR, false, false },
+    { LIST_ID_ESTIMATED, true, _n("Estimated"), _WH, _FR, false, false },
+    { LIST_ID_ACTUAL,    true, _n("Actual"),    _WH, _FR, false, false },
+    { LIST_ID_NOTES,     true, _n("Notes"),     _WH, _FL, false, true },
 };
 
 BudgetList::BudgetList(
