@@ -578,7 +578,8 @@ void ListBase::onColRightClick(wxListEvent& event)
     }
 
     menu.AppendSubMenu(menu_toggle, _t("Hide/Show column"));
-    menu.Append(MENU_HEADER_HIDE, _t("Hide this column"));
+    wxMenuItem* mi = menu.Append(MENU_HEADER_HIDE, _t("Hide this column"));
+    mi->Enable(getColNrSize() - m_col_hidden_id.size() - m_col_disabled_id.size() > 1);
 
     // move columns
     if (m_col_id_nr.size() > 0) {
@@ -665,20 +666,25 @@ void ListBase::onHeaderToggle(wxCommandEvent& event)
         return;
     Freeze();
     int col_id = getColId_Nr(col_nr);
-    int new_width;
+    int new_width = -1;
     if (isHiddenColId(col_id)) {
         m_col_hidden_id.erase(col_id);
         new_width = m_col_width_id[col_id];
         if (new_width == 0) new_width = m_col_info_id[col_id].default_width;
     }
     else {
-        m_col_width_id[col_id] = GetColumnWidth(col_nr);
-        m_col_hidden_id.insert(col_id);
-        new_width = 0;
+        // Check if not last column:
+        if (getColNrSize() - m_col_hidden_id.size() - m_col_disabled_id.size() > 1) {
+            m_col_width_id[col_id] = GetColumnWidth(col_nr);
+            m_col_hidden_id.insert(col_id);
+            new_width = 0;
+        }
     }
-    SetColumnWidth(col_nr, new_width);
-    setColumnSize();
-    savePref();
+    if (new_width > -1) {
+        SetColumnWidth(col_nr, new_width);
+        setColumnSize();
+        savePref();
+    }
     Thaw();
 }
 

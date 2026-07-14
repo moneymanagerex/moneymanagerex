@@ -864,9 +864,7 @@ const wxString JournalList::getItem(long item, int col_id) const
                 dateFormat + " %H:%M:%S"
             )
             : wxString("");
-    }
 
-    switch (col_id) {
     case LIST_ID_WITHDRAWAL:
         if (!w_panel->isAccount()) {
             const AccountData* account = AccountModel::instance().get_idN_data_n(
