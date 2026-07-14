@@ -413,19 +413,15 @@ void JournalList::setColumnsInfo()
     }
 
     m_col_info_id = LIST_INFO;
-    m_col_disabled_id.clear();
     m_col_id_nr.clear();
-
-    if (!PrefModel::instance().getUseTransDateTime())
-        m_col_disabled_id.insert(LIST_ID_TIME);
-    if (w_panel->isAccount() && w_panel->m_account_n->m_credit_limit == 0)
-        m_col_disabled_id.insert(LIST_ID_CREDIT);
 
     m_col_id_nr.push_back(LIST_ID_ICON);
     m_col_id_nr.push_back(LIST_ID_SN);
     m_col_id_nr.push_back(LIST_ID_ID);
     m_col_id_nr.push_back(LIST_ID_DATE);
-    m_col_id_nr.push_back(LIST_ID_TIME);
+    if (PrefModel::instance().getUseTransDateTime()) {
+        m_col_id_nr.push_back(LIST_ID_TIME);
+    }
     m_col_id_nr.push_back(LIST_ID_NUMBER);
     if (!w_panel->isAccount())
         m_col_id_nr.push_back(LIST_ID_ACCOUNT);
@@ -437,7 +433,9 @@ void JournalList::setColumnsInfo()
     m_col_id_nr.push_back(LIST_ID_DEPOSIT);
     if (w_panel->isAccount()) {
         m_col_id_nr.push_back(LIST_ID_BALANCE);
-        m_col_id_nr.push_back(LIST_ID_CREDIT);
+        if (w_panel->m_account_n->m_credit_limit != 0) {
+            m_col_id_nr.push_back(LIST_ID_CREDIT);
+        }
     }
     m_col_id_nr.push_back(LIST_ID_NOTES);
     if (w_panel->isDeletedTrans())
@@ -777,8 +775,6 @@ const wxString JournalList::getItem(long item, int col_id) const
     if (item < 0 || item >= static_cast<int>(m_journal_xa.size()))
         return "";
     // TODO: add isHiddenColId(col_id)
-    if (isDisabledColId(col_id))
-        return "";
     const Journal::DataExt& journal_dx = m_journal_xa.at(item);
 
     wxString value = wxEmptyString;
