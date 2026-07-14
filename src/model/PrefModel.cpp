@@ -541,7 +541,7 @@ void PrefModel::saveDoSpecialColorReconciled(const bool value)
 
 void PrefModel::loadDoPanelResize()
 {
-    m_do_panel_resize = SettingModel::instance().getBool("RESIZE_TRANSACTION_PANEL", false);
+    m_do_panel_resize = SettingModel::instance().getBool("RESIZE_TRANSACTION_PANEL", true);
 }
 void PrefModel::saveDoPanelResize(const bool value)
 {
