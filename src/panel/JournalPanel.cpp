@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2014 - 2021 Nikolay Akimov
  Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -778,6 +778,7 @@ void JournalPanel::filterList()
         int repeat_id = -1;
         TrxData sched_trx_d;
         const TrxData* trx_n = nullptr;
+        bool accountInGroup = false, toAccountInGroup = false;
 
         if (trx_it != trx_a.end() && (sched_index_it == sched_index_a.end() ||
             trx_it->m_date() <= std::get<1>(*sched_index_it)
@@ -798,13 +799,17 @@ void JournalPanel::filterList()
             sched_index_it++;
         }
 
-        if (isGroup() &&
-            m_account_id_m.find(trx_n->m_account_id) == m_account_id_m.end() &&
-            m_account_id_m.find(trx_n->m_to_account_id_n) == m_account_id_m.end()
-        )
+        if (isGroup()) {
+            accountInGroup = m_account_id_m.find(trx_n->m_account_id) != m_account_id_m.end();
+            toAccountInGroup = m_account_id_m.find(trx_n->m_to_account_id_n) != m_account_id_m.end();
+            if (!accountInGroup && !toAccountInGroup) {
+                continue;
+            }
+        }
+
+        if (isDeletedTrans() != trx_n->is_deleted()) {
             continue;
-        if (isDeletedTrans() != trx_n->is_deleted())
-            continue;
+        }
 
         // check if trx_n is in future, with granularity of a day
         bool is_future = trx_n->m_date() > mmDate::today();
@@ -812,7 +817,7 @@ void JournalPanel::filterList()
         if (ignore_future && is_future)
             break;
 
-        // update m_balance even if tran is filtered out
+        // update m_balance even if transaction is filtered out
         double account_flow = 0.0;
         if (isAccount()) {
             // assertion: !trx_n->is_deleted()
@@ -847,7 +852,23 @@ void JournalPanel::filterList()
             }
         }
 
-        journal_dx.PAYEENAME = journal_dx.real_payee_name(m_account_id);
+        if (isGroup()) {
+            if (accountInGroup) {
+                journal_dx.PAYEENAME = journal_dx.real_payee_name(m_account_id);
+                if (!toAccountInGroup) {
+                    journal_dx.m_account_d_id_n = -1; journal_dx.m_amount_d = 0.0;
+                }
+            }
+            else if (toAccountInGroup) {
+                journal_dx.PAYEENAME = "< " + journal_dx.ACCOUNTNAME;
+                journal_dx.ACCOUNTNAME = journal_dx.TOACCOUNTNAME;
+                journal_dx.m_account_w_id_n = -1; journal_dx.m_amount_w = 0.0;
+            }
+        }
+        else {
+            journal_dx.PAYEENAME = journal_dx.real_payee_name(m_account_id);
+        }
+
         if (isAccount()) {
             if (journal_dx.m_account_w_id_n != m_account_id) {
                 journal_dx.m_account_w_id_n = -1; journal_dx.m_amount_w = 0.0;
