@@ -103,4 +103,5 @@ private:
     void OnListKeyDown(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);
     void OnSetUserColour(wxCommandEvent& event);
+    void onSize(wxSizeEvent& event);
 };

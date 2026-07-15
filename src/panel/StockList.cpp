@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2010-2021 Nikolay Akimov
  Copyright (C) 2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025-2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -69,21 +69,21 @@ wxBEGIN_EVENT_TABLE(StockList, ListBase)
 wxEND_EVENT_TABLE()
 
 const std::vector<ListColumnInfo> StockList::LIST_INFO = {
-    { LIST_ID_ICON,           true, _n("Icon"),                 25,  _FC, false },
-    { LIST_ID_ID,             true, _n("ID"),                   _WA, _FL, true },
-    { LIST_ID_DATE,           true, _n("*Date"),                _WH, _FL, true },
-    { LIST_ID_NAME,           true, _n("Company Name"),         _WH, _FL, true },
-    { LIST_ID_SYMBOL,         true, _n("Symbol"),               _WH, _FL, true },
-    { LIST_ID_NUMBER,         true, _n("Share Total"),          _WH, _FR, true },
-    { LIST_ID_PRICE,          true, _n("Avg Share Price"),      _WH, _FR, true },
-    { LIST_ID_VALUE,          true, _n("Total Cost"),           _WH, _FR, true },
-    { LIST_ID_REAL_GAIN_LOSS, true, _n("Realized Gain/Loss"),   _WH, _FR, true },
-    { LIST_ID_GAIN_LOSS,      true, _n("Unrealized Gain/Loss"), _WH, _FR, true },
-    { LIST_ID_CURRENT,        true, _n("Curr. Share Price"),    _WH, _FR, true },
-    { LIST_ID_CURRVALUE,      true, _n("Curr. Total Value"),    _WH, _FR, true },
-    { LIST_ID_PRICEDATE,      true, _n("Price Date"),           _WH, _FL, true },
-    { LIST_ID_COMMISSION,     true, _n("Commission"),           _WH, _FR, true },
-    { LIST_ID_NOTES,          true, _n("Notes"),                _WH, _FL, true },
+    { LIST_ID_ICON,           true, _n("Icon"),                 25,  _FC, false, false },
+    { LIST_ID_ID,             true, _n("ID"),                   _WA, _FL, true, false },
+    { LIST_ID_DATE,           true, _n("*Date"),                _WH, _FL, true, false },
+    { LIST_ID_NAME,           true, _n("Company Name"),         _WH, _FL, true, true },
+    { LIST_ID_SYMBOL,         true, _n("Symbol"),               _WH, _FL, true, false },
+    { LIST_ID_NUMBER,         true, _n("Share Total"),          _WH, _FR, true, false },
+    { LIST_ID_PRICE,          true, _n("Avg Share Price"),      _WH, _FR, true, false },
+    { LIST_ID_VALUE,          true, _n("Total Cost"),           _WH, _FR, true, false },
+    { LIST_ID_REAL_GAIN_LOSS, true, _n("Realized Gain/Loss"),   _WH, _FR, true, false },
+    { LIST_ID_GAIN_LOSS,      true, _n("Unrealized Gain/Loss"), _WH, _FR, true, false },
+    { LIST_ID_CURRENT,        true, _n("Curr. Share Price"),    _WH, _FR, true, false },
+    { LIST_ID_CURRVALUE,      true, _n("Curr. Total Value"),    _WH, _FR, true, false },
+    { LIST_ID_PRICEDATE,      true, _n("Price Date"),           _WH, _FL, true, false },
+    { LIST_ID_COMMISSION,     true, _n("Commission"),           _WH, _FR, true, false },
+    { LIST_ID_NOTES,          true, _n("Notes"),                _WH, _FL, true, true },
 };
 
 StockList::StockList(
@@ -126,8 +126,6 @@ StockList::StockList(
     if (!m_stock_a.empty()) {
         EnsureVisible(m_stock_a.size() - 1);
     }
-
-    this->Bind(wxEVT_SIZE, &StockList::onSize, this);
 }
 
 StockList::~StockList()
@@ -793,43 +791,4 @@ wxString StockList::getStockInfo(int selectedIndex, bool with_symbol) const
         );
     }
     return info_str;
-}
-
-void StockList::onSize(wxSizeEvent& event)
-{
-    struct colInfo {
-        int id;
-        int width;
-    };
-
-    if (PrefModel::instance().getDoPanelResize())
-    {
-        int twidth = 0;
-        std::vector<colInfo> resizable_ids;
-        for (int i = 0; i < GetColumnCount(); i++) {
-            int col_id = getColId_Nr(i);
-            if (!isHiddenColId(col_id)) {
-                int cw = GetColumnWidth(i);
-                twidth += cw;
-
-                switch (col_id) {
-                    case LIST_ID_NAME:
-                    case LIST_ID_NOTES:
-                        resizable_ids.push_back({i, cw});
-                        break;
-                }
-            }
-        }
-
-        // calculate and apply diff:
-        int diff = this->GetSize().GetWidth() - twidth;
-        if (abs(diff) > 5) {
-            int diffdelta = diff / static_cast<int>(resizable_ids.size());
-            for (colInfo col: resizable_ids) {
-                this->SetColumnWidth(col.id, col.width + diffdelta);
-            }
-        }
-    }
-
-    event.Skip();
 }

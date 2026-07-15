@@ -3,6 +3,7 @@ Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2011, 2012 Stefano Giorgio
 Copyright (C) 2013, 2014, 2020, 2021 Nikolay Akimov
 Copyright (C) 2021-2025 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -198,7 +199,6 @@ private:
     void deleteTransactionsByStatus(std::optional<TrxStatus> status_n);
     bool checkForClosedAccounts();
     bool checkTransactionLocked(int64 account_id, mmDate date);
-    void setAutomaticColumnSize();
 
 // -- event handlers
 

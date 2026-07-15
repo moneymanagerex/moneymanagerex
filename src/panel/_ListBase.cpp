@@ -3,7 +3,7 @@
  Copyright (C) 2015 James Higley
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  Copyright (C) 2025 George Ef (george.a.ef@gmail.com)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025-2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -74,11 +74,18 @@ void ListBase::createColumns()
     for (int col_nr = 0; col_nr < getColNrSize(); ++col_nr) {
         int col_id = getColId_Nr(col_nr);
         ListColumnInfo col_info = m_col_info_id[col_id];
-        int col_width = m_col_width_id[col_id];
-        if (isDisabledColId(col_id) || isHiddenColId(col_id)) col_width = 0;
+        int col_width = isHiddenColId(col_id) ? 0 : m_col_width_id[col_id];
         InsertColumn(col_nr, getColHeader(col_id), col_info.format, col_width);
+        if (col_info.expandable) {
+            c_expandable_col_ids.push_back(col_id);
+        }
     }
     updateSortIcon();
+    m_hasExpandableCols = c_expandable_col_ids.size() > 0;
+
+    if (m_hasExpandableCols) {
+        this->Bind(wxEVT_SIZE, &ListBase::onSize, this);
+    }
 }
 
 wxString ListBase::buildPage(const wxString &title) const
@@ -100,8 +107,6 @@ wxString ListBase::buildPage(const wxString &title) const
 
     for (int col_vo = 0; col_vo < GetColumnCount(); ++col_vo) {
         int col_nr = getColNr_Vo(col_vo);
-        if (isDisabledColNr(col_nr))
-            continue;
 
         wxListItem col_item;
         col_item.SetMask(wxLIST_MASK_TEXT);
@@ -114,9 +119,6 @@ wxString ListBase::buildPage(const wxString &title) const
         text << eol << "<tr>" << eol;
         for (int col_vo = 0; col_vo < GetColumnCount(); ++col_vo) {
             int col_nr = getColNr_Vo(col_vo);
-            if (isDisabledColNr(col_nr))
-                continue;
-
             text << "<td>" << wxListCtrl::GetItemText(row_nr, col_nr) << "</td>" << eol;
         }
         text << "</tr>" << eol;
@@ -494,6 +496,43 @@ void ListBase::shiftColumn(int col_vo, int offset)
     m_col_id_nr[dst_nr] = col_id;
 }
 
+void ListBase::setColumnSize()
+{
+    struct colInfo {
+        int id;
+        int width;
+    };
+
+    if (PrefModel::instance().getDoPanelResize() && m_hasExpandableCols) {
+        // get total column width:
+        int twidth = 0;
+        std::vector<colInfo> resizable_ids;
+        for (int i = 0; i < GetColumnCount(); i++) {
+            int col_id = getColId_Nr(i);
+            if (!isHiddenColId(col_id)) {
+                int cw = GetColumnWidth(i);
+                twidth += cw;
+                if (std::find(c_expandable_col_ids.begin(), c_expandable_col_ids.end(), col_id) != c_expandable_col_ids.end()) {
+                    resizable_ids.push_back({i, cw});
+                }
+            }
+        }
+
+        if (resizable_ids.size() > 0) {
+            // calculate and apply diff:
+            int diff = this->GetSize().GetWidth() - twidth;
+            if (abs(diff) > 5) {
+                int diffdelta = diff / static_cast<int>(resizable_ids.size());
+                for (colInfo col: resizable_ids) {
+                    if (col.width + diffdelta > 0) {
+                        SetColumnWidth(col.id, col.width + diffdelta);
+                    }
+                }
+            }
+        }
+    }
+}
+
 //----------------------------------------------------------------------------
 
 void ListBase::onItemResize(wxListEvent& event)
@@ -518,8 +557,6 @@ void ListBase::onColRightClick(wxListEvent& event)
     for (int col_vo = 0; col_vo < getColNrSize(); col_vo++) {
         int col_nr = getColNr_Vo(col_vo);
         int col_id = getColId_Nr(col_nr);
-        if (isDisabledColId(col_id))
-            continue;
         int event_id = MENU_HEADER_TOGGLE_MIN + col_nr;
         if (event_id > MENU_HEADER_TOGGLE_MAX)
             break;
@@ -533,7 +570,8 @@ void ListBase::onColRightClick(wxListEvent& event)
     }
 
     menu.AppendSubMenu(menu_toggle, _t("Hide/Show column"));
-    menu.Append(MENU_HEADER_HIDE, _t("Hide this column"));
+    wxMenuItem* mi = menu.Append(MENU_HEADER_HIDE, _t("Hide this column"));
+    mi->Enable(getColNrSize() - m_col_hidden_id.size() > 1);
 
     // move columns
     if (m_col_id_nr.size() > 0) {
@@ -542,8 +580,6 @@ void ListBase::onColRightClick(wxListEvent& event)
         for (int col_vo = 0; col_vo < getColNrSize(); col_vo++) {
             int col_nr = getColNr_Vo(col_vo);
             int col_id = getColId_Nr(col_nr);
-            if (isDisabledColId(col_id))
-                continue;
             int event_id = MENU_HEADER_SHOW_MIN + col_nr;
             if (event_id > MENU_HEADER_SHOW_MAX)
                 break;
@@ -620,19 +656,25 @@ void ListBase::onHeaderToggle(wxCommandEvent& event)
         return;
     Freeze();
     int col_id = getColId_Nr(col_nr);
-    int new_width;
+    int new_width = -1;
     if (isHiddenColId(col_id)) {
         m_col_hidden_id.erase(col_id);
         new_width = m_col_width_id[col_id];
         if (new_width == 0) new_width = m_col_info_id[col_id].default_width;
     }
     else {
-        m_col_width_id[col_id] = GetColumnWidth(col_nr);
-        m_col_hidden_id.insert(col_id);
-        new_width = 0;
+        // Check if not last column:
+        if (getColNrSize() - m_col_hidden_id.size() > 1) {
+            m_col_width_id[col_id] = GetColumnWidth(col_nr);
+            m_col_hidden_id.insert(col_id);
+            new_width = 0;
+        }
     }
-    SetColumnWidth(col_nr, new_width);
-    savePref();
+    if (new_width > -1) {
+        SetColumnWidth(col_nr, new_width);
+        setColumnSize();
+        savePref();
+    }
     Thaw();
 }
 
@@ -645,6 +687,7 @@ void ListBase::onHeaderHide(wxCommandEvent& WXUNUSED(event))
     m_col_width_id[col_id] = GetColumnWidth(m_sel_col_nr);
     m_col_hidden_id.insert(col_id);
     SetColumnWidth(m_sel_col_nr, 0);
+    setColumnSize();
     savePref();
     Thaw();
 }
@@ -670,6 +713,7 @@ void ListBase::onHeaderShow(wxCommandEvent& event)
     shiftColumn(col_vo, offset);
 
     updateSortIcon();
+    setColumnSize();
     savePref();
     Thaw();
 }
@@ -686,7 +730,7 @@ void ListBase::onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir)
     int dst_vo = src_vo;
     int dst_nr = src_nr;
     do { dst_vo += dir; dst_nr = getColNr_Vo(dst_vo); } while (
-        isValidColNr(dst_nr) && (isDisabledColNr(dst_nr) || isHiddenColNr(dst_nr))
+        isValidColNr(dst_nr) && isHiddenColNr(dst_nr)
     );
     // shift src_vo to dst_vo
     if (isValidColNr(dst_nr)) {
@@ -719,12 +763,16 @@ void ListBase::onHeaderReset(wxCommandEvent& WXUNUSED(event))
     m_col_hidden_id.clear();
     for (int col_nr = 0; col_nr < getColNrSize(); ++col_nr) {
         int col_id = getColId_Nr(col_nr);
-        if (isDisabledColId(col_id))
-            continue;
         int col_width = m_col_info_id[col_id].default_width;
         m_col_width_id[col_id] = col_width;
         SetColumnWidth(col_nr, col_width);
     }
     savePref();
     Thaw();
+}
+
+void ListBase::onSize(wxSizeEvent& event)
+{
+    setColumnSize();
+    event.Skip();
 }

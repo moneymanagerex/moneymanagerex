@@ -95,29 +95,29 @@ wxBEGIN_EVENT_TABLE(JournalList, ListBase)
 wxEND_EVENT_TABLE();
 
 const std::vector<ListColumnInfo> JournalList::LIST_INFO = {
-    { LIST_ID_ICON,        true, _n("Icon"),         25,  _FC, false },
-    { LIST_ID_ID,          true, _n("ID"),           _WA, _FR, true },
-    { LIST_ID_DATE,        true, _n("Date"),         80,  _FC, true },
-    { LIST_ID_TIME,        true, _n("Time"),         70,  _FL, true },
-    { LIST_ID_NUMBER,      true, _n("Number"),       70,  _FL, true },
-    { LIST_ID_ACCOUNT,     true, _n("Account"),      100, _FL, true },
-    { LIST_ID_PAYEE_STR,   true, _n("Payee"),        150, _FL, true },
-    { LIST_ID_STATUS,      true, _n("Status"),       _WH, _FC, true },
-    { LIST_ID_CATEGORY,    true, _n("Category"),     150, _FL, true },
-    { LIST_ID_TAGS,        true, _n("Tags"),         250, _FL, true },
-    { LIST_ID_WITHDRAWAL,  true, _n("Withdrawal"),   _WH, _FR, true },
-    { LIST_ID_DEPOSIT,     true, _n("Deposit"),      _WH, _FR, true },
-    { LIST_ID_BALANCE,     true, _n("Balance"),      _WH, _FR, true },
-    { LIST_ID_CREDIT,      true, _n("Credit"),       _WH, _FR, true },
-    { LIST_ID_NOTES,       true, _n("Notes"),        250, _FL, true },
-    { LIST_ID_DELETEDTIME, true, _n("Deleted On"),   _WA, _FL, true },
-    { LIST_ID_UDFC01,      false, "",                100, _FL, true },
-    { LIST_ID_UDFC02,      false, "",                100, _FL, true },
-    { LIST_ID_UDFC03,      false, "",                100, _FL, true },
-    { LIST_ID_UDFC04,      false, "",                100, _FL, true },
-    { LIST_ID_UDFC05,      false, "",                100, _FL, true },
-    { LIST_ID_UPDATEDTIME, true, _n("Last Updated"), _WA, _FL, true },
-    { LIST_ID_SN,          true, _n("SN"),           _WA, _FR, true },
+    { LIST_ID_ICON,        true, _n("Icon"),         25,  _FC, false, false },
+    { LIST_ID_ID,          true, _n("ID"),           _WA, _FR, true, false },
+    { LIST_ID_DATE,        true, _n("Date"),         80,  _FC, true, false },
+    { LIST_ID_TIME,        true, _n("Time"),         70,  _FL, true, false },
+    { LIST_ID_NUMBER,      true, _n("Number"),       70,  _FL, true, false },
+    { LIST_ID_ACCOUNT,     true, _n("Account"),      100, _FL, true, true },
+    { LIST_ID_PAYEE_STR,   true, _n("Payee"),        150, _FL, true, true },
+    { LIST_ID_STATUS,      true, _n("Status"),       _WH, _FC, true, false },
+    { LIST_ID_CATEGORY,    true, _n("Category"),     150, _FL, true, true },
+    { LIST_ID_TAGS,        true, _n("Tags"),         250, _FL, true, false },
+    { LIST_ID_WITHDRAWAL,  true, _n("Withdrawal"),   _WH, _FR, true, false },
+    { LIST_ID_DEPOSIT,     true, _n("Deposit"),      _WH, _FR, true, false },
+    { LIST_ID_BALANCE,     true, _n("Balance"),      _WH, _FR, true, false },
+    { LIST_ID_CREDIT,      true, _n("Credit"),       _WH, _FR, true, false },
+    { LIST_ID_NOTES,       true, _n("Notes"),        250, _FL, true, true },
+    { LIST_ID_DELETEDTIME, true, _n("Deleted On"),   _WA, _FL, true, false },
+    { LIST_ID_UDFC01,      false, "",                100, _FL, true, false },
+    { LIST_ID_UDFC02,      false, "",                100, _FL, true, false },
+    { LIST_ID_UDFC03,      false, "",                100, _FL, true, false },
+    { LIST_ID_UDFC04,      false, "",                100, _FL, true, false },
+    { LIST_ID_UDFC05,      false, "",                100, _FL, true, false },
+    { LIST_ID_UPDATEDTIME, true, _n("Last Updated"), _WA, _FL, true, false },
+    { LIST_ID_SN,          true, _n("SN"),           _WA, _FR, true, false },
 };
 
 // -- constructor
@@ -266,8 +266,6 @@ JournalList::JournalList(
     createColumns();
 
     SetSingleStyle(wxLC_SINGLE_SEL, false);
-
-    this->Bind(wxEVT_SIZE, &JournalList::onSize, this);
 }
 
 JournalList::~JournalList()
@@ -415,19 +413,15 @@ void JournalList::setColumnsInfo()
     }
 
     m_col_info_id = LIST_INFO;
-    m_col_disabled_id.clear();
     m_col_id_nr.clear();
-
-    if (!PrefModel::instance().getUseTransDateTime())
-        m_col_disabled_id.insert(LIST_ID_TIME);
-    if (w_panel->isAccount() && w_panel->m_account_n->m_credit_limit == 0)
-        m_col_disabled_id.insert(LIST_ID_CREDIT);
 
     m_col_id_nr.push_back(LIST_ID_ICON);
     m_col_id_nr.push_back(LIST_ID_SN);
     m_col_id_nr.push_back(LIST_ID_ID);
     m_col_id_nr.push_back(LIST_ID_DATE);
-    m_col_id_nr.push_back(LIST_ID_TIME);
+    if (PrefModel::instance().getUseTransDateTime()) {
+        m_col_id_nr.push_back(LIST_ID_TIME);
+    }
     m_col_id_nr.push_back(LIST_ID_NUMBER);
     if (!w_panel->isAccount())
         m_col_id_nr.push_back(LIST_ID_ACCOUNT);
@@ -439,7 +433,9 @@ void JournalList::setColumnsInfo()
     m_col_id_nr.push_back(LIST_ID_DEPOSIT);
     if (w_panel->isAccount()) {
         m_col_id_nr.push_back(LIST_ID_BALANCE);
-        m_col_id_nr.push_back(LIST_ID_CREDIT);
+        if (w_panel->m_account_n->m_credit_limit != 0) {
+            m_col_id_nr.push_back(LIST_ID_CREDIT);
+        }
     }
     m_col_id_nr.push_back(LIST_ID_NOTES);
     if (w_panel->isDeletedTrans())
@@ -779,8 +775,6 @@ const wxString JournalList::getItem(long item, int col_id) const
     if (item < 0 || item >= static_cast<int>(m_journal_xa.size()))
         return "";
     // TODO: add isHiddenColId(col_id)
-    if (isDisabledColId(col_id))
-        return "";
     const Journal::DataExt& journal_dx = m_journal_xa.at(item);
 
     wxString value = wxEmptyString;
@@ -866,9 +860,7 @@ const wxString JournalList::getItem(long item, int col_id) const
                 dateFormat + " %H:%M:%S"
             )
             : wxString("");
-    }
 
-    switch (col_id) {
     case LIST_ID_WITHDRAWAL:
         if (!w_panel->isAccount()) {
             const AccountData* account = AccountModel::instance().get_idN_data_n(
@@ -1201,49 +1193,6 @@ bool JournalList::checkTransactionLocked(int64 account_id, mmDate date)
         wxOK | wxICON_WARNING
     );
     return true;
-}
-
-void JournalList::setAutomaticColumnSize()
-{
-    struct colInfo {
-        int id;
-        int width;
-    };
-
-    // get total column width:
-    int twidth = 0;
-    int rwidth = 0;
-    std::vector<colInfo> resizable_ids;
-    for (int i = 0; i < GetColumnCount(); i++) {
-        int col_id = getColId_Nr(i);
-        if (!isHiddenColId(col_id)) {
-            int cw = GetColumnWidth(i);
-            twidth += cw;
-
-            switch (col_id) {
-                case LIST_ID_PAYEE_STR:
-                case LIST_ID_TAGS:
-                case LIST_ID_NOTES:
-                case LIST_ID_CATEGORY:
-                    resizable_ids.push_back({i, cw});
-                    rwidth += cw;
-                    break;
-            }
-        }
-    }
-
-    // calculate and apply diff:
-    int diff = this->GetSize().GetWidth() - twidth;
-    wxLogDebug("Panel width: %04i: Total width: %04i: Resizable width: %04i: Diff: %04i", this->GetSize().GetWidth(), twidth, rwidth, diff);
-    if (abs(diff) > 5) {
-        int diffdelta = diff / static_cast<int>(resizable_ids.size());
-        for (colInfo col: resizable_ids) {
-            if (col.width + diffdelta > 0) {
-                SetColumnWidth(col.id, col.width + diffdelta);
-                wxLogDebug("Column idx: %04i Column width: %04i: Column diff: %04i", col.id, col.width, diffdelta);
-            }
-        }
-    }
 }
 
 // -- event handlers
@@ -2470,11 +2419,4 @@ void JournalList::onOpenAttachment(wxCommandEvent& WXUNUSED(event))
         journal_key.ref_type(), journal_key.ref_id()
     );
     refreshVisualList();
-}
-
-void JournalList::onSize(wxSizeEvent& event)
-{
-    if (PrefModel::instance().getDoPanelResize())
-        setAutomaticColumnSize();
-    event.Skip();
 }

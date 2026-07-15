@@ -3,7 +3,7 @@
  Copyright (C) 2015 James Higley
  Copyright (C) 2021 Mark Whalley (mark@ipx.co.uk)
  Copyright (C) 2025 George Ef (george.a.ef@gmail.com)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025-2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -45,6 +45,7 @@ struct ListColumnInfo
     int default_width;
     int format;
     bool sortable;
+    bool expandable;
 
     static const std::vector<int> getListId(const std::vector<ListColumnInfo>& a_info);
 };
@@ -81,7 +82,6 @@ public:
     wxString o_col_width_prefix;               // v1.9.0 prefix for column width
     wxString o_sort_prefix;                    // v1.9.0 prefix for sort
     std::vector<ListColumnInfo> m_col_info_id; // map: col_id -> col_info
-    std::unordered_set<int> m_col_disabled_id; // set: col_id -> isDisabled
 
     // dynamic
     std::vector<int> m_col_id_nr;              // map: col_nr -> col_id; or empty
@@ -94,6 +94,8 @@ public:
 private:
     std::vector<int> c_sort_col_nr;            // sorting col_nr (cache)
     int c_icon_col_nr = -1;                    // sort icon col_nr (cache)
+    std::vector<int> c_expandable_col_ids;
+    bool m_hasExpandableCols = false;
 
 public:
     ListBase(wxWindow* parent_win, wxWindowID win_id);
@@ -114,8 +116,6 @@ public:
     int  getColId_Vo(int col_vo) const;
     int  getColVo_Id(int col_id) const;
     auto getColHeader(int col_id, bool show_icon = false) const -> const wxString;
-    bool isDisabledColId(int col_id) const;
-    bool isDisabledColNr(int col_nr) const;
     bool isHiddenColId(int col_id) const;
     bool isHiddenColNr(int col_nr) const;
     bool isHiddenColVo(int col_vo) const;
@@ -152,6 +152,7 @@ protected:
 
 private:
     void shiftColumn(int col_vo, int offset);
+    void setColumnSize();
     void headerMoveBeginEnd(bool dir);
 
     void onItemResize(wxListEvent& event);
@@ -163,6 +164,7 @@ private:
     void onHeaderShow(wxCommandEvent& WXUNUSED(event));
     void onHeaderMove(wxCommandEvent& WXUNUSED(event), int dir);
     void onHeaderReset(wxCommandEvent& WXUNUSED(event));
+    void onSize(wxSizeEvent& event);
 };
 
 inline int ListBase::getColIdSize() const
@@ -228,16 +230,6 @@ inline int ListBase::getColId_Vo(int col_vo) const
 inline int ListBase::getColVo_Id(int col_id) const
 {
     return getColVo_Nr(getColNr_Id(col_id));
-}
-
-inline bool ListBase::isDisabledColId(int col_id) const
-{
-    return m_col_disabled_id.find(col_id) != m_col_disabled_id.end();
-}
-
-inline bool ListBase::isDisabledColNr(int col_nr) const
-{
-    return isDisabledColId(getColId_Nr(col_nr));
 }
 
 inline bool ListBase::isHiddenColId(int col_id) const
