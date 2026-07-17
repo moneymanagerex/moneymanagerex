@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-07-10 08:57+0000\n"
-"PO-Revision-Date: 2026-07-13 17:12\n"
+"POT-Creation-Date: 2026-07-15 18:48+0000\n"
+"PO-Revision-Date: 2026-07-16 21:37\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -1721,14 +1721,14 @@ msgstr "Flera val"
 #: data/_DataEnum.cpp:89 dialog/TrxFilterDialog.cpp:664
 #: dialog/TrxFilterDialog.cpp:1640 dialog/TrxFilterDialog.cpp:1740
 #: import_export/univcsvdialog.cpp:120 panel/JournalList.cpp:108
-#: panel/SchedList.cpp:81 report/ForecastReport.cpp:83
+#: panel/SchedList.cpp:82 report/ForecastReport.cpp:83
 msgid "Withdrawal"
 msgstr "Uttag"
 
 #: data/_DataEnum.cpp:90 dialog/TrxFilterDialog.cpp:665
 #: dialog/TrxFilterDialog.cpp:1642 dialog/TrxFilterDialog.cpp:1742
 #: import_export/univcsvdialog.cpp:121 panel/JournalList.cpp:109
-#: panel/SchedList.cpp:82 report/ForecastReport.cpp:81
+#: panel/SchedList.cpp:83 report/ForecastReport.cpp:81
 msgid "Deposit"
 msgstr "Insättning"
 
@@ -1740,7 +1740,7 @@ msgid "Transfer"
 msgstr "Överföring"
 
 #: data/_DataEnum.cpp:95 dialog/TrxFilterDialog.cpp:59
-#: panel/JournalList.cpp:2293
+#: panel/JournalList.cpp:2242
 msgid "Unreconciled"
 msgstr "Oavstämd"
 
@@ -1754,7 +1754,7 @@ msgid "Void"
 msgstr "Ogiltig"
 
 #: data/_DataEnum.cpp:98 dialog/TrxFilterDialog.cpp:62
-#: panel/JournalList.cpp:2281
+#: panel/JournalList.cpp:2230
 msgid "Follow Up"
 msgstr "Följ upp"
 
@@ -1836,7 +1836,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:110
 #: import_export/webapp.cpp:598 import_export/webappdialog.cpp:144
 #: model/TrxFilter.cpp:205 panel/AssetPanel.cpp:557 panel/JournalList.cpp:103
-#: panel/SchedList.cpp:76 report/FlowReport.cpp:414 report/TrxReport.cpp:232
+#: panel/SchedList.cpp:77 report/FlowReport.cpp:414 report/TrxReport.cpp:232
 msgid "Account"
 msgstr "Konto"
 
@@ -1855,7 +1855,7 @@ msgstr "Schemalägg"
 #: import_export/univcsvdialog.cpp:639 import_export/webappdialog.cpp:147
 #: manager/PayeeManager.cpp:85 manager/PayeeManager.cpp:208
 #: manager/PayeeManager.cpp:250 model/TrxFilter.cpp:206
-#: panel/JournalList.cpp:104 panel/SchedList.cpp:77 report/FlowReport.cpp:415
+#: panel/JournalList.cpp:104 panel/SchedList.cpp:78 report/FlowReport.cpp:415
 #: report/PayeeReport.cpp:189 report/TrxReport.cpp:234
 msgid "Payee"
 msgstr "Betalningsmottagare"
@@ -2092,8 +2092,8 @@ msgstr "Välj ifall om .bak-filer skall skapas vid öppnandet av databasfiler"
 #: import_export/qif_import_gui.cpp:115 import_export/univcsvdialog.cpp:118
 #: import_export/univcsvdialog.cpp:123 import_export/webappdialog.cpp:150
 #: manager/PayeeManager.cpp:117 manager/PayeeManager.cpp:581
-#: model/TrxFilter.cpp:211 panel/AssetList.cpp:66 panel/BudgetList.cpp:40
-#: panel/JournalList.cpp:112 panel/SchedList.cpp:88 panel/StockList.cpp:86
+#: model/TrxFilter.cpp:211 panel/AssetList.cpp:66 panel/BudgetList.cpp:41
+#: panel/JournalList.cpp:112 panel/SchedList.cpp:89 panel/StockList.cpp:86
 #: report/TrxReport.cpp:248
 msgid "Notes"
 msgstr "Noteringar"
@@ -2182,7 +2182,7 @@ msgstr ""
 msgid "Credit"
 msgstr "Kredit"
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1010
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1031
 msgid "Credit Limit:"
 msgstr "Kreditgräns:"
 
@@ -2760,9 +2760,9 @@ msgstr "Uppdatera valutakurs online"
 #: dialog/TrxLinkDialog.cpp:155 dialog/TrxUpdateDialog.cpp:202
 #: import_export/ofx_import_gui.cpp:1937 import_export/qif_export.cpp:680
 #: import_export/univcsvdialog.cpp:112 import_export/webappdialog.cpp:149
-#: model/TrxFilter.cpp:210 panel/BudgetList.cpp:37
+#: model/TrxFilter.cpp:210 panel/BudgetList.cpp:38
 #: panel/DashboardWidget.cpp:382 panel/DashboardWidget.cpp:462
-#: panel/JournalList.cpp:1596 report/CategoryReport.cpp:248
+#: panel/JournalList.cpp:1545 report/CategoryReport.cpp:248
 #: report/FlowReport.cpp:417 report/InExReport.cpp:112 report/TrxReport.cpp:244
 msgid "Amount"
 msgstr "Summa"
@@ -3260,7 +3260,7 @@ msgstr ""
 #: dialog/TrxFilterDialog.cpp:1949 dialog/TrxLinkDialog.cpp:227
 #: import_export/qif_export.cpp:682 import_export/qif_import_gui.cpp:109
 #: import_export/univcsvdialog.cpp:117 model/TrxFilter.cpp:204
-#: panel/JournalList.cpp:102 panel/SchedList.cpp:87 report/TrxReport.cpp:230
+#: panel/JournalList.cpp:102 panel/SchedList.cpp:88 report/TrxReport.cpp:230
 msgid "Number"
 msgstr "Nummer"
 
@@ -3272,7 +3272,7 @@ msgstr "Nummer"
 #: import_export/qif_import_gui.cpp:319 import_export/qif_import_gui.cpp:329
 #: import_export/univcsvdialog.cpp:108 import_export/univcsvdialog.cpp:645
 #: import_export/univcsvdialog.cpp:655 import_export/webappdialog.cpp:145
-#: model/TrxFilter.cpp:207 panel/JournalList.cpp:105 panel/SchedList.cpp:78
+#: model/TrxFilter.cpp:207 panel/JournalList.cpp:105 panel/SchedList.cpp:79
 #: report/TrxReport.cpp:236 wizard/wizard_update.cpp:141
 msgid "Status"
 msgstr "Status"
@@ -3330,7 +3330,7 @@ msgstr "Detaljer för schemalagd transaktion"
 msgid "Specify the date when this bill or deposit is due"
 msgstr "Ange datum när denna faktura eller insättning ska betalas"
 
-#: dialog/SchedDialog.cpp:222 panel/SchedList.cpp:75
+#: dialog/SchedDialog.cpp:222 panel/SchedList.cpp:76
 msgid "Date Due"
 msgstr "Förfallodatum"
 
@@ -3375,7 +3375,7 @@ msgstr "Transaktionsdetaljer"
 msgid "Specify the date the user is requested to enter this transaction"
 msgstr "Ange det datum som användaren är uppmanad att ange denna transaktion"
 
-#: dialog/SchedDialog.cpp:328 panel/SchedList.cpp:74
+#: dialog/SchedDialog.cpp:328 panel/SchedList.cpp:75
 msgid "Date Paid"
 msgstr "Betald datum"
 
@@ -3422,9 +3422,9 @@ msgstr "Ange vilket konto överföringen ska gå till"
 #: import_export/qif_export.cpp:679 import_export/qif_import_gui.cpp:112
 #: import_export/qif_import_gui.cpp:324 import_export/univcsvdialog.cpp:114
 #: import_export/univcsvdialog.cpp:650 import_export/webappdialog.cpp:148
-#: manager/PayeeManager.cpp:203 model/TrxFilter.cpp:208 panel/BudgetList.cpp:35
+#: manager/PayeeManager.cpp:203 model/TrxFilter.cpp:208 panel/BudgetList.cpp:36
 #: panel/DashboardWidget.cpp:209 panel/JournalList.cpp:106
-#: panel/SchedList.cpp:79 report/CategoryReport.cpp:247
+#: panel/SchedList.cpp:80 report/CategoryReport.cpp:247
 #: report/CategoryReport.cpp:491 report/FlowReport.cpp:416
 #: report/TrxReport.cpp:238 report/budgetcategorysummary.cpp:191
 #: report/budgetingperf.cpp:123
@@ -3445,7 +3445,7 @@ msgstr "Använd delade kategorier"
 #: dialog/TrxFilterDialog.cpp:1787 dialog/TrxFilterDialog.cpp:1955
 #: dialog/TrxUpdateDialog.cpp:250 dialog/TrxUpdateDialog.cpp:386
 #: import_export/qif_import_gui.cpp:113 import_export/univcsvdialog.cpp:116
-#: panel/JournalList.cpp:107 panel/SchedList.cpp:80 report/TrxReport.cpp:240
+#: panel/JournalList.cpp:107 panel/SchedList.cpp:81 report/TrxReport.cpp:240
 msgid "Tags"
 msgstr "Taggar"
 
@@ -4012,7 +4012,7 @@ msgstr "Okänd"
 msgid "Lock transaction to date: %s"
 msgstr ""
 
-#: dialog/TrxDialog.cpp:908 dialog/TrxDialog.cpp:931 panel/JournalList.cpp:1200
+#: dialog/TrxDialog.cpp:908 dialog/TrxDialog.cpp:931 panel/JournalList.cpp:1192
 msgid "MMEX Transaction Check"
 msgstr ""
 
@@ -4824,7 +4824,7 @@ msgstr "Exporterar transaktion %zu"
 
 #: import_export/qif_export.cpp:673 import_export/univcsvdialog.cpp:106
 #: model/TrxFilter.cpp:201 panel/AssetList.cpp:60 panel/JournalList.cpp:99
-#: panel/SchedList.cpp:73 panel/StockList.cpp:73 report/TrxReport.cpp:222
+#: panel/SchedList.cpp:74 panel/StockList.cpp:73 report/TrxReport.cpp:222
 msgid "ID"
 msgstr "ID"
 
@@ -5535,8 +5535,8 @@ msgstr "Transaktionen laddades inte ner: försök igen för att ladda ner transa
 msgid "Attachment download error"
 msgstr "Fel vid hämtning av bilaga"
 
-#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1167
-#: panel/JournalPanel.cpp:1185
+#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1188
+#: panel/JournalPanel.cpp:1206
 msgid "Attachment"
 msgstr "Bilaga"
 
@@ -5906,7 +5906,7 @@ msgstr "Vill du verkligen återställa standardintervallen?\n\n"
 msgid "Default date ranges"
 msgstr "Standard datumintervall"
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1370
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1391
 #: panel/ReportPanel.cpp:1095
 msgid "More date ranges…"
 msgstr "Fler datumintervall…"
@@ -6660,8 +6660,8 @@ msgstr ""
 msgid "Back"
 msgstr "Tillbaka"
 
-#: panel/AssetList.cpp:59 panel/BudgetList.cpp:34 panel/JournalList.cpp:98
-#: panel/SchedList.cpp:72 panel/StockList.cpp:72
+#: panel/AssetList.cpp:59 panel/BudgetList.cpp:35 panel/JournalList.cpp:98
+#: panel/SchedList.cpp:73 panel/StockList.cpp:72
 msgid "Icon"
 msgstr "Ikon"
 
@@ -6693,8 +6693,8 @@ msgstr "&Redigera tillgång…"
 msgid "&Delete Asset…"
 msgstr "&Ta bort tillgång…"
 
-#: panel/AssetList.cpp:121 panel/JournalList.cpp:1392 panel/SchedList.cpp:199
-#: panel/StockList.cpp:169
+#: panel/AssetList.cpp:121 panel/JournalList.cpp:1341 panel/SchedList.cpp:200
+#: panel/StockList.cpp:167
 msgid "&Organize Attachments…"
 msgstr "&Organisera bilagor…"
 
@@ -6743,7 +6743,7 @@ msgstr "Frågetecknet (?) används för att matcha ett enda tecken, till exempel
 msgid "The asterisk (*) is used to match any number of characters, for example \"s*d\" finds both \"sad\" and \"started\"."
 msgstr "Asterisken (*) används för att matcha valfritt antal tecken, till exempel \"s*d\" hittar både \"stängd\" och \"startad\"."
 
-#: panel/AssetPanel.cpp:310 panel/StockList.cpp:773 panel/StockPanel.cpp:521
+#: panel/AssetPanel.cpp:310 panel/StockList.cpp:771 panel/StockPanel.cpp:521
 #, c-format
 msgid "Total: %s"
 msgstr "Totalt: %s"
@@ -6771,33 +6771,33 @@ msgstr "Förvaltning av tillgångar"
 msgid "Trade Type"
 msgstr "Typ av handel"
 
-#: panel/BudgetList.cpp:36 panel/SchedList.cpp:83 report/UsageReport.cpp:165
+#: panel/BudgetList.cpp:37 panel/SchedList.cpp:84 report/UsageReport.cpp:165
 msgid "Frequency"
 msgstr "Frekvens"
 
-#: panel/BudgetList.cpp:38 report/budgetcategorysummary.cpp:149
+#: panel/BudgetList.cpp:39 report/budgetcategorysummary.cpp:149
 #: report/budgetcategorysummary.cpp:192
 msgid "Estimated"
 msgstr "Beräknad"
 
-#: panel/BudgetList.cpp:39 report/budgetcategorysummary.cpp:150
+#: panel/BudgetList.cpp:40 report/budgetcategorysummary.cpp:150
 #: report/budgetcategorysummary.cpp:193
 msgid "Actual"
 msgstr "Verklig"
 
-#: panel/BudgetList.cpp:102
+#: panel/BudgetList.cpp:103
 msgid "No budget defined"
 msgstr "Ingen budget definierad"
 
-#: panel/BudgetList.cpp:104
+#: panel/BudgetList.cpp:105
 msgid "Critical: budget exceeded! Stop spending"
 msgstr "Kritiskt: budgeten överskrids! Sluta spendera"
 
-#: panel/BudgetList.cpp:106
+#: panel/BudgetList.cpp:107
 msgid "Within budget limits"
 msgstr "Inom budgetgränser"
 
-#: panel/BudgetList.cpp:108
+#: panel/BudgetList.cpp:109
 msgid "Alert: budget close to or over limit"
 msgstr "Observera: budget nära eller över gränsen"
 
@@ -6929,7 +6929,7 @@ msgstr[1] "%d dagar försenad"
 msgid "Account/Payee"
 msgstr "Konto/betalningsmottagare"
 
-#: panel/DashboardWidget.cpp:382 panel/SchedList.cpp:86
+#: panel/DashboardWidget.cpp:382 panel/SchedList.cpp:87
 msgid "Remaining"
 msgstr "Återstående"
 
@@ -6994,281 +6994,281 @@ msgstr "Senast uppdaterad"
 msgid "SN"
 msgstr "SN"
 
-#: panel/JournalList.cpp:539
+#: panel/JournalList.cpp:535
 msgid "Sorted by"
 msgstr "Sorterat efter"
 
-#: panel/JournalList.cpp:551
+#: panel/JournalList.cpp:547
 msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
 msgstr "SN (Sekvensnummer) har samma ordning som datum/ID (eller datum/tid/ID om tid är aktiverat)."
 
-#: panel/JournalList.cpp:553
+#: panel/JournalList.cpp:549
 msgid "ID (identification number) is increasing with the time of creation in the database."
 msgstr ""
 
-#: panel/JournalList.cpp:555
+#: panel/JournalList.cpp:551
 msgid "Balance is calculated in the order of SN (Sequence Number)."
 msgstr "Saldot beräknas i ordningen av SN (Sekvensnummer)."
 
-#: panel/JournalList.cpp:1172
+#: panel/JournalList.cpp:1164
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: panel/JournalList.cpp:1177
+#: panel/JournalList.cpp:1169
 msgid "Do you want to perform the edit?"
 msgstr ""
 
-#: panel/JournalList.cpp:1179
+#: panel/JournalList.cpp:1171
 msgid "Closed Account Check"
 msgstr ""
 
-#: panel/JournalList.cpp:1197
+#: panel/JournalList.cpp:1189
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "Låst transaktion till datum: %s\n\n"
 "Avstämda transaktioner."
 
-#: panel/JournalList.cpp:1331
+#: panel/JournalList.cpp:1280
 msgid "New &Withdrawal…"
 msgstr "Nytt &uttag…"
 
-#: panel/JournalList.cpp:1332
+#: panel/JournalList.cpp:1281
 msgid "New &Deposit…"
 msgstr "Ny &insättning…"
 
-#: panel/JournalList.cpp:1334
+#: panel/JournalList.cpp:1283
 msgid "New &Transfer…"
 msgstr "Ny &överföring…"
 
-#: panel/JournalList.cpp:1339
+#: panel/JournalList.cpp:1288
 msgid "&Edit Transaction…"
 msgstr "&Redigera transaktion…"
 
-#: panel/JournalList.cpp:1340
+#: panel/JournalList.cpp:1289
 msgid "&Edit Transactions…"
 msgstr "&Redigera transaktioner…"
 
-#: panel/JournalList.cpp:1346
+#: panel/JournalList.cpp:1295
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "&Kopiera transaktion"
 msgstr[1] "&Kopiera transaktioner"
 
-#: panel/JournalList.cpp:1356
+#: panel/JournalList.cpp:1305
 #, c-format
 msgid "&Paste Transaction"
 msgid_plural "&Paste Transactions (%d)"
 msgstr[0] "&Klistra in transaktion"
 msgstr[1] "&Klistra in transaktioner (%d)"
 
-#: panel/JournalList.cpp:1366
+#: panel/JournalList.cpp:1315
 msgid "D&uplicate Transaction…"
 msgstr "D&uplicera transaktion…"
 
-#: panel/JournalList.cpp:1371
+#: panel/JournalList.cpp:1320
 msgid "&Move Transaction…"
 msgstr "&Flytta transaktion…"
 
-#: panel/JournalList.cpp:1372
+#: panel/JournalList.cpp:1321
 msgid "&Move Transactions…"
 msgstr "&Flytta transaktioner…"
 
-#: panel/JournalList.cpp:1382
+#: panel/JournalList.cpp:1331
 msgid "&View In Other Account"
 msgstr "&Visa i annat konto"
 
-#: panel/JournalList.cpp:1388
+#: panel/JournalList.cpp:1337
 msgid "&View Split Categories"
 msgstr "&Visa delade kategorier"
 
-#: panel/JournalList.cpp:1398
+#: panel/JournalList.cpp:1347
 msgid "Create Scheduled T&ransaction…"
 msgstr ""
 
-#: panel/JournalList.cpp:1405
+#: panel/JournalList.cpp:1354
 msgid "&Restore selected transaction…"
 msgstr "&Återställ vald transaktion…"
 
-#: panel/JournalList.cpp:1406
+#: panel/JournalList.cpp:1355
 msgid "&Restore selected transactions…"
 msgstr "&Återställ valda transaktioner…"
 
-#: panel/JournalList.cpp:1412
+#: panel/JournalList.cpp:1361
 msgid "Restore &all transactions in current view…"
 msgstr "Återställ &alla transaktioner i aktuell vy…"
 
-#: panel/JournalList.cpp:1595
+#: panel/JournalList.cpp:1544
 #, c-format
 msgid "&Find all transactions with %s '%s'"
 msgstr "&Hitta alla transaktioner med %s '%s'"
 
-#: panel/JournalList.cpp:1601
+#: panel/JournalList.cpp:1550
 msgid "Cop&y Text to Clipboard"
 msgstr "Kopiera text till urklipp"
 
-#: panel/JournalList.cpp:1609
+#: panel/JournalList.cpp:1558
 msgid "&Delete selected transaction…"
 msgstr "&Ta bort markerad transaktion…"
 
-#: panel/JournalList.cpp:1610
+#: panel/JournalList.cpp:1559
 msgid "&Delete selected transactions…"
 msgstr "&Ta bort markerade transaktioner…"
 
-#: panel/JournalList.cpp:1612
+#: panel/JournalList.cpp:1561
 msgid "&Permanently delete selected transaction…"
 msgstr "&Radera vald transaktion permanent…"
 
-#: panel/JournalList.cpp:1613
+#: panel/JournalList.cpp:1562
 msgid "&Permanently delete selected transactions…"
 msgstr "&Radera valda transaktioner permanent…"
 
-#: panel/JournalList.cpp:1622
+#: panel/JournalList.cpp:1571
 msgid "Delete &all transactions in current view…"
 msgstr "Radera &alla transaktioner i aktuell vy…"
 
-#: panel/JournalList.cpp:1623
+#: panel/JournalList.cpp:1572
 msgid "Permanently delete &all transactions in current view…"
 msgstr "Radera &alla transaktioner permanent i aktuell vy…"
 
-#: panel/JournalList.cpp:1628
+#: panel/JournalList.cpp:1577
 msgid "Delete Viewed “&Follow Up” Transactions…"
 msgstr "Ta bort visade transaktioner \"&Följ upp\" …"
 
-#: panel/JournalList.cpp:1632
+#: panel/JournalList.cpp:1581
 msgid "Delete Viewed “&Unreconciled” Transactions…"
 msgstr "Ta bort visade transaktioner \"&Oförenliga\" …"
 
-#: panel/JournalList.cpp:1635
+#: panel/JournalList.cpp:1584
 msgid "De&lete "
 msgstr "Ra&dera "
 
-#: panel/JournalList.cpp:1641
+#: panel/JournalList.cpp:1590
 msgid "&Unreconciled"
 msgstr "&Oavstämd"
 
-#: panel/JournalList.cpp:1642
+#: panel/JournalList.cpp:1591
 msgid "&Reconciled"
 msgstr "&Avstämd"
 
-#: panel/JournalList.cpp:1643
+#: panel/JournalList.cpp:1592
 msgid "&Void"
 msgstr "&Ogiltig"
 
-#: panel/JournalList.cpp:1644
+#: panel/JournalList.cpp:1593
 msgid "&Follow Up"
 msgstr "&Följ upp"
 
-#: panel/JournalList.cpp:1645
+#: panel/JournalList.cpp:1594
 msgid "D&uplicate"
 msgstr "D&uplicera"
 
-#: panel/JournalList.cpp:1646
+#: panel/JournalList.cpp:1595
 msgid "Mar&k as"
 msgstr "Markera som"
 
-#: panel/JournalList.cpp:1794
+#: panel/JournalList.cpp:1743
 #, c-format
 msgid "Do you want to permanently delete the selected transaction?"
 msgid_plural "Do you want to permanently delete the %i selected transactions?"
 msgstr[0] "Vill du permanent ta bort den valda transaktionen?"
 msgstr[1] "Vill du permanent ta bort %i valda transaktioner?"
 
-#: panel/JournalList.cpp:1800
+#: panel/JournalList.cpp:1749
 #, c-format
 msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] "Vill du ta bort den valda transaktionen?"
 msgstr[1] "Vill du ta bort %i valda transaktioner?"
 
-#: panel/JournalList.cpp:1808 panel/JournalList.cpp:2267
+#: panel/JournalList.cpp:1757 panel/JournalList.cpp:2216
 msgid "Unable to undo this action."
 msgstr "Det går inte att ångra åtgärden."
 
-#: panel/JournalList.cpp:1809 panel/JournalList.cpp:2266
+#: panel/JournalList.cpp:1758 panel/JournalList.cpp:2215
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "Borttagna transaktioner kommer att lagras tillfälligt och kan återställas från vyn Raderade transaktioner."
 
-#: panel/JournalList.cpp:1813 panel/JournalList.cpp:2271
-#: panel/JournalList.cpp:2283 panel/JournalList.cpp:2295
+#: panel/JournalList.cpp:1762 panel/JournalList.cpp:2220
+#: panel/JournalList.cpp:2232 panel/JournalList.cpp:2244
 msgid "Confirm Transaction Deletion"
 msgstr "Borttagning av transaktion"
 
-#: panel/JournalList.cpp:1886
+#: panel/JournalList.cpp:1835
 #, c-format
 msgid "Do you want to restore the selected transaction?"
 msgid_plural "Do you want to restore the %i selected transactions?"
 msgstr[0] "Vill du återställa den valda transaktionen?"
 msgstr[1] "Vill du återställa de %i valda transaktionerna?"
 
-#: panel/JournalList.cpp:1895 panel/JournalList.cpp:1937
+#: panel/JournalList.cpp:1844 panel/JournalList.cpp:1886
 msgid "Confirm Transaction Restore"
 msgstr "Bekräfta återställning av transaktion"
 
-#: panel/JournalList.cpp:1936
+#: panel/JournalList.cpp:1885
 msgid "Do you want to restore all of the transactions shown?"
 msgstr ""
 
-#: panel/JournalList.cpp:2042
+#: panel/JournalList.cpp:1991
 #, c-format
 msgid "Do you want to move the selected transaction?"
 msgid_plural "Do you want to move the %i selected transactions?"
 msgstr[0] "Vill du flytta den valda transaktionen?"
 msgstr[1] "Vill du flytta %i valda transaktioner?"
 
-#: panel/JournalList.cpp:2050
+#: panel/JournalList.cpp:1999
 msgid "Confirm Transaction Move"
 msgstr "Bekräfta transaktionsflytt"
 
-#: panel/JournalList.cpp:2056
+#: panel/JournalList.cpp:2005
 msgid "Moving transaction to…"
 msgstr "Flyttar transaktionen till…"
 
-#: panel/JournalList.cpp:2057
+#: panel/JournalList.cpp:2006
 #, c-format
 msgid "Moving %i transactions to…"
 msgstr "Flyttar %i transaktioner till…"
 
-#: panel/JournalList.cpp:2060 panel/StockList.cpp:377
+#: panel/JournalList.cpp:2009 panel/StockList.cpp:375
 msgid "Select the destination Account "
 msgstr ""
 
-#: panel/JournalList.cpp:2094
+#: panel/JournalList.cpp:2043
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "Detta beror på att vissa delar av transaktionen eller kontots detaljer inte tillåter flytten"
 
-#: panel/JournalList.cpp:2095
+#: panel/JournalList.cpp:2044
 msgid "Moved"
 msgstr "Flyttad"
 
-#: panel/JournalList.cpp:2097
+#: panel/JournalList.cpp:2046
 msgid "Not moved"
 msgstr "Inte flyttad"
 
-#: panel/JournalList.cpp:2102
+#: panel/JournalList.cpp:2051
 msgid "Unable to move some transactions."
 msgstr "Kunde inte flytta vissa transaktioner."
 
-#: panel/JournalList.cpp:2167
+#: panel/JournalList.cpp:2116
 msgid "Scheduled transaction saved."
 msgstr ""
 
-#: panel/JournalList.cpp:2181 util/mmNavigatorList.cpp:55
+#: panel/JournalList.cpp:2130 util/mmNavigatorList.cpp:55
 msgid "All Transactions"
 msgstr "Alla Transaktioner"
 
-#: panel/JournalList.cpp:2261
+#: panel/JournalList.cpp:2210
 msgid "Do you want to delete all the transactions shown?"
 msgstr ""
 
-#: panel/JournalList.cpp:2262
+#: panel/JournalList.cpp:2211
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr ""
 
-#: panel/JournalList.cpp:2280 panel/JournalList.cpp:2292
+#: panel/JournalList.cpp:2229 panel/JournalList.cpp:2241
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr ""
@@ -7339,75 +7339,75 @@ msgstr ""
 msgid "Click to copy to clipboard"
 msgstr "Klicka för att kopiera till urklipp"
 
-#: panel/JournalPanel.cpp:986
+#: panel/JournalPanel.cpp:1007
 msgid "Account Bal: "
 msgstr "Kontobalans: "
 
-#: panel/JournalPanel.cpp:990
+#: panel/JournalPanel.cpp:1011
 msgid "Reconciled Bal: "
 msgstr "Avstämd bal: "
 
-#: panel/JournalPanel.cpp:995
+#: panel/JournalPanel.cpp:1016
 msgid "Diff: "
 msgstr "Skillnad: "
 
-#: panel/JournalPanel.cpp:1002
+#: panel/JournalPanel.cpp:1023
 msgid "Filtered Flow: "
 msgstr "Filtrerat Flöde: "
 
-#: panel/JournalPanel.cpp:1023
+#: panel/JournalPanel.cpp:1044
 msgid "Market Value: "
 msgstr "Marknadsvärde: "
 
-#: panel/JournalPanel.cpp:1030
+#: panel/JournalPanel.cpp:1051
 msgid "Invested: "
 msgstr "Investerade: "
 
-#: panel/JournalPanel.cpp:1069 panel/JournalPanel.cpp:1077
+#: panel/JournalPanel.cpp:1090 panel/JournalPanel.cpp:1098
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr "Datumintervall"
 
-#: panel/JournalPanel.cpp:1116
+#: panel/JournalPanel.cpp:1137
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Klicka för att visa schemalagda transaktioner. Den här funktionen fungerar bäst med filterval som sträcker sig in i framtiden (t.ex. aktuell månad)."
 
-#: panel/JournalPanel.cpp:1116
+#: panel/JournalPanel.cpp:1137
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "Schemalagda transaktioner är inte tillgängliga, eftersom det aktuella filtret slutar i det förflutna"
 
-#: panel/JournalPanel.cpp:1117
+#: panel/JournalPanel.cpp:1138
 msgid "Click to hide scheduled transactions."
 msgstr "Klicka för att dölja schemalagda transaktioner."
 
-#: panel/JournalPanel.cpp:1248
+#: panel/JournalPanel.cpp:1269
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Valda transaktioner: %zu"
 
-#: panel/JournalPanel.cpp:1251
+#: panel/JournalPanel.cpp:1272
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr "Valda transaktioner totalt: %s"
 
-#: panel/JournalPanel.cpp:1256
+#: panel/JournalPanel.cpp:1277
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Dagar mellan valda transaktioner: %d"
 
-#: panel/JournalPanel.cpp:1377 panel/ReportPanel.cpp:1102
+#: panel/JournalPanel.cpp:1398 panel/ReportPanel.cpp:1102
 msgid "Edit date ranges…"
 msgstr "Redigera datumintervall…"
 
-#: panel/JournalPanel.cpp:1525
+#: panel/JournalPanel.cpp:1546
 msgid "&New Withdrawal…"
 msgstr "&Nytt uttag…"
 
-#: panel/JournalPanel.cpp:1526
+#: panel/JournalPanel.cpp:1547
 msgid "&New Deposit…"
 msgstr "&Ny insättning…"
 
-#: panel/JournalPanel.cpp:1527
+#: panel/JournalPanel.cpp:1548
 msgid "&New Transfer…"
 msgstr "&Ny överföring…"
 
@@ -7447,43 +7447,43 @@ msgstr "Urval:"
 msgid "Report"
 msgstr "Rapport"
 
-#: panel/SchedList.cpp:84
+#: panel/SchedList.cpp:85
 msgid "Repetitions"
 msgstr "Upprepningar"
 
-#: panel/SchedList.cpp:85
+#: panel/SchedList.cpp:86
 msgid "Autorepeat"
 msgstr "Upprepa automatiskt"
 
-#: panel/SchedList.cpp:189
+#: panel/SchedList.cpp:190
 msgid "Enter next Occurrence…"
 msgstr "Ange nästa förekomst…"
 
-#: panel/SchedList.cpp:191
+#: panel/SchedList.cpp:192
 msgid "Skip next Occurrence"
 msgstr "Hoppa över nästa tillfälle"
 
-#: panel/SchedList.cpp:193
+#: panel/SchedList.cpp:194
 msgid "&New Scheduled Transaction…"
 msgstr "&Ny schemalagd transaktion…"
 
-#: panel/SchedList.cpp:194
+#: panel/SchedList.cpp:195
 msgid "&Edit Scheduled Transaction…"
 msgstr "&Redigera schemalagd transaktion…"
 
-#: panel/SchedList.cpp:195
+#: panel/SchedList.cpp:196
 msgid "D&uplicate Scheduled Transaction…"
 msgstr "D&uplicera schemalagd transaktion…"
 
-#: panel/SchedList.cpp:197
+#: panel/SchedList.cpp:198
 msgid "&Delete Scheduled Transaction…"
 msgstr "&Radera schemalagd transaktion…"
 
-#: panel/SchedList.cpp:298
+#: panel/SchedList.cpp:299
 msgid "Do you want to delete the scheduled transaction?"
 msgstr ""
 
-#: panel/SchedList.cpp:299
+#: panel/SchedList.cpp:300
 msgid "Confirm Deletion"
 msgstr ""
 
@@ -7503,44 +7503,44 @@ msgstr "Radera schemalagd transaktion"
 msgid "Curr. Total Value"
 msgstr "Nuvarande totalt värde"
 
-#: panel/StockList.cpp:160
+#: panel/StockList.cpp:158
 msgid "&New Stock Investment…"
 msgstr "&Ny aktieinvestering…"
 
-#: panel/StockList.cpp:162
+#: panel/StockList.cpp:160
 msgid "&Adjust Trade"
 msgstr "&Justera handel"
 
-#: panel/StockList.cpp:163
+#: panel/StockList.cpp:161
 msgid "&View Stock Transactions"
 msgstr ""
 
-#: panel/StockList.cpp:165
+#: panel/StockList.cpp:163
 msgid "&Edit Stock Investment…"
 msgstr "&Ändra aktieinvestering…"
 
-#: panel/StockList.cpp:167
+#: panel/StockList.cpp:165
 msgid "&Delete Stock Investment…"
 msgstr "&Ta bort aktieinvestering…"
 
-#: panel/StockList.cpp:170
+#: panel/StockList.cpp:168
 msgid "Stock &Web Page"
 msgstr ""
 
-#: panel/StockList.cpp:343
+#: panel/StockList.cpp:341
 msgid "Do you want to delete the stock investment?"
 msgstr ""
 
-#: panel/StockList.cpp:344
+#: panel/StockList.cpp:342
 msgid "Confirm Stock Investment Deletion"
 msgstr ""
 
-#: panel/StockList.cpp:373
+#: panel/StockList.cpp:371
 #, c-format
 msgid "Moving Transaction from %s to"
 msgstr "Flyttar transaktionen från %s till"
 
-#: panel/StockList.cpp:772
+#: panel/StockList.cpp:770
 #, c-format
 msgid "Symbol: %s"
 msgstr "Symbol: %s"
@@ -7636,39 +7636,39 @@ msgstr "Inget att uppdatera"
 msgid "Connecting…"
 msgstr "Ansluter…"
 
-#: panel/_ListBase.cpp:531
+#: panel/_ListBase.cpp:568
 msgid "Sort by this column"
 msgstr "Sortera efter denna kolumn"
 
-#: panel/_ListBase.cpp:535
+#: panel/_ListBase.cpp:572
 msgid "Hide/Show column"
 msgstr "Dölj/Visa kolumn"
 
-#: panel/_ListBase.cpp:536
+#: panel/_ListBase.cpp:573
 msgid "Hide this column"
 msgstr "Dölj denna kolumn"
 
-#: panel/_ListBase.cpp:556
+#: panel/_ListBase.cpp:592
 msgid "Move hidden column"
 msgstr "Flytta dold kolumn"
 
-#: panel/_ListBase.cpp:560
+#: panel/_ListBase.cpp:596
 msgid "Move column to the beginning"
 msgstr "Flytta kolumnen till början"
 
-#: panel/_ListBase.cpp:564
+#: panel/_ListBase.cpp:600
 msgid "Move column left"
 msgstr "Flytta kolumn till vänster"
 
-#: panel/_ListBase.cpp:568
+#: panel/_ListBase.cpp:604
 msgid "Move column right"
 msgstr "Flytta kolumn till höger"
 
-#: panel/_ListBase.cpp:572
+#: panel/_ListBase.cpp:608
 msgid "Move column to the end"
 msgstr "Flytta kolumnen till slutet"
 
-#: panel/_ListBase.cpp:580
+#: panel/_ListBase.cpp:616
 msgid "Reset column widths"
 msgstr "Återställ kolumnbredder"
 
