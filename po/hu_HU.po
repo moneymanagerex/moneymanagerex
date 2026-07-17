@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-07-10 08:57+0000\n"
-"PO-Revision-Date: 2026-07-13 17:12\n"
+"POT-Creation-Date: 2026-07-15 18:48+0000\n"
+"PO-Revision-Date: 2026-07-16 21:37\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -1735,14 +1735,14 @@ msgstr "Többes kijelölés"
 #: data/_DataEnum.cpp:89 dialog/TrxFilterDialog.cpp:664
 #: dialog/TrxFilterDialog.cpp:1640 dialog/TrxFilterDialog.cpp:1740
 #: import_export/univcsvdialog.cpp:120 panel/JournalList.cpp:108
-#: panel/SchedList.cpp:81 report/ForecastReport.cpp:83
+#: panel/SchedList.cpp:82 report/ForecastReport.cpp:83
 msgid "Withdrawal"
 msgstr "Kivétel"
 
 #: data/_DataEnum.cpp:90 dialog/TrxFilterDialog.cpp:665
 #: dialog/TrxFilterDialog.cpp:1642 dialog/TrxFilterDialog.cpp:1742
 #: import_export/univcsvdialog.cpp:121 panel/JournalList.cpp:109
-#: panel/SchedList.cpp:82 report/ForecastReport.cpp:81
+#: panel/SchedList.cpp:83 report/ForecastReport.cpp:81
 msgid "Deposit"
 msgstr "Betét"
 
@@ -1754,7 +1754,7 @@ msgid "Transfer"
 msgstr "Átutalás"
 
 #: data/_DataEnum.cpp:95 dialog/TrxFilterDialog.cpp:59
-#: panel/JournalList.cpp:2293
+#: panel/JournalList.cpp:2242
 msgid "Unreconciled"
 msgstr "Nincs egyeztetve"
 
@@ -1768,7 +1768,7 @@ msgid "Void"
 msgstr "Érvénytelen"
 
 #: data/_DataEnum.cpp:98 dialog/TrxFilterDialog.cpp:62
-#: panel/JournalList.cpp:2281
+#: panel/JournalList.cpp:2230
 msgid "Follow Up"
 msgstr "Követés"
 
@@ -1850,7 +1850,7 @@ msgstr "Eszköz"
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:110
 #: import_export/webapp.cpp:598 import_export/webappdialog.cpp:144
 #: model/TrxFilter.cpp:205 panel/AssetPanel.cpp:557 panel/JournalList.cpp:103
-#: panel/SchedList.cpp:76 report/FlowReport.cpp:414 report/TrxReport.cpp:232
+#: panel/SchedList.cpp:77 report/FlowReport.cpp:414 report/TrxReport.cpp:232
 msgid "Account"
 msgstr "Számla"
 
@@ -1869,7 +1869,7 @@ msgstr ""
 #: import_export/univcsvdialog.cpp:639 import_export/webappdialog.cpp:147
 #: manager/PayeeManager.cpp:85 manager/PayeeManager.cpp:208
 #: manager/PayeeManager.cpp:250 model/TrxFilter.cpp:206
-#: panel/JournalList.cpp:104 panel/SchedList.cpp:77 report/FlowReport.cpp:415
+#: panel/JournalList.cpp:104 panel/SchedList.cpp:78 report/FlowReport.cpp:415
 #: report/PayeeReport.cpp:189 report/TrxReport.cpp:234
 msgid "Payee"
 msgstr "Kedvezményezett"
@@ -2107,8 +2107,8 @@ msgstr "Határozza meg, hogy ez egy gyakran használt számla-e. Ezt a számlák
 #: import_export/qif_import_gui.cpp:115 import_export/univcsvdialog.cpp:118
 #: import_export/univcsvdialog.cpp:123 import_export/webappdialog.cpp:150
 #: manager/PayeeManager.cpp:117 manager/PayeeManager.cpp:581
-#: model/TrxFilter.cpp:211 panel/AssetList.cpp:66 panel/BudgetList.cpp:40
-#: panel/JournalList.cpp:112 panel/SchedList.cpp:88 panel/StockList.cpp:86
+#: model/TrxFilter.cpp:211 panel/AssetList.cpp:66 panel/BudgetList.cpp:41
+#: panel/JournalList.cpp:112 panel/SchedList.cpp:89 panel/StockList.cpp:86
 #: report/TrxReport.cpp:248
 msgid "Notes"
 msgstr "Megjegyzések"
@@ -2197,7 +2197,7 @@ msgstr "Számlaegyenleg alsó határa. Nulla a kikapcsoláshoz"
 msgid "Credit"
 msgstr "Hitel"
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1010
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1031
 msgid "Credit Limit:"
 msgstr "Hitelkeret:"
 
@@ -2777,9 +2777,9 @@ msgstr "Pénznemárfolyamok online frissítése"
 #: dialog/TrxLinkDialog.cpp:155 dialog/TrxUpdateDialog.cpp:202
 #: import_export/ofx_import_gui.cpp:1937 import_export/qif_export.cpp:680
 #: import_export/univcsvdialog.cpp:112 import_export/webappdialog.cpp:149
-#: model/TrxFilter.cpp:210 panel/BudgetList.cpp:37
+#: model/TrxFilter.cpp:210 panel/BudgetList.cpp:38
 #: panel/DashboardWidget.cpp:382 panel/DashboardWidget.cpp:462
-#: panel/JournalList.cpp:1596 report/CategoryReport.cpp:248
+#: panel/JournalList.cpp:1545 report/CategoryReport.cpp:248
 #: report/FlowReport.cpp:417 report/InExReport.cpp:112 report/TrxReport.cpp:244
 msgid "Amount"
 msgstr "Összeg"
@@ -3277,7 +3277,7 @@ msgstr "Összes (nincs) &rendezett"
 #: dialog/TrxFilterDialog.cpp:1949 dialog/TrxLinkDialog.cpp:227
 #: import_export/qif_export.cpp:682 import_export/qif_import_gui.cpp:109
 #: import_export/univcsvdialog.cpp:117 model/TrxFilter.cpp:204
-#: panel/JournalList.cpp:102 panel/SchedList.cpp:87 report/TrxReport.cpp:230
+#: panel/JournalList.cpp:102 panel/SchedList.cpp:88 report/TrxReport.cpp:230
 msgid "Number"
 msgstr "Szám"
 
@@ -3289,7 +3289,7 @@ msgstr "Szám"
 #: import_export/qif_import_gui.cpp:319 import_export/qif_import_gui.cpp:329
 #: import_export/univcsvdialog.cpp:108 import_export/univcsvdialog.cpp:645
 #: import_export/univcsvdialog.cpp:655 import_export/webappdialog.cpp:145
-#: model/TrxFilter.cpp:207 panel/JournalList.cpp:105 panel/SchedList.cpp:78
+#: model/TrxFilter.cpp:207 panel/JournalList.cpp:105 panel/SchedList.cpp:79
 #: report/TrxReport.cpp:236 wizard/wizard_update.cpp:141
 msgid "Status"
 msgstr "Állapot"
@@ -3347,7 +3347,7 @@ msgstr "Ütemezett ügylet részletei"
 msgid "Specify the date when this bill or deposit is due"
 msgstr "Számla vagy letét esedékességi dátumának megadása"
 
-#: dialog/SchedDialog.cpp:222 panel/SchedList.cpp:75
+#: dialog/SchedDialog.cpp:222 panel/SchedList.cpp:76
 msgid "Date Due"
 msgstr "Esedékesség"
 
@@ -3392,7 +3392,7 @@ msgstr "Ügylet részletei"
 msgid "Specify the date the user is requested to enter this transaction"
 msgstr "Adja meg azt a dátumot, amikor a felhasználót felkérik az ügyletbe"
 
-#: dialog/SchedDialog.cpp:328 panel/SchedList.cpp:74
+#: dialog/SchedDialog.cpp:328 panel/SchedList.cpp:75
 msgid "Date Paid"
 msgstr "Fizetés dátuma"
 
@@ -3439,9 +3439,9 @@ msgstr "Átutalást fogadó számla megadása"
 #: import_export/qif_export.cpp:679 import_export/qif_import_gui.cpp:112
 #: import_export/qif_import_gui.cpp:324 import_export/univcsvdialog.cpp:114
 #: import_export/univcsvdialog.cpp:650 import_export/webappdialog.cpp:148
-#: manager/PayeeManager.cpp:203 model/TrxFilter.cpp:208 panel/BudgetList.cpp:35
+#: manager/PayeeManager.cpp:203 model/TrxFilter.cpp:208 panel/BudgetList.cpp:36
 #: panel/DashboardWidget.cpp:209 panel/JournalList.cpp:106
-#: panel/SchedList.cpp:79 report/CategoryReport.cpp:247
+#: panel/SchedList.cpp:80 report/CategoryReport.cpp:247
 #: report/CategoryReport.cpp:491 report/FlowReport.cpp:416
 #: report/TrxReport.cpp:238 report/budgetcategorysummary.cpp:191
 #: report/budgetingperf.cpp:123
@@ -3462,7 +3462,7 @@ msgstr "Kategóriafelosztás használata"
 #: dialog/TrxFilterDialog.cpp:1787 dialog/TrxFilterDialog.cpp:1955
 #: dialog/TrxUpdateDialog.cpp:250 dialog/TrxUpdateDialog.cpp:386
 #: import_export/qif_import_gui.cpp:113 import_export/univcsvdialog.cpp:116
-#: panel/JournalList.cpp:107 panel/SchedList.cpp:80 report/TrxReport.cpp:240
+#: panel/JournalList.cpp:107 panel/SchedList.cpp:81 report/TrxReport.cpp:240
 msgid "Tags"
 msgstr "Címkék"
 
@@ -4034,7 +4034,7 @@ msgstr "Ismeretlen"
 msgid "Lock transaction to date: %s"
 msgstr "Ügylet zárolása a dátumig: %s"
 
-#: dialog/TrxDialog.cpp:908 dialog/TrxDialog.cpp:931 panel/JournalList.cpp:1200
+#: dialog/TrxDialog.cpp:908 dialog/TrxDialog.cpp:931 panel/JournalList.cpp:1192
 msgid "MMEX Transaction Check"
 msgstr "MMEX tranzakció ellenőrzés"
 
@@ -4846,7 +4846,7 @@ msgstr "%zu ügylet exportálása"
 
 #: import_export/qif_export.cpp:673 import_export/univcsvdialog.cpp:106
 #: model/TrxFilter.cpp:201 panel/AssetList.cpp:60 panel/JournalList.cpp:99
-#: panel/SchedList.cpp:73 panel/StockList.cpp:73 report/TrxReport.cpp:222
+#: panel/SchedList.cpp:74 panel/StockList.cpp:73 report/TrxReport.cpp:222
 msgid "ID"
 msgstr "Azon."
 
@@ -5558,8 +5558,8 @@ msgstr "Ügylet nincs letöltve: Kérjük, próbálja újra letölteni az ügyle
 msgid "Attachment download error"
 msgstr "Melléklet letöltési hiba"
 
-#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1167
-#: panel/JournalPanel.cpp:1185
+#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1188
+#: panel/JournalPanel.cpp:1206
 msgid "Attachment"
 msgstr "Melléklet"
 
@@ -5933,7 +5933,7 @@ msgstr "Szeretné visszaállítani az alapértelmezett tartományokat?\n\n"
 msgid "Default date ranges"
 msgstr "Alapértelmezett dátumtartományok"
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1370
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1391
 #: panel/ReportPanel.cpp:1095
 msgid "More date ranges…"
 msgstr "További dátumtartományok…"
@@ -6690,8 +6690,8 @@ msgstr "Részvényhiba"
 msgid "Back"
 msgstr "Vissza"
 
-#: panel/AssetList.cpp:59 panel/BudgetList.cpp:34 panel/JournalList.cpp:98
-#: panel/SchedList.cpp:72 panel/StockList.cpp:72
+#: panel/AssetList.cpp:59 panel/BudgetList.cpp:35 panel/JournalList.cpp:98
+#: panel/SchedList.cpp:73 panel/StockList.cpp:72
 msgid "Icon"
 msgstr "Ikon"
 
@@ -6723,8 +6723,8 @@ msgstr "Eszköz s&zerkesztése…"
 msgid "&Delete Asset…"
 msgstr "Eszköz &törlése…"
 
-#: panel/AssetList.cpp:121 panel/JournalList.cpp:1392 panel/SchedList.cpp:199
-#: panel/StockList.cpp:169
+#: panel/AssetList.cpp:121 panel/JournalList.cpp:1341 panel/SchedList.cpp:200
+#: panel/StockList.cpp:167
 msgid "&Organize Attachments…"
 msgstr "Mellékletek &rendszerezése…"
 
@@ -6773,7 +6773,7 @@ msgstr "A kérdőjel (?) egyetlen karakter egyezésére szolgál; például az �
 msgid "The asterisk (*) is used to match any number of characters, for example \"s*d\" finds both \"sad\" and \"started\"."
 msgstr "A csillag (*) tetszőleges számú karakter egyezésére szolgál; például az „s*d” a „sad” és a „started” szavakat is megtalálja."
 
-#: panel/AssetPanel.cpp:310 panel/StockList.cpp:773 panel/StockPanel.cpp:521
+#: panel/AssetPanel.cpp:310 panel/StockList.cpp:771 panel/StockPanel.cpp:521
 #, c-format
 msgid "Total: %s"
 msgstr "Összesen: %s"
@@ -6802,33 +6802,33 @@ msgstr "Vagyonkezelés"
 msgid "Trade Type"
 msgstr "Kereskedés típusa"
 
-#: panel/BudgetList.cpp:36 panel/SchedList.cpp:83 report/UsageReport.cpp:165
+#: panel/BudgetList.cpp:37 panel/SchedList.cpp:84 report/UsageReport.cpp:165
 msgid "Frequency"
 msgstr "Gyakoriság"
 
-#: panel/BudgetList.cpp:38 report/budgetcategorysummary.cpp:149
+#: panel/BudgetList.cpp:39 report/budgetcategorysummary.cpp:149
 #: report/budgetcategorysummary.cpp:192
 msgid "Estimated"
 msgstr "Becsült"
 
-#: panel/BudgetList.cpp:39 report/budgetcategorysummary.cpp:150
+#: panel/BudgetList.cpp:40 report/budgetcategorysummary.cpp:150
 #: report/budgetcategorysummary.cpp:193
 msgid "Actual"
 msgstr "Jelenlegi"
 
-#: panel/BudgetList.cpp:102
+#: panel/BudgetList.cpp:103
 msgid "No budget defined"
 msgstr "Nincs meghatározott költségvetés"
 
-#: panel/BudgetList.cpp:104
+#: panel/BudgetList.cpp:105
 msgid "Critical: budget exceeded! Stop spending"
 msgstr "Kritikus: túllépte a költségvetést! Ne költsön tovább!"
 
-#: panel/BudgetList.cpp:106
+#: panel/BudgetList.cpp:107
 msgid "Within budget limits"
 msgstr "Költségvetési korlátokon belül"
 
-#: panel/BudgetList.cpp:108
+#: panel/BudgetList.cpp:109
 msgid "Alert: budget close to or over limit"
 msgstr "Értesítés: költségkeret közelében vagy felette"
 
@@ -6960,7 +6960,7 @@ msgstr[1] "%d nap késés"
 msgid "Account/Payee"
 msgstr "Számla/kedvezményezett"
 
-#: panel/DashboardWidget.cpp:382 panel/SchedList.cpp:86
+#: panel/DashboardWidget.cpp:382 panel/SchedList.cpp:87
 msgid "Remaining"
 msgstr "Hátralévő"
 
@@ -7025,281 +7025,281 @@ msgstr "Utolsó frissítés"
 msgid "SN"
 msgstr "Sorszám"
 
-#: panel/JournalList.cpp:539
+#: panel/JournalList.cpp:535
 msgid "Sorted by"
 msgstr "Rendezési szempont"
 
-#: panel/JournalList.cpp:551
+#: panel/JournalList.cpp:547
 msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
 msgstr "A sorszám sorrendje megegyezik a dátum/azonosító sorrendjével (vagy a dátum/idő/azonosító sorrendje, ha az idő engedélyezett)."
 
-#: panel/JournalList.cpp:553
+#: panel/JournalList.cpp:549
 msgid "ID (identification number) is increasing with the time of creation in the database."
 msgstr "Az azonosító szám az adatbázisban való létrehozás idejével növekszik."
 
-#: panel/JournalList.cpp:555
+#: panel/JournalList.cpp:551
 msgid "Balance is calculated in the order of SN (Sequence Number)."
 msgstr "Az egyenleg kiszámítása a sorszám szerinti sorrendben történik."
 
-#: panel/JournalList.cpp:1172
+#: panel/JournalList.cpp:1164
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "Ügylet szerkesztése lezárt számlával."
 msgstr[1] "%i ügylet szerkesztése lezárt számlával."
 
-#: panel/JournalList.cpp:1177
+#: panel/JournalList.cpp:1169
 msgid "Do you want to perform the edit?"
 msgstr "Szeretné végrehajtani a szerkesztést?"
 
-#: panel/JournalList.cpp:1179
+#: panel/JournalList.cpp:1171
 msgid "Closed Account Check"
 msgstr "Bezárt folyószámla"
 
-#: panel/JournalList.cpp:1197
+#: panel/JournalList.cpp:1189
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "A mai napig zárolt ügyletek: %s\n\n"
 "Egyeztetett ügyletek."
 
-#: panel/JournalList.cpp:1331
+#: panel/JournalList.cpp:1280
 msgid "New &Withdrawal…"
 msgstr "Új &kivétel…"
 
-#: panel/JournalList.cpp:1332
+#: panel/JournalList.cpp:1281
 msgid "New &Deposit…"
 msgstr "Új &betét…"
 
-#: panel/JournalList.cpp:1334
+#: panel/JournalList.cpp:1283
 msgid "New &Transfer…"
 msgstr "Új &átutalás…"
 
-#: panel/JournalList.cpp:1339
+#: panel/JournalList.cpp:1288
 msgid "&Edit Transaction…"
 msgstr "Ügylet s&zerkesztése…"
 
-#: panel/JournalList.cpp:1340
+#: panel/JournalList.cpp:1289
 msgid "&Edit Transactions…"
 msgstr "Ügyletek s&zerkesztése…"
 
-#: panel/JournalList.cpp:1346
+#: panel/JournalList.cpp:1295
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "Ügylet &másolása"
 msgstr[1] "Ügyletek &másolása"
 
-#: panel/JournalList.cpp:1356
+#: panel/JournalList.cpp:1305
 #, c-format
 msgid "&Paste Transaction"
 msgid_plural "&Paste Transactions (%d)"
 msgstr[0] "Ügylet &beillesztése"
 msgstr[1] "Ügyletek &beillesztése (%d)"
 
-#: panel/JournalList.cpp:1366
+#: panel/JournalList.cpp:1315
 msgid "D&uplicate Transaction…"
 msgstr "Ügylet meg&kettőzése…"
 
-#: panel/JournalList.cpp:1371
+#: panel/JournalList.cpp:1320
 msgid "&Move Transaction…"
 msgstr "Ügylet &áthelyezése…"
 
-#: panel/JournalList.cpp:1372
+#: panel/JournalList.cpp:1321
 msgid "&Move Transactions…"
 msgstr "Ügyletek &áthelyezése…"
 
-#: panel/JournalList.cpp:1382
+#: panel/JournalList.cpp:1331
 msgid "&View In Other Account"
 msgstr "Más számlában &megjelenítés"
 
-#: panel/JournalList.cpp:1388
+#: panel/JournalList.cpp:1337
 msgid "&View Split Categories"
 msgstr "Felosztott kategóriák &megjelenítése"
 
-#: panel/JournalList.cpp:1398
+#: panel/JournalList.cpp:1347
 msgid "Create Scheduled T&ransaction…"
 msgstr "Ütemezett ügylet létre&hozása…"
 
-#: panel/JournalList.cpp:1405
+#: panel/JournalList.cpp:1354
 msgid "&Restore selected transaction…"
 msgstr "Kijelölt ügylet &visszaállítása…"
 
-#: panel/JournalList.cpp:1406
+#: panel/JournalList.cpp:1355
 msgid "&Restore selected transactions…"
 msgstr "Kijelölt ügyletek &visszaállítása…"
 
-#: panel/JournalList.cpp:1412
+#: panel/JournalList.cpp:1361
 msgid "Restore &all transactions in current view…"
 msgstr "Öss&zes ügylet visszaállítása a jelenlegi nézetben…"
 
-#: panel/JournalList.cpp:1595
+#: panel/JournalList.cpp:1544
 #, c-format
 msgid "&Find all transactions with %s '%s'"
 msgstr "Minden ügylet keresése a következővel: %s „%s”"
 
-#: panel/JournalList.cpp:1601
+#: panel/JournalList.cpp:1550
 msgid "Cop&y Text to Clipboard"
 msgstr "S&zöveg másolása a vágólapra"
 
-#: panel/JournalList.cpp:1609
+#: panel/JournalList.cpp:1558
 msgid "&Delete selected transaction…"
 msgstr "Kijelölt ügylet &törlése…"
 
-#: panel/JournalList.cpp:1610
+#: panel/JournalList.cpp:1559
 msgid "&Delete selected transactions…"
 msgstr "Kijelölt ügyletek &törlése…"
 
-#: panel/JournalList.cpp:1612
+#: panel/JournalList.cpp:1561
 msgid "&Permanently delete selected transaction…"
 msgstr "Kijelölt ügylet &végleges törlése…"
 
-#: panel/JournalList.cpp:1613
+#: panel/JournalList.cpp:1562
 msgid "&Permanently delete selected transactions…"
 msgstr "Kijelölt ügyletek &végleges törlése…"
 
-#: panel/JournalList.cpp:1622
+#: panel/JournalList.cpp:1571
 msgid "Delete &all transactions in current view…"
 msgstr "Öss&zes ügylet törlése a jelenlegi nézetben…"
 
-#: panel/JournalList.cpp:1623
+#: panel/JournalList.cpp:1572
 msgid "Permanently delete &all transactions in current view…"
 msgstr "Öss&zes ügylet végleges törlése a jelenlegi nézetben…"
 
-#: panel/JournalList.cpp:1628
+#: panel/JournalList.cpp:1577
 msgid "Delete Viewed “&Follow Up” Transactions…"
 msgstr "Megtekintett „&Követés” ügyletek törlése…"
 
-#: panel/JournalList.cpp:1632
+#: panel/JournalList.cpp:1581
 msgid "Delete Viewed “&Unreconciled” Transactions…"
 msgstr "Megtekintett „&Nincs egyeztetve” ügyletek törlése…"
 
-#: panel/JournalList.cpp:1635
+#: panel/JournalList.cpp:1584
 msgid "De&lete "
 msgstr "&Törlés"
 
-#: panel/JournalList.cpp:1641
+#: panel/JournalList.cpp:1590
 msgid "&Unreconciled"
 msgstr "&Nincs egyeztetve"
 
-#: panel/JournalList.cpp:1642
+#: panel/JournalList.cpp:1591
 msgid "&Reconciled"
 msgstr "&Egyeztetve"
 
-#: panel/JournalList.cpp:1643
+#: panel/JournalList.cpp:1592
 msgid "&Void"
 msgstr "&Érvénytelenítés"
 
-#: panel/JournalList.cpp:1644
+#: panel/JournalList.cpp:1593
 msgid "&Follow Up"
 msgstr "&Követés"
 
-#: panel/JournalList.cpp:1645
+#: panel/JournalList.cpp:1594
 msgid "D&uplicate"
 msgstr "Meg&kettőzés"
 
-#: panel/JournalList.cpp:1646
+#: panel/JournalList.cpp:1595
 msgid "Mar&k as"
 msgstr "Meg&jelölés mint"
 
-#: panel/JournalList.cpp:1794
+#: panel/JournalList.cpp:1743
 #, c-format
 msgid "Do you want to permanently delete the selected transaction?"
 msgid_plural "Do you want to permanently delete the %i selected transactions?"
 msgstr[0] "Szeretné véglegesen törölni a kijelölt ügyletet?"
 msgstr[1] "Szeretné véglegesen törölni a(z) %i kijelölt ügyletet?"
 
-#: panel/JournalList.cpp:1800
+#: panel/JournalList.cpp:1749
 #, c-format
 msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] "Szeretné törölni a kijelölt ügyletet?"
 msgstr[1] "Szeretné törölni a(z) %i kijelölt ügyletet?"
 
-#: panel/JournalList.cpp:1808 panel/JournalList.cpp:2267
+#: panel/JournalList.cpp:1757 panel/JournalList.cpp:2216
 msgid "Unable to undo this action."
 msgstr "A művelet nem vonható vissza."
 
-#: panel/JournalList.cpp:1809 panel/JournalList.cpp:2266
+#: panel/JournalList.cpp:1758 panel/JournalList.cpp:2215
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "A törölt ügyletek átmenetileg tárolásra kerülnek, és a Törölt ügyletek nézetből visszaállíthatók."
 
-#: panel/JournalList.cpp:1813 panel/JournalList.cpp:2271
-#: panel/JournalList.cpp:2283 panel/JournalList.cpp:2295
+#: panel/JournalList.cpp:1762 panel/JournalList.cpp:2220
+#: panel/JournalList.cpp:2232 panel/JournalList.cpp:2244
 msgid "Confirm Transaction Deletion"
 msgstr "Ügylet törlésének megerősítése"
 
-#: panel/JournalList.cpp:1886
+#: panel/JournalList.cpp:1835
 #, c-format
 msgid "Do you want to restore the selected transaction?"
 msgid_plural "Do you want to restore the %i selected transactions?"
 msgstr[0] "Szeretné visszaállítani a kijelölt ügyletet?"
 msgstr[1] "Szeretné visszaállítani a(z) %i kijelölt ügyletet?"
 
-#: panel/JournalList.cpp:1895 panel/JournalList.cpp:1937
+#: panel/JournalList.cpp:1844 panel/JournalList.cpp:1886
 msgid "Confirm Transaction Restore"
 msgstr "Ügylet visszaállításának megerősítése"
 
-#: panel/JournalList.cpp:1936
+#: panel/JournalList.cpp:1885
 msgid "Do you want to restore all of the transactions shown?"
 msgstr "Szeretné visszaállítani az összes megjelenített ügyletet?"
 
-#: panel/JournalList.cpp:2042
+#: panel/JournalList.cpp:1991
 #, c-format
 msgid "Do you want to move the selected transaction?"
 msgid_plural "Do you want to move the %i selected transactions?"
 msgstr[0] "Szeretné áthelyezni a kijelölt ügyletet?"
 msgstr[1] "Szeretné áthelyezni a(z) %i kijelölt ügyletet?"
 
-#: panel/JournalList.cpp:2050
+#: panel/JournalList.cpp:1999
 msgid "Confirm Transaction Move"
 msgstr "Ügylet áthelyezésének megerősítése"
 
-#: panel/JournalList.cpp:2056
+#: panel/JournalList.cpp:2005
 msgid "Moving transaction to…"
 msgstr "Ügylet áthelyezése ide…"
 
-#: panel/JournalList.cpp:2057
+#: panel/JournalList.cpp:2006
 #, c-format
 msgid "Moving %i transactions to…"
 msgstr "%i ügylet áthelyezése ide…"
 
-#: panel/JournalList.cpp:2060 panel/StockList.cpp:377
+#: panel/JournalList.cpp:2009 panel/StockList.cpp:375
 msgid "Select the destination Account "
 msgstr "Válassza ki a célszámlát"
 
-#: panel/JournalList.cpp:2094
+#: panel/JournalList.cpp:2043
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "Ennek az az oka, hogy az ügylet vagy a számlarészlet egyes elemei nem teszik lehetővé az áthelyezést"
 
-#: panel/JournalList.cpp:2095
+#: panel/JournalList.cpp:2044
 msgid "Moved"
 msgstr "Áthelyezve"
 
-#: panel/JournalList.cpp:2097
+#: panel/JournalList.cpp:2046
 msgid "Not moved"
 msgstr "Nincs áthelyezve"
 
-#: panel/JournalList.cpp:2102
+#: panel/JournalList.cpp:2051
 msgid "Unable to move some transactions."
 msgstr "Nem sikerült áthelyezni egyes ügyleteket."
 
-#: panel/JournalList.cpp:2167
+#: panel/JournalList.cpp:2116
 msgid "Scheduled transaction saved."
 msgstr "Ütemezett ügylet mentve."
 
-#: panel/JournalList.cpp:2181 util/mmNavigatorList.cpp:55
+#: panel/JournalList.cpp:2130 util/mmNavigatorList.cpp:55
 msgid "All Transactions"
 msgstr "Minden ügylet"
 
-#: panel/JournalList.cpp:2261
+#: panel/JournalList.cpp:2210
 msgid "Do you want to delete all the transactions shown?"
 msgstr "Szeretné törölni az összes megjelenített ügyletet?"
 
-#: panel/JournalList.cpp:2262
+#: panel/JournalList.cpp:2211
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr "Szeretné véglegesen törölni az összes megjelenített ügyletet?"
 
-#: panel/JournalList.cpp:2280 panel/JournalList.cpp:2292
+#: panel/JournalList.cpp:2229 panel/JournalList.cpp:2241
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr "Szeretné törölni az összes megjelenített „%s” ügyletet?"
@@ -7370,75 +7370,75 @@ msgstr "Írjon be egy tetszőleges karakterláncot, hogy megtalálja a legközel
 msgid "Click to copy to clipboard"
 msgstr "Kattintson a másolás a vágólapra"
 
-#: panel/JournalPanel.cpp:986
+#: panel/JournalPanel.cpp:1007
 msgid "Account Bal: "
 msgstr "Számlaegyenleg: "
 
-#: panel/JournalPanel.cpp:990
+#: panel/JournalPanel.cpp:1011
 msgid "Reconciled Bal: "
 msgstr "Egyeztetett egyenleg: "
 
-#: panel/JournalPanel.cpp:995
+#: panel/JournalPanel.cpp:1016
 msgid "Diff: "
 msgstr "Különb.: "
 
-#: panel/JournalPanel.cpp:1002
+#: panel/JournalPanel.cpp:1023
 msgid "Filtered Flow: "
 msgstr "Szűrt adatfolyam: "
 
-#: panel/JournalPanel.cpp:1023
+#: panel/JournalPanel.cpp:1044
 msgid "Market Value: "
 msgstr "Piaci érték: "
 
-#: panel/JournalPanel.cpp:1030
+#: panel/JournalPanel.cpp:1051
 msgid "Invested: "
 msgstr "Befektetett: "
 
-#: panel/JournalPanel.cpp:1069 panel/JournalPanel.cpp:1077
+#: panel/JournalPanel.cpp:1090 panel/JournalPanel.cpp:1098
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr "Dátumtartomány"
 
-#: panel/JournalPanel.cpp:1116
+#: panel/JournalPanel.cpp:1137
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Kattintson az ütemezett ügyletek megjelenítéséhez. Ez a jellemző a jövőbe nyúló szűrőkijelölésekkel működik a legjobban (pl. Jelenlegi hónap)."
 
-#: panel/JournalPanel.cpp:1116
+#: panel/JournalPanel.cpp:1137
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "Az ütemezett ügyletek nem érhetők el, mert a jelenlegi szűrő a múltban ér véget"
 
-#: panel/JournalPanel.cpp:1117
+#: panel/JournalPanel.cpp:1138
 msgid "Click to hide scheduled transactions."
 msgstr "Kattintson az ütemezett ügyletek elrejtéséhez."
 
-#: panel/JournalPanel.cpp:1248
+#: panel/JournalPanel.cpp:1269
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Kijelölt ügyletek: %zu"
 
-#: panel/JournalPanel.cpp:1251
+#: panel/JournalPanel.cpp:1272
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr "Kijelölt ügyletek összesen: %s"
 
-#: panel/JournalPanel.cpp:1256
+#: panel/JournalPanel.cpp:1277
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Kijelölt ügyletek között eltelt napok: %d"
 
-#: panel/JournalPanel.cpp:1377 panel/ReportPanel.cpp:1102
+#: panel/JournalPanel.cpp:1398 panel/ReportPanel.cpp:1102
 msgid "Edit date ranges…"
 msgstr "Dátumtartományok szerkesztése…"
 
-#: panel/JournalPanel.cpp:1525
+#: panel/JournalPanel.cpp:1546
 msgid "&New Withdrawal…"
 msgstr "&Új kivétel…"
 
-#: panel/JournalPanel.cpp:1526
+#: panel/JournalPanel.cpp:1547
 msgid "&New Deposit…"
 msgstr "&Új betét…"
 
-#: panel/JournalPanel.cpp:1527
+#: panel/JournalPanel.cpp:1548
 msgid "&New Transfer…"
 msgstr "&Új átutalás…"
 
@@ -7478,43 +7478,43 @@ msgstr "Kijelölés:"
 msgid "Report"
 msgstr "Jelentés"
 
-#: panel/SchedList.cpp:84
+#: panel/SchedList.cpp:85
 msgid "Repetitions"
 msgstr "Ismétlések"
 
-#: panel/SchedList.cpp:85
+#: panel/SchedList.cpp:86
 msgid "Autorepeat"
 msgstr "Automatikus ismétlés"
 
-#: panel/SchedList.cpp:189
+#: panel/SchedList.cpp:190
 msgid "Enter next Occurrence…"
 msgstr "Következő előfordulás megadása…"
 
-#: panel/SchedList.cpp:191
+#: panel/SchedList.cpp:192
 msgid "Skip next Occurrence"
 msgstr "Következő előfordulás kihagyása"
 
-#: panel/SchedList.cpp:193
+#: panel/SchedList.cpp:194
 msgid "&New Scheduled Transaction…"
 msgstr "&Új, ütemezett ügylet…"
 
-#: panel/SchedList.cpp:194
+#: panel/SchedList.cpp:195
 msgid "&Edit Scheduled Transaction…"
 msgstr "Ütemezett ügyletének s&zerkesztése…"
 
-#: panel/SchedList.cpp:195
+#: panel/SchedList.cpp:196
 msgid "D&uplicate Scheduled Transaction…"
 msgstr "Ütemezett ügylet meg&kettőzése…"
 
-#: panel/SchedList.cpp:197
+#: panel/SchedList.cpp:198
 msgid "&Delete Scheduled Transaction…"
 msgstr "Ütemezett ügylet &törlése…"
 
-#: panel/SchedList.cpp:298
+#: panel/SchedList.cpp:299
 msgid "Do you want to delete the scheduled transaction?"
 msgstr "Szeretné törölni az ütemezett ügyletet?"
 
-#: panel/SchedList.cpp:299
+#: panel/SchedList.cpp:300
 msgid "Confirm Deletion"
 msgstr "Törlés megerősítése"
 
@@ -7534,44 +7534,44 @@ msgstr "Ütemezett ügylet törlése"
 msgid "Curr. Total Value"
 msgstr "Akt. összérték"
 
-#: panel/StockList.cpp:160
+#: panel/StockList.cpp:158
 msgid "&New Stock Investment…"
 msgstr "&Új értékpapírbefektetés…"
 
-#: panel/StockList.cpp:162
+#: panel/StockList.cpp:160
 msgid "&Adjust Trade"
 msgstr "&Kereskedés helyesbítése"
 
-#: panel/StockList.cpp:163
+#: panel/StockList.cpp:161
 msgid "&View Stock Transactions"
 msgstr "Értékpapírügyletek &megjelenítése"
 
-#: panel/StockList.cpp:165
+#: panel/StockList.cpp:163
 msgid "&Edit Stock Investment…"
 msgstr "Értékpapírbefektetés s&zerkesztése…"
 
-#: panel/StockList.cpp:167
+#: panel/StockList.cpp:165
 msgid "&Delete Stock Investment…"
 msgstr "Értékpapírbefektetés &törlése…"
 
-#: panel/StockList.cpp:170
+#: panel/StockList.cpp:168
 msgid "Stock &Web Page"
 msgstr "Részvények weblap"
 
-#: panel/StockList.cpp:343
+#: panel/StockList.cpp:341
 msgid "Do you want to delete the stock investment?"
 msgstr "Szeretné törölni az értékpapírbefektetést?"
 
-#: panel/StockList.cpp:344
+#: panel/StockList.cpp:342
 msgid "Confirm Stock Investment Deletion"
 msgstr "Értékpapírbefektetés törlésének megerősítése"
 
-#: panel/StockList.cpp:373
+#: panel/StockList.cpp:371
 #, c-format
 msgid "Moving Transaction from %s to"
 msgstr "Ügylet áthelyezése %s helyről ide:"
 
-#: panel/StockList.cpp:772
+#: panel/StockList.cpp:770
 #, c-format
 msgid "Symbol: %s"
 msgstr "Jel: %s"
@@ -7667,39 +7667,39 @@ msgstr "Nincs mit frissíteni"
 msgid "Connecting…"
 msgstr "Kapcsolódás…"
 
-#: panel/_ListBase.cpp:531
+#: panel/_ListBase.cpp:568
 msgid "Sort by this column"
 msgstr "Rendezés ezen oszlop szerint"
 
-#: panel/_ListBase.cpp:535
+#: panel/_ListBase.cpp:572
 msgid "Hide/Show column"
 msgstr "Oszlop elrejtése/megjelenítése"
 
-#: panel/_ListBase.cpp:536
+#: panel/_ListBase.cpp:573
 msgid "Hide this column"
 msgstr "Oszlop elrejtése"
 
-#: panel/_ListBase.cpp:556
+#: panel/_ListBase.cpp:592
 msgid "Move hidden column"
 msgstr "Rejtett oszlop áthelyezése"
 
-#: panel/_ListBase.cpp:560
+#: panel/_ListBase.cpp:596
 msgid "Move column to the beginning"
 msgstr "Oszlop áthelyezése az elejére"
 
-#: panel/_ListBase.cpp:564
+#: panel/_ListBase.cpp:600
 msgid "Move column left"
 msgstr "Oszlop mozgatása balra"
 
-#: panel/_ListBase.cpp:568
+#: panel/_ListBase.cpp:604
 msgid "Move column right"
 msgstr "Oszlop mozgatása jobbra"
 
-#: panel/_ListBase.cpp:572
+#: panel/_ListBase.cpp:608
 msgid "Move column to the end"
 msgstr "Oszlop áthelyezése a végére"
 
-#: panel/_ListBase.cpp:580
+#: panel/_ListBase.cpp:616
 msgid "Reset column widths"
 msgstr "Oszlopszélességek visszaállítása"
 
