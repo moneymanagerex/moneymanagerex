@@ -1,6 +1,69 @@
-Version 1.9.3 RC 2
+Version 1.9.3 RC 3
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2026-07-09
+Released: 2026-07-22
+
+Features:
+* #8015 [FEATURE REQUEST] Account icons: usability, custom selection, and bank logos
+* #8401 wx3.3.3
+* #8297 Enchancements in database API
+* #8287 Currency Manager, add apostrophe ' to the "Grouping char"
+* #8279 Warning messages when compiling on Windows 11
+* #8260 Modified Payee-PayeeTrend.grm (with Select input)
+* #8239 New string translation macros
+* #8229 Update to wxWidgets v3.3.2
+* #8175 [regression] User interface language
+* #7870 Make reconciled balance disappear on home screen if you want it to
+* #8404 Fix: Clang compiler support, warnings removed
+* #8339 Translate "Cash Ledger"
+* #8320 Add selection between accounts and account types in summary of accounts report
+* #8314 Add filtering for accounts and time period in summary of accounts report
+* #8241 Move OK/CANCEL button locations on transaction dialog
+* #8221 Dashboard updates and corrections
+* #8219 Journal Panel additional functionality
+* #8195 fix(#8191): package wxWidgets translations
+* #8088 Add tooltips to toolbar configuration buttons
+* #8072 Clarify CSV field labels for real and unreal gains
+* #7994 Feature: Toolbar and Navigator configuration and custom account types
+* #7962 Added the option to export stocks and added the option to limit the exported transactions/stocks between 2 dates (issue#7810)
+
+Bugfixes:
+* #8390 Bug: Asset account view cannot be hidden in navigator configuration
+* #8364 Create a scheduled transaction from an existing transaction (category and tags are missing)
+* #8352 csv delimiter "|" give Bad allocation Error
+* #8324 OFX Error
+* #8311 Column width resizing is not saved
+* #8309 Non riesco a stampare
+* #8292 License dates are still wrong
+* #8274 Error opening a new database
+* #8268 Context menu right‑click causes crash in Currency Manager
+* #8265 Payee Report - All = incorrect results
+* #8262 Performance issue on v1.9.3 Beta
+* #8257 App crashes when selecting a closed Bank Account
+* #8254 Attachments will no longer be displayed in the transaction overview
+* #8225 Missing translation 1.9.3 Béta version
+* #8192 Time stamp for “Scheduled Transactions” is missing when entering manually
+* #8176 Account deletion does not work
+* #8169 Notes and color field are in the wrong place in "transaction report"
+* #8140 Reconcile window opening balance may be incorrect if future transactions are displayed in checking panel
+* #8130 Accounts Balance - Yearly Report Closed accounts
+* #8124 Date Range issues
+* #8118 Update Account Name in Account View
+* #8116 [Reconcile account] Number formats
+* #8087 Dashboard does not show Last N days
+* #8057 GUI: Misprint at Stock Portfolio Overview (Tips, English)
+* #8000 Reconcile dialog calculator not working on MacOS
+* #7240 Homepage Import/Export CSV Link
+* #8413 Column handling fixes and refactor
+* #8403 Fix: Correct display of disabled buttons under Linux/GTK
+* #8400 Fix: display configured names in panel haeders and navigator edit dialog
+* #8359 Reconcile dialog - update sums after edit
+* #8349 Fix regression introduced with "refine TrxDialog"
+* #8335 Fix new account type always defaulting to Checking
+* #8306 Fix currency related crashes during new database creation
+* #8253 Fix segmentation fault
+* #8247 Misc Fixes and updates
+* #8245 Two (minor) Bugfixes
+* #7997 Qif import fixes
 
 Version 1.9.2
 ~~~~~~~~~~~~~~~~~~~~
