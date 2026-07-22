@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-07-15 18:48+0000\n"
-"PO-Revision-Date: 2026-07-16 21:37\n"
+"PO-Revision-Date: 2026-07-22 11:57\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -8238,7 +8238,7 @@ msgstr "Toon het kasboek voor portefeuilles"
 
 #: pref/ViewPref.cpp:119
 msgid "Automatically resize columns to fit panel"
-msgstr ""
+msgstr "Kolommen automatisch aanpassen aan de grootte van het paneel"
 
 #: pref/ViewPref.cpp:127
 msgid "Do not use color for future transactions"
