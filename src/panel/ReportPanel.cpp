@@ -829,10 +829,11 @@ void ReportPanel::onNewWindow(wxWebViewEvent& evt)
                 const AccountData* account_n = AccountModel::instance().get_idN_data_n(
                     trx_n->m_account_id
                 );
-                if (account_n) {
-                    w_frame->selectNavTreeItem(account_n->m_name);
-                    w_frame->setGotoAccountID(trx_n->m_account_id, JournalKey(-1, transID));
+                if (account_n) 
+                {
                     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+                    event.SetInt(mmNavigatorItem::TYPE_ID_CHECKING);
+                    event.SetString(wxString::Format("%lld:%lld", trx_n->m_account_id, transID));
                     w_frame->GetEventHandler()->AddPendingEvent(event);
                 }
             }

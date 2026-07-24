@@ -2067,13 +2067,9 @@ void JournalList::onViewOtherAccount(wxCommandEvent& /*event*/)
     int64 gotoAccountID = (w_panel->m_account_id == journal_dx.m_account_id)
         ? journal_dx.m_to_account_id_n
         : journal_dx.m_account_id;
-    wxString gotoAccountName = (w_panel->m_account_id == journal_dx.m_account_id)
-        ? journal_dx.TOACCOUNTNAME
-        : journal_dx.ACCOUNTNAME;
-
-    w_panel->w_frame->selectNavTreeItem(gotoAccountName);
-    w_panel->w_frame->setGotoAccountID(gotoAccountID, journal_key);
     wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+    event.SetInt(mmNavigatorItem::TYPE_ID_CHECKING);
+    event.SetString(wxString::Format("%lld:%lld", gotoAccountID, journal_key.rid()));
     w_panel->w_frame->GetEventHandler()->AddPendingEvent(event);
 }
 
