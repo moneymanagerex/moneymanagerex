@@ -669,8 +669,8 @@ void AssetPanel::gotoAssetAccount(const int selected_index)
 
 void AssetPanel::setAccountParameters(const AccountData* account_n)
 {
-    w_frame->selectNavTreeItem(account_n->m_name);
-    w_frame->setGotoAccountID(account_n->m_id);
-    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-    w_frame->GetEventHandler()->AddPendingEvent(evt);
+    wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+    event.SetInt(mmNavigatorItem::TYPE_ID_CHECKING);
+    event.SetString(wxString::Format("%lld", account_n->m_id));
+    w_frame->GetEventHandler()->AddPendingEvent(event);
 }

@@ -3040,11 +3040,10 @@ void mmFrame::OnImportQIF(wxCommandEvent& /*event*/)
     int64 account_id = dlg.get_last_imported_acc();
     RefreshNavigationTree();
     if (account_id > 0) {
-        setGotoAccountID(account_id);
-        const AccountData* account = AccountModel::instance().get_idN_data_n(account_id);
-        selectNavTreeItem(account->m_name);
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-        this->GetEventHandler()->AddPendingEvent(evt);
+        wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+        event.SetInt(mmNavigatorItem::TYPE_ID_CHECKING);
+        event.SetString(wxString::Format("%lld", account_id));
+        this->GetEventHandler()->AddPendingEvent(event);
     }
     else {
         refreshPanelData();
@@ -3887,10 +3886,15 @@ void mmFrame::OnGotoAccount(wxCommandEvent& event)
     {
         case mmNavigatorItem::TYPE_ID_CHECKING:
             {
-                wxString accid = event.GetString();
-                wxLongLong_t id = -1;
-                accid.ToLongLong(&id);
-                setGotoAccountID(id);
+                wxString sData = event.GetString();
+                wxStringTokenizer tokenizer(sData, ":");
+                int64 accID = std::stoll(tokenizer.GetNextToken().ToStdString());
+                if (tokenizer.HasMoreTokens())
+                {
+                    int64 transId = std::stoll(tokenizer.GetNextToken().ToStdString());
+                    setGotoAccountID(accID, JournalKey(-1, transId));
+                } else
+                    setGotoAccountID(accID);
                 const AccountData* account_n = AccountModel::instance().get_idN_data_n(gotoAccountID_);
                 if (account_n) {
                     if (AccountModel::type_id(*account_n) != mmNavigatorItem::TYPE_ID_INVESTMENT) {
