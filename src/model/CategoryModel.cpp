@@ -137,7 +137,13 @@ const wxString CategoryModel::get_data_fullname(
     wxString fullname = cat_n->m_name;
     while (cat_n->m_parent_id_n > 0) {
         cat_n = get_idN_data_n(cat_n->m_parent_id_n);
-        fullname = cat_n->m_name + delimiter + fullname;
+        // #8276: temporary fix for corrupted CATEGORY_V1 (parent does not exist)
+        if (!cat_n) 
+        {
+            fullname = _t("Error") + delimiter + fullname;
+            break;
+        } else
+            fullname = cat_n->m_name + delimiter + fullname;
     }
 
     return fullname;
