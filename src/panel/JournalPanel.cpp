@@ -1239,12 +1239,12 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
             while (true) {
                 item = w_list->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
                 if (item == -1) break;
+                if (m_account_id < 0 && w_list->m_journal_xa[item].is_transfer())
+                    continue;
                 const CurrencyData* curr = AccountModel::instance().get_id_currency_p(
                     w_list->m_journal_xa[item].m_account_id
                 );
-                if (m_account_id < 0 && w_list->m_journal_xa[item].is_transfer())
-                    continue;
-                double convrate = (curr != m_currency_n)
+                double convrate = ((m_account_id < 0) && (curr != m_currency_n))
                     ? CurrencyHistoryModel::instance().get_id_date_rate(
                         curr->m_id,
                         w_list->m_journal_xa[item].m_date()
