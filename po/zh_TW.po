@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-07-15 18:48+0000\n"
-"PO-Revision-Date: 2026-07-16 21:37\n"
+"POT-Creation-Date: 2026-07-25 17:44+0000\n"
+"PO-Revision-Date: 2026-07-31 01:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -77,7 +77,7 @@ msgid "Name in use"
 msgstr "名稱已被使用"
 
 #: app/mmFrame.cpp:1603 app/mmFrame.cpp:1623 app/mmFrame.cpp:2150
-#: app/mmFrame.cpp:3323 util/mmNavigatorList.cpp:69
+#: app/mmFrame.cpp:3322 util/mmNavigatorList.cpp:69
 msgid "Transaction Report"
 msgstr "交易紀錄報表"
 
@@ -89,7 +89,7 @@ msgstr ""
 msgid "This will also delete any associated Shares."
 msgstr ""
 
-#: app/mmFrame.cpp:1651 app/mmFrame.cpp:4111
+#: app/mmFrame.cpp:1651 app/mmFrame.cpp:4115
 msgid "Confirm Account Deletion"
 msgstr "確定刪除帳戶"
 
@@ -538,7 +538,7 @@ msgstr "合併類別、受款人和標記"
 msgid "&Budget Planner…"
 msgstr "預算規劃員(&B)…"
 
-#: app/mmFrame.cpp:2128 app/mmFrame.cpp:3345 util/mmNavigatorList.cpp:68
+#: app/mmFrame.cpp:2128 app/mmFrame.cpp:3344 util/mmNavigatorList.cpp:68
 msgid "Budget Planner"
 msgstr "預算規劃員"
 
@@ -554,7 +554,7 @@ msgstr "支出與收入"
 msgid "&Assets"
 msgstr "資產(&A)"
 
-#: app/mmFrame.cpp:2136 app/mmFrame.cpp:3955
+#: app/mmFrame.cpp:2136 app/mmFrame.cpp:3959
 #: manager/GeneralReportManager.cpp:1241 panel/AssetPanel.h:73
 #: panel/DashboardWidget.cpp:580 panel/DashboardWidget.cpp:611
 #: pref/OtherPref.cpp:106 report/BalanceReport.cpp:193
@@ -601,7 +601,7 @@ msgstr "自訂欄位管理員"
 msgid "Refresh &WebApp…"
 msgstr "重新整理網路程式(&W)…"
 
-#: app/mmFrame.cpp:2166 app/mmFrame.cpp:3451 app/mmFrame.cpp:3459
+#: app/mmFrame.cpp:2166 app/mmFrame.cpp:3450 app/mmFrame.cpp:3458
 msgid "Refresh WebApp"
 msgstr "重新整理網路應用程式"
 
@@ -609,7 +609,7 @@ msgstr "重新整理網路應用程式"
 msgid "&Settings…"
 msgstr ""
 
-#: app/mmFrame.cpp:2171 app/mmFrame.cpp:3396 dialog/ReconcileDialog.cpp:169
+#: app/mmFrame.cpp:2171 app/mmFrame.cpp:3395 dialog/ReconcileDialog.cpp:169
 #: dialog/TrxFilterDialog.cpp:787 manager/PrefManager.cpp:223
 #: manager/PrefManager.h:48
 msgid "Settings"
@@ -855,7 +855,7 @@ msgstr "工具(&T)"
 msgid "&View"
 msgstr "檢視(&V)"
 
-#: app/mmFrame.cpp:2341 app/mmFrame.cpp:2344 app/mmFrame.cpp:3523
+#: app/mmFrame.cpp:2341 app/mmFrame.cpp:2344 app/mmFrame.cpp:3522
 #: pref/NetworkPref.cpp:133
 msgid "News"
 msgstr "新聞"
@@ -1064,21 +1064,21 @@ msgstr ""
 msgid "Enter password for new database"
 msgstr "輸入新資料庫的密碼"
 
-#: app/mmFrame.cpp:3070 app/mmFrame.cpp:3098
+#: app/mmFrame.cpp:3069 app/mmFrame.cpp:3097
 msgid "No account available to import"
 msgstr "沒有可匯入的帳戶"
 
-#: app/mmFrame.cpp:3071 app/mmFrame.cpp:3099 import_export/parsers.cpp:48
+#: app/mmFrame.cpp:3070 app/mmFrame.cpp:3098 import_export/parsers.cpp:48
 #: import_export/parsers.cpp:102 import_export/univcsvdialog.cpp:1474
 msgid "Universal CSV Import"
 msgstr "通用 CSV 匯入"
 
-#: app/mmFrame.cpp:3129 app/mmFrame.cpp:3477 panel/HelpPanel.cpp:83
+#: app/mmFrame.cpp:3128 app/mmFrame.cpp:3476 panel/HelpPanel.cpp:83
 #: util/mmNavigatorList.cpp:73
 msgid "Help"
 msgstr "輔助說明"
 
-#: app/mmFrame.cpp:3154
+#: app/mmFrame.cpp:3153
 msgid "Asset Accounts hold Asset transactions\n\n"
 "Asset transactions are created within the Assets View\n"
 "after the selection of the Asset within that view.\n\n"
@@ -1088,11 +1088,11 @@ msgstr "資產帳戶持有資產交易紀錄\n\n"
 "於該檢視中創建資產交易紀錄。\n\n"
 "資產帳戶還可以保存普通帳戶的一般交易紀錄。"
 
-#: app/mmFrame.cpp:3158
+#: app/mmFrame.cpp:3157
 msgid "Asset Account Creation"
 msgstr "新建立資產帳戶"
 
-#: app/mmFrame.cpp:3163
+#: app/mmFrame.cpp:3162
 msgid "Share Accounts hold Share transactions\n\n"
 "Share transactions are created within the Stock Portfolio View\n"
 "after the selection of the Company Stock within the associated view.\n\n"
@@ -1105,135 +1105,135 @@ msgstr "證券帳戶中保存股票交易紀錄\n\n"
 "或使用選單檢視→「顯示股票帳戶」\n"
 "共享帳戶還可以保存普通帳戶的一般交易紀錄。"
 
-#: app/mmFrame.cpp:3169
+#: app/mmFrame.cpp:3168
 msgid "Share Account Creation"
 msgstr "建立證券帳戶"
 
-#: app/mmFrame.cpp:3250
+#: app/mmFrame.cpp:3249
 msgid "Transactions per payee"
 msgstr ""
 
-#: app/mmFrame.cpp:3394
+#: app/mmFrame.cpp:3393
 msgid "Settings have been updated."
 msgstr "設定已更新。"
 
-#: app/mmFrame.cpp:3395
+#: app/mmFrame.cpp:3394
 msgid "Some settings take effect only after an application restart."
 msgstr "部份設定只有在應用程式重新啟動後才會生效。"
 
-#: app/mmFrame.cpp:3451
+#: app/mmFrame.cpp:3450
 msgid "Accounts, Payees, and Categories Updated"
 msgstr "帳戶、受款人和類別已更新"
 
-#: app/mmFrame.cpp:3458
+#: app/mmFrame.cpp:3457
 msgid "Issue encountered updating WebApp, check Web server and WebApp settings"
 msgstr "更新網路應用程式時遇到問題，請檢查網路伺服器和網路應用程式設定"
 
-#: app/mmFrame.cpp:3530 app/mmFrame.cpp:4753 app/mmFrame.cpp:4777
+#: app/mmFrame.cpp:3529 app/mmFrame.cpp:4757 app/mmFrame.cpp:4781
 #: manager/GeneralReportManager.cpp:350 report/UsageReport.cpp:147
 #: report/UsageReport.cpp:164 util/mmNavigatorList.cpp:70
 msgid "Reports"
 msgstr "報表"
 
-#: app/mmFrame.cpp:3603
+#: app/mmFrame.cpp:3602
 msgid "Choose HTML file to export"
 msgstr ""
 
-#: app/mmFrame.cpp:3746 panel/SchedPanel.h:73 util/mmNavigatorList.cpp:56
+#: app/mmFrame.cpp:3745 panel/SchedPanel.h:73 util/mmNavigatorList.cpp:56
 msgid "Scheduled Transactions"
 msgstr "排程交易紀錄"
 
-#: app/mmFrame.cpp:3980 app/mmFrame.cpp:3987
+#: app/mmFrame.cpp:3984 app/mmFrame.cpp:3991
 msgid "Downloading stock prices from Yahoo"
 msgstr "從雅虎下載股票價格"
 
-#: app/mmFrame.cpp:3981 import_export/qif_export.cpp:498
+#: app/mmFrame.cpp:3985 import_export/qif_export.cpp:498
 #: import_export/qif_import_gui.cpp:468 import_export/qif_import_gui.cpp:1109
 msgid "Please wait…"
 msgstr "請稍等…"
 
-#: app/mmFrame.cpp:4034 panel/StockPanel.cpp:666
+#: app/mmFrame.cpp:4038 panel/StockPanel.cpp:666
 #, c-format
 msgid "%1$s on %2$s"
 msgstr "%1$s 在於 %2$s"
 
-#: app/mmFrame.cpp:4055
+#: app/mmFrame.cpp:4059
 msgid "No account available to edit!"
 msgstr "沒有可編輯的帳戶！"
 
-#: app/mmFrame.cpp:4056 app/mmFrame.cpp:4064 app/mmFrame.cpp:4089
-#: app/mmFrame.cpp:4097 import_export/qif_export.cpp:153
+#: app/mmFrame.cpp:4060 app/mmFrame.cpp:4068 app/mmFrame.cpp:4093
+#: app/mmFrame.cpp:4101 import_export/qif_export.cpp:153
 #: panel/DashboardWidget.cpp:576 report/BalanceReport.cpp:42
 msgid "Accounts"
 msgstr "帳戶"
 
-#: app/mmFrame.cpp:4063
+#: app/mmFrame.cpp:4067
 msgid "Choose Account to Edit"
 msgstr "選擇要編輯的帳戶"
 
-#: app/mmFrame.cpp:4088
+#: app/mmFrame.cpp:4092
 msgid "No account available to delete!"
 msgstr "沒有可刪除的帳戶！"
 
-#: app/mmFrame.cpp:4096
+#: app/mmFrame.cpp:4100
 msgid "Choose Account to Delete"
 msgstr "選擇要刪除的帳戶"
 
-#: app/mmFrame.cpp:4105
+#: app/mmFrame.cpp:4109
 #, c-format
 msgid "Do you you want to delete\n"
 "%1$s account: %2$s?"
 msgstr ""
 
-#: app/mmFrame.cpp:4126
+#: app/mmFrame.cpp:4130
 msgid "Select account"
 msgstr "選擇帳戶"
 
-#: app/mmFrame.cpp:4127 app/mmFrame.cpp:4150
+#: app/mmFrame.cpp:4131 app/mmFrame.cpp:4154
 msgid "Change Account Type"
 msgstr "改變帳戶種類"
 
-#: app/mmFrame.cpp:4149
+#: app/mmFrame.cpp:4153
 #, c-format
 msgid "Select new account type for %s"
 msgstr "請為 %s 選擇新的帳戶種類"
 
-#: app/mmFrame.cpp:4316 manager/CategoryManager.cpp:739
+#: app/mmFrame.cpp:4320 manager/CategoryManager.cpp:739
 msgid "Merge categories completed"
 msgstr "合併類別已經完成"
 
-#: app/mmFrame.cpp:4317 app/mmFrame.cpp:4331 app/mmFrame.cpp:4346
+#: app/mmFrame.cpp:4321 app/mmFrame.cpp:4335 app/mmFrame.cpp:4350
 #: manager/CategoryManager.cpp:740 manager/PayeeManager.cpp:877
 #, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "資料庫中的記錄已更新： %i"
 
-#: app/mmFrame.cpp:4319 manager/CategoryManager.cpp:742
+#: app/mmFrame.cpp:4323 manager/CategoryManager.cpp:742
 msgid "Merge categories result"
 msgstr "類別合併結果"
 
-#: app/mmFrame.cpp:4330 manager/PayeeManager.cpp:876
+#: app/mmFrame.cpp:4334 manager/PayeeManager.cpp:876
 msgid "Merge payees completed"
 msgstr "合併受款人已完成"
 
-#: app/mmFrame.cpp:4334 manager/PayeeManager.cpp:880
+#: app/mmFrame.cpp:4338 manager/PayeeManager.cpp:880
 msgid "Merge payees result"
 msgstr "合併受款人結果"
 
-#: app/mmFrame.cpp:4345
+#: app/mmFrame.cpp:4349
 msgid "Merge tags completed"
 msgstr "合併標記已完成"
 
-#: app/mmFrame.cpp:4349
+#: app/mmFrame.cpp:4353
 msgid "Merge tags result"
 msgstr "合併標記結果"
 
-#: app/mmFrame.cpp:4415
+#: app/mmFrame.cpp:4419
 #, c-format
 msgid "File %s not found."
 msgstr "未找到檔案 %s."
 
-#: app/mmFrame.cpp:4416 dialog/CurrencyChoiceDialog.cpp:516
+#: app/mmFrame.cpp:4420 dialog/CurrencyChoiceDialog.cpp:516
 #: dialog/IconManagerDialog.cpp:540 dialog/IconManagerDialog.cpp:559
 #: dialog/IconManagerDialog.cpp:580 dialog/SchedDialog.cpp:1598
 #: dialog/SplitDialog.cpp:422 import_export/ofx_import_gui.cpp:298
@@ -1243,95 +1243,95 @@ msgstr "未找到檔案 %s."
 #: import_export/ofx_import_gui.cpp:1202 import_export/ofx_import_gui.cpp:1213
 #: import_export/univcsvdialog.cpp:1712 import_export/webappdialog.cpp:189
 #: import_export/webappdialog.cpp:193 manager/ThemeManager.cpp:326
-#: manager/ThemeManager.cpp:346 panel/StockPanel.cpp:563
-#: panel/StockPanel.cpp:564 util/mmImage.cpp:576
+#: manager/ThemeManager.cpp:346 model/CategoryModel.cpp:143
+#: panel/StockPanel.cpp:563 panel/StockPanel.cpp:564 util/mmImage.cpp:576
 msgid "Error"
 msgstr "錯誤"
 
-#: app/mmFrame.cpp:4462 dialog/StartupDialog.cpp:255 pref/GeneralPref.cpp:412
+#: app/mmFrame.cpp:4466 dialog/StartupDialog.cpp:255 pref/GeneralPref.cpp:412
 msgid "The language for this application has been changed. The change will take effect the next time the application is started."
 msgstr "此應用程式的語言已變更。將在下次啟動時生效。"
 
-#: app/mmFrame.cpp:4464 dialog/StartupDialog.cpp:258 pref/GeneralPref.cpp:414
+#: app/mmFrame.cpp:4468 dialog/StartupDialog.cpp:258 pref/GeneralPref.cpp:414
 msgid "Language change"
 msgstr "變更語言"
 
-#: app/mmFrame.cpp:4531
+#: app/mmFrame.cpp:4535
 msgid "Cash Flow"
 msgstr "現金流"
 
-#: app/mmFrame.cpp:4534 data/_DataEnum.cpp:69 data/_DataEnum.cpp:110
+#: app/mmFrame.cpp:4538 data/_DataEnum.cpp:69 data/_DataEnum.cpp:110
 msgid "Daily"
 msgstr "每日"
 
-#: app/mmFrame.cpp:4537 app/mmFrame.cpp:4551 app/mmFrame.cpp:4579
-#: app/mmFrame.cpp:4606 data/_DataEnum.cpp:64 data/_DataEnum.cpp:114
+#: app/mmFrame.cpp:4541 app/mmFrame.cpp:4555 app/mmFrame.cpp:4583
+#: app/mmFrame.cpp:4610 data/_DataEnum.cpp:64 data/_DataEnum.cpp:114
 msgid "Monthly"
 msgstr "每月"
 
-#: app/mmFrame.cpp:4540 import_export/parsers.cpp:230
+#: app/mmFrame.cpp:4544 import_export/parsers.cpp:230
 #: manager/PrefManager.cpp:41 pref/ViewPref.cpp:126
 msgid "Transactions"
 msgstr "交易紀錄"
 
-#: app/mmFrame.cpp:4548 import_export/qif_export.cpp:147
+#: app/mmFrame.cpp:4552 import_export/qif_export.cpp:147
 #: manager/CategoryManager.cpp:203
 msgid "Categories"
 msgstr "依類別查看資金走向"
 
-#: app/mmFrame.cpp:4554 app/mmFrame.cpp:4656 panel/DashboardWidget.cpp:209
+#: app/mmFrame.cpp:4558 app/mmFrame.cpp:4660 panel/DashboardWidget.cpp:209
 msgid "Summary"
 msgstr "結餘"
 
-#: app/mmFrame.cpp:4557 report/CategoryReport.cpp:331
+#: app/mmFrame.cpp:4561 report/CategoryReport.cpp:331
 msgid "Where the Money Goes"
 msgstr "依類別查看支出"
 
-#: app/mmFrame.cpp:4560 report/CategoryReport.cpp:337
+#: app/mmFrame.cpp:4564 report/CategoryReport.cpp:337
 msgid "Where the Money Comes From"
 msgstr "依類別查看收入"
 
-#: app/mmFrame.cpp:4568
+#: app/mmFrame.cpp:4572
 msgid "Forecast Report"
 msgstr "預算報表"
 
-#: app/mmFrame.cpp:4576 pref/DashboardPref.cpp:83
+#: app/mmFrame.cpp:4580 pref/DashboardPref.cpp:83
 msgid "Income vs. Expenses"
 msgstr "收入與支出"
 
-#: app/mmFrame.cpp:4587
+#: app/mmFrame.cpp:4591
 msgid "My Usage"
 msgstr "我的花費"
 
-#: app/mmFrame.cpp:4595 report/PayeeReport.cpp:172
+#: app/mmFrame.cpp:4599 report/PayeeReport.cpp:172
 msgid "Payees"
 msgstr "收款人"
 
-#: app/mmFrame.cpp:4603
+#: app/mmFrame.cpp:4607
 msgid "Summary of Accounts"
 msgstr "所有帳目總結"
 
-#: app/mmFrame.cpp:4614 data/_DataEnum.cpp:68 data/_DataEnum.cpp:121
+#: app/mmFrame.cpp:4618 data/_DataEnum.cpp:68 data/_DataEnum.cpp:121
 msgid "Yearly"
 msgstr "每年"
 
-#: app/mmFrame.cpp:4627
+#: app/mmFrame.cpp:4631
 msgid "Budgets"
 msgstr "預算"
 
-#: app/mmFrame.cpp:4630
+#: app/mmFrame.cpp:4634
 msgid "Budget Performance"
 msgstr "預算執行情況"
 
-#: app/mmFrame.cpp:4633
+#: app/mmFrame.cpp:4637
 msgid "Budget Category Summary"
 msgstr "預算類別摘要"
 
-#: app/mmFrame.cpp:4646
+#: app/mmFrame.cpp:4650
 msgid "Stocks Report"
 msgstr "股票報表"
 
-#: app/mmFrame.cpp:4753 panel/ReportPanel.cpp:390
+#: app/mmFrame.cpp:4757 panel/ReportPanel.cpp:390
 msgid "Hide"
 msgstr "隱藏"
 
@@ -1751,7 +1751,7 @@ msgid "Transfer"
 msgstr "轉帳"
 
 #: data/_DataEnum.cpp:95 dialog/TrxFilterDialog.cpp:59
-#: panel/JournalList.cpp:2242
+#: panel/JournalList.cpp:2238
 msgid "Unreconciled"
 msgstr "未對帳"
 
@@ -1765,7 +1765,7 @@ msgid "Void"
 msgstr "作廢"
 
 #: data/_DataEnum.cpp:98 dialog/TrxFilterDialog.cpp:62
-#: panel/JournalList.cpp:2230
+#: panel/JournalList.cpp:2226
 msgid "Follow Up"
 msgstr "追蹤"
 
@@ -5914,7 +5914,7 @@ msgid "Default date ranges"
 msgstr ""
 
 #: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1391
-#: panel/ReportPanel.cpp:1095
+#: panel/ReportPanel.cpp:1096
 msgid "More date ranges…"
 msgstr ""
 
@@ -7181,16 +7181,16 @@ msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] ""
 
-#: panel/JournalList.cpp:1757 panel/JournalList.cpp:2216
+#: panel/JournalList.cpp:1757 panel/JournalList.cpp:2212
 msgid "Unable to undo this action."
 msgstr ""
 
-#: panel/JournalList.cpp:1758 panel/JournalList.cpp:2215
+#: panel/JournalList.cpp:1758 panel/JournalList.cpp:2211
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "已刪除的交易紀錄將被暫時存儲，並且可以從「已刪除的交易紀錄」檢視中復原。"
 
-#: panel/JournalList.cpp:1762 panel/JournalList.cpp:2220
-#: panel/JournalList.cpp:2232 panel/JournalList.cpp:2244
+#: panel/JournalList.cpp:1762 panel/JournalList.cpp:2216
+#: panel/JournalList.cpp:2228 panel/JournalList.cpp:2240
 msgid "Confirm Transaction Deletion"
 msgstr "確定刪除交易"
 
@@ -7247,23 +7247,23 @@ msgstr "未有移動"
 msgid "Unable to move some transactions."
 msgstr ""
 
-#: panel/JournalList.cpp:2116
+#: panel/JournalList.cpp:2112
 msgid "Scheduled transaction saved."
 msgstr "排程交易紀錄已儲存。"
 
-#: panel/JournalList.cpp:2130 util/mmNavigatorList.cpp:55
+#: panel/JournalList.cpp:2126 util/mmNavigatorList.cpp:55
 msgid "All Transactions"
 msgstr "所有交易"
 
-#: panel/JournalList.cpp:2210
+#: panel/JournalList.cpp:2206
 msgid "Do you want to delete all the transactions shown?"
 msgstr ""
 
-#: panel/JournalList.cpp:2211
+#: panel/JournalList.cpp:2207
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr ""
 
-#: panel/JournalList.cpp:2229 panel/JournalList.cpp:2241
+#: panel/JournalList.cpp:2225 panel/JournalList.cpp:2237
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr ""
@@ -7390,7 +7390,7 @@ msgstr ""
 msgid "Days between selected transactions: %d"
 msgstr "所選交易紀錄間隔的天數：%d"
 
-#: panel/JournalPanel.cpp:1398 panel/ReportPanel.cpp:1102
+#: panel/JournalPanel.cpp:1398 panel/ReportPanel.cpp:1103
 msgid "Edit date ranges…"
 msgstr ""
 
