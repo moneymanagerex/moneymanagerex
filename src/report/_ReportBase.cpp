@@ -247,7 +247,7 @@ void ReportBase::saveReportSettings()
 void ReportBase::restoreReportSettings()
 {
     Document j_doc;
-    if (j_doc.Parse(m_settings.c_str()).HasParseError())
+    if (j_doc.Parse(m_settings.utf8_str()).HasParseError())
         return;
 
     if (j_doc.HasMember("REPORTPERIOD") && j_doc["REPORTPERIOD"].IsInt()) {
