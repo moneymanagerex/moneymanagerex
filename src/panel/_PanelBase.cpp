@@ -41,13 +41,18 @@ wxString PanelBase::buildPage() const
 
 void PanelBase::printPage()
 {
-    //this->Freeze();
-    wxWebView*  htmlWindow = wxWebView::New(this, wxID_ANY);
+    // Revert to IE for this, as wxWebViewEdge seems to cause issues printing with the
+    // simple HTML - see https://github.com/moneymanagerex/moneymanagerex/issues/7706
+    #ifdef __WXMSW__
+        wxWebView*  htmlWindow = wxWebView::New(this, wxID_ANY, wxWebViewDefaultURLStr, 
+                            wxDefaultPosition, wxDefaultSize, wxWebViewBackendIE);
+    #else
+        wxWebView*  htmlWindow = wxWebView::New(this, wxID_ANY);
+    #endif
     htmlWindow->SetPage(buildPage(), "");
     htmlWindow->GetPageSource(); // Needed to generate the page - at least on Mac anyway!
     htmlWindow->Print();
     htmlWindow->Destroy();
-    //this->Thaw();
 }
 
 void PanelBase::windowsFreezeThaw()

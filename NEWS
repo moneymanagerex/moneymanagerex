@@ -1,6 +1,6 @@
-Version 1.9.3 RC 3
+Version 1.9.3 RC 4
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2026-07-22
+Released: 2026-08-05
 
 Features:
 * #8015 [FEATURE REQUEST] Account icons: usability, custom selection, and bank logos
@@ -27,6 +27,9 @@ Features:
 * #7962 Added the option to export stocks and added the option to limit the exported transactions/stocks between 2 dates (issue#7810)
 
 Bugfixes:
+* #8276 Crash on startup with existing databases in 1.9.3.0 on Windows bug
+* #8431 Cannot jump from Transaction Report to account list
+* #8432 Wrong "Selected transactions total" with multi-currency database
 * #8390 Bug: Asset account view cannot be hidden in navigator configuration
 * #8364 Create a scheduled transaction from an existing transaction (category and tags are missing)
 * #8352 csv delimiter "|" give Bad allocation Error
@@ -64,6 +67,8 @@ Bugfixes:
 * #8247 Misc Fixes and updates
 * #8245 Two (minor) Bugfixes
 * #7997 Qif import fixes
+* #7706 ERROR PRINTING TRANSACTIONS
+* #7685 Transaction Report Settings Are Not Saved
 
 Version 1.9.2
 ~~~~~~~~~~~~~~~~~~~~
