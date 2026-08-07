@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-07-25 17:44+0000\n"
-"PO-Revision-Date: 2026-07-31 02:00\n"
+"PO-Revision-Date: 2026-08-07 02:11\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Language: fa_IR\n"
@@ -236,7 +236,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1861
 msgid "Open Database"
-msgstr ""
+msgstr "باز کردن پایگاه داده"
 
 #: app/mmFrame.cpp:1862
 msgid "Save Database &As…"
