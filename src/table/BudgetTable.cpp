@@ -13,7 +13,7 @@
  *      @author [sqlite2cpp.py]
  *
  *      Revision History:
- *          AUTO GENERATED at 2026-04-11 13:27:18.900578.
+ *          AUTO GENERATED at 2026-08-08 11:34:44.604940.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -34,7 +34,10 @@ const wxArrayString BudgetCol::s_col_name_a = {
     "PERIOD",
     "AMOUNT",
     "NOTES",
-    "ACTIVE"
+    "ACTIVE",
+    "SEGMENTID",
+    "AMOUNTTYPE",
+    "AUTOSOURCE"
 };
 
 const BudgetCol::COL_ID BudgetCol::s_primary_id = COL_ID_BUDGETENTRYID;
@@ -48,6 +51,9 @@ const wxString BudgetCol::NAME_PERIOD = s_col_name_a[COL_ID_PERIOD];
 const wxString BudgetCol::NAME_AMOUNT = s_col_name_a[COL_ID_AMOUNT];
 const wxString BudgetCol::NAME_NOTES = s_col_name_a[COL_ID_NOTES];
 const wxString BudgetCol::NAME_ACTIVE = s_col_name_a[COL_ID_ACTIVE];
+const wxString BudgetCol::NAME_SEGMENTID = s_col_name_a[COL_ID_SEGMENTID];
+const wxString BudgetCol::NAME_AMOUNTTYPE = s_col_name_a[COL_ID_AMOUNTTYPE];
+const wxString BudgetCol::NAME_AUTOSOURCE = s_col_name_a[COL_ID_AUTOSOURCE];
 
 BudgetRow::BudgetRow()
 {
@@ -56,6 +62,7 @@ BudgetRow::BudgetRow()
     CATEGID = -1;
     AMOUNT = 0.0;
     ACTIVE = -1;
+    SEGMENTID = -1;
 }
 
 // Bind a Row record to database insert statement.
@@ -67,7 +74,10 @@ void BudgetRow::to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const
     stmt.Bind(4, AMOUNT);
     stmt.Bind(5, NOTES);
     stmt.Bind(6, ACTIVE);
-    stmt.Bind(7, id);
+    stmt.Bind(7, SEGMENTID);
+    stmt.Bind(8, AMOUNTTYPE);
+    stmt.Bind(9, AUTOSOURCE);
+    stmt.Bind(10, id);
 }
 
 BudgetRow& BudgetRow::from_select_result(wxSQLite3ResultSet& q)
@@ -79,6 +89,9 @@ BudgetRow& BudgetRow::from_select_result(wxSQLite3ResultSet& q)
     AMOUNT = q.GetDouble(4);
     NOTES = q.GetString(5);
     ACTIVE = q.GetInt64(6);
+    SEGMENTID = q.GetInt64(7);
+    AMOUNTTYPE = q.GetString(8);
+    AUTOSOURCE = q.GetString(9);
 
     return *this;
 }
@@ -119,6 +132,15 @@ void BudgetRow::as_json(PrettyWriter<StringBuffer>& json_writer) const
 
     json_writer.Key("ACTIVE");
     json_writer.Int64(ACTIVE.GetValue());
+
+    json_writer.Key("SEGMENTID");
+    json_writer.Int64(SEGMENTID.GetValue());
+
+    json_writer.Key("AMOUNTTYPE");
+    json_writer.String(AMOUNTTYPE.utf8_str());
+
+    json_writer.Key("AUTOSOURCE");
+    json_writer.String(AUTOSOURCE.utf8_str());
 }
 
 row_t BudgetRow::to_html_row() const
@@ -132,6 +154,9 @@ row_t BudgetRow::to_html_row() const
     row(L"AMOUNT") = AMOUNT;
     row(L"NOTES") = NOTES;
     row(L"ACTIVE") = ACTIVE.GetValue();
+    row(L"SEGMENTID") = SEGMENTID.GetValue();
+    row(L"AMOUNTTYPE") = AMOUNTTYPE;
+    row(L"AUTOSOURCE") = AUTOSOURCE;
 
     return row;
 }
@@ -145,6 +170,9 @@ void BudgetRow::to_html_template(html_template& t) const
     t(L"AMOUNT") = AMOUNT;
     t(L"NOTES") = NOTES;
     t(L"ACTIVE") = ACTIVE.GetValue();
+    t(L"SEGMENTID") = SEGMENTID.GetValue();
+    t(L"AMOUNTTYPE") = AMOUNTTYPE;
+    t(L"AUTOSOURCE") = AUTOSOURCE;
 }
 
 bool BudgetRow::equals(const BudgetRow* other) const
@@ -156,6 +184,9 @@ bool BudgetRow::equals(const BudgetRow* other) const
     if ( AMOUNT != other->AMOUNT) return false;
     if (!NOTES.IsSameAs(other->NOTES)) return false;
     if ( ACTIVE != other->ACTIVE) return false;
+    if ( SEGMENTID != other->SEGMENTID) return false;
+    if (!AMOUNTTYPE.IsSameAs(other->AMOUNTTYPE)) return false;
+    if (!AUTOSOURCE.IsSameAs(other->AUTOSOURCE)) return false;
 
     return true;
 }
@@ -164,7 +195,7 @@ BudgetTable::BudgetTable()
 {
     m_table_name = "BUDGETTABLE_V1";
 
-    m_create_query = "CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, PERIOD TEXT NOT NULL /* None, Weekly, Bi-Weekly, Monthly, Monthly, Bi-Monthly, Quarterly, Half-Yearly, Yearly, Daily*/, AMOUNT numeric NOT NULL, NOTES TEXT, ACTIVE integer)";
+    m_create_query = "CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, PERIOD TEXT NOT NULL /* None, Weekly, Bi-Weekly, Monthly, Monthly, Bi-Monthly, Quarterly, Half-Yearly, Yearly, Daily*/, AMOUNT numeric NOT NULL, NOTES TEXT, ACTIVE integer, SEGMENTID integer, AMOUNTTYPE TEXT /* Fixed, Estimated, Auto */, AUTOSOURCE TEXT)";
 
     m_drop_query = "DROP TABLE IF EXISTS BUDGETTABLE_V1";
 
@@ -172,11 +203,11 @@ BudgetTable::BudgetTable()
         "CREATE INDEX IF NOT EXISTS IDX_BUDGETTABLE_BUDGETYEARID ON BUDGETTABLE_V1(BUDGETYEARID)"
     };
 
-    m_insert_query = "INSERT INTO BUDGETTABLE_V1(BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE, BUDGETENTRYID) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    m_insert_query = "INSERT INTO BUDGETTABLE_V1(BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE, SEGMENTID, AMOUNTTYPE, AUTOSOURCE, BUDGETENTRYID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    m_update_query = "UPDATE BUDGETTABLE_V1 SET BUDGETYEARID = ?, CATEGID = ?, PERIOD = ?, AMOUNT = ?, NOTES = ?, ACTIVE = ? WHERE BUDGETENTRYID = ?";
+    m_update_query = "UPDATE BUDGETTABLE_V1 SET BUDGETYEARID = ?, CATEGID = ?, PERIOD = ?, AMOUNT = ?, NOTES = ?, ACTIVE = ?, SEGMENTID = ?, AMOUNTTYPE = ?, AUTOSOURCE = ? WHERE BUDGETENTRYID = ?";
 
     m_delete_query = "DELETE FROM BUDGETTABLE_V1 WHERE BUDGETENTRYID = ?";
 
-    m_select_query = "SELECT BUDGETENTRYID, BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE FROM BUDGETTABLE_V1";
+    m_select_query = "SELECT BUDGETENTRYID, BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE, SEGMENTID, AMOUNTTYPE, AUTOSOURCE FROM BUDGETTABLE_V1";
 }

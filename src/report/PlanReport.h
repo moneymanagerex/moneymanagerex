@@ -1,5 +1,5 @@
 /*******************************************************
- Copyright (C) 2016 Guan Lisheng (guanlisheng@gmail.com)
+ Copyright (C) 2026
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -18,21 +18,27 @@
 
 #pragma once
 
-#include "util/mmDateRange.h"
-
-#include "BalanceReport.h"
-#include "CategoryReport.h"
-#include "FlowReport.h"
-#include "ForecastReport.h"
-#include "InExReport.h"
-#include "PayeeReport.h"
-#include "PlanReport.h"
-#include "StocksReport.h"
-#include "TrxReport.h"
-#include "UsageReport.h"
 #include "_ReportBase.h"
-#include "budget.h"
-#include "budgetcategorysummary.h"
-#include "budgetingperf.h"
-#include "htmlbuilder.h"
 
+// The long-term plan: what is owned, what is expected, what is already spoken
+// for, and what is left. It also states the assumptions the plan rests on and
+// how much the outcome moves if those assumptions are wrong.
+class PlanLongTermReport : public ReportBase
+{
+public:
+    PlanLongTermReport();
+    virtual ~PlanLongTermReport();
+
+    virtual wxString getHTMLText();
+};
+
+// Projected cash flow across budget segments, so a month planned in
+// paycheck-aligned halves shows a running balance for each half.
+class PlanCashFlowReport : public ReportBase
+{
+public:
+    PlanCashFlowReport();
+    virtual ~PlanCashFlowReport();
+
+    virtual wxString getHTMLText();
+};

@@ -13,7 +13,7 @@
  *      @author [sqlite2cpp.py]
  *
  *      Revision History:
- *          AUTO GENERATED at 2026-04-11 13:27:18.900578.
+ *          AUTO GENERATED at 2026-08-08 11:34:44.604940.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -34,6 +34,9 @@ struct BudgetCol
         COL_ID_AMOUNT,
         COL_ID_NOTES,
         COL_ID_ACTIVE,
+        COL_ID_SEGMENTID,
+        COL_ID_AMOUNTTYPE,
+        COL_ID_AUTOSOURCE,
         COL_ID_size
     };
 
@@ -52,6 +55,9 @@ struct BudgetCol
     static const wxString NAME_AMOUNT;
     static const wxString NAME_NOTES;
     static const wxString NAME_ACTIVE;
+    static const wxString NAME_SEGMENTID;
+    static const wxString NAME_AMOUNTTYPE;
+    static const wxString NAME_AUTOSOURCE;
 
     // convenience methods
 
@@ -81,6 +87,18 @@ struct BudgetCol
 
     static TableClauseV<int64> WHERE_ACTIVE(OP op, const int64& value) {
         return TableClause::WHERE<int64>(NAME_ACTIVE, op, value);
+    }
+
+    static TableClauseV<int64> WHERE_SEGMENTID(OP op, const int64& value) {
+        return TableClause::WHERE<int64>(NAME_SEGMENTID, op, value);
+    }
+
+    static TableClauseV<wxString> WHERE_AMOUNTTYPE(OP op, const wxString& value) {
+        return TableClause::WHERE<wxString>(NAME_AMOUNTTYPE, op, value);
+    }
+
+    static TableClauseV<wxString> WHERE_AUTOSOURCE(OP op, const wxString& value) {
+        return TableClause::WHERE<wxString>(NAME_AUTOSOURCE, op, value);
     }
 
     // deprecated
@@ -140,6 +158,30 @@ struct BudgetCol
         explicit ACTIVE(const int64 &v): TableOpV<int64>(OP_EQ, v) {}
         explicit ACTIVE(OP op, const int64 &v): TableOpV<int64>(op, v) {}
     };
+
+    struct SEGMENTID : public TableOpV<int64>
+    {
+        static COL_ID col_id() { return COL_ID_SEGMENTID; }
+        static wxString col_name() { return s_col_name_a[COL_ID_SEGMENTID]; }
+        explicit SEGMENTID(const int64 &v): TableOpV<int64>(OP_EQ, v) {}
+        explicit SEGMENTID(OP op, const int64 &v): TableOpV<int64>(op, v) {}
+    };
+
+    struct AMOUNTTYPE : public TableOpV<wxString>
+    {
+        static COL_ID col_id() { return COL_ID_AMOUNTTYPE; }
+        static wxString col_name() { return s_col_name_a[COL_ID_AMOUNTTYPE]; }
+        explicit AMOUNTTYPE(const wxString &v): TableOpV<wxString>(OP_EQ, v) {}
+        explicit AMOUNTTYPE(OP op, const wxString &v): TableOpV<wxString>(op, v) {}
+    };
+
+    struct AUTOSOURCE : public TableOpV<wxString>
+    {
+        static COL_ID col_id() { return COL_ID_AUTOSOURCE; }
+        static wxString col_name() { return s_col_name_a[COL_ID_AUTOSOURCE]; }
+        explicit AUTOSOURCE(const wxString &v): TableOpV<wxString>(OP_EQ, v) {}
+        explicit AUTOSOURCE(OP op, const wxString &v): TableOpV<wxString>(op, v) {}
+    };
 };
 
 // A single record in database table BUDGETTABLE_V1
@@ -154,6 +196,9 @@ struct BudgetRow
     double AMOUNT;
     wxString NOTES;
     int64 ACTIVE;
+    int64 SEGMENTID;
+    wxString AMOUNTTYPE;
+    wxString AUTOSOURCE;
 
     explicit BudgetRow();
     explicit BudgetRow(wxSQLite3ResultSet& q);
@@ -218,6 +263,21 @@ struct BudgetRow
         return ACTIVE == col.m_value;
     }
 
+    bool match(const Col::SEGMENTID& col)
+    {
+        return SEGMENTID == col.m_value;
+    }
+
+    bool match(const Col::AMOUNTTYPE& col)
+    {
+        return AMOUNTTYPE.CmpNoCase(col.m_value) == 0;
+    }
+
+    bool match(const Col::AUTOSOURCE& col)
+    {
+        return AUTOSOURCE.CmpNoCase(col.m_value) == 0;
+    }
+
     template<typename Arg1, typename... Args>
     bool match(const Arg1& arg1, const Args&... args)
     {
@@ -277,6 +337,30 @@ struct BudgetRow
         bool operator()(const BudgetRow& x, const BudgetRow& y)
         {
             return x.ACTIVE < y.ACTIVE;
+        }
+    };
+
+    struct SorterBySEGMENTID
+    {
+        bool operator()(const BudgetRow& x, const BudgetRow& y)
+        {
+            return x.SEGMENTID < y.SEGMENTID;
+        }
+    };
+
+    struct SorterByAMOUNTTYPE
+    {
+        bool operator()(const BudgetRow& x, const BudgetRow& y)
+        {
+            return x.AMOUNTTYPE < y.AMOUNTTYPE;
+        }
+    };
+
+    struct SorterByAUTOSOURCE
+    {
+        bool operator()(const BudgetRow& x, const BudgetRow& y)
+        {
+            return x.AUTOSOURCE < y.AUTOSOURCE;
         }
     };
 };
