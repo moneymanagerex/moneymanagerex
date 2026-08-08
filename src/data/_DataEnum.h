@@ -266,6 +266,165 @@ public:
     }
 };
 
+struct BudgetAmountType
+{
+public:
+    enum
+    {
+        e_fixed = 0,
+        e_estimated,
+        e_auto,
+        size
+    };
+    static mmChoiceKeyNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    BudgetAmountType(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    BudgetAmountType(const wxString& key) :
+        m_id(BudgetAmountType::s_choice_a.find_key_n(key)) {}
+
+    mmChoiceId id() const { return m_id; }
+    const wxString key() const { return BudgetAmountType::s_choice_a.get_key(m_id); }
+    const wxString name() const { return BudgetAmountType::s_choice_a.get_name(m_id); }
+
+    // an amount that the planner computes instead of the user typing it
+    bool is_derived() const { return m_id == e_auto; }
+    // an amount that is known to be a guess (rendered with a '~' marker)
+    bool is_uncertain() const { return m_id == e_estimated || m_id == e_auto; }
+
+    bool operator== (const BudgetAmountType& other) const {
+        return id() == other.id();
+    }
+    bool operator!= (const BudgetAmountType& other) const {
+        return id() != other.id();
+    }
+};
+
+struct PlanAssumptionKind
+{
+public:
+    enum
+    {
+        e_share_price = 0,
+        e_tax_rate,
+        e_inflation,
+        e_exchange_rate,
+        e_generic,
+        size
+    };
+    static mmChoiceKeyNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    PlanAssumptionKind(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    PlanAssumptionKind(const wxString& key) :
+        m_id(PlanAssumptionKind::s_choice_a.find_key_n(key)) {}
+
+    mmChoiceId id() const { return m_id; }
+    const wxString key() const { return PlanAssumptionKind::s_choice_a.get_key(m_id); }
+    const wxString name() const { return PlanAssumptionKind::s_choice_a.get_name(m_id); }
+
+    // Rates are entered either as 0..1 or as a percentage; both are accepted.
+    bool is_rate() const {
+        return m_id == e_tax_rate || m_id == e_inflation;
+    }
+
+    bool operator== (const PlanAssumptionKind& other) const {
+        return id() == other.id();
+    }
+    bool operator!= (const PlanAssumptionKind& other) const {
+        return id() != other.id();
+    }
+};
+
+struct PlanItemKind
+{
+public:
+    enum
+    {
+        e_expense = 0,
+        e_income,
+        size
+    };
+    static mmChoiceKeyNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    PlanItemKind(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    PlanItemKind(const wxString& key) :
+        m_id(PlanItemKind::s_choice_a.find_key_n(key)) {}
+
+    mmChoiceId id() const { return m_id; }
+    const wxString key() const { return PlanItemKind::s_choice_a.get_key(m_id); }
+    const wxString name() const { return PlanItemKind::s_choice_a.get_name(m_id); }
+
+    bool is_income() const { return m_id == e_income; }
+    // sign applied to a plan amount when accumulating a net total
+    double sign() const { return m_id == e_income ? 1.0 : -1.0; }
+
+    bool operator== (const PlanItemKind& other) const {
+        return id() == other.id();
+    }
+    bool operator!= (const PlanItemKind& other) const {
+        return id() != other.id();
+    }
+};
+
+struct PlanStatus
+{
+public:
+    enum
+    {
+        e_planned = 0,
+        e_committed,
+        e_wishlist,
+        e_done,
+        e_cancelled,
+        size
+    };
+    static mmChoiceKeyNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    PlanStatus(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    PlanStatus(const wxString& key) :
+        m_id(PlanStatus::s_choice_a.find_key_n(key)) {}
+
+    mmChoiceId id() const { return m_id; }
+    const wxString key() const { return PlanStatus::s_choice_a.get_key(m_id); }
+    const wxString name() const { return PlanStatus::s_choice_a.get_name(m_id); }
+
+    // Cancelled and Done items no longer consume future funds.
+    bool is_active_plan() const {
+        return m_id == e_planned || m_id == e_committed || m_id == e_wishlist;
+    }
+    // Only these reduce "free assets": a wishlist is explicitly NOT an obligation.
+    bool is_obligation() const {
+        return m_id == e_planned || m_id == e_committed;
+    }
+    bool is_wishlist() const { return m_id == e_wishlist; }
+
+    bool operator== (const PlanStatus& other) const {
+        return id() == other.id();
+    }
+    bool operator!= (const PlanStatus& other) const {
+        return id() != other.id();
+    }
+};
+
 struct CurrencyType
 {
 public:

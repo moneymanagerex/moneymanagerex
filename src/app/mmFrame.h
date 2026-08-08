@@ -447,6 +447,8 @@ private:
 
     void OnOptions(wxCommandEvent& event);
     void OnBudgetSetupDialog(wxCommandEvent& event);
+    void OnBudgetSegments(wxCommandEvent& event);
+    void OnPlanManager(wxCommandEvent& event);
     void OnCurrency(wxCommandEvent& event);
     void OnRates(wxCommandEvent& event);
     void OnTransactionReport(wxCommandEvent& event);
