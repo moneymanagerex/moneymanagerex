@@ -24,7 +24,9 @@ BudgetData::BudgetData() :
     m_category_id(-1),
     m_freq(BudgetFreq()),
     m_amount(0.0),
-    m_active(true)
+    m_active(true),
+    m_segment_id(-1),
+    m_amount_type(BudgetAmountType())
 {
 }
 
@@ -40,6 +42,9 @@ BudgetRow BudgetData::to_row() const
     row.AMOUNT        = m_amount;
     row.NOTES         = m_notes;
     row.ACTIVE        = (m_active ? 1 : 0);
+    row.SEGMENTID     = m_segment_id;
+    row.AMOUNTTYPE    = m_amount_type.key();
+    row.AUTOSOURCE    = m_auto_source;
 
     return row;
 }
@@ -54,6 +59,9 @@ BudgetData& BudgetData::from_row(const BudgetRow& row)
     m_amount      = row.AMOUNT;
     m_notes       = row.NOTES;
     m_active      = (row.ACTIVE != 0);
+    m_segment_id  = row.SEGMENTID;
+    m_amount_type = BudgetAmountType(row.AMOUNTTYPE);
+    m_auto_source = row.AUTOSOURCE;
 
     return *this;
 }
@@ -67,6 +75,9 @@ bool BudgetData::equals(const BudgetData* other) const
     if ( m_amount       != other->m_amount)      return false;
     if (!m_notes.IsSameAs( other->m_notes))      return false;
     if ( m_active       != other->m_active)      return false;
+    if ( m_segment_id   != other->m_segment_id)  return false;
+    if ( m_amount_type.id() != other->m_amount_type.id()) return false;
+    if (!m_auto_source.IsSameAs(other->m_auto_source))    return false;
 
     return true;
 }

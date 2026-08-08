@@ -72,6 +72,8 @@ void ReportBase::setReportParameters(ReportBase::REPORT_ID report_id)
     case ForecastReport:              m_parameters = M_DATE_RANGE; break;
     case BugReport:                   m_parameters = M_NONE; break;
     case CategoryOverTimePerformance: m_parameters = M_MONTHS | M_ACCOUNT | M_CHART; break;
+    case PlanLongTerm:                m_parameters = M_NONE; break;
+    case PlanCashFlow:                m_parameters = M_BUDGET | M_FORWARD_MONTHS; break;
     default:                          m_parameters = M_NONE; break;
     }
 }
