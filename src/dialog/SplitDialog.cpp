@@ -343,7 +343,7 @@ void SplitDialog::createNewRow(const bool enabled)
     int64 catID = (row < static_cast<int>(m_splits.size())) ? m_splits.at(row).m_category_id : -1;
 
     mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row
-                                        , wxDefaultSize, catID, true);
+                                        , wxDefaultSize, catID, true, catID != -1);
     ncbc->Enable(enabled);
     ncbc->Bind(wxEVT_CHAR_HOOK, &SplitDialog::OnComboKey, this);
     ncbc->SetMinSize(wxSize(250,-1));
@@ -394,6 +394,7 @@ void SplitDialog::activateNewRow()
             Split s = { -1, 0, "", {} };
             m_splits.push_back(s);
         }
+        m_splits_widgets.at(row_num_).category->mmDoReInitialize();
         m_splits_widgets.at(row_num_).category->Enable(true);
         m_splits_widgets.at(row_num_).amount->Enable(true);
         m_splits_widgets.at(row_num_).tags->Enable(true);

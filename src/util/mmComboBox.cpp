@@ -266,12 +266,17 @@ mmComboBoxCategory::mmComboBoxCategory(
     wxWindowID win_id,
     wxSize size,
     int64 cat_id,
-    bool only_active
+    bool only_active,
+    bool fillComboBox
 ) :
     mmComboBox(parent_win, win_id, size),
     m_cat_id(cat_id),
     m_only_active(only_active)
 {
+    if (!fillComboBox)
+        return;
+    
+    wxLogDebug("mmComboBoxCategory::mmComboBoxCategory: fillComboBox = true");
     init();
     wxArrayString name_a;
     for (const auto& name_id : m_name_id_m) {
