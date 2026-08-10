@@ -460,10 +460,11 @@ PlanSummary PlanEngine::build_summary(const mmDate& as_of)
     s.investment_assets = investment_balance();
     s.total_assets      = s.cash_assets + s.investment_assets;
 
-    // Everything still ahead of us.
+    // Everything still ahead of us, including items that are planned but not
+    // yet scheduled: an undated obligation is still money owed.
     const wxString from = date_is_set(as_of) ? as_of.isoDate() : mmDate::today().isoDate();
     const PlanItemModel::DataA items =
-        PlanItemModel::instance().find_between_a(from, "");
+        PlanItemModel::instance().find_between_a(from, "", true);
 
     PlanItemModel& pim = PlanItemModel::instance();
     s.expected_income   = pim.sum_income(items);
@@ -495,7 +496,7 @@ PlanSensitivity PlanEngine::build_sensitivity(const mmDate& as_of, double pct)
 
     const wxString from = date_is_set(as_of) ? as_of.isoDate() : mmDate::today().isoDate();
     const PlanItemModel::DataA items =
-        PlanItemModel::instance().find_between_a(from, "");
+        PlanItemModel::instance().find_between_a(from, "", true);
 
     out.expected_income = PlanItemModel::instance().sum_income_shifted(items, pct);
 

@@ -56,8 +56,14 @@ public:
     auto find_group_a(int64 group_id) -> DataA;
 
     // Active items whose target date falls in [date_from, date_to] (ISO yyyy-mm-dd).
-    // An empty bound is treated as open-ended.
-    auto find_between_a(const wxString& date_from, const wxString& date_to) -> DataA;
+    // An empty bound is treated as open-ended. Items with no target date are
+    // omitted by default because they cannot be placed on a timeline, but a
+    // caller totalling money must include them: set include_undated.
+    auto find_between_a(const wxString& date_from, const wxString& date_to,
+        bool include_undated = false) -> DataA;
+
+    // Active items that are planned but not scheduled.
+    auto find_undated_a() -> DataA;
 
     // Resolve the unit price for a share-based item.
     // Order: linked price assumption -> the item's own unit price -> live

@@ -75,7 +75,8 @@ PlanItemModel::DataA PlanItemModel::find_group_a(int64 group_id)
 
 PlanItemModel::DataA PlanItemModel::find_between_a(
     const wxString& date_from,
-    const wxString& date_to
+    const wxString& date_to,
+    bool include_undated
 ) {
     DataA a = find_data_a();
 
@@ -83,10 +84,14 @@ PlanItemModel::DataA PlanItemModel::find_between_a(
     for (const auto& item : a) {
         if (!item.m_active)
             continue;
-        // Items with no target date cannot be placed on a timeline; the caller
-        // still sees them through find_group_a.
-        if (item.m_target_date.IsEmpty())
+        // An item with no target date is planned but not scheduled. It cannot be
+        // placed on a timeline, but it is still real money, so a caller totalling
+        // obligations must be able to ask for it.
+        if (item.m_target_date.IsEmpty()) {
+            if (include_undated)
+                out.push_back(item);
             continue;
+        }
         if (!date_from.IsEmpty() && item.m_target_date < date_from)
             continue;
         if (!date_to.IsEmpty() && item.m_target_date > date_to)
@@ -95,6 +100,16 @@ PlanItemModel::DataA PlanItemModel::find_between_a(
     }
     std::sort(out.begin(), out.end(), Data::SorterByTARGETDATE());
 
+    return out;
+}
+
+PlanItemModel::DataA PlanItemModel::find_undated_a()
+{
+    DataA out;
+    for (const auto& item : find_data_a()) {
+        if (item.m_active && item.m_target_date.IsEmpty())
+            out.push_back(item);
+    }
     return out;
 }
 

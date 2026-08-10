@@ -24,10 +24,15 @@
 #include "model/BudgetPeriodModel.h"
 #include "model/BudgetSegmentModel.h"
 #include "model/PlanAssumptionModel.h"
+#include "model/PlanAssumptionGroupModel.h"
 #include "model/PlanEngine.h"
 #include "model/PlanGroupModel.h"
 #include "model/PlanItemModel.h"
+#include "model/CategoryModel.h"
+#include "model/CurrencyModel.h"
+#include "util/_util.h"
 #include "htmlbuilder.h"
+#include <functional>
 
 namespace
 {
@@ -44,6 +49,38 @@ namespace
     void addParagraph(mmHTMLBuilder& hb, const wxString& text)
     {
         hb.addText("<p>" + text + "</p>");
+    }
+
+    // Units are a count, not money: show enough precision for a fractional
+    // share without padding a whole number with meaningless zeros.
+    wxString format_units(double units)
+    {
+        wxString s = wxString::FromDouble(units, 4);
+        while (s.EndsWith("0")) s.RemoveLast();
+        if (s.EndsWith(".") || s.EndsWith(",")) s.RemoveLast();
+        return s;
+    }
+
+    // A value read together with the unit it is measured in: a price as money,
+    // a rate as a percentage, anything else with the unit spelled out.
+    wxString format_assumption_value(const PlanAssumptionData& a, const wxString& group_unit)
+    {
+        const wxString unit = group_unit.IsEmpty() ? a.unit_or_default() : group_unit;
+
+        if (a.m_kind.is_rate())
+            return wxString::Format("%s %s",
+                wxString::FromDouble(a.as_rate() * 100.0, 2),
+                unit.IsEmpty() ? "%" : unit);
+
+        if (unit.IsEmpty())
+            return CurrencyModel::instance().toCurrency(a.m_value);
+
+        return wxString::Format("%s %s", wxString::FromDouble(a.m_value, 4), unit);
+    }
+
+    wxString date_or_undated(const wxString& iso)
+    {
+        return iso.IsEmpty() ? _t("Undated") : mmGetDateTimeForDisplay(iso);
     }
 }
 
@@ -93,13 +130,16 @@ wxString PlanLongTermReport::getHTMLText()
 
     // ---- Assumptions ----------------------------------------------------
     // Stated up front: every figure below inherits whatever is wrong here.
-    const PlanAssumptionModel::DataA assumptions =
-        PlanAssumptionModel::instance().find_active_a();
+    PlanAssumptionModel& pam = PlanAssumptionModel::instance();
+    PlanAssumptionGroupModel& pagm = PlanAssumptionGroupModel::instance();
+
+    const PlanAssumptionModel::DataA assumptions = pam.find_active_a();
+    const PlanAssumptionGroupModel::DataA groups = pagm.find_active_a();
 
     hb.addDivContainer("shadow");
     {
         hb.addHeader(2, _t("Assumptions"));
-        if (assumptions.empty()) {
+        if (assumptions.empty() && groups.empty()) {
             addParagraph(hb, _t(
                 "No assumptions are defined. Values based on share prices or tax "
                 "rates fall back to the amounts stored on each plan item."));
@@ -122,18 +162,54 @@ wxString PlanLongTermReport::getHTMLText()
                 hb.endThead();
 
                 hb.startTbody();
+
+                // A group is shown with the member currently in force, and its
+                // alternatives underneath, so it is clear both what the plan is
+                // using and what else it could be switched to.
+                for (const auto& g : groups) {
+                    const int used = pagm.count_dependents(g.m_id);
+                    const int64 active_id = pagm.get_active_assumption_id(g.m_id);
+                    const PlanAssumptionData* active_n =
+                        (active_id > 0) ? pam.get_idN_data_n(active_id) : nullptr;
+
+                    hb.startTableRow("bold");
+                    {
+                        hb.addTableCell(g.m_name);
+                        hb.addTableCell(wxGetTranslation(g.m_kind.name()));
+                        hb.addTableCell(g.m_scope_key.IsEmpty() ? "-" : g.m_scope_key);
+                        hb.addTableCell(active_n
+                            ? format_assumption_value(*active_n, g.m_unit)
+                            : _t("none selected"), true);
+                        hb.addTableCell(wxString::Format("%d", used), true);
+                    }
+                    hb.endTableRow();
+
+                    for (const auto& a : pam.find_group_a(g.m_id)) {
+                        const bool is_active = (a.m_id == active_id);
+                        hb.startTableRow();
+                        {
+                            hb.addTableCell("&nbsp;&nbsp;" + a.m_name +
+                                (is_active ? " " + _t("(active)") : ""));
+                            hb.addEmptyTableCell(2);
+                            hb.addTableCell(format_assumption_value(a, g.m_unit), true);
+                            hb.addEmptyTableCell();
+                        }
+                        hb.endTableRow();
+                    }
+                }
+
+                // Standalone assumptions are pinned directly by items.
                 for (const auto& a : assumptions) {
-                    const std::size_t used =
-                        PlanAssumptionModel::instance().count_dependents(a.m_id);
+                    if (a.is_grouped())
+                        continue;
+
+                    const std::size_t used = pam.count_dependents(a.m_id);
                     hb.startTableRow();
                     {
                         hb.addTableCell(a.m_name);
                         hb.addTableCell(wxGetTranslation(a.m_kind.name()));
                         hb.addTableCell(a.m_scope_key.IsEmpty() ? "-" : a.m_scope_key);
-                        if (a.m_kind.is_rate())
-                            hb.addTableCell(wxString::Format("%.2f %%", a.as_rate() * 100.0), true);
-                        else
-                            hb.addMoneyCell(a.m_value);
+                        hb.addTableCell(format_assumption_value(a, wxEmptyString), true);
                         hb.addTableCell(wxString::Format("%zu", used), true);
                     }
                     hb.endTableRow();
@@ -144,8 +220,8 @@ wxString PlanLongTermReport::getHTMLText()
 
             if (summary.expected_income > 0.0) {
                 addParagraph(hb, wxString::Format(
-                    _t("%.0f%% of expected income is calculated from these assumptions."),
-                    summary.assumption_exposure() * 100.0));
+                    _t("%s of expected income is calculated from these assumptions."),
+                    wxString::Format("%.0f%%", summary.assumption_exposure() * 100.0)));
             }
         }
     }
@@ -153,7 +229,7 @@ wxString PlanLongTermReport::getHTMLText()
 
     // ---- Expected income ------------------------------------------------
     const PlanItemModel::DataA future =
-        pim.find_between_a(as_of.isoDate(), "");
+        pim.find_between_a(as_of.isoDate(), "", true);
 
     hb.addDivContainer("shadow");
     {
@@ -185,13 +261,19 @@ wxString PlanLongTermReport::getHTMLText()
 
                 hb.startTableRow();
                 {
-                    hb.addTableCellDate(item.m_target_date);
+                    // An undated row says so rather than showing an empty cell
+                    // that could be read as a missing value.
+                    if (item.m_target_date.IsEmpty())
+                        hb.addTableCell(_t("Undated"));
+                    else
+                        hb.addTableCellDate(item.m_target_date);
+
                     // Flag rows whose value is only as good as an assumption.
                     hb.addTableCell(item.is_unit_based() || item.is_assumption_based()
                         ? item.m_name + ASSUMED_MARK
                         : item.m_name);
                     if (item.is_unit_based()) {
-                        hb.addTableCell(wxString::Format("%.3f", item.m_units), true);
+                        hb.addTableCell(format_units(item.m_units), true);
                         hb.addMoneyCell(pim.resolve_unit_price(item));
                     }
                     else {
@@ -231,48 +313,118 @@ wxString PlanLongTermReport::getHTMLText()
             hb.endThead();
 
             hb.startTbody();
-            for (const auto& group : pgm.find_root_a()) {
-                double group_total = 0.0;
 
-                // Include nested groups so a trip with sub-groups totals once.
-                const std::vector<int64> subtree = pgm.find_subtree_id_a(group.m_id);
+            // Groups nest to any depth, so each level is rendered in place and
+            // indented, rather than flattening a whole project into one list.
+            std::function<double(int64, int)> render_group =
+                [&](int64 group_id, int depth) -> double {
+                    if (depth > 32)
+                        return 0.0;
 
-                hb.startTableRow("bold");
-                {
-                    hb.addTableCell(group.m_name);
-                    hb.addTableCellDate(group.m_target_date);
-                    hb.addTableCell(status_label(group.m_status));
-                    hb.addEmptyTableCell();
-                }
-                hb.endTableRow();
+                    const PlanGroupData* g_n = pgm.get_idN_data_n(group_id);
+                    if (!g_n)
+                        return 0.0;
 
-                for (int64 gid : subtree) {
-                    for (const auto& item : pim.find_group_a(gid)) {
+                    const wxString indent =
+                        wxString(" ").Repeat(0) + wxString("&nbsp;&nbsp;").Repeat(depth);
+
+                    hb.startTableRow(depth == 0 ? "bold" : "");
+                    {
+                        hb.addTableCell(indent + g_n->m_name);
+                        hb.addTableCell(date_or_undated(g_n->m_target_date));
+                        hb.addTableCell(status_label(g_n->m_status));
+                        hb.addEmptyTableCell();
+                    }
+                    hb.endTableRow();
+
+                    double total = 0.0;
+
+                    for (const auto& item : pim.find_group_a(group_id)) {
                         if (item.m_kind.is_income() || !item.m_status.is_active_plan())
                             continue;
 
                         const double amt = pim.net_amount_base(item);
-                        group_total += amt;
+                        total += amt;
+
+                        wxString label = indent + "&nbsp;&nbsp;" + item.m_name;
+                        if (item.is_unit_based() || item.is_assumption_based())
+                            label += ASSUMED_MARK;
+                        if (item.m_category_id > 0)
+                            label += " <small>(" +
+                                CategoryModel::instance().get_id_fullname(item.m_category_id, ":") +
+                                ")</small>";
 
                         hb.startTableRow();
                         {
-                            hb.addTableCell("&nbsp;&nbsp;" + item.m_name);
-                            hb.addTableCellDate(item.m_target_date);
+                            hb.addTableCell(label);
+                            hb.addTableCell(date_or_undated(item.m_target_date));
                             hb.addTableCell(status_label(item.m_status));
                             hb.addMoneyCell(amt);
                         }
                         hb.endTableRow();
                     }
+
+                    for (const auto& child : pgm.find_children_a(group_id))
+                        total += render_group(child.m_id, depth + 1);
+
+                    // A subtotal is only worth the row when the group actually
+                    // contains something.
+                    if (total != 0.0) {
+                        hb.startTableRow(depth == 0 ? "bold" : "");
+                        {
+                            hb.addTableCell(indent + _t("Subtotal") + " - " + g_n->m_name);
+                            hb.addEmptyTableCell(2);
+                            hb.addMoneyCell(total);
+                        }
+                        hb.endTableRow();
+                    }
+
+                    return total;
+                };
+
+            for (const auto& group : pgm.find_root_a())
+                render_group(group.m_id, 0);
+
+            // Expenses that belong to no group would otherwise be invisible here
+            // while still counting towards the totals below.
+            bool ungrouped_header = false;
+            double ungrouped_total = 0.0;
+            for (const auto& item : pim.find_group_a(-1)) {
+                if (item.m_kind.is_income() || !item.m_status.is_active_plan())
+                    continue;
+
+                if (!ungrouped_header) {
+                    hb.startTableRow("bold");
+                    {
+                        hb.addTableCell(_t("Ungrouped"));
+                        hb.addEmptyTableCell(3);
+                    }
+                    hb.endTableRow();
+                    ungrouped_header = true;
                 }
+
+                const double amt = pim.net_amount_base(item);
+                ungrouped_total += amt;
 
                 hb.startTableRow();
                 {
-                    hb.addTableCell(_t("Subtotal") + " - " + group.m_name);
-                    hb.addEmptyTableCell(2);
-                    hb.addMoneyCell(group_total);
+                    hb.addTableCell("&nbsp;&nbsp;" + item.m_name);
+                    hb.addTableCell(date_or_undated(item.m_target_date));
+                    hb.addTableCell(status_label(item.m_status));
+                    hb.addMoneyCell(amt);
                 }
                 hb.endTableRow();
             }
+            if (ungrouped_total != 0.0) {
+                hb.startTableRow("bold");
+                {
+                    hb.addTableCell(_t("Subtotal") + " - " + _t("Ungrouped"));
+                    hb.addEmptyTableCell(2);
+                    hb.addMoneyCell(ungrouped_total);
+                }
+                hb.endTableRow();
+            }
+
             hb.endTbody();
 
             hb.startTfoot();
