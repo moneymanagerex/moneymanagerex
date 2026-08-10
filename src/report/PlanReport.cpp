@@ -325,8 +325,10 @@ wxString PlanLongTermReport::getHTMLText()
                     if (!g_n)
                         return 0.0;
 
-                    const wxString indent =
-                        wxString(" ").Repeat(0) + wxString("&nbsp;&nbsp;").Repeat(depth);
+                    // wxString has no Repeat helper, so build the indent by hand.
+                    wxString indent;
+                    for (int i = 0; i < depth; ++i)
+                        indent += "&nbsp;&nbsp;";
 
                     hb.startTableRow(depth == 0 ? "bold" : "");
                     {

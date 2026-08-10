@@ -4561,18 +4561,37 @@ void mmFrame::DoUpdateBudgetNavigation(wxTreeItemId& parent_item)
                     mmImage::img::CALENDAR_PNG, mmTreeItemData::BUDGET,
                     bp_d.m_id
                 );
+                DoUpdateBudgetSegmentNavigation(year_budget, bp_d.m_id);
             }
             else if (pattern_month.Matches(bp_d.m_name) &&
                 pattern_month.GetMatch(bp_d.m_name, 1) == entry.first
             ) {
-                addNavTreeItem(
+                wxTreeItemId month_budget = addNavTreeItem(
                     year_budget, bp_d.m_name,
                     mmImage::img::CALENDAR_PNG, mmTreeItemData::BUDGET,
                     bp_d.m_id
                 );
-
+                DoUpdateBudgetSegmentNavigation(month_budget, bp_d.m_id);
             }
         }
+    }
+}
+
+void mmFrame::DoUpdateBudgetSegmentNavigation(wxTreeItemId& parent_item, int64 bp_id)
+{
+    // A segmented period is planned in parts, so the parts belong in the tree
+    // under it rather than being hidden behind a separate dialog.
+    for (const auto& seg_d : BudgetSegmentModel::instance().find_period_a(bp_id)) {
+        addNavTreeItem(
+            parent_item,
+            wxString::Format("%s (%d-%d)",
+                seg_d.m_name, seg_d.m_start_day, seg_d.m_end_day),
+            mmImage::img::CALENDAR_PNG, mmTreeItemData::BUDGET,
+            // Selecting a segment opens the period it belongs to: the budget
+            // page is per period, so this keeps the click meaningful instead of
+            // leading nowhere.
+            bp_id
+        );
     }
 }
 
