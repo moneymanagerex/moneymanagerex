@@ -413,6 +413,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     dialog/AttachmentDialog.h
     dialog/BudgetEntryDialog.cpp
     dialog/BudgetEntryDialog.h
+    dialog/BudgetFromTrxDialog.cpp
+    dialog/BudgetFromTrxDialog.h
     dialog/BudgetSegmentDialog.cpp
     dialog/BudgetSegmentDialog.h
     dialog/BudgetYearDialog.cpp

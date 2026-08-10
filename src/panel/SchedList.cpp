@@ -30,6 +30,7 @@
 
 #include "dialog/SchedDialog.h"
 #include "dialog/AttachmentDialog.h"
+#include "dialog/BudgetFromTrxDialog.h"
 
 enum
 {
@@ -39,6 +40,7 @@ enum
     MENU_TREEPOPUP_DELETE,
     MENU_POPUP_BD_ENTER_OCCUR,
     MENU_POPUP_BD_SKIP_OCCUR,
+    MENU_POPUP_BD_ADD_TO_BUDGET,
     MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
     MENU_ON_SET_UDC0,
     MENU_ON_SET_UDC1,
@@ -65,6 +67,7 @@ wxBEGIN_EVENT_TABLE(SchedList, ListBase)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, SchedList::OnOrganizeAttachments)
     EVT_MENU(MENU_POPUP_BD_ENTER_OCCUR,           SchedList::onEnterBDTransaction)
     EVT_MENU(MENU_POPUP_BD_SKIP_OCCUR,            SchedList::onSkipBDTransaction)
+    EVT_MENU(MENU_POPUP_BD_ADD_TO_BUDGET,         SchedList::onAddToBudget)
     EVT_MENU_RANGE(
         MENU_ON_SET_UDC0, MENU_ON_SET_UDC7,       SchedList::OnSetUserColour)
 wxEND_EVENT_TABLE()
@@ -197,6 +200,8 @@ void SchedList::OnItemRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_DELETE, _tu("&Delete Scheduled Transaction…"));
     menu.AppendSeparator();
+    menu.Append(MENU_POPUP_BD_ADD_TO_BUDGET, _tu("Add to &Budget…"));
+    menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _tu("&Organize Attachments…"));
 
     menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
@@ -205,6 +210,7 @@ void SchedList::OnItemRightClick(wxMouseEvent& event)
     menu.Enable(MENU_TREEPOPUP_DUPLICATE, item_active);
     menu.Enable(MENU_TREEPOPUP_DELETE, item_active);
     menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, item_active);
+    menu.Enable(MENU_POPUP_BD_ADD_TO_BUDGET, item_active);
 
     PopupMenu(&menu, event.GetPosition());
     this->SetFocus();
@@ -321,6 +327,33 @@ void SchedList::onEnterBDTransaction(wxCommandEvent& /*event*/)
             sched_id = w_panel->m_sched_xa[m_select_n].m_id;
         refreshVisualList(w_panel->initList(sched_id));
     }
+}
+
+void SchedList::onAddToBudget(wxCommandEvent& /*event*/)
+{
+    if (m_select_n == -1)
+        return;
+
+    const int64 sched_id = w_panel->m_sched_xa[m_select_n].m_id;
+    const SchedData* sched_n = SchedModel::instance().get_idN_data_n(sched_id);
+    if (!sched_n)
+        return;
+
+    wxString description = PayeeModel::instance().get_id_name(sched_n->m_payee_id_n);
+    if (description.IsEmpty())
+        description = _t("Scheduled transaction");
+
+    BudgetFromTrxDialog dlg(this,
+        sched_n->m_amount,
+        sched_n->m_category_id_n,
+        sched_n->m_due_date.isoDate(),
+        description,
+        sched_n->m_id,
+        budget_freq_from_repeat(sched_n->m_repeat));
+
+    if (dlg.ShowModal() == wxID_OK)
+        wxMessageBox(_t("Added to the budget."), _t("Add to Budget"),
+            wxOK | wxICON_INFORMATION, this);
 }
 
 void SchedList::onSkipBDTransaction(wxCommandEvent& /*event*/)

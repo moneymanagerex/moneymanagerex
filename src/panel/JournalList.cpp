@@ -41,6 +41,7 @@
 
 #include "dialog/AssetDialog.h"
 #include "dialog/AttachmentDialog.h"
+#include "dialog/BudgetFromTrxDialog.h"
 #include "dialog/SchedDialog.h"
 #include "dialog/TrxDialog.h"
 #include "dialog/TrxFilterDialog.h"
@@ -73,6 +74,7 @@ wxBEGIN_EVENT_TABLE(JournalList, ListBase)
     EVT_MENU(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, JournalList::onViewTrxSplit)
     EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,  JournalList::onOrganizeAttachments)
     EVT_MENU(MENU_TREEPOPUP_CREATE_REOCCURANCE,    JournalList::onCreateReoccurance)
+    EVT_MENU(MENU_TREEPOPUP_ADD_TO_BUDGET,         JournalList::onAddToBudget)
     EVT_MENU(MENU_TREEPOPUP_FIND,                  JournalList::onFind)
     EVT_MENU(MENU_TREEPOPUP_COPYTEXT,              JournalList::onCopyText)
     EVT_MENU_RANGE(
@@ -1348,6 +1350,13 @@ void JournalList::onMouseRightClick(wxMouseEvent& event)
         );
         if (is_nothing_selected || multiselect)
             menu.Enable(MENU_TREEPOPUP_CREATE_REOCCURANCE, false);
+
+        menu.Append(
+            MENU_TREEPOPUP_ADD_TO_BUDGET,
+            _tu("Add to &Budget…")
+        );
+        if (is_nothing_selected || multiselect)
+            menu.Enable(MENU_TREEPOPUP_ADD_TO_BUDGET, false);
     }
     else {
         menu.Append(MENU_TREEPOPUP_RESTORE, (1 == selected)
@@ -2111,6 +2120,57 @@ void JournalList::onCreateReoccurance(wxCommandEvent& /*event*/)
         if (sched_dlg.ShowModal() == wxID_OK)
             wxMessageBox(_t("Scheduled transaction saved."));
     }
+}
+
+void JournalList::onAddToBudget(wxCommandEvent& /*event*/)
+{
+    if (GetSelectedItemCount() != 1)
+        return;
+
+    setSelectKeyA();
+    if (m_select_key_a.empty())
+        return;
+
+    const JournalKey journal_key = m_select_key_a[0];
+
+    double amount = 0.0;
+    int64 category_id = -1;
+    wxString iso_date;
+    wxString description;
+    int64 sched_id = -1;
+    BudgetFreq freq;
+
+    if (journal_key.is_realized()) {
+        const TrxData* trx_n = TrxModel::instance().get_idN_data_n(journal_key.rid());
+        if (!trx_n)
+            return;
+        amount      = trx_n->m_amount;
+        category_id = trx_n->m_category_id_n;
+        iso_date    = trx_n->m_isoDate();
+        description = PayeeModel::instance().get_id_name(trx_n->m_payee_id_n);
+    }
+    else if (journal_key.is_scheduled()) {
+        const SchedData* sched_n = SchedModel::instance().get_idN_data_n(journal_key.sid());
+        if (!sched_n)
+            return;
+        amount      = sched_n->m_amount;
+        category_id = sched_n->m_category_id_n;
+        iso_date    = sched_n->m_due_date.isoDate();
+        description = PayeeModel::instance().get_id_name(sched_n->m_payee_id_n);
+        sched_id    = sched_n->m_id;
+        freq        = budget_freq_from_repeat(sched_n->m_repeat);
+    }
+    else {
+        return;
+    }
+
+    if (description.IsEmpty())
+        description = _t("Transaction");
+
+    BudgetFromTrxDialog dlg(this, amount, category_id, iso_date, description, sched_id, freq);
+    if (dlg.ShowModal() == wxID_OK)
+        wxMessageBox(_t("Added to the budget."), _t("Add to Budget"),
+            wxOK | wxICON_INFORMATION, this);
 }
 
 void JournalList::onFind(wxCommandEvent&)

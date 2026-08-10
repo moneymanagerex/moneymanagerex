@@ -314,7 +314,7 @@ void PlanEngine::set_excluded_account_id_a(const std::vector<int64>& ids)
     for (const int64 id : ids) {
         if (!raw.IsEmpty())
             raw += ",";
-        raw += wxString::Format("%lld", static_cast<long long>(id.GetValue()));
+        raw += wxString::Format("%lld", id.GetValue());
     }
     InfoModel::instance().saveString(PLAN_EXCLUDED_ACCOUNTS, raw);
 }
