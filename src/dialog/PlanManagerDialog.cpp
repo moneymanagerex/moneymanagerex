@@ -29,9 +29,11 @@
 #include "model/PlanEngine.h"
 #include "model/CategoryModel.h"
 #include "model/CurrencyModel.h"
+#include "model/AccountModel.h"
 #include "manager/CategoryManager.h"
 #include <algorithm>
 #include <functional>
+#include <wx/choicdlg.h>
 #include "PlanManagerDialog.h"
 #include "PlanAssumptionDialog.h"
 
@@ -561,6 +563,7 @@ wxBEGIN_EVENT_TABLE(PlanManagerDialog, wxDialog)
     EVT_BUTTON(wxID_DELETE, PlanManagerDialog::OnDelete)
 EVT_BUTTON(ID_DUPLICATE, PlanManagerDialog::OnDuplicate)
     EVT_BUTTON(ID_ASSUMPTIONS, PlanManagerDialog::OnAssumptions)
+    EVT_BUTTON(ID_ACCOUNTS, PlanManagerDialog::OnAccounts)
     EVT_TREE_ITEM_ACTIVATED(wxID_ANY, PlanManagerDialog::OnDoubleClicked)
 wxEND_EVENT_TABLE()
 
@@ -633,6 +636,10 @@ void PlanManagerDialog::CreateControls()
     wxButton* btnAssume = new wxButton(this, ID_ASSUMPTIONS, _t("&Assumptions..."));
     buttonRow->Add(btnAssume, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 15);
     mmToolTip(btnAssume, _t("Edit the estimates the plan is calculated from"));
+
+    wxButton* btnAccounts = new wxButton(this, ID_ACCOUNTS, _tu("Acc&ounts…"));
+    buttonRow->Add(btnAccounts, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
+    mmToolTip(btnAccounts, _t("Choose which accounts count towards the plan"));
 
     wxStaticLine* line = new wxStaticLine(this, wxID_STATIC);
     mainSizer->Add(line, 0, wxGROW | wxALL, 5);
@@ -938,6 +945,73 @@ void PlanManagerDialog::OnDelete(wxCommandEvent& /*event*/)
     else          PlanItemModel::instance().purge_id(id);
 
     fillControls();
+}
+
+void PlanManagerDialog::OnAccounts(wxCommandEvent& /*event*/)
+{
+    // Not every account belongs in a long-term plan: a business account or one
+    // held for someone else would otherwise inflate free assets.
+    AccountModel& am = AccountModel::instance();
+
+    std::vector<int64> ids;
+    wxArrayString labels;
+    for (const auto& acc_d : am.find_data_a()) {
+        if (acc_d.m_status.key() != "Open")
+            continue;
+
+        const mmNavigatorItem::TYPE_ID type = AccountModel::type_id(acc_d);
+        const bool counts =
+            type == mmNavigatorItem::TYPE_ID_CASH ||
+            type == mmNavigatorItem::TYPE_ID_CHECKING ||
+            type == mmNavigatorItem::TYPE_ID_TERM ||
+            type == mmNavigatorItem::TYPE_ID_INVESTMENT ||
+            type == mmNavigatorItem::TYPE_ID_SHARES;
+        if (!counts)
+            continue;
+
+        ids.push_back(acc_d.m_id);
+        labels.Add(acc_d.m_name);
+    }
+
+    if (ids.empty()) {
+        wxMessageBox(_t("There are no open asset accounts to choose from."),
+            _t("Plan Accounts"), wxOK | wxICON_INFORMATION, this);
+        return;
+    }
+
+    wxMultiChoiceDialog dlg(this,
+        _t("Which accounts count towards the plan?\n\n"
+           "Cleared accounts are left out of assets and free assets."),
+        _t("Plan Accounts"), labels);
+
+    // Present it as an inclusion list because that is how it reads, even though
+    // it is stored as exclusions so new accounts count by default.
+    wxArrayInt selected;
+    for (std::size_t i = 0; i < ids.size(); ++i) {
+        if (PlanEngine::account_is_included(ids[i]))
+            selected.Add(static_cast<int>(i));
+    }
+    dlg.SetSelections(selected);
+
+    if (dlg.ShowModal() != wxID_OK)
+        return;
+
+    const wxArrayInt chosen = dlg.GetSelections();
+    std::vector<int64> excluded;
+    for (std::size_t i = 0; i < ids.size(); ++i) {
+        bool included = false;
+        for (std::size_t j = 0; j < chosen.GetCount(); ++j) {
+            if (static_cast<std::size_t>(chosen[j]) == i) {
+                included = true;
+                break;
+            }
+        }
+        if (!included)
+            excluded.push_back(ids[i]);
+    }
+
+    PlanEngine::set_excluded_account_id_a(excluded);
+    updateTotals();
 }
 
 void PlanManagerDialog::OnAssumptions(wxCommandEvent& /*event*/)

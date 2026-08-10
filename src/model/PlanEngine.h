@@ -185,6 +185,13 @@ public:
         const std::vector<double>& pct_a
     );
 
+    // Which accounts count towards the plan. Kept as an exclusion list so a
+    // newly created account is included by default rather than silently
+    // missing. An excluded account contributes nothing to assets.
+    static auto excluded_account_id_a() -> std::vector<int64>;
+    static void set_excluded_account_id_a(const std::vector<int64>& ids);
+    static bool account_is_included(int64 account_id);
+
 private:
     // Sum of balances over accounts the user can actually spend.
     static double liquid_balance();

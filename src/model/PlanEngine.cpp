@@ -18,13 +18,14 @@
 
 #include <algorithm>
 #include <cmath>
+#include <wx/tokenzr.h>
 #include "base/_defs.h"
-
 #include "PlanEngine.h"
 #include "AccountModel.h"
 #include "BudgetModel.h"
 #include "BudgetSegmentModel.h"
 #include "CurrencyModel.h"
+#include "InfoModel.h"
 #include "PlanAssumptionModel.h"
 #include "PlanGroupModel.h"
 #include "PlanItemModel.h"
@@ -33,6 +34,12 @@
 
 namespace
 {
+    // Accounts the user has taken out of the plan, stored as a comma-separated
+    // list of ids so a change survives a restart. Kept as an exclusion list so
+    // that a newly opened account counts by default rather than being silently
+    // missing from the plan.
+    const char* PLAN_EXCLUDED_ACCOUNTS = "PLAN_EXCLUDED_ACCOUNTS";
+
     // mmDate::dateTime() is non-const (it caches), and mmDate has no validity
     // predicate, so these two helpers keep the call sites honest.
     bool date_is_set(const mmDate& d)
@@ -284,6 +291,43 @@ double PlanEngine::amount_for_window(
     return monthly * (static_cast<double>(days_in_window) / static_cast<double>(days_in_month));
 }
 
+std::vector<int64> PlanEngine::excluded_account_id_a()
+{
+    std::vector<int64> out;
+
+    const wxString raw = InfoModel::instance().getString(PLAN_EXCLUDED_ACCOUNTS, "");
+    if (raw.IsEmpty())
+        return out;
+
+    wxStringTokenizer tok(raw, ",");
+    while (tok.HasMoreTokens()) {
+        long id = 0;
+        if (tok.GetNextToken().Trim().Trim(false).ToLong(&id) && id > 0)
+            out.push_back(int64(id));
+    }
+    return out;
+}
+
+void PlanEngine::set_excluded_account_id_a(const std::vector<int64>& ids)
+{
+    wxString raw;
+    for (const int64 id : ids) {
+        if (!raw.IsEmpty())
+            raw += ",";
+        raw += wxString::Format("%lld", static_cast<long long>(id.GetValue()));
+    }
+    InfoModel::instance().saveString(PLAN_EXCLUDED_ACCOUNTS, raw);
+}
+
+bool PlanEngine::account_is_included(int64 account_id)
+{
+    for (const int64 id : excluded_account_id_a()) {
+        if (id == account_id)
+            return false;
+    }
+    return true;
+}
+
 double PlanEngine::liquid_balance()
 {
     double total = 0.0;
@@ -291,6 +335,8 @@ double PlanEngine::liquid_balance()
         if (acc_d.m_status.key() != "Open")
             continue;
         if (!account_is_liquid(acc_d))
+            continue;
+        if (!account_is_included(acc_d.m_id))
             continue;
 
         double bal = AccountModel::instance().get_data_balance(acc_d);
@@ -314,6 +360,8 @@ double PlanEngine::investment_balance()
         const mmNavigatorItem::TYPE_ID type = AccountModel::type_id(acc_d);
         if (type != mmNavigatorItem::TYPE_ID_INVESTMENT
             && type != mmNavigatorItem::TYPE_ID_SHARES)
+            continue;
+        if (!account_is_included(acc_d.m_id))
             continue;
 
         double bal = AccountModel::instance().get_data_balance(acc_d);
