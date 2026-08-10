@@ -443,6 +443,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     dialog/NavigatorDialog.h
     dialog/NavigatorEditDialog.cpp
     dialog/NavigatorEditDialog.h
+    dialog/PlanAccountsDialog.cpp
+    dialog/PlanAccountsDialog.h
     dialog/PlanAssumptionDialog.cpp
     dialog/PlanAssumptionDialog.h
     dialog/PlanManagerDialog.cpp

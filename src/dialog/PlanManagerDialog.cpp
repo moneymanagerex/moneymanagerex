@@ -36,6 +36,7 @@
 #include <wx/choicdlg.h>
 #include "PlanManagerDialog.h"
 #include "PlanAssumptionDialog.h"
+#include "PlanAccountsDialog.h"
 
 namespace
 {
@@ -951,67 +952,9 @@ void PlanManagerDialog::OnAccounts(wxCommandEvent& /*event*/)
 {
     // Not every account belongs in a long-term plan: a business account or one
     // held for someone else would otherwise inflate free assets.
-    AccountModel& am = AccountModel::instance();
-
-    std::vector<int64> ids;
-    wxArrayString labels;
-    for (const auto& acc_d : am.find_data_a()) {
-        if (acc_d.m_status.key() != "Open")
-            continue;
-
-        const mmNavigatorItem::TYPE_ID type = AccountModel::type_id(acc_d);
-        const bool counts =
-            type == mmNavigatorItem::TYPE_ID_CASH ||
-            type == mmNavigatorItem::TYPE_ID_CHECKING ||
-            type == mmNavigatorItem::TYPE_ID_TERM ||
-            type == mmNavigatorItem::TYPE_ID_INVESTMENT ||
-            type == mmNavigatorItem::TYPE_ID_SHARES;
-        if (!counts)
-            continue;
-
-        ids.push_back(acc_d.m_id);
-        labels.Add(acc_d.m_name);
-    }
-
-    if (ids.empty()) {
-        wxMessageBox(_t("There are no open asset accounts to choose from."),
-            _t("Plan Accounts"), wxOK | wxICON_INFORMATION, this);
-        return;
-    }
-
-    wxMultiChoiceDialog dlg(this,
-        _t("Which accounts count towards the plan?\n\n"
-           "Cleared accounts are left out of assets and free assets."),
-        _t("Plan Accounts"), labels);
-
-    // Present it as an inclusion list because that is how it reads, even though
-    // it is stored as exclusions so new accounts count by default.
-    wxArrayInt selected;
-    for (std::size_t i = 0; i < ids.size(); ++i) {
-        if (PlanEngine::account_is_included(ids[i]))
-            selected.Add(static_cast<int>(i));
-    }
-    dlg.SetSelections(selected);
-
-    if (dlg.ShowModal() != wxID_OK)
-        return;
-
-    const wxArrayInt chosen = dlg.GetSelections();
-    std::vector<int64> excluded;
-    for (std::size_t i = 0; i < ids.size(); ++i) {
-        bool included = false;
-        for (std::size_t j = 0; j < chosen.GetCount(); ++j) {
-            if (static_cast<std::size_t>(chosen[j]) == i) {
-                included = true;
-                break;
-            }
-        }
-        if (!included)
-            excluded.push_back(ids[i]);
-    }
-
-    PlanEngine::set_excluded_account_id_a(excluded);
-    updateTotals();
+    PlanAccountsDialog dlg(this);
+    if (dlg.ShowModal() == wxID_OK)
+        updateTotals();
 }
 
 void PlanManagerDialog::OnAssumptions(wxCommandEvent& /*event*/)
