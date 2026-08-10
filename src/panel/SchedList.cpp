@@ -349,7 +349,8 @@ void SchedList::onAddToBudget(wxCommandEvent& /*event*/)
         sched_n->m_due_date.isoDate(),
         description,
         sched_n->m_id,
-        budget_freq_from_repeat(sched_n->m_repeat));
+        budget_freq_from_repeat(sched_n->m_repeat),
+        sched_n->m_notes);
 
     if (dlg.ShowModal() == wxID_OK)
         wxMessageBox(_t("Added to the budget."), _t("Add to Budget"),

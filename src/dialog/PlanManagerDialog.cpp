@@ -119,10 +119,24 @@ void PlanItemEntryDialog::CreateControls()
     m_group = new wxChoice(this, wxID_ANY);
     m_group->Append(_t("(none)"));
     m_group_id_a.push_back(-1);
-    for (const auto& g : PlanGroupModel::instance().find_data_a()) {
-        if (!g.m_active) continue;
-        m_group->Append(PlanGroupModel::instance().get_id_path_name(g.m_id));
-        m_group_id_a.push_back(g.m_id);
+    {
+        // Table order reads as random once there are more than a couple of
+        // groups, so sort by the full path: that also keeps a sub-group next to
+        // its parent instead of scattering the tree.
+        PlanGroupModel& pgm = PlanGroupModel::instance();
+        std::vector<std::pair<wxString, int64>> groups;
+        for (const auto& g : pgm.find_data_a()) {
+            if (!g.m_active) continue;
+            groups.emplace_back(pgm.get_id_path_name(g.m_id), g.m_id);
+        }
+        std::sort(groups.begin(), groups.end(),
+            [](const std::pair<wxString, int64>& x, const std::pair<wxString, int64>& y) {
+                return x.first.CmpNoCase(y.first) < 0;
+            });
+        for (const auto& g : groups) {
+            m_group->Append(g.first);
+            m_group_id_a.push_back(g.second);
+        }
     }
     grid->Add(m_group, 1, wxGROW);
 
@@ -565,6 +579,7 @@ wxBEGIN_EVENT_TABLE(PlanManagerDialog, wxDialog)
 EVT_BUTTON(ID_DUPLICATE, PlanManagerDialog::OnDuplicate)
     EVT_BUTTON(ID_ASSUMPTIONS, PlanManagerDialog::OnAssumptions)
     EVT_BUTTON(ID_ACCOUNTS, PlanManagerDialog::OnAccounts)
+    EVT_BUTTON(ID_FREE_ASSETS, PlanManagerDialog::OnFreeAssets)
     EVT_TREE_ITEM_ACTIVATED(wxID_ANY, PlanManagerDialog::OnDoubleClicked)
 wxEND_EVENT_TABLE()
 
@@ -641,6 +656,10 @@ void PlanManagerDialog::CreateControls()
     wxButton* btnAccounts = new wxButton(this, ID_ACCOUNTS, _tu("Acc&ounts…"));
     buttonRow->Add(btnAccounts, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
     mmToolTip(btnAccounts, _t("Choose which accounts count towards the plan"));
+
+    wxButton* btnFree = new wxButton(this, ID_FREE_ASSETS, _tu("&Free assets…"));
+    buttonRow->Add(btnFree, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
+    mmToolTip(btnFree, _t("Choose what is added and subtracted to reach free assets"));
 
     wxStaticLine* line = new wxStaticLine(this, wxID_STATIC);
     mainSizer->Add(line, 0, wxGROW | wxALL, 5);
@@ -783,11 +802,11 @@ void PlanManagerDialog::updateTotals()
     for (std::size_t i = 0; i < m_total_value_a.size() && i < WXSIZEOF(entries); ++i)
         m_total_value_a[i]->SetLabel(CurrencyModel::instance().toCurrency(entries[i].value));
 
-    // Free assets is the number the plan exists to answer, so say what it means
-    // rather than leaving the reader to infer it from three other figures.
+    // Free assets is the number the plan exists to answer, so state the formula
+    // in force rather than leaving the reader to assume the default.
     m_totals->SetLabel(wxString::Format(
-        _t("Free assets = liquid assets + expected income - committed obligations. "
-           "Wishlist items are excluded.")));
+        _t("Free assets = %s. Configure with the Free assets button."),
+        s.free_assets_formula()));
     m_totals->Wrap(GetClientSize().GetWidth() - 24);
 
     Layout();
@@ -946,6 +965,52 @@ void PlanManagerDialog::OnDelete(wxCommandEvent& /*event*/)
     else          PlanItemModel::instance().purge_id(id);
 
     fillControls();
+}
+
+void PlanManagerDialog::OnFreeAssets(wxCommandEvent& /*event*/)
+{
+    // What counts as "free" is a judgement: whether investments are really
+    // spendable, or a wishlist is really a commitment, depends on how the plan
+    // is being used. So it is asked rather than assumed.
+    PlanFreeAssetsParts parts = PlanEngine::free_assets_parts();
+
+    wxArrayString labels;
+    labels.Add(_t("Add cash accounts"));
+    labels.Add(_t("Add investment accounts"));
+    labels.Add(_t("Add expected income"));
+    labels.Add(_t("Subtract committed obligations"));
+    labels.Add(_t("Subtract wishlist items"));
+
+    wxMultiChoiceDialog dlg(this,
+        _t("Which components make up free assets?"),
+        _t("Free Assets"), labels);
+
+    wxArrayInt selected;
+    if (parts.cash)        selected.Add(0);
+    if (parts.investments) selected.Add(1);
+    if (parts.income)      selected.Add(2);
+    if (parts.committed)   selected.Add(3);
+    if (parts.wishlist)    selected.Add(4);
+    dlg.SetSelections(selected);
+
+    if (dlg.ShowModal() != wxID_OK)
+        return;
+
+    const wxArrayInt chosen = dlg.GetSelections();
+    auto picked = [&chosen](int i) {
+        for (std::size_t j = 0; j < chosen.GetCount(); ++j)
+            if (chosen[j] == i) return true;
+        return false;
+    };
+
+    parts.cash        = picked(0);
+    parts.investments = picked(1);
+    parts.income      = picked(2);
+    parts.committed   = picked(3);
+    parts.wishlist    = picked(4);
+
+    PlanEngine::set_free_assets_parts(parts);
+    updateTotals();
 }
 
 void PlanManagerDialog::OnAccounts(wxCommandEvent& /*event*/)

@@ -118,6 +118,7 @@ private:
     void OnDuplicate(wxCommandEvent& event);
     void OnAssumptions(wxCommandEvent& event);
     void OnAccounts(wxCommandEvent& event);
+    void OnFreeAssets(wxCommandEvent& event);
     void OnDoubleClicked(wxTreeEvent& event);
 
     // Selected node, or -1. is_group tells the caller which table it is in.
@@ -138,6 +139,7 @@ private:
         ID_ADD_ITEM,
         ID_ASSUMPTIONS,
         ID_DUPLICATE,
-        ID_ACCOUNTS
+        ID_ACCOUNTS,
+        ID_FREE_ASSETS
     };
 };

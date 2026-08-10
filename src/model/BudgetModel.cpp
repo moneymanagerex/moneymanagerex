@@ -69,13 +69,57 @@ void BudgetModel::getBudgetEntry(
         amount_mCatId[cat_id] = 0.0;
     }
 
+    // A category may now hold more than one entry in the same period, because a
+    // period can be split into segments -- groceries budgeted in each half of
+    // the month, say. Assigning per category would keep only the last row and
+    // silently lose the rest, so the rows are accumulated.
+    //
+    // Rows are combined on a yearly basis so that entries with different
+    // frequencies still add up correctly; the result is expressed back in the
+    // shared frequency when they agree, and yearly when they do not.
+    std::map<int64, double> yearly_mCatId;
+    std::map<int64, int> freqId_mCatId;   // -1 once a category mixes frequencies
+    std::map<int64, double> raw_mCatId;   // used when frequency is None
+
     for (const auto& budget_d : find_data_a(
         BudgetCol::WHERE_BUDGETYEARID(OP_EQ, bp_id)
     )) {
-        int64 cat_id = budget_d.m_category_id;
-        freq_mCatId[cat_id]   = budget_d.m_freq;
-        amount_mCatId[cat_id] = budget_d.m_amount;
-        notes_mCatId[cat_id]  = budget_d.m_notes;
+        const int64 cat_id = budget_d.m_category_id;
+
+        yearly_mCatId[cat_id] += budget_d.amount_per_year();
+        raw_mCatId[cat_id]    += budget_d.m_amount;
+
+        const auto it = freqId_mCatId.find(cat_id);
+        if (it == freqId_mCatId.end())
+            freqId_mCatId[cat_id] = static_cast<int>(budget_d.m_freq.id());
+        else if (it->second != static_cast<int>(budget_d.m_freq.id()))
+            it->second = -1;
+
+        // Keep the first note that says something, rather than letting a later
+        // blank row erase it.
+        if (notes_mCatId[cat_id].IsEmpty())
+            notes_mCatId[cat_id] = budget_d.m_notes;
+    }
+
+    for (const auto& entry : freqId_mCatId) {
+        const int64 cat_id = entry.first;
+        const int freq_id = entry.second;
+
+        if (freq_id >= 0) {
+            const BudgetFreq freq(freq_id);
+            freq_mCatId[cat_id] = freq;
+            // A frequency of None carries no yearly meaning, so those rows are
+            // simply added as they stand.
+            amount_mCatId[cat_id] = (freq.times_per_year() > 0)
+                ? yearly_mCatId[cat_id] / freq.times_per_year()
+                : raw_mCatId[cat_id];
+        }
+        else {
+            // Mixed frequencies have no common shorthand; a yearly total is the
+            // only honest way to state the combination.
+            freq_mCatId[cat_id]   = BudgetFreq(BudgetFreq::e_yearly);
+            amount_mCatId[cat_id] = yearly_mCatId[cat_id];
+        }
     }
 }
 

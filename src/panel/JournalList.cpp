@@ -2139,6 +2139,7 @@ void JournalList::onAddToBudget(wxCommandEvent& /*event*/)
     wxString description;
     int64 sched_id = -1;
     BudgetFreq freq;
+    wxString notes;
 
     if (journal_key.is_realized()) {
         const TrxData* trx_n = TrxModel::instance().get_idN_data_n(journal_key.rid());
@@ -2148,6 +2149,7 @@ void JournalList::onAddToBudget(wxCommandEvent& /*event*/)
         category_id = trx_n->m_category_id_n;
         iso_date    = trx_n->m_isoDate();
         description = PayeeModel::instance().get_id_name(trx_n->m_payee_id_n);
+        notes       = trx_n->m_notes;
     }
     else if (journal_key.is_scheduled()) {
         const SchedData* sched_n = SchedModel::instance().get_idN_data_n(journal_key.sid());
@@ -2159,6 +2161,7 @@ void JournalList::onAddToBudget(wxCommandEvent& /*event*/)
         description = PayeeModel::instance().get_id_name(sched_n->m_payee_id_n);
         sched_id    = sched_n->m_id;
         freq        = budget_freq_from_repeat(sched_n->m_repeat);
+        notes       = sched_n->m_notes;
     }
     else {
         return;
@@ -2167,7 +2170,8 @@ void JournalList::onAddToBudget(wxCommandEvent& /*event*/)
     if (description.IsEmpty())
         description = _t("Transaction");
 
-    BudgetFromTrxDialog dlg(this, amount, category_id, iso_date, description, sched_id, freq);
+    BudgetFromTrxDialog dlg(this, amount, category_id, iso_date, description,
+        sched_id, freq, notes);
     if (dlg.ShowModal() == wxID_OK)
         wxMessageBox(_t("Added to the budget."), _t("Add to Budget"),
             wxOK | wxICON_INFORMATION, this);

@@ -40,6 +40,10 @@ namespace
     // missing from the plan.
     const char* PLAN_EXCLUDED_ACCOUNTS = "PLAN_EXCLUDED_ACCOUNTS";
 
+    // Which components make up free assets, as a comma-separated list of the
+    // parts that are switched on.
+    const char* PLAN_FREE_ASSETS_PARTS = "PLAN_FREE_ASSETS_PARTS";
+
     // mmDate::dateTime() is non-const (it caches), and mmDate has no validity
     // predicate, so these two helpers keep the call sites honest.
     bool date_is_set(const mmDate& d)
@@ -328,6 +332,53 @@ bool PlanEngine::account_is_included(int64 account_id)
     return true;
 }
 
+PlanFreeAssetsParts PlanEngine::free_assets_parts()
+{
+    PlanFreeAssetsParts parts;
+
+    const wxString raw = InfoModel::instance().getString(PLAN_FREE_ASSETS_PARTS, "");
+    if (raw.IsEmpty())
+        return parts;  // never configured: the documented default stands
+
+    // Stored as the parts that are on, so an unrecognised entry is simply
+    // ignored rather than turning something on by accident.
+    parts.cash = parts.investments = parts.income = false;
+    parts.committed = parts.wishlist = false;
+
+    wxStringTokenizer tok(raw, ",");
+    while (tok.HasMoreTokens()) {
+        const wxString key = tok.GetNextToken().Trim().Trim(false).Upper();
+        if      (key == "CASH")        parts.cash        = true;
+        else if (key == "INVESTMENTS") parts.investments = true;
+        else if (key == "INCOME")      parts.income      = true;
+        else if (key == "COMMITTED")   parts.committed   = true;
+        else if (key == "WISHLIST")    parts.wishlist    = true;
+    }
+    return parts;
+}
+
+void PlanEngine::set_free_assets_parts(const PlanFreeAssetsParts& parts)
+{
+    wxArrayString on;
+    if (parts.cash)        on.Add("CASH");
+    if (parts.investments) on.Add("INVESTMENTS");
+    if (parts.income)      on.Add("INCOME");
+    if (parts.committed)   on.Add("COMMITTED");
+    if (parts.wishlist)    on.Add("WISHLIST");
+
+    // An empty selection is meaningful (free assets of nothing), so record a
+    // marker rather than an empty string, which would read as "never set".
+    wxString raw;
+    for (const auto& k : on) {
+        if (!raw.IsEmpty()) raw += ",";
+        raw += k;
+    }
+    if (raw.IsEmpty())
+        raw = "NONE";
+
+    InfoModel::instance().saveString(PLAN_FREE_ASSETS_PARTS, raw);
+}
+
 double PlanEngine::liquid_balance()
 {
     double total = 0.0;
@@ -504,6 +555,10 @@ PlanSummary PlanEngine::build_summary(const mmDate& as_of)
 {
     PlanSummary s;
 
+    // The formula travels with the figures, so a caller cannot show one and
+    // compute the other.
+    s.parts = free_assets_parts();
+
     s.cash_assets       = liquid_balance();
     s.investment_assets = investment_balance();
     s.total_assets      = s.cash_assets + s.investment_assets;
@@ -551,9 +606,15 @@ PlanSensitivity PlanEngine::build_sensitivity(const mmDate& as_of, double pct)
     // Investments move with the same assumed prices, so shift them too;
     // committed expenses are cash commitments and stay fixed.
     const double shifted_investments = base.investment_assets * (1.0 + pct / 100.0);
-    const double shifted_assets = base.cash_assets + shifted_investments;
 
-    out.free_assets = shifted_assets + out.expected_income - base.committed_expense;
+    // Reuse the configured formula rather than assuming the default one, so a
+    // sensitivity row answers the same question as the headline figure.
+    PlanSummary shifted = base;
+    shifted.investment_assets = shifted_investments;
+    shifted.total_assets      = base.cash_assets + shifted_investments;
+    shifted.expected_income   = out.expected_income;
+
+    out.free_assets = shifted.free_assets();
     out.delta       = out.free_assets - base.free_assets();
 
     return out;

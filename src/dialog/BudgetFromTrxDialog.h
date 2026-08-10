@@ -48,7 +48,8 @@ public:
         const wxString& iso_date,
         const wxString& description,
         int64 sched_id = -1,
-        BudgetFreq suggested_freq = BudgetFreq());
+        BudgetFreq suggested_freq = BudgetFreq(),
+        const wxString& notes = wxEmptyString);
 
     bool Create(wxWindow* parent, wxWindowID id,
         const wxString& caption,
@@ -72,6 +73,7 @@ private:
     int64    m_category_id = -1;
     wxString m_iso_date;
     wxString m_description;
+    wxString m_notes_default;
     int64    m_sched_id = -1;
     BudgetFreq m_suggested_freq;
 

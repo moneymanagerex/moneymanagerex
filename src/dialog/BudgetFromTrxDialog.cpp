@@ -55,12 +55,14 @@ BudgetFromTrxDialog::BudgetFromTrxDialog(wxWindow* parent,
     const wxString& iso_date,
     const wxString& description,
     int64 sched_id,
-    BudgetFreq suggested_freq
+    BudgetFreq suggested_freq,
+    const wxString& notes
 ) :
     m_amount(std::fabs(amount)),
     m_category_id(category_id),
     m_iso_date(iso_date),
     m_description(description),
+    m_notes_default(notes),
     m_sched_id(sched_id),
     m_suggested_freq(suggested_freq)
 {
@@ -153,8 +155,7 @@ void BudgetFromTrxDialog::CreateControls()
     m_existing = new wxChoice(this, wxID_ANY);
     m_existing->Append(_t("Replace the amount"));
     m_existing->Append(_t("Add to the amount"));
-    m_existing->Append(_t("Leave it unchanged"));
-    grid->Add(m_existing, 1, wxGROW);
+    m_existing->Append(_t("Leave it unchanged"));    grid->Add(m_existing, 1, wxGROW);
 
     grid->Add(new wxStaticText(this, wxID_STATIC, _t("Notes")), 0, wxALIGN_TOP);
     m_notes = new mmTextCtrl(this, wxID_ANY, "",
@@ -215,8 +216,11 @@ void BudgetFromTrxDialog::fillControls()
     m_amount_type->SetSelection(m_sched_id > 0
         ? BudgetAmountType::e_auto : BudgetAmountType::e_fixed);
 
-    m_existing->SetSelection(0);
-    m_notes->SetValue(m_description);
+    // Adding is the safer default: budgeting a second thing into a category
+    // that already has an entry almost always means both are expected, whereas
+    // replacing quietly discards the earlier figure.
+    m_existing->SetSelection(1);
+    m_notes->SetValue(m_notes_default.IsEmpty() ? m_description : m_notes_default);
 
     updatePreview();
 }
