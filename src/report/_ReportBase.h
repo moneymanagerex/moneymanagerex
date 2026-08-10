@@ -57,6 +57,7 @@ public:
         CategoryOverTimePerformance,
         PlanLongTerm,
         PlanCashFlow,
+        PlanCharts,
         NONE = -1
     };
 

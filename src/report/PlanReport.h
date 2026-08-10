@@ -42,3 +42,15 @@ public:
 
     virtual wxString getHTMLText();
 };
+
+// The same information seen rather than read: where the balance is heading,
+// how income compares with what is already owed, what the money is going on,
+// and how far the answer moves if the assumptions are wrong.
+class PlanChartsReport : public ReportBase
+{
+public:
+    PlanChartsReport();
+    virtual ~PlanChartsReport();
+
+    virtual wxString getHTMLText();
+};

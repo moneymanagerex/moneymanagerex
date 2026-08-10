@@ -74,6 +74,7 @@ void ReportBase::setReportParameters(ReportBase::REPORT_ID report_id)
     case CategoryOverTimePerformance: m_parameters = M_MONTHS | M_ACCOUNT | M_CHART; break;
     case PlanLongTerm:                m_parameters = M_NONE; break;
     case PlanCashFlow:                m_parameters = M_BUDGET | M_FORWARD_MONTHS; break;
+    case PlanCharts:                  m_parameters = M_BUDGET | M_FORWARD_MONTHS; break;
     default:                          m_parameters = M_NONE; break;
     }
 }

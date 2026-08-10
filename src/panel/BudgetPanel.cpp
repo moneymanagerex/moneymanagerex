@@ -44,6 +44,7 @@ enum
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST,
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT,
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
+    ID_BUDGET_ROLLUP,
 };
 
 const wxString BudgetPanel::VIEW_ALL      = _n("View All Budget Categories");
@@ -55,8 +56,9 @@ const wxString BudgetPanel::VIEW_SUMM     = _n("View Budget Category Summary");
 
 wxBEGIN_EVENT_TABLE(BudgetPanel, wxPanel)
     EVT_BUTTON(wxID_FILE2, BudgetPanel::onMouseLeftDown)
+    EVT_CHECKBOX(ID_BUDGET_ROLLUP, BudgetPanel::onRollupChanged)
     EVT_MENU(wxID_ANY,     BudgetPanel::onViewPopupSelected)
-wxEND_EVENT_TABLE()
+    wxEND_EVENT_TABLE()
 
 BudgetPanel::BudgetPanel(
     int64 bp_id,
@@ -135,6 +137,13 @@ void BudgetPanel::refreshList()
     w_list->Update();
     if (!m_catId_subcatId_a.empty())
         w_list->EnsureVisible(0);
+}
+
+void BudgetPanel::onRollupChanged(wxCommandEvent& /*event*/)
+{
+    // Purely a way of reading the same data; nothing is written, so this only
+    // has to recompute and redraw.
+    refreshList();
 }
 
 void BudgetPanel::onMouseLeftDown(wxCommandEvent& event)
@@ -220,6 +229,17 @@ void BudgetPanel::createControls()
     w_filter_btn->SetBitmap(mmImage::bitmapBundle(mmImage::png::TRANSFILTER, mmImage::bitmapButtonSize));
     w_filter_btn->SetMinSize(wxSize(300, -1));
     itemBoxSizerHHeader2->Add(w_filter_btn, g_flagsBorder1H);
+
+    // A year and its months are separate budgets in MMEX and always have been.
+    // Rather than change that, this offers to read the year as the sum of its
+    // months; nothing is written either way.
+    w_rollup = new wxCheckBox(itemPanel3, ID_BUDGET_ROLLUP,
+        _t("Include monthly budgets"));
+    mmToolTip(w_rollup, _t(
+        "Add the budgets of this year's months to the figures shown. The stored "
+        "budgets are not changed."));
+    w_rollup->Hide();
+    itemBoxSizerHHeader2->Add(w_rollup, g_flagsBorder1H);
 
     wxFlexGridSizer* itemIncomeSizer = new wxFlexGridSizer(0, 7, 5, 10);
     itemBoxSizerVHeader->Add(itemIncomeSizer);
@@ -359,6 +379,16 @@ void BudgetPanel::initVirtualListControl()
         m_month_name = wxGetTranslation(wxDateTime::GetEnglishMonthName(dtBegin.GetMonth()));
     }
 
+    // Rolling months up only means anything for a year, and only when it
+    // actually has months beneath it.
+    const bool can_rollup = !m_is_monthly &&
+        !BudgetModel::instance().find_child_period_id_a(m_bp_id).empty();
+    if (w_rollup) {
+        w_rollup->Show(can_rollup);
+        if (!can_rollup)
+            w_rollup->SetValue(false);
+    }
+
     // Readjust dates by the Budget Offset Option
     PrefModel::instance().addBudgetDateOffset(dtBegin);
     m_start_date = dtBegin.FormatISODate();
@@ -369,7 +399,8 @@ void BudgetPanel::initVirtualListControl()
 
     //Get statistics
     BudgetModel::instance().getBudgetEntry(
-        m_bp_id, m_freq_mCatId, m_amount_mCatId, m_notes_mCatId
+        m_bp_id, m_freq_mCatId, m_amount_mCatId, m_notes_mCatId,
+        (w_rollup && w_rollup->IsShown() && w_rollup->GetValue())
     );
     CategoryModel::instance().getCategoryStats(
         m_amount_mMonth_mCatId,

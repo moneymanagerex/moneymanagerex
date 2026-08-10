@@ -4736,6 +4736,16 @@ void mmFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
             planReports,
             new mmTreeItemData("Long-Term Plan", new PlanLongTermReport())
         );
+
+        // The same picture seen rather than read.
+        wxTreeItemId planCharts = m_nav_tree_ctrl->AppendItem(
+            planReports, _t("Plan Charts"),
+            mmImage::img::PIECHART_PNG, mmImage::img::PIECHART_PNG
+        );
+        m_nav_tree_ctrl->SetItemData(
+            planCharts,
+            new mmTreeItemData("Plan Charts", new PlanChartsReport())
+        );
     }
 
     if (

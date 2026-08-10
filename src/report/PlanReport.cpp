@@ -31,6 +31,7 @@
 #include "model/CategoryModel.h"
 #include "model/CurrencyModel.h"
 #include "util/_util.h"
+#include "util/mmImage.h"
 #include "htmlbuilder.h"
 #include <functional>
 
@@ -597,6 +598,216 @@ wxString PlanCashFlowReport::getHTMLText()
             addParagraph(hb, _t(
                 "~ marks a period containing estimated or automatically derived "
                 "amounts. (!) marks an automatic amount that could not be resolved."));
+        }
+    }
+    hb.endDiv();
+
+    hb.end();
+    return hb.getHTMLText();
+}
+
+// =====================================================================
+// Plan charts
+// =====================================================================
+
+PlanChartsReport::PlanChartsReport() :
+    ReportBase(_n("Plan Charts"))
+{
+    setReportParameters(REPORT_ID::PlanCharts);
+}
+
+PlanChartsReport::~PlanChartsReport()
+{}
+
+wxString PlanChartsReport::getHTMLText()
+{
+    const mmDate as_of = mmDate::today();
+
+    mmHTMLBuilder hb;
+    hb.init();
+    hb.addReportHeader(getTitle(), 1, false);
+    hb.addDateNow();
+
+    PlanItemModel& pim = PlanItemModel::instance();
+    PlanGroupModel& pgm = PlanGroupModel::instance();
+
+    const PlanSummary summary = PlanEngine::build_summary(as_of);
+
+    // ---- Where the balance is heading ------------------------------------
+    // The cash-flow table answers this too, but a shape is read faster than a
+    // column of numbers, and a dip below zero is what actually matters.
+    const int64 bp_id = m_date_selection;
+    const wxString bp_name = BudgetPeriodModel::instance().get_id_name_n(bp_id);
+    const int months = (m_forward_months > 0) ? m_forward_months : 12;
+
+    hb.addDivContainer("shadow");
+    {
+        hb.addHeader(2, _t("Projected balance"));
+
+        if (bp_name.IsEmpty()) {
+            addParagraph(hb, _t(
+                "Select a budget period in the toolbar to project a balance."));
+        }
+        else {
+            const std::vector<PlanPeriod> timeline =
+                PlanEngine::build_timeline(bp_id, as_of, months);
+
+            if (timeline.empty()) {
+                addParagraph(hb, _t("This budget period has no entries to project."));
+            }
+            else {
+                GraphData gd;
+                GraphSeries balance;
+                for (const auto& p : timeline) {
+                    gd.labels.push_back(p.label);
+                    balance.values.push_back(p.closing_balance);
+                }
+                balance.name = _t("Balance");
+                gd.series.push_back(balance);
+                gd.type = GraphData::LINE;
+                gd.colors = { mmImage::themeMetaColour(mmImage::COLOR_REPORT_CREDIT) };
+                hb.addChart(gd);
+
+                // A projection that dips below zero is the single most useful
+                // thing this chart can tell the reader, so say it in words too.
+                double lowest = timeline.front().closing_balance;
+                wxString lowest_label = timeline.front().label;
+                for (const auto& p : timeline) {
+                    if (p.closing_balance < lowest) {
+                        lowest = p.closing_balance;
+                        lowest_label = p.label;
+                    }
+                }
+                if (lowest < 0.0) {
+                    addParagraph(hb, wxString::Format(
+                        _t("The balance goes negative, reaching %s at %s."),
+                        CurrencyModel::instance().toCurrency(lowest), lowest_label));
+                }
+                else {
+                    addParagraph(hb, wxString::Format(
+                        _t("The balance stays positive, with a low point of %s at %s."),
+                        CurrencyModel::instance().toCurrency(lowest), lowest_label));
+                }
+
+                // ---- Income against what is already owed -----------------
+                hb.addHeader(2, _t("Income and expenses by period"));
+
+                GraphData bars;
+                GraphSeries income, expense;
+                for (const auto& p : timeline) {
+                    bars.labels.push_back(p.label);
+                    income.values.push_back(p.income + p.plan_income);
+                    expense.values.push_back(p.expense + p.plan_expense);
+                }
+                income.name  = _t("Income");
+                expense.name = _t("Expenses");
+                bars.series.push_back(income);
+                bars.series.push_back(expense);
+                bars.type = GraphData::BAR;
+                bars.colors = {
+                    mmImage::themeMetaColour(mmImage::COLOR_REPORT_CREDIT),
+                    mmImage::themeMetaColour(mmImage::COLOR_REPORT_DEBIT)
+                };
+                hb.addChart(bars);
+            }
+        }
+    }
+    hb.endDiv();
+
+    // ---- What the money is going on --------------------------------------
+    hb.addDivContainer("shadow");
+    {
+        hb.addHeader(2, _t("Planned expenses by group"));
+
+        // Each root group is totalled over its whole subtree, so a trip shows
+        // as one slice rather than being scattered across its sub-groups.
+        GraphData gd;
+        GraphSeries amounts;
+        double total = 0.0;
+
+        for (const auto& group : pgm.find_root_a()) {
+            double group_total = 0.0;
+            for (int64 gid : pgm.find_subtree_id_a(group.m_id)) {
+                for (const auto& item : pim.find_group_a(gid)) {
+                    if (item.m_kind.is_income() || !item.m_status.is_active_plan())
+                        continue;
+                    group_total += pim.net_amount_base(item);
+                }
+            }
+            if (group_total <= 0.0)
+                continue;
+
+            gd.labels.push_back(group.m_name);
+            amounts.values.push_back(group_total);
+            total += group_total;
+        }
+
+        double ungrouped = 0.0;
+        for (const auto& item : pim.find_group_a(-1)) {
+            if (item.m_kind.is_income() || !item.m_status.is_active_plan())
+                continue;
+            ungrouped += pim.net_amount_base(item);
+        }
+        if (ungrouped > 0.0) {
+            gd.labels.push_back(_t("Ungrouped"));
+            amounts.values.push_back(ungrouped);
+            total += ungrouped;
+        }
+
+        if (amounts.values.empty()) {
+            addParagraph(hb, _t("There are no planned expenses to show."));
+        }
+        else {
+            amounts.name = _t("Planned");
+            gd.series.push_back(amounts);
+            gd.type = GraphData::DONUT;
+            hb.addChart(gd);
+            addParagraph(hb, wxString::Format(
+                _t("%s planned across %d group(s)."),
+                CurrencyModel::instance().toCurrency(total),
+                static_cast<int>(amounts.values.size())));
+        }
+    }
+    hb.endDiv();
+
+    // ---- How much of this rests on a guess -------------------------------
+    hb.addDivContainer("shadow");
+    {
+        hb.addHeader(2, _t("If the assumptions are wrong"));
+
+        const std::vector<PlanSensitivity> sens =
+            PlanEngine::build_sensitivity_a(as_of, { -30.0, -20.0, -10.0, 10.0, 20.0 });
+
+        if (sens.empty() || summary.assumption_count == 0) {
+            addParagraph(hb, _t(
+                "No assumptions are in use, so nothing here depends on a guess."));
+        }
+        else {
+            GraphData gd;
+            GraphSeries free_assets;
+            for (const auto& s : sens) {
+                gd.labels.push_back(wxString::Format("%+.0f%%", s.shift_pct));
+                free_assets.values.push_back(s.free_assets);
+            }
+            free_assets.name = _t("Free assets");
+            gd.series.push_back(free_assets);
+            gd.type = GraphData::BAR;
+            hb.addChart(gd);
+
+            // The spread is the point: it says how much of the answer is really
+            // being asserted rather than known.
+            double lo = sens.front().free_assets, hi = sens.front().free_assets;
+            for (const auto& s : sens) {
+                lo = std::min(lo, s.free_assets);
+                hi = std::max(hi, s.free_assets);
+            }
+            addParagraph(hb, wxString::Format(
+                _t("Free assets range from %s to %s across these cases, "
+                   "against %s in the base case. The formula in force is %s."),
+                CurrencyModel::instance().toCurrency(lo),
+                CurrencyModel::instance().toCurrency(hi),
+                CurrencyModel::instance().toCurrency(summary.free_assets()),
+                summary.free_assets_formula()));
         }
     }
     hb.endDiv();

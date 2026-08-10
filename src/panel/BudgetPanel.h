@@ -74,6 +74,9 @@ private:
     wxStaticText* w_expenses_actual    = nullptr;
     wxStaticText* w_expenses_diff      = nullptr;
     wxButton*     w_filter_btn         = nullptr;
+    // Shown only for a year period: rolls its months into the figures without
+    // altering either the year's own entries or the months'.
+    wxCheckBox*   w_rollup             = nullptr;
 
 public:
     BudgetPanel(
@@ -122,4 +125,5 @@ private:
     // Event handlers
     void onViewPopupSelected(wxCommandEvent& event);
     void onMouseLeftDown(wxCommandEvent& event);
+    void onRollupChanged(wxCommandEvent& event);
 };
