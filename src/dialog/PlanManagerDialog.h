@@ -48,20 +48,31 @@ private:
     void fillControls();
     void OnOk(wxCommandEvent& event);
     void OnUnitsChanged(wxCommandEvent& event);
+    void OnAmountModeChanged(wxCommandEvent& event);
+    void OnSymbolChanged(wxCommandEvent& event);
+    void OnCategory(wxCommandEvent& event);
     void updateComputed();
+    void updateAmountMode();
+    void rebuildAssumptionChoices();
 
     PlanItemData* m_item_n = nullptr;
     int64 m_default_group_id = -1;
 
     std::vector<int64> m_group_id_a;
-    std::vector<int64> m_assumption_id_a;
+    std::vector<int64> m_price_group_id_a;
+    std::vector<int64> m_tax_group_id_a;
+    int64 m_category_id = -1;
 
     wxTextCtrl*   m_name   = nullptr;
     wxChoice*     m_group  = nullptr;
     wxChoice*     m_kind   = nullptr;
     wxChoice*     m_status = nullptr;
     mmDatePicker* m_date   = nullptr;
+    wxCheckBox*   m_has_date = nullptr;
+    wxButton*     m_category = nullptr;
+    wxRadioBox*   m_amount_mode = nullptr;
     mmTextCtrl*   m_amount = nullptr;
+    wxStaticText* m_amount_label = nullptr;
     mmTextCtrl*   m_units  = nullptr;
     wxTextCtrl*   m_symbol = nullptr;
     wxChoice*     m_price_assumption = nullptr;
@@ -69,6 +80,14 @@ private:
     mmTextCtrl*   m_tax_rate = nullptr;
     wxTextCtrl*   m_notes  = nullptr;
     wxStaticText* m_computed = nullptr;
+    wxWindow*     m_unit_block = nullptr;
+
+    enum {
+        ID_AMOUNT_MODE = wxID_HIGHEST + 540,
+        ID_SYMBOL,
+        ID_CATEGORY,
+        ID_HAS_DATE
+    };
 };
 
 // Manages the long-term plan: groups (a trip, a collection) and their items.
@@ -96,18 +115,27 @@ private:
     void OnAddItem(wxCommandEvent& event);
     void OnEdit(wxCommandEvent& event);
     void OnDelete(wxCommandEvent& event);
+    void OnDuplicate(wxCommandEvent& event);
     void OnAssumptions(wxCommandEvent& event);
     void OnDoubleClicked(wxTreeEvent& event);
 
     // Selected node, or -1. is_group tells the caller which table it is in.
     int64 selectedId(bool& is_group) const;
 
+    // Groups nest arbitrarily, so the tree is built by walking down from each
+    // root rather than one level at a time.
+    void addGroupNode(const wxTreeItemId& parent, int64 group_id, int depth);
+    void addItemNodes(const wxTreeItemId& parent, int64 group_id);
+
     wxTreeCtrl*   m_tree = nullptr;
     wxStaticText* m_totals = nullptr;
+    wxFlexGridSizer* m_totals_grid = nullptr;
+    std::vector<wxStaticText*> m_total_value_a;
 
     enum {
         ID_ADD_GROUP = wxID_HIGHEST + 520,
         ID_ADD_ITEM,
-        ID_ASSUMPTIONS
+        ID_ASSUMPTIONS,
+        ID_DUPLICATE
     };
 };
