@@ -13,7 +13,7 @@
  *      @author [sqlite2cpp.py]
  *
  *      Revision History:
- *          AUTO GENERATED at 2026-08-08 11:48:49.752940.
+ *          AUTO GENERATED at 2026-08-10 13:39:52.649608.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -35,7 +35,9 @@ const wxArrayString PlanAssumptionCol::s_col_name_a = {
     "SCOPEKEY",
     "NOTES",
     "ASOFDATE",
-    "ACTIVE"
+    "ACTIVE",
+    "UNIT",
+    "GROUPID"
 };
 
 const PlanAssumptionCol::COL_ID PlanAssumptionCol::s_primary_id = COL_ID_ASSUMPTIONID;
@@ -50,12 +52,15 @@ const wxString PlanAssumptionCol::NAME_SCOPEKEY = s_col_name_a[COL_ID_SCOPEKEY];
 const wxString PlanAssumptionCol::NAME_NOTES = s_col_name_a[COL_ID_NOTES];
 const wxString PlanAssumptionCol::NAME_ASOFDATE = s_col_name_a[COL_ID_ASOFDATE];
 const wxString PlanAssumptionCol::NAME_ACTIVE = s_col_name_a[COL_ID_ACTIVE];
+const wxString PlanAssumptionCol::NAME_UNIT = s_col_name_a[COL_ID_UNIT];
+const wxString PlanAssumptionCol::NAME_GROUPID = s_col_name_a[COL_ID_GROUPID];
 
 PlanAssumptionRow::PlanAssumptionRow()
 {
     ASSUMPTIONID = -1;
     VALUE = 0.0;
     ACTIVE = -1;
+    GROUPID = -1;
 }
 
 // Bind a Row record to database insert statement.
@@ -68,7 +73,9 @@ void PlanAssumptionRow::to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const
     stmt.Bind(5, NOTES);
     stmt.Bind(6, ASOFDATE);
     stmt.Bind(7, ACTIVE);
-    stmt.Bind(8, id);
+    stmt.Bind(8, UNIT);
+    stmt.Bind(9, GROUPID);
+    stmt.Bind(10, id);
 }
 
 PlanAssumptionRow& PlanAssumptionRow::from_select_result(wxSQLite3ResultSet& q)
@@ -81,6 +88,8 @@ PlanAssumptionRow& PlanAssumptionRow::from_select_result(wxSQLite3ResultSet& q)
     NOTES = q.GetString(5);
     ASOFDATE = q.GetString(6);
     ACTIVE = q.GetInt64(7);
+    UNIT = q.GetString(8);
+    GROUPID = q.GetInt64(9);
 
     return *this;
 }
@@ -124,6 +133,12 @@ void PlanAssumptionRow::as_json(PrettyWriter<StringBuffer>& json_writer) const
 
     json_writer.Key("ACTIVE");
     json_writer.Int64(ACTIVE.GetValue());
+
+    json_writer.Key("UNIT");
+    json_writer.String(UNIT.utf8_str());
+
+    json_writer.Key("GROUPID");
+    json_writer.Int64(GROUPID.GetValue());
 }
 
 row_t PlanAssumptionRow::to_html_row() const
@@ -138,6 +153,8 @@ row_t PlanAssumptionRow::to_html_row() const
     row(L"NOTES") = NOTES;
     row(L"ASOFDATE") = ASOFDATE;
     row(L"ACTIVE") = ACTIVE.GetValue();
+    row(L"UNIT") = UNIT;
+    row(L"GROUPID") = GROUPID.GetValue();
 
     return row;
 }
@@ -152,6 +169,8 @@ void PlanAssumptionRow::to_html_template(html_template& t) const
     t(L"NOTES") = NOTES;
     t(L"ASOFDATE") = ASOFDATE;
     t(L"ACTIVE") = ACTIVE.GetValue();
+    t(L"UNIT") = UNIT;
+    t(L"GROUPID") = GROUPID.GetValue();
 }
 
 bool PlanAssumptionRow::equals(const PlanAssumptionRow* other) const
@@ -164,6 +183,8 @@ bool PlanAssumptionRow::equals(const PlanAssumptionRow* other) const
     if (!NOTES.IsSameAs(other->NOTES)) return false;
     if (!ASOFDATE.IsSameAs(other->ASOFDATE)) return false;
     if ( ACTIVE != other->ACTIVE) return false;
+    if (!UNIT.IsSameAs(other->UNIT)) return false;
+    if ( GROUPID != other->GROUPID) return false;
 
     return true;
 }
@@ -172,19 +193,20 @@ PlanAssumptionTable::PlanAssumptionTable()
 {
     m_table_name = "PLANASSUMPTION_V1";
 
-    m_create_query = "CREATE TABLE PLANASSUMPTION_V1(ASSUMPTIONID integer primary key, ASSUMPTIONNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, KIND TEXT NOT NULL /* SharePrice, TaxRate, Inflation, ExchangeRate, Generic */, VALUE numeric NOT NULL, SCOPEKEY TEXT, NOTES TEXT, ASOFDATE TEXT, ACTIVE integer DEFAULT 1)";
+    m_create_query = "CREATE TABLE PLANASSUMPTION_V1(ASSUMPTIONID integer primary key, ASSUMPTIONNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, KIND TEXT NOT NULL /* SharePrice, TaxRate, Inflation, ExchangeRate, Generic */, VALUE numeric NOT NULL, SCOPEKEY TEXT, NOTES TEXT, ASOFDATE TEXT, ACTIVE integer DEFAULT 1, UNIT TEXT, GROUPID integer)";
 
     m_drop_query = "DROP TABLE IF EXISTS PLANASSUMPTION_V1";
 
     m_index_query_a = {
+        "CREATE INDEX IF NOT EXISTS IDX_PLANASSUMPTION_GROUPID ON PLANASSUMPTION_V1(GROUPID)",
         "CREATE INDEX IF NOT EXISTS IDX_PLANASSUMPTION_KIND ON PLANASSUMPTION_V1(KIND)"
     };
 
-    m_insert_query = "INSERT INTO PLANASSUMPTION_V1(ASSUMPTIONNAME, KIND, VALUE, SCOPEKEY, NOTES, ASOFDATE, ACTIVE, ASSUMPTIONID) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    m_insert_query = "INSERT INTO PLANASSUMPTION_V1(ASSUMPTIONNAME, KIND, VALUE, SCOPEKEY, NOTES, ASOFDATE, ACTIVE, UNIT, GROUPID, ASSUMPTIONID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    m_update_query = "UPDATE PLANASSUMPTION_V1 SET ASSUMPTIONNAME = ?, KIND = ?, VALUE = ?, SCOPEKEY = ?, NOTES = ?, ASOFDATE = ?, ACTIVE = ? WHERE ASSUMPTIONID = ?";
+    m_update_query = "UPDATE PLANASSUMPTION_V1 SET ASSUMPTIONNAME = ?, KIND = ?, VALUE = ?, SCOPEKEY = ?, NOTES = ?, ASOFDATE = ?, ACTIVE = ?, UNIT = ?, GROUPID = ? WHERE ASSUMPTIONID = ?";
 
     m_delete_query = "DELETE FROM PLANASSUMPTION_V1 WHERE ASSUMPTIONID = ?";
 
-    m_select_query = "SELECT ASSUMPTIONID, ASSUMPTIONNAME, KIND, VALUE, SCOPEKEY, NOTES, ASOFDATE, ACTIVE FROM PLANASSUMPTION_V1";
+    m_select_query = "SELECT ASSUMPTIONID, ASSUMPTIONNAME, KIND, VALUE, SCOPEKEY, NOTES, ASOFDATE, ACTIVE, UNIT, GROUPID FROM PLANASSUMPTION_V1";
 }

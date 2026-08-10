@@ -22,7 +22,8 @@ PlanAssumptionData::PlanAssumptionData() :
     m_id(-1),
     m_kind(PlanAssumptionKind()),
     m_value(0.0),
-    m_active(true)
+    m_active(true),
+    m_group_id(-1)
 {
 }
 
@@ -39,6 +40,8 @@ PlanAssumptionRow PlanAssumptionData::to_row() const
     row.NOTES          = m_notes;
     row.ASOFDATE       = m_as_of_date;
     row.ACTIVE         = (m_active ? 1 : 0);
+    row.UNIT           = m_unit;
+    row.GROUPID        = m_group_id;
 
     return row;
 }
@@ -54,6 +57,8 @@ PlanAssumptionData& PlanAssumptionData::from_row(const PlanAssumptionRow& row)
     m_notes      = row.NOTES;
     m_as_of_date = row.ASOFDATE;
     m_active     = (row.ACTIVE != 0);
+    m_unit       = row.UNIT;
+    m_group_id   = row.GROUPID;
 
     return *this;
 }
@@ -68,6 +73,8 @@ bool PlanAssumptionData::equals(const PlanAssumptionData* other) const
     if (!m_notes.IsSameAs(other->m_notes))  return false;
     if (!m_as_of_date.IsSameAs(other->m_as_of_date)) return false;
     if ( m_active    != other->m_active)    return false;
+    if (!m_unit.IsSameAs(other->m_unit))    return false;
+    if ( m_group_id  != other->m_group_id)  return false;
 
     return true;
 }

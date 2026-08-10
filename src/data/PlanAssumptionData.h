@@ -39,6 +39,8 @@ struct PlanAssumptionData
     wxString           m_notes;
     wxString           m_as_of_date;
     bool               m_active;
+    wxString           m_unit;        // "$", "%", "shares", ... how to read m_value
+    int64              m_group_id;    // member of an assumption group, -1 when standalone
 
     explicit PlanAssumptionData();
     explicit PlanAssumptionData(wxSQLite3ResultSet& q);
@@ -68,6 +70,19 @@ struct PlanAssumptionData
         if (m_value <= 0.0) return 0.0;
         const double r = (m_value > 1.0) ? (m_value / 100.0) : m_value;
         return (r >= 1.0) ? 1.0 : r;
+    }
+
+    bool is_grouped() const { return m_group_id > 0; }
+
+    // The unit to show when none is recorded: a rate reads as a percentage,
+    // anything else is left to the caller (a price is shown in currency).
+    const wxString unit_or_default() const {
+        if (!m_unit.IsEmpty())
+            return m_unit;
+        if (m_kind.id() == PlanAssumptionKind::e_tax_rate ||
+            m_kind.id() == PlanAssumptionKind::e_inflation)
+            return "%";
+        return "";
     }
 
     // Value shifted by a percentage, used for sensitivity analysis

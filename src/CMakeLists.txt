@@ -174,6 +174,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     table/PayeeTable.h
     table/PlanAssumptionTable.cpp
     table/PlanAssumptionTable.h
+    table/PlanAssumptionGroupTable.cpp
+    table/PlanAssumptionGroupTable.h
     table/PlanGroupTable.cpp
     table/PlanGroupTable.h
     table/PlanItemTable.cpp
@@ -240,6 +242,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     data/PayeeData.h
     data/PlanAssumptionData.cpp
     data/PlanAssumptionData.h
+    data/PlanAssumptionGroupData.cpp
+    data/PlanAssumptionGroupData.h
     data/PlanGroupData.cpp
     data/PlanGroupData.h
     data/PlanItemData.cpp
@@ -305,6 +309,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/PayeeModel.h
     model/PlanAssumptionModel.cpp
     model/PlanAssumptionModel.h
+    model/PlanAssumptionGroupModel.cpp
+    model/PlanAssumptionGroupModel.h
     model/PlanEngine.cpp
     model/PlanEngine.h
     model/PlanGroupModel.cpp

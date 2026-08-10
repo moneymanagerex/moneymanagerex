@@ -2422,6 +2422,7 @@ void mmFrame::InitializeModelTables()
     m_all_models.push_back(&TrxShareModel::instance(m_db.get()));
     m_all_models.push_back(&BudgetSegmentModel::instance(m_db.get()));
     m_all_models.push_back(&PlanAssumptionModel::instance(m_db.get()));
+    m_all_models.push_back(&PlanAssumptionGroupModel::instance(m_db.get()));
     m_all_models.push_back(&PlanGroupModel::instance(m_db.get()));
     m_all_models.push_back(&PlanItemModel::instance(m_db.get()));
 

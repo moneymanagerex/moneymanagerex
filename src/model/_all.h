@@ -25,6 +25,7 @@
 #include "BudgetPeriodModel.h"
 #include "BudgetSegmentModel.h"
 #include "PlanAssumptionModel.h"
+#include "PlanAssumptionGroupModel.h"
 #include "PlanEngine.h"
 #include "PlanGroupModel.h"
 #include "PlanItemModel.h"

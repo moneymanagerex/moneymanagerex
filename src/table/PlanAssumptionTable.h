@@ -13,7 +13,7 @@
  *      @author [sqlite2cpp.py]
  *
  *      Revision History:
- *          AUTO GENERATED at 2026-08-08 11:48:49.752940.
+ *          AUTO GENERATED at 2026-08-10 13:39:52.649608.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -35,6 +35,8 @@ struct PlanAssumptionCol
         COL_ID_NOTES,
         COL_ID_ASOFDATE,
         COL_ID_ACTIVE,
+        COL_ID_UNIT,
+        COL_ID_GROUPID,
         COL_ID_size
     };
 
@@ -54,6 +56,8 @@ struct PlanAssumptionCol
     static const wxString NAME_NOTES;
     static const wxString NAME_ASOFDATE;
     static const wxString NAME_ACTIVE;
+    static const wxString NAME_UNIT;
+    static const wxString NAME_GROUPID;
 
     // convenience methods
 
@@ -87,6 +91,14 @@ struct PlanAssumptionCol
 
     static TableClauseV<int64> WHERE_ACTIVE(OP op, const int64& value) {
         return TableClause::WHERE<int64>(NAME_ACTIVE, op, value);
+    }
+
+    static TableClauseV<wxString> WHERE_UNIT(OP op, const wxString& value) {
+        return TableClause::WHERE<wxString>(NAME_UNIT, op, value);
+    }
+
+    static TableClauseV<int64> WHERE_GROUPID(OP op, const int64& value) {
+        return TableClause::WHERE<int64>(NAME_GROUPID, op, value);
     }
 
     // deprecated
@@ -154,6 +166,22 @@ struct PlanAssumptionCol
         explicit ACTIVE(const int64 &v): TableOpV<int64>(OP_EQ, v) {}
         explicit ACTIVE(OP op, const int64 &v): TableOpV<int64>(op, v) {}
     };
+
+    struct UNIT : public TableOpV<wxString>
+    {
+        static COL_ID col_id() { return COL_ID_UNIT; }
+        static wxString col_name() { return s_col_name_a[COL_ID_UNIT]; }
+        explicit UNIT(const wxString &v): TableOpV<wxString>(OP_EQ, v) {}
+        explicit UNIT(OP op, const wxString &v): TableOpV<wxString>(op, v) {}
+    };
+
+    struct GROUPID : public TableOpV<int64>
+    {
+        static COL_ID col_id() { return COL_ID_GROUPID; }
+        static wxString col_name() { return s_col_name_a[COL_ID_GROUPID]; }
+        explicit GROUPID(const int64 &v): TableOpV<int64>(OP_EQ, v) {}
+        explicit GROUPID(OP op, const int64 &v): TableOpV<int64>(op, v) {}
+    };
 };
 
 // A single record in database table PLANASSUMPTION_V1
@@ -169,6 +197,8 @@ struct PlanAssumptionRow
     wxString NOTES;
     wxString ASOFDATE;
     int64 ACTIVE;
+    wxString UNIT;
+    int64 GROUPID;
 
     explicit PlanAssumptionRow();
     explicit PlanAssumptionRow(wxSQLite3ResultSet& q);
@@ -238,6 +268,16 @@ struct PlanAssumptionRow
         return ACTIVE == col.m_value;
     }
 
+    bool match(const Col::UNIT& col)
+    {
+        return UNIT.CmpNoCase(col.m_value) == 0;
+    }
+
+    bool match(const Col::GROUPID& col)
+    {
+        return GROUPID == col.m_value;
+    }
+
     template<typename Arg1, typename... Args>
     bool match(const Arg1& arg1, const Args&... args)
     {
@@ -305,6 +345,22 @@ struct PlanAssumptionRow
         bool operator()(const PlanAssumptionRow& x, const PlanAssumptionRow& y)
         {
             return x.ACTIVE < y.ACTIVE;
+        }
+    };
+
+    struct SorterByUNIT
+    {
+        bool operator()(const PlanAssumptionRow& x, const PlanAssumptionRow& y)
+        {
+            return x.UNIT < y.UNIT;
+        }
+    };
+
+    struct SorterByGROUPID
+    {
+        bool operator()(const PlanAssumptionRow& x, const PlanAssumptionRow& y)
+        {
+            return x.GROUPID < y.GROUPID;
         }
     };
 };

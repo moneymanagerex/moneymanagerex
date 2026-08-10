@@ -55,6 +55,11 @@ struct PlanItemData
     // assumption once updates every item that references it.
     int64        m_price_assumption_id;
     int64        m_tax_assumption_id;
+    // Preferred link: the item follows whichever member the group has active,
+    // so switching that one choice moves every item using the group. A pinned
+    // assumption above overrides this for a single item.
+    int64        m_price_assumption_group_id;
+    int64        m_tax_assumption_group_id;
 
     explicit PlanItemData();
     explicit PlanItemData(wxSQLite3ResultSet& q);

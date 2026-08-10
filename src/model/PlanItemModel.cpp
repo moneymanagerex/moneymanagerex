@@ -20,6 +20,7 @@
 
 #include "PlanItemModel.h"
 #include "PlanAssumptionModel.h"
+#include "PlanAssumptionGroupModel.h"
 #include "CurrencyModel.h"
 #include "StockModel.h"
 
@@ -103,38 +104,60 @@ double PlanItemModel::resolve_unit_price(const PlanItemData& item)
         return 0.0;
 
     PlanAssumptionModel& pam = PlanAssumptionModel::instance();
+    PlanAssumptionGroupModel& pagm = PlanAssumptionGroupModel::instance();
+    const PlanAssumptionKind kind(PlanAssumptionKind::e_share_price);
 
-    // 1. An explicitly linked assumption is the strongest signal: the user has
-    //    said "this row is priced off that shared guess".
-    if (item.m_price_assumption_id > 0) {
+    // 1. A pinned member is a deliberate exception: this one row is held at one
+    //    particular value regardless of what the group is currently set to.
+    //    It is only honoured while it still answers the right question.
+    if (item.m_price_assumption_id > 0 &&
+        pam.id_applies_to(item.m_price_assumption_id, kind, item.m_stock_symbol)) {
         const double v = pam.get_value(item.m_price_assumption_id, 0.0);
         if (v > 0.0)
             return v;
     }
 
-    // 2. A per-item override.
+    // 2. The usual path: follow whichever member the assigned group has active,
+    //    so switching that single choice moves every item using the group.
+    if (item.m_price_assumption_group_id > 0 &&
+        pagm.accepts(item.m_price_assumption_group_id, kind, item.m_stock_symbol)) {
+        const double v = pagm.get_active_value(item.m_price_assumption_group_id, 0.0);
+        if (v > 0.0)
+            return v;
+    }
+
+    // 3. A per-item override.
     if (item.m_unit_price > 0.0)
         return item.m_unit_price;
 
-    // 3. A share-price assumption scoped to the same symbol.
+    // 4. A standalone share-price assumption scoped to the same symbol.
     if (!item.m_stock_symbol.IsEmpty()) {
-        const PlanAssumptionData* a_n = pam.get_scope_data_n(
-            PlanAssumptionKind(PlanAssumptionKind::e_share_price),
-            item.m_stock_symbol
-        );
+        const PlanAssumptionData* a_n = pam.get_scope_data_n(kind, item.m_stock_symbol);
         if (a_n && a_n->m_value > 0.0)
             return a_n->m_value;
     }
 
-    // 4. The live price of a holding with the same symbol.
+    // 5. The live price of a holding with the same symbol.
     return get_market_price(item);
 }
 
 double PlanItemModel::resolve_tax_rate(const PlanItemData& item)
 {
-    if (item.m_tax_assumption_id > 0) {
-        const double r = PlanAssumptionModel::instance()
-            .get_rate(item.m_tax_assumption_id, -1.0);
+    PlanAssumptionModel& pam = PlanAssumptionModel::instance();
+    PlanAssumptionGroupModel& pagm = PlanAssumptionGroupModel::instance();
+    const PlanAssumptionKind kind(PlanAssumptionKind::e_tax_rate);
+
+    // A tax rate is not scoped to a ticker, so only the kind has to agree.
+    if (item.m_tax_assumption_id > 0 &&
+        pam.id_applies_to(item.m_tax_assumption_id, kind, wxEmptyString)) {
+        const double r = pam.get_rate(item.m_tax_assumption_id, -1.0);
+        if (r >= 0.0)
+            return r;
+    }
+
+    if (item.m_tax_assumption_group_id > 0 &&
+        pagm.accepts(item.m_tax_assumption_group_id, kind, wxEmptyString)) {
+        const double r = pagm.get_active_rate(item.m_tax_assumption_group_id, -1.0);
         if (r >= 0.0)
             return r;
     }

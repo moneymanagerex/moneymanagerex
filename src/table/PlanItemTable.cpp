@@ -13,7 +13,7 @@
  *      @author [sqlite2cpp.py]
  *
  *      Revision History:
- *          AUTO GENERATED at 2026-08-08 11:48:49.752940.
+ *          AUTO GENERATED at 2026-08-10 13:39:52.649608.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -47,7 +47,9 @@ const wxArrayString PlanItemCol::s_col_name_a = {
     "SORTORDER",
     "ACTIVE",
     "PRICEASSUMPTIONID",
-    "TAXASSUMPTIONID"
+    "TAXASSUMPTIONID",
+    "PRICEASSUMPTIONGROUPID",
+    "TAXASSUMPTIONGROUPID"
 };
 
 const PlanItemCol::COL_ID PlanItemCol::s_primary_id = COL_ID_PLANITEMID;
@@ -74,6 +76,8 @@ const wxString PlanItemCol::NAME_SORTORDER = s_col_name_a[COL_ID_SORTORDER];
 const wxString PlanItemCol::NAME_ACTIVE = s_col_name_a[COL_ID_ACTIVE];
 const wxString PlanItemCol::NAME_PRICEASSUMPTIONID = s_col_name_a[COL_ID_PRICEASSUMPTIONID];
 const wxString PlanItemCol::NAME_TAXASSUMPTIONID = s_col_name_a[COL_ID_TAXASSUMPTIONID];
+const wxString PlanItemCol::NAME_PRICEASSUMPTIONGROUPID = s_col_name_a[COL_ID_PRICEASSUMPTIONGROUPID];
+const wxString PlanItemCol::NAME_TAXASSUMPTIONGROUPID = s_col_name_a[COL_ID_TAXASSUMPTIONGROUPID];
 
 PlanItemRow::PlanItemRow()
 {
@@ -91,6 +95,8 @@ PlanItemRow::PlanItemRow()
     ACTIVE = -1;
     PRICEASSUMPTIONID = -1;
     TAXASSUMPTIONID = -1;
+    PRICEASSUMPTIONGROUPID = -1;
+    TAXASSUMPTIONGROUPID = -1;
 }
 
 // Bind a Row record to database insert statement.
@@ -115,7 +121,9 @@ void PlanItemRow::to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const
     stmt.Bind(17, ACTIVE);
     stmt.Bind(18, PRICEASSUMPTIONID);
     stmt.Bind(19, TAXASSUMPTIONID);
-    stmt.Bind(20, id);
+    stmt.Bind(20, PRICEASSUMPTIONGROUPID);
+    stmt.Bind(21, TAXASSUMPTIONGROUPID);
+    stmt.Bind(22, id);
 }
 
 PlanItemRow& PlanItemRow::from_select_result(wxSQLite3ResultSet& q)
@@ -140,6 +148,8 @@ PlanItemRow& PlanItemRow::from_select_result(wxSQLite3ResultSet& q)
     ACTIVE = q.GetInt64(17);
     PRICEASSUMPTIONID = q.GetInt64(18);
     TAXASSUMPTIONID = q.GetInt64(19);
+    PRICEASSUMPTIONGROUPID = q.GetInt64(20);
+    TAXASSUMPTIONGROUPID = q.GetInt64(21);
 
     return *this;
 }
@@ -219,6 +229,12 @@ void PlanItemRow::as_json(PrettyWriter<StringBuffer>& json_writer) const
 
     json_writer.Key("TAXASSUMPTIONID");
     json_writer.Int64(TAXASSUMPTIONID.GetValue());
+
+    json_writer.Key("PRICEASSUMPTIONGROUPID");
+    json_writer.Int64(PRICEASSUMPTIONGROUPID.GetValue());
+
+    json_writer.Key("TAXASSUMPTIONGROUPID");
+    json_writer.Int64(TAXASSUMPTIONGROUPID.GetValue());
 }
 
 row_t PlanItemRow::to_html_row() const
@@ -245,6 +261,8 @@ row_t PlanItemRow::to_html_row() const
     row(L"ACTIVE") = ACTIVE.GetValue();
     row(L"PRICEASSUMPTIONID") = PRICEASSUMPTIONID.GetValue();
     row(L"TAXASSUMPTIONID") = TAXASSUMPTIONID.GetValue();
+    row(L"PRICEASSUMPTIONGROUPID") = PRICEASSUMPTIONGROUPID.GetValue();
+    row(L"TAXASSUMPTIONGROUPID") = TAXASSUMPTIONGROUPID.GetValue();
 
     return row;
 }
@@ -271,6 +289,8 @@ void PlanItemRow::to_html_template(html_template& t) const
     t(L"ACTIVE") = ACTIVE.GetValue();
     t(L"PRICEASSUMPTIONID") = PRICEASSUMPTIONID.GetValue();
     t(L"TAXASSUMPTIONID") = TAXASSUMPTIONID.GetValue();
+    t(L"PRICEASSUMPTIONGROUPID") = PRICEASSUMPTIONGROUPID.GetValue();
+    t(L"TAXASSUMPTIONGROUPID") = TAXASSUMPTIONGROUPID.GetValue();
 }
 
 bool PlanItemRow::equals(const PlanItemRow* other) const
@@ -295,6 +315,8 @@ bool PlanItemRow::equals(const PlanItemRow* other) const
     if ( ACTIVE != other->ACTIVE) return false;
     if ( PRICEASSUMPTIONID != other->PRICEASSUMPTIONID) return false;
     if ( TAXASSUMPTIONID != other->TAXASSUMPTIONID) return false;
+    if ( PRICEASSUMPTIONGROUPID != other->PRICEASSUMPTIONGROUPID) return false;
+    if ( TAXASSUMPTIONGROUPID != other->TAXASSUMPTIONGROUPID) return false;
 
     return true;
 }
@@ -303,7 +325,7 @@ PlanItemTable::PlanItemTable()
 {
     m_table_name = "PLANITEM_V1";
 
-    m_create_query = "CREATE TABLE PLANITEM_V1(PLANITEMID integer primary key, GROUPID integer, ITEMNAME TEXT COLLATE NOCASE NOT NULL, NOTES TEXT, KIND TEXT NOT NULL /* Expense, Income */, STATUS TEXT /* Planned, Committed, Wishlist, Done, Cancelled */, TARGETDATE TEXT, AMOUNT numeric, CURRENCYID integer, CATEGID integer, ACCOUNTID integer, UNITS numeric, UNITPRICE numeric, TAXRATE numeric, STOCKSYMBOL TEXT, CONFIDENCE numeric, SORTORDER integer, ACTIVE integer DEFAULT 1, PRICEASSUMPTIONID integer, TAXASSUMPTIONID integer)";
+    m_create_query = "CREATE TABLE PLANITEM_V1(PLANITEMID integer primary key, GROUPID integer, ITEMNAME TEXT COLLATE NOCASE NOT NULL, NOTES TEXT, KIND TEXT NOT NULL /* Expense, Income */, STATUS TEXT /* Planned, Committed, Wishlist, Done, Cancelled */, TARGETDATE TEXT, AMOUNT numeric, CURRENCYID integer, CATEGID integer, ACCOUNTID integer, UNITS numeric, UNITPRICE numeric, TAXRATE numeric, STOCKSYMBOL TEXT, CONFIDENCE numeric, SORTORDER integer, ACTIVE integer DEFAULT 1, PRICEASSUMPTIONID integer, TAXASSUMPTIONID integer, PRICEASSUMPTIONGROUPID integer, TAXASSUMPTIONGROUPID integer)";
 
     m_drop_query = "DROP TABLE IF EXISTS PLANITEM_V1";
 
@@ -312,11 +334,11 @@ PlanItemTable::PlanItemTable()
         "CREATE INDEX IF NOT EXISTS IDX_PLANITEM_TARGETDATE ON PLANITEM_V1(TARGETDATE)"
     };
 
-    m_insert_query = "INSERT INTO PLANITEM_V1(GROUPID, ITEMNAME, NOTES, KIND, STATUS, TARGETDATE, AMOUNT, CURRENCYID, CATEGID, ACCOUNTID, UNITS, UNITPRICE, TAXRATE, STOCKSYMBOL, CONFIDENCE, SORTORDER, ACTIVE, PRICEASSUMPTIONID, TAXASSUMPTIONID, PLANITEMID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    m_insert_query = "INSERT INTO PLANITEM_V1(GROUPID, ITEMNAME, NOTES, KIND, STATUS, TARGETDATE, AMOUNT, CURRENCYID, CATEGID, ACCOUNTID, UNITS, UNITPRICE, TAXRATE, STOCKSYMBOL, CONFIDENCE, SORTORDER, ACTIVE, PRICEASSUMPTIONID, TAXASSUMPTIONID, PRICEASSUMPTIONGROUPID, TAXASSUMPTIONGROUPID, PLANITEMID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    m_update_query = "UPDATE PLANITEM_V1 SET GROUPID = ?, ITEMNAME = ?, NOTES = ?, KIND = ?, STATUS = ?, TARGETDATE = ?, AMOUNT = ?, CURRENCYID = ?, CATEGID = ?, ACCOUNTID = ?, UNITS = ?, UNITPRICE = ?, TAXRATE = ?, STOCKSYMBOL = ?, CONFIDENCE = ?, SORTORDER = ?, ACTIVE = ?, PRICEASSUMPTIONID = ?, TAXASSUMPTIONID = ? WHERE PLANITEMID = ?";
+    m_update_query = "UPDATE PLANITEM_V1 SET GROUPID = ?, ITEMNAME = ?, NOTES = ?, KIND = ?, STATUS = ?, TARGETDATE = ?, AMOUNT = ?, CURRENCYID = ?, CATEGID = ?, ACCOUNTID = ?, UNITS = ?, UNITPRICE = ?, TAXRATE = ?, STOCKSYMBOL = ?, CONFIDENCE = ?, SORTORDER = ?, ACTIVE = ?, PRICEASSUMPTIONID = ?, TAXASSUMPTIONID = ?, PRICEASSUMPTIONGROUPID = ?, TAXASSUMPTIONGROUPID = ? WHERE PLANITEMID = ?";
 
     m_delete_query = "DELETE FROM PLANITEM_V1 WHERE PLANITEMID = ?";
 
-    m_select_query = "SELECT PLANITEMID, GROUPID, ITEMNAME, NOTES, KIND, STATUS, TARGETDATE, AMOUNT, CURRENCYID, CATEGID, ACCOUNTID, UNITS, UNITPRICE, TAXRATE, STOCKSYMBOL, CONFIDENCE, SORTORDER, ACTIVE, PRICEASSUMPTIONID, TAXASSUMPTIONID FROM PLANITEM_V1";
+    m_select_query = "SELECT PLANITEMID, GROUPID, ITEMNAME, NOTES, KIND, STATUS, TARGETDATE, AMOUNT, CURRENCYID, CATEGID, ACCOUNTID, UNITS, UNITPRICE, TAXRATE, STOCKSYMBOL, CONFIDENCE, SORTORDER, ACTIVE, PRICEASSUMPTIONID, TAXASSUMPTIONID, PRICEASSUMPTIONGROUPID, TAXASSUMPTIONGROUPID FROM PLANITEM_V1";
 }

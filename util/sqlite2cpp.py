@@ -43,6 +43,7 @@ table_class_basename = {
     'INFOTABLE_V1'               : 'Info',
     'PAYEE_V1'                   : 'Payee',
     'PLANASSUMPTION_V1'          : 'PlanAssumption',
+    'PLANASSUMPTIONGROUP_V1'     : 'PlanAssumptionGroup',
     'PLANGROUP_V1'               : 'PlanGroup',
     'PLANITEM_V1'                : 'PlanItem',
     'REPORT_V1'                  : 'Report',

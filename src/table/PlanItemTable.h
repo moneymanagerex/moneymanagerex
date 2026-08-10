@@ -13,7 +13,7 @@
  *      @author [sqlite2cpp.py]
  *
  *      Revision History:
- *          AUTO GENERATED at 2026-08-08 11:48:49.752940.
+ *          AUTO GENERATED at 2026-08-10 13:39:52.649608.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -47,6 +47,8 @@ struct PlanItemCol
         COL_ID_ACTIVE,
         COL_ID_PRICEASSUMPTIONID,
         COL_ID_TAXASSUMPTIONID,
+        COL_ID_PRICEASSUMPTIONGROUPID,
+        COL_ID_TAXASSUMPTIONGROUPID,
         COL_ID_size
     };
 
@@ -78,6 +80,8 @@ struct PlanItemCol
     static const wxString NAME_ACTIVE;
     static const wxString NAME_PRICEASSUMPTIONID;
     static const wxString NAME_TAXASSUMPTIONID;
+    static const wxString NAME_PRICEASSUMPTIONGROUPID;
+    static const wxString NAME_TAXASSUMPTIONGROUPID;
 
     // convenience methods
 
@@ -159,6 +163,14 @@ struct PlanItemCol
 
     static TableClauseV<int64> WHERE_TAXASSUMPTIONID(OP op, const int64& value) {
         return TableClause::WHERE<int64>(NAME_TAXASSUMPTIONID, op, value);
+    }
+
+    static TableClauseV<int64> WHERE_PRICEASSUMPTIONGROUPID(OP op, const int64& value) {
+        return TableClause::WHERE<int64>(NAME_PRICEASSUMPTIONGROUPID, op, value);
+    }
+
+    static TableClauseV<int64> WHERE_TAXASSUMPTIONGROUPID(OP op, const int64& value) {
+        return TableClause::WHERE<int64>(NAME_TAXASSUMPTIONGROUPID, op, value);
     }
 
     // deprecated
@@ -322,6 +334,22 @@ struct PlanItemCol
         explicit TAXASSUMPTIONID(const int64 &v): TableOpV<int64>(OP_EQ, v) {}
         explicit TAXASSUMPTIONID(OP op, const int64 &v): TableOpV<int64>(op, v) {}
     };
+
+    struct PRICEASSUMPTIONGROUPID : public TableOpV<int64>
+    {
+        static COL_ID col_id() { return COL_ID_PRICEASSUMPTIONGROUPID; }
+        static wxString col_name() { return s_col_name_a[COL_ID_PRICEASSUMPTIONGROUPID]; }
+        explicit PRICEASSUMPTIONGROUPID(const int64 &v): TableOpV<int64>(OP_EQ, v) {}
+        explicit PRICEASSUMPTIONGROUPID(OP op, const int64 &v): TableOpV<int64>(op, v) {}
+    };
+
+    struct TAXASSUMPTIONGROUPID : public TableOpV<int64>
+    {
+        static COL_ID col_id() { return COL_ID_TAXASSUMPTIONGROUPID; }
+        static wxString col_name() { return s_col_name_a[COL_ID_TAXASSUMPTIONGROUPID]; }
+        explicit TAXASSUMPTIONGROUPID(const int64 &v): TableOpV<int64>(OP_EQ, v) {}
+        explicit TAXASSUMPTIONGROUPID(OP op, const int64 &v): TableOpV<int64>(op, v) {}
+    };
 };
 
 // A single record in database table PLANITEM_V1
@@ -349,6 +377,8 @@ struct PlanItemRow
     int64 ACTIVE;
     int64 PRICEASSUMPTIONID;
     int64 TAXASSUMPTIONID;
+    int64 PRICEASSUMPTIONGROUPID;
+    int64 TAXASSUMPTIONGROUPID;
 
     explicit PlanItemRow();
     explicit PlanItemRow(wxSQLite3ResultSet& q);
@@ -476,6 +506,16 @@ struct PlanItemRow
     bool match(const Col::TAXASSUMPTIONID& col)
     {
         return TAXASSUMPTIONID == col.m_value;
+    }
+
+    bool match(const Col::PRICEASSUMPTIONGROUPID& col)
+    {
+        return PRICEASSUMPTIONGROUPID == col.m_value;
+    }
+
+    bool match(const Col::TAXASSUMPTIONGROUPID& col)
+    {
+        return TAXASSUMPTIONGROUPID == col.m_value;
     }
 
     template<typename Arg1, typename... Args>
@@ -641,6 +681,22 @@ struct PlanItemRow
         bool operator()(const PlanItemRow& x, const PlanItemRow& y)
         {
             return x.TAXASSUMPTIONID < y.TAXASSUMPTIONID;
+        }
+    };
+
+    struct SorterByPRICEASSUMPTIONGROUPID
+    {
+        bool operator()(const PlanItemRow& x, const PlanItemRow& y)
+        {
+            return x.PRICEASSUMPTIONGROUPID < y.PRICEASSUMPTIONGROUPID;
+        }
+    };
+
+    struct SorterByTAXASSUMPTIONGROUPID
+    {
+        bool operator()(const PlanItemRow& x, const PlanItemRow& y)
+        {
+            return x.TAXASSUMPTIONGROUPID < y.TAXASSUMPTIONGROUPID;
         }
     };
 };

@@ -57,6 +57,21 @@ public:
     auto get_name_data_n(const wxString& name) -> const Data*;
     auto get_scope_data_n(PlanAssumptionKind kind, const wxString& scope_key) -> const Data*;
 
+    // Members of an assumption group, ordered by name.
+    auto find_group_a(int64 group_id) -> DataA;
+
+    // Whether an assumption answers a given question: the kind must match, and
+    // a scoped assumption only applies to its own scope. An unscoped one is
+    // generic and applies anywhere.
+    bool applies_to(const Data& a, PlanAssumptionKind kind, const wxString& scope_key);
+    bool id_applies_to(int64 assumption_id, PlanAssumptionKind kind, const wxString& scope_key);
+
+    // Assumptions that may be offered for a kind + scope, most specific first.
+    auto find_applicable_a(PlanAssumptionKind kind, const wxString& scope_key) -> DataA;
+
+    // A name that does not collide with an existing one, for duplication.
+    auto make_unique_name(const wxString& base) -> const wxString;
+
     // Resolved value, or `fallback` when the assumption is missing/inactive.
     double get_value(int64 assumption_id, double fallback = 0.0);
     // Resolved rate normalised to a 0..1 fraction.

@@ -108,6 +108,94 @@ const PlanAssumptionData* PlanAssumptionModel::get_scope_data_n(
     return nullptr;
 }
 
+PlanAssumptionModel::DataA PlanAssumptionModel::find_group_a(int64 group_id)
+{
+    DataA out;
+    if (group_id <= 0)
+        return out;
+
+    for (const auto& a : find_data_a()) {
+        if (a.m_active && a.m_group_id == group_id)
+            out.push_back(a);
+    }
+    std::sort(out.begin(), out.end(), Data::SorterByASSUMPTIONNAME());
+
+    return out;
+}
+
+const wxString PlanAssumptionModel::make_unique_name(const wxString& base)
+{
+    // Names are UNIQUE in the schema, so a duplicate needs a name of its own
+    // rather than failing the insert.
+    if (!get_name_data_n(base))
+        return base;
+
+    for (int n = 2; n < 1000; ++n) {
+        const wxString candidate = wxString::Format("%s (%d)", base, n);
+        if (!get_name_data_n(candidate))
+            return candidate;
+    }
+    return wxString::Format("%s (%lld)", base, static_cast<long long>(wxDateTime::Now().GetTicks()));
+}
+
+bool PlanAssumptionModel::applies_to(
+    const Data& a,
+    PlanAssumptionKind kind,
+    const wxString& scope_key
+) {
+    if (!a.m_active)
+        return false;
+
+    // An assumption answers exactly one question: a share price is not a tax
+    // rate, so the kinds must agree before anything else is considered.
+    if (a.m_kind.id() != kind.id())
+        return false;
+
+    // An unscoped assumption is deliberately generic - "my tax rate" - and
+    // applies anywhere. A scoped one names what it is about (a ticker, say)
+    // and must only be offered to rows about that same thing.
+    if (a.m_scope_key.IsEmpty())
+        return true;
+
+    return a.m_scope_key.IsSameAs(scope_key, false);
+}
+
+bool PlanAssumptionModel::id_applies_to(
+    int64 assumption_id,
+    PlanAssumptionKind kind,
+    const wxString& scope_key
+) {
+    if (assumption_id <= 0)
+        return false;
+
+    const Data* a_n = get_idN_data_n(assumption_id);
+    return a_n && applies_to(*a_n, kind, scope_key);
+}
+
+PlanAssumptionModel::DataA PlanAssumptionModel::find_applicable_a(
+    PlanAssumptionKind kind,
+    const wxString& scope_key
+) {
+    DataA out;
+    for (const auto& a : find_data_a()) {
+        if (applies_to(a, kind, scope_key))
+            out.push_back(a);
+    }
+
+    // Scoped assumptions first: when a row names a ticker, the assumption for
+    // that ticker is the one being looked for, not the generic fallback.
+    std::sort(out.begin(), out.end(),
+        [](const Data& x, const Data& y) {
+            const bool xs = !x.m_scope_key.IsEmpty();
+            const bool ys = !y.m_scope_key.IsEmpty();
+            if (xs != ys)
+                return xs;
+            return x.m_name.CmpNoCase(y.m_name) < 0;
+        });
+
+    return out;
+}
+
 double PlanAssumptionModel::get_value(int64 assumption_id, double fallback)
 {
     if (assumption_id <= 0)

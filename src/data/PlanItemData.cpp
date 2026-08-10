@@ -34,7 +34,9 @@ PlanItemData::PlanItemData() :
     m_sort_order(0),
     m_active(true),
     m_price_assumption_id(-1),
-    m_tax_assumption_id(-1)
+    m_tax_assumption_id(-1),
+    m_price_assumption_group_id(-1),
+    m_tax_assumption_group_id(-1)
 {
 }
 
@@ -63,6 +65,8 @@ PlanItemRow PlanItemData::to_row() const
     row.ACTIVE      = (m_active ? 1 : 0);
     row.PRICEASSUMPTIONID = m_price_assumption_id;
     row.TAXASSUMPTIONID   = m_tax_assumption_id;
+    row.PRICEASSUMPTIONGROUPID = m_price_assumption_group_id;
+    row.TAXASSUMPTIONGROUPID   = m_tax_assumption_group_id;
 
     return row;
 }
@@ -90,6 +94,8 @@ PlanItemData& PlanItemData::from_row(const PlanItemRow& row)
     m_active       = (row.ACTIVE != 0);
     m_price_assumption_id = row.PRICEASSUMPTIONID;
     m_tax_assumption_id   = row.TAXASSUMPTIONID;
+    m_price_assumption_group_id = row.PRICEASSUMPTIONGROUPID;
+    m_tax_assumption_group_id   = row.TAXASSUMPTIONGROUPID;
 
     return *this;
 }
@@ -116,6 +122,8 @@ bool PlanItemData::equals(const PlanItemData* other) const
     if ( m_active      != other->m_active)      return false;
     if ( m_price_assumption_id != other->m_price_assumption_id) return false;
     if ( m_tax_assumption_id   != other->m_tax_assumption_id)   return false;
+    if ( m_price_assumption_group_id != other->m_price_assumption_group_id) return false;
+    if ( m_tax_assumption_group_id   != other->m_tax_assumption_group_id)   return false;
 
     return true;
 }
