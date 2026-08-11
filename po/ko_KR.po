@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-07-25 17:44+0000\n"
-"PO-Revision-Date: 2026-07-31 02:00\n"
+"PO-Revision-Date: 2026-08-11 15:57\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -79,7 +79,7 @@ msgstr "사용 중인 이름"
 #: app/mmFrame.cpp:1603 app/mmFrame.cpp:1623 app/mmFrame.cpp:2150
 #: app/mmFrame.cpp:3322 util/mmNavigatorList.cpp:69
 msgid "Transaction Report"
-msgstr "거래 내역 보고서"
+msgstr "거래 보고서"
 
 #: app/mmFrame.cpp:1643
 msgid "Do you want to delete the account?"
@@ -95,7 +95,7 @@ msgstr "계정 삭제 확인"
 
 #: app/mmFrame.cpp:1665 app/mmFrame.cpp:1875
 msgid "&Import from"
-msgstr "다음에서 가져오기(&I)"
+msgstr "가져오기(&I)"
 
 #: app/mmFrame.cpp:1666
 msgid "&CSV Files…"
@@ -266,7 +266,7 @@ msgstr "QIF 파일에서 가져오기"
 
 #: app/mmFrame.cpp:1881
 msgid "&OFX File…"
-msgstr "OFX 파일(&O)…"
+msgstr "&OFX 파일…"
 
 #: app/mmFrame.cpp:1881
 msgid "Import from OFX file"

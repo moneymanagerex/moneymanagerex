@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-07-25 17:44+0000\n"
-"PO-Revision-Date: 2026-07-31 02:00\n"
+"PO-Revision-Date: 2026-08-11 15:57\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -8991,7 +8991,7 @@ msgstr "Dollaro del Belize"
 
 #: table/CurrencyTable.cpp:257
 msgid "West African CFA franc"
-msgstr "Franco CFA dell'Africa Occidentale"
+msgstr "Franco CFA dell\\'Africa Occidentale"
 
 #: table/CurrencyTable.cpp:258
 msgid "Bermudan dollar"
