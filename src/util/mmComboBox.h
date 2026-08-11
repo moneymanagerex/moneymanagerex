@@ -102,7 +102,8 @@ public:
         wxWindowID win_id = wxID_ANY,
         wxSize size = wxDefaultSize,
         int64 cat_id = -1,
-        bool only_active = false
+        bool only_active = false,
+        bool fillComboBox = true
     );
 
 protected:
