@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-07-25 17:44+0000\n"
-"PO-Revision-Date: 2026-07-31 02:00\n"
+"PO-Revision-Date: 2026-08-11 15:57\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1036,7 +1036,7 @@ msgstr "Depuración de la base de datos"
 
 #: app/mmFrame.cpp:2901
 msgid "&No"
-msgstr "No"
+msgstr "&No"
 
 #: app/mmFrame.cpp:2901
 msgid "&Yes"
@@ -1186,7 +1186,7 @@ msgstr "Seleccionar la cuenta a eliminar"
 #, c-format
 msgid "Do you you want to delete\n"
 "%1$s account: %2$s?"
-msgstr "¿Está seguro de querer borrar\n"
+msgstr "¿Está seguro de querer eliminar\n"
 "la cuenta %1$s: %2$s?"
 
 #: app/mmFrame.cpp:4130
@@ -1504,7 +1504,7 @@ msgstr "Consejo para comprar: Procure que su familia consume todo lo que compra.
 
 #: base/mmTips.h:43
 msgid "Grocery tip: Reduce waste. Adopting better grocery shopping habits is one way to cut back on wasted food and money. Make a list of everything you throw out without using, such as spoiled leftovers or soggy lettuce, to get a sense of the full scale of the issue."
-msgstr "Consejo para la compra: Reduce el desperdicio. Adoptar mejores hábitos a la hora de hacer la compra es una forma de reducir el desperdicio de comida y el gasto innecesario. Haz una lista de todo lo que tiras sin usar, como las sobras en mal estado o la lechuga mustia, para hacerte una idea de la magnitud real del problema."
+msgstr "Consejo para comprar: Reduce el desperdicio. Adoptar mejores hábitos a la hora de hacer la compra es una forma de reducir el desperdicio de comida y el gasto innecesario. Haz una lista de todo lo que tiras sin usar, como las sobras en mal estado o la lechuga mustia, para hacerte una idea de la magnitud real del problema."
 
 #: base/mmTips.h:44
 msgid "Grocery tip: Read sales flyers. Review each store’s flyer and match what is on sale with what is on your list or plan meals around sale items.  It is sometimes more cost-effective to visit multiple stores in one week to get the best value."
@@ -1745,7 +1745,7 @@ msgstr "Gasto"
 #: import_export/univcsvdialog.cpp:121 panel/JournalList.cpp:109
 #: panel/SchedList.cpp:83 report/ForecastReport.cpp:81
 msgid "Deposit"
-msgstr "Abono"
+msgstr "Ingreso"
 
 #: data/_DataEnum.cpp:91 dialog/TrxFilterDialog.cpp:906
 #: dialog/TrxFilterDialog.cpp:1646 dialog/TrxFilterDialog.cpp:1746
@@ -2043,7 +2043,7 @@ msgstr "Nombre de cuenta:"
 
 #: dialog/AccountDialog.cpp:134
 msgid "Enter the Name of the Account. This name can be renamed at any time."
-msgstr "Introduzca el Nombre de la Cuenta. Este nombre se puede cambiar en cualquier momento."
+msgstr "Introduzca el nombre de la cuenta. Este nombre se puede cambiar en cualquier momento."
 
 #: dialog/AccountDialog.cpp:137
 msgid "Account Type:"
@@ -2173,7 +2173,7 @@ msgstr "Estado de cuenta:"
 
 #: dialog/AccountDialog.cpp:243
 msgid "Locked"
-msgstr "Bloqueado"
+msgstr "Bloqueada"
 
 #: dialog/AccountDialog.cpp:244
 msgid "Enable or disable the transaction Lock"
@@ -2291,7 +2291,7 @@ msgstr "Las transacciones programadas para esta cuenta están programadas antes 
 
 #: dialog/AssetDialog.cpp:62 dialog/AssetDialog.cpp:85 panel/AssetPanel.cpp:172
 msgid "Add Asset Transaction"
-msgstr "Añadir Transacción de Valores"
+msgstr "Añadir transacción de valores"
 
 #: dialog/AssetDialog.cpp:63 panel/AssetPanel.cpp:184
 msgid "Edit Asset"
@@ -2420,7 +2420,7 @@ msgstr "Carpeta de adjuntos no definida."
 
 #: dialog/AttachmentDialog.cpp:76
 msgid "Please set it in Tools → Settings… → Attachments"
-msgstr "Por favor, establece en Herramientas → Configuración → Adjuntos"
+msgstr "Por favor, establece en Herramientas → Configuración… → Adjuntos"
 
 #: dialog/AttachmentDialog.cpp:77
 msgid "Attachment folder not defined"
@@ -2592,7 +2592,7 @@ msgstr "Añadir nuevo mes de presupuesto"
 #: manager/TagManager.cpp:160 panel/AssetPanel.cpp:188
 #: panel/JournalPanel.cpp:357 panel/SchedPanel.cpp:173 panel/StockPanel.cpp:209
 msgid "&Delete "
-msgstr "&Borrar "
+msgstr "&Eliminar"
 
 #: dialog/BudgetYearDialog.cpp:109
 msgid "Delete existing budget"
@@ -3183,7 +3183,7 @@ msgstr "Presupuestos encontrados: %i"
 
 #: dialog/MergePayeeDialog.cpp:91 dialog/MergePayeeDialog.h:41
 msgid "Merge Payees"
-msgstr "Fusionar Beneficiarios"
+msgstr "Fusionar beneficiarios"
 
 #: dialog/MergePayeeDialog.cpp:103
 msgid "&Delete source payee after merge"
@@ -5327,7 +5327,7 @@ msgstr "Se requiere el campo de fecha."
 
 #: import_export/univcsvdialog.cpp:1423
 msgid "Amount field or both Withdrawal and Deposit fields are required."
-msgstr "El campo Importe o los campos de cargo e ingreso son necesarios."
+msgstr "El campo importe o los campos de gasto e ingreso son necesarios."
 
 #: import_export/univcsvdialog.cpp:1424 import_export/univcsvdialog.cpp:1621
 msgid "Import"
@@ -5638,7 +5638,7 @@ msgstr "Mostrar todas las categorías ocultas"
 
 #: manager/CategoryManager.cpp:294
 msgid "Clear Settings"
-msgstr "Eliminar Ajustes"
+msgstr "Eliminar ajustes"
 
 #: manager/CategoryManager.cpp:295
 msgid "Remove hidden setting from all categories"
@@ -5858,7 +5858,7 @@ msgstr "Decimales (escala)"
 
 #: manager/CurrencyManager.cpp:227 manager/CurrencyManager.cpp:362
 msgid "Conversion to Base Rate"
-msgstr "Conversión a Tasa Base"
+msgstr "Conversión a tasa base"
 
 #: manager/CurrencyManager.cpp:244
 msgid "Conversion rate will be used in case no currency history has been found for the currency"
@@ -6536,7 +6536,7 @@ msgstr "Desde la declaración"
 
 #: model/PrefModel.cpp:69
 msgid "From 1 day after statement"
-msgstr "A partir de 1 día después de la declaración"
+msgstr "A partir de 1 día después de la factura"
 
 #: model/PrefModel.cpp:71 model/PrefModel.cpp:104
 msgid "From current year to week"
@@ -6733,7 +6733,7 @@ msgstr "&Organizar adjuntos…"
 
 #: panel/AssetList.cpp:224
 msgid "Do you want to delete the asset?"
-msgstr "¿Realmente quiere borrar el activo?"
+msgstr "¿Realmente quiere eliminar el activo?"
 
 #: panel/AssetList.cpp:225
 msgid "Confirm Asset Deletion"
@@ -7026,7 +7026,7 @@ msgstr "Última actualización"
 
 #: panel/JournalList.cpp:120
 msgid "SN"
-msgstr "N.º de serie"
+msgstr "N.º serie"
 
 #: panel/JournalList.cpp:535
 msgid "Sorted by"
@@ -7166,7 +7166,7 @@ msgstr "Eliminar &todas las transacciones en la vista actual…"
 
 #: panel/JournalList.cpp:1572
 msgid "Permanently delete &all transactions in current view…"
-msgstr "Borrar permanentemente todas las transacciones en la vista actual…"
+msgstr "Eli&minar permanentemente todas las transacciones en la vista actual…"
 
 #: panel/JournalList.cpp:1577
 msgid "Delete Viewed “&Follow Up” Transactions…"
@@ -8244,7 +8244,7 @@ msgstr "Mostrar el libro de caja de las carteras"
 
 #: pref/ViewPref.cpp:119
 msgid "Automatically resize columns to fit panel"
-msgstr ""
+msgstr "Redimensionar automáticamente las columnas para ajustar el panel"
 
 #: pref/ViewPref.cpp:127
 msgid "Do not use color for future transactions"
