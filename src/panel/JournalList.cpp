@@ -391,6 +391,11 @@ int JournalList::OnGetItemColumnImage(long item, long col_nr) const
 
 void JournalList::setColumnsInfo()
 {
+    // DELETED = Deleted Transactions
+    // TRANS1 = Checking Transactions
+    // TRANS2 = All Transactions
+    // TRANS3 = Credit Transactions
+
     if (w_panel->isDeletedTrans()) {
         m_setting_name = "DELETED";
         o_col_order_prefix = "ALLTRANS";
@@ -398,11 +403,20 @@ void JournalList::setColumnsInfo()
         o_sort_prefix = "DELETED";
     }
     else if (w_panel->isAccount()) {
-        m_setting_name = "TRANS1";
-        // note: migrate from CHECKING_COLUMNORDER for all account types
-        o_col_order_prefix = "CHECKING";
-        o_col_width_prefix = "CHECK2_COLV2";
-        o_sort_prefix = "CHECK";
+        if (w_panel->m_account_n->m_credit_limit == 0)
+        {
+            m_setting_name = "TRANS1";
+            // note: migrate from CHECKING_COLUMNORDER for all account types
+            o_col_order_prefix = "CHECKING";
+            o_col_width_prefix = "CHECK2_COLV2";
+            o_sort_prefix = "CHECK";
+        } else {
+            m_setting_name = "TRANS3";
+            // note: migrate not actually applicable for credit accounts, but keep for compatibility
+            o_col_order_prefix = "CREDITACCOUNT";
+            o_col_width_prefix = "CREDIT_COLV2";
+            o_sort_prefix = "CREDIT";
+        }
     }
     else {
         m_setting_name = "TRANS2";
