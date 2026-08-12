@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MMEX\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-08-12 14:16+0000\n"
+"POT-Creation-Date: 2026-07-25 17:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1240,7 +1240,7 @@ msgstr ""
 #: app/mmFrame.cpp:4420 dialog/CurrencyChoiceDialog.cpp:516
 #: dialog/IconManagerDialog.cpp:540 dialog/IconManagerDialog.cpp:559
 #: dialog/IconManagerDialog.cpp:580 dialog/SchedDialog.cpp:1598
-#: dialog/SplitDialog.cpp:423 import_export/ofx_import_gui.cpp:298
+#: dialog/SplitDialog.cpp:422 import_export/ofx_import_gui.cpp:298
 #: import_export/ofx_import_gui.cpp:338 import_export/ofx_import_gui.cpp:350
 #: import_export/ofx_import_gui.cpp:391 import_export/ofx_import_gui.cpp:1182
 #: import_export/ofx_import_gui.cpp:1188 import_export/ofx_import_gui.cpp:1196
@@ -2197,7 +2197,7 @@ msgstr ""
 msgid "Credit"
 msgstr ""
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1034
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1031
 msgid "Credit Limit:"
 msgstr ""
 
@@ -3455,7 +3455,7 @@ msgid "Use split Categories"
 msgstr ""
 
 #: dialog/SchedDialog.cpp:507 dialog/SchedDialog.cpp:1317
-#: dialog/SplitDialog.cpp:230 dialog/SplitDialog.cpp:582
+#: dialog/SplitDialog.cpp:230 dialog/SplitDialog.cpp:581
 #: dialog/TrxDialog.cpp:383 dialog/TrxDialog.cpp:790
 #: dialog/TrxFilterDialog.cpp:640 dialog/TrxFilterDialog.cpp:1062
 #: dialog/TrxFilterDialog.cpp:1070 dialog/TrxFilterDialog.cpp:1668
@@ -3581,7 +3581,7 @@ msgid "Confirm payee name"
 msgstr ""
 
 #: dialog/SchedDialog.cpp:1306 dialog/SchedDialog.cpp:1316
-#: dialog/SchedDialog.cpp:1597 dialog/SplitDialog.cpp:582
+#: dialog/SchedDialog.cpp:1597 dialog/SplitDialog.cpp:581
 #: dialog/TrxDialog.cpp:789 dialog/TrxDialog.cpp:798 dialog/TrxDialog.cpp:822
 #: dialog/TrxDialog.cpp:1310 dialog/TrxFilterDialog.cpp:969
 #: dialog/TrxFilterDialog.cpp:982 dialog/TrxFilterDialog.cpp:993
@@ -3640,15 +3640,15 @@ msgstr ""
 msgid "Total:"
 msgstr ""
 
-#: dialog/SplitDialog.cpp:423
+#: dialog/SplitDialog.cpp:422
 msgid "Invalid Total Amount"
 msgstr ""
 
-#: dialog/SplitDialog.cpp:602 util/mmTextCtrl.cpp:92
+#: dialog/SplitDialog.cpp:601 util/mmTextCtrl.cpp:92
 msgid "Invalid Value"
 msgstr ""
 
-#: dialog/SplitDialog.cpp:602
+#: dialog/SplitDialog.cpp:601
 msgid "Please enter a valid monetary amount"
 msgstr ""
 
@@ -5554,8 +5554,8 @@ msgstr ""
 msgid "Attachment download error"
 msgstr ""
 
-#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1191
-#: panel/JournalPanel.cpp:1209
+#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1188
+#: panel/JournalPanel.cpp:1206
 msgid "Attachment"
 msgstr ""
 
@@ -5928,7 +5928,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1394
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1391
 #: panel/ReportPanel.cpp:1096
 msgid "More date ranges…"
 msgstr ""
@@ -7364,75 +7364,75 @@ msgstr ""
 msgid "Click to copy to clipboard"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1010
+#: panel/JournalPanel.cpp:1007
 msgid "Account Bal: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1014
+#: panel/JournalPanel.cpp:1011
 msgid "Reconciled Bal: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1019
+#: panel/JournalPanel.cpp:1016
 msgid "Diff: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1026
+#: panel/JournalPanel.cpp:1023
 msgid "Filtered Flow: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1047
+#: panel/JournalPanel.cpp:1044
 msgid "Market Value: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1054
+#: panel/JournalPanel.cpp:1051
 msgid "Invested: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1093 panel/JournalPanel.cpp:1101
+#: panel/JournalPanel.cpp:1090 panel/JournalPanel.cpp:1098
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1140
+#: panel/JournalPanel.cpp:1137
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: panel/JournalPanel.cpp:1140
+#: panel/JournalPanel.cpp:1137
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1141
+#: panel/JournalPanel.cpp:1138
 msgid "Click to hide scheduled transactions."
 msgstr ""
 
-#: panel/JournalPanel.cpp:1272
+#: panel/JournalPanel.cpp:1269
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1275
+#: panel/JournalPanel.cpp:1272
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1280
+#: panel/JournalPanel.cpp:1277
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1401 panel/ReportPanel.cpp:1103
+#: panel/JournalPanel.cpp:1398 panel/ReportPanel.cpp:1103
 msgid "Edit date ranges…"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1549
+#: panel/JournalPanel.cpp:1546
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1550
+#: panel/JournalPanel.cpp:1547
 msgid "&New Deposit…"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1551
+#: panel/JournalPanel.cpp:1548
 msgid "&New Transfer…"
 msgstr ""
 
