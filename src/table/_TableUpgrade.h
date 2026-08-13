@@ -7,7 +7,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2026-08-10 13:39:54.543069.
+ *          AUTO GENERATED at 2026-08-13 15:30:43.976118.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -479,8 +479,10 @@ const std::vector<wxString> dbUpgradeQuery =
         ALTER TABLE BUDGETTABLE_V1 ADD COLUMN SEGMENTID integer;
         ALTER TABLE BUDGETTABLE_V1 ADD COLUMN AMOUNTTYPE TEXT;
         ALTER TABLE BUDGETTABLE_V1 ADD COLUMN AUTOSOURCE TEXT;
+        ALTER TABLE BUDGETTABLE_V1 ADD COLUMN ROLLOVER TEXT;
         
         UPDATE BUDGETTABLE_V1 SET AMOUNTTYPE = 'Fixed' WHERE AMOUNTTYPE IS NULL;
+        UPDATE BUDGETTABLE_V1 SET ROLLOVER = 'None' WHERE ROLLOVER IS NULL;
         
         -- Describe PLANGROUP_V1
         -- Hierarchical grouping of long-term plan items (e.g. a trip, a collection).
@@ -530,7 +532,7 @@ const std::vector<wxString> dbUpgradeQuery =
         , ASOFDATE TEXT
         , ACTIVE integer DEFAULT 1
         , UNIT TEXT /* how to read VALUE: a currency symbol, '%', or a free unit */
-        , GROUPID integer /* member of an assumption group; NULL = standalone */
+        , GROUPID integer /* member of an assumption group, NULL when standalone */
         );
         CREATE INDEX IF NOT EXISTS IDX_PLANASSUMPTION_KIND ON PLANASSUMPTION_V1(KIND);
         CREATE INDEX IF NOT EXISTS IDX_PLANASSUMPTION_GROUPID ON PLANASSUMPTION_V1(GROUPID);

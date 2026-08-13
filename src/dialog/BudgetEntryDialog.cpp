@@ -92,6 +92,7 @@ void BudgetEntryDialog::fillControls()
 
     m_textAmount->SetValue(std::fabs(amt));
     m_Notes->SetValue(m_budget_n->m_notes);
+    m_choiceRollover->SetSelection(m_budget_n->m_rollover.id());
 }
 
 void BudgetEntryDialog::CreateControls()
@@ -167,6 +168,21 @@ void BudgetEntryDialog::CreateControls()
     mmToolTip(m_textAmount, _t("Enter the amount budgeted for this category."));
     m_textAmount->SetFocus();
 
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Rollover:")), g_flagsH);
+
+    wxArrayString rollover_a;
+    for (int i = 0; i < BudgetRollover::size; ++i)
+        rollover_a.Add(wxGetTranslation(BudgetRollover(i).name()));
+
+    m_choiceRollover = new wxChoice(itemPanel7, wxID_ANY,
+        wxDefaultPosition, wxDefaultSize, rollover_a);
+    itemGridSizer2->Add(m_choiceRollover, g_flagsExpand);
+    mmToolTip(m_choiceRollover, _t(
+        "Carry what is left of this category from one period to the next.\n"
+        "Use it for a bill you save up for monthly but pay once a year: the "
+        "contributions build a fund, and a plan item in the same category is "
+        "paid from that fund instead of landing as a shock."));
+
     itemStaticBoxSizer4->Add(new wxStaticText(this, wxID_STATIC, _t("Notes")),0, wxGROW|wxALL, 5);
     m_Notes = new wxTextCtrl(this,
         wxID_ANY, "",
@@ -212,6 +228,7 @@ void BudgetEntryDialog::OnOk(wxCommandEvent& event)
     m_budget_n->m_freq   = BudgetFreq(freq);
     m_budget_n->m_amount = amt;
     m_budget_n->m_notes  = m_Notes->GetValue();
+    m_budget_n->m_rollover = BudgetRollover(m_choiceRollover->GetSelection());
     BudgetModel::instance().unsafe_save_data_n(m_budget_n);
 
     EndModal(wxID_OK);

@@ -304,6 +304,50 @@ public:
     }
 };
 
+// Whether a budget entry starts each period afresh, or carries what was left
+// over. A month can be net positive while its first half is deeply negative
+// because bills cluster around due dates, so an envelope that accumulates is
+// often closer to how the money actually behaves than one that resets.
+struct BudgetRollover
+{
+public:
+    enum
+    {
+        e_none = 0,
+        e_surplus,
+        e_deficit,
+        e_both,
+        size
+    };
+    static mmChoiceKeyNameA s_choice_a;
+
+private:
+    mmChoiceId m_id;
+
+public:
+    BudgetRollover(mmChoiceId id = s_choice_a.default_id_n()) :
+        m_id(s_choice_a.valid_id_n(id)) {}
+    BudgetRollover(const wxString& key) :
+        m_id(BudgetRollover::s_choice_a.find_key_n(key)) {}
+
+    mmChoiceId id() const { return m_id; }
+    const wxString key() const { return BudgetRollover::s_choice_a.get_key(m_id); }
+    const wxString name() const { return BudgetRollover::s_choice_a.get_name(m_id); }
+
+    bool carries() const { return m_id != e_none; }
+    // An unspent amount is kept for later.
+    bool carries_surplus() const { return m_id == e_surplus || m_id == e_both; }
+    // An overspend is owed out of a later period rather than forgiven.
+    bool carries_deficit() const { return m_id == e_deficit || m_id == e_both; }
+
+    bool operator== (const BudgetRollover& other) const {
+        return id() == other.id();
+    }
+    bool operator!= (const BudgetRollover& other) const {
+        return id() != other.id();
+    }
+};
+
 struct PlanAssumptionKind
 {
 public:

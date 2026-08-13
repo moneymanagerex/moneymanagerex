@@ -44,6 +44,7 @@ private:
     wxChoice*   m_choiceItem = nullptr;
     mmTextCtrl* m_textAmount = nullptr;
     wxChoice*   m_choiceType = nullptr;
+    wxChoice*   m_choiceRollover = nullptr;
     wxTextCtrl* m_Notes      = nullptr;
 
 public:

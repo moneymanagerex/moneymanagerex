@@ -75,6 +75,13 @@ mmChoiceKeyNameA BudgetAmountType::s_choice_a = mmChoiceKeyNameA({
     { e_auto,      "Auto",      _n("Automatic") },
 }, e_fixed, true);
 
+mmChoiceKeyNameA BudgetRollover::s_choice_a = mmChoiceKeyNameA({
+    { e_none,    "None",    _n("Resets each period") },
+    { e_surplus, "Surplus", _n("Unspent carries forward") },
+    { e_deficit, "Deficit", _n("Overspend carries forward") },
+    { e_both,    "Both",    _n("Both carry forward") },
+}, e_none, true);
+
 mmChoiceKeyNameA PlanAssumptionKind::s_choice_a = mmChoiceKeyNameA({
     { e_share_price,   "SharePrice",   _n("Share price") },
     { e_tax_rate,      "TaxRate",      _n("Tax rate") },

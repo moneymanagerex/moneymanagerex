@@ -18,6 +18,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <set>
 #include <wx/tokenzr.h>
 #include "base/_defs.h"
 #include "PlanEngine.h"
@@ -452,6 +453,13 @@ std::vector<PlanPeriod> PlanEngine::build_timeline(
 
     double running_balance = liquid_balance();
 
+    // Money set aside by entries that roll over, kept per category. A sinking
+    // fund is already spoken for: it leaves the spendable balance as it is
+    // contributed, and is drawn down when the bill it was saved for arrives,
+    // so a large annual payment no longer looks like a sudden shock.
+    std::map<int64, double> reserve_by_category;
+    std::set<int64> deficit_ok_category;
+
     for (int m = 0; m < months; ++m) {
         const wxDateTime month_start = add_months(cursor, m);
         const int dim = days_in_month_of(month_start);
@@ -484,6 +492,10 @@ std::vector<PlanPeriod> PlanEngine::build_timeline(
 
             const int win_days = (win_end >= win_start) ? (win_end - win_start + 1) : 0;
 
+            // What the rolling categories are holding as this window opens.
+            for (const auto& kv : reserve_by_category)
+                p.carried_in += kv.second;
+
             wxDateTime d_start = month_start; d_start.SetDay(win_start);
             wxDateTime d_end   = month_start; d_end.SetDay(win_end < 1 ? 1 : win_end);
             p.start_date = mmDate(d_start);
@@ -510,11 +522,24 @@ std::vector<PlanPeriod> PlanEngine::build_timeline(
                     ? amount_for_window(b_d, r.amount, win_days, dim)
                     : amount_for_window(b_d, r.amount, dim, dim);
 
-                // Budget amounts are magnitudes; the category decides the sign.
-                // Income categories are recorded as negative budget amounts in
-                // MMEX, so a negative value means money coming in.
-                if (amount < 0.0) p.income  += -amount;
-                else              p.expense += amount;
+                // MMEX stores a budget amount signed by direction: an expense is
+                // negative and income positive (BudgetEntryDialog negates an
+                // expense on save, and BudgetPanel reads the sign back the same
+                // way). The timeline wants magnitudes on each side.
+                if (amount < 0.0) p.expense += -amount;
+                else              p.income  += amount;
+
+                // A rolling expense is a contribution to a fund rather than a
+                // payment: the cash still goes out, but it is banked against a
+                // later bill in the same category instead of vanishing.
+                if (b_d.m_rollover.carries() && b_d.m_category_id > 0) {
+                    if (b_d.m_rollover.carries_surplus() && amount < 0.0) {
+                        reserve_by_category[b_d.m_category_id] += -amount;
+                        p.reserved += -amount;
+                    }
+                    if (b_d.m_rollover.carries_deficit())
+                        deficit_ok_category.insert(b_d.m_category_id);
+                }
             }
 
             // Long-term plan items landing inside this window
@@ -529,10 +554,30 @@ std::vector<PlanPeriod> PlanEngine::build_timeline(
                     continue;
 
                 const double amt = PlanItemModel::instance().net_amount_base(item);
-                if (item.m_kind.is_income()) p.plan_income  += amt;
-                else                         p.plan_expense += amt;
+                if (item.m_kind.is_income()) {
+                    p.plan_income += amt;
+                    continue;
+                }
+
+                // Draw against anything saved for this category first, so the
+                // month the bill lands does not read as a crisis when it was
+                // funded all along.
+                double covered = 0.0;
+                if (item.m_category_id > 0) {
+                    auto it = reserve_by_category.find(item.m_category_id);
+                    if (it != reserve_by_category.end()) {
+                        const bool may_overdraw =
+                            deficit_ok_category.count(item.m_category_id) > 0;
+                        covered = may_overdraw ? amt : std::min(it->second, amt);
+                        if (covered < 0.0) covered = 0.0;
+                        it->second -= covered;
+                    }
+                }
+                p.plan_expense += amt - covered;
+                p.drawn_from_reserve += covered;
             }
 
+            p.opening_balance = running_balance;
             running_balance += p.net();
             p.closing_balance = running_balance;
             out.push_back(p);
@@ -549,6 +594,20 @@ std::vector<PlanPeriod> PlanEngine::build_timeline(
     }
 
     return out;
+}
+
+PlanTrough PlanEngine::find_trough(const std::vector<PlanPeriod>& timeline)
+{
+    PlanTrough t;
+    for (const auto& p : timeline) {
+        if (!t.is_valid || p.closing_balance < t.balance) {
+            t.balance  = p.closing_balance;
+            t.label    = p.label;
+            t.date     = p.end_date;
+            t.is_valid = true;
+        }
+    }
+    return t;
 }
 
 PlanSummary PlanEngine::build_summary(const mmDate& as_of)

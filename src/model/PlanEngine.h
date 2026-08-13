@@ -91,8 +91,29 @@ struct PlanPeriod
 
     double net() const { return income + plan_income - expense - plan_expense; }
 
+    // The cash position entering and leaving this window. A period boundary is
+    // an accounting convenience; the money does not reset at it, so the opening
+    // figure is what makes a negative half-month readable rather than alarming.
+    double opening_balance = 0.0;
     double closing_balance = 0.0;  // running cash balance after this period
     double free_assets     = 0.0;  // liquid assets less outstanding obligations
+
+    // Amount held over from earlier periods by categories set to roll over, so
+    // a sinking fund can be told apart from spare cash.
+    double carried_in         = 0.0;
+    double reserved           = 0.0;  // added to the funds in this window
+    double drawn_from_reserve = 0.0;  // met from savings rather than this window
+};
+
+// Where the projection dips lowest. A plan that ends well can still fail in
+// the middle, and that trough is the number worth acting on.
+struct PlanTrough
+{
+    double   balance    = 0.0;
+    wxString label;
+    mmDate   date       = mmDate::invalid();
+    bool     is_valid   = false;
+    bool     goes_negative() const { return is_valid && balance < 0.0; }
 };
 
 // A long-term summary mirroring the structure people keep in a notebook.
@@ -218,6 +239,10 @@ public:
         const mmDate& start_date,
         int months
     );
+
+    // The low point of a projection. Reported separately because a healthy
+    // closing balance can hide a period where the money runs out.
+    static PlanTrough find_trough(const std::vector<PlanPeriod>& timeline);
 
     // Long-term totals across every active plan item.
     static PlanSummary build_summary(const mmDate& as_of);

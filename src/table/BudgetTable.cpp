@@ -13,7 +13,7 @@
  *      @author [sqlite2cpp.py]
  *
  *      Revision History:
- *          AUTO GENERATED at 2026-08-08 11:34:44.604940.
+ *          AUTO GENERATED at 2026-08-13 15:30:43.750991.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -37,7 +37,8 @@ const wxArrayString BudgetCol::s_col_name_a = {
     "ACTIVE",
     "SEGMENTID",
     "AMOUNTTYPE",
-    "AUTOSOURCE"
+    "AUTOSOURCE",
+    "ROLLOVER"
 };
 
 const BudgetCol::COL_ID BudgetCol::s_primary_id = COL_ID_BUDGETENTRYID;
@@ -54,6 +55,7 @@ const wxString BudgetCol::NAME_ACTIVE = s_col_name_a[COL_ID_ACTIVE];
 const wxString BudgetCol::NAME_SEGMENTID = s_col_name_a[COL_ID_SEGMENTID];
 const wxString BudgetCol::NAME_AMOUNTTYPE = s_col_name_a[COL_ID_AMOUNTTYPE];
 const wxString BudgetCol::NAME_AUTOSOURCE = s_col_name_a[COL_ID_AUTOSOURCE];
+const wxString BudgetCol::NAME_ROLLOVER = s_col_name_a[COL_ID_ROLLOVER];
 
 BudgetRow::BudgetRow()
 {
@@ -77,7 +79,8 @@ void BudgetRow::to_insert_stmt(wxSQLite3Statement& stmt, int64 id) const
     stmt.Bind(7, SEGMENTID);
     stmt.Bind(8, AMOUNTTYPE);
     stmt.Bind(9, AUTOSOURCE);
-    stmt.Bind(10, id);
+    stmt.Bind(10, ROLLOVER);
+    stmt.Bind(11, id);
 }
 
 BudgetRow& BudgetRow::from_select_result(wxSQLite3ResultSet& q)
@@ -92,6 +95,7 @@ BudgetRow& BudgetRow::from_select_result(wxSQLite3ResultSet& q)
     SEGMENTID = q.GetInt64(7);
     AMOUNTTYPE = q.GetString(8);
     AUTOSOURCE = q.GetString(9);
+    ROLLOVER = q.GetString(10);
 
     return *this;
 }
@@ -141,6 +145,9 @@ void BudgetRow::as_json(PrettyWriter<StringBuffer>& json_writer) const
 
     json_writer.Key("AUTOSOURCE");
     json_writer.String(AUTOSOURCE.utf8_str());
+
+    json_writer.Key("ROLLOVER");
+    json_writer.String(ROLLOVER.utf8_str());
 }
 
 row_t BudgetRow::to_html_row() const
@@ -157,6 +164,7 @@ row_t BudgetRow::to_html_row() const
     row(L"SEGMENTID") = SEGMENTID.GetValue();
     row(L"AMOUNTTYPE") = AMOUNTTYPE;
     row(L"AUTOSOURCE") = AUTOSOURCE;
+    row(L"ROLLOVER") = ROLLOVER;
 
     return row;
 }
@@ -173,6 +181,7 @@ void BudgetRow::to_html_template(html_template& t) const
     t(L"SEGMENTID") = SEGMENTID.GetValue();
     t(L"AMOUNTTYPE") = AMOUNTTYPE;
     t(L"AUTOSOURCE") = AUTOSOURCE;
+    t(L"ROLLOVER") = ROLLOVER;
 }
 
 bool BudgetRow::equals(const BudgetRow* other) const
@@ -187,6 +196,7 @@ bool BudgetRow::equals(const BudgetRow* other) const
     if ( SEGMENTID != other->SEGMENTID) return false;
     if (!AMOUNTTYPE.IsSameAs(other->AMOUNTTYPE)) return false;
     if (!AUTOSOURCE.IsSameAs(other->AUTOSOURCE)) return false;
+    if (!ROLLOVER.IsSameAs(other->ROLLOVER)) return false;
 
     return true;
 }
@@ -195,7 +205,7 @@ BudgetTable::BudgetTable()
 {
     m_table_name = "BUDGETTABLE_V1";
 
-    m_create_query = "CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, PERIOD TEXT NOT NULL /* None, Weekly, Bi-Weekly, Monthly, Monthly, Bi-Monthly, Quarterly, Half-Yearly, Yearly, Daily*/, AMOUNT numeric NOT NULL, NOTES TEXT, ACTIVE integer, SEGMENTID integer, AMOUNTTYPE TEXT /* Fixed, Estimated, Auto */, AUTOSOURCE TEXT)";
+    m_create_query = "CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, PERIOD TEXT NOT NULL /* None, Weekly, Bi-Weekly, Monthly, Monthly, Bi-Monthly, Quarterly, Half-Yearly, Yearly, Daily*/, AMOUNT numeric NOT NULL, NOTES TEXT, ACTIVE integer, SEGMENTID integer, AMOUNTTYPE TEXT /* Fixed, Estimated, Auto */, AUTOSOURCE TEXT, ROLLOVER TEXT /* None, Surplus, Deficit, Both */)";
 
     m_drop_query = "DROP TABLE IF EXISTS BUDGETTABLE_V1";
 
@@ -203,11 +213,11 @@ BudgetTable::BudgetTable()
         "CREATE INDEX IF NOT EXISTS IDX_BUDGETTABLE_BUDGETYEARID ON BUDGETTABLE_V1(BUDGETYEARID)"
     };
 
-    m_insert_query = "INSERT INTO BUDGETTABLE_V1(BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE, SEGMENTID, AMOUNTTYPE, AUTOSOURCE, BUDGETENTRYID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    m_insert_query = "INSERT INTO BUDGETTABLE_V1(BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE, SEGMENTID, AMOUNTTYPE, AUTOSOURCE, ROLLOVER, BUDGETENTRYID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    m_update_query = "UPDATE BUDGETTABLE_V1 SET BUDGETYEARID = ?, CATEGID = ?, PERIOD = ?, AMOUNT = ?, NOTES = ?, ACTIVE = ?, SEGMENTID = ?, AMOUNTTYPE = ?, AUTOSOURCE = ? WHERE BUDGETENTRYID = ?";
+    m_update_query = "UPDATE BUDGETTABLE_V1 SET BUDGETYEARID = ?, CATEGID = ?, PERIOD = ?, AMOUNT = ?, NOTES = ?, ACTIVE = ?, SEGMENTID = ?, AMOUNTTYPE = ?, AUTOSOURCE = ?, ROLLOVER = ? WHERE BUDGETENTRYID = ?";
 
     m_delete_query = "DELETE FROM BUDGETTABLE_V1 WHERE BUDGETENTRYID = ?";
 
-    m_select_query = "SELECT BUDGETENTRYID, BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE, SEGMENTID, AMOUNTTYPE, AUTOSOURCE FROM BUDGETTABLE_V1";
+    m_select_query = "SELECT BUDGETENTRYID, BUDGETYEARID, CATEGID, PERIOD, AMOUNT, NOTES, ACTIVE, SEGMENTID, AMOUNTTYPE, AUTOSOURCE, ROLLOVER FROM BUDGETTABLE_V1";
 }

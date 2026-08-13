@@ -13,7 +13,7 @@
  *      @author [sqlite2cpp.py]
  *
  *      Revision History:
- *          AUTO GENERATED at 2026-08-08 11:34:44.604940.
+ *          AUTO GENERATED at 2026-08-13 15:30:43.750991.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -37,6 +37,7 @@ struct BudgetCol
         COL_ID_SEGMENTID,
         COL_ID_AMOUNTTYPE,
         COL_ID_AUTOSOURCE,
+        COL_ID_ROLLOVER,
         COL_ID_size
     };
 
@@ -58,6 +59,7 @@ struct BudgetCol
     static const wxString NAME_SEGMENTID;
     static const wxString NAME_AMOUNTTYPE;
     static const wxString NAME_AUTOSOURCE;
+    static const wxString NAME_ROLLOVER;
 
     // convenience methods
 
@@ -99,6 +101,10 @@ struct BudgetCol
 
     static TableClauseV<wxString> WHERE_AUTOSOURCE(OP op, const wxString& value) {
         return TableClause::WHERE<wxString>(NAME_AUTOSOURCE, op, value);
+    }
+
+    static TableClauseV<wxString> WHERE_ROLLOVER(OP op, const wxString& value) {
+        return TableClause::WHERE<wxString>(NAME_ROLLOVER, op, value);
     }
 
     // deprecated
@@ -182,6 +188,14 @@ struct BudgetCol
         explicit AUTOSOURCE(const wxString &v): TableOpV<wxString>(OP_EQ, v) {}
         explicit AUTOSOURCE(OP op, const wxString &v): TableOpV<wxString>(op, v) {}
     };
+
+    struct ROLLOVER : public TableOpV<wxString>
+    {
+        static COL_ID col_id() { return COL_ID_ROLLOVER; }
+        static wxString col_name() { return s_col_name_a[COL_ID_ROLLOVER]; }
+        explicit ROLLOVER(const wxString &v): TableOpV<wxString>(OP_EQ, v) {}
+        explicit ROLLOVER(OP op, const wxString &v): TableOpV<wxString>(op, v) {}
+    };
 };
 
 // A single record in database table BUDGETTABLE_V1
@@ -199,6 +213,7 @@ struct BudgetRow
     int64 SEGMENTID;
     wxString AMOUNTTYPE;
     wxString AUTOSOURCE;
+    wxString ROLLOVER;
 
     explicit BudgetRow();
     explicit BudgetRow(wxSQLite3ResultSet& q);
@@ -276,6 +291,11 @@ struct BudgetRow
     bool match(const Col::AUTOSOURCE& col)
     {
         return AUTOSOURCE.CmpNoCase(col.m_value) == 0;
+    }
+
+    bool match(const Col::ROLLOVER& col)
+    {
+        return ROLLOVER.CmpNoCase(col.m_value) == 0;
     }
 
     template<typename Arg1, typename... Args>
@@ -361,6 +381,14 @@ struct BudgetRow
         bool operator()(const BudgetRow& x, const BudgetRow& y)
         {
             return x.AUTOSOURCE < y.AUTOSOURCE;
+        }
+    };
+
+    struct SorterByROLLOVER
+    {
+        bool operator()(const BudgetRow& x, const BudgetRow& y)
+        {
+            return x.ROLLOVER < y.ROLLOVER;
         }
     };
 };

@@ -554,6 +554,17 @@ wxString PlanCashFlowReport::getHTMLText()
             addParagraph(hb, _t("This budget period has no entries to project."));
         }
         else {
+            // Only offer the fund column when something actually rolls over,
+            // so an ordinary budget is not padded with empty cells.
+            bool has_reserve = false;
+            for (const auto& p : timeline) {
+                if (p.carried_in != 0.0 || p.reserved != 0.0 ||
+                    p.drawn_from_reserve != 0.0) {
+                    has_reserve = true;
+                    break;
+                }
+            }
+
             hb.startTable();
             {
                 hb.startThead();
@@ -561,9 +572,12 @@ wxString PlanCashFlowReport::getHTMLText()
                     hb.startTableRow();
                     {
                         hb.addTableHeaderCell(_t("Period"));
+                        hb.addTableHeaderCell(_t("Opening"), "text-right");
                         hb.addTableHeaderCell(_t("Income"), "text-right");
                         hb.addTableHeaderCell(_t("Expenses"), "text-right");
                         hb.addTableHeaderCell(_t("Net"), "text-right");
+                        if (has_reserve)
+                            hb.addTableHeaderCell(_t("Set aside"), "text-right");
                         hb.addTableHeaderCell(_t("Balance"), "text-right");
                     }
                     hb.endTableRow();
@@ -584,9 +598,13 @@ wxString PlanCashFlowReport::getHTMLText()
                         else if (p.has_estimates)
                             label += " ~";
                         hb.addTableCell(label);
+                        hb.addMoneyCell(p.opening_balance);
                         hb.addMoneyCell(p.income + p.plan_income);
                         hb.addMoneyCell(p.expense + p.plan_expense);
                         hb.addMoneyCell(p.net());
+                        if (has_reserve)
+                            hb.addMoneyCell(p.carried_in + p.reserved -
+                                            p.drawn_from_reserve);
                         hb.addMoneyCell(p.closing_balance);
                     }
                     hb.endTableRow();
@@ -594,6 +612,29 @@ wxString PlanCashFlowReport::getHTMLText()
                 hb.endTbody();
             }
             hb.endTable();
+
+            // The closing figure flatters a plan that dips in the middle, so
+            // name the worst point outright.
+            const PlanTrough trough = PlanEngine::find_trough(timeline);
+            if (trough.is_valid) {
+                addParagraph(hb, wxString::Format(
+                    trough.goes_negative()
+                        ? _t("Lowest point: %s at %s -- the balance goes negative here.")
+                        : _t("Lowest point: %s at %s."),
+                    CurrencyModel::instance().toCurrency(trough.balance),
+                    trough.label));            }
+
+            addParagraph(hb, _t(
+                "Balances carry from one period to the next, so a half-month "
+                "that ends below zero is a real shortfall rather than a "
+                "presentation artefact."));
+
+            if (has_reserve) {
+                addParagraph(hb, _t(
+                    "Set aside is money held by categories that roll over. It is "
+                    "already out of the balance, and is used up when a plan item "
+                    "in the same category falls due."));
+            }
 
             addParagraph(hb, _t(
                 "~ marks a period containing estimated or automatically derived "
@@ -670,14 +711,9 @@ wxString PlanChartsReport::getHTMLText()
 
                 // A projection that dips below zero is the single most useful
                 // thing this chart can tell the reader, so say it in words too.
-                double lowest = timeline.front().closing_balance;
-                wxString lowest_label = timeline.front().label;
-                for (const auto& p : timeline) {
-                    if (p.closing_balance < lowest) {
-                        lowest = p.closing_balance;
-                        lowest_label = p.label;
-                    }
-                }
+                const PlanTrough trough = PlanEngine::find_trough(timeline);
+                const double lowest = trough.balance;
+                const wxString lowest_label = trough.label;
                 if (lowest < 0.0) {
                     addParagraph(hb, wxString::Format(
                         _t("The balance goes negative, reaching %s at %s."),
