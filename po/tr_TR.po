@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-07-25 17:44+0000\n"
-"PO-Revision-Date: 2026-07-31 02:00\n"
+"POT-Creation-Date: 2026-08-12 22:43+0000\n"
+"PO-Revision-Date: 2026-08-14 01:11\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -1238,7 +1238,7 @@ msgstr "%s dosyası bulunamadı."
 #: app/mmFrame.cpp:4420 dialog/CurrencyChoiceDialog.cpp:516
 #: dialog/IconManagerDialog.cpp:540 dialog/IconManagerDialog.cpp:559
 #: dialog/IconManagerDialog.cpp:580 dialog/SchedDialog.cpp:1598
-#: dialog/SplitDialog.cpp:422 import_export/ofx_import_gui.cpp:298
+#: dialog/SplitDialog.cpp:423 import_export/ofx_import_gui.cpp:298
 #: import_export/ofx_import_gui.cpp:338 import_export/ofx_import_gui.cpp:350
 #: import_export/ofx_import_gui.cpp:391 import_export/ofx_import_gui.cpp:1182
 #: import_export/ofx_import_gui.cpp:1188 import_export/ofx_import_gui.cpp:1196
@@ -1753,7 +1753,7 @@ msgid "Transfer"
 msgstr "Aktarma"
 
 #: data/_DataEnum.cpp:95 dialog/TrxFilterDialog.cpp:59
-#: panel/JournalList.cpp:2238
+#: panel/JournalList.cpp:2252
 msgid "Unreconciled"
 msgstr "Uzlaşma sağlanamamış"
 
@@ -1767,7 +1767,7 @@ msgid "Void"
 msgstr "Geçersiz"
 
 #: data/_DataEnum.cpp:98 dialog/TrxFilterDialog.cpp:62
-#: panel/JournalList.cpp:2226
+#: panel/JournalList.cpp:2240
 msgid "Follow Up"
 msgstr "Takip Et"
 
@@ -2195,7 +2195,7 @@ msgstr "Hesap bakiyesi limitin altında. Devre dışı bırakmak için sıfırla
 msgid "Credit"
 msgstr "Kredi"
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1031
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1034
 msgid "Credit Limit:"
 msgstr "Kredi Limiti:"
 
@@ -2778,7 +2778,7 @@ msgstr "Çevrimiçi Döviz Kuru Güncelleme"
 #: import_export/univcsvdialog.cpp:112 import_export/webappdialog.cpp:149
 #: model/TrxFilter.cpp:210 panel/BudgetList.cpp:38
 #: panel/DashboardWidget.cpp:382 panel/DashboardWidget.cpp:462
-#: panel/JournalList.cpp:1545 report/CategoryReport.cpp:248
+#: panel/JournalList.cpp:1559 report/CategoryReport.cpp:248
 #: report/FlowReport.cpp:417 report/InExReport.cpp:112 report/TrxReport.cpp:244
 msgid "Amount"
 msgstr "Tutar"
@@ -3453,7 +3453,7 @@ msgid "Use split Categories"
 msgstr "Parçalı Kategorileri kullan"
 
 #: dialog/SchedDialog.cpp:507 dialog/SchedDialog.cpp:1317
-#: dialog/SplitDialog.cpp:230 dialog/SplitDialog.cpp:581
+#: dialog/SplitDialog.cpp:230 dialog/SplitDialog.cpp:582
 #: dialog/TrxDialog.cpp:383 dialog/TrxDialog.cpp:790
 #: dialog/TrxFilterDialog.cpp:640 dialog/TrxFilterDialog.cpp:1062
 #: dialog/TrxFilterDialog.cpp:1070 dialog/TrxFilterDialog.cpp:1668
@@ -3579,7 +3579,7 @@ msgid "Confirm payee name"
 msgstr "Alacaklı adını onayla"
 
 #: dialog/SchedDialog.cpp:1306 dialog/SchedDialog.cpp:1316
-#: dialog/SchedDialog.cpp:1597 dialog/SplitDialog.cpp:581
+#: dialog/SchedDialog.cpp:1597 dialog/SplitDialog.cpp:582
 #: dialog/TrxDialog.cpp:789 dialog/TrxDialog.cpp:798 dialog/TrxDialog.cpp:822
 #: dialog/TrxDialog.cpp:1310 dialog/TrxFilterDialog.cpp:969
 #: dialog/TrxFilterDialog.cpp:982 dialog/TrxFilterDialog.cpp:993
@@ -3638,15 +3638,15 @@ msgstr "&Bölmeyi Kaldır"
 msgid "Total:"
 msgstr "Toplam:"
 
-#: dialog/SplitDialog.cpp:422
+#: dialog/SplitDialog.cpp:423
 msgid "Invalid Total Amount"
 msgstr "Geçersiz Toplam Tutar"
 
-#: dialog/SplitDialog.cpp:601 util/mmTextCtrl.cpp:92
+#: dialog/SplitDialog.cpp:602 util/mmTextCtrl.cpp:92
 msgid "Invalid Value"
 msgstr "Geçersiz Değer"
 
-#: dialog/SplitDialog.cpp:601
+#: dialog/SplitDialog.cpp:602
 msgid "Please enter a valid monetary amount"
 msgstr "Lütfen geçerli bir parasal tutar girin"
 
@@ -4033,7 +4033,7 @@ msgstr "Bilinmeyen"
 msgid "Lock transaction to date: %s"
 msgstr "İşlemi şu tarihe kilitle: %s"
 
-#: dialog/TrxDialog.cpp:908 dialog/TrxDialog.cpp:931 panel/JournalList.cpp:1192
+#: dialog/TrxDialog.cpp:908 dialog/TrxDialog.cpp:931 panel/JournalList.cpp:1206
 msgid "MMEX Transaction Check"
 msgstr "MMEX İşlem Kontrolü"
 
@@ -5557,8 +5557,8 @@ msgstr "İşlem indirilmedi: lütfen işlemleri indirmeyi yeniden deneyin"
 msgid "Attachment download error"
 msgstr "İlişik indirme hatası"
 
-#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1188
-#: panel/JournalPanel.cpp:1206
+#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1191
+#: panel/JournalPanel.cpp:1209
 msgid "Attachment"
 msgstr "İlişik"
 
@@ -5932,7 +5932,7 @@ msgstr "Varsayılan aralıkları gerçekten geri yüklemek istiyor musunuz?  \n\
 msgid "Default date ranges"
 msgstr "Varsayılan tarih aralıkları"
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1391
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1394
 #: panel/ReportPanel.cpp:1096
 msgid "More date ranges…"
 msgstr "Daha fazla tarih aralığı…"
@@ -6723,7 +6723,7 @@ msgstr "&Varlık Düzenle…"
 msgid "&Delete Asset…"
 msgstr "&Varlık Sil…"
 
-#: panel/AssetList.cpp:121 panel/JournalList.cpp:1341 panel/SchedList.cpp:200
+#: panel/AssetList.cpp:121 panel/JournalList.cpp:1355 panel/SchedList.cpp:200
 #: panel/StockList.cpp:167
 msgid "&Organize Attachments…"
 msgstr "&Ekleri Düzenle…"
@@ -7025,281 +7025,281 @@ msgstr "Son Güncelleme"
 msgid "SN"
 msgstr "SN"
 
-#: panel/JournalList.cpp:535
+#: panel/JournalList.cpp:549
 msgid "Sorted by"
 msgstr "Şuna göre sırala"
 
-#: panel/JournalList.cpp:547
+#: panel/JournalList.cpp:561
 msgid "SN (Sequence Number) has the same order as Date/ID (or Date/Time/ID if Time is enabled)."
 msgstr "SN (Sıra Numarası), Tarih/ID ile aynı düzende sıralanır (veya Zaman etkinleştirilmişse Tarih/Saat/ID ile)."
 
-#: panel/JournalList.cpp:549
+#: panel/JournalList.cpp:563
 msgid "ID (identification number) is increasing with the time of creation in the database."
 msgstr "KNu (kimlik numarası) veri tabanındaki oluşturma zamanına göre artmaktadır."
 
-#: panel/JournalList.cpp:551
+#: panel/JournalList.cpp:565
 msgid "Balance is calculated in the order of SN (Sequence Number)."
 msgstr "Bakiye, SN (Sıra Numarası) düzenine göre hesaplanır."
 
-#: panel/JournalList.cpp:1164
+#: panel/JournalList.cpp:1178
 #, c-format
 msgid "You are about to edit a transaction involving an account that is closed."
 msgid_plural "The edit will affect %i transactions involving an account that is closed."
 msgstr[0] "Kapatılmış bir hesabı içeren bir işlemi düzenlemek üzeresiniz."
 msgstr[1] "Düzenleme, kapatılan bir hesabı içeren %i işlemlerini etkileyecektir."
 
-#: panel/JournalList.cpp:1169
+#: panel/JournalList.cpp:1183
 msgid "Do you want to perform the edit?"
 msgstr "Düzenlemeyi gerçekleştirmek istiyor musunuz?"
 
-#: panel/JournalList.cpp:1171
+#: panel/JournalList.cpp:1185
 msgid "Closed Account Check"
 msgstr "Kapalı Hesap Kontrolü"
 
-#: panel/JournalList.cpp:1189
+#: panel/JournalList.cpp:1203
 #, c-format
 msgid "Locked transaction to date: %s\n\n"
 "Reconciled transactions."
 msgstr "İşlem tarihe sabitlendi: %s\n\n"
 "Onaylanmış işlemler."
 
-#: panel/JournalList.cpp:1280
+#: panel/JournalList.cpp:1294
 msgid "New &Withdrawal…"
 msgstr "Yeni &Ödeme…"
 
-#: panel/JournalList.cpp:1281
+#: panel/JournalList.cpp:1295
 msgid "New &Deposit…"
 msgstr "Yeni &Gelir…"
 
-#: panel/JournalList.cpp:1283
+#: panel/JournalList.cpp:1297
 msgid "New &Transfer…"
 msgstr "Yeni Aktarma…"
 
-#: panel/JournalList.cpp:1288
+#: panel/JournalList.cpp:1302
 msgid "&Edit Transaction…"
 msgstr "&Edit Transaction…"
 
-#: panel/JournalList.cpp:1289
+#: panel/JournalList.cpp:1303
 msgid "&Edit Transactions…"
 msgstr "&İşlemleri Düzenle…"
 
-#: panel/JournalList.cpp:1295
+#: panel/JournalList.cpp:1309
 msgid "&Copy Transaction"
 msgid_plural "&Copy Transactions"
 msgstr[0] "İşlemi &Kopyala"
 msgstr[1] "İşlemleri &Kopyala"
 
-#: panel/JournalList.cpp:1305
+#: panel/JournalList.cpp:1319
 #, c-format
 msgid "&Paste Transaction"
 msgid_plural "&Paste Transactions (%d)"
 msgstr[0] "İşlemi &Yapıştır"
 msgstr[1] "İşlemleri &Yapıştır (%d)"
 
-#: panel/JournalList.cpp:1315
+#: panel/JournalList.cpp:1329
 msgid "D&uplicate Transaction…"
 msgstr "İşlemlemi &Çoğalt…"
 
-#: panel/JournalList.cpp:1320
+#: panel/JournalList.cpp:1334
 msgid "&Move Transaction…"
 msgstr "&İşlemi Taşı…"
 
-#: panel/JournalList.cpp:1321
+#: panel/JournalList.cpp:1335
 msgid "&Move Transactions…"
 msgstr "&İşlemleri Taşı…"
 
-#: panel/JournalList.cpp:1331
+#: panel/JournalList.cpp:1345
 msgid "&View In Other Account"
 msgstr "&Diğer Hesapta Görüntüle"
 
-#: panel/JournalList.cpp:1337
+#: panel/JournalList.cpp:1351
 msgid "&View Split Categories"
 msgstr "&Parçalı Kategorileri Göster"
 
-#: panel/JournalList.cpp:1347
+#: panel/JournalList.cpp:1361
 msgid "Create Scheduled T&ransaction…"
 msgstr "Zamanlanmış İşlem &Oluştur…"
 
-#: panel/JournalList.cpp:1354
+#: panel/JournalList.cpp:1368
 msgid "&Restore selected transaction…"
 msgstr "&Seçili İşlemi Geri Yükle…"
 
-#: panel/JournalList.cpp:1355
+#: panel/JournalList.cpp:1369
 msgid "&Restore selected transactions…"
 msgstr "&Seçili İşlemleri Geri Yükle…"
 
-#: panel/JournalList.cpp:1361
+#: panel/JournalList.cpp:1375
 msgid "Restore &all transactions in current view…"
 msgstr "Geçerli görünümdeki &tüm işlemleri geri yükle…"
 
-#: panel/JournalList.cpp:1544
+#: panel/JournalList.cpp:1558
 #, c-format
 msgid "&Find all transactions with %s '%s'"
 msgstr "%s '%s' ile tüm işlemleri &bul"
 
-#: panel/JournalList.cpp:1550
+#: panel/JournalList.cpp:1564
 msgid "Cop&y Text to Clipboard"
 msgstr "Metni Panoya Kopyala"
 
-#: panel/JournalList.cpp:1558
+#: panel/JournalList.cpp:1572
 msgid "&Delete selected transaction…"
 msgstr "&Seçili İşlemi Sil…"
 
-#: panel/JournalList.cpp:1559
+#: panel/JournalList.cpp:1573
 msgid "&Delete selected transactions…"
 msgstr "&Seçili İşlemleri Sil…"
 
-#: panel/JournalList.cpp:1561
+#: panel/JournalList.cpp:1575
 msgid "&Permanently delete selected transaction…"
 msgstr "&Seçili İşlemi Kalıcı Olarak Sil…"
 
-#: panel/JournalList.cpp:1562
+#: panel/JournalList.cpp:1576
 msgid "&Permanently delete selected transactions…"
 msgstr "&Seçili İşlemleri Kalıcı Olarak Sil…"
 
-#: panel/JournalList.cpp:1571
+#: panel/JournalList.cpp:1585
 msgid "Delete &all transactions in current view…"
 msgstr "Geçerli görünümdeki &tüm işlemleri sil…"
 
-#: panel/JournalList.cpp:1572
+#: panel/JournalList.cpp:1586
 msgid "Permanently delete &all transactions in current view…"
 msgstr "Geçerli görünümdeki &tüm işlemleri kalıcı olarak sil…"
 
-#: panel/JournalList.cpp:1577
+#: panel/JournalList.cpp:1591
 msgid "Delete Viewed “&Follow Up” Transactions…"
 msgstr "Görüntülenen “&Takip” İşlemlerini Sil…"
 
-#: panel/JournalList.cpp:1581
+#: panel/JournalList.cpp:1595
 msgid "Delete Viewed “&Unreconciled” Transactions…"
 msgstr "Görüntülenen “&Uzlaştırılmamış” İşlemleri Sil…"
 
-#: panel/JournalList.cpp:1584
+#: panel/JournalList.cpp:1598
 msgid "De&lete "
 msgstr "&Sil"
 
-#: panel/JournalList.cpp:1590
+#: panel/JournalList.cpp:1604
 msgid "&Unreconciled"
 msgstr "&Uzlaşma sağlanamamış"
 
-#: panel/JournalList.cpp:1591
+#: panel/JournalList.cpp:1605
 msgid "&Reconciled"
 msgstr "&Onaylanmış"
 
-#: panel/JournalList.cpp:1592
+#: panel/JournalList.cpp:1606
 msgid "&Void"
 msgstr "&Geçersiz"
 
-#: panel/JournalList.cpp:1593
+#: panel/JournalList.cpp:1607
 msgid "&Follow Up"
 msgstr "&Takip Et"
 
-#: panel/JournalList.cpp:1594
+#: panel/JournalList.cpp:1608
 msgid "D&uplicate"
 msgstr "&Çoğalt"
 
-#: panel/JournalList.cpp:1595
+#: panel/JournalList.cpp:1609
 msgid "Mar&k as"
 msgstr ""
 
-#: panel/JournalList.cpp:1743
+#: panel/JournalList.cpp:1757
 #, c-format
 msgid "Do you want to permanently delete the selected transaction?"
 msgid_plural "Do you want to permanently delete the %i selected transactions?"
 msgstr[0] "Seçili işlemi kalıcı olarak silmek istiyor musunuz?"
 msgstr[1] "Seçili %i işlemi kalıcı olarak silmek istiyor musunuz?"
 
-#: panel/JournalList.cpp:1749
+#: panel/JournalList.cpp:1763
 #, c-format
 msgid "Do you want to delete the selected transaction?"
 msgid_plural "Do you want to delete the %i selected transactions?"
 msgstr[0] "Seçili işlemi silmek istiyor musunuz?"
 msgstr[1] "Seçili %i işlemi silmek istiyor musunuz?"
 
-#: panel/JournalList.cpp:1757 panel/JournalList.cpp:2212
+#: panel/JournalList.cpp:1771 panel/JournalList.cpp:2226
 msgid "Unable to undo this action."
 msgstr ""
 
-#: panel/JournalList.cpp:1758 panel/JournalList.cpp:2211
+#: panel/JournalList.cpp:1772 panel/JournalList.cpp:2225
 msgid "Deleted transactions will be temporarily stored and can be restored from the Deleted Transactions view."
 msgstr "Silinen işlemler geçici olarak saklanır ve Silinmiş İşlemler görünümünden geri yüklenebilir."
 
-#: panel/JournalList.cpp:1762 panel/JournalList.cpp:2216
-#: panel/JournalList.cpp:2228 panel/JournalList.cpp:2240
+#: panel/JournalList.cpp:1776 panel/JournalList.cpp:2230
+#: panel/JournalList.cpp:2242 panel/JournalList.cpp:2254
 msgid "Confirm Transaction Deletion"
 msgstr "İşlem Silme Onayı"
 
-#: panel/JournalList.cpp:1835
+#: panel/JournalList.cpp:1849
 #, c-format
 msgid "Do you want to restore the selected transaction?"
 msgid_plural "Do you want to restore the %i selected transactions?"
 msgstr[0] "Seçili işlemi geri yüklemek istiyor musunuz?"
 msgstr[1] "Seçili %i işlemi geri yüklemek istiyor musunuz?"
 
-#: panel/JournalList.cpp:1844 panel/JournalList.cpp:1886
+#: panel/JournalList.cpp:1858 panel/JournalList.cpp:1900
 msgid "Confirm Transaction Restore"
 msgstr "İşlem Geri Yüklemeyi Onayla"
 
-#: panel/JournalList.cpp:1885
+#: panel/JournalList.cpp:1899
 msgid "Do you want to restore all of the transactions shown?"
 msgstr "Gösterilen tüm işlemleri geri yüklemek istiyor musun?"
 
-#: panel/JournalList.cpp:1991
+#: panel/JournalList.cpp:2005
 #, c-format
 msgid "Do you want to move the selected transaction?"
 msgid_plural "Do you want to move the %i selected transactions?"
 msgstr[0] "Seçili işlemi taşımak istiyor musunuz?"
 msgstr[1] "Seçili %i işlemi taşımak istiyor musunuz?"
 
-#: panel/JournalList.cpp:1999
+#: panel/JournalList.cpp:2013
 msgid "Confirm Transaction Move"
 msgstr "İşlem Taşımayı Onayla"
 
-#: panel/JournalList.cpp:2005
+#: panel/JournalList.cpp:2019
 msgid "Moving transaction to…"
 msgstr "İşlem taşınıyor…"
 
-#: panel/JournalList.cpp:2006
+#: panel/JournalList.cpp:2020
 #, c-format
 msgid "Moving %i transactions to…"
 msgstr "%i işlem taşınıyor…"
 
-#: panel/JournalList.cpp:2009 panel/StockList.cpp:375
+#: panel/JournalList.cpp:2023 panel/StockList.cpp:375
 msgid "Select the destination Account "
 msgstr "Alıcı Hesabı seçin"
 
-#: panel/JournalList.cpp:2043
+#: panel/JournalList.cpp:2057
 msgid "This is due to some elements of the transaction or account detail not allowing the move"
 msgstr "Bu, işlemin veya hesap detayının bazı öğelerinin taşımaya izin vermemesinden kaynaklanıyor"
 
-#: panel/JournalList.cpp:2044
+#: panel/JournalList.cpp:2058
 msgid "Moved"
 msgstr "Taşındı"
 
-#: panel/JournalList.cpp:2046
+#: panel/JournalList.cpp:2060
 msgid "Not moved"
 msgstr "Taşınmadı"
 
-#: panel/JournalList.cpp:2051
+#: panel/JournalList.cpp:2065
 msgid "Unable to move some transactions."
 msgstr "Bazı işlemler taşınamadı."
 
-#: panel/JournalList.cpp:2112
+#: panel/JournalList.cpp:2126
 msgid "Scheduled transaction saved."
 msgstr "Zamanlanmış işlem kaydedildi."
 
-#: panel/JournalList.cpp:2126 util/mmNavigatorList.cpp:55
+#: panel/JournalList.cpp:2140 util/mmNavigatorList.cpp:55
 msgid "All Transactions"
 msgstr "Tüm İşlemler"
 
-#: panel/JournalList.cpp:2206
+#: panel/JournalList.cpp:2220
 msgid "Do you want to delete all the transactions shown?"
 msgstr "Gösterilen tüm işlemleri silmek istiyor musun?"
 
-#: panel/JournalList.cpp:2207
+#: panel/JournalList.cpp:2221
 msgid "Do you want to permanently delete all the transactions shown?"
 msgstr "Gösterilen tüm işlemleri kalıcı olarak silmek istiyor musun?"
 
-#: panel/JournalList.cpp:2225 panel/JournalList.cpp:2237
+#: panel/JournalList.cpp:2239 panel/JournalList.cpp:2251
 #, c-format
 msgid "Do you want to delete all the “%s” transactions shown?"
 msgstr "Gösterilen tüm “%s” işlemlerini silmek istiyor musun?"
@@ -7370,76 +7370,76 @@ msgstr "En yakın işlem verilerinde bulmak için herhangi bir dize girin"
 msgid "Click to copy to clipboard"
 msgstr "Kopyalamak için tıklayın"
 
-#: panel/JournalPanel.cpp:1007
+#: panel/JournalPanel.cpp:1010
 msgid "Account Bal: "
 msgstr "Hesap Kal:"
 
-#: panel/JournalPanel.cpp:1011
+#: panel/JournalPanel.cpp:1014
 msgid "Reconciled Bal: "
 msgstr "Onaylanmış Kal:"
 
-#: panel/JournalPanel.cpp:1016
+#: panel/JournalPanel.cpp:1019
 msgid "Diff: "
 msgstr "Fark:"
 
-#: panel/JournalPanel.cpp:1023
+#: panel/JournalPanel.cpp:1026
 msgid "Filtered Flow: "
 msgstr "Filtrelenmiş Akış"
 
-#: panel/JournalPanel.cpp:1044
+#: panel/JournalPanel.cpp:1047
 msgid "Market Value: "
 msgstr "Piyasa Değeri:"
 
-#: panel/JournalPanel.cpp:1051
+#: panel/JournalPanel.cpp:1054
 msgid "Invested: "
 msgstr "Yatırılan Tutar:"
 
-#: panel/JournalPanel.cpp:1090 panel/JournalPanel.cpp:1098
+#: panel/JournalPanel.cpp:1093 panel/JournalPanel.cpp:1101
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr "Tarih Aralığı"
 
-#: panel/JournalPanel.cpp:1137
+#: panel/JournalPanel.cpp:1140
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Planlanmış işlemleri göstermek için tıklayın.  \n"
 "Bu özellik, geleceğe uzanan filtre seçenekleriyle (ör. Geçerli Ay) en iyi şekilde çalışır."
 
-#: panel/JournalPanel.cpp:1137
+#: panel/JournalPanel.cpp:1140
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "Planlanmış işlemler kullanılamıyor, çünkü geçerli filtre geçmişte sona eriyor"
 
-#: panel/JournalPanel.cpp:1138
+#: panel/JournalPanel.cpp:1141
 msgid "Click to hide scheduled transactions."
 msgstr "Planlanmış işlemleri gizlemek için tıklayın"
 
-#: panel/JournalPanel.cpp:1269
+#: panel/JournalPanel.cpp:1272
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Seçilen işlemler: %zu"
 
-#: panel/JournalPanel.cpp:1272
+#: panel/JournalPanel.cpp:1275
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr "Seçili işlemlerin toplamı: %s"
 
-#: panel/JournalPanel.cpp:1277
+#: panel/JournalPanel.cpp:1280
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Seçilen işlemler arasındaki günler: %d"
 
-#: panel/JournalPanel.cpp:1398 panel/ReportPanel.cpp:1103
+#: panel/JournalPanel.cpp:1401 panel/ReportPanel.cpp:1103
 msgid "Edit date ranges…"
 msgstr "Tarih aralıklarını düzenle…"
 
-#: panel/JournalPanel.cpp:1546
+#: panel/JournalPanel.cpp:1549
 msgid "&New Withdrawal…"
 msgstr "&Yeni Ödeme…"
 
-#: panel/JournalPanel.cpp:1547
+#: panel/JournalPanel.cpp:1550
 msgid "&New Deposit…"
 msgstr "&Yeni Gelir…"
 
-#: panel/JournalPanel.cpp:1548
+#: panel/JournalPanel.cpp:1551
 msgid "&New Transfer…"
 msgstr "&Yeni Aktarma…"
 
