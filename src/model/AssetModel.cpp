@@ -166,7 +166,7 @@ const std::pair<double, double> AssetModel::get_data_value_date(
             // FIXME: ignore Void transactions
             !trx_n->is_deleted() &&
             trx_n->m_account_id > 0 &&
-            date <= trx_n->m_date()
+            trx_n->m_date() <= date
         ) {
             trx_a.push_back(*trx_n);
         }
