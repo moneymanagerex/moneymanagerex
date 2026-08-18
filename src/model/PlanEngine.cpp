@@ -18,7 +18,6 @@
 
 #include <algorithm>
 #include <cmath>
-#include <set>
 #include <wx/tokenzr.h>
 #include "base/_defs.h"
 #include "PlanEngine.h"
@@ -458,7 +457,6 @@ std::vector<PlanPeriod> PlanEngine::build_timeline(
     // contributed, and is drawn down when the bill it was saved for arrives,
     // so a large annual payment no longer looks like a sudden shock.
     std::map<int64, double> reserve_by_category;
-    std::set<int64> deficit_ok_category;
 
     for (int m = 0; m < months; ++m) {
         const wxDateTime month_start = add_months(cursor, m);
@@ -529,16 +527,14 @@ std::vector<PlanPeriod> PlanEngine::build_timeline(
                 if (amount < 0.0) p.expense += -amount;
                 else              p.income  += amount;
 
-                // A rolling expense is a contribution to a fund rather than a
-                // payment: the cash still goes out, but it is banked against a
-                // later bill in the same category instead of vanishing.
-                if (b_d.m_rollover.carries() && b_d.m_category_id > 0) {
-                    if (b_d.m_rollover.carries_surplus() && amount < 0.0) {
-                        reserve_by_category[b_d.m_category_id] += -amount;
-                        p.reserved += -amount;
-                    }
-                    if (b_d.m_rollover.carries_deficit())
-                        deficit_ok_category.insert(b_d.m_category_id);
+                // A rolling entry is a contribution to a fund rather than a
+                // plain payment: the cash still goes out, but it is banked
+                // against a later bill in the same category instead of
+                // vanishing at the period boundary.
+                if (b_d.m_rollover.carries() && b_d.m_category_id > 0 &&
+                    amount < 0.0) {
+                    reserve_by_category[b_d.m_category_id] += -amount;
+                    p.reserved += -amount;
                 }
             }
 
@@ -561,14 +557,13 @@ std::vector<PlanPeriod> PlanEngine::build_timeline(
 
                 // Draw against anything saved for this category first, so the
                 // month the bill lands does not read as a crisis when it was
-                // funded all along.
+                // funded all along. A fund can only meet what it actually
+                // holds; anything beyond that is a real cost in this period.
                 double covered = 0.0;
                 if (item.m_category_id > 0) {
                     auto it = reserve_by_category.find(item.m_category_id);
-                    if (it != reserve_by_category.end()) {
-                        const bool may_overdraw =
-                            deficit_ok_category.count(item.m_category_id) > 0;
-                        covered = may_overdraw ? amt : std::min(it->second, amt);
+                    if (it != reserve_by_category.end() && it->second > 0.0) {
+                        covered = std::min(it->second, amt);
                         if (covered < 0.0) covered = 0.0;
                         it->second -= covered;
                     }

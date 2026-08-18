@@ -77,9 +77,7 @@ mmChoiceKeyNameA BudgetAmountType::s_choice_a = mmChoiceKeyNameA({
 
 mmChoiceKeyNameA BudgetRollover::s_choice_a = mmChoiceKeyNameA({
     { e_none,    "None",    _n("Resets each period") },
-    { e_surplus, "Surplus", _n("Unspent carries forward") },
-    { e_deficit, "Deficit", _n("Overspend carries forward") },
-    { e_both,    "Both",    _n("Both carry forward") },
+    { e_surplus, "Surplus", _n("Unspent builds a fund") },
 }, e_none, true);
 
 mmChoiceKeyNameA PlanAssumptionKind::s_choice_a = mmChoiceKeyNameA({

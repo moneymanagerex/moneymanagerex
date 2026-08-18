@@ -182,7 +182,6 @@ void BudgetEntryDialog::CreateControls()
         "Use it for a bill you save up for monthly but pay once a year: the "
         "contributions build a fund, and a plan item in the same category is "
         "paid from that fund instead of landing as a shock."));
-
     itemStaticBoxSizer4->Add(new wxStaticText(this, wxID_STATIC, _t("Notes")),0, wxGROW|wxALL, 5);
     m_Notes = new wxTextCtrl(this,
         wxID_ANY, "",

@@ -308,6 +308,13 @@ public:
 // over. A month can be net positive while its first half is deeply negative
 // because bills cluster around due dates, so an envelope that accumulates is
 // often closer to how the money actually behaves than one that resets.
+//
+// There is deliberately no "carry a deficit" option. Deficit carry is a
+// budget-versus-actual idea -- you overspent an envelope, so next period's is
+// smaller -- and a forward projection has no actuals to overspend against.
+// Implementing it here would either drop a real payment out of the cash flow or
+// count the same money twice, and a projection that quietly understates a bill
+// is worse than not offering the setting.
 struct BudgetRollover
 {
 public:
@@ -315,8 +322,6 @@ public:
     {
         e_none = 0,
         e_surplus,
-        e_deficit,
-        e_both,
         size
     };
     static mmChoiceKeyNameA s_choice_a;
@@ -334,11 +339,8 @@ public:
     const wxString key() const { return BudgetRollover::s_choice_a.get_key(m_id); }
     const wxString name() const { return BudgetRollover::s_choice_a.get_name(m_id); }
 
-    bool carries() const { return m_id != e_none; }
-    // An unspent amount is kept for later.
-    bool carries_surplus() const { return m_id == e_surplus || m_id == e_both; }
-    // An overspend is owed out of a later period rather than forgiven.
-    bool carries_deficit() const { return m_id == e_deficit || m_id == e_both; }
+    // An unspent amount is kept towards a later cost in the same category.
+    bool carries() const { return m_id == e_surplus; }
 
     bool operator== (const BudgetRollover& other) const {
         return id() == other.id();
