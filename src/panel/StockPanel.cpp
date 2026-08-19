@@ -738,10 +738,7 @@ void StockPanel::displayAccountDetails(int64 account_id)
 
 void StockPanel::refreshList()
 {
-    int64 selected_id = -1;
-    if (w_list->get_selectedIndex() > -1)
-        selected_id = w_list->m_stock_a[w_list->get_selectedIndex()].m_id;
-    w_list->doRefreshItems(selected_id);
+    w_list->doRefreshItems(-1);
 }
 
 int StockPanel::getFilter()
