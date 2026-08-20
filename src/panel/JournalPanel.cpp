@@ -819,6 +819,10 @@ void JournalPanel::filterList()
         if (ignore_future && is_future)
             break;
 
+        if (trx_dateTime.date() < range_start || 
+            trx_dateTime.date() > ((repeat_id < 0) ? range_end : scheduled_range_end))
+            continue;
+
         // update m_balance even if transaction is filtered out
         double account_flow = 0.0;
         if (isAccount()) {
@@ -833,10 +837,6 @@ void JournalPanel::filterList()
             else
                 m_show_reconciled = true;
         }
-
-        if (trx_dateTime.date() < range_start || 
-            trx_dateTime.date() > ((repeat_id < 0) ? range_end : scheduled_range_end))
-            continue;
 
         Journal::DataExt journal_dx = (repeat_id < 0)
             ? Journal::DataExt(*trx_n, trxId_tpA_m, trxId_glA_m)
