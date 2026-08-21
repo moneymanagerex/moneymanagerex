@@ -43,6 +43,7 @@ private:
     void OnAdd(wxCommandEvent& event);
     void OnAddMonth(wxCommandEvent& /*event*/);
     void OnDelete(wxCommandEvent& event);
+    void OnSegments(wxCommandEvent& event);
     void OnBSelect(wxCommandEvent& event);
     void OnEdit(wxCommandEvent& event);
     void fillControls();
@@ -50,6 +51,6 @@ private:
 
     wxListBox* m_listBox;
     int budgetYearID_;
-    enum { ID_ADD_MONTH = wxID_HIGHEST + 300 };
+    enum { ID_ADD_MONTH = wxID_HIGHEST + 300, ID_SEGMENTS };
 };
 

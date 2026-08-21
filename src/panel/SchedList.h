@@ -93,6 +93,7 @@ private:
     void onDeleteBDSeries(wxCommandEvent& event);
     void onEnterBDTransaction(wxCommandEvent& event);
     void onSkipBDTransaction(wxCommandEvent& event);
+    void onAddToBudget(wxCommandEvent& event);
     void onOpenAttachment(wxCommandEvent& event);
     void OnOrganizeAttachments(wxCommandEvent& event);
     void OnItemRightClick(wxMouseEvent& event);

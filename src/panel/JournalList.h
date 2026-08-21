@@ -80,6 +80,7 @@ private:
         MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES,
         MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
         MENU_TREEPOPUP_CREATE_REOCCURANCE,
+        MENU_TREEPOPUP_ADD_TO_BUDGET,
         MENU_TREEPOPUP_FIND,
         MENU_TREEPOPUP_COPYTEXT,
         MENU_SUBMENU_MARK_ALL,
@@ -219,6 +220,7 @@ private:
     void onViewTrxSplit(        wxCommandEvent& event);
     void onOrganizeAttachments( wxCommandEvent& event);
     void onCreateReoccurance(   wxCommandEvent& event);
+    void onAddToBudget(         wxCommandEvent& event);
     void onFind(                wxCommandEvent&);
     void onCopyText(            wxCommandEvent&);
     void onMarkTrx(             wxCommandEvent& event);

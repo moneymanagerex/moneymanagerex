@@ -345,6 +345,7 @@ private:
     void DoUpdateGRMNavigation(wxTreeItemId& parent_item);
     void DoUpdateFilterNavigation(wxTreeItemId& parent_item);
     void DoUpdateBudgetNavigation(wxTreeItemId& parent_item);
+    void DoUpdateBudgetSegmentNavigation(wxTreeItemId& parent_item, int64 bp_id);
     void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
     void showEmptyTreePopupMenu(const wxPoint& pt);
     void AppendImportMenu(wxMenu& menu);
@@ -447,6 +448,8 @@ private:
 
     void OnOptions(wxCommandEvent& event);
     void OnBudgetSetupDialog(wxCommandEvent& event);
+    void OnBudgetSegments(wxCommandEvent& event);
+    void OnPlanManager(wxCommandEvent& event);
     void OnCurrency(wxCommandEvent& event);
     void OnRates(wxCommandEvent& event);
     void OnTransactionReport(wxCommandEvent& event);

@@ -69,6 +69,38 @@ mmChoiceKeyNameA BudgetFreq::s_choice_a = mmChoiceKeyNameA({
     { e_daily,      "Daily",          _n("Daily") },
 }, e_none, true);
 
+mmChoiceKeyNameA BudgetAmountType::s_choice_a = mmChoiceKeyNameA({
+    { e_fixed,     "Fixed",     _n("Fixed") },
+    { e_estimated, "Estimated", _n("Estimated") },
+    { e_auto,      "Auto",      _n("Automatic") },
+}, e_fixed, true);
+
+mmChoiceKeyNameA BudgetRollover::s_choice_a = mmChoiceKeyNameA({
+    { e_none,    "None",    _n("Resets each period") },
+    { e_surplus, "Surplus", _n("Unspent builds a fund") },
+}, e_none, true);
+
+mmChoiceKeyNameA PlanAssumptionKind::s_choice_a = mmChoiceKeyNameA({
+    { e_share_price,   "SharePrice",   _n("Share price") },
+    { e_tax_rate,      "TaxRate",      _n("Tax rate") },
+    { e_inflation,     "Inflation",    _n("Inflation") },
+    { e_exchange_rate, "ExchangeRate", _n("Exchange rate") },
+    { e_generic,       "Generic",      _n("Generic") },
+}, e_generic, true);
+
+mmChoiceKeyNameA PlanItemKind::s_choice_a = mmChoiceKeyNameA({
+    { e_expense, "Expense", _n("Expense") },
+    { e_income,  "Income",  _n("Income") },
+}, e_expense, true);
+
+mmChoiceKeyNameA PlanStatus::s_choice_a = mmChoiceKeyNameA({
+    { e_planned,   "Planned",   _n("Planned") },
+    { e_committed, "Committed", _n("Committed") },
+    { e_wishlist,  "Wishlist",  _n("Wishlist") },
+    { e_done,      "Done",      _n("Done") },
+    { e_cancelled, "Cancelled", _n("Cancelled") },
+}, e_planned, true);
+
 mmChoiceKeyNameA CurrencyType::s_choice_a = mmChoiceKeyNameA({
     { e_fiat,   "Fiat",   _n("Fiat") },
     { e_crypto, "Crypto", _n("Crypto") },

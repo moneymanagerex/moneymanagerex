@@ -59,8 +59,17 @@ public:
         int64 bp_id,
         std::map<int64, BudgetFreq>& freq_mCatId,
         std::map<int64, double>& amount_mCatId,
-        std::map<int64, wxString>& notes_mCatId
+        std::map<int64, wxString>& notes_mCatId,
+        // A year and its months are separate periods that do not normally
+        // interact. Setting this rolls the months of a year period into it, so
+        // a year can be read as the sum of what is planned month by month
+        // without either being rewritten.
+        bool include_child_periods = false
     );
+
+    // The month periods belonging to a year period ("2026" -> "2026-01"...),
+    // matched by name in the same way the navigation tree nests them.
+    auto find_child_period_id_a(int64 bp_id) -> std::vector<int64>;
     void getBudgetStats(
         std::map<int64, std::map<int, double>>& budgetStats,
         mmDateRange* date_range,
