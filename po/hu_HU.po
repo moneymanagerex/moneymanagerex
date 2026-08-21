@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-08-12 22:43+0000\n"
-"PO-Revision-Date: 2026-08-14 01:11\n"
+"PO-Revision-Date: 2026-08-21 00:48\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -79,7 +79,7 @@ msgstr "A név használatban van"
 #: app/mmFrame.cpp:1603 app/mmFrame.cpp:1623 app/mmFrame.cpp:2150
 #: app/mmFrame.cpp:3322 util/mmNavigatorList.cpp:69
 msgid "Transaction Report"
-msgstr "Ügyletekjelentés"
+msgstr "Ügyletjelentés"
 
 #: app/mmFrame.cpp:1643
 msgid "Do you want to delete the account?"
@@ -127,7 +127,7 @@ msgstr "&XML-fájl…"
 
 #: app/mmFrame.cpp:1676 app/mmFrame.cpp:1890
 msgid "&MMEX CSV File…"
-msgstr "&MMEX CSV-fájl…"
+msgstr "&MMEX CSV fájl…"
 
 #: app/mmFrame.cpp:1677 app/mmFrame.cpp:1891
 msgid "&JSON File…"
@@ -266,7 +266,7 @@ msgstr "Importálás QIF-fájlból"
 
 #: app/mmFrame.cpp:1881
 msgid "&OFX File…"
-msgstr "&OFX-fájl…"
+msgstr "&OFX fájl…"
 
 #: app/mmFrame.cpp:1881
 msgid "Import from OFX file"
@@ -653,7 +653,7 @@ msgstr "Webes API-sütik visszaállítása…"
 
 #: app/mmFrame.cpp:2191
 msgid "Used to reset stored cookies for web API access"
-msgstr "A webes API-hozzáféréshez használt tárolt sütik visszaállítása"
+msgstr "A webes API hozzáféréshez használt tárolt sütik visszaállítása"
 
 #: app/mmFrame.cpp:2197
 msgid "&Database"
@@ -938,15 +938,15 @@ msgstr "Adatbázisfájl kijelölése megnyitáshoz"
 
 #: app/mmFrame.cpp:2705 app/mmFrame.cpp:2734 app/mmFrame.cpp:2939
 msgid "Encrypted MMEX Database"
-msgstr "Titkosított MMEX-adatbázis"
+msgstr "Titkosított MMEX adatbázis"
 
 #: app/mmFrame.cpp:2706
 msgid "MMEX Database Backup"
-msgstr ""
+msgstr "MMEX adatbázis biztonsági mentés"
 
 #: app/mmFrame.cpp:2707
 msgid "Encrypted MMEX Database Backup"
-msgstr ""
+msgstr "Titkosított MMEX adatbázis biztonsági mentés"
 
 #: app/mmFrame.cpp:2732
 msgid "Choose Encrypted database file to open"
@@ -966,7 +966,7 @@ msgstr "Átalakított adatbázis!"
 
 #: app/mmFrame.cpp:2777
 msgid "MMEX message"
-msgstr "MMEX-üzenet"
+msgstr "MMEX üzenet"
 
 #: app/mmFrame.cpp:2783
 msgid "MMEX: Encryption Password Change"
@@ -1209,7 +1209,7 @@ msgstr "Kategóriák egyesítése befejeződött"
 #: manager/CategoryManager.cpp:740 manager/PayeeManager.cpp:877
 #, c-format
 msgid "Records have been updated in the database: %i"
-msgstr "Adatbázis-bejegyzések frissítve: %i"
+msgstr "Adatbázis bejegyzések frissítve: %i"
 
 #: app/mmFrame.cpp:4323 manager/CategoryManager.cpp:742
 msgid "Merge categories result"
@@ -1556,7 +1556,7 @@ msgstr "Mielőtt elmenne egy boltba és vásárolna valamit, szánjon időt arra
 
 #: base/mmTips.h:62
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
-msgstr "Az MMEX-t használva az értékpapírok és a befektetési alapok is követhetők."
+msgstr "Az MMEX használatával az értékpapírok és a befektetési alapok is követhetők."
 
 #: base/mmTips.h:63
 msgid "To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."
@@ -2237,11 +2237,11 @@ msgstr ""
 #: dialog/AccountDialog.cpp:540
 #, c-format
 msgid "Fav icon could not be loaded from '%s'"
-msgstr ""
+msgstr "A kedvenc ikon nem tölthető be innen: '%s'"
 
 #: dialog/AccountDialog.cpp:543
 msgid "Favorite icon download"
-msgstr ""
+msgstr "Kedvenc ikon lettöltése"
 
 #: dialog/AccountDialog.cpp:586
 msgid "Account Name "
@@ -2567,7 +2567,7 @@ msgstr "Adjon meg megjegyzéseket a költségvetési tétel leírásához"
 
 #: dialog/BudgetYearDialog.cpp:48
 msgid "Budget Editor"
-msgstr "Költségvetésszerkesztő"
+msgstr "Költségvetés szerkesztő"
 
 #: dialog/BudgetYearDialog.cpp:97
 msgid "Add &Year"
@@ -2598,7 +2598,7 @@ msgstr "Jelenlegi költségvetés törlése"
 
 #: dialog/BudgetYearEntryDialog.cpp:45 dialog/BudgetYearEntryDialog.cpp:178
 msgid "Budget Entry Details"
-msgstr "Költségvetés bevitele részletezés"
+msgstr "Költségvetési tétel részletei"
 
 #: dialog/BudgetYearEntryDialog.cpp:48
 msgid "Budget Month Entry"
@@ -3253,7 +3253,7 @@ msgstr "Jel"
 #: dialog/NavigatorEditDialog.cpp:121 dialog/StockDialog.cpp:293
 #: manager/GeneralReportManager.cpp:471
 msgid "&Save "
-msgstr "Mentés"
+msgstr "Mentés "
 
 #: dialog/ReconcileDialog.cpp:56
 msgid "Reconcile account"
@@ -3715,7 +3715,7 @@ msgstr "Értékpapírjelzés"
 
 #: dialog/StockDialog.cpp:145 dialog/TrxShareDialog.cpp:189
 msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
-msgstr "Értékpapírjelzés megadása. (Nem kötelező) Tegye hozzá a tőzsdéét is. pl. IBM.BE"
+msgstr "Értékpapírjelzés megadása. (Nem kötelező) Tegye hozzá a tőzsdéét is. Például: IBM.BE"
 
 #: dialog/StockDialog.cpp:148 panel/StockList.cpp:74
 msgid "*Date"
@@ -4621,7 +4621,7 @@ msgstr "OFX-fájl kijelölése"
 
 #: import_export/ofx_import_gui.cpp:1182
 msgid "No OFX file selected."
-msgstr "Nincs kijelölt OFX-fájl."
+msgstr "Nincs kijelölt OFX fájl."
 
 #: import_export/ofx_import_gui.cpp:1188
 msgid "No account selected."
@@ -4848,7 +4848,7 @@ msgstr "%zu ügylet exportálása"
 #: model/TrxFilter.cpp:201 panel/AssetList.cpp:60 panel/JournalList.cpp:99
 #: panel/SchedList.cpp:74 panel/StockList.cpp:73 report/TrxReport.cpp:222
 msgid "ID"
-msgstr "Azon."
+msgstr "UD"
 
 #: import_export/qif_export.cpp:722
 #, c-format
@@ -5049,7 +5049,7 @@ msgstr "A tranzakció kedvezményezettje hiányzik vagy hibás"
 
 #: import_export/qif_import_gui.cpp:1438
 msgid "Date format or date mask is incorrect"
-msgstr "A dátumformátum, vagy -maszk hibás!"
+msgstr "A dátumformátum vagy -maszk hibás"
 
 #: import_export/qif_import_gui.cpp:1451
 msgid "Transaction Account is incorrect"
@@ -5507,7 +5507,7 @@ msgstr "Várt API-verzió: %s"
 
 #: import_export/webapp.cpp:143
 msgid "Wrong WebApp API version"
-msgstr "Rossz WebApp API-verzió"
+msgstr "Rossz WebApp API verzió"
 
 #: import_export/webapp.cpp:533
 #, c-format
@@ -6541,11 +6541,11 @@ msgstr "Jelenlegi évről hétre"
 
 #: model/PrefModel.cpp:72 model/PrefModel.cpp:105
 msgid "From current year to month"
-msgstr "Jelenlegi évről hónapra"
+msgstr "Jelenlegi évről e hónapig"
 
 #: model/PrefModel.cpp:73 model/PrefModel.cpp:106
 msgid "From current month to week"
-msgstr "Jelenlegi hónapról hétre"
+msgstr "Jelenlegi hónapról e hétig"
 
 #: model/PrefModel.cpp:74 model/PrefModel.cpp:107
 msgid "Previous year"
@@ -6565,7 +6565,7 @@ msgstr "Előző évből"
 
 #: model/PrefModel.cpp:78 model/PrefModel.cpp:111
 msgid "From previous year to month"
-msgstr "Előző évről hónapra"
+msgstr "Előző évről e hónapig"
 
 #: model/PrefModel.cpp:79 model/PrefModel.cpp:112
 msgid "From previous month"
@@ -6581,23 +6581,23 @@ msgstr "Előző hétről"
 
 #: model/PrefModel.cpp:82 model/PrefModel.cpp:115
 msgid "From previous to current week"
-msgstr "Elõzõ hétrõl a jelenlegi hétre"
+msgstr "Elõzõ héttõl az aktuális hétig"
 
 #: model/PrefModel.cpp:83 model/PrefModel.cpp:116
 msgid "From 1 year ago"
-msgstr "1 évvel ezelőttről"
+msgstr "1 évvel ezelőtti dátumtól"
 
 #: model/PrefModel.cpp:84 model/PrefModel.cpp:117
 msgid "From 1 quarter ago"
-msgstr "1 negyedévvel ezelőttről"
+msgstr "1 negyedévvel ezelőtti dátumtól"
 
 #: model/PrefModel.cpp:85 model/PrefModel.cpp:118
 msgid "From 1 month ago"
-msgstr "1 hónappal ezelőttről"
+msgstr "1 hónappal ezelőtti dátumtól"
 
 #: model/PrefModel.cpp:86 model/PrefModel.cpp:119
 msgid "From 1 week ago"
-msgstr "1 héttel ezelőttről"
+msgstr "1 héttel ezelőtti dátumtól"
 
 #: model/PrefModel.cpp:87 model/PrefModel.cpp:120
 msgid "Year before last"
@@ -6605,7 +6605,7 @@ msgstr "Utolsó év előtt"
 
 #: model/PrefModel.cpp:95
 msgid "All to quarter"
-msgstr "Minden negyedig"
+msgstr "Minden e negyedévig"
 
 #: model/ReportModel.cpp:50
 msgid "Begin date:"
@@ -7384,7 +7384,7 @@ msgstr "Különb.: "
 
 #: panel/JournalPanel.cpp:1026
 msgid "Filtered Flow: "
-msgstr "Szűrt adatfolyam: "
+msgstr "Szűrt forgalom: "
 
 #: panel/JournalPanel.cpp:1047
 msgid "Market Value: "
@@ -9948,7 +9948,7 @@ msgstr "Előző év"
 
 #: util/mmDateRange.cpp:198
 msgid "Year Before Last"
-msgstr "Utolsó év előtt"
+msgstr "Tavalyelőtti év"
 
 #: util/mmDateRange.cpp:229
 msgid "Current Financial Year"
@@ -9956,7 +9956,7 @@ msgstr "Jelen pénzügyi év"
 
 #: util/mmDateRange.cpp:239
 msgid "Current Financial Year to Date"
-msgstr "Jelen pénzügyi év máig"
+msgstr "Jelen pénzügyi év a mai napig"
 
 #: util/mmDateRange.cpp:249
 msgid "Previous Financial Year"
