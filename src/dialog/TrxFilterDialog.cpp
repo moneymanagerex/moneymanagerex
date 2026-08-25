@@ -1,7 +1,7 @@
 /*******************************************************
 Copyright (C) 2006 Madhan Kanagavel
 Copyright (C) 2013 - 2022 Nikolay Akimov
-Copyright (C) 2021 - 2023 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021 - 2026 Mark Whalley (mark@ipx.co.uk)
 Copyright (C) 2025 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
@@ -429,6 +429,19 @@ void TrxFilterDialog::mmDoDataToControls(const wxString& json)
     }
     w_color_btn->Refresh(); // Needed as setting the background color does not cause an immediate refresh
 
+    // Attachments
+    w_attachment_cb->SetValue(false);
+    if (j_doc.HasMember("ATTACHMENT") && j_doc["ATTACHMENT"].IsBool()) 
+    {
+        if (j_doc["ATTACHMENT"].GetBool())
+            w_attachment_yes->SetValue(true);
+        else
+            w_attachment_no->SetValue(true);
+        w_attachment_cb->SetValue(true);
+    }
+    w_attachment_no->Enable(w_attachment_cb->IsChecked());
+    w_attachment_yes->Enable(w_attachment_cb->IsChecked());
+
     // Custom Fields
     bool is_custom_found = false;
     int field_index = 0;
@@ -712,9 +725,26 @@ void TrxFilterDialog::mmDoCreateControls()
     w_color_cb = new wxCheckBox(itemPanel, wxID_ANY, _t("Color"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     w_color_cb->Bind(wxEVT_CHECKBOX, &TrxFilterDialog::OnColorChecked, this);
     itemPanelSizer->Add(w_color_cb, g_flagsH);
-
+    
     w_color_btn = new mmColorButton(itemPanel, wxID_HIGHEST, wxDefaultSize, true);
     itemPanelSizer->Add(w_color_btn, g_flagsExpand);
+
+    // Attachments
+    w_attachment_cb = new wxCheckBox(itemPanel, wxID_ANY, _t("Attachments"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemPanelSizer->Add(w_attachment_cb, g_flagsH);
+    w_attachment_no = new wxRadioButton(itemPanel, wxID_ANY,
+        _t("No"),
+        wxDefaultPosition, wxDefaultSize
+    );
+    w_attachment_yes = new wxRadioButton(itemPanel, wxID_ANY,
+        _t("Yes"),
+        wxDefaultPosition, wxDefaultSize
+    );
+    wxBoxSizer* attachmentSizer = new wxBoxSizer(wxHORIZONTAL);
+    attachmentSizer->Add(w_attachment_no, g_flagsExpand);
+    attachmentSizer->AddSpacer(5);
+    attachmentSizer->Add(w_attachment_yes, g_flagsExpand);
+    itemPanelSizer->Add(attachmentSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     itemPanel->SetSizerAndFit(itemPanelSizer);
     scroll_window->SetSizerAndFit(scrollWindowSizer);
@@ -951,6 +981,8 @@ void TrxFilterDialog::OnCheckboxClick(wxCommandEvent& event)
         w_end_date->Enable(w_range_cb->IsChecked());
     }
     w_color_btn->Enable(w_color_cb->IsChecked());
+    w_attachment_no->Enable(w_attachment_cb->IsChecked());
+    w_attachment_yes->Enable(w_attachment_cb->IsChecked());
     bHideColumns_->Enable(showColumnsCheckBox_->IsChecked());
     w_group_choice->Enable(w_group_cb->IsChecked() && isReportMode_);
     w_chart_choice->Enable(w_chart_cb->IsChecked() && isReportMode_);
@@ -1157,6 +1189,7 @@ void TrxFilterDialog::OnButtonResetClick(wxCommandEvent& /*event*/)
     w_tag_cb->SetValue(false);
     w_amount_cb->SetValue(false);
     w_color_cb->SetValue(false);
+    w_attachment_cb->SetValue(false);
     w_group_cb->SetValue(false);
     w_chart_cb->SetValue(false);
     w_trx_number_cb->SetValue(false);
@@ -1256,7 +1289,7 @@ bool TrxFilterDialog::mmIsSomethingChecked() const
 {
     return mmIsAccountChecked() || (m_use_date_filter && mmIsRangeChecked()) || (m_use_date_filter && mmIsDateRangeChecked()) || mmIsPayeeChecked() || mmIsCategoryChecked() || mmIsStatusChecked() ||
            mmIsTypeChecked() || mmIsAmountRangeMinChecked() || mmIsAmountRangeMaxChecked() || mmIsNumberChecked() || mmIsTagsChecked() || mmIsNotesChecked() ||
-           mmIsColorChecked() || mmIsCustomFieldChecked();
+           mmIsColorChecked() || mmIsAttachmentChecked()|| mmIsCustomFieldChecked();
 }
 
 const wxString TrxFilterDialog::mmGetStatus() const
@@ -1515,6 +1548,9 @@ bool TrxFilterDialog::mmIsRecordMatches(const DATA& tran, bool mergeSplitTags)
     else if (mmIsNotesChecked() && !mmIsNoteMatches(tran.m_notes))
         ok = false;
     else if (mmIsColorChecked() && (m_color_value != tran.m_color))
+        ok = false;
+    else if (mmIsAttachmentChecked() && 
+                ((AttachmentModel::instance().find_ref_c(TrxModel::s_ref_type, tran.m_id)) != w_attachment_yes->GetValue()))
         ok = false;
     else if (mmIsCustomFieldChecked() && !mmIsCustomFieldMatches(tran.m_id))
         ok = false;
@@ -1976,6 +2012,12 @@ const wxString TrxFilterDialog::mmGetJsonSettings(bool i18n) const
     if (w_color_cb->IsChecked()) {
         json_writer.Key((i18n ? _t("Color") : "COLOR").utf8_str());
         json_writer.Int(m_color_value);
+    }
+
+    // Attachments
+    if (w_attachment_cb->IsChecked()) {
+        json_writer.Key((i18n ? _t("Attachment") : "ATTACHMENT").utf8_str());
+        json_writer.Bool(w_attachment_yes->GetValue());
     }
 
     // Custom Fields

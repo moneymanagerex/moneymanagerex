@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 - 2022 Nikolay Akimov
-Copyright (C) 2021-2022 Mark Whalley (mark@ipx.co.uk)
+Copyright (C) 2021-2026 Mark Whalley (mark@ipx.co.uk)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -138,6 +138,9 @@ private:
     mmTagTextCtrl*      w_tag_text              = nullptr;
     wxCheckBox*         w_color_cb              = nullptr;
     mmColorButton*      w_color_btn             = nullptr;
+    wxCheckBox*         w_attachment_cb         = nullptr;
+    wxRadioButton*      w_attachment_no         = nullptr;
+    wxRadioButton*      w_attachment_yes        = nullptr;
     wxCheckBox*         showColumnsCheckBox_    = nullptr;
     wxButton*           bHideColumns_           = nullptr;
     wxCheckBox*         w_group_cb              = nullptr;
@@ -237,6 +240,7 @@ private:
     bool mmIsNumberChecked() const;
     bool mmIsNotesChecked() const;
     bool mmIsColorChecked() const;
+    bool mmIsAttachmentChecked() const;
     bool mmIsCustomFieldChecked() const;
     bool mmIsCustomFieldMatches(int64 transid) const;
 
@@ -298,6 +302,7 @@ inline bool TrxFilterDialog::mmIsPayeeChecked() const { return w_payee_cb->IsChe
 inline bool TrxFilterDialog::mmIsNumberChecked() const { return w_trx_number_cb->IsChecked(); }
 inline bool TrxFilterDialog::mmIsNotesChecked() const { return w_notes_cb->IsChecked(); }
 inline bool TrxFilterDialog::mmIsColorChecked() const { return w_color_cb->IsChecked(); }
+inline bool TrxFilterDialog::mmIsAttachmentChecked() const { return w_attachment_cb->IsChecked(); }
 inline bool TrxFilterDialog::mmIsCategoryChecked() const { return w_cat_cb->IsChecked(); }
 inline bool TrxFilterDialog::mmIsCategorySubCatChecked() const { return w_subcat_cb->IsChecked(); }
 inline bool TrxFilterDialog::mmIsStatusChecked() const { return w_status_cb->IsChecked(); }
