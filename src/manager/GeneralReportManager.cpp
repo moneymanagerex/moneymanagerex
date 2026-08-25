@@ -243,7 +243,7 @@ R"(<!DOCTYPE html>
         if (element.innerHTML.indexOf("-") > -1) {
             element.style.color="#f75e5e";
         }
-        element.innerHTML = "" + currency(element.innerHTML) +' %';
+        element.innerHTML = "" + currency(element.innerHTML) +' &percnt;';
     }
 </script>
 </html>
