@@ -45,6 +45,10 @@ private:
     mmTextCtrl* m_textAmount = nullptr;
     wxChoice*   m_choiceType = nullptr;
     wxChoice*   m_choiceRollover = nullptr;
+    // Which part of a segmented period the entry belongs to. Absent when the
+    // period is not split, since there would be nothing to choose between.
+    wxChoice*   m_choiceSegment = nullptr;
+    std::vector<int64> m_segment_id_a;
     wxTextCtrl* m_Notes      = nullptr;
 
 public:

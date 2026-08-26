@@ -30,6 +30,23 @@
 
 // -- static
 
+const int64 BudgetModel::SEGMENT_ANY  = -2;
+const int64 BudgetModel::SEGMENT_NONE = -1;
+
+namespace
+{
+// An entry with no segment reads back as -1 or, from a NULL column, 0; both
+// mean "applies to the whole period", the same test PlanEngine uses.
+bool segment_in_scope(int64 segment_id, int64 scope)
+{
+    if (scope == BudgetModel::SEGMENT_ANY)
+        return true;
+    if (scope == BudgetModel::SEGMENT_NONE)
+        return segment_id <= 0;
+    return segment_id == scope;
+}
+} // namespace
+
 TableClauseV<wxString> BudgetModel::WHERE_FREQUENCY(OP op, BudgetFreq freq)
 {
     return BudgetCol::WHERE_PERIOD(op, freq.key());
@@ -77,12 +94,68 @@ std::vector<int64> BudgetModel::find_child_period_id_a(int64 bp_id)
     return out;
 }
 
-void BudgetModel::getBudgetEntry(
+BudgetData* BudgetModel::find_entry_n(int64 bp_id, int64 cat_id, int64 segment_id)
+{
+    // find_data_a returns references into the cache, so the pointer stays valid
+    // for the caller to modify and save.
+    for (auto& b_d : find_data_a(
+        BudgetCol::WHERE_BUDGETYEARID(OP_EQ, bp_id),
+        BudgetCol::WHERE_CATEGID(OP_EQ, cat_id)
+    )) {
+        const bool is_whole_period = (b_d.m_segment_id <= 0);
+        if (segment_id > 0 ? (b_d.m_segment_id == segment_id) : is_whole_period)
+            return &b_d;
+    }
+    return nullptr;
+}
+
+BudgetModel::MoveOutcome BudgetModel::move_entry_segment(
     int64 bp_id,
+    int64 cat_id,
+    int64 from_segment_id,
+    int64 to_segment_id,
+    bool allow_merge
+) {
+    // Normalise, since "no segment" is written as -1 but reads back as 0 from a
+    // NULL column.
+    const int64 from = (from_segment_id > 0) ? from_segment_id : -1;
+    const int64 to   = (to_segment_id   > 0) ? to_segment_id   : -1;
+
+    if (from == to)
+        return MOVE_UNCHANGED;
+
+    BudgetData* source_n = find_entry_n(bp_id, cat_id, from);
+    if (!source_n)
+        return MOVE_NO_SOURCE;
+
+    BudgetData* dest_n = find_entry_n(bp_id, cat_id, to);
+    if (dest_n) {
+        if (!allow_merge)
+            return MOVE_OCCUPIED;
+        // Adding a weekly figure to a monthly one would change what the budget
+        // says without saying so, so only combine like with like.
+        if (dest_n->m_freq.id() != source_n->m_freq.id())
+            return MOVE_FREQ_MISMATCH;
+
+        dest_n->m_amount += source_n->m_amount;
+        if (dest_n->m_notes.IsEmpty())
+            dest_n->m_notes = source_n->m_notes;
+        unsafe_save_data_n(dest_n);
+        purge_id(source_n->m_id);
+        return MOVE_MERGED;
+    }
+
+    source_n->m_segment_id = to;
+    unsafe_save_data_n(source_n);
+    return MOVE_DONE;
+}
+
+void BudgetModel::getBudgetEntry(    int64 bp_id,
     std::map<int64, BudgetFreq>& freq_mCatId,
     std::map<int64, double>& amount_mCatId,
     std::map<int64, wxString>& notes_mCatId,
-    bool include_child_periods
+    bool include_child_periods,
+    int64 segment_scope
 ) {
     // initaialize category maps; set amount to zero
     for (int64 cat_id : CategoryModel::instance().find_id_a()) {
@@ -109,9 +182,16 @@ void BudgetModel::getBudgetEntry(
     }
 
     for (const int64 period_id : period_id_a) {
+        // The scope names a segment of bp_id, so it cannot apply to a child
+        // period's own segments; those are read whole.
+        const bool apply_scope = (period_id == bp_id);
+
         for (const auto& budget_d : find_data_a(
             BudgetCol::WHERE_BUDGETYEARID(OP_EQ, period_id)
         )) {
+            if (apply_scope && !segment_in_scope(budget_d.m_segment_id, segment_scope))
+                continue;
+
             const int64 cat_id = budget_d.m_category_id;
 
             yearly_mCatId[cat_id] += budget_d.amount_per_year();

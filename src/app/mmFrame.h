@@ -320,7 +320,7 @@ private:
 private:
     void createBillsDeposits();
 
-    void createBudgetingPage(int64 budgetYearID);
+    void createBudgetingPage(int64 budgetYearID, int64 segment_id = -1);
     void autocleanDeletedTransactions();
     void createControls();
     void saveSettings();

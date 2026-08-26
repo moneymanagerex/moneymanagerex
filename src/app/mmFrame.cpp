@@ -1439,6 +1439,14 @@ void mmFrame::navTreeSelection(wxTreeItemId selectedItem)
     }
     case mmTreeItemData::BUDGET:
         return createBudgetingPage(iData->getId());
+    case mmTreeItemData::BUDGET_SEGMENT: {
+        // The id is the segment's; the page needs the period it belongs to.
+        const BudgetSegmentData* seg_n =
+            BudgetSegmentModel::instance().get_idN_data_n(iData->getId());
+        if (!seg_n)
+            return;
+        return createBudgetingPage(seg_n->m_period_id, seg_n->m_id);
+    }
     case mmTreeItemData::REPORT:
         activeReport_ = true;
         return createReportsPage(iData->getReport(), false);
@@ -1700,6 +1708,7 @@ void mmFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         return showEmptyTreePopupMenu(pt);
     case mmTreeItemData::HELP_BUDGET:
     case mmTreeItemData::BUDGET:
+    case mmTreeItemData::BUDGET_SEGMENT:
         return OnBudgetSetupDialog(e);
     case mmTreeItemData::FILTER:
         return OnTransactionReport(e);
@@ -3804,7 +3813,7 @@ void mmFrame::createBillsDeposits()
 }
 //----------------------------------------------------------------------------
 
-void mmFrame::createBudgetingPage(int64 budgetYearID)
+void mmFrame::createBudgetingPage(int64 budgetYearID, int64 segment_id)
 {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -3817,12 +3826,14 @@ void mmFrame::createBudgetingPage(int64 budgetYearID)
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_ && panelCurrent_->GetId() == mmID_BUDGET) {
-        wxDynamicCast(panelCurrent_, BudgetPanel)->displayBudgetingDetails(budgetYearID);
+        wxDynamicCast(panelCurrent_, BudgetPanel)
+            ->displayBudgetingDetails(budgetYearID, segment_id);
     }
     else {
         DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new BudgetPanel(budgetYearID, homePanel_, mmID_BUDGET);
+        panelCurrent_ = new BudgetPanel(
+            budgetYearID, segment_id, homePanel_, mmID_BUDGET);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -4586,11 +4597,11 @@ void mmFrame::DoUpdateBudgetSegmentNavigation(wxTreeItemId& parent_item, int64 b
             parent_item,
             wxString::Format("%s (%d-%d)",
                 seg_d.m_name, seg_d.m_start_day, seg_d.m_end_day),
-            mmImage::img::CALENDAR_PNG, mmTreeItemData::BUDGET,
-            // Selecting a segment opens the period it belongs to: the budget
-            // page is per period, so this keeps the click meaningful instead of
-            // leading nowhere.
-            bp_id
+            mmImage::img::CALENDAR_PNG, mmTreeItemData::BUDGET_SEGMENT,
+            // The segment's own id. Selecting it opens the budget page scoped
+            // to that segment; passing the period id here would open the parent
+            // instead, making the month and each of its parts look identical.
+            seg_d.m_id
         );
     }
 }

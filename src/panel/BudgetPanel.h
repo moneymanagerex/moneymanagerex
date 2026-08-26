@@ -21,6 +21,7 @@
 #pragma once
 
 #include "model/BudgetModel.h"
+#include "model/BudgetSegmentModel.h"
 #include "_PanelBase.h"
 #include "BudgetList.h"
 
@@ -52,6 +53,14 @@ private:
 
 private:
     int64 m_bp_id;
+    // Which part of the period is on show. -1 means the period as a whole; a
+    // segment id narrows the page to that part. A segmented month and each of
+    // its parts are separate views of separate entries, so this decides both
+    // what is listed and where a new entry is filed.
+    int64 m_segment_id = -1;
+    // The row a context menu was opened on, so the chosen action knows its
+    // subject after the menu has closed.
+    long m_context_item = -1;
     bool m_is_monthly;
     wxString m_month_name;
     wxString m_start_date;
@@ -75,12 +84,14 @@ private:
     wxStaticText* w_expenses_diff      = nullptr;
     wxButton*     w_filter_btn         = nullptr;
     // Shown only for a year period: rolls its months into the figures without
-    // altering either the year's own entries or the months'.
+    // altering either the year's own entries or the months'. A segmented month
+    // reuses it to fold its segments in, which is the same idea one level down.
     wxCheckBox*   w_rollup             = nullptr;
 
 public:
     BudgetPanel(
         int64 bp_id,
+        int64 segment_id,
         wxWindow* parent_win,
         wxWindowID win_id = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
@@ -98,7 +109,7 @@ public:
     virtual void sortList() override;
 
     void refreshList();
-    void displayBudgetingDetails(int64 budgetYearID);
+    void displayBudgetingDetails(int64 budgetYearID, int64 segment_id = -1);
 
 private:
     bool create(
@@ -122,8 +133,23 @@ private:
     void onListItemActivated(int selectedIndex);
     auto getCatId(long item) -> int64 { return m_catId_subcatId_a[item].first; }
 
+    // True when the figures on show total more than this view's own entries,
+    // so an edit here would not be editing what the reader is looking at.
+    bool isRolledUp() const;
+    // The segments of this period, empty when it is not split.
+    auto segment_a() const -> std::vector<BudgetSegmentData>;
+    // Move a category's entry in this view to another segment, or to the period
+    // as a whole. Returns false when nothing was moved.
+    bool moveEntryToSegment(int64 cat_id, int64 target_segment_id);
+
+public:
+    // Offer the move on a right-click; the list owns the mouse event.
+    void showRowContextMenu(long item);
+
+private:
     // Event handlers
     void onViewPopupSelected(wxCommandEvent& event);
     void onMouseLeftDown(wxCommandEvent& event);
     void onRollupChanged(wxCommandEvent& event);
+    void onMoveToSegment(wxCommandEvent& event);
 };
