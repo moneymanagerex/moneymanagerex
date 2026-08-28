@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-08-12 22:43+0000\n"
-"PO-Revision-Date: 2026-08-14 01:11\n"
+"POT-Creation-Date: 2026-08-25 12:31+0000\n"
+"PO-Revision-Date: 2026-08-28 08:10\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Language: da_DK\n"
@@ -41,7 +41,7 @@ msgstr ""
 #: app/mmFrame.cpp:1544 app/mmFrame.cpp:2828 app/mmFrame.cpp:2895
 #: app/mmFrame.cpp:2913 dialog/FieldDialog.cpp:244 dialog/FieldDialog.cpp:265
 #: dialog/TrxDialog.cpp:906 dialog/TrxDialog.cpp:930
-#: dialog/TrxFilterDialog.cpp:1348 import_export/univcsvdialog.cpp:2557
+#: dialog/TrxFilterDialog.cpp:1381 import_export/univcsvdialog.cpp:2557
 #: manager/CategoryManager.cpp:566 manager/PayeeManager.cpp:805
 #: manager/TagManager.cpp:366 model/SchedModel.cpp:140
 msgid "Do you want to continue?"
@@ -51,15 +51,15 @@ msgstr ""
 msgid "The selected item will be deleted."
 msgstr ""
 
-#: app/mmFrame.cpp:1545 dialog/TrxFilterDialog.cpp:1349
+#: app/mmFrame.cpp:1545 dialog/TrxFilterDialog.cpp:1382
 msgid "Settings item deletion"
 msgstr ""
 
-#: app/mmFrame.cpp:1573 dialog/TrxFilterDialog.cpp:2174
+#: app/mmFrame.cpp:1573 dialog/TrxFilterDialog.cpp:2216
 msgid "Please Enter"
 msgstr ""
 
-#: app/mmFrame.cpp:1573 dialog/TrxFilterDialog.cpp:2174
+#: app/mmFrame.cpp:1573 dialog/TrxFilterDialog.cpp:2216
 msgid "Setting Name"
 msgstr ""
 
@@ -609,7 +609,7 @@ msgid "&Settings…"
 msgstr ""
 
 #: app/mmFrame.cpp:2171 app/mmFrame.cpp:3395 dialog/ReconcileDialog.cpp:169
-#: dialog/TrxFilterDialog.cpp:787 manager/PrefManager.cpp:223
+#: dialog/TrxFilterDialog.cpp:817 manager/PrefManager.cpp:223
 #: manager/PrefManager.h:48
 msgid "Settings"
 msgstr ""
@@ -1336,7 +1336,7 @@ msgstr ""
 #: dialog/BudgetYearDialog.cpp:120 dialog/BudgetYearEntryDialog.cpp:152
 #: dialog/FieldDialog.cpp:202 dialog/SchedDialog.cpp:593
 #: dialog/SplitDialog.cpp:111 dialog/SplitDialog.cpp:291
-#: dialog/StartupDialog.cpp:172 dialog/TrxFilterDialog.cpp:818
+#: dialog/StartupDialog.cpp:172 dialog/TrxFilterDialog.cpp:848
 #: dialog/TrxShareDialog.cpp:313 dialog/TrxUpdateDialog.cpp:297
 #: import_export/qif_export.cpp:240 import_export/qif_import_gui.cpp:426
 #: manager/CurrencyManager.cpp:267 manager/PayeeManager.cpp:161
@@ -1691,7 +1691,7 @@ msgstr ""
 #: dialog/CurrencyChoiceDialog.cpp:274 dialog/CurrencyChoiceDialog.cpp:291
 #: dialog/ReconcileDialog.cpp:180 dialog/StockDialog.cpp:233
 #: dialog/StockDialog.cpp:728 dialog/TrxDialog.cpp:247
-#: dialog/TrxFilterDialog.cpp:981 dialog/TrxFilterDialog.cpp:992
+#: dialog/TrxFilterDialog.cpp:1013 dialog/TrxFilterDialog.cpp:1024
 #: dialog/TrxLinkDialog.cpp:116 dialog/TrxUpdateDialog.cpp:142
 #: import_export/ofx_import_gui.cpp:1936 import_export/qif_export.cpp:674
 #: import_export/qif_import_gui.cpp:108 import_export/univcsvdialog.cpp:107
@@ -1718,22 +1718,22 @@ msgstr ""
 msgid "Multi Choice"
 msgstr ""
 
-#: data/_DataEnum.cpp:89 dialog/TrxFilterDialog.cpp:664
-#: dialog/TrxFilterDialog.cpp:1640 dialog/TrxFilterDialog.cpp:1740
+#: data/_DataEnum.cpp:89 dialog/TrxFilterDialog.cpp:677
+#: dialog/TrxFilterDialog.cpp:1676 dialog/TrxFilterDialog.cpp:1776
 #: import_export/univcsvdialog.cpp:120 panel/JournalList.cpp:108
 #: panel/SchedList.cpp:82 report/ForecastReport.cpp:83
 msgid "Withdrawal"
 msgstr ""
 
-#: data/_DataEnum.cpp:90 dialog/TrxFilterDialog.cpp:665
-#: dialog/TrxFilterDialog.cpp:1642 dialog/TrxFilterDialog.cpp:1742
+#: data/_DataEnum.cpp:90 dialog/TrxFilterDialog.cpp:678
+#: dialog/TrxFilterDialog.cpp:1678 dialog/TrxFilterDialog.cpp:1778
 #: import_export/univcsvdialog.cpp:121 panel/JournalList.cpp:109
 #: panel/SchedList.cpp:83 report/ForecastReport.cpp:81
 msgid "Deposit"
 msgstr ""
 
-#: data/_DataEnum.cpp:91 dialog/TrxFilterDialog.cpp:906
-#: dialog/TrxFilterDialog.cpp:1646 dialog/TrxFilterDialog.cpp:1746
+#: data/_DataEnum.cpp:91 dialog/TrxFilterDialog.cpp:936
+#: dialog/TrxFilterDialog.cpp:1682 dialog/TrxFilterDialog.cpp:1782
 #: import_export/qif_import_gui.cpp:537 import_export/qif_import_gui.cpp:662
 #: table/CategoryTable.cpp:212
 msgid "Transfer"
@@ -1829,8 +1829,8 @@ msgstr ""
 #: data/_DataEnum.cpp:132 dialog/SchedDialog.cpp:431 dialog/SchedDialog.cpp:833
 #: dialog/SchedDialog.cpp:845 dialog/TrxDialog.cpp:315 dialog/TrxDialog.cpp:602
 #: dialog/TrxDialog.cpp:606 dialog/TrxDialog.cpp:799
-#: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:578
-#: dialog/TrxFilterDialog.cpp:968 dialog/TrxFilterDialog.cpp:1840
+#: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:591
+#: dialog/TrxFilterDialog.cpp:1000 dialog/TrxFilterDialog.cpp:1876
 #: dialog/TrxLinkDialog.cpp:120 import_export/qif_export.cpp:677
 #: import_export/qif_import_gui.cpp:107 import_export/qif_import_gui.cpp:180
 #: import_export/qif_import_gui.cpp:300 import_export/univcsvdialog.cpp:110
@@ -1847,8 +1847,8 @@ msgstr ""
 #: data/_DataEnum.cpp:134 dialog/ReconcileDialog.cpp:182
 #: dialog/SchedDialog.cpp:469 dialog/SchedDialog.cpp:834
 #: dialog/TrxDialog.cpp:350 dialog/TrxDialog.cpp:603
-#: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:615
-#: dialog/TrxFilterDialog.cpp:1005 dialog/TrxFilterDialog.cpp:1883
+#: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:628
+#: dialog/TrxFilterDialog.cpp:1037 dialog/TrxFilterDialog.cpp:1919
 #: dialog/TrxLinkDialog.cpp:199 dialog/TrxUpdateDialog.cpp:215
 #: import_export/qif_export.cpp:678 import_export/qif_import_gui.cpp:110
 #: import_export/qif_import_gui.cpp:313 import_export/univcsvdialog.cpp:111
@@ -2083,7 +2083,7 @@ msgstr ""
 #: dialog/BudgetEntryDialog.cpp:170 dialog/SchedDialog.cpp:561
 #: dialog/SplitDialog.cpp:102 dialog/SplitDialog.cpp:362
 #: dialog/StockDialog.cpp:200 dialog/TrxDialog.cpp:451
-#: dialog/TrxFilterDialog.cpp:698 dialog/TrxFilterDialog.cpp:1971
+#: dialog/TrxFilterDialog.cpp:711 dialog/TrxFilterDialog.cpp:2007
 #: dialog/TrxLinkDialog.cpp:231 dialog/TrxShareDialog.cpp:249
 #: dialog/TrxUpdateDialog.cpp:272 import_export/qif_export.cpp:683
 #: import_export/qif_import_gui.cpp:115 import_export/univcsvdialog.cpp:118
@@ -2670,8 +2670,8 @@ msgstr ""
 
 #: dialog/CurrencyChoiceDialog.cpp:284 dialog/SchedDialog.cpp:382
 #: dialog/TrxDialog.cpp:285 dialog/TrxFilterDialog.cpp:68
-#: dialog/TrxFilterDialog.cpp:659 dialog/TrxFilterDialog.cpp:1054
-#: dialog/TrxFilterDialog.cpp:1924 dialog/TrxLinkDialog.cpp:151
+#: dialog/TrxFilterDialog.cpp:672 dialog/TrxFilterDialog.cpp:1086
+#: dialog/TrxFilterDialog.cpp:1960 dialog/TrxLinkDialog.cpp:151
 #: dialog/TrxUpdateDialog.cpp:180 import_export/qif_export.cpp:135
 #: import_export/qif_export.cpp:676 import_export/qif_import_gui.cpp:111
 #: import_export/qif_import_gui.cpp:306 import_export/univcsvdialog.cpp:109
@@ -2753,7 +2753,7 @@ msgstr ""
 #: dialog/CurrencyChoiceDialog.cpp:670 dialog/ReconcileDialog.cpp:183
 #: dialog/SchedDialog.cpp:388 dialog/SplitDialog.cpp:95
 #: dialog/SplitDialog.cpp:228 dialog/TrxDialog.cpp:302
-#: dialog/TrxFilterDialog.cpp:1086 dialog/TrxFilterDialog.cpp:1097
+#: dialog/TrxFilterDialog.cpp:1118 dialog/TrxFilterDialog.cpp:1129
 #: dialog/TrxLinkDialog.cpp:155 dialog/TrxUpdateDialog.cpp:202
 #: import_export/ofx_import_gui.cpp:1937 import_export/qif_export.cpp:680
 #: import_export/univcsvdialog.cpp:112 import_export/webappdialog.cpp:149
@@ -2819,8 +2819,8 @@ msgid "New date range"
 msgstr ""
 
 #: dialog/DateRangeDialog.cpp:68 dialog/TrxFilterDialog.cpp:243
-#: dialog/TrxFilterDialog.cpp:581 dialog/TrxFilterDialog.cpp:903
-#: dialog/TrxFilterDialog.cpp:2305 import_export/qif_export.cpp:80
+#: dialog/TrxFilterDialog.cpp:594 dialog/TrxFilterDialog.cpp:933
+#: dialog/TrxFilterDialog.cpp:2347 import_export/qif_export.cpp:80
 #: import_export/qif_export.cpp:81 import_export/qif_export.cpp:155
 #: manager/DateRangeManager.cpp:305 model/PrefModel.cpp:58
 #: model/PrefModel.cpp:92 panel/AssetPanel.cpp:118 panel/AssetPanel.cpp:405
@@ -2996,9 +2996,9 @@ msgstr ""
 msgid "Select a value to represent the item on a panel"
 msgstr ""
 
-#: dialog/FieldDialog.cpp:231 dialog/TrxFilterDialog.cpp:1005
-#: dialog/TrxFilterDialog.cpp:1038 dialog/TrxFilterDialog.cpp:1069
-#: dialog/TrxFilterDialog.cpp:1697 import_export/webappdialog.cpp:189
+#: dialog/FieldDialog.cpp:231 dialog/TrxFilterDialog.cpp:1037
+#: dialog/TrxFilterDialog.cpp:1070 dialog/TrxFilterDialog.cpp:1101
+#: dialog/TrxFilterDialog.cpp:1733 import_export/webappdialog.cpp:189
 #: import_export/webappdialog.cpp:193 report/UsageReport.cpp:105
 msgid "Empty value"
 msgstr ""
@@ -3252,8 +3252,8 @@ msgid "&All (un)cleared"
 msgstr ""
 
 #: dialog/ReconcileDialog.cpp:181 dialog/SchedDialog.cpp:525
-#: dialog/TrxDialog.cpp:419 dialog/TrxFilterDialog.cpp:691
-#: dialog/TrxFilterDialog.cpp:1949 dialog/TrxLinkDialog.cpp:227
+#: dialog/TrxDialog.cpp:419 dialog/TrxFilterDialog.cpp:704
+#: dialog/TrxFilterDialog.cpp:1985 dialog/TrxLinkDialog.cpp:227
 #: import_export/qif_export.cpp:682 import_export/qif_import_gui.cpp:109
 #: import_export/univcsvdialog.cpp:117 model/TrxFilter.cpp:204
 #: panel/JournalList.cpp:102 panel/SchedList.cpp:88 report/TrxReport.cpp:230
@@ -3261,8 +3261,8 @@ msgid "Number"
 msgstr ""
 
 #: dialog/ReconcileDialog.cpp:184 dialog/SchedDialog.cpp:346
-#: dialog/TrxDialog.cpp:399 dialog/TrxFilterDialog.cpp:647
-#: dialog/TrxFilterDialog.cpp:1049 dialog/TrxFilterDialog.cpp:1915
+#: dialog/TrxDialog.cpp:399 dialog/TrxFilterDialog.cpp:660
+#: dialog/TrxFilterDialog.cpp:1081 dialog/TrxFilterDialog.cpp:1951
 #: dialog/TrxLinkDialog.cpp:195 dialog/TrxUpdateDialog.cpp:160
 #: import_export/qif_export.cpp:675 import_export/qif_import_gui.cpp:308
 #: import_export/qif_import_gui.cpp:319 import_export/qif_import_gui.cpp:329
@@ -3376,7 +3376,7 @@ msgid "Date Paid"
 msgstr ""
 
 #: dialog/SchedDialog.cpp:344 dialog/TrxDialog.cpp:1014
-#: dialog/TrxFilterDialog.cpp:656
+#: dialog/TrxFilterDialog.cpp:669
 msgid "Specify the status for the transaction"
 msgstr ""
 
@@ -3411,9 +3411,9 @@ msgstr ""
 #: dialog/SchedDialog.cpp:487 dialog/SchedDialog.cpp:1307
 #: dialog/SplitDialog.cpp:88 dialog/SplitDialog.cpp:226
 #: dialog/TrxDialog.cpp:364 dialog/TrxDialog.cpp:823 dialog/TrxDialog.cpp:1311
-#: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:624
-#: dialog/TrxFilterDialog.cpp:1038 dialog/TrxFilterDialog.cpp:1043
-#: dialog/TrxFilterDialog.cpp:1889 dialog/TrxLinkDialog.cpp:206
+#: dialog/TrxFilterDialog.cpp:68 dialog/TrxFilterDialog.cpp:637
+#: dialog/TrxFilterDialog.cpp:1070 dialog/TrxFilterDialog.cpp:1075
+#: dialog/TrxFilterDialog.cpp:1925 dialog/TrxLinkDialog.cpp:206
 #: dialog/TrxUpdateDialog.cpp:239 import_export/ofx_import_gui.cpp:1942
 #: import_export/qif_export.cpp:679 import_export/qif_import_gui.cpp:112
 #: import_export/qif_import_gui.cpp:324 import_export/univcsvdialog.cpp:114
@@ -3435,10 +3435,10 @@ msgstr ""
 #: dialog/SchedDialog.cpp:507 dialog/SchedDialog.cpp:1317
 #: dialog/SplitDialog.cpp:230 dialog/SplitDialog.cpp:582
 #: dialog/TrxDialog.cpp:383 dialog/TrxDialog.cpp:790
-#: dialog/TrxFilterDialog.cpp:640 dialog/TrxFilterDialog.cpp:1062
-#: dialog/TrxFilterDialog.cpp:1070 dialog/TrxFilterDialog.cpp:1668
-#: dialog/TrxFilterDialog.cpp:1680 dialog/TrxFilterDialog.cpp:1772
-#: dialog/TrxFilterDialog.cpp:1787 dialog/TrxFilterDialog.cpp:1955
+#: dialog/TrxFilterDialog.cpp:653 dialog/TrxFilterDialog.cpp:1094
+#: dialog/TrxFilterDialog.cpp:1102 dialog/TrxFilterDialog.cpp:1704
+#: dialog/TrxFilterDialog.cpp:1716 dialog/TrxFilterDialog.cpp:1808
+#: dialog/TrxFilterDialog.cpp:1823 dialog/TrxFilterDialog.cpp:1991
 #: dialog/TrxUpdateDialog.cpp:250 dialog/TrxUpdateDialog.cpp:386
 #: import_export/qif_import_gui.cpp:113 import_export/univcsvdialog.cpp:116
 #: panel/JournalList.cpp:107 panel/SchedList.cpp:81 report/TrxReport.cpp:240
@@ -3464,7 +3464,7 @@ msgid "Organize attachments of this scheduled transaction"
 msgstr ""
 
 #: dialog/SchedDialog.cpp:566 dialog/TrxDialog.cpp:456
-#: dialog/TrxFilterDialog.cpp:712 dialog/TrxFilterDialog.cpp:1977
+#: dialog/TrxFilterDialog.cpp:725 dialog/TrxFilterDialog.cpp:2013
 #: dialog/TrxUpdateDialog.cpp:263 dialog/TrxUpdateDialog.cpp:461
 #: import_export/qif_import_gui.cpp:400 import_export/univcsvdialog.cpp:586
 #: import_export/univcsvdialog.cpp:1464 model/TrxFilter.cpp:202
@@ -3478,7 +3478,7 @@ msgid "Specify any text notes you want to add to this transaction."
 msgstr ""
 
 #: dialog/SchedDialog.cpp:602 dialog/TrxDialog.cpp:484
-#: dialog/TrxFilterDialog.cpp:824 dialog/TrxUpdateDialog.cpp:304
+#: dialog/TrxFilterDialog.cpp:854 dialog/TrxUpdateDialog.cpp:304
 msgid "Show/Hide custom fields window"
 msgstr ""
 
@@ -3559,13 +3559,13 @@ msgstr ""
 #: dialog/SchedDialog.cpp:1306 dialog/SchedDialog.cpp:1316
 #: dialog/SchedDialog.cpp:1597 dialog/SplitDialog.cpp:582
 #: dialog/TrxDialog.cpp:789 dialog/TrxDialog.cpp:798 dialog/TrxDialog.cpp:822
-#: dialog/TrxDialog.cpp:1310 dialog/TrxFilterDialog.cpp:969
-#: dialog/TrxFilterDialog.cpp:982 dialog/TrxFilterDialog.cpp:993
-#: dialog/TrxFilterDialog.cpp:1025 dialog/TrxFilterDialog.cpp:1043
-#: dialog/TrxFilterDialog.cpp:1049 dialog/TrxFilterDialog.cpp:1054
-#: dialog/TrxFilterDialog.cpp:1061 dialog/TrxFilterDialog.cpp:1085
-#: dialog/TrxFilterDialog.cpp:1096 dialog/TrxFilterDialog.cpp:1114
-#: dialog/TrxFilterDialog.cpp:1123 dialog/TrxFilterDialog.cpp:1131
+#: dialog/TrxDialog.cpp:1310 dialog/TrxFilterDialog.cpp:1001
+#: dialog/TrxFilterDialog.cpp:1014 dialog/TrxFilterDialog.cpp:1025
+#: dialog/TrxFilterDialog.cpp:1057 dialog/TrxFilterDialog.cpp:1075
+#: dialog/TrxFilterDialog.cpp:1081 dialog/TrxFilterDialog.cpp:1086
+#: dialog/TrxFilterDialog.cpp:1093 dialog/TrxFilterDialog.cpp:1117
+#: dialog/TrxFilterDialog.cpp:1128 dialog/TrxFilterDialog.cpp:1146
+#: dialog/TrxFilterDialog.cpp:1155 dialog/TrxFilterDialog.cpp:1163
 #: dialog/TrxUpdateDialog.cpp:385 dialog/TrxUpdateDialog.cpp:461
 #: import_export/univcsvdialog.cpp:1465 manager/PayeeManager.cpp:203
 #: manager/PayeeManager.cpp:208 pref/GeneralPref.cpp:335
@@ -4046,7 +4046,7 @@ msgstr ""
 msgid "Transactions Dialog"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:64 dialog/TrxFilterDialog.cpp:1913
+#: dialog/TrxFilterDialog.cpp:64 dialog/TrxFilterDialog.cpp:1949
 msgid "All Except Reconciled"
 msgstr ""
 
@@ -4090,180 +4090,198 @@ msgstr ""
 msgid "Stacked Bar Line"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:518
+#: dialog/TrxFilterDialog.cpp:531
 msgid "Last Unsaved Filter"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:561 dialog/TrxUpdateDialog.cpp:134
+#: dialog/TrxFilterDialog.cpp:574 dialog/TrxUpdateDialog.cpp:134
 msgid "Specify"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:589
+#: dialog/TrxFilterDialog.cpp:602
 msgid "Period Range"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:601 util/mmDateRange.cpp:36
+#: dialog/TrxFilterDialog.cpp:614 util/mmDateRange.cpp:36
 msgid "Date Range"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:633 dialog/TrxFilterDialog.cpp:1902
+#: dialog/TrxFilterDialog.cpp:646 dialog/TrxFilterDialog.cpp:1938
 msgid "Include all subcategories"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:666 dialog/TrxFilterDialog.cpp:897
-#: dialog/TrxFilterDialog.cpp:1646 dialog/TrxFilterDialog.cpp:1746
+#: dialog/TrxFilterDialog.cpp:679 dialog/TrxFilterDialog.cpp:927
+#: dialog/TrxFilterDialog.cpp:1682 dialog/TrxFilterDialog.cpp:1782
 msgid "Transfer Out"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:667 dialog/TrxFilterDialog.cpp:1644
-#: dialog/TrxFilterDialog.cpp:1744
+#: dialog/TrxFilterDialog.cpp:680 dialog/TrxFilterDialog.cpp:1680
+#: dialog/TrxFilterDialog.cpp:1780
 msgid "Transfer In"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:678
+#: dialog/TrxFilterDialog.cpp:691
 msgid "Amount Range"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:703
+#: dialog/TrxFilterDialog.cpp:716
 msgid "Enter any string to find it in transaction notes."
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:704 manager/PayeeManager.cpp:139
+#: dialog/TrxFilterDialog.cpp:717 manager/PayeeManager.cpp:139
 #: panel/AssetPanel.cpp:210 panel/JournalPanel.cpp:428
 msgid "Tip: Wildcard characters such as the question mark (?) and the asterisk (*) can be used in search criteria."
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:705 manager/PayeeManager.cpp:140
+#: dialog/TrxFilterDialog.cpp:718 manager/PayeeManager.cpp:140
 msgid "The question mark (?) matches a single character, for example \"s?t\" finds both \"sat\" and \"set\"."
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:706 manager/PayeeManager.cpp:141
+#: dialog/TrxFilterDialog.cpp:719 manager/PayeeManager.cpp:141
 msgid "The asterisk (*) matches any number of characters, for example \"s*d\" finds both \"sad\" and \"started\"."
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:707 manager/PayeeManager.cpp:143
+#: dialog/TrxFilterDialog.cpp:720 manager/PayeeManager.cpp:143
 #: panel/JournalPanel.cpp:432
 msgid "Use regex: to match using regular expressions."
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:731
+#: dialog/TrxFilterDialog.cpp:733 import_export/webappdialog.cpp:151
+#: manager/PrefManager.cpp:41 pref/AttachmentPref.cpp:70
+msgid "Attachments"
+msgstr ""
+
+#: dialog/TrxFilterDialog.cpp:736
+msgid "No"
+msgstr ""
+
+#: dialog/TrxFilterDialog.cpp:740
+msgid "Yes"
+msgstr ""
+
+#: dialog/TrxFilterDialog.cpp:761
 msgid "Presentation Options"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:745 dialog/TrxFilterDialog.cpp:1115
-#: dialog/TrxFilterDialog.cpp:1777 dialog/TrxFilterDialog.cpp:1999
+#: dialog/TrxFilterDialog.cpp:775 dialog/TrxFilterDialog.cpp:1147
+#: dialog/TrxFilterDialog.cpp:1813 dialog/TrxFilterDialog.cpp:2041
 msgid "Hide Columns"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:754 dialog/TrxFilterDialog.cpp:1124
-#: dialog/TrxFilterDialog.cpp:2010
+#: dialog/TrxFilterDialog.cpp:784 dialog/TrxFilterDialog.cpp:1156
+#: dialog/TrxFilterDialog.cpp:2052
 msgid "Group By"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:762
+#: dialog/TrxFilterDialog.cpp:792
 msgid "Specify how the report should be grouped"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:765 dialog/TrxFilterDialog.cpp:1131
-#: dialog/TrxFilterDialog.cpp:2019
+#: dialog/TrxFilterDialog.cpp:795 dialog/TrxFilterDialog.cpp:1163
+#: dialog/TrxFilterDialog.cpp:2061
 msgid "Chart"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:773
+#: dialog/TrxFilterDialog.cpp:803
 msgid "Specify which chart will be included in the report"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:776 dialog/TrxFilterDialog.cpp:2027
+#: dialog/TrxFilterDialog.cpp:806 dialog/TrxFilterDialog.cpp:2069
 msgid "Combine Splits"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:779
+#: dialog/TrxFilterDialog.cpp:809
 msgid "Display split transactions as a single row"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:800
+#: dialog/TrxFilterDialog.cpp:830
 msgid "Save active values into current Preset selection"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:804
+#: dialog/TrxFilterDialog.cpp:834
 msgid "Delete current Preset selection"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:832
+#: dialog/TrxFilterDialog.cpp:862
 msgid "&Reset "
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1021
+#: dialog/TrxFilterDialog.cpp:1053
 #, c-format
 msgid "This name does not currently match any payees.\n"
 "Do you want to continue to use it?\n"
 "%s"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1215
+#: dialog/TrxFilterDialog.cpp:1248
 msgid "Hide Report Columns"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1348
+#: dialog/TrxFilterDialog.cpp:1381
 msgid "The selected item will be deleted"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1706
+#: dialog/TrxFilterDialog.cpp:1742
 msgid "Filtering Details: "
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1834
+#: dialog/TrxFilterDialog.cpp:1870
 msgid "Label"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1862
+#: dialog/TrxFilterDialog.cpp:1898
 msgid "Since"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1864
+#: dialog/TrxFilterDialog.cpp:1900
 msgid "Before"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1874
+#: dialog/TrxFilterDialog.cpp:1910
 msgid "Period"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1934
+#: dialog/TrxFilterDialog.cpp:1970
 msgid "Amount Min."
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:1941
+#: dialog/TrxFilterDialog.cpp:1977
 msgid "Amount Max."
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:2198 import_export/univcsvdialog.cpp:1221
+#: dialog/TrxFilterDialog.cpp:2019 import_export/webapp.cpp:670
+#: panel/JournalPanel.cpp:1191 panel/JournalPanel.cpp:1209
+msgid "Attachment"
+msgstr ""
+
+#: dialog/TrxFilterDialog.cpp:2240 import_export/univcsvdialog.cpp:1221
 msgid "The entered name is already in use"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:2198 import_export/qif_import_gui.cpp:819
+#: dialog/TrxFilterDialog.cpp:2240 import_export/qif_import_gui.cpp:819
 #: import_export/qif_import_gui.cpp:821 import_export/univcsvdialog.cpp:1222
 #: util/mmImage.cpp:348 util/mmImage.cpp:443 util/mmImage.cpp:458
 #: util/mmImage.cpp:495 util/mmImage.cpp:557 util/mmImage.cpp:568
 msgid "Warning"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:2227
+#: dialog/TrxFilterDialog.cpp:2269
 msgid "Do you want to save them before continuing?"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:2227
+#: dialog/TrxFilterDialog.cpp:2269
 msgid "Filter settings have changed"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:2227
+#: dialog/TrxFilterDialog.cpp:2269
 msgid "Please confirm"
 msgstr ""
 
-#: dialog/TrxFilterDialog.cpp:2277 report/_ReportBase.cpp:111
+#: dialog/TrxFilterDialog.cpp:2319 report/_ReportBase.cpp:111
 msgid "Choose Accounts"
 msgstr ""
 
-#: dialog/TrxFilterDialog.h:247
+#: dialog/TrxFilterDialog.h:251
 msgid "Customize Transaction Report"
 msgstr ""
 
@@ -5516,11 +5534,6 @@ msgstr ""
 msgid "Attachment download error"
 msgstr ""
 
-#: import_export/webapp.cpp:670 panel/JournalPanel.cpp:1191
-#: panel/JournalPanel.cpp:1209
-msgid "Attachment"
-msgstr ""
-
 #: import_export/webappdialog.cpp:73
 msgid "Import WebApp transactions"
 msgstr ""
@@ -5539,11 +5552,6 @@ msgstr ""
 
 #: import_export/webappdialog.cpp:128
 msgid "Checking for new transactions"
-msgstr ""
-
-#: import_export/webappdialog.cpp:151 manager/PrefManager.cpp:41
-#: pref/AttachmentPref.cpp:70
-msgid "Attachments"
 msgstr ""
 
 #: import_export/webappdialog.cpp:161
