@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-08-25 12:31+0000\n"
-"PO-Revision-Date: 2026-08-28 08:10\n"
+"PO-Revision-Date: 2026-08-30 11:47\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -9317,7 +9317,7 @@ msgstr "Couronne norvégienne"
 
 #: table/CurrencyTable.cpp:343
 msgid "Omani rial"
-msgstr "Rial d'Oman"
+msgstr "Rial d''Oman"
 
 #: table/CurrencyTable.cpp:344
 msgid "Pakistani rupee"
@@ -9409,7 +9409,7 @@ msgstr "Dollar du Suriname"
 
 #: table/CurrencyTable.cpp:367
 msgid "Swazi lilangeni"
-msgstr "Lilangeni de l'Eswatini"
+msgstr "Lilangeni de l''Eswatini"
 
 #: table/CurrencyTable.cpp:368
 msgid "Swedish krona"
