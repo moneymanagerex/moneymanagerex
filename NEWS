@@ -1,12 +1,13 @@
-Version 1.9.4 RC 1
+Version 1.9.4
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2026-08-25
+Released: 2026-08-31
 
 Features:
 * #8448 Transaction dialog takes 5s to open; not data-bound
 * #5697 Allow transactions to be filtered based on attachments
 
 Bugfixes:
+* #8506 Creating a new database fails with 'SQL logic error[1]: near "Oman": syntax error' when UI language is French
 * #8497 MMEX V1.9.3 crashes when creating an HTML model for a new report.
 * #8485 Investment ->New Filter ===> Crash
 * #8475 Assets Value
