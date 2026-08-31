@@ -635,6 +635,9 @@ void JournalPanel::filterList()
     mmDate range_end = m_date_range.rangeEndN().value();
     // Maxiumum future range is 30 days for scheduled transactions
     mmDate scheduled_range_end = mmDate::today().plusDateSpan(wxDateSpan::Days(30));
+    if (range_end < scheduled_range_end) {
+        scheduled_range_end = range_end;
+    }
 
     int sn = 0; // sequence number
     m_flow = 0.0;
