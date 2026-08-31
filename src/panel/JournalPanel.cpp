@@ -733,7 +733,7 @@ void JournalPanel::filterList()
 
         for (unsigned int sched_i = 0; sched_i < sched_a.size(); ++sched_i) {
             int limit = 1000;  // this is enough for daily repetitions for one year
-            std::vector<mmDate> date_a = sched_a[sched_i].unroll(range_end, limit);
+            std::vector<mmDate> date_a = sched_a[sched_i].unroll(scheduled_range_end, limit);
             for (unsigned int repeat_id = 1; repeat_id <= date_a.size(); ++repeat_id) {
                 sched_index_a.push_back({
                     sched_i, date_a[repeat_id-1], repeat_id
@@ -819,10 +819,6 @@ void JournalPanel::filterList()
         if (ignore_future && is_future)
             break;
 
-        if (trx_dateTime.date() < range_start || 
-            trx_dateTime.date() > ((repeat_id < 0) ? range_end : scheduled_range_end))
-            continue;
-
         // update m_balance even if transaction is filtered out
         double account_flow = 0.0;
         if (isAccount()) {
@@ -837,6 +833,10 @@ void JournalPanel::filterList()
             else
                 m_show_reconciled = true;
         }
+
+        if (trx_dateTime.date() < range_start || 
+            trx_dateTime.date() > ((repeat_id < 0) ? range_end : scheduled_range_end))
+            continue;
 
         Journal::DataExt journal_dx = (repeat_id < 0)
             ? Journal::DataExt(*trx_n, trxId_tpA_m, trxId_glA_m)
