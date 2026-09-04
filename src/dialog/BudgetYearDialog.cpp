@@ -24,6 +24,7 @@
 #include "model/BudgetPeriodModel.h"
 #include "BudgetYearDialog.h"
 #include "BudgetYearEntryDialog.h"
+#include "BudgetSegmentDialog.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(BudgetYearDialog, wxDialog);
 
@@ -32,6 +33,7 @@ wxBEGIN_EVENT_TABLE( BudgetYearDialog, wxDialog )
     EVT_BUTTON(wxID_ADD, BudgetYearDialog::OnAdd)
     EVT_BUTTON(ID_ADD_MONTH, BudgetYearDialog::OnAddMonth)
     EVT_BUTTON(wxID_DELETE, BudgetYearDialog::OnDelete)
+    EVT_BUTTON(ID_SEGMENTS, BudgetYearDialog::OnSegments)
 wxEND_EVENT_TABLE()
 
 BudgetYearDialog::BudgetYearDialog( )
@@ -108,6 +110,13 @@ void BudgetYearDialog::CreateControls()
     itemBoxSizer5->Add(itemButtonDelete, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
     mmToolTip(itemButtonDelete, _t("Delete existing budget"));
 
+    wxButton* itemButtonSegments = new wxButton(this, ID_SEGMENTS
+        , _tu("&Segments…"));
+    itemBoxSizer5->Add(itemButtonSegments, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
+    mmToolTip(itemButtonSegments, _t(
+        "Split the selected period into parts, so a month can be planned "
+        "against paycheck-aligned halves rather than as one lump sum"));
+
     wxStaticLine* line = new wxStaticLine(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(line, 0, wxGROW | wxALL, 5);
 
@@ -156,6 +165,20 @@ void BudgetYearDialog::OnDelete(wxCommandEvent& /*event*/)
     fillControls();
 }
  
+void BudgetYearDialog::OnSegments(wxCommandEvent& /*event*/)
+{
+    const wxString bp_name = m_listBox->GetStringSelection();
+    const int64 bp_id_n = BudgetPeriodModel::instance().get_name_id_n(bp_name);
+    if (bp_id_n <= 0) {
+        wxMessageBox(_t("Select a budget period to split into segments."),
+            _t("Budget Segments"), wxOK | wxICON_INFORMATION, this);
+        return;
+    }
+
+    BudgetSegmentDialog(this, bp_id_n).ShowModal();
+    fillControls();
+}
+
 void BudgetYearDialog::OnOk(wxCommandEvent& /*event*/)
 {
     EndModal(wxID_OK);
