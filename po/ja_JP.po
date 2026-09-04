@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-08-25 12:31+0000\n"
-"PO-Revision-Date: 2026-08-28 08:10\n"
+"POT-Creation-Date: 2026-08-31 23:08+0000\n"
+"PO-Revision-Date: 2026-09-04 02:11\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -2180,7 +2180,7 @@ msgstr ""
 msgid "Credit"
 msgstr ""
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1034
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1037
 msgid "Credit Limit:"
 msgstr ""
 
@@ -4253,7 +4253,7 @@ msgid "Amount Max."
 msgstr ""
 
 #: dialog/TrxFilterDialog.cpp:2019 import_export/webapp.cpp:670
-#: panel/JournalPanel.cpp:1191 panel/JournalPanel.cpp:1209
+#: panel/JournalPanel.cpp:1194 panel/JournalPanel.cpp:1212
 msgid "Attachment"
 msgstr ""
 
@@ -5896,7 +5896,7 @@ msgstr ""
 msgid "Default date ranges"
 msgstr ""
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1394
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1397
 #: panel/ReportPanel.cpp:1096
 msgid "More date ranges…"
 msgstr ""
@@ -7309,75 +7309,75 @@ msgstr ""
 msgid "Click to copy to clipboard"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1010
+#: panel/JournalPanel.cpp:1013
 msgid "Account Bal: "
 msgstr "アカウントの残高: "
 
-#: panel/JournalPanel.cpp:1014
+#: panel/JournalPanel.cpp:1017
 msgid "Reconciled Bal: "
 msgstr "照合済の残高: "
 
-#: panel/JournalPanel.cpp:1019
+#: panel/JournalPanel.cpp:1022
 msgid "Diff: "
 msgstr "差異: "
 
-#: panel/JournalPanel.cpp:1026
+#: panel/JournalPanel.cpp:1029
 msgid "Filtered Flow: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1047
+#: panel/JournalPanel.cpp:1050
 msgid "Market Value: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1054
+#: panel/JournalPanel.cpp:1057
 msgid "Invested: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1093 panel/JournalPanel.cpp:1101
+#: panel/JournalPanel.cpp:1096 panel/JournalPanel.cpp:1104
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1140
+#: panel/JournalPanel.cpp:1143
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr ""
 
-#: panel/JournalPanel.cpp:1140
+#: panel/JournalPanel.cpp:1143
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1141
+#: panel/JournalPanel.cpp:1144
 msgid "Click to hide scheduled transactions."
-msgstr ""
-
-#: panel/JournalPanel.cpp:1272
-#, c-format
-msgid "Transactions selected: %zu"
 msgstr ""
 
 #: panel/JournalPanel.cpp:1275
 #, c-format
+msgid "Transactions selected: %zu"
+msgstr ""
+
+#: panel/JournalPanel.cpp:1278
+#, c-format
 msgid "Selected transactions total: %s"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1280
+#: panel/JournalPanel.cpp:1283
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1401 panel/ReportPanel.cpp:1103
+#: panel/JournalPanel.cpp:1404 panel/ReportPanel.cpp:1103
 msgid "Edit date ranges…"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1549
+#: panel/JournalPanel.cpp:1552
 msgid "&New Withdrawal…"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1550
+#: panel/JournalPanel.cpp:1553
 msgid "&New Deposit…"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1551
+#: panel/JournalPanel.cpp:1554
 msgid "&New Transfer…"
 msgstr ""
 

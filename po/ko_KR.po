@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-08-25 12:31+0000\n"
-"PO-Revision-Date: 2026-08-28 08:10\n"
+"POT-Creation-Date: 2026-08-31 23:08+0000\n"
+"PO-Revision-Date: 2026-09-04 02:11\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -2196,7 +2196,7 @@ msgstr "계정 잔액이 하한입니다. 사용하지 않으려면 0으로 설�
 msgid "Credit"
 msgstr "신용"
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1034
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1037
 msgid "Credit Limit:"
 msgstr "신용 한도:"
 
@@ -4284,7 +4284,7 @@ msgid "Amount Max."
 msgstr "최대 금액"
 
 #: dialog/TrxFilterDialog.cpp:2019 import_export/webapp.cpp:670
-#: panel/JournalPanel.cpp:1191 panel/JournalPanel.cpp:1209
+#: panel/JournalPanel.cpp:1194 panel/JournalPanel.cpp:1212
 msgid "Attachment"
 msgstr "첨부 파일"
 
@@ -5938,7 +5938,7 @@ msgstr "정말 기본 범위를 복원하시겠습니까?\n\n"
 msgid "Default date ranges"
 msgstr "기본 날짜 범위"
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1394
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1397
 #: panel/ReportPanel.cpp:1096
 msgid "More date ranges…"
 msgstr "더 많은 날짜 범위…"
@@ -7364,75 +7364,75 @@ msgstr "가장 가까운 거래 데이터에서 찾을 문자열을 입력"
 msgid "Click to copy to clipboard"
 msgstr "클립보드에 복사하려면 클릭"
 
-#: panel/JournalPanel.cpp:1010
+#: panel/JournalPanel.cpp:1013
 msgid "Account Bal: "
 msgstr "계정 잔액: "
 
-#: panel/JournalPanel.cpp:1014
+#: panel/JournalPanel.cpp:1017
 msgid "Reconciled Bal: "
 msgstr "조정된 잔액: "
 
-#: panel/JournalPanel.cpp:1019
+#: panel/JournalPanel.cpp:1022
 msgid "Diff: "
 msgstr "차이: "
 
-#: panel/JournalPanel.cpp:1026
+#: panel/JournalPanel.cpp:1029
 msgid "Filtered Flow: "
 msgstr "필터링된 흐름: "
 
-#: panel/JournalPanel.cpp:1047
+#: panel/JournalPanel.cpp:1050
 msgid "Market Value: "
 msgstr "시장 가격: "
 
-#: panel/JournalPanel.cpp:1054
+#: panel/JournalPanel.cpp:1057
 msgid "Invested: "
 msgstr "투자: "
 
-#: panel/JournalPanel.cpp:1093 panel/JournalPanel.cpp:1101
+#: panel/JournalPanel.cpp:1096 panel/JournalPanel.cpp:1104
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr "날짜 범위"
 
-#: panel/JournalPanel.cpp:1140
+#: panel/JournalPanel.cpp:1143
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "클릭하여 예약된 거래를 표시합니다. 이 기능은 미래로 확장되는 필터 선택 사항(예: 이번 달)과 가장 잘 작동합니다."
 
-#: panel/JournalPanel.cpp:1140
+#: panel/JournalPanel.cpp:1143
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "현재 필터가 과거로 종료되므로 예약된 거래를 사용할 수 없음"
 
-#: panel/JournalPanel.cpp:1141
+#: panel/JournalPanel.cpp:1144
 msgid "Click to hide scheduled transactions."
 msgstr "예약된 거래를 숨기려면 클릭하세요."
 
-#: panel/JournalPanel.cpp:1272
+#: panel/JournalPanel.cpp:1275
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "선택한 거래: %zu"
 
-#: panel/JournalPanel.cpp:1275
+#: panel/JournalPanel.cpp:1278
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr "선택한 거래 총액: %s"
 
-#: panel/JournalPanel.cpp:1280
+#: panel/JournalPanel.cpp:1283
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "선택한 거래 사이의 일 수: %d"
 
-#: panel/JournalPanel.cpp:1401 panel/ReportPanel.cpp:1103
+#: panel/JournalPanel.cpp:1404 panel/ReportPanel.cpp:1103
 msgid "Edit date ranges…"
 msgstr "날짜 범위 편집…"
 
-#: panel/JournalPanel.cpp:1549
+#: panel/JournalPanel.cpp:1552
 msgid "&New Withdrawal…"
 msgstr "출금 생성(&N)…"
 
-#: panel/JournalPanel.cpp:1550
+#: panel/JournalPanel.cpp:1553
 msgid "&New Deposit…"
 msgstr "입금 생성(&N)…"
 
-#: panel/JournalPanel.cpp:1551
+#: panel/JournalPanel.cpp:1554
 msgid "&New Transfer…"
 msgstr "이체 생성(&N)…"
 
