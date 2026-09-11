@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-08-31 23:08+0000\n"
-"PO-Revision-Date: 2026-09-04 02:11\n"
+"PO-Revision-Date: 2026-09-11 02:14\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -8253,7 +8253,7 @@ msgstr "Mostrar livro caixa para portfólios"
 
 #: pref/ViewPref.cpp:119
 msgid "Automatically resize columns to fit panel"
-msgstr ""
+msgstr "Redimensionar automaticamente as colunas para caber no painel"
 
 #: pref/ViewPref.cpp:127
 msgid "Do not use color for future transactions"
@@ -9115,7 +9115,7 @@ msgstr "Libra das Ilhas Malvinas"
 
 #: table/CurrencyTable.cpp:287
 msgid "Fijian dollar"
-msgstr ""
+msgstr "Dólar de Fiji"
 
 #: table/CurrencyTable.cpp:288
 msgid "CFP franc"
@@ -9123,143 +9123,143 @@ msgstr "Franc CFP"
 
 #: table/CurrencyTable.cpp:289
 msgid "Gambian dalasi"
-msgstr ""
+msgstr "Dalasi gambiano"
 
 #: table/CurrencyTable.cpp:290
 msgid "Georgian lari"
-msgstr ""
+msgstr "Lari georgiano"
 
 #: table/CurrencyTable.cpp:291
 msgid "Ghanaian cedi"
-msgstr ""
+msgstr "Cedi ganês"
 
 #: table/CurrencyTable.cpp:292
 msgid "Gibraltar pound"
-msgstr ""
+msgstr "Libra de Gibraltar"
 
 #: table/CurrencyTable.cpp:293
 msgid "Guatemalan quetzal"
-msgstr ""
+msgstr "Quetzal guatemalteco"
 
 #: table/CurrencyTable.cpp:294
 msgid "Guinean franc"
-msgstr ""
+msgstr "Franco da Guiné"
 
 #: table/CurrencyTable.cpp:295
 msgid "Guyanaese dollar"
-msgstr ""
+msgstr "Dólar guianense"
 
 #: table/CurrencyTable.cpp:296
 msgid "Haitian gourde"
-msgstr ""
+msgstr "Gourde haitiano"
 
 #: table/CurrencyTable.cpp:297
 msgid "Honduran lempira"
-msgstr ""
+msgstr "Lempira das Honduras"
 
 #: table/CurrencyTable.cpp:298
 msgid "Hong Kong dollar"
-msgstr ""
+msgstr "Dólar de Hong Kong"
 
 #: table/CurrencyTable.cpp:299
 msgid "Hungarian forint"
-msgstr ""
+msgstr "Florim Húngaro"
 
 #: table/CurrencyTable.cpp:301
 msgid "Indian rupee"
-msgstr ""
+msgstr "Rúpia indiana"
 
 #: table/CurrencyTable.cpp:302
 msgid "Indonesian rupiah"
-msgstr ""
+msgstr "Rupia Indonésia"
 
 #: table/CurrencyTable.cpp:303
 msgid "Special drawing rights"
-msgstr ""
+msgstr "Direitos Especiais de Saque"
 
 #: table/CurrencyTable.cpp:304
 msgid "Iranian rial"
-msgstr ""
+msgstr "Rial Iraniano"
 
 #: table/CurrencyTable.cpp:305
 msgid "Iraqi dinar"
-msgstr ""
+msgstr "Dinar iraquiano"
 
 #: table/CurrencyTable.cpp:306
 msgid "Israeli new shekel"
-msgstr ""
+msgstr "Novo shekel israelense"
 
 #: table/CurrencyTable.cpp:307
 msgid "Jamaican dollar"
-msgstr ""
+msgstr "Dólar jamaicano"
 
 #: table/CurrencyTable.cpp:308
 msgid "Japanese yen"
-msgstr ""
+msgstr "Iene Japonês"
 
 #: table/CurrencyTable.cpp:309
 msgid "Jordanian dinar"
-msgstr ""
+msgstr "Dinar jordano"
 
 #: table/CurrencyTable.cpp:310
 msgid "Kazakhstani tenge"
-msgstr ""
+msgstr "Tenge Cazaque"
 
 #: table/CurrencyTable.cpp:311
 msgid "Kenyan shilling"
-msgstr ""
+msgstr "Xelim queniano"
 
 #: table/CurrencyTable.cpp:312
 msgid "North Korean won"
-msgstr ""
+msgstr "Won da Coréia do Norte"
 
 #: table/CurrencyTable.cpp:313
 msgid "South Korean won"
-msgstr ""
+msgstr "Won da Coreia do Sul"
 
 #: table/CurrencyTable.cpp:314
 msgid "Kuwaiti dinar"
-msgstr ""
+msgstr "Dinar do Kuwait"
 
 #: table/CurrencyTable.cpp:315
 msgid "Kyrgystani som"
-msgstr ""
+msgstr "Som do Quirguistão"
 
 #: table/CurrencyTable.cpp:316
 msgid "Laotian kip"
-msgstr ""
+msgstr "Kip de Laos"
 
 #: table/CurrencyTable.cpp:317
 msgid "Latvian lats"
-msgstr ""
+msgstr "Lats letão"
 
 #: table/CurrencyTable.cpp:318
 msgid "Lebanese pound"
-msgstr ""
+msgstr "Libra Libanesa"
 
 #: table/CurrencyTable.cpp:319
 msgid "Lesotho loti"
-msgstr ""
+msgstr "Loti do Lesoto"
 
 #: table/CurrencyTable.cpp:320
 msgid "Liberian dollar"
-msgstr ""
+msgstr "Dólar liberiano"
 
 #: table/CurrencyTable.cpp:321
 msgid "Libyan dinar"
-msgstr ""
+msgstr "Dinar da Líbia"
 
 #: table/CurrencyTable.cpp:322
 msgid "Lithuanian litas"
-msgstr ""
+msgstr "Lita da Lituânia"
 
 #: table/CurrencyTable.cpp:323
 msgid "Macanese pataca"
-msgstr ""
+msgstr "Pataca Macaense"
 
 #: table/CurrencyTable.cpp:324
 msgid "Macedonian denar"
-msgstr ""
+msgstr "Denar macedônio"
 
 #: table/CurrencyTable.cpp:325
 msgid "Malagasy ariary"
@@ -9535,7 +9535,7 @@ msgstr ""
 
 #: table/CurrencyTable.cpp:399
 msgid "Uruguayan nominal wage index unit"
-msgstr ""
+msgstr "Unidade do índice de salários nominais do Uruguai"
 
 #: table/CurrencyTable.cpp:402
 msgid "Zambian kwacha"
@@ -9543,7 +9543,7 @@ msgstr ""
 
 #: table/CurrencyTable.cpp:403
 msgid "Zimbabwean dollar (2009)"
-msgstr ""
+msgstr "Dólar do Zimbábue (2008)"
 
 #: util/_primitive.cpp:64
 msgid "February"
