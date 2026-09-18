@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-08-31 23:08+0000\n"
-"PO-Revision-Date: 2026-09-04 02:11\n"
+"PO-Revision-Date: 2026-09-18 02:26\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -8218,7 +8218,7 @@ msgstr ""
 
 #: pref/ViewPref.cpp:119
 msgid "Automatically resize columns to fit panel"
-msgstr ""
+msgstr "Ändra automatiskt storlek på kolumner för att passa panelen"
 
 #: pref/ViewPref.cpp:127
 msgid "Do not use color for future transactions"
