@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-08-31 23:08+0000\n"
-"PO-Revision-Date: 2026-09-04 02:11\n"
+"PO-Revision-Date: 2026-09-18 02:26\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -20,15 +20,16 @@ msgstr ""
 #: app/mmApp.cpp:178
 msgid "Fatal error occured.\n"
 "Application will be terminated."
-msgstr ""
+msgstr "Сталася фатальна помилка.\n"
+"Програма буде закрита."
 
 #: app/mmFrame.cpp:359
 msgid "Navigator"
-msgstr ""
+msgstr "Навігатор"
 
 #: app/mmFrame.cpp:360 pref/ViewPref.cpp:106
 msgid "Toolbar"
-msgstr ""
+msgstr "Панель інструментів"
 
 #: app/mmFrame.cpp:631
 msgid "Auto Repeat Transactions"
@@ -45,7 +46,7 @@ msgstr ""
 #: manager/CategoryManager.cpp:566 manager/PayeeManager.cpp:805
 #: manager/TagManager.cpp:366 model/SchedModel.cpp:140
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "Ви хочете продовжити?"
 
 #: app/mmFrame.cpp:1544
 msgid "The selected item will be deleted."
@@ -86,7 +87,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1647
 msgid "This will also delete any associated Shares."
-msgstr ""
+msgstr "Це також призведе до видалення всіх пов’язаних з ними публікацій."
 
 #: app/mmFrame.cpp:1651 app/mmFrame.cpp:4115
 msgid "Confirm Account Deletion"
@@ -94,7 +95,7 @@ msgstr "Підтвердження видалення рахунку"
 
 #: app/mmFrame.cpp:1665 app/mmFrame.cpp:1875
 msgid "&Import from"
-msgstr ""
+msgstr "Імпортувати з"
 
 #: app/mmFrame.cpp:1666
 msgid "&CSV Files…"
