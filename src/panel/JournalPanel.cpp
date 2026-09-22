@@ -633,12 +633,18 @@ void JournalPanel::filterList()
     bool ignore_future = PrefModel::instance().getIgnoreFutureTransactions();
     mmDate range_start = m_date_range.rangeStartN().value();
     mmDate range_end = m_date_range.rangeEndN().value();
-    // Maxiumum future range is 30 days for scheduled transactions
-    mmDate scheduled_range_end = mmDate::today().plusDateSpan(wxDateSpan::Days(30));
-    if (range_end < scheduled_range_end) {
-        scheduled_range_end = range_end;
-    }
 
+    // If unbounded "All" filter is selected, then extract all transactions if future transactions are needed
+    // and maximum future range for scheduled transactions is 30 days.
+    // For everything else use whatever the end date is.
+    mmDate extract_end = ignore_future ? range_end : mmDate::max();;
+    mmDate scheduled_range_end = mmDate::today().plusDateSpan(wxDateSpan::Days(30));
+    if (m_date_range.rangeName() != m_date_range_a[0].getName()) // Check for "All" range
+    {
+        scheduled_range_end = range_end;
+        extract_end = range_end;
+    }
+ 
     int sn = 0; // sequence number
     m_flow = 0.0;
     m_balance = m_account_n ? m_account_n->m_open_balance : 0.0;
@@ -650,7 +656,7 @@ void JournalPanel::filterList()
     TrxModel::DataA trx_a =
         isDeletedTrans() ? TrxModel::instance().find_data_a(
             TrxModel::WHERE_DATE(OP_GE, range_start),
-            TrxModel::WHERE_DATE(OP_LE, range_end),
+            TrxModel::WHERE_DATE(OP_LE, extract_end),
             TrxModel::WHERE_IS_DELETED(true)
         )
         : isAccount() ? TrxModel::instance().find_data_a(
@@ -658,12 +664,12 @@ void JournalPanel::filterList()
                 TrxCol::WHERE_ACCOUNTID(OP_EQ, m_account_n->m_id),
                 TrxCol::WHERE_TOACCOUNTID(OP_EQ, m_account_n->m_id),
             TableClause::END(),
-            TrxModel::WHERE_DATE(OP_LE, range_end),
+            TrxModel::WHERE_DATE(OP_LE, extract_end),
             TrxModel::WHERE_IS_DELETED(false)
         )
         : TrxModel::instance().find_data_a(
             TrxModel::WHERE_DATE(OP_GE, range_start),
-            TrxModel::WHERE_DATE(OP_LE, range_end),
+            TrxModel::WHERE_DATE(OP_LE, extract_end),
             TrxModel::WHERE_IS_DELETED(false)
         );
     if (PrefModel::instance().getUseTransDateTime()) {
@@ -837,8 +843,8 @@ void JournalPanel::filterList()
                 m_show_reconciled = true;
         }
 
-        if (trx_dateTime.date() < range_start || 
-            trx_dateTime.date() > ((repeat_id < 0) ? range_end : scheduled_range_end))
+        if (!is_future && ((trx_dateTime.date() < range_start || 
+            (trx_dateTime.date() > range_end))))
             continue;
 
         Journal::DataExt journal_dx = (repeat_id < 0)
@@ -1083,7 +1089,7 @@ void JournalPanel::updateFilter()
         ));
         // TODO: calculate default start/end dates from model
         m_date_range.setDefStartDateN(mmDate::min());
-        m_date_range.setDefEndDateN(mmDate::max());
+        m_date_range.setDefEndDateN(mmDate::today());
         // copy from date range to start/end pickers
         w_start_date->SetValue(
             m_date_range.rangeStartN().value().dateTime()
