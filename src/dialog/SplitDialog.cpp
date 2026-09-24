@@ -393,8 +393,8 @@ void SplitDialog::activateNewRow()
         {
             Split s = { -1, 0, "", {} };
             m_splits.push_back(s);
+            m_splits_widgets.at(row_num_).category->mmDoReInitialize();
         }
-        m_splits_widgets.at(row_num_).category->mmDoReInitialize();
         m_splits_widgets.at(row_num_).category->Enable(true);
         m_splits_widgets.at(row_num_).amount->Enable(true);
         m_splits_widgets.at(row_num_).tags->Enable(true);
