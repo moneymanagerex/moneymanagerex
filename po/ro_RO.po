@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-08-31 23:08+0000\n"
-"PO-Revision-Date: 2026-09-04 02:11\n"
+"PO-Revision-Date: 2026-09-25 02:41\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
@@ -25,7 +25,7 @@ msgstr "A apărut o eroare fatală.\n"
 
 #: app/mmFrame.cpp:359
 msgid "Navigator"
-msgstr ""
+msgstr "Navigator"
 
 #: app/mmFrame.cpp:360 pref/ViewPref.cpp:106
 msgid "Toolbar"
@@ -37,7 +37,7 @@ msgstr "Repetare automată a tranzacțiilor"
 
 #: app/mmFrame.cpp:1088
 msgid "Cash Ledger"
-msgstr ""
+msgstr "Registru de casă"
 
 #: app/mmFrame.cpp:1544 app/mmFrame.cpp:2828 app/mmFrame.cpp:2895
 #: app/mmFrame.cpp:2913 dialog/FieldDialog.cpp:244 dialog/FieldDialog.cpp:265
@@ -46,7 +46,7 @@ msgstr ""
 #: manager/CategoryManager.cpp:566 manager/PayeeManager.cpp:805
 #: manager/TagManager.cpp:366 model/SchedModel.cpp:140
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "Doriți să continuați?"
 
 #: app/mmFrame.cpp:1544
 msgid "The selected item will be deleted."
@@ -83,11 +83,11 @@ msgstr "Lista Tranzacțiilor"
 
 #: app/mmFrame.cpp:1643
 msgid "Do you want to delete the account?"
-msgstr ""
+msgstr "Doriți să ștergeți contul?"
 
 #: app/mmFrame.cpp:1647
 msgid "This will also delete any associated Shares."
-msgstr ""
+msgstr "Această acțiune va șterge și toate acțiunile asociate."
 
 #: app/mmFrame.cpp:1651 app/mmFrame.cpp:4115
 msgid "Confirm Account Deletion"
@@ -139,7 +139,7 @@ msgstr "Fișier &QIF…"
 
 #: app/mmFrame.cpp:1704
 msgid "&Customize Report…"
-msgstr ""
+msgstr "Personalizați raportul..."
 
 #: app/mmFrame.cpp:1705
 msgid "&Rename Report…"
@@ -151,15 +151,15 @@ msgstr "&Șterge raportul…"
 
 #: app/mmFrame.cpp:1722 app/mmFrame.cpp:1741
 msgid "&Reconcile Account"
-msgstr ""
+msgstr "&Reconsiliați Contul"
 
 #: app/mmFrame.cpp:1724 app/mmFrame.cpp:1743
 msgid "&Launch Account Website"
-msgstr "&Lansează Situl Contului"
+msgstr "&Lansează Site-ul Contului"
 
 #: app/mmFrame.cpp:1725 app/mmFrame.cpp:1744
 msgid "&Attachment Manager…"
-msgstr ""
+msgstr "Manager atașamente..."
 
 #: app/mmFrame.cpp:1727 app/mmFrame.cpp:1748 app/mmFrame.cpp:1771
 #: app/mmFrame.cpp:2056
@@ -169,15 +169,15 @@ msgstr "&Editează Contul…"
 #: app/mmFrame.cpp:1728 app/mmFrame.cpp:1751 app/mmFrame.cpp:1777
 #: app/mmFrame.cpp:2070
 msgid "&Delete Account…"
-msgstr "Șter&ge Contul…"
+msgstr "&Șterge Contul…"
 
 #: app/mmFrame.cpp:1749 app/mmFrame.cpp:2063
 msgid "&Change Account Type…"
-msgstr ""
+msgstr "&Schimbați tipul de cont..."
 
 #: app/mmFrame.cpp:1767 app/mmFrame.cpp:2049
 msgid "&New Account…"
-msgstr "&Cont Nou…"
+msgstr "Cont &Nou…"
 
 #: app/mmFrame.cpp:1773
 msgid "Account &List"
@@ -201,7 +201,7 @@ msgstr "&Închis"
 
 #: app/mmFrame.cpp:1801
 msgid "Accounts &Visible"
-msgstr ""
+msgstr "Conturi &vizibil"
 
 #: app/mmFrame.cpp:1804
 msgid "Co&llapse All"
@@ -209,7 +209,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1814
 msgid "&Expand All"
-msgstr ""
+msgstr "măriți tot"
 
 #: app/mmFrame.cpp:1815
 msgid "&Collapse All"
@@ -217,7 +217,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1817
 msgid "&Navigator configuration…"
-msgstr ""
+msgstr "&Configurare Navigator..."
 
 #: app/mmFrame.cpp:1818 app/mmFrame.cpp:2142
 msgid "T&heme Manager…"
@@ -266,11 +266,11 @@ msgstr "Importă din fișierul QIF"
 
 #: app/mmFrame.cpp:1881
 msgid "&OFX File…"
-msgstr ""
+msgstr "Fișier &OFX..."
 
 #: app/mmFrame.cpp:1881
 msgid "Import from OFX file"
-msgstr ""
+msgstr "Importați din fișier OFX"
 
 #: app/mmFrame.cpp:1883
 msgid "&WebApp…"
@@ -278,7 +278,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1883
 msgid "Import from the WebApp"
-msgstr ""
+msgstr "Importați de pe aplicația web"
 
 #: app/mmFrame.cpp:1887 import_export/qif_export.cpp:55
 #: import_export/univcsvdialog.cpp:142
@@ -336,11 +336,11 @@ msgstr "Arată/Ascunde Bara de Unelte"
 
 #: app/mmFrame.cpp:1920
 msgid "&Navigator"
-msgstr ""
+msgstr "&Navigator"
 
 #: app/mmFrame.cpp:1921
 msgid "Show/Hide Navigator"
-msgstr ""
+msgstr "Arată/Ascunde Navigator"
 
 #: app/mmFrame.cpp:1927
 msgid "&Display Share Accounts"
@@ -356,7 +356,7 @@ msgstr "Afișează &tranzacțiile șterse"
 
 #: app/mmFrame.cpp:1935
 msgid "Show/Hide Deleted Transactions in Navigator"
-msgstr ""
+msgstr "Arată/Ascunde Tranzacții șterse în navigator"
 
 #: app/mmFrame.cpp:1941
 msgid "Budgets: As Financial &Years"
@@ -388,7 +388,7 @@ msgstr "Ignoră tranzacțiile &viitoare"
 
 #: app/mmFrame.cpp:1963 pref/DashboardPref.cpp:126 pref/TrxPref.cpp:244
 msgid "Ignore Future Transactions"
-msgstr ""
+msgstr "Ignoră viitoare tranzacții"
 
 #: app/mmFrame.cpp:1969
 msgid "Show T&ooltips"
@@ -408,7 +408,7 @@ msgstr "Arată ponturi despre bani"
 
 #: app/mmFrame.cpp:2001
 msgid "&Full Screen"
-msgstr ""
+msgstr "&Full Screen"
 
 #: app/mmFrame.cpp:2002
 msgid "Toggle full screen"
@@ -471,7 +471,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2091 manager/PayeeManager.cpp:539
 msgid "Payee Manager"
-msgstr ""
+msgstr "Manager beneficiari"
 
 #: app/mmFrame.cpp:2095
 msgid "&Category Manager…"
@@ -515,7 +515,7 @@ msgstr "&Beneficiari…"
 
 #: app/mmFrame.cpp:2111
 msgid "Merge payees"
-msgstr ""
+msgstr "Combinați beneficiari"
 
 #: app/mmFrame.cpp:2113
 msgid "&Tags…"
@@ -540,7 +540,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2128 app/mmFrame.cpp:3344 util/mmNavigatorList.cpp:68
 msgid "Budget Planner"
-msgstr ""
+msgstr "Planificare buget"
 
 #: app/mmFrame.cpp:2132
 msgid "&Scheduled Transactions"
@@ -548,7 +548,7 @@ msgstr "&Tranzacții programate"
 
 #: app/mmFrame.cpp:2132
 msgid "Bills and Deposits"
-msgstr ""
+msgstr "Facturi și depozite"
 
 #: app/mmFrame.cpp:2136
 msgid "&Assets"
@@ -607,7 +607,7 @@ msgstr "Reîmprospătare WebApp"
 
 #: app/mmFrame.cpp:2171
 msgid "&Settings…"
-msgstr ""
+msgstr "&Setări..."
 
 #: app/mmFrame.cpp:2171 app/mmFrame.cpp:3395 dialog/ReconcileDialog.cpp:169
 #: dialog/TrxFilterDialog.cpp:817 manager/PrefManager.cpp:223
@@ -677,15 +677,15 @@ msgstr "Pagină Web"
 
 #: app/mmFrame.cpp:2211 dialog/StartupDialog.cpp:143
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "Vizitați site-ul MMEX pentru cele mai noi știri și actualizări"
 
 #: app/mmFrame.cpp:2213
 msgid "Face&book"
-msgstr ""
+msgstr "Face&book"
 
 #: app/mmFrame.cpp:2213
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "Vizitați pagina de Facebook MMEX"
 
 #: app/mmFrame.cpp:2215
 msgid "&Crowdin"
@@ -701,7 +701,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2217
 msgid "Follow MMEX on X"
-msgstr ""
+msgstr "Urmăriți MMEX pe X"
 
 #: app/mmFrame.cpp:2219
 msgid "&YouTube"
@@ -709,7 +709,7 @@ msgstr "&YouTube"
 
 #: app/mmFrame.cpp:2219
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "Urmăriți videoclipuri MMEX pe YouTube"
 
 #: app/mmFrame.cpp:2221
 msgid "&Slack"
@@ -717,7 +717,7 @@ msgstr "&Slack"
 
 #: app/mmFrame.cpp:2221
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "Comunicați cu echipa MMEX online"
 
 #: app/mmFrame.cpp:2223
 msgid "&GitHub"
@@ -729,7 +729,7 @@ msgstr "Accesează depozitul de cod open source și urmărește starea erorilor 
 
 #: app/mmFrame.cpp:2225
 msgid "Read and update MMEX wiki"
-msgstr ""
+msgstr "Citiți și actualizați MMEX wiki"
 
 #: app/mmFrame.cpp:2225
 msgid "Wi&ki"
@@ -737,19 +737,19 @@ msgstr ""
 
 #: app/mmFrame.cpp:2227 dialog/StartupDialog.cpp:147
 msgid "&Forum"
-msgstr ""
+msgstr "&Forum"
 
 #: app/mmFrame.cpp:2228 dialog/StartupDialog.cpp:149
 msgid "Visit MMEX forum to read and post comments and for support"
-msgstr ""
+msgstr "Vizitați forumul MMEX pentru a citi și posta comentarii și pentru ajutor"
 
 #: app/mmFrame.cpp:2230
 msgid "MMEX for &iOS"
-msgstr ""
+msgstr "MMEX pentru &iOS"
 
 #: app/mmFrame.cpp:2231
 msgid "Install MMEX on iPads and iPhones"
-msgstr ""
+msgstr "Instalați MMEX pe iPad și iPhone"
 
 #: app/mmFrame.cpp:2233
 msgid "MMEX for &Android"
@@ -757,7 +757,7 @@ msgstr "MMEX pentru &Android"
 
 #: app/mmFrame.cpp:2234
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "Instalați MMEX pe telefoane și tablete Android"
 
 #: app/mmFrame.cpp:2236
 msgid "&Newsletter"
@@ -765,7 +765,7 @@ msgstr "Buletin i&nformativ"
 
 #: app/mmFrame.cpp:2237
 msgid "Visit the MMEX blog to view announcements"
-msgstr ""
+msgstr "Vizitați blogul MMEX pentru a vedea anunțuri"
 
 #: app/mmFrame.cpp:2239
 msgid "&RSS Feed"
@@ -837,7 +837,7 @@ msgstr "&Despre"
 
 #: app/mmFrame.cpp:2292
 msgid "About dialog"
-msgstr ""
+msgstr "Despre dialog"
 
 #: app/mmFrame.cpp:2296
 msgid "&File"
@@ -873,7 +873,7 @@ msgstr "MMEX: Bază de date criptată"
 
 #: app/mmFrame.cpp:2448 db/dbwrapper.cpp:126
 msgid "Opening MMEX Database – Error"
-msgstr ""
+msgstr "Deschidere bază de date MMEX – Eroare"
 
 #: app/mmFrame.cpp:2482
 msgid "Have MMEX support provided a debug/patch file?"
@@ -897,11 +897,11 @@ msgstr "&Următoarea →"
 
 #: app/mmFrame.cpp:2589
 msgid "Unable to find previously opened database."
-msgstr ""
+msgstr "Nu am putut găsi baza de date deschisă anterior."
 
 #: app/mmFrame.cpp:2591
 msgid "Password not entered for encrypted database."
-msgstr ""
+msgstr "Parola pentru baza de date criptată nu a fost introdusă."
 
 #: app/mmFrame.cpp:2614
 msgid "portable mode"
@@ -915,7 +915,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2652
 msgid "Do you want to open the database?"
-msgstr ""
+msgstr "Doriți să deschideți baza de date?"
 
 #: app/mmFrame.cpp:2653
 msgid "MMEX Instance Check"
@@ -936,7 +936,7 @@ msgstr "Alege fişierul bazei de date pentru al deschide"
 
 #: app/mmFrame.cpp:2705 app/mmFrame.cpp:2734 app/mmFrame.cpp:2939
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "Baza de date MMEX criptată"
 
 #: app/mmFrame.cpp:2706
 msgid "MMEX Database Backup"
@@ -960,7 +960,7 @@ msgstr "Alege fişierul bazei de date pentru a fi salvat ca"
 
 #: app/mmFrame.cpp:2777
 msgid "Converted database!"
-msgstr ""
+msgstr "Dată de baze convertită!"
 
 #: app/mmFrame.cpp:2777
 msgid "MMEX message"
@@ -1018,15 +1018,15 @@ msgstr "Eroare debug MMEX"
 
 #: app/mmFrame.cpp:2875
 msgid "Database Check"
-msgstr ""
+msgstr "Verificare bază de date"
 
 #: app/mmFrame.cpp:2875
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "Rezultatul verificării integrității bazei de date:"
 
 #: app/mmFrame.cpp:2894
 msgid "Please use this function only if requested by MMEX support and an .mmdbg debug file has been supplied."
-msgstr ""
+msgstr "Vă rugăm utilizați această funcție doar dacă ați fost îndrumați de MMEX și dacă ați primit un fișier.mmdbg."
 
 #: app/mmFrame.cpp:2897
 msgid "Database Debug"
@@ -1046,11 +1046,11 @@ msgstr ""
 
 #: app/mmFrame.cpp:2914 app/mmFrame.cpp:2920
 msgid "Cookie Reset"
-msgstr ""
+msgstr "Resetați cookie-urile"
 
 #: app/mmFrame.cpp:2920
 msgid "Cookies have been reset"
-msgstr ""
+msgstr "Cookie-urile au fost resetate"
 
 #: app/mmFrame.cpp:2936 app/mmFrame.cpp:2959
 msgid "Save database file as"
@@ -1058,7 +1058,7 @@ msgstr "Salvează fișierul bazei de date ca"
 
 #: app/mmFrame.cpp:2958
 msgid "Unable to copy file to itself"
-msgstr ""
+msgstr "Nu s-a putut copia fișierul"
 
 #: app/mmFrame.cpp:2972
 msgid "Enter password for new database"
@@ -1108,11 +1108,11 @@ msgstr "Conturile de acțiuni conțin tranzacții cu acțiuni\n\n"
 
 #: app/mmFrame.cpp:3168
 msgid "Share Account Creation"
-msgstr ""
+msgstr "Distribuiți crearea contului"
 
 #: app/mmFrame.cpp:3249
 msgid "Transactions per payee"
-msgstr ""
+msgstr "Tranzacții per beneficiar"
 
 #: app/mmFrame.cpp:3393
 msgid "Settings have been updated."
@@ -1138,7 +1138,7 @@ msgstr "Rapoarte"
 
 #: app/mmFrame.cpp:3602
 msgid "Choose HTML file to export"
-msgstr ""
+msgstr "Alegeți un fișier HTML de exportat"
 
 #: app/mmFrame.cpp:3745 panel/SchedPanel.h:73 util/mmNavigatorList.cpp:56
 msgid "Scheduled Transactions"
@@ -1184,20 +1184,20 @@ msgstr "Alege contul de șters"
 #, c-format
 msgid "Do you you want to delete\n"
 "%1$s account: %2$s?"
-msgstr ""
+msgstr "Doriți să ștergeți %1$s cont: %2$s?"
 
 #: app/mmFrame.cpp:4130
 msgid "Select account"
-msgstr ""
+msgstr "Selectați contul"
 
 #: app/mmFrame.cpp:4131 app/mmFrame.cpp:4154
 msgid "Change Account Type"
-msgstr ""
+msgstr "Schimbați tipul de cont"
 
 #: app/mmFrame.cpp:4153
 #, c-format
 msgid "Select new account type for %s"
-msgstr ""
+msgstr "Selectați noul tip de cont pentru %s"
 
 #: app/mmFrame.cpp:4320 manager/CategoryManager.cpp:739
 msgid "Merge categories completed"
@@ -1215,11 +1215,11 @@ msgstr "Rezultatul îmbinării categoriilor"
 
 #: app/mmFrame.cpp:4334 manager/PayeeManager.cpp:876
 msgid "Merge payees completed"
-msgstr ""
+msgstr "Îmbibarea beneficiarilor finalizată"
 
 #: app/mmFrame.cpp:4338 manager/PayeeManager.cpp:880
 msgid "Merge payees result"
-msgstr ""
+msgstr "Rezultatul îmbinării beneficiarilor"
 
 #: app/mmFrame.cpp:4349
 msgid "Merge tags completed"
@@ -1298,7 +1298,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:4580 pref/DashboardPref.cpp:83
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "Venit vs. Cheltuieli"
 
 #: app/mmFrame.cpp:4591
 msgid "My Usage"
@@ -1318,11 +1318,11 @@ msgstr "Anuală"
 
 #: app/mmFrame.cpp:4631
 msgid "Budgets"
-msgstr ""
+msgstr "Bugete"
 
 #: app/mmFrame.cpp:4634
 msgid "Budget Performance"
-msgstr ""
+msgstr "Performanța bugetului"
 
 #: app/mmFrame.cpp:4637
 msgid "Budget Category Summary"
@@ -1334,7 +1334,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:4757 panel/ReportPanel.cpp:390
 msgid "Hide"
-msgstr ""
+msgstr "Ascunde"
 
 #: base/_constants.cpp:89 import_export/qif_import_gui.cpp:817
 #: import_export/qif_import_gui.cpp:846 import_export/qif_import_gui.cpp:870
@@ -1429,7 +1429,7 @@ msgstr "Copiază tot textul în clipboard"
 
 #: base/mmTips.h:22
 msgid "Recommendation: Back up the .mmb database file regularly."
-msgstr ""
+msgstr "Recomandare: copiați data de baze a fișierului .mmb regulat."
 
 #: base/mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, ensure the .mmb database file is backed up before doing so."
@@ -1653,7 +1653,7 @@ msgstr ""
 
 #: data/_DataEnum.cpp:57
 msgid "Linear"
-msgstr ""
+msgstr "Liniar"
 
 #: data/_DataEnum.cpp:62 data/_DataEnum.cpp:111
 msgid "Weekly"
@@ -1681,7 +1681,7 @@ msgstr ""
 
 #: data/_DataEnum.cpp:74
 msgid "Crypto"
-msgstr ""
+msgstr "Crypto"
 
 #: data/_DataEnum.cpp:78
 msgid "String"
