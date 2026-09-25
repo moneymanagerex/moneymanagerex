@@ -29,6 +29,7 @@
 #include <unordered_set>
 #include <wx/fs_mem.h>
 #include <wx/busyinfo.h>
+#include <wx/choicdlg.h>
 
 #include "base/_constants.h"
 #include "util/mmImage.h"
@@ -70,12 +71,14 @@
 #include "dialog/AboutDialog.h"
 #include "dialog/AccountDialog.h"
 #include "dialog/AttachmentDialog.h"
+#include "dialog/BudgetSegmentDialog.h"
 #include "dialog/BudgetYearDialog.h"
 #include "dialog/CurrencyChoiceDialog.h"
 #include "dialog/DiagnosticsDialog.h"
 #include "dialog/MergeCategoryDialog.h"
 #include "dialog/MergePayeeDialog.h"
 #include "dialog/MergeTagDialog.h"
+#include "dialog/PlanManagerDialog.h"
 #include "dialog/SchedDialog.h"
 #include "dialog/StartupDialog.h"
 #include "dialog/TrxDialog.h"
@@ -173,6 +176,8 @@ EVT_MENU(wxID_PREFERENCES,                     mmFrame::OnOptions)
 EVT_MENU(wxID_NEW,                             mmFrame::OnNewTransaction)
 EVT_MENU(wxID_REFRESH,                         mmFrame::refreshPanelData)
 EVT_MENU(MENU_BUDGETSETUPDIALOG,               mmFrame::OnBudgetSetupDialog)
+EVT_MENU(MENU_BUDGET_SEGMENTS,                mmFrame::OnBudgetSegments)
+EVT_MENU(MENU_PLAN_MANAGER,                   mmFrame::OnPlanManager)
 
 EVT_MENU(MENU_TRANSACTIONS_ALL,                mmFrame::OnTransactionsAll)
 EVT_MENU(MENU_TRANSACTIONS_DEL,                mmFrame::OnTransactionsDel)
@@ -1434,6 +1439,14 @@ void mmFrame::navTreeSelection(wxTreeItemId selectedItem)
     }
     case mmTreeItemData::BUDGET:
         return createBudgetingPage(iData->getId());
+    case mmTreeItemData::BUDGET_SEGMENT: {
+        // The id is the segment's; the page needs the period it belongs to.
+        const BudgetSegmentData* seg_n =
+            BudgetSegmentModel::instance().get_idN_data_n(iData->getId());
+        if (!seg_n)
+            return;
+        return createBudgetingPage(seg_n->m_period_id, seg_n->m_id);
+    }
     case mmTreeItemData::REPORT:
         activeReport_ = true;
         return createReportsPage(iData->getReport(), false);
@@ -1695,6 +1708,7 @@ void mmFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         return showEmptyTreePopupMenu(pt);
     case mmTreeItemData::HELP_BUDGET:
     case mmTreeItemData::BUDGET:
+    case mmTreeItemData::BUDGET_SEGMENT:
         return OnBudgetSetupDialog(e);
     case mmTreeItemData::FILTER:
         return OnTransactionReport(e);
@@ -2128,6 +2142,14 @@ void mmFrame::createMenu()
         , _tu("&Budget Planner…"), _t("Budget Planner"));
     menuTools->Append(menuItemBudgeting);
 
+    wxMenuItem* menuItemSegments = new wxMenuItem(menuTools, MENU_BUDGET_SEGMENTS
+        , _tu("Budget &Segments…"), _t("Split a budget period into paycheck-aligned parts"));
+    menuTools->Append(menuItemSegments);
+
+    wxMenuItem* menuItemPlan = new wxMenuItem(menuTools, MENU_PLAN_MANAGER
+        , _tu("&Long-Term Plan…"), _t("Plan future income and expenses"));
+    menuTools->Append(menuItemPlan);
+
     wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
         , _t("&Scheduled Transactions"), _t("Bills and Deposits"));
     menuTools->Append(menuItemBillsDeposits);
@@ -2407,6 +2429,11 @@ void mmFrame::InitializeModelTables()
     m_all_models.push_back(&TagLinkModel::instance(m_db.get()));
     m_all_models.push_back(&TrxLinkModel::instance(m_db.get()));
     m_all_models.push_back(&TrxShareModel::instance(m_db.get()));
+    m_all_models.push_back(&BudgetSegmentModel::instance(m_db.get()));
+    m_all_models.push_back(&PlanAssumptionModel::instance(m_db.get()));
+    m_all_models.push_back(&PlanAssumptionGroupModel::instance(m_db.get()));
+    m_all_models.push_back(&PlanGroupModel::instance(m_db.get()));
+    m_all_models.push_back(&PlanItemModel::instance(m_db.get()));
 
     ModelAll::instance(m_db.get());
 }
@@ -3344,6 +3371,46 @@ void mmFrame::OnBudgetSetupDialog(wxCommandEvent& WXUNUSED(event))
     setNavTreeSection(_t("Budget Planner"));
 }
 
+void mmFrame::OnBudgetSegments(wxCommandEvent& WXUNUSED(event))
+{
+    if (!m_db)
+        return;
+
+    // Segments belong to a budget period, so one has to exist first.
+    BudgetPeriodModel::DataA bp_a = BudgetPeriodModel::instance().find_data_a(
+        TableClause::ORDERBY(BudgetPeriodCol::NAME_BUDGETYEARNAME)
+    );
+    if (bp_a.empty()) {
+        wxMessageBox(
+            _t("Create a budget period first, then split it into segments."),
+            _t("Budget Segments"), wxOK | wxICON_INFORMATION, this);
+        return;
+    }
+
+    wxArrayString names;
+    for (const auto& bp : bp_a)
+        names.Add(bp.m_name);
+
+    const int sel = wxGetSingleChoiceIndex(
+        _t("Select the budget period to segment"),
+        _t("Budget Segments"), names, this);
+    if (sel == wxNOT_FOUND)
+        return;
+
+    BudgetSegmentDialog(this, bp_a[sel].m_id).ShowModal();
+    DoRecreateNavTreeControl(true);
+}
+
+void mmFrame::OnPlanManager(wxCommandEvent& WXUNUSED(event))
+{
+    if (!m_db)
+        return;
+
+    PlanManagerDialog(this).ShowModal();
+    // The plan reports appear once the plan is no longer empty.
+    DoRecreateNavTreeControl(true);
+}
+
 void mmFrame::OnTransactionsAll(wxCommandEvent& WXUNUSED(event))
 {
     createCheckingPage(-1);
@@ -3746,7 +3813,7 @@ void mmFrame::createBillsDeposits()
 }
 //----------------------------------------------------------------------------
 
-void mmFrame::createBudgetingPage(int64 budgetYearID)
+void mmFrame::createBudgetingPage(int64 budgetYearID, int64 segment_id)
 {
     StringBuffer json_buffer;
     Writer<StringBuffer> json_writer(json_buffer);
@@ -3759,12 +3826,14 @@ void mmFrame::createBudgetingPage(int64 budgetYearID)
 
     m_nav_tree_ctrl->SetEvtHandlerEnabled(false);
     if (panelCurrent_ && panelCurrent_->GetId() == mmID_BUDGET) {
-        wxDynamicCast(panelCurrent_, BudgetPanel)->displayBudgetingDetails(budgetYearID);
+        wxDynamicCast(panelCurrent_, BudgetPanel)
+            ->displayBudgetingDetails(budgetYearID, segment_id);
     }
     else {
         DoWindowsFreezeThaw(homePanel_);
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new BudgetPanel(budgetYearID, homePanel_, mmID_BUDGET);
+        panelCurrent_ = new BudgetPanel(
+            budgetYearID, segment_id, homePanel_, mmID_BUDGET);
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
         DoWindowsFreezeThaw(homePanel_);
@@ -4503,18 +4572,37 @@ void mmFrame::DoUpdateBudgetNavigation(wxTreeItemId& parent_item)
                     mmImage::img::CALENDAR_PNG, mmTreeItemData::BUDGET,
                     bp_d.m_id
                 );
+                DoUpdateBudgetSegmentNavigation(year_budget, bp_d.m_id);
             }
             else if (pattern_month.Matches(bp_d.m_name) &&
                 pattern_month.GetMatch(bp_d.m_name, 1) == entry.first
             ) {
-                addNavTreeItem(
+                wxTreeItemId month_budget = addNavTreeItem(
                     year_budget, bp_d.m_name,
                     mmImage::img::CALENDAR_PNG, mmTreeItemData::BUDGET,
                     bp_d.m_id
                 );
-
+                DoUpdateBudgetSegmentNavigation(month_budget, bp_d.m_id);
             }
         }
+    }
+}
+
+void mmFrame::DoUpdateBudgetSegmentNavigation(wxTreeItemId& parent_item, int64 bp_id)
+{
+    // A segmented period is planned in parts, so the parts belong in the tree
+    // under it rather than being hidden behind a separate dialog.
+    for (const auto& seg_d : BudgetSegmentModel::instance().find_period_a(bp_id)) {
+        addNavTreeItem(
+            parent_item,
+            wxString::Format("%s (%d-%d)",
+                seg_d.m_name, seg_d.m_start_day, seg_d.m_end_day),
+            mmImage::img::CALENDAR_PNG, mmTreeItemData::BUDGET_SEGMENT,
+            // The segment's own id. Selecting it opens the budget page scoped
+            // to that segment; passing the period id here would open the parent
+            // instead, making the month and each of its parts look identical.
+            seg_d.m_id
+        );
     }
 }
 
@@ -4636,7 +4724,39 @@ void mmFrame::DoUpdateReportNavigation(wxTreeItemId& parent_item)
 
             wxTreeItemId budgetSetupPerformance = m_nav_tree_ctrl->AppendItem(budgetReports, _t("Budget Category Summary"), mmImage::img::PIECHART_PNG, mmImage::img::PIECHART_PNG);
             m_nav_tree_ctrl->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Category Summary", new mmReportBudgetCategorySummary()));
+
+            wxTreeItemId planCashFlow = m_nav_tree_ctrl->AppendItem(budgetReports, _t("Planned Cash Flow"), mmImage::img::PIECHART_PNG, mmImage::img::PIECHART_PNG);
+            m_nav_tree_ctrl->SetItemData(planCashFlow, new mmTreeItemData("Planned Cash Flow", new PlanCashFlowReport()));
         }
+    }
+
+    //////////////////////////////////////////////////////////////////
+
+    // The long-term plan stands on its own: it does not require a budget period,
+    // only plan items or assumptions to have been defined.
+    if (
+        (PlanItemModel::instance().find_count() > 0 ||
+         PlanGroupModel::instance().find_count() > 0) &&
+        hidden_reports.Index("Long-Term Plan") == wxNOT_FOUND
+    ) {
+        wxTreeItemId planReports = m_nav_tree_ctrl->AppendItem(
+            parent_item, _t("Long-Term Plan"),
+            mmImage::img::PIECHART_PNG, mmImage::img::PIECHART_PNG
+        );
+        m_nav_tree_ctrl->SetItemData(
+            planReports,
+            new mmTreeItemData("Long-Term Plan", new PlanLongTermReport())
+        );
+
+        // The same picture seen rather than read.
+        wxTreeItemId planCharts = m_nav_tree_ctrl->AppendItem(
+            planReports, _t("Plan Charts"),
+            mmImage::img::PIECHART_PNG, mmImage::img::PIECHART_PNG
+        );
+        m_nav_tree_ctrl->SetItemData(
+            planCharts,
+            new mmTreeItemData("Plan Charts", new PlanChartsReport())
+        );
     }
 
     if (

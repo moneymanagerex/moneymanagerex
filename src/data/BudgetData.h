@@ -32,6 +32,11 @@ struct BudgetData
     double     m_amount;
     wxString   m_notes;
     bool       m_active;
+    // Financial Planner additions
+    int64            m_segment_id;   // -1 => applies to the whole budget period
+    BudgetAmountType m_amount_type;  // Fixed | Estimated | Auto
+    wxString         m_auto_source;  // e.g. "CCBALANCE:52", "AVG:3M", "LAST", "SCHED:17"
+    BudgetRollover   m_rollover;     // whether what is left over carries forward
 
     explicit BudgetData();
     explicit BudgetData(wxSQLite3ResultSet& q);
