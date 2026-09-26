@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
 # ---------------------------------------------------------------------------
 # MMEX uses semantic versioning Ref: http://semver.org
@@ -477,12 +477,18 @@ add_subdirectory(src)
 
 
 function(create_zip output_file input_files working_dir)
+    set(zip_depends "${input_files}")
+    if(ARGC GREATER 3)
+        set(zip_depends "${ARGV3}")
+    endif()
+
     add_custom_command(
-        COMMAND ${CMAKE_COMMAND} -E tar "cf" "${output_file}" --format=zip -- ${input_files}
+        COMMAND "${CMAKE_COMMAND}" -E tar "cf" "${output_file}" --format=zip -- ${input_files}
         WORKING_DIRECTORY "${working_dir}"
         OUTPUT  "${output_file}"
-        DEPENDS ${input_files}
+        DEPENDS ${zip_depends}
         COMMENT "Zipping to ${output_file}."
+        VERBATIM
     )
 endfunction()
 
@@ -500,8 +506,17 @@ ENDMACRO()
 # Generate Themes
 GETSUBDIRS(THEMESDIR "${PROJECT_SOURCE_DIR}/themes/system-themes/")
 FOREACH(THEMENAME ${THEMESDIR})
-    file(GLOB THEME_DEFAULT_FILES "${PROJECT_SOURCE_DIR}/themes/system-themes/${THEMENAME}/*")
-    create_zip("${CMAKE_CURRENT_BINARY_DIR}/${THEMENAME}.mmextheme" "${THEME_DEFAULT_FILES}" "${PROJECT_SOURCE_DIR}/themes/system-themes/${THEMENAME}/")
+    set(THEME_DIR "${PROJECT_SOURCE_DIR}/themes/system-themes/${THEMENAME}")
+    file(GLOB THEME_DEFAULT_FILES "${THEME_DIR}/*")
+    file(GLOB_RECURSE THEME_MEMBERS LIST_DIRECTORIES true CONFIGURE_DEPENDS "${THEME_DIR}/*")
+    file(GLOB_RECURSE THEME_FILES LIST_DIRECTORIES false CONFIGURE_DEPENDS "${THEME_DIR}/*")
+
+    # MSBuild requires file dependencies; the manifest tracks directory membership and removals.
+    set(THEME_MANIFEST "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${THEMENAME}.mmextheme.members")
+    file(GENERATE OUTPUT "${THEME_MANIFEST}" CONTENT "members=${THEME_MEMBERS}\nfiles=${THEME_FILES}\n")
+
+    create_zip("${CMAKE_CURRENT_BINARY_DIR}/${THEMENAME}.mmextheme"
+        "${THEME_DEFAULT_FILES}" "${THEME_DIR}/" "${THEME_FILES};${THEME_MANIFEST}")
     list(APPEND THEMEFILES "${CMAKE_CURRENT_BINARY_DIR}/${THEMENAME}.mmextheme")
 ENDFOREACH()
 add_custom_target(generate_theme_files ALL DEPENDS ${THEMEFILES})
