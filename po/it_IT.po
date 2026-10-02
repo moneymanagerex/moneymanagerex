@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-08-31 23:08+0000\n"
-"PO-Revision-Date: 2026-09-04 02:11\n"
+"POT-Creation-Date: 2026-09-25 08:49+0000\n"
+"PO-Revision-Date: 2026-10-02 03:19\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -2198,7 +2198,7 @@ msgstr "Saldo minimo del conto. Zero per disabilitare"
 msgid "Credit"
 msgstr "Credito"
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1037
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1043
 msgid "Credit Limit:"
 msgstr "Limite Di Credito:"
 
@@ -4286,7 +4286,7 @@ msgid "Amount Max."
 msgstr "Importo Max."
 
 #: dialog/TrxFilterDialog.cpp:2019 import_export/webapp.cpp:670
-#: panel/JournalPanel.cpp:1194 panel/JournalPanel.cpp:1212
+#: panel/JournalPanel.cpp:1200 panel/JournalPanel.cpp:1218
 msgid "Attachment"
 msgstr "Allegato"
 
@@ -5943,7 +5943,7 @@ msgstr "Vuoi davvero ripristinare gli intervalli predefiniti?\n\n"
 msgid "Default date ranges"
 msgstr "Intervallo di date predefinite"
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1397
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1403
 #: panel/ReportPanel.cpp:1096
 msgid "More date ranges…"
 msgstr "Più intervalli di date…"
@@ -7381,75 +7381,75 @@ msgstr "Inserisci qualsiasi stringa per trovarla nei dati di transazione più vi
 msgid "Click to copy to clipboard"
 msgstr "Clicca per copiare negli appunti"
 
-#: panel/JournalPanel.cpp:1013
+#: panel/JournalPanel.cpp:1019
 msgid "Account Bal: "
 msgstr "Saldo del Conto: "
 
-#: panel/JournalPanel.cpp:1017
+#: panel/JournalPanel.cpp:1023
 msgid "Reconciled Bal: "
 msgstr "Saldo Riconciliato: "
 
-#: panel/JournalPanel.cpp:1022
+#: panel/JournalPanel.cpp:1028
 msgid "Diff: "
 msgstr "Differenza: "
 
-#: panel/JournalPanel.cpp:1029
+#: panel/JournalPanel.cpp:1035
 msgid "Filtered Flow: "
 msgstr "Flusso Filtrato: "
 
-#: panel/JournalPanel.cpp:1050
+#: panel/JournalPanel.cpp:1056
 msgid "Market Value: "
 msgstr "Valore Di Mercato: "
 
-#: panel/JournalPanel.cpp:1057
+#: panel/JournalPanel.cpp:1063
 msgid "Invested: "
 msgstr "Investito: "
 
-#: panel/JournalPanel.cpp:1096 panel/JournalPanel.cpp:1104
+#: panel/JournalPanel.cpp:1102 panel/JournalPanel.cpp:1110
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr "Intervallo di date"
 
-#: panel/JournalPanel.cpp:1143
+#: panel/JournalPanel.cpp:1149
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Clicca per visualizzare le transazioni pianificate. Questa funzione risulta particolarmente utile con le opzioni di filtro che si estendono nel futuro (ad esempio, Mese corrente)."
 
-#: panel/JournalPanel.cpp:1143
+#: panel/JournalPanel.cpp:1149
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "Le transazioni pianificate non sono disponibili, perché il filtro corrente termina nel passato"
 
-#: panel/JournalPanel.cpp:1144
+#: panel/JournalPanel.cpp:1150
 msgid "Click to hide scheduled transactions."
 msgstr "Clicca per nascondere le transazioni pianificate."
 
-#: panel/JournalPanel.cpp:1275
+#: panel/JournalPanel.cpp:1281
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Transazioni selezionate: %zu"
 
-#: panel/JournalPanel.cpp:1278
+#: panel/JournalPanel.cpp:1284
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr "Totale transazioni selezionate: %s"
 
-#: panel/JournalPanel.cpp:1283
+#: panel/JournalPanel.cpp:1289
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Giorni tra le transazioni selezionate: %d"
 
-#: panel/JournalPanel.cpp:1404 panel/ReportPanel.cpp:1103
+#: panel/JournalPanel.cpp:1410 panel/ReportPanel.cpp:1103
 msgid "Edit date ranges…"
 msgstr "Modifica intervallo di date…"
 
-#: panel/JournalPanel.cpp:1552
+#: panel/JournalPanel.cpp:1558
 msgid "&New Withdrawal…"
 msgstr "&Nuovo Prelievo…"
 
-#: panel/JournalPanel.cpp:1553
+#: panel/JournalPanel.cpp:1559
 msgid "&New Deposit…"
 msgstr "&Nuovo Deposito…"
 
-#: panel/JournalPanel.cpp:1554
+#: panel/JournalPanel.cpp:1560
 msgid "&New Transfer…"
 msgstr "&Nuovo trasferimento…"
 

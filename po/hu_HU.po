@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-08-31 23:08+0000\n"
-"PO-Revision-Date: 2026-09-04 02:11\n"
+"POT-Creation-Date: 2026-09-25 08:49+0000\n"
+"PO-Revision-Date: 2026-10-02 03:19\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -2197,7 +2197,7 @@ msgstr "Számlaegyenleg alsó határa. Nulla a kikapcsoláshoz"
 msgid "Credit"
 msgstr "Hitel"
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1037
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1043
 msgid "Credit Limit:"
 msgstr "Hitelkeret:"
 
@@ -4284,7 +4284,7 @@ msgid "Amount Max."
 msgstr "Legnagyobb összeg"
 
 #: dialog/TrxFilterDialog.cpp:2019 import_export/webapp.cpp:670
-#: panel/JournalPanel.cpp:1194 panel/JournalPanel.cpp:1212
+#: panel/JournalPanel.cpp:1200 panel/JournalPanel.cpp:1218
 msgid "Attachment"
 msgstr "Melléklet"
 
@@ -5941,7 +5941,7 @@ msgstr "Szeretné visszaállítani az alapértelmezett tartományokat?\n\n"
 msgid "Default date ranges"
 msgstr "Alapértelmezett dátumtartományok"
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1397
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1403
 #: panel/ReportPanel.cpp:1096
 msgid "More date ranges…"
 msgstr "További dátumtartományok…"
@@ -7378,75 +7378,75 @@ msgstr "Írjon be egy tetszőleges karakterláncot, hogy megtalálja a legközel
 msgid "Click to copy to clipboard"
 msgstr "Kattintson a másolás a vágólapra"
 
-#: panel/JournalPanel.cpp:1013
+#: panel/JournalPanel.cpp:1019
 msgid "Account Bal: "
 msgstr "Számlaegyenleg: "
 
-#: panel/JournalPanel.cpp:1017
+#: panel/JournalPanel.cpp:1023
 msgid "Reconciled Bal: "
 msgstr "Egyeztetett egyenleg: "
 
-#: panel/JournalPanel.cpp:1022
+#: panel/JournalPanel.cpp:1028
 msgid "Diff: "
 msgstr "Különb.: "
 
-#: panel/JournalPanel.cpp:1029
+#: panel/JournalPanel.cpp:1035
 msgid "Filtered Flow: "
 msgstr "Szűrt forgalom: "
 
-#: panel/JournalPanel.cpp:1050
+#: panel/JournalPanel.cpp:1056
 msgid "Market Value: "
 msgstr "Piaci érték: "
 
-#: panel/JournalPanel.cpp:1057
+#: panel/JournalPanel.cpp:1063
 msgid "Invested: "
 msgstr "Befektetett: "
 
-#: panel/JournalPanel.cpp:1096 panel/JournalPanel.cpp:1104
+#: panel/JournalPanel.cpp:1102 panel/JournalPanel.cpp:1110
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr "Dátumtartomány"
 
-#: panel/JournalPanel.cpp:1143
+#: panel/JournalPanel.cpp:1149
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Kattintson az ütemezett ügyletek megjelenítéséhez. Ez a jellemző a jövőbe nyúló szűrőkijelölésekkel működik a legjobban (pl. Jelenlegi hónap)."
 
-#: panel/JournalPanel.cpp:1143
+#: panel/JournalPanel.cpp:1149
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "Az ütemezett ügyletek nem érhetők el, mert a jelenlegi szűrő a múltban ér véget"
 
-#: panel/JournalPanel.cpp:1144
+#: panel/JournalPanel.cpp:1150
 msgid "Click to hide scheduled transactions."
 msgstr "Kattintson az ütemezett ügyletek elrejtéséhez."
 
-#: panel/JournalPanel.cpp:1275
+#: panel/JournalPanel.cpp:1281
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Kijelölt ügyletek: %zu"
 
-#: panel/JournalPanel.cpp:1278
+#: panel/JournalPanel.cpp:1284
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr "Kijelölt ügyletek összesen: %s"
 
-#: panel/JournalPanel.cpp:1283
+#: panel/JournalPanel.cpp:1289
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Kijelölt ügyletek között eltelt napok: %d"
 
-#: panel/JournalPanel.cpp:1404 panel/ReportPanel.cpp:1103
+#: panel/JournalPanel.cpp:1410 panel/ReportPanel.cpp:1103
 msgid "Edit date ranges…"
 msgstr "Dátumtartományok szerkesztése…"
 
-#: panel/JournalPanel.cpp:1552
+#: panel/JournalPanel.cpp:1558
 msgid "&New Withdrawal…"
 msgstr "&Új kivétel…"
 
-#: panel/JournalPanel.cpp:1553
+#: panel/JournalPanel.cpp:1559
 msgid "&New Deposit…"
 msgstr "&Új betét…"
 
-#: panel/JournalPanel.cpp:1554
+#: panel/JournalPanel.cpp:1560
 msgid "&New Transfer…"
 msgstr "&Új átutalás…"
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
-"POT-Creation-Date: 2026-08-31 23:08+0000\n"
-"PO-Revision-Date: 2026-09-04 02:11\n"
+"POT-Creation-Date: 2026-09-25 08:49+0000\n"
+"PO-Revision-Date: 2026-10-02 03:19\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -2194,7 +2194,7 @@ msgstr "Dolny limit salda dla konta. Zero aby wyłączyć"
 msgid "Credit"
 msgstr "Debet"
 
-#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1037
+#: dialog/AccountDialog.cpp:267 panel/JournalPanel.cpp:1043
 msgid "Credit Limit:"
 msgstr "Limit kredytowy:"
 
@@ -4276,7 +4276,7 @@ msgid "Amount Max."
 msgstr "Kwota max"
 
 #: dialog/TrxFilterDialog.cpp:2019 import_export/webapp.cpp:670
-#: panel/JournalPanel.cpp:1194 panel/JournalPanel.cpp:1212
+#: panel/JournalPanel.cpp:1200 panel/JournalPanel.cpp:1218
 msgid "Attachment"
 msgstr "Załącznik"
 
@@ -5933,7 +5933,7 @@ msgstr "Czy na pewno chcesz przywrócić domyślne zakresy?\n\n"
 msgid "Default date ranges"
 msgstr "Domyślne zakresy dat"
 
-#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1397
+#: manager/DateRangeManager.h:62 panel/JournalPanel.cpp:1403
 #: panel/ReportPanel.cpp:1096
 msgid "More date ranges…"
 msgstr "Więcej zakresów dat…"
@@ -7392,75 +7392,75 @@ msgstr "Wprowadź dowolny ciąg, aby znaleźć go w najbliższych danych transak
 msgid "Click to copy to clipboard"
 msgstr ""
 
-#: panel/JournalPanel.cpp:1013
+#: panel/JournalPanel.cpp:1019
 msgid "Account Bal: "
 msgstr "Bilans konta: "
 
-#: panel/JournalPanel.cpp:1017
+#: panel/JournalPanel.cpp:1023
 msgid "Reconciled Bal: "
 msgstr "Bilans rozliczonych: "
 
-#: panel/JournalPanel.cpp:1022
+#: panel/JournalPanel.cpp:1028
 msgid "Diff: "
 msgstr "Różnica: "
 
-#: panel/JournalPanel.cpp:1029
+#: panel/JournalPanel.cpp:1035
 msgid "Filtered Flow: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1050
+#: panel/JournalPanel.cpp:1056
 msgid "Market Value: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1057
+#: panel/JournalPanel.cpp:1063
 msgid "Invested: "
 msgstr ""
 
-#: panel/JournalPanel.cpp:1096 panel/JournalPanel.cpp:1104
+#: panel/JournalPanel.cpp:1102 panel/JournalPanel.cpp:1110
 #: panel/ReportPanel.cpp:693 panel/ReportPanel.cpp:701
 msgid "Date range"
 msgstr "Zakres dat"
 
-#: panel/JournalPanel.cpp:1143
+#: panel/JournalPanel.cpp:1149
 msgid "Click to show scheduled transactions. This feature works best with filter choices that extend into the future (e.g., Current Month)."
 msgstr "Kliknij, aby pokazać zaplanowane transakcje. Ta funkcja działa najlepiej z filtrowaniem, które obejmuje okres w przyszłości (np. bieżący miesiąc)."
 
-#: panel/JournalPanel.cpp:1143
+#: panel/JournalPanel.cpp:1149
 msgid "Scheduled transactions are not available, because the current filter ends in the past"
 msgstr "Zaplanowane transakcje nie są dostępne, ponieważ obecny filtr kończy się w przeszłości"
 
-#: panel/JournalPanel.cpp:1144
+#: panel/JournalPanel.cpp:1150
 msgid "Click to hide scheduled transactions."
 msgstr "Kliknij, aby ukryć zaplanowane transakcje."
 
-#: panel/JournalPanel.cpp:1275
+#: panel/JournalPanel.cpp:1281
 #, c-format
 msgid "Transactions selected: %zu"
 msgstr "Wybrane transakcje: %zu"
 
-#: panel/JournalPanel.cpp:1278
+#: panel/JournalPanel.cpp:1284
 #, c-format
 msgid "Selected transactions total: %s"
 msgstr "Suma wybranych transakcji: %s"
 
-#: panel/JournalPanel.cpp:1283
+#: panel/JournalPanel.cpp:1289
 #, c-format
 msgid "Days between selected transactions: %d"
 msgstr "Liczba dni pomiędzy wybranymi transakcjami: %d"
 
-#: panel/JournalPanel.cpp:1404 panel/ReportPanel.cpp:1103
+#: panel/JournalPanel.cpp:1410 panel/ReportPanel.cpp:1103
 msgid "Edit date ranges…"
 msgstr "Edytuj zakresy dat…"
 
-#: panel/JournalPanel.cpp:1552
+#: panel/JournalPanel.cpp:1558
 msgid "&New Withdrawal…"
 msgstr "&Nowa wypłata…"
 
-#: panel/JournalPanel.cpp:1553
+#: panel/JournalPanel.cpp:1559
 msgid "&New Deposit…"
 msgstr "&Nowa wpłata…"
 
-#: panel/JournalPanel.cpp:1554
+#: panel/JournalPanel.cpp:1560
 msgid "&New Transfer…"
 msgstr "&Nowy przelew…"
 
