@@ -84,7 +84,7 @@ const wxString mmExportTransaction::getTransactionCSV(
             double valueSplit = tp_d.m_amount;
             if (trx_dx.is_withdrawal())
                 valueSplit = -valueSplit;
-            const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
+            const wxString split_amount = wxString::FromCDouble(valueSplit, curr_in->precision());
             const wxString split_categ = CategoryModel::instance().get_id_fullname(tp_d.m_category_id, ":");
 
             buffer << inQuotes(wxString::Format("%lld", trx_dx.m_id), delimiter) << delimiter;
@@ -116,7 +116,7 @@ const wxString mmExportTransaction::getTransactionCSV(
         buffer << inQuotes(payee, delimiter) << delimiter;
         buffer << inQuotes(categ, delimiter) << delimiter;
         double value = trx_dx.account_flow(account_id);
-        const wxString& s = wxString::FromCDouble(value, 2);
+        const wxString& s = wxString::FromCDouble(value, CurrencyModel::instance().precision(account_id));
         buffer << inQuotes(s, delimiter) << delimiter;
         buffer << inQuotes(currency, delimiter) << delimiter;
         buffer << inQuotes(transNum, delimiter) << delimiter;
@@ -152,8 +152,8 @@ const wxString mmExportTransaction::getTransactionQIF(
 
         categ = "[" + (reverse ? trx_dx.ACCOUNTNAME : trx_dx.TOACCOUNTNAME) + "]";
         payee = wxString::Format("%s %s %s -> %s %s %s"
-            , wxString::FromCDouble(trx_dx.m_amount, 2), curr_in->m_symbol, acc_in->m_name
-            , wxString::FromCDouble(trx_dx.m_to_amount, 2), curr_to->m_symbol, acc_to->m_name);
+            , wxString::FromCDouble(trx_dx.m_amount, curr_in->precision()), curr_in->m_symbol, acc_in->m_name
+            , wxString::FromCDouble(trx_dx.m_to_amount, curr_to->precision()), curr_to->m_symbol, acc_to->m_name);
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
@@ -173,10 +173,9 @@ const wxString mmExportTransaction::getTransactionQIF(
 
     buffer << "D" << mmGetDateTimeForDisplay(trx_dx.m_isoDateTime(), dateMask) << "\n";
     buffer << "C" << (trx_dx.is_reconciled() ? "R" : "") << "\n";
-    double value = trx_dx.account_flow(
-        reverse ? trx_dx.m_to_account_id_n : trx_dx.m_account_id
-    );
-    const wxString& s = wxString::FromCDouble(value, 2);
+    const auto account_id = reverse ? trx_dx.m_to_account_id_n : trx_dx.m_account_id;
+    double value = trx_dx.account_flow(account_id);
+    const wxString& s = wxString::FromCDouble(value, CurrencyModel::instance().precision(account_id));
     buffer << "T" << s << "\n";
     if (!payee.empty())
         buffer << "P" << payee << "\n";
@@ -194,7 +193,8 @@ const wxString mmExportTransaction::getTransactionQIF(
         double valueSplit = tp_d.m_amount;
         if (trx_dx.is_withdrawal())
             valueSplit = -valueSplit;
-        const wxString split_amount = wxString::FromCDouble(valueSplit, 2);
+        const wxString split_amount = wxString::FromCDouble(valueSplit,
+            CurrencyModel::instance().precision(trx_dx.m_account_id));
         wxString split_categ = CategoryModel::instance().get_id_fullname(tp_d.m_category_id, ":");
         split_categ.Replace("/", "-");
         // TODO: add ORDERBY
