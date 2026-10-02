@@ -1871,73 +1871,62 @@ void mmToolTip(wxWindow* widget, const wxString& tip)
         widget->SetToolTip(tip);
 }
 
+struct DialogSizeInfo
+{
+    const char* sizeKey;
+    bool preserveHeight;
+};
+
 void mmSetSize(wxWindow* w)
 {
-    auto name = w->GetName();
-    wxSize my_size;
-
-    if (name == "Split Transaction Dialog") {
-        my_size = InfoModel::instance().getSize("SPLITTRANSACTION_DIALOG_SIZE");
-        my_size.SetHeight(w->GetSize().GetHeight());  // Do not touch the height
-    }
-    else if (name == "Organize Categories") {
-        my_size = InfoModel::instance().getSize("CATEGORIES_DIALOG_SIZE");
-    }
-    else if (name == "mmPayeeDialog") {
-        my_size = InfoModel::instance().getSize("PAYEES_DIALOG_SIZE");
-    }
-    else if (name == "Organize Currencies") {
-        my_size = InfoModel::instance().getSize("CURRENCY_DIALOG_SIZE");
-    }
-    else if (name == "Column Order Dialog") {
-        my_size = InfoModel::instance().getSize("COLUMNORDER_DIALOG_SIZE");
-    }
-    else if (name == "Themes Dialog") {
-        my_size = InfoModel::instance().getSize("THEMES_DIALOG_SIZE");
-    }
-    else if (name == "General Reports Manager") {
-        my_size = InfoModel::instance().getSize("GRM_DIALOG_SIZE");
-    }
-    else if (name == "PayeeManager") {
-        my_size = InfoModel::instance().getSize("EDITPAYEE_DIALOG_SIZE");
-    }
-    else if (name == "mmEditSplitOther") {
-        my_size = InfoModel::instance().getSize("EDITSPLITOTHER_DIALOG_SIZE");
-    }
-    else if (name == "Transactions Dialog") {
-        my_size = InfoModel::instance().getSize("TRANSACTION_DIALOG_SIZE");
-    }
-    else if (name == "Merge categories") {
-        my_size = InfoModel::instance().getSize("RELOCATECATEG_DIALOG_SIZE");
-    }
-    else if (name == "Merge payees") {
-        my_size = InfoModel::instance().getSize("RELOCATEPAYEE_DIALOG_SIZE");
-    }
-    else if (name == "Scheduled Transaction Dialog") {
-        my_size = InfoModel::instance().getSize("RECURRINGTRANS_DIALOG_SIZE");
-    }
-    else if (name == "Transaction Filter") {
-        my_size = InfoModel::instance().getSize("TRANSACTION_FILTER_SIZE");
-    }
-    else if (name == "Organize Tags") {
-        my_size = InfoModel::instance().getSize("TAG_DIALOG_SIZE");
-    }
-    else if (name == "Merge tags") {
-        my_size = InfoModel::instance().getSize("RELOCATETAG_DIALOG_SIZE");
+    if (!w) {
+        return;
     }
 
-    if (w->GetParent()) {
-        wxSharedPtr<wxDisplay> display(new wxDisplay(w->GetParent()));
-        wxRect display_rect = display.get()->GetGeometry();
-        display_rect.SetX(0);
-        display_rect.SetY(0);
+    const wxWindow* parent = w->GetParent();
+    if (!parent) {
+        w->Fit();
+        return;
+    }
 
-        if (display_rect.Contains(my_size)) {
-            w->SetSize(my_size);
-        }
-        else {
-            w->Fit();
-        }
+    static const std::unordered_map<wxString, DialogSizeInfo> dialogs = {
+        { "Split Transaction Dialog",     { "SPLITTRANSACTION_DIALOG_SIZE", true  } },
+        { "Organize Categories",          { "CATEGORIES_DIALOG_SIZE",       false } },
+        { "mmPayeeDialog",                { "PAYEES_DIALOG_SIZE",           false } },
+        { "Organize Currencies",          { "CURRENCY_DIALOG_SIZE",         false } },
+        { "Column Order Dialog",          { "COLUMNORDER_DIALOG_SIZE",      false } },
+        { "Themes Dialog",                { "THEMES_DIALOG_SIZE",           false } },
+        { "General Reports Manager",      { "GRM_DIALOG_SIZE",              false } },
+        { "PayeeManager",                 { "EDITPAYEE_DIALOG_SIZE",        false } },
+        { "mmEditSplitOther",             { "EDITSPLITOTHER_DIALOG_SIZE",   false } },
+        { "Transactions Dialog",          { "TRANSACTION_DIALOG_SIZE",      false } },
+        { "Merge categories",             { "RELOCATECATEG_DIALOG_SIZE",    false } },
+        { "Merge payees",                 { "RELOCATEPAYEE_DIALOG_SIZE",    false } },
+        { "Scheduled Transaction Dialog", { "RECURRINGTRANS_DIALOG_SIZE",   false } },
+        { "Transaction Filter",           { "TRANSACTION_FILTER_SIZE",      false } },
+        { "Organize Tags",                { "TAG_DIALOG_SIZE",              false } },
+        { "Merge tags",                   { "RELOCATETAG_DIALOG_SIZE",      false } }
+    };
+
+    const auto it = dialogs.find(w->GetName());
+    if (it == dialogs.end()) {
+        w->Fit();
+        return;
+    }
+
+    wxSize size = InfoModel::instance().getSize(it->second.sizeKey);
+
+    if (it->second.preserveHeight){
+        size.SetHeight(w->GetSize().GetHeight());
+    }
+
+    const wxDisplay display(parent);
+    const wxRect displayRect = display.GetClientArea();
+
+    if (size.GetWidth() <= displayRect.GetWidth() &&
+        size.GetHeight() <= displayRect.GetHeight())
+    {
+        w->SetSize(size);
     }
     else {
         w->Fit();
