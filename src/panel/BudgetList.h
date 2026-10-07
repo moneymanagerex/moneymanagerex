@@ -65,5 +65,6 @@ public:
 private:
     void onListItemSelected(wxListEvent& event);
     void onListItemActivated(wxListEvent& event);
+    void onListItemRightClick(wxListEvent& event);
     void onMouseMove(wxMouseEvent& event);
 };
