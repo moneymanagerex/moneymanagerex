@@ -85,8 +85,8 @@ wxBEGIN_EVENT_TABLE(JournalPanel, wxPanel)
         ID_DATE_RANGE_MIN,
         ID_DATE_RANGE_MAX,                 JournalPanel::onDateRangeSelect)
     EVT_MENU_RANGE(
-        TrxType::e_withdrawal,
-        TrxType::e_transfer,               JournalPanel::onNewTrx)
+        JournalList::MENU_TREEPOPUP_WITHDRAWAL,
+        JournalList::MENU_TREEPOPUP_TRANSFER,    JournalPanel::onNewTrx)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND,   JournalPanel::onSearchTxtEntered)
     EVT_DATE_CHANGED(ID_START_DATE_PICKER, JournalPanel::onStartDateChanged)
     EVT_DATE_CHANGED(ID_END_DATE_PICKER,   JournalPanel::onEndDateChanged)
@@ -644,7 +644,7 @@ void JournalPanel::filterList()
         scheduled_range_end = range_end;
         extract_end = range_end;
     }
- 
+
     int sn = 0; // sequence number
     m_flow = 0.0;
     m_balance = m_account_n ? m_account_n->m_open_balance : 0.0;
@@ -843,7 +843,7 @@ void JournalPanel::filterList()
                 m_show_reconciled = true;
         }
 
-        if (!is_future && ((trx_dateTime.date() < range_start || 
+        if (!is_future && ((trx_dateTime.date() < range_start ||
             (trx_dateTime.date() > range_end))))
             continue;
 
@@ -1555,9 +1555,9 @@ void JournalPanel::onButtonRightDown(wxMouseEvent& event)
     }
     case wxID_NEW: {
         wxMenu menu;
-        menu.Append(TrxType::e_withdrawal, _tu("&New Withdrawal…"));
-        menu.Append(TrxType::e_deposit,    _tu("&New Deposit…"));
-        menu.Append(TrxType::e_transfer,   _tu("&New Transfer…"));
+        menu.Append(JournalList::MENU_TREEPOPUP_WITHDRAWAL, _tu("&New Withdrawal…"));
+        menu.Append(JournalList::MENU_TREEPOPUP_DEPOSIT,    _tu("&New Deposit…"));
+        menu.Append(JournalList::MENU_TREEPOPUP_TRANSFER,   _tu("&New Transfer…"));
         PopupMenu(&menu);
     }
     default:

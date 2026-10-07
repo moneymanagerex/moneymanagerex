@@ -2,7 +2,7 @@
  Copyright (C) 2006 Madhan Kanagavel
  Copyright (C) 2012 - 2016, 2020 - 2022 Nikolay Akimov
  Copyright (C) 2021, 2022 Mark Whalley (mark@ipx.co.uk)
- Copyright (C) 2025 Klaus Wich
+ Copyright (C) 2025, 2026 Klaus Wich
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -1028,10 +1028,5 @@ void mmPayeeDialog::OnShowHiddenToggle(wxCommandEvent& WXUNUSED(event))
 
 void mmPayeeDialog::OnOk(wxCommandEvent& WXUNUSED(event))
 {
-    if (payeeListBox_->GetItemCount() < 1) {
-        AddPayee();
-    }
-    else {
-        EndModal(wxID_OK);
-    }
+    EndModal(wxID_OK);
 }
