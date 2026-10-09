@@ -266,6 +266,9 @@ If you want to just build for the current architecture and don't require a unive
 You could tune `-j4` option to a different number to use all processor cores
 during build phase.
 
+For the macOS 27 native-alert crash workaround, its version boundary, and
+reproducible locale checks, see [the locale diagnostics](util/tests/macos-locale.md).
+
 Linux
 -----
 
