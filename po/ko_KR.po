@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-09-25 08:49+0000\n"
-"PO-Revision-Date: 2026-10-02 03:19\n"
+"PO-Revision-Date: 2026-10-09 03:50\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -4185,11 +4185,11 @@ msgstr "첨부 파일"
 
 #: dialog/TrxFilterDialog.cpp:736
 msgid "No"
-msgstr ""
+msgstr "아니오"
 
 #: dialog/TrxFilterDialog.cpp:740
 msgid "Yes"
-msgstr ""
+msgstr "네"
 
 #: dialog/TrxFilterDialog.cpp:761
 msgid "Presentation Options"
