@@ -225,8 +225,15 @@ if(NOT wxSQLite3_FOUND OR NOT (WXSQLITE3_HAVE_CODEC OR MMEX_ENCRYPTION_OPTIONAL)
     endif()
 
     if(NOT MSVC) # wxSQLite3 security ext doesn't require C 99 for MSVC
-        if((NOT LINUX) OR (";x86;x86_64;" MATCHES ";${CMAKE_HOST_SYSTEM_PROCESSOR};"))
-            set (CMAKE_C_FLAGS "-msse4.2 -maes")
+        if(APPLE AND CMAKE_OSX_ARCHITECTURES)
+            if("x86_64" IN_LIST CMAKE_OSX_ARCHITECTURES)
+                # Apply x86 options only to that slice of a universal build.
+                target_compile_options(SQLite3 PRIVATE
+                    "SHELL:-Xarch_x86_64 -msse4.2"
+                    "SHELL:-Xarch_x86_64 -maes")
+            endif()
+        elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86|i[3-6]86|x86_64|AMD64|amd64)$")
+            target_compile_options(SQLite3 PRIVATE -msse4.2 -maes)
         endif()
         if(";${CMAKE_C_COMPILE_FEATURES};" MATCHES ";c_std_99;")
             target_compile_features(SQLite3 PRIVATE c_std_99)

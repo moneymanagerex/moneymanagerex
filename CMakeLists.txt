@@ -424,7 +424,9 @@ else()
         endif()
     endif()
     if(NOT CURL_FOUND)
-        find_package(CURL REQUIRED COMPONENTS libcurl MODULE)
+        # FindCURL components are protocols/features, not library names.
+        # Requiring "libcurl" rejects the macOS SDK library with modern CMake.
+        find_package(CURL REQUIRED MODULE)
         if(NOT CURL_LIBRARIES MATCHES "_imp.lib$|${CMAKE_SHARED_LIBRARY_SUFFIX}$")
             #add_library(CURL::libcurl STATIC IMPORTED)
             set_target_properties(CURL::libcurl PROPERTIES
