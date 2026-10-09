@@ -60,6 +60,9 @@ mmApp::mmApp()
     : m_optParam1(wxEmptyString), m_optParam2(wxEmptyString), m_lang(wxLANGUAGE_UNKNOWN),
       m_locale(wxLANGUAGE_DEFAULT)
 {
+    // wxLocale initializes LC_ALL independently of the GUI translation.
+    // Apply the workaround before Cocoa can show its startup alerts.
+    mmPlatform::initNumericLocale();
 #if wxUSE_ON_FATAL_EXCEPTION
     // catch fatal exceptions
     wxHandleFatalExceptions(true);
