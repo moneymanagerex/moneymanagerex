@@ -22,8 +22,24 @@
 
 #include <wx/string.h>
 #include <wx/platinfo.h>
+#include <clocale>
 
 const wxString mmPlatform::platformType()
 {
     return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3).MakeLower();
+}
+
+void mmPlatform::initNumericLocale()
+{
+#ifdef __WXOSX__
+    const wxPlatformInfo& platform = wxPlatformInfo::Get();
+    // CoreUI can crash rendering NSAlert symbols with a comma-decimal C
+    // locale on macOS 27 (#8536, wxWidgets #26977). The upstream report
+    // confirms Apple's fix in 27.2 beta 2; leave other OS versions alone.
+    if (platform.GetOSMajorVersion() == 27 && platform.GetOSMinorVersion() < 2) {
+        // Keep translations, dates and monetary conventions unchanged.
+        // Numeric UI formatting must use the UI/currency locale explicitly.
+        std::setlocale(LC_NUMERIC, "C");
+    }
+#endif
 }
