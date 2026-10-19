@@ -106,7 +106,7 @@ private:
     void OnTextEntered(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
     void OnCharHookCategory(wxKeyEvent& event);
-    bool mmDoCheckRow(int row);
+    bool mmDoCheckRow(int row, bool reportError = true);
 
     struct SplitWidget
     {

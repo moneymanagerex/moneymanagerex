@@ -494,11 +494,10 @@ void SplitDialog::OnNewTagCreated(wxListEvent& event)
 void SplitDialog::OnOtherButton(wxCommandEvent& event)
 {
     int row = event.GetId() - mmID_MAX;
-    //if (mmDoCheckRow(row)) {
-        mmEditSplitOther dlg(this, m_currency_n, &m_splits.at(row));
-        dlg.ShowModal();
-        UpdateExtraInfo(row);
-    //}
+    mmDoCheckRow(row, false);  // get values w/o error reporting
+    mmEditSplitOther dlg(this, m_currency_n, &m_splits.at(row));
+    dlg.ShowModal();
+    UpdateExtraInfo(row);
     event.Skip();
 }
 
@@ -566,14 +565,15 @@ void SplitDialog::UpdateExtraInfo(int row)
     m_splits_widgets.at(row).other->SetToolTip(m_splits.at(row).m_notes);
 }
 
-bool SplitDialog::mmDoCheckRow(int row)
+bool SplitDialog::mmDoCheckRow(int row, bool reportError)
 {
-    if (!m_splits_widgets.at(row).tags->IsValid()) {
+    if (!m_splits_widgets.at(row).tags->IsValid() && reportError) {
         mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).tags, _t("Invalid value"), _t("Tags"), wxICON_ERROR);
         return false;
     }
 
-    if (m_splits_widgets.at(row).category->GetValue().empty() &&
+    if (reportError &&
+        m_splits_widgets.at(row).category->GetValue().empty() &&
         m_splits_widgets.at(row).amount->GetValue().empty() &&
         m_splits_widgets.at(row).tags->GetTagIDs().empty() &&
         m_splits.at(row).m_notes.IsEmpty())
@@ -582,15 +582,16 @@ bool SplitDialog::mmDoCheckRow(int row)
     double amount = 0.0;
 
     // Validate category and amount
-    if (!m_splits_widgets.at(row).category->mmIsValid()) {
-            mmErrorDialogs::InvalidCategory(m_splits_widgets.at(row).category);
-            return false;
+    if (reportError && !m_splits_widgets.at(row).category->mmIsValid()) {
+        mmErrorDialogs::InvalidCategory(m_splits_widgets.at(row).category);
+        return false;
     }
 
-    if (!m_splits_widgets.at(row).amount->Calculate()) {
-            mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).amount,
-                                _t("Please enter a valid monetary amount"), _t("Invalid Value"));
-            return false;
+    bool rc = m_splits_widgets.at(row).amount->Calculate();
+    if (reportError && !rc) {
+        mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).amount,
+                            _t("Please enter a valid monetary amount"), _t("Invalid Value"));
+        return false;
     }
 
     m_splits_widgets.at(row).amount->GetDouble(amount);
