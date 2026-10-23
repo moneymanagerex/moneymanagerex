@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-09-25 08:49+0000\n"
-"PO-Revision-Date: 2026-10-02 03:19\n"
+"PO-Revision-Date: 2026-10-16 02:26\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -37,7 +37,7 @@ msgstr "Автоматический повтор транзакций"
 
 #: app/mmFrame.cpp:1088
 msgid "Cash Ledger"
-msgstr ""
+msgstr "Кассовая книга"
 
 #: app/mmFrame.cpp:1544 app/mmFrame.cpp:2828 app/mmFrame.cpp:2895
 #: app/mmFrame.cpp:2913 dialog/FieldDialog.cpp:244 dialog/FieldDialog.cpp:265
@@ -213,7 +213,7 @@ msgstr "&Развернуть все"
 
 #: app/mmFrame.cpp:1815
 msgid "&Collapse All"
-msgstr ""
+msgstr "Свернуть всё"
 
 #: app/mmFrame.cpp:1817
 msgid "&Navigator configuration…"
@@ -408,7 +408,7 @@ msgstr "Показывать советы"
 
 #: app/mmFrame.cpp:2001
 msgid "&Full Screen"
-msgstr ""
+msgstr "Полный экран"
 
 #: app/mmFrame.cpp:2002
 msgid "Toggle full screen"
@@ -459,7 +459,7 @@ msgstr "Удалить счёт из базы данных"
 
 #: app/mmFrame.cpp:2085
 msgid "Do&wnload Rates"
-msgstr ""
+msgstr "Скачать курсы"
 
 #: app/mmFrame.cpp:2085
 msgid "Download Currency and Stock Rates"

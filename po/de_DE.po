@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-09-25 08:49+0000\n"
-"PO-Revision-Date: 2026-10-02 03:19\n"
+"PO-Revision-Date: 2026-10-16 02:26\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -4186,11 +4186,11 @@ msgstr "Anlagen"
 
 #: dialog/TrxFilterDialog.cpp:736
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: dialog/TrxFilterDialog.cpp:740
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: dialog/TrxFilterDialog.cpp:761
 msgid "Presentation Options"

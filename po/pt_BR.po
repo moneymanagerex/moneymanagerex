@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-09-25 08:49+0000\n"
-"PO-Revision-Date: 2026-10-02 03:19\n"
+"PO-Revision-Date: 2026-10-23 02:42\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -6084,7 +6084,7 @@ msgstr "Impossível abrir o arquivo:"
 
 #: manager/GeneralReportManager.cpp:842
 msgid "Assets…"
-msgstr "Bens…"
+msgstr "Ativos…"
 
 #: manager/GeneralReportManager.cpp:845
 msgid "New Empty Report…"
