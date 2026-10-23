@@ -1626,25 +1626,39 @@ void JournalList::onListItemActivated(wxListEvent& /*event*/)
     AddPendingEvent(evt);
 }
 
-void JournalList::onListItemSelected(wxListEvent&)
+void JournalList::updateSelectionSummary()
 {
-    //wxLogDebug("onListItemSelected: %i selected", GetSelectedItemCount());
+#ifdef __WXMAC__
+    // The generic virtual list sends FOCUSED before updating a Shift selection,
+    // without a subsequent SELECTED event. Coalesce notifications until it finishes.
+    if (m_selection_update_pending)
+        return;
+    m_selection_update_pending = true;
+    // Queue on this control so destruction also discards the pending callback.
+    CallAfter([this]() {
+        m_selection_update_pending = false;
+        setSelectKeyA();
+        setExtraTransactionData(GetSelectedItemCount() == 1);
+    });
+#else
     setSelectKeyA();
     setExtraTransactionData(GetSelectedItemCount() == 1);
+#endif
+}
+
+void JournalList::onListItemSelected(wxListEvent&)
+{
+    updateSelectionSummary();
 }
 
 void JournalList::onListItemDeSelected(wxListEvent&)
 {
-    //wxLogDebug("onListItemDeSelected: %i selected", GetSelectedItemCount());
-    setSelectKeyA();
-    setExtraTransactionData(GetSelectedItemCount() == 1);
+    updateSelectionSummary();
 }
 
 void JournalList::onListItemFocused(wxListEvent& WXUNUSED(event))
 {
-    //wxLogDebug("onListItemFocused: %i selected", GetSelectedItemCount());
-    setSelectKeyA();
-    setExtraTransactionData(GetSelectedItemCount() == 1);
+    updateSelectionSummary();
 }
 
 void JournalList::onListKeyDown(wxListEvent& event)
