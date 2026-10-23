@@ -44,6 +44,12 @@ enum
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST,
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT,
     ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
+    ID_BUDGET_ROLLUP,
+    // Ids for the "move to" targets: the period as a whole, then one per
+    // segment. Reserved as a block so the event table can claim a fixed range
+    // ahead of the catch-all below, which would otherwise assert on them.
+    MENU_MOVE_TO_FIRST,
+    MENU_MOVE_TO_LAST = MENU_MOVE_TO_FIRST + 64,
 };
 
 const wxString BudgetPanel::VIEW_ALL      = _n("View All Budget Categories");
@@ -55,11 +61,16 @@ const wxString BudgetPanel::VIEW_SUMM     = _n("View Budget Category Summary");
 
 wxBEGIN_EVENT_TABLE(BudgetPanel, wxPanel)
     EVT_BUTTON(wxID_FILE2, BudgetPanel::onMouseLeftDown)
+    EVT_CHECKBOX(ID_BUDGET_ROLLUP, BudgetPanel::onRollupChanged)
+    // Must precede the catch-all: the view filter handler asserts on any id it
+    // does not recognise.
+    EVT_MENU_RANGE(MENU_MOVE_TO_FIRST, MENU_MOVE_TO_LAST, BudgetPanel::onMoveToSegment)
     EVT_MENU(wxID_ANY,     BudgetPanel::onViewPopupSelected)
-wxEND_EVENT_TABLE()
+    wxEND_EVENT_TABLE()
 
 BudgetPanel::BudgetPanel(
     int64 bp_id,
+    int64 segment_id,
     wxWindow* parent_win,
     wxWindowID win_id,
     const wxPoint& pos,
@@ -68,6 +79,7 @@ BudgetPanel::BudgetPanel(
     const wxString& name
 ) :
     m_bp_id(bp_id),
+    m_segment_id(segment_id),
     w_list(nullptr)
 {
     create(parent_win, win_id, pos, size, style, name);
@@ -137,6 +149,13 @@ void BudgetPanel::refreshList()
         w_list->EnsureVisible(0);
 }
 
+void BudgetPanel::onRollupChanged(wxCommandEvent& /*event*/)
+{
+    // Purely a way of reading the same data; nothing is written, so this only
+    // has to recompute and redraw.
+    refreshList();
+}
+
 void BudgetPanel::onMouseLeftDown(wxCommandEvent& event)
 {
     wxMenu menu;
@@ -181,7 +200,32 @@ wxString BudgetPanel::getPanelTitle() const
 
     title = wxString::Format(_t("Budget Planner for %s"), title);
 
+    // Naming the part on show is what keeps a segmented month from looking like
+    // three copies of the same page. Kept to ASCII: a non-ASCII literal here is
+    // read as Latin-1 by MSVC and renders as mojibake.
+    if (m_segment_id > 0) {
+        const BudgetSegmentData* seg_n =
+            BudgetSegmentModel::instance().get_idN_data_n(m_segment_id);
+        if (seg_n) {
+            title += wxString::Format(_t("  -  %s (days %d-%d)"),
+                seg_n->m_name, seg_n->m_start_day, seg_n->m_end_day);
+        }
+    }
+    else if (!segment_a().empty()) {
+        title += _t("  -  whole period");
+    }
+
     return title;
+}
+
+std::vector<BudgetSegmentData> BudgetPanel::segment_a() const
+{
+    return BudgetSegmentModel::instance().find_period_a(m_bp_id);
+}
+
+bool BudgetPanel::isRolledUp() const
+{
+    return w_rollup && w_rollup->IsShown() && w_rollup->GetValue();
 }
 
 void BudgetPanel::updateBudgetHeading()
@@ -220,6 +264,17 @@ void BudgetPanel::createControls()
     w_filter_btn->SetBitmap(mmImage::bitmapBundle(mmImage::png::TRANSFILTER, mmImage::bitmapButtonSize));
     w_filter_btn->SetMinSize(wxSize(300, -1));
     itemBoxSizerHHeader2->Add(w_filter_btn, g_flagsBorder1H);
+
+    // A year and its months are separate budgets in MMEX and always have been.
+    // Rather than change that, this offers to read the year as the sum of its
+    // months; nothing is written either way.
+    w_rollup = new wxCheckBox(itemPanel3, ID_BUDGET_ROLLUP,
+        _t("Include monthly budgets"));
+    mmToolTip(w_rollup, _t(
+        "Add the budgets of this year's months to the figures shown. The stored "
+        "budgets are not changed."));
+    w_rollup->Hide();
+    itemBoxSizerHHeader2->Add(w_rollup, g_flagsBorder1H);
 
     wxFlexGridSizer* itemIncomeSizer = new wxFlexGridSizer(0, 7, 5, 10);
     itemBoxSizerVHeader->Add(itemIncomeSizer);
@@ -359,6 +414,24 @@ void BudgetPanel::initVirtualListControl()
         m_month_name = wxGetTranslation(wxDateTime::GetEnglishMonthName(dtBegin.GetMonth()));
     }
 
+    // Rolling up is offered where a period has something beneath it: a year has
+    // its months, and a segmented month has its parts. In both cases it totals
+    // the children without rewriting either level.
+    const std::vector<BudgetSegmentData> seg_a = segment_a();
+    const bool has_segments = !seg_a.empty();
+    const bool can_rollup =
+        (!m_is_monthly && !BudgetModel::instance().find_child_period_id_a(m_bp_id).empty())
+        || (m_segment_id <= 0 && has_segments);
+
+    if (w_rollup) {
+        w_rollup->Show(can_rollup);
+        if (!can_rollup)
+            w_rollup->SetValue(false);
+        w_rollup->SetLabel(has_segments && m_segment_id <= 0
+            ? _t("Include segments")
+            : _t("Include months"));
+    }
+
     // Readjust dates by the Budget Offset Option
     PrefModel::instance().addBudgetDateOffset(dtBegin);
     m_start_date = dtBegin.FormatISODate();
@@ -367,9 +440,22 @@ void BudgetPanel::initVirtualListControl()
     date_range.start_date(dtBegin.ResetTime()); // Start of Day
     date_range.end_date(dtEnd.ResetTime().Add(wxTimeSpan(23,59,59,999))); // End of Day
 
+    // What this view is answerable for. A segment shows its own entries; the
+    // period as a whole shows the ones filed against it rather than against a
+    // part, so the month and its halves no longer read identically. Rolling up
+    // widens the whole-period view to take the parts in as well.
+    const bool rolled_up = isRolledUp();
+    int64 segment_scope = BudgetModel::SEGMENT_ANY;
+    if (m_segment_id > 0)
+        segment_scope = m_segment_id;
+    else if (has_segments && !rolled_up)
+        segment_scope = BudgetModel::SEGMENT_NONE;
+
     //Get statistics
     BudgetModel::instance().getBudgetEntry(
-        m_bp_id, m_freq_mCatId, m_amount_mCatId, m_notes_mCatId
+        m_bp_id, m_freq_mCatId, m_amount_mCatId, m_notes_mCatId,
+        (rolled_up && !m_is_monthly),
+        segment_scope
     );
     CategoryModel::instance().getCategoryStats(
         m_amount_mMonth_mCatId,
@@ -533,10 +619,11 @@ double BudgetPanel::getEstimate(int64 cat_id) const
     }
 }
 
-void BudgetPanel::displayBudgetingDetails(int64 budgetYearID)
+void BudgetPanel::displayBudgetingDetails(int64 budgetYearID, int64 segment_id)
 {
     this->windowsFreezeThaw();
     m_bp_id = budgetYearID;
+    m_segment_id = segment_id;
     refreshList();
     this->windowsFreezeThaw();
 }
@@ -659,6 +746,22 @@ void BudgetPanel::onListItemActivated(int item)
     if (m_catId_subcatId_a[item].first == -1)
         return;
 
+    // Rolled up, the figure on the row is a total of other periods or segments,
+    // and the entry behind it belongs to this view alone. Editing would silently
+    // change something other than what is being read, so say so first.
+    if (isRolledUp()) {
+        const int reply = wxMessageBox(
+            _t("These figures include other periods, so this row is a total "
+               "rather than a single entry.\n\n"
+               "Editing it changes only this view's own entry, which may be a "
+               "different amount. Open it anyway?"),
+            _t("Budget Planner"),
+            wxYES_NO | wxICON_QUESTION, this
+        );
+        if (reply != wxYES)
+            return;
+    }
+
     int64 subcat_id = (m_catId_subcatId_a[item].second >= 0)
             ? m_catId_subcatId_a[item].second
             : m_catId_subcatId_a[item].first;
@@ -668,17 +771,31 @@ void BudgetPanel::onListItemActivated(int item)
         BudgetCol::WHERE_CATEGID(OP_EQ, subcat_id)
     );
 
+    // A category can hold one entry per segment plus one for the period as a
+    // whole. Taking the first row would edit whichever happened to come back
+    // first, so pick the one this view is actually showing.
+    BudgetData* match_n = nullptr;
+    for (auto& b_d : budget_a) {
+        const bool is_whole_period = (b_d.m_segment_id <= 0);
+        if (m_segment_id > 0 ? (b_d.m_segment_id == m_segment_id) : is_whole_period) {
+            match_n = &b_d;
+            break;
+        }
+    }
+
     BudgetData budget_d = BudgetData();
-    if (budget_a.empty()) {
+    if (!match_n) {
         // CHECK: budget_d.m_category_id
         budget_d = BudgetData();
         budget_d.m_period_id   = getBudgetYearID();
         budget_d.m_category_id = m_catId_subcatId_a[item].first;
         budget_d.m_amount      = 0.0;
+        // File it where the reader is looking, not against the whole period.
+        budget_d.m_segment_id  = (m_segment_id > 0) ? m_segment_id : -1;
         BudgetModel::instance().add_data_n(budget_d);
     }
     else {
-        budget_d = budget_a[0];
+        budget_d = *match_n;
     }
 
     double estimate = getEstimate(subcat_id);
@@ -693,5 +810,121 @@ void BudgetPanel::onListItemActivated(int item)
         w_list->Refresh();
         w_list->Update();
         w_list->EnsureVisible(item);
+    }
+}
+
+void BudgetPanel::showRowContextMenu(long item)
+{
+    if (item < 0 || static_cast<size_t>(item) >= m_catId_subcatId_a.size())
+        return;
+    // The TOTALS row stands for no entry.
+    if (m_catId_subcatId_a[item].first == -1)
+        return;
+
+    const std::vector<BudgetSegmentData> seg_a = segment_a();
+    if (seg_a.empty()) {
+        // Nothing to move between; a menu offering one destination that is
+        // already the current one would only be noise.
+        return;
+    }
+
+    m_context_item = item;
+
+    wxMenu menu;
+    wxMenu* move = new wxMenu;
+
+    move->AppendRadioItem(MENU_MOVE_TO_FIRST, _t("Whole period"))
+        ->Check(m_segment_id <= 0);
+
+    int n = 1;
+    for (const auto& seg_d : seg_a) {
+        if (n > 63)
+            break;  // the reserved id block; a period with 63 parts is not real
+        move->AppendRadioItem(
+            MENU_MOVE_TO_FIRST + n,
+            wxString::Format("%s (%d-%d)",
+                seg_d.m_name, seg_d.m_start_day, seg_d.m_end_day)
+        )->Check(seg_d.m_id == m_segment_id);
+        ++n;
+    }
+
+    menu.AppendSubMenu(move, _t("Move entry to"));
+    PopupMenu(&menu);
+}
+
+void BudgetPanel::onMoveToSegment(wxCommandEvent& event)
+{
+    if (m_context_item < 0 ||
+        static_cast<size_t>(m_context_item) >= m_catId_subcatId_a.size())
+        return;
+
+    const int index = event.GetId() - MENU_MOVE_TO_FIRST;
+    if (index < 0)
+        return;
+
+    int64 target = -1;  // the period as a whole
+    if (index > 0) {
+        const std::vector<BudgetSegmentData> seg_a = segment_a();
+        if (static_cast<size_t>(index - 1) >= seg_a.size())
+            return;
+        target = seg_a[index - 1].m_id;
+    }
+
+    const int64 cat_id = (m_catId_subcatId_a[m_context_item].second >= 0)
+        ? m_catId_subcatId_a[m_context_item].second
+        : m_catId_subcatId_a[m_context_item].first;
+
+    if (moveEntryToSegment(cat_id, target))
+        refreshList();
+}
+
+bool BudgetPanel::moveEntryToSegment(int64 cat_id, int64 target_segment_id)
+{
+    const int64 from = (m_segment_id > 0) ? m_segment_id : -1;
+
+    // Ask before merging rather than after, so a collision cannot quietly
+    // double a figure.
+    BudgetModel& model = BudgetModel::instance();
+    BudgetModel::MoveOutcome outcome =
+        model.move_entry_segment(m_bp_id, cat_id, from, target_segment_id, false);
+
+    if (outcome == BudgetModel::MOVE_OCCUPIED) {
+        const int reply = wxMessageBox(
+            _t("That destination already has an entry for this category.\n\n"
+               "Add the two amounts together into one entry?"),
+            _t("Move entry"), wxYES_NO | wxICON_QUESTION, this);
+        if (reply != wxYES)
+            return false;
+        outcome = model.move_entry_segment(
+            m_bp_id, cat_id, from, target_segment_id, true);
+    }
+
+    switch (outcome) {
+    case BudgetModel::MOVE_DONE:
+    case BudgetModel::MOVE_MERGED:
+        return true;
+
+    case BudgetModel::MOVE_UNCHANGED:
+        return false;
+
+    case BudgetModel::MOVE_NO_SOURCE:
+        wxMessageBox(
+            _t("There is no budget entry for this category in the part you are "
+               "looking at, so there is nothing to move."),
+            _t("Move entry"), wxOK | wxICON_INFORMATION, this);
+        return false;
+
+    case BudgetModel::MOVE_FREQ_MISMATCH:
+        wxMessageBox(
+            _t("The destination already budgets this category at a different "
+               "frequency.\n\n"
+               "Combining the two would change the total, so nothing has been "
+               "moved. Make the frequencies match first, or edit the "
+               "destination directly."),
+            _t("Move entry"), wxOK | wxICON_WARNING, this);
+        return false;
+
+    default:
+        return false;
     }
 }

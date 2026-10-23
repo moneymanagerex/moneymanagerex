@@ -25,6 +25,7 @@
 #include "util/mmCalcValidator.h"
 
 #include "model/CategoryModel.h"
+#include "model/BudgetSegmentModel.h"
 #include "BudgetEntryDialog.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(BudgetEntryDialog, wxDialog);
@@ -92,6 +93,20 @@ void BudgetEntryDialog::fillControls()
 
     m_textAmount->SetValue(std::fabs(amt));
     m_Notes->SetValue(m_budget_n->m_notes);
+    m_choiceRollover->SetSelection(m_budget_n->m_rollover.id());
+
+    if (m_choiceSegment) {
+        const int64 seg = (m_budget_n->m_segment_id > 0)
+            ? m_budget_n->m_segment_id : -1;
+        int sel = 0;
+        for (std::size_t i = 0; i < m_segment_id_a.size(); ++i) {
+            if (m_segment_id_a[i] == seg) {
+                sel = static_cast<int>(i);
+                break;
+            }
+        }
+        m_choiceSegment->SetSelection(sel);
+    }
 }
 
 void BudgetEntryDialog::CreateControls()
@@ -167,6 +182,46 @@ void BudgetEntryDialog::CreateControls()
     mmToolTip(m_textAmount, _t("Enter the amount budgeted for this category."));
     m_textAmount->SetFocus();
 
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _t("Rollover:")), g_flagsH);
+
+    wxArrayString rollover_a;
+    for (int i = 0; i < BudgetRollover::size; ++i)
+        rollover_a.Add(wxGetTranslation(BudgetRollover(i).name()));
+
+    m_choiceRollover = new wxChoice(itemPanel7, wxID_ANY,
+        wxDefaultPosition, wxDefaultSize, rollover_a);
+    itemGridSizer2->Add(m_choiceRollover, g_flagsExpand);
+    mmToolTip(m_choiceRollover, _t(
+        "Carry what is left of this category from one period to the next.\n"
+        "Use it for a bill you save up for monthly but pay once a year: the "
+        "contributions build a fund, and a plan item in the same category is "
+        "paid from that fund instead of landing as a shock."));
+
+    // Only worth offering where the period is actually split.
+    const BudgetSegmentModel::DataA seg_a =
+        BudgetSegmentModel::instance().find_period_a(m_budget_n->m_period_id);
+    if (!seg_a.empty()) {
+        itemGridSizer2->Add(
+            new wxStaticText(itemPanel7, wxID_STATIC, _t("Applies to:")), g_flagsH);
+
+        wxArrayString applies_a;
+        applies_a.Add(_t("Whole period"));
+        m_segment_id_a.push_back(-1);
+        for (const auto& seg_d : seg_a) {
+            applies_a.Add(wxString::Format("%s (%d-%d)",
+                seg_d.m_name, seg_d.m_start_day, seg_d.m_end_day));
+            m_segment_id_a.push_back(seg_d.m_id);
+        }
+
+        m_choiceSegment = new wxChoice(itemPanel7, wxID_ANY,
+            wxDefaultPosition, wxDefaultSize, applies_a);
+        itemGridSizer2->Add(m_choiceSegment, g_flagsExpand);
+        mmToolTip(m_choiceSegment, _t(
+            "Whether this entry belongs to the period as a whole or to one part "
+            "of it.\n"
+            "Changing it moves the entry, which is how a bill that falls in the "
+            "second half of the month stops weighing on the first."));
+    }
     itemStaticBoxSizer4->Add(new wxStaticText(this, wxID_STATIC, _t("Notes")),0, wxGROW|wxALL, 5);
     m_Notes = new wxTextCtrl(this,
         wxID_ANY, "",
@@ -212,6 +267,58 @@ void BudgetEntryDialog::OnOk(wxCommandEvent& event)
     m_budget_n->m_freq   = BudgetFreq(freq);
     m_budget_n->m_amount = amt;
     m_budget_n->m_notes  = m_Notes->GetValue();
+    m_budget_n->m_rollover = BudgetRollover(m_choiceRollover->GetSelection());
+
+    // Re-filing the entry has to happen before the save, and can be refused:
+    // the destination may already budget this category, and two entries in one
+    // place would be silently added together by everything that reads them.
+    if (m_choiceSegment) {
+        const int sel = m_choiceSegment->GetSelection();
+        const int64 target = (sel >= 0 &&
+                              static_cast<std::size_t>(sel) < m_segment_id_a.size())
+            ? m_segment_id_a[sel] : -1;
+        const int64 current = (m_budget_n->m_segment_id > 0)
+            ? m_budget_n->m_segment_id : -1;
+
+        if (target != current) {
+            BudgetModel& model = BudgetModel::instance();
+            // Save the edits first so a merge carries them, then re-file.
+            model.unsafe_save_data_n(m_budget_n);
+
+            BudgetModel::MoveOutcome outcome = model.move_entry_segment(
+                m_budget_n->m_period_id, m_budget_n->m_category_id,
+                current, target, false);
+
+            if (outcome == BudgetModel::MOVE_OCCUPIED) {
+                const int reply = wxMessageBox(
+                    _t("That part of the period already has an entry for this "
+                       "category.\n\nAdd the two amounts together into one entry?"),
+                    _t("Budget Entry"), wxYES_NO | wxICON_QUESTION, this);
+                if (reply != wxYES) {
+                    m_choiceSegment->SetFocus();
+                    return;
+                }
+                outcome = model.move_entry_segment(
+                    m_budget_n->m_period_id, m_budget_n->m_category_id,
+                    current, target, true);
+            }
+
+            if (outcome == BudgetModel::MOVE_FREQ_MISMATCH) {
+                wxMessageBox(
+                    _t("That part of the period already budgets this category at "
+                       "a different frequency.\n\n"
+                       "Combining the two would change the total, so the entry "
+                       "has not been moved."),
+                    _t("Budget Entry"), wxOK | wxICON_WARNING, this);
+                m_choiceSegment->SetFocus();
+                return;
+            }
+
+            EndModal(wxID_OK);
+            return;
+        }
+    }
+
     BudgetModel::instance().unsafe_save_data_n(m_budget_n);
 
     EndModal(wxID_OK);
