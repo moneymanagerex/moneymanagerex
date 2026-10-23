@@ -2,6 +2,9 @@ Version 1.9.5 Beta 1
 ~~~~~~~~~~~~~~~~~~~~
 Released: 2026-08-31
 
+Bugfixes:
+* #8536 Work around native-alert crashes with comma-decimal locales on macOS 27.0/27.1
+
 Version 1.9.4
 ~~~~~~~~~~~~~~~~~~~~
 Released: 2026-08-31
