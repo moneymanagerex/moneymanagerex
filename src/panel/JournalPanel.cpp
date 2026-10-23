@@ -29,6 +29,10 @@
 #include <wx/srchctrl.h>
 #include <wx/sound.h>
 
+#ifdef __linux__
+    #include <wx/utils.h>
+#endif
+
 #include "base/_constants.h"
 #include "base/mmTips.h"
 #include "util/mmPath.h"
@@ -127,11 +131,18 @@ void JournalPanel::mmPlayTransactionSound()
     wxString wav_path = mmPath::getPathResource(
         (play == 2) ? mmPath::TRANS_SOUND2 : mmPath::TRANS_SOUND1
     );
-    wxLogDebug("%s", wav_path);
-
-    wxSound registerSound(wav_path);
-    if (registerSound.IsOk())
-        registerSound.Play(wxSOUND_ASYNC);
+    wxLogDebug("Play '%s'", wav_path);
+    #ifdef __linux__
+        // requires paplay to be installed
+        wxString command = "paplay \"" + wav_path + "\"";
+        long pid = wxExecute(command, wxEXEC_ASYNC);
+        if (pid <= 0)
+            wxLogDebug("paplay execute returned: %ld, sound '%s' could not be played", pid, wav_path);
+    #else
+        wxSound registerSound(wav_path);
+        if (registerSound.IsOk())
+            registerSound.Play(wxSOUND_ASYNC);
+    #endif
 }
 
 // -- state
