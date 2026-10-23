@@ -218,8 +218,8 @@ Current stable version that has been tested with MMEX is v3.3.3
 
 1. Download Sources
 
-        /bin/bash -c "$(curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.3/wxWidgets-3.3.3.tar.bz2)"
-        tar xzf wxWidgets-*.tar.bz2
+        curl -fL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.3/wxWidgets-3.3.3.tar.bz2
+        tar xjf wxWidgets-3.3.3.tar.bz2
 
 2. Build from source
 
@@ -253,7 +253,7 @@ Current stable version that has been tested with MMEX is v3.3.3
     -DwxWidgets_CONFIG_EXECUTABLE={PATH-TO-wxWidgets}/wxWidgets-3.3.3/build-cocoa/wx-config \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
-    -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10 ..
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 ..
     cmake --build . --target package
 
 Replace `{PATH-TO-wxWidgets}` with the path to the directory in which you extracted the wxWidgets source in step 2.
