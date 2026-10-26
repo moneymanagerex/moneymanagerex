@@ -378,12 +378,16 @@ void StockPanel::fillListRow(
     listCtrl->SetItem(index, 1, ts_d.m_lot);
 
     int precision = ts_d.m_number == floor(ts_d.m_number) ? 0 : PrefModel::instance().getSharePrecision();
-    listCtrl->SetItem(index, 2, wxString::FromDouble(ts_d.m_number, precision));
+    // Use the UI locale: the native-alert workaround can make LC_NUMERIC "C".
+    const auto formatNumber = [](double value, int digits) {
+        return wxNumberFormatter::ToString(value, digits, wxNumberFormatter::Style_None);
+    };
+    listCtrl->SetItem(index, 2, formatNumber(ts_d.m_number, precision));
     listCtrl->SetItem(index, 3, wxGetTranslation(trx_d.m_type.trade_name()));
-    listCtrl->SetItem(index, 4, wxString::FromDouble(ts_d.m_price, PrefModel::instance().getSharePrecision()));
-    listCtrl->SetItem(index, 5, wxString::FromDouble(ts_d.m_commission, 2));
+    listCtrl->SetItem(index, 4, formatNumber(ts_d.m_price, PrefModel::instance().getSharePrecision()));
+    listCtrl->SetItem(index, 5, formatNumber(ts_d.m_commission, 2));
     double total = ts_d.m_number * ts_d.m_price + ts_d.m_commission;
-    listCtrl->SetItem(index, 6, wxString::FromDouble(total, 2));
+    listCtrl->SetItem(index, 6, formatNumber(total, 2));
 }
 
 // Bind list control events
