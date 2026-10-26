@@ -708,6 +708,7 @@ void ReconcileDialog::newTransaction()
             int64 transid = dlg.trx_id();
             const TrxData* trx = TrxModel::instance().get_idN_data_n(transid);
             addTransaction2List(trx);
+            JournalPanel::mmPlayTransactionSound();
         }
     } while (i == wxID_NEW);
 }
