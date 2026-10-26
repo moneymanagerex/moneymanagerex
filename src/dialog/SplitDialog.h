@@ -89,9 +89,12 @@ private:
         );
 
     void CreateControls();
-    void FillControls(const int focusRow = -1);
+    void FillControls();
+    void FillRow(int row);
+    void ClearRow(int row);
     void createNewRow(const bool enabled);
     void activateNewRow();
+    void focusFirstEmptyCat();
     void UpdateSplitTotal();
     void UpdateExtraInfo(int row);
 
@@ -102,8 +105,8 @@ private:
     void OnOtherButton(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     void OnFocusChange(wxChildFocusEvent& event);
-    void OnComboKey(wxKeyEvent& event);
-    bool mmDoCheckRow(int row);
+    void OnCharHookCategory(wxKeyEvent& event);
+    bool mmDoCheckRow(int row, bool reportError = true);
 
     struct SplitWidget
     {
@@ -115,11 +118,11 @@ private:
 
     std::vector<SplitWidget> m_splits_widgets;
     std::vector<Split> m_orig_splits, m_splits;
-    int row_num_ = 0;
+    int m_row_num = 0;
     const CurrencyData* m_currency_n = nullptr;
-    bool is_view_only_;
+    bool m_is_view_only;
 
-    wxButton* itemButtonOK_ = nullptr;
+    //wxButton* itemButtonOK_ = nullptr;
     wxScrolledWindow* slider_ = nullptr;
     wxStaticText* transAmount_ = nullptr;
     wxFlexGridSizer* flexGridSizer_ = nullptr;
@@ -128,4 +131,3 @@ private:
 };
 
 inline std::vector<Split> SplitDialog::mmGetResult() const { return m_orig_splits; }
-

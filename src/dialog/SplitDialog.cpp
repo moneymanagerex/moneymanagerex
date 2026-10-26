@@ -137,7 +137,7 @@ void mmEditSplitOther::OnCancel(wxCommandEvent& /*event*/)
 // SplitDialog
 // ------------------------------------------------------------------------------------------
 
-#define STATIC_SPLIT_NUM 10
+#define STATIC_SPLIT_NUM 6
 
 wxBEGIN_EVENT_TABLE(SplitDialog, wxDialog)
 EVT_CHILD_FOCUS(SplitDialog::OnFocusChange)
@@ -166,8 +166,8 @@ SplitDialog::SplitDialog(wxWindow* parent
     , bool is_view_only
 )
     : m_orig_splits(split)
-    , row_num_(static_cast<int>(split.size()))
-    , is_view_only_(is_view_only)
+    , m_row_num(static_cast<int>(split.size()) - 1)
+    , m_is_view_only(is_view_only)
 {
     const AccountData* account_n = AccountModel::instance().get_idN_data_n(accountID);
     m_currency_n = account_n
@@ -190,21 +190,14 @@ bool SplitDialog::Create(wxWindow* parent
     altRefreshDone = false; // reset the ALT refresh indicator on new dialog creation
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style, name);
-
     CreateControls();
     mmThemeAutoColour(this);
     FillControls();
-    row_num_ = m_splits.size() - 1;
-    if (!is_view_only_)
-        activateNewRow();
-
-    UpdateSplitTotal();
-
     mmSetSize(this);
     Centre();
     SetIcon(mmPath::getProgramIcon());
 
-    return TRUE;
+    return true;
 }
 
 void SplitDialog::CreateControls()
@@ -214,7 +207,7 @@ void SplitDialog::CreateControls()
     this->SetSizer(mainSizer);
 
     slider_ = new wxScrolledWindow(this, wxNewId(), wxDefaultPosition, wxDefaultSize, wxVSCROLL);
-    mainSizer->Add(slider_, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 1).Proportion(0));
+    mainSizer->Add(slider_, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 1).Proportion(1));
 
     wxBoxSizer* dialogMainSizerV = new wxBoxSizer(wxVERTICAL);
     slider_->SetSizer(dialogMainSizerV);
@@ -233,15 +226,10 @@ void SplitDialog::CreateControls()
     flexGridSizer_->Add(tagText, g_flagsH);
     flexGridSizer_->AddSpacer(1);
 
-    int size = static_cast<int>(m_splits.size());
-    if (size < STATIC_SPLIT_NUM) size = STATIC_SPLIT_NUM;
-
     wxSize scrollSize;
-    for (int row = 0; row < size; row++)
-    {
-        createNewRow(row <= static_cast<int>(m_splits.size()) && !is_view_only_);
-        if (row == (STATIC_SPLIT_NUM - 1))
-        {
+    for (int row = 0; row < std::max(static_cast<int>(m_splits.size()), STATIC_SPLIT_NUM); row++) {
+        createNewRow(row <= static_cast<int>(m_splits.size()) && !m_is_view_only);
+        if (row == (STATIC_SPLIT_NUM - 1)) {
             slider_->Fit();
             scrollSize = slider_->GetSize();
         }
@@ -251,18 +239,18 @@ void SplitDialog::CreateControls()
     slider_->SetScrollRate(6, 6);
 
     wxBoxSizer* bottomSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
-    bottomSizer->Add(plusAmountSizer, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5));
+    if (!m_is_view_only) {
+        wxBoxSizer* plusAmountSizer = new wxBoxSizer(wxHORIZONTAL);
+        bottomSizer->Add(plusAmountSizer, wxSizerFlags().Align(wxALIGN_LEFT).Border(wxALL, 5));
 
-    wxButton* bAdd = new wxButton(this, mmID_SPLIT, _t("&Add Split"));
-    bAdd->Enable(!is_view_only_);
-    plusAmountSizer->AddSpacer(mmImage::bitmapButtonSize + 10);
-    plusAmountSizer->Add(bAdd);
+        wxButton* bAdd = new wxButton(this, mmID_SPLIT, _t("&Add Split"));
+        plusAmountSizer->AddSpacer(mmImage::bitmapButtonSize + 10);
+        plusAmountSizer->Add(bAdd);
 
-    wxButton* bRemove = new wxButton(this, mmID_REMOVE, _t("&Remove Split"));
-    bRemove->Enable(!is_view_only_);
-    plusAmountSizer->AddSpacer(5);
-    plusAmountSizer->Add(bRemove);
+        wxButton* bRemove = new wxButton(this, mmID_REMOVE, _t("&Remove Split"));
+        plusAmountSizer->AddSpacer(5);
+        plusAmountSizer->Add(bRemove);
+    }
 
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -272,7 +260,7 @@ void SplitDialog::CreateControls()
     totalAmountSizer->Add(transAmount_, wxSizerFlags().Border(wxLEFT, 5));
     bottomSizer->AddStretchSpacer();
     bottomSizer->Add(totalAmountSizer, wxSizerFlags().Border(wxALL, 5));
-    mainSizer->Add(bottomSizer, g_flagsExpand);
+    mainSizer->Add(bottomSizer, wxSizerFlags().Align(wxALIGN_LEFT | wxEXPAND).Border(wxALL, 5).Proportion(0));
 
     // OK Cancel buttons
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
@@ -288,53 +276,66 @@ void SplitDialog::CreateControls()
     mainButtonSizer->Add(bottomRowButtonSizer, flagsV);
     buttons_sizer->Add(mainButtonSizer);
 
-    itemButtonOK_ = new wxButton(buttons_panel, wxID_OK, _t("&OK "));
-    wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, wxGetTranslation(g_CancelLabel));
+    if (!m_is_view_only) {
+        wxButton* itemButtonOK_ = new wxButton(buttons_panel, wxID_OK, _t("&OK "));
+        bottomRowButtonSizer->Add(itemButtonOK_, g_flagsH);
+    }
 
-    bottomRowButtonSizer->Add(itemButtonOK_, g_flagsH);
+    wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, m_is_view_only ? _t("&Close") : wxGetTranslation(g_CancelLabel));
     bottomRowButtonSizer->Add(itemButtonCancel, g_flagsH);
-    itemButtonOK_->Enable(!is_view_only_);
+    //itemButtonOK_->Enable(!m_is_view_only);
 
     SetEvtHandlerEnabled(true);
 
     Fit();
-    wxSize sz = this->GetSize();
-    SetSizeHints(sz.GetWidth(), sz.GetHeight(), -1, sz.GetHeight());
+    this->SetMinSize(wxSize(550, buttons_panel->GetSize().GetHeight() + scrollSize.GetHeight()));
 }
 
-void SplitDialog::FillControls(const int focusRow)
+void SplitDialog::FillControls()
 {
     DoWindowsFreezeThaw(this);
-    for (int row = (focusRow == -1 ? 0 : focusRow); row < static_cast<int>(m_splits_widgets.size()); row++) {
+    for (int row = 0; row < static_cast<int>(m_splits_widgets.size()); row++) {
         if (row < static_cast<int>(m_splits.size())) {
-            m_splits_widgets.at(row).category->ChangeValue(
-                CategoryModel::instance().get_id_fullname(m_splits.at(row).m_category_id)
-            );
-            if (m_splits.at(row).m_category_id == -1)
-                m_splits_widgets.at(row).amount->SetValue("");
-            else
-                m_splits_widgets.at(row).amount->SetValue(m_splits.at(row).m_amount);
-            m_splits_widgets.at(row).tags->SetTags(m_splits.at(row).m_tag_id_a);
-            UpdateExtraInfo(row);
-            m_splits_widgets.at(row).category->Enable(!is_view_only_);
-            m_splits_widgets.at(row).amount->Enable(!is_view_only_);
-            m_splits_widgets.at(row).tags->Enable(!is_view_only_);
-            m_splits_widgets.at(row).other->Enable(!is_view_only_);
-        } else
-        {
-            m_splits_widgets.at(row).category->ChangeValue("");
-            m_splits_widgets.at(row).amount->SetValue("");
-            m_splits_widgets.at(row).other->SetBitmap(mmImage::bitmapBundle(mmImage::png::UNRECONCILED,mmImage::bitmapButtonSize));
-            m_splits_widgets.at(row).category->Enable(false);
-            m_splits_widgets.at(row).amount->Enable(false);
-            m_splits_widgets.at(row).tags->Enable(false);
-            m_splits_widgets.at(row).other->Enable(false);
+            FillRow(row);
         }
-
-        if (focusRow == row)
-            m_splits_widgets.at(focusRow).category->SetFocus();
+        else {
+            ClearRow(row);
+        }
     }
+    if (!m_is_view_only)
+        activateNewRow();
+    UpdateSplitTotal();
+
     DoWindowsFreezeThaw(this);
+}
+
+void SplitDialog::FillRow(int row)
+{
+    m_splits_widgets.at(row).category->ChangeValue(
+        CategoryModel::instance().get_id_fullname(m_splits.at(row).m_category_id)
+    );
+    if (m_splits.at(row).m_category_id == -1)
+        m_splits_widgets.at(row).amount->SetValue("");
+    else
+        m_splits_widgets.at(row).amount->SetValue(m_splits.at(row).m_amount);
+    m_splits_widgets.at(row).tags->SetTags(m_splits.at(row).m_tag_id_a);
+    UpdateExtraInfo(row);
+
+    m_splits_widgets.at(row).category->Enable(!m_is_view_only);
+    m_splits_widgets.at(row).amount->Enable(!m_is_view_only);
+    m_splits_widgets.at(row).tags->Enable(!m_is_view_only);
+    m_splits_widgets.at(row).other->Enable(!m_is_view_only);
+}
+
+void SplitDialog::ClearRow(int row)
+{
+    m_splits_widgets.at(row).category->ChangeValue("");
+    m_splits_widgets.at(row).amount->SetValue("");
+    m_splits_widgets.at(row).other->SetBitmap(mmImage::bitmapBundle(mmImage::png::UNRECONCILED,mmImage::bitmapButtonSize));
+    m_splits_widgets.at(row).category->Enable(false);
+    m_splits_widgets.at(row).amount->Enable(false);
+    m_splits_widgets.at(row).tags->Enable(false);
+    m_splits_widgets.at(row).other->Enable(false);
 }
 
 void SplitDialog::createNewRow(const bool enabled)
@@ -342,28 +343,21 @@ void SplitDialog::createNewRow(const bool enabled)
     int row = m_splits_widgets.size();
     int64 catID = (row < static_cast<int>(m_splits.size())) ? m_splits.at(row).m_category_id : -1;
 
-    mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row
-                                        , wxDefaultSize, catID, true, catID != -1);
-    ncbc->Enable(enabled);
-    ncbc->Bind(wxEVT_CHAR_HOOK, &SplitDialog::OnComboKey, this);
+    mmComboBoxCategory* ncbc = new mmComboBoxCategory(slider_, mmID_MAX + row, wxDefaultSize, catID, true, catID != -1);
+    ncbc->Bind(wxEVT_CHAR_HOOK, &SplitDialog::OnCharHookCategory, this);
     ncbc->SetMinSize(wxSize(250,-1));
 
     mmTextCtrl* nval = new mmTextCtrl(slider_, mmID_MAX + row, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator(), m_currency_n);
-    nval->Enable(enabled);
-    nval->Connect(mmID_MAX + row, wxEVT_COMMAND_TEXT_ENTER
-                , wxCommandEventHandler(SplitDialog::OnTextEntered), nullptr, this);
+    nval->Bind(wxEVT_COMMAND_TEXT_ENTER, &SplitDialog::OnTextEntered, this, mmID_MAX + row);
     nval->SetMinSize(wxSize(100,-1));
 
     mmTagTextCtrl* ntag = new mmTagTextCtrl(slider_, mmID_MAX + row);
-    ntag->Enable(enabled);
 
     wxPanel* btnPanel = new wxPanel(slider_);
     wxBoxSizer* btnSizer = new wxBoxSizer(wxHORIZONTAL);
     wxButton* nother = new wxButton(btnPanel, mmID_MAX + row, _t("Notes"));
     nother->SetBitmap(mmImage::bitmapBundle(mmImage::png::UNRECONCILED,mmImage::bitmapButtonSize));
-    nother->Connect(mmID_MAX + row, wxEVT_BUTTON
-            , wxCommandEventHandler(SplitDialog::OnOtherButton), nullptr, this);
-    nother->Enable(enabled);
+    nother->Bind(wxEVT_BUTTON, &SplitDialog::OnOtherButton, this);
     btnSizer->Add(nother);
     btnPanel->SetSizer(btnSizer);
 
@@ -375,9 +369,7 @@ void SplitDialog::createNewRow(const bool enabled)
     SplitWidget sw = {ncbc, nval, ntag, nother};
     m_splits_widgets.push_back(sw);
 
-    if (enabled && row + 1 >= static_cast<int>(m_splits.size()))
-    {
-        ncbc->SetFocus();
+    if (enabled && row + 1 >= static_cast<int>(m_splits.size())) {
         slider_->FitInside();
         wxScrollWinEvent evt(wxEVT_SCROLLWIN_BOTTOM);
         slider_->GetEventHandler()->AddPendingEvent(evt);
@@ -386,25 +378,22 @@ void SplitDialog::createNewRow(const bool enabled)
 
 void SplitDialog::activateNewRow()
 {
-    int focus_offset = (m_splits_widgets.at(row_num_).category->GetValue().empty()) ? -1 : 0;
-    if (row_num_ < (static_cast<int>(m_splits_widgets.size()) - 1)) {
-        row_num_ = row_num_ + 1;
-        if (row_num_ >= static_cast<int>(m_splits.size()))
-        {
-            Split s = { -1, 0, "", {} };
-            m_splits.push_back(s);
-            m_splits_widgets.at(row_num_).category->mmDoReInitialize();
-        }
-        m_splits_widgets.at(row_num_).category->Enable(true);
-        m_splits_widgets.at(row_num_).amount->Enable(true);
-        m_splits_widgets.at(row_num_).tags->Enable(true);
-        m_splits_widgets.at(row_num_).other->Enable(true);
-        m_splits_widgets.at(row_num_+focus_offset).category->SetFocus();
-    }
-    else {
+    m_splits.push_back({ -1, 0, "", {} });
+    if (m_splits.size() -1 >= m_splits_widgets.size())
         createNewRow(true);
-        Split s = { -1, 0, "", {} };
-        m_splits.push_back(s);
+    m_splits_widgets.at(m_splits.size()-1).category->mmDoReInitialize();
+
+    FillRow(static_cast<int>(m_splits.size()) -1);
+    focusFirstEmptyCat();
+}
+
+void SplitDialog::focusFirstEmptyCat()
+{
+    for(std::vector<SplitWidget>::size_type i = 0; i < m_splits_widgets.size(); i++) {
+        if (m_splits_widgets[i].category->GetValue().IsEmpty()) {
+            m_splits_widgets.at(i).category->SetFocus();
+            break;
+        }
     }
 }
 
@@ -437,14 +426,7 @@ void SplitDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void SplitDialog::OnAddRow(wxCommandEvent& event)
 {
-    for (int id = 0; id < static_cast<int>(m_splits.size()); id++) {
-        if (!mmDoCheckRow(id))
-            return;
-    }
-
     activateNewRow();
-    FillControls();
-
     event.Skip();
 }
 
@@ -453,14 +435,23 @@ void SplitDialog::OnRemoveRow(wxCommandEvent&)
     if (m_splits.size() < 2)    // Should keep one split
         return;
 
-    for (int id=0; id<static_cast<int>(m_splits.size()); id++)
-        if ((id != row_num_) && !mmDoCheckRow(id))
-            return;
-
-    m_splits.erase(m_splits.begin() + row_num_ );
-    if (row_num_ > 0)
-        row_num_--;
-    FillControls(row_num_);
+    m_splits.erase(m_splits.begin() + m_row_num);
+    // Move rows after deleted row:
+    int lastid = static_cast<int>(m_splits.size());
+    for (int id = m_row_num; id < static_cast<int>(m_splits.size()); id++) {
+        if (m_splits_widgets.at(id).category->IsEnabled()) {
+            m_splits_widgets.at(id).category->SetValue(m_splits_widgets.at(id+1).category->GetValue());
+            m_splits_widgets.at(id).amount->SetValue(m_splits_widgets.at(id+1).amount->GetValue());
+            m_splits_widgets.at(id).tags->SetTags(m_splits_widgets.at(id+1).tags->GetTagIDs());
+            UpdateExtraInfo(id);
+        }
+        else {
+            lastid = id;
+            UpdateExtraInfo(id);
+            break;
+        }
+    }
+    ClearRow(lastid);
     UpdateSplitTotal();
 }
 
@@ -468,7 +459,7 @@ void SplitDialog::OnFocusChange(wxChildFocusEvent& event)
 {
     wxWindow* w = this->FindFocus();
     if (w && (w->GetId() >= mmID_MAX))
-        row_num_ = w->GetId() - mmID_MAX;
+        m_row_num = w->GetId() - mmID_MAX;
 
     UpdateSplitTotal();
     event.Skip();
@@ -480,8 +471,7 @@ void SplitDialog::OnTextEntered(wxCommandEvent& event)
     if (m_splits_widgets.at(row).category->GetValue().empty() && m_splits_widgets.at(row).amount->GetValue().empty())
         return;
 
-    if (mmDoCheckRow(row))
-    {
+    if (mmDoCheckRow(row)) {
         activateNewRow();
         UpdateSplitTotal();
     }
@@ -504,15 +494,14 @@ void SplitDialog::OnNewTagCreated(wxListEvent& event)
 void SplitDialog::OnOtherButton(wxCommandEvent& event)
 {
     int row = event.GetId() - mmID_MAX;
-    if (mmDoCheckRow(row)) {
-        mmEditSplitOther dlg(this, m_currency_n, &m_splits.at(row));
-        dlg.ShowModal();
-        UpdateExtraInfo(row);
-    }
+    mmDoCheckRow(row, false);  // get values w/o error reporting
+    mmEditSplitOther dlg(this, m_currency_n, &m_splits.at(row));
+    dlg.ShowModal();
+    UpdateExtraInfo(row);
     event.Skip();
 }
 
-void SplitDialog::OnComboKey(wxKeyEvent& event)
+void SplitDialog::OnCharHookCategory(wxKeyEvent& event)
 {
     if (event.GetKeyCode() == WXK_RETURN) {
         auto cbc = static_cast<mmComboBoxCategory*>(event.GetEventObject());
@@ -543,7 +532,7 @@ void SplitDialog::OnComboKey(wxKeyEvent& event)
 
     // The first time the ALT key is pressed accelerator hints are drawn, but custom painting on the tags button
     // is not applied. We need to refresh the tag ctrls to redraw the drop buttons with the correct images.
-    if (event.AltDown() && !altRefreshDone) {
+    else if (event.AltDown() && !altRefreshDone) {
         for (int row = 0; row < static_cast<int>(m_splits_widgets.size()); row++)
             m_splits_widgets.at(row).tags->Refresh();
         altRefreshDone = true;
@@ -576,14 +565,15 @@ void SplitDialog::UpdateExtraInfo(int row)
     m_splits_widgets.at(row).other->SetToolTip(m_splits.at(row).m_notes);
 }
 
-bool SplitDialog::mmDoCheckRow(int row)
+bool SplitDialog::mmDoCheckRow(int row, bool reportError)
 {
-    if (!m_splits_widgets.at(row).tags->IsValid()) {
+    if (!m_splits_widgets.at(row).tags->IsValid() && reportError) {
         mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).tags, _t("Invalid value"), _t("Tags"), wxICON_ERROR);
         return false;
     }
 
-    if (m_splits_widgets.at(row).category->GetValue().empty() &&
+    if (reportError &&
+        m_splits_widgets.at(row).category->GetValue().empty() &&
         m_splits_widgets.at(row).amount->GetValue().empty() &&
         m_splits_widgets.at(row).tags->GetTagIDs().empty() &&
         m_splits.at(row).m_notes.IsEmpty())
@@ -592,15 +582,16 @@ bool SplitDialog::mmDoCheckRow(int row)
     double amount = 0.0;
 
     // Validate category and amount
-    if (!m_splits_widgets.at(row).category->mmIsValid()) {
-            mmErrorDialogs::InvalidCategory(m_splits_widgets.at(row).category);
-            return false;
+    if (reportError && !m_splits_widgets.at(row).category->mmIsValid()) {
+        mmErrorDialogs::InvalidCategory(m_splits_widgets.at(row).category);
+        return false;
     }
 
-    if (!m_splits_widgets.at(row).amount->Calculate()) {
-            mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).amount,
-                                _t("Please enter a valid monetary amount"), _t("Invalid Value"));
-            return false;
+    bool rc = m_splits_widgets.at(row).amount->Calculate();
+    if (reportError && !rc) {
+        mmErrorDialogs::ToolTip4Object(m_splits_widgets.at(row).amount,
+                            _t("Please enter a valid monetary amount"), _t("Invalid Value"));
+        return false;
     }
 
     m_splits_widgets.at(row).amount->GetDouble(amount);

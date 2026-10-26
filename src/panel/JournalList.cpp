@@ -1709,37 +1709,32 @@ void JournalList::onListKeyDown(wxListEvent& event)
 
 void JournalList::onNewTrx(wxCommandEvent& event)
 {
-    int id = event.GetId();
-    TrxType type = TrxType();
-
-    switch (id) {
-    case MENU_TREEPOPUP_WITHDRAWAL:
-        type = TrxType(TrxType::e_withdrawal);
-        break;
-    case MENU_TREEPOPUP_DEPOSIT:
-        type = TrxType(TrxType::e_deposit);
-        break;
-    case MENU_TREEPOPUP_TRANSFER:
-        type = TrxType(TrxType::e_transfer);
-        break;
-    default:
-        type = TrxType(TrxType::e_withdrawal);
-        break;
+    TrxType type;
+    switch (event.GetId()) {
+        case MENU_TREEPOPUP_DEPOSIT:
+            type = TrxType(TrxType::e_deposit);
+            break;
+        case MENU_TREEPOPUP_TRANSFER:
+            type = TrxType(TrxType::e_transfer);
+            break;
+        case MENU_TREEPOPUP_WITHDRAWAL:
+        default:
+            type = TrxType(TrxType::e_withdrawal);
+            break;
     }
 
+    int rc;
     TrxDialog dlg(this, JournalKey(), false, w_panel->m_account_id, type);
-    int i = dlg.ShowModal();
-    if (i == wxID_CANCEL)
-        return;
-
-    m_select_key_a.clear();
-    m_paste_key_a.push_back(JournalKey(-1, dlg.trx_id()));
-    w_panel->mmPlayTransactionSound();
-    refreshVisualList();
-
-    if (i == wxID_NEW) {
-        onNewTrx(event);
-    }
+    do {
+        dlg.SetReturnCode(0);  // necessary for wxWidgets >= 3.3.4 to show dialog again
+        rc = dlg.ShowModal();
+        if (rc != wxID_CANCEL) {
+            m_select_key_a.clear();
+            m_paste_key_a.push_back(JournalKey(-1, dlg.trx_id()));
+            w_panel->mmPlayTransactionSound();
+            refreshVisualList();
+        }
+    } while (rc == wxID_NEW);
 }
 
 void JournalList::onDeleteTrx(wxCommandEvent& WXUNUSED(event))
