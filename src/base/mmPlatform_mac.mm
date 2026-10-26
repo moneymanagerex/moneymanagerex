@@ -56,9 +56,13 @@ const wxFileName mmPlatform::resourceDir()
 
 bool mmPlatform::isDarkMode()
 {
-    NSAppearance *appearance = NSAppearance.currentAppearance;
-    if (@available(*, macOS 10.14)) {
-        return appearance.name == NSAppearanceNameDarkAqua;
+    if (@available(macOS 10.14, *)) {
+        NSAppearance *appearance = NSApp.effectiveAppearance;
+        return [appearance
+            bestMatchFromAppearancesWithNames:@[
+                NSAppearanceNameAqua,
+                NSAppearanceNameDarkAqua
+            ]] == NSAppearanceNameDarkAqua;
     }
     return NO;
 }
