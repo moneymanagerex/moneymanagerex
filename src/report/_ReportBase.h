@@ -55,6 +55,9 @@ public:
         ForecastReport,
         BugReport,
         CategoryOverTimePerformance,
+        PlanLongTerm,
+        PlanCashFlow,
+        PlanCharts,
         NONE = -1
     };
 
