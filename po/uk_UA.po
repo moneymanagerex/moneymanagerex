@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-09-25 08:49+0000\n"
-"PO-Revision-Date: 2026-10-02 03:19\n"
+"PO-Revision-Date: 2026-10-30 03:43\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1088
 msgid "Cash Ledger"
-msgstr ""
+msgstr "Касова книга"
 
 #: app/mmFrame.cpp:1544 app/mmFrame.cpp:2828 app/mmFrame.cpp:2895
 #: app/mmFrame.cpp:2913 dialog/FieldDialog.cpp:244 dialog/FieldDialog.cpp:265
@@ -58,7 +58,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1573 dialog/TrxFilterDialog.cpp:2216
 msgid "Please Enter"
-msgstr ""
+msgstr "Будь ласка, увійдіть"
 
 #: app/mmFrame.cpp:1573 dialog/TrxFilterDialog.cpp:2216
 msgid "Setting Name"
@@ -237,7 +237,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1861
 msgid "Open Database"
-msgstr ""
+msgstr "Відкрити базу даних"
 
 #: app/mmFrame.cpp:1862
 msgid "Save Database &As…"
@@ -257,12 +257,12 @@ msgstr "&Очистити недавні файли"
 
 #: app/mmFrame.cpp:1876 import_export/univcsvdialog.cpp:139
 msgid "Import from CSV file"
-msgstr ""
+msgstr "Імпорт із CSV-файла"
 
 #: app/mmFrame.cpp:1879 import_export/qif_import_gui.cpp:1283
 #: import_export/qif_import_gui.h:52
 msgid "Import from QIF file"
-msgstr ""
+msgstr "Імпорт з QIF файлу"
 
 #: app/mmFrame.cpp:1881
 msgid "&OFX File…"
@@ -278,7 +278,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1883
 msgid "Import from the WebApp"
-msgstr ""
+msgstr "Імпорт з веб-додатку"
 
 #: app/mmFrame.cpp:1887 import_export/qif_export.cpp:55
 #: import_export/univcsvdialog.cpp:142
