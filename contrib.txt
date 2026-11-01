@@ -257,6 +257,10 @@ Ruben Delgado Boligan
 Denis Cruz Diaz
 Alexander Habegger
 Petar Ivanov
+Israel Corbo
+Carlo Mantovani
+Todd Smith
+Charles Griglak
 
 ### 2025
 Renato
