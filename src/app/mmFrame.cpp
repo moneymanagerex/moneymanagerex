@@ -2689,9 +2689,10 @@ void mmFrame::OnNew(wxCommandEvent& /*event*/)
         fileName += ".mmb";
 
     mmNavigatorList::instance().SetToDefault();
-    SetDatabaseFile(fileName, true);
-    SettingModel::instance().saveString("LASTFILENAME", fileName);
-    loadGrmIconMapping();
+    if (SetDatabaseFile(fileName, true)) {
+        SettingModel::instance().saveString("LASTFILENAME", fileName);
+        loadGrmIconMapping();
+    }
 }
 //----------------------------------------------------------------------------
 
@@ -3554,8 +3555,9 @@ void mmFrame::OnPrintPage(wxCommandEvent& WXUNUSED(event))
 
 //----------------------------------------------------------------------------
 
-void mmFrame::showBeginAppDialog(bool fromScratch)
+bool mmFrame::showBeginAppDialog(bool fromScratch)
 {
+    bool rc = true;
     StartupDialog dlg(this, m_app);
     if (fromScratch) {
         dlg.SetCloseButtonToExit();
@@ -3586,7 +3588,9 @@ void mmFrame::showBeginAppDialog(bool fromScratch)
     }
     case wxID_EXIT:
         Close();
+        rc = false;
     }
+    return rc;
 }
 //----------------------------------------------------------------------------
 
@@ -4386,10 +4390,10 @@ void mmFrame::autocleanDeletedTransactions() {
     TrxModel::instance().db_release_savepoint();
 }
 
-void mmFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
+bool mmFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 {
     autoRepeatTransactionsTimer_.Stop();
-
+    bool rc = true;
     if (openFile(dbFileName, newDatabase)) {
         DoRecreateNavTreeControl(true);
         mmLoadColorsFromDatabase();
@@ -4398,8 +4402,9 @@ void mmFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
         mmNavigatorList::instance().SetToDefault();
         resetNavTreeControl();
         cleanupHomePanel();
-        showBeginAppDialog(true);
+        rc = showBeginAppDialog(true);
     }
+    return rc;
 }
 //----------------------------------------------------------------------------
 
