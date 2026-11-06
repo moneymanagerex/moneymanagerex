@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-09-25 08:49+0000\n"
-"PO-Revision-Date: 2026-10-02 03:19\n"
+"PO-Revision-Date: 2026-11-06 04:24\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -25,7 +25,7 @@ msgstr "致命的なエラーが発生しました。\n"
 
 #: app/mmFrame.cpp:359
 msgid "Navigator"
-msgstr ""
+msgstr "ナビゲーター"
 
 #: app/mmFrame.cpp:360 pref/ViewPref.cpp:106
 msgid "Toolbar"
@@ -46,11 +46,11 @@ msgstr ""
 #: manager/CategoryManager.cpp:566 manager/PayeeManager.cpp:805
 #: manager/TagManager.cpp:366 model/SchedModel.cpp:140
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "続行しますか？"
 
 #: app/mmFrame.cpp:1544
 msgid "The selected item will be deleted."
-msgstr ""
+msgstr "選択したアイテムが削除されます。"
 
 #: app/mmFrame.cpp:1545 dialog/TrxFilterDialog.cpp:1382
 msgid "Settings item deletion"
@@ -58,7 +58,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1573 dialog/TrxFilterDialog.cpp:2216
 msgid "Please Enter"
-msgstr ""
+msgstr "入力してください"
 
 #: app/mmFrame.cpp:1573 dialog/TrxFilterDialog.cpp:2216
 msgid "Setting Name"
@@ -83,7 +83,7 @@ msgstr "取引レポート"
 
 #: app/mmFrame.cpp:1643
 msgid "Do you want to delete the account?"
-msgstr ""
+msgstr "口座を削除しますか？"
 
 #: app/mmFrame.cpp:1647
 msgid "This will also delete any associated Shares."
@@ -95,47 +95,47 @@ msgstr "アカウントの削除を確認"
 
 #: app/mmFrame.cpp:1665 app/mmFrame.cpp:1875
 msgid "&Import from"
-msgstr ""
+msgstr "インポート(&I)"
 
 #: app/mmFrame.cpp:1666
 msgid "&CSV Files…"
-msgstr ""
+msgstr "CSVファイル(&C)…"
 
 #: app/mmFrame.cpp:1667
 msgid "&XML Files…"
-msgstr ""
+msgstr "XML ファイル(&X)…"
 
 #: app/mmFrame.cpp:1667 app/mmFrame.cpp:1877
 msgid "Import from XML file (Excel format)"
-msgstr ""
+msgstr "XML ファイルからインポート（Excel 形式）"
 
 #: app/mmFrame.cpp:1669
 msgid "&QIF Files…"
-msgstr ""
+msgstr "QIF ファイル(&Q)…"
 
 #: app/mmFrame.cpp:1672 app/mmFrame.cpp:1886
 msgid "&Export as"
-msgstr ""
+msgstr "エクスポート(&E)"
 
 #: app/mmFrame.cpp:1673 app/mmFrame.cpp:1876 app/mmFrame.cpp:1887
 msgid "&CSV File…"
-msgstr ""
+msgstr "CSV ファイル(&C)…"
 
 #: app/mmFrame.cpp:1674 app/mmFrame.cpp:1877 app/mmFrame.cpp:1888
 msgid "&XML File…"
-msgstr ""
+msgstr "XML ファイル(&X)…"
 
 #: app/mmFrame.cpp:1676 app/mmFrame.cpp:1890
 msgid "&MMEX CSV File…"
-msgstr ""
+msgstr "MMEX CSV ファイル(&M)…"
 
 #: app/mmFrame.cpp:1677 app/mmFrame.cpp:1891
 msgid "&JSON File…"
-msgstr ""
+msgstr "JSON ファイル(&J)…"
 
 #: app/mmFrame.cpp:1678 app/mmFrame.cpp:1879 app/mmFrame.cpp:1892
 msgid "&QIF File…"
-msgstr ""
+msgstr "QIF ファイル(&Q)…"
 
 #: app/mmFrame.cpp:1704
 msgid "&Customize Report…"
@@ -181,7 +181,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1773
 msgid "Account &List"
-msgstr "アカウント リスト(&L)"
+msgstr "アカウントリスト(&L)"
 
 #: app/mmFrame.cpp:1787
 msgid "&All"
@@ -213,11 +213,11 @@ msgstr ""
 
 #: app/mmFrame.cpp:1815
 msgid "&Collapse All"
-msgstr ""
+msgstr "すべて折りたたむ(&C)"
 
 #: app/mmFrame.cpp:1817
 msgid "&Navigator configuration…"
-msgstr ""
+msgstr "ナビゲーター設定(&N)…"
 
 #: app/mmFrame.cpp:1818 app/mmFrame.cpp:2142
 msgid "T&heme Manager…"
@@ -225,7 +225,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:1860
 msgid "&New Database…"
-msgstr ""
+msgstr "新しいデータベース(&N)…"
 
 #: app/mmFrame.cpp:1860 wizard/wizard_newdb.cpp:143
 msgid "New Database"
@@ -233,7 +233,7 @@ msgstr "新しいデータベース"
 
 #: app/mmFrame.cpp:1861
 msgid "&Open Database…"
-msgstr ""
+msgstr "データベースを開く(&O)…"
 
 #: app/mmFrame.cpp:1861
 msgid "Open Database"
@@ -241,7 +241,7 @@ msgstr "データベースを開く"
 
 #: app/mmFrame.cpp:1862
 msgid "Save Database &As…"
-msgstr ""
+msgstr "名前を付けてデータベースを保存(&A)…"
 
 #: app/mmFrame.cpp:1862
 msgid "Save Database As"
@@ -249,7 +249,7 @@ msgstr "名前を付けてデータベースを保存"
 
 #: app/mmFrame.cpp:1869
 msgid "&Recent Files"
-msgstr ""
+msgstr "最近使用したファイル(&R)"
 
 #: app/mmFrame.cpp:1870
 msgid "&Clear Recent Files"
@@ -257,20 +257,20 @@ msgstr "最近使用したファイルをクリア(&C)"
 
 #: app/mmFrame.cpp:1876 import_export/univcsvdialog.cpp:139
 msgid "Import from CSV file"
-msgstr ""
+msgstr "CSV ファイルからインポート"
 
 #: app/mmFrame.cpp:1879 import_export/qif_import_gui.cpp:1283
 #: import_export/qif_import_gui.h:52
 msgid "Import from QIF file"
-msgstr ""
+msgstr "QIF ファイルからインポート"
 
 #: app/mmFrame.cpp:1881
 msgid "&OFX File…"
-msgstr ""
+msgstr "OFX ファイル(&O)…"
 
 #: app/mmFrame.cpp:1881
 msgid "Import from OFX file"
-msgstr ""
+msgstr "OFX ファイルからインポート"
 
 #: app/mmFrame.cpp:1883
 msgid "&WebApp…"
@@ -283,11 +283,11 @@ msgstr ""
 #: app/mmFrame.cpp:1887 import_export/qif_export.cpp:55
 #: import_export/univcsvdialog.cpp:142
 msgid "Export as CSV file"
-msgstr ""
+msgstr "CSV ファイルとしてエクスポート"
 
 #: app/mmFrame.cpp:1888 import_export/univcsvdialog.cpp:148
 msgid "Export as XML file"
-msgstr ""
+msgstr "XML ファイルとしてエクスポート"
 
 #: app/mmFrame.cpp:1890
 msgid "Export as fixed CSV file"
@@ -295,24 +295,24 @@ msgstr ""
 
 #: app/mmFrame.cpp:1891 import_export/qif_export.cpp:54
 msgid "Export as JSON file"
-msgstr ""
+msgstr "JSON ファイルとしてエクスポート"
 
 #: app/mmFrame.cpp:1892 import_export/qif_export.cpp:53
 #: import_export/qif_export.cpp:734
 msgid "Export as QIF file"
-msgstr ""
+msgstr "QIF ファイルとしてエクスポート"
 
 #: app/mmFrame.cpp:1894
 msgid "&HTML File…"
-msgstr ""
+msgstr "&HTML ファイル…"
 
 #: app/mmFrame.cpp:1894
 msgid "Export as HTML file"
-msgstr ""
+msgstr "HTML ファイルとしてエクスポート"
 
 #: app/mmFrame.cpp:1899
 msgid "&Print…"
-msgstr ""
+msgstr "プリント(&P)…"
 
 #: app/mmFrame.cpp:1899
 msgid "Print current view"
@@ -320,11 +320,11 @@ msgstr "現在の表示を印刷"
 
 #: app/mmFrame.cpp:1905
 msgid "E&xit"
-msgstr ""
+msgstr "終了(&X)"
 
 #: app/mmFrame.cpp:1905
 msgid "Quit this program"
-msgstr ""
+msgstr "このプログラムを終了する"
 
 #: app/mmFrame.cpp:1913
 msgid "&Toolbar"
@@ -336,7 +336,7 @@ msgstr "ツールバーの表示/非表示"
 
 #: app/mmFrame.cpp:1920
 msgid "&Navigator"
-msgstr ""
+msgstr "ナビゲーター(&N)"
 
 #: app/mmFrame.cpp:1921
 msgid "Show/Hide Navigator"
@@ -392,11 +392,11 @@ msgstr ""
 
 #: app/mmFrame.cpp:1969
 msgid "Show T&ooltips"
-msgstr ""
+msgstr "ツールヒントを表示(&O)"
 
 #: app/mmFrame.cpp:1970 pref/ViewPref.cpp:138
 msgid "Show Tooltips"
-msgstr ""
+msgstr "ツールヒントを表示"
 
 #: app/mmFrame.cpp:1976
 msgid "Show &Money Tips"
@@ -408,15 +408,15 @@ msgstr ""
 
 #: app/mmFrame.cpp:2001
 msgid "&Full Screen"
-msgstr ""
+msgstr "全画面表示(&F)"
 
 #: app/mmFrame.cpp:2002
 msgid "Toggle full screen"
-msgstr ""
+msgstr "全画面表示に切り替える"
 
 #: app/mmFrame.cpp:2011
 msgid "&Reset View"
-msgstr ""
+msgstr "表示をリセット(&R)"
 
 #: app/mmFrame.cpp:2012
 msgid "Reset view and dock tools"
@@ -424,20 +424,20 @@ msgstr ""
 
 #: app/mmFrame.cpp:2020 dialog/StartupDialog.cpp:133
 msgid "User Interface &Language"
-msgstr ""
+msgstr "表示言語(&L)"
 
 #: app/mmFrame.cpp:2021 dialog/StartupDialog.cpp:134
 #: dialog/StartupDialog.cpp:244 pref/GeneralPref.cpp:119
 msgid "Change user interface language"
-msgstr ""
+msgstr "表示言語の変更"
 
 #: app/mmFrame.cpp:2042
 msgid "Dash&board"
-msgstr ""
+msgstr "ダッシュボード(&B)"
 
 #: app/mmFrame.cpp:2043
 msgid "Open Dashboard"
-msgstr ""
+msgstr "ダッシュボードを開く"
 
 #: app/mmFrame.cpp:2050 dialog/AccountDialog.h:66
 #: wizard/wizard_newaccount.cpp:86 wizard/wizard_newaccount.cpp:93
@@ -511,11 +511,11 @@ msgstr ""
 
 #: app/mmFrame.cpp:2110
 msgid "&Payees…"
-msgstr ""
+msgstr "支払先(&P)..."
 
 #: app/mmFrame.cpp:2111
 msgid "Merge payees"
-msgstr ""
+msgstr "支払先を統合する"
 
 #: app/mmFrame.cpp:2113
 msgid "&Tags…"
@@ -657,7 +657,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2197
 msgid "&Database"
-msgstr ""
+msgstr "データベース(&D)"
 
 #: app/mmFrame.cpp:2198
 msgid "Database management"
@@ -669,7 +669,7 @@ msgstr "ヘルプ(&H)"
 
 #: app/mmFrame.cpp:2205
 msgid "Show Help"
-msgstr ""
+msgstr "ヘルプを表示"
 
 #: app/mmFrame.cpp:2210 dialog/StartupDialog.cpp:141
 msgid "&Website"
@@ -677,63 +677,63 @@ msgstr "ウェブサイト(&W)"
 
 #: app/mmFrame.cpp:2211 dialog/StartupDialog.cpp:143
 msgid "Visit MMEX website for the latest news and updates"
-msgstr ""
+msgstr "最新のニュースやアップデートについては、MMEX のウェブサイトをご覧ください"
 
 #: app/mmFrame.cpp:2213
 msgid "Face&book"
-msgstr ""
+msgstr "Face&book"
 
 #: app/mmFrame.cpp:2213
 msgid "Visit MMEX Facebook page"
-msgstr ""
+msgstr "MMEX の Facebook ページを見に行く"
 
 #: app/mmFrame.cpp:2215
 msgid "&Crowdin"
-msgstr ""
+msgstr "&Crowdin"
 
 #: app/mmFrame.cpp:2215
 msgid "Help translate MMEX on Crowdin"
-msgstr ""
+msgstr "Crowdin で MMEX の翻訳に協力する"
 
 #: app/mmFrame.cpp:2217
 msgid "&X"
-msgstr ""
+msgstr "&X"
 
 #: app/mmFrame.cpp:2217
 msgid "Follow MMEX on X"
-msgstr ""
+msgstr "MMEX を X でフォローする"
 
 #: app/mmFrame.cpp:2219
 msgid "&YouTube"
-msgstr ""
+msgstr "&YouTube"
 
 #: app/mmFrame.cpp:2219
 msgid "Watch MMEX videos on YouTube"
-msgstr ""
+msgstr "MMEX の YouTube 動画を見る"
 
 #: app/mmFrame.cpp:2221
 msgid "&Slack"
-msgstr ""
+msgstr "&Slack"
 
 #: app/mmFrame.cpp:2221
 msgid "Communicate with the MMEX team online"
-msgstr ""
+msgstr "MMEX のチームとオンラインで話す"
 
 #: app/mmFrame.cpp:2223
 msgid "&GitHub"
-msgstr ""
+msgstr "&GitHub"
 
 #: app/mmFrame.cpp:2223
 msgid "Access open source code repository and track reported bug statuses"
-msgstr ""
+msgstr "オープンソースコードリポジトリにアクセスし、報告されたバグの状態を追跡します"
 
 #: app/mmFrame.cpp:2225
 msgid "Read and update MMEX wiki"
-msgstr ""
+msgstr "MMEX ウィキを閲覧・更新する"
 
 #: app/mmFrame.cpp:2225
 msgid "Wi&ki"
-msgstr ""
+msgstr "ウィキ(&K)"
 
 #: app/mmFrame.cpp:2227 dialog/StartupDialog.cpp:147
 msgid "&Forum"
@@ -749,7 +749,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2231
 msgid "Install MMEX on iPads and iPhones"
-msgstr ""
+msgstr "iPhone または iPad に MMEX をインストール"
 
 #: app/mmFrame.cpp:2233
 msgid "MMEX for &Android"
@@ -757,11 +757,11 @@ msgstr ""
 
 #: app/mmFrame.cpp:2234
 msgid "Install MMEX for Android based smartphones and tablets"
-msgstr ""
+msgstr "Android スマホまたはタブレットに MMEX をインストール"
 
 #: app/mmFrame.cpp:2236
 msgid "&Newsletter"
-msgstr ""
+msgstr "ニュースレター(&N)"
 
 #: app/mmFrame.cpp:2237
 msgid "Visit the MMEX blog to view announcements"
@@ -769,7 +769,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2239
 msgid "&RSS Feed"
-msgstr ""
+msgstr "＆RSS フィード"
 
 #: app/mmFrame.cpp:2239
 msgid "Connect RSS web feed to news aggregator"
@@ -777,7 +777,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2241
 msgid "Make a &Donation"
-msgstr ""
+msgstr "寄付(&D)"
 
 #: app/mmFrame.cpp:2242
 msgid "Donate to the MMEX team to support infrastructure and development"
@@ -793,7 +793,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2248
 msgid "&Community"
-msgstr ""
+msgstr "コミュニティ(&C)"
 
 #: app/mmFrame.cpp:2249
 msgid "Stay in touch with MMEX community"
@@ -801,15 +801,15 @@ msgstr ""
 
 #: app/mmFrame.cpp:2274
 msgid "Report a &Bug"
-msgstr ""
+msgstr "バグを報告(&B)"
 
 #: app/mmFrame.cpp:2275
 msgid "Report an error in application to the developers"
-msgstr ""
+msgstr "アプリケーションのエラーを開発者に報告する"
 
 #: app/mmFrame.cpp:2279
 msgid "View &Diagnostics"
-msgstr ""
+msgstr "診断を表示(&D)"
 
 #: app/mmFrame.cpp:2280
 msgid "Help provide information to the developers"
@@ -858,17 +858,17 @@ msgstr "表示(&V)"
 #: app/mmFrame.cpp:2341 app/mmFrame.cpp:2344 app/mmFrame.cpp:3522
 #: pref/NetworkPref.cpp:133
 msgid "News"
-msgstr ""
+msgstr "お知らせ"
 
 #: app/mmFrame.cpp:2438
 #, c-format
 msgid "Please enter password for Database\n\n"
 "%s"
-msgstr ""
+msgstr "パスワードを入力してください"
 
 #: app/mmFrame.cpp:2442 app/mmFrame.cpp:2744 app/mmFrame.cpp:2972
 msgid "MMEX: Encrypted Database"
-msgstr ""
+msgstr "MMEX: 暗号化されたデータベース"
 
 #: app/mmFrame.cpp:2448 db/dbwrapper.cpp:126
 msgid "Opening MMEX Database – Error"
@@ -892,19 +892,19 @@ msgstr ""
 
 #: app/mmFrame.cpp:2573
 msgid "&Next →"
-msgstr ""
+msgstr "次へ →(&N)"
 
 #: app/mmFrame.cpp:2589
 msgid "Unable to find previously opened database."
-msgstr ""
+msgstr "以前に開いたデータベースが見つかりません。"
 
 #: app/mmFrame.cpp:2591
 msgid "Password not entered for encrypted database."
-msgstr ""
+msgstr "パスワードが入力されていません。"
 
 #: app/mmFrame.cpp:2614
 msgid "portable mode"
-msgstr ""
+msgstr "ポータブルモード"
 
 #: app/mmFrame.cpp:2648
 msgid "Attempting to open a database that has been marked as opened by another instance of MMEX.\n"
@@ -914,7 +914,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2652
 msgid "Do you want to open the database?"
-msgstr ""
+msgstr "データベースを開きますか？"
 
 #: app/mmFrame.cpp:2653
 msgid "MMEX Instance Check"
@@ -927,7 +927,7 @@ msgstr "作成するデータベース ファイルを選択してください"
 #: app/mmFrame.cpp:2679 app/mmFrame.cpp:2705 app/mmFrame.cpp:2754
 #: app/mmFrame.cpp:2939
 msgid "MMEX Database"
-msgstr ""
+msgstr "MMEX データベース"
 
 #: app/mmFrame.cpp:2702
 msgid "Choose database file to open"
@@ -935,15 +935,15 @@ msgstr "開くデータベース ファイルを選択してください"
 
 #: app/mmFrame.cpp:2705 app/mmFrame.cpp:2734 app/mmFrame.cpp:2939
 msgid "Encrypted MMEX Database"
-msgstr ""
+msgstr "暗号化された MMEX データベース"
 
 #: app/mmFrame.cpp:2706
 msgid "MMEX Database Backup"
-msgstr ""
+msgstr "MMEX データベースのバックアップ"
 
 #: app/mmFrame.cpp:2707
 msgid "Encrypted MMEX Database Backup"
-msgstr ""
+msgstr "暗号化された MMEX データベースのバックアップ"
 
 #: app/mmFrame.cpp:2732
 msgid "Choose Encrypted database file to open"
@@ -963,39 +963,39 @@ msgstr ""
 
 #: app/mmFrame.cpp:2777
 msgid "MMEX message"
-msgstr ""
+msgstr "MMEX メッセージ"
 
 #: app/mmFrame.cpp:2783
 msgid "MMEX: Encryption Password Change"
-msgstr ""
+msgstr "MMEX: 暗号化パスワードの変更"
 
 #: app/mmFrame.cpp:2785
 msgid "New password for database:"
-msgstr ""
+msgstr "データベースの新しいパスワード:"
 
 #: app/mmFrame.cpp:2794
 msgid "New password must not be empty."
-msgstr ""
+msgstr "新しいパスワードは空にできません。"
 
 #: app/mmFrame.cpp:2802
 msgid "Please confirm new password"
-msgstr ""
+msgstr "新しいパスワードを確認してください"
 
 #: app/mmFrame.cpp:2813
 msgid "Password change completed"
-msgstr ""
+msgstr "パスワードの変更が完了しました"
 
 #: app/mmFrame.cpp:2816
 msgid "Confirm password failed."
-msgstr ""
+msgstr "パスワードの確認に失敗しました。"
 
 #: app/mmFrame.cpp:2828
 msgid "Backup database before optimization."
-msgstr ""
+msgstr "最適化する前にデータベースをバックアップします。"
 
 #: app/mmFrame.cpp:2829 app/mmFrame.cpp:2842
 msgid "DB Optimization"
-msgstr ""
+msgstr "データベースの最適化"
 
 #: app/mmFrame.cpp:2837
 #, c-format
@@ -1006,36 +1006,36 @@ msgstr ""
 
 #: app/mmFrame.cpp:2866 db/dbupgrade.cpp:227 db/dbupgrade.cpp:278
 msgid "Query error, please contact MMEX support!"
-msgstr ""
+msgstr "クエリエラーが発生しました。MMEX サポートにお問い合わせください。"
 
 #: app/mmFrame.cpp:2867 db/dbupgrade.cpp:190 db/dbupgrade.cpp:227
 #: db/dbupgrade.cpp:234 db/dbupgrade.cpp:278 db/dbupgrade.cpp:289
 msgid "MMEX debug error"
-msgstr ""
+msgstr "MMEX デバッグエラー"
 
 #: app/mmFrame.cpp:2875
 msgid "Database Check"
-msgstr ""
+msgstr "データベースチェック"
 
 #: app/mmFrame.cpp:2875
 msgid "Result of database integrity check:"
-msgstr ""
+msgstr "データベースの整合性チェックの結果:"
 
 #: app/mmFrame.cpp:2894
 msgid "Please use this function only if requested by MMEX support and an .mmdbg debug file has been supplied."
-msgstr ""
+msgstr "MMEX サポートが要求し、.mmdbg デバッグファイルが提供されている場合にのみ、この機能を使用してください。"
 
 #: app/mmFrame.cpp:2897
 msgid "Database Debug"
-msgstr ""
+msgstr "データベースのデバッグ"
 
 #: app/mmFrame.cpp:2901
 msgid "&No"
-msgstr ""
+msgstr "いいえ(&N)"
 
 #: app/mmFrame.cpp:2901
 msgid "&Yes"
-msgstr ""
+msgstr "はい(&Y)"
 
 #: app/mmFrame.cpp:2913
 msgid "Reset cookies used for Web API access."
@@ -1051,7 +1051,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2936 app/mmFrame.cpp:2959
 msgid "Save database file as"
-msgstr "名前を付けてデータベース ファイルを保存"
+msgstr "名前を付けてデータベースファイルを保存"
 
 #: app/mmFrame.cpp:2958
 msgid "Unable to copy file to itself"
@@ -1059,7 +1059,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:2972
 msgid "Enter password for new database"
-msgstr ""
+msgstr "新しいデータベースのパスワードを入力してください"
 
 #: app/mmFrame.cpp:3069 app/mmFrame.cpp:3097
 msgid "No account available to import"
@@ -1140,7 +1140,7 @@ msgstr ""
 #: app/mmFrame.cpp:3985 import_export/qif_export.cpp:498
 #: import_export/qif_import_gui.cpp:468 import_export/qif_import_gui.cpp:1109
 msgid "Please wait…"
-msgstr ""
+msgstr "しばらくお待ちください…"
 
 #: app/mmFrame.cpp:4038 panel/StockPanel.cpp:666
 #, c-format
@@ -1149,25 +1149,25 @@ msgstr "%1$s - %2$s"
 
 #: app/mmFrame.cpp:4059
 msgid "No account available to edit!"
-msgstr "編集可能なアカウントはありません!"
+msgstr "編集可能な口座がありません"
 
 #: app/mmFrame.cpp:4060 app/mmFrame.cpp:4068 app/mmFrame.cpp:4093
 #: app/mmFrame.cpp:4101 import_export/qif_export.cpp:153
 #: panel/DashboardWidget.cpp:576 report/BalanceReport.cpp:42
 msgid "Accounts"
-msgstr "アカウント"
+msgstr "口座"
 
 #: app/mmFrame.cpp:4067
 msgid "Choose Account to Edit"
-msgstr "編集するアカウントを選択してください"
+msgstr "編集する口座を選択してください"
 
 #: app/mmFrame.cpp:4092
 msgid "No account available to delete!"
-msgstr "削除可能なアカウントがありません!"
+msgstr "削除可能な口座がありません"
 
 #: app/mmFrame.cpp:4100
 msgid "Choose Account to Delete"
-msgstr "削除するアカウントを選択してください"
+msgstr "削除する口座を選択してください"
 
 #: app/mmFrame.cpp:4109
 #, c-format
@@ -1262,7 +1262,7 @@ msgstr "毎月"
 #: app/mmFrame.cpp:4544 import_export/parsers.cpp:230
 #: manager/PrefManager.cpp:41 pref/ViewPref.cpp:126
 msgid "Transactions"
-msgstr ""
+msgstr "取引"
 
 #: app/mmFrame.cpp:4552 import_export/qif_export.cpp:147
 #: manager/CategoryManager.cpp:203
@@ -1287,7 +1287,7 @@ msgstr ""
 
 #: app/mmFrame.cpp:4580 pref/DashboardPref.cpp:83
 msgid "Income vs. Expenses"
-msgstr ""
+msgstr "収支"
 
 #: app/mmFrame.cpp:4591
 msgid "My Usage"
@@ -1329,7 +1329,7 @@ msgstr ""
 #: import_export/qif_import_gui.cpp:846 import_export/qif_import_gui.cpp:870
 #: import_export/univcsvdialog.cpp:2445 import_export/univcsvdialog.cpp:2467
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: base/_constants.cpp:91 dialog/AboutDialog.cpp:252
 #: dialog/AccountDialog.cpp:305 dialog/AssetDialog.cpp:312
@@ -1348,7 +1348,7 @@ msgstr "&OK "
 
 #: base/_constants.cpp:95
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: base/_constants.cpp:97 dialog/AssetDialog.cpp:313
 #: dialog/NavigatorEditDialog.cpp:122 dialog/ReconcileDialog.cpp:322
@@ -1366,11 +1366,11 @@ msgstr "閉じる(&C) "
 
 #: base/_constants.cpp:107
 msgid "Undo"
-msgstr ""
+msgstr "取消"
 
 #: base/_constants.cpp:108
 msgid "Redo"
-msgstr ""
+msgstr "やり直す"
 
 #: base/_constants.cpp:109
 msgid "Cut"
@@ -1378,23 +1378,23 @@ msgstr "切り取り"
 
 #: base/_constants.cpp:110
 msgid "Copy"
-msgstr ""
+msgstr "コピー"
 
 #: base/_constants.cpp:111
 msgid "Paste"
-msgstr ""
+msgstr "貼り付け"
 
 #: base/_constants.cpp:112
 msgid "Select All"
-msgstr ""
+msgstr "すべて選択"
 
 #: base/_constants.cpp:128
 msgid "64-bit"
-msgstr ""
+msgstr "64 ビット"
 
 #: base/_constants.cpp:206
 msgid "ALL"
-msgstr ""
+msgstr "すべて"
 
 #: base/_constants.cpp:207 data/_DataEnum.cpp:25 data/_DataEnum.cpp:45
 msgid "Open"
@@ -1414,27 +1414,27 @@ msgstr "システムの既定値"
 
 #: base/mmHtmlWindow.cpp:44
 msgid "Copy all text to clipboard"
-msgstr ""
+msgstr "すべてのテキストをクリップボードにコピー"
 
 #: base/mmTips.h:22
 msgid "Recommendation: Back up the .mmb database file regularly."
-msgstr ""
+msgstr "推奨：.mmb データベースファイルを定期的にバックアップすることをおすすめします。"
 
 #: base/mmTips.h:23
 msgid "Recommendation: If upgrading to a new version of MMEX, ensure the .mmb database file is backed up before doing so."
-msgstr ""
+msgstr "推奨：MMEX の新しいバージョンにアップグレードする場合は、その前に .mmb データベース ファイルがバックアップされていることを確認してください。"
 
 #: base/mmTips.h:24
 msgid "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used transactions."
-msgstr "推奨事項: 頻繁に取引で使用される、コピー (Ctrl+Cキー) と貼り付け (Ctrl+Vキー) を使用してください。"
+msgstr "推奨：頻繁に行う取引については、コピー（Ctrl+C）と貼り付け（Ctrl+V）を使用しましょう。"
 
 #: base/mmTips.h:25
 msgid "Tip: Remember to make backups of the .mmb database file."
-msgstr ""
+msgstr "ヒント： .mmbデータベースファイルのバックアップを作成することを忘れないでください。"
 
 #: base/mmTips.h:26
 msgid "Tip: If the .mmb database file is unencrypted, anyone who has the knowledge can open the database file and read the contents. Ensure that any sensitive financial information stored is properly secured."
-msgstr ""
+msgstr "ヒント： .mmb データベースファイルが暗号化されていない場合、誰でもデータベースを開いて内容を読み取ることができます。機密性の高い財務情報については適切に保護されているか確認してください。"
 
 #: base/mmTips.h:27
 msgid "Tip: To mark a transaction as reconciled, select the transaction and press the “R” key. To mark a transaction as unreconciled, select the transaction and press the “U” key."
@@ -1670,23 +1670,23 @@ msgstr ""
 
 #: data/_DataEnum.cpp:74
 msgid "Crypto"
-msgstr ""
+msgstr "暗号資産"
 
 #: data/_DataEnum.cpp:78
 msgid "String"
-msgstr ""
+msgstr "文字列"
 
 #: data/_DataEnum.cpp:79
 msgid "Integer"
-msgstr ""
+msgstr "整数"
 
 #: data/_DataEnum.cpp:80
 msgid "Decimal"
-msgstr ""
+msgstr "小数"
 
 #: data/_DataEnum.cpp:81
 msgid "Boolean"
-msgstr ""
+msgstr "真偽値"
 
 #: data/_DataEnum.cpp:82 dialog/AssetDialog.cpp:149
 #: dialog/CurrencyChoiceDialog.cpp:274 dialog/CurrencyChoiceDialog.cpp:291
@@ -1709,15 +1709,15 @@ msgstr "日付"
 #: panel/JournalList.cpp:101 report/TrxReport.cpp:228
 #: wizard/wizard_update.cpp:141
 msgid "Time"
-msgstr ""
+msgstr "時間"
 
 #: data/_DataEnum.cpp:84
 msgid "Single Choice"
-msgstr ""
+msgstr "単一選択"
 
 #: data/_DataEnum.cpp:85 dialog/FieldValueDialog.cpp:367
 msgid "Multi Choice"
-msgstr ""
+msgstr "複数選択"
 
 #: data/_DataEnum.cpp:89 dialog/TrxFilterDialog.cpp:677
 #: dialog/TrxFilterDialog.cpp:1676 dialog/TrxFilterDialog.cpp:1776
@@ -1817,15 +1817,15 @@ msgstr "%s ヶ月ごと"
 
 #: data/_DataEnum.cpp:129 pref/TrxPref.cpp:128
 msgid "Transaction"
-msgstr ""
+msgstr "取引"
 
 #: data/_DataEnum.cpp:130 panel/DashboardWidget.cpp:584
 msgid "Stock"
-msgstr ""
+msgstr "株式"
 
 #: data/_DataEnum.cpp:131 util/mmNavigatorList.cpp:66
 msgid "Asset"
-msgstr ""
+msgstr "資産"
 
 #: data/_DataEnum.cpp:132 dialog/SchedDialog.cpp:431 dialog/SchedDialog.cpp:833
 #: dialog/SchedDialog.cpp:845 dialog/TrxDialog.cpp:315 dialog/TrxDialog.cpp:602
@@ -1839,7 +1839,7 @@ msgstr ""
 #: model/TrxFilter.cpp:205 panel/AssetPanel.cpp:557 panel/JournalList.cpp:103
 #: panel/SchedList.cpp:77 report/FlowReport.cpp:414 report/TrxReport.cpp:232
 msgid "Account"
-msgstr "アカウント"
+msgstr "口座"
 
 #: data/_DataEnum.cpp:133
 msgid "Schedule"
@@ -1944,7 +1944,7 @@ msgstr "デバッグファイルを保存"
 
 #: db/dbupgrade.cpp:285
 msgid "DB maintenance completed, please close and re-open MMEX!"
-msgstr ""
+msgstr "データベースのメンテナンスが完了しました。MMEX を再起動してください。"
 
 #: db/dbwrapper.cpp:79
 msgid "The default cipher algorithm has changed from AES-128 to AES-256 for compatibility with the MMEX mobile apps."
@@ -1956,15 +1956,15 @@ msgstr ""
 
 #: db/dbwrapper.cpp:81
 msgid "Do you want to update the database?"
-msgstr ""
+msgstr "データベースを更新しますか？"
 
 #: db/dbwrapper.cpp:81
 msgid "Opening MMEX Database – Warning"
-msgstr ""
+msgstr "MMEX データベースを開く – 警告"
 
 #: db/dbwrapper.cpp:111
 msgid "When database file opening:"
-msgstr ""
+msgstr "データベースファイルを開くとき:"
 
 #: db/dbwrapper.cpp:115
 msgid "Path required to be specified to another database file."
@@ -1992,7 +1992,7 @@ msgstr "使用許諾契約"
 
 #: dialog/AboutDialog.cpp:186
 msgid "About"
-msgstr "このアプリについて"
+msgstr "概要"
 
 #: dialog/AboutDialog.cpp:191
 msgid "Authors"
@@ -2012,15 +2012,15 @@ msgstr "プライバシー"
 
 #: dialog/AboutDialog.cpp:244 pref/NetworkPref.cpp:126
 msgid "Send anonymous statistics usage data"
-msgstr "匿名の使用状況データの統計情報を送信"
+msgstr "使用状況に関する匿名の統計情報を送信する"
 
 #: dialog/AboutDialog.cpp:245 pref/NetworkPref.cpp:128
 msgid "Enable to help us sending anonymous data about MMEX usage."
-msgstr "有効にすると、MMEX の使用状況に関する匿名のデータを私たちに送信します。"
+msgstr "MMEX の使用状況に関する匿名のデータを送信します"
 
 #: dialog/AccountDialog.cpp:131
 msgid "Account Name:"
-msgstr "アカウント名:"
+msgstr "口座名:"
 
 #: dialog/AccountDialog.cpp:134
 msgid "Enter the Name of the Account. This name can be renamed at any time."
@@ -2028,15 +2028,15 @@ msgstr "アカウントの名前を入力してください。名前はいつで
 
 #: dialog/AccountDialog.cpp:137
 msgid "Account Type:"
-msgstr "アカウントの種類:"
+msgstr "口座の種類:"
 
 #: dialog/AccountDialog.cpp:140 wizard/wizard_newaccount.cpp:131
 msgid "Specify the account type to be created."
-msgstr ""
+msgstr "口座の種類を指定してください。"
 
 #: dialog/AccountDialog.cpp:144
 msgid "Account Status:"
-msgstr "アカウントの状態:"
+msgstr "口座の状態:"
 
 #: dialog/AccountDialog.cpp:154
 msgid "Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."
@@ -2049,15 +2049,15 @@ msgstr "初期残高: %s"
 
 #: dialog/AccountDialog.cpp:161
 msgid "Enter the initial balance in this account."
-msgstr "このアカウントの初期残高を入力してください。"
+msgstr "この口座の初期残高を入力してください。"
 
 #: dialog/AccountDialog.cpp:163
 msgid "Opening Date:"
-msgstr ""
+msgstr "開始日:"
 
 #: dialog/AccountDialog.cpp:166
 msgid "The date when the account was opened"
-msgstr ""
+msgstr "口座を開始した日付"
 
 #: dialog/AccountDialog.cpp:169 import_export/univcsvdialog.cpp:716
 #: import_export/univcsvdialog.cpp:3072
@@ -2070,7 +2070,7 @@ msgstr "通貨を選択"
 
 #: dialog/AccountDialog.cpp:177
 msgid "Specify the currency to be used by this account."
-msgstr "このアカウントで使用する通貨を指定してください。"
+msgstr "この口座で使用する通貨を指定してください。"
 
 #: dialog/AccountDialog.cpp:180
 msgid "Favorite Account"
@@ -2078,7 +2078,7 @@ msgstr "お気に入りのアカウント"
 
 #: dialog/AccountDialog.cpp:182
 msgid "Select whether this is an account that is used often. This is used to filter accounts display view."
-msgstr "よく使うアカウントを選択してください。これはアカウントを表示するフィルターに使用します。"
+msgstr "よく使う口座を選択してください。これは口座を表示するフィルターに使用します。"
 
 #: dialog/AccountDialog.cpp:190 dialog/AssetDialog.cpp:251
 #: dialog/BudgetEntryDialog.cpp:170 dialog/SchedDialog.cpp:561
@@ -2098,11 +2098,11 @@ msgstr "メモ"
 
 #: dialog/AccountDialog.cpp:195
 msgid "Enter user notes and details about this account."
-msgstr "このアカウントに関するメモと詳細を入力してください。"
+msgstr "この口座の詳細を入力してください。"
 
 #: dialog/AccountDialog.cpp:207
 msgid "Account Number:"
-msgstr "アカウント番号"
+msgstr "口座番号:"
 
 #: dialog/AccountDialog.cpp:207
 msgid "Card Number:"
@@ -2110,7 +2110,7 @@ msgstr "カード番号:"
 
 #: dialog/AccountDialog.cpp:209
 msgid "Enter the Account Number associated with this account."
-msgstr "このアカウントに関連付けるアカウント番号/口座番号を入力してください。"
+msgstr "口座番号を入力してください。"
 
 #: dialog/AccountDialog.cpp:212
 msgid "Held At:"
@@ -2118,7 +2118,7 @@ msgstr "開設:"
 
 #: dialog/AccountDialog.cpp:214
 msgid "Enter the name of the financial institution in which the account is held."
-msgstr "アカウント/口座を所有する金融機関の名前を入力してください。"
+msgstr "口座を保有する金融機関の名前を入力します。"
 
 #: dialog/AccountDialog.cpp:217
 msgid "Website:"
@@ -2138,11 +2138,11 @@ msgstr "金融機関の連絡先情報を入力してください。"
 
 #: dialog/AccountDialog.cpp:227
 msgid "Access Info:"
-msgstr "アクセス情報"
+msgstr "アクセス情報:"
 
 #: dialog/AccountDialog.cpp:229
 msgid "Enter any login/access information for the financial institution. This is not secure as anyone with access to the mmb file can access it."
-msgstr "金融機関のログイン/アクセス情報を入力してください。 mmb ファイルにアクセス権のある人は誰でもアクセスできるため、安全ではありません。"
+msgstr "金融機関のログイン情報またはアクセス情報を入力してください。 これは mmb ファイルにアクセス権のある人は誰でもアクセスできるため、安全ではありません。"
 
 #: dialog/AccountDialog.cpp:234
 msgid "Statement"
