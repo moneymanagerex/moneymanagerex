@@ -153,10 +153,13 @@ void TrxPref::Create()
     transactionCopyStaticBoxSizer->Add(soundBaseSizer, wxSizerFlags(g_flagsV).Border(wxLEFT, 0));
     soundBaseSizer->Add(new wxStaticText(transactionCopyStaticBox, wxID_STATIC, _t("Transaction Sound")), g_flagsH);
     m_use_sound = new wxChoice(transactionCopyStaticBox, wxID_STATIC
-        , wxDefaultPosition, wxSize(100, -1)
+        , wxDefaultPosition, wxDefaultSize
         , sounds);
     m_use_sound->SetSelection(SettingModel::instance().getInt(INIDB_USE_TRANSACTION_SOUND, 0));
     mmToolTip(m_use_sound, _t("Select whether to use sounds when entering transactions"));
+    #ifdef __linux__
+        m_use_sound->Bind(wxEVT_CHOICE, &TrxPref::onSoundChoice, this);
+    #endif
     soundBaseSizer->Add(m_use_sound, g_flagsV);
 
     // Transaction/Budget options
@@ -407,3 +410,16 @@ void TrxPref::OnNavTreeColorChanged(wxCommandEvent& event)
         }
     }
 }
+
+#ifdef __linux__
+    void TrxPref::onSoundChoice(wxCommandEvent& event)
+    {
+        if (event.GetSelection() > 0) {
+            long result = wxExecute("paplay --version", wxEXEC_SYNC | wxEXEC_HIDE_CONSOLE);
+            if (result != 0) {
+                wxLogWarning("The selected transaction sound can not be configured!\n\nThe command 'paplay' is missing or could not be executed, please check your system configuration.");
+                m_use_sound->SetSelection(0);
+            }
+        } 
+    }
+#endif
