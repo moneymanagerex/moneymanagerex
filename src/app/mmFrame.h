@@ -348,7 +348,7 @@ private:
     void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
     void showEmptyTreePopupMenu(const wxPoint& pt);
     void AppendImportMenu(wxMenu& menu);
-    void showBeginAppDialog(bool fromScratch = false);
+    bool showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);
 
     void navTreeStateToJson();
@@ -368,7 +368,7 @@ private:
     void navTreeSelection(wxTreeItemId selectedItem);
 
     // Sets the database to the new database selected by the user
-    void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false);
+    bool SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false);
     void ShutdownDatabase();
 
 // -- event handlers

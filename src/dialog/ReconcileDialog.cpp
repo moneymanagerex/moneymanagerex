@@ -808,16 +808,14 @@ void ReconcileDialog::setListItemData(const TrxData* trx_n, wxListCtrl* list, lo
     wxString prefix = trx_n->is_transfer()
         ? (trx_n->m_to_account_id_n == m_account_n->m_id ? "< " : "> ")
         : "";
+    bool isReceived = trx_n->is_transfer() && trx_n->m_to_account_id_n == m_account_n->m_id;
     wxString payeeName = (trx_n->is_transfer())
-        ? AccountModel::instance().get_id_name(trx_n->m_to_account_id_n == m_account_n->m_id
-            ? trx_n->m_account_id
-            : trx_n->m_to_account_id_n
-        )
+        ? AccountModel::instance().get_id_name(isReceived ? trx_n->m_account_id : trx_n->m_to_account_id_n)
         : PayeeModel::instance().get_id_name(trx_n->m_payee_id_n);
     list->SetItem(item, 1, mmGetDateTimeForDisplay(trx_n->m_isoDateTime()));
     list->SetItem(item, 2, trx_n->m_number);
     list->SetItem(item, 3, prefix + payeeName);
-    list->SetItem(item, 4, CurrencyModel::instance().toString(trx_n->m_amount,m_currency_n));
+    list->SetItem(item, 4, CurrencyModel::instance().toString(isReceived ? trx_n->m_to_amount : trx_n->m_amount, m_currency_n));
     list->SetItem(item, 5, trx_n->m_status.key());
     list->SetItemImage(item, (trx_n->m_status.id() == TrxStatus::e_followup) ? 1 : 0);
 }
