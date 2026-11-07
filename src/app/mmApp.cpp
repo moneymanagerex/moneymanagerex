@@ -443,8 +443,8 @@ int mmApp::OnExit()
 {
     wxLogDebug("{{{ mmApp::OnExit()");
 
-#ifndef __WXOSX__
-    if (m_frame && !m_frame->IsBeingDeleted())
+#if defined(__WINDOWS__)
+    if (m_frame && !m_frame->IsBeingDeleted())   //TBD: Is it necessary under Windows?
         m_frame->Destroy();
 #endif
 
