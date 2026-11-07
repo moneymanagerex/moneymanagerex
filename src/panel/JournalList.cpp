@@ -1233,9 +1233,9 @@ void JournalList::showTrxDialog(JournalKey journal_key, bool duplicate, TrxType 
 // should continue as these keys may be processed by the operating system.
 void JournalList::onChar(wxKeyEvent& event)
 {
-
     int key = event.GetKeyCode();
-    if (key == WXK_ALT ||
+    if (event.HasAnyModifiers() ||
+        key == WXK_ALT ||
         key == WXK_COMMAND ||
         key == WXK_UP ||
         key == WXK_DOWN ||
@@ -1264,12 +1264,6 @@ void JournalList::onChar(wxKeyEvent& event)
         event.Skip();
     }
 }
-
-/*void JournalList::onListLeftClick(wxMouseEvent& event)
-{
-    //wxLogDebug("onListLeftClick: %i selected", GetSelectedItemCount());
-    event.Skip();
-}*/
 
 void JournalList::onMouseRightClick(wxMouseEvent& event)
 {
