@@ -199,6 +199,7 @@ private:
     void deleteTransactionsByStatus(std::optional<TrxStatus> status_n);
     bool checkForClosedAccounts();
     bool checkTransactionLocked(int64 account_id, mmDate date);
+    void showTrxDialog(JournalKey journal_key, bool duplicate, TrxType type);
 
 // -- event handlers
 

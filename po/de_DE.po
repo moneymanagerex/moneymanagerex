@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: moneymanagerex\n"
 "Report-Msgid-Bugs-To: developer@moneymanagerex.org\n"
 "POT-Creation-Date: 2026-09-25 08:49+0000\n"
-"PO-Revision-Date: 2026-11-06 04:24\n"
+"PO-Revision-Date: 2026-10-16 02:26\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -2642,7 +2642,7 @@ msgstr "Code"
 
 #: dialog/CurrencyChoiceDialog.cpp:81
 msgid "Fixed Rate"
-msgstr "Kurs"
+msgstr "Festzins"
 
 #: dialog/CurrencyChoiceDialog.cpp:81
 msgid "Last Rate"
@@ -2658,7 +2658,7 @@ msgstr "Wechselkurse online aktualisieren"
 
 #: dialog/CurrencyChoiceDialog.cpp:190
 msgid "Online Update"
-msgstr "Online Aktualisierung"
+msgstr "Online-Aktualisierung"
 
 #: dialog/CurrencyChoiceDialog.cpp:193 manager/CategoryManager.cpp:290
 msgid "&Show All"
@@ -2680,7 +2680,7 @@ msgstr "&Wählen"
 
 #: dialog/CurrencyChoiceDialog.cpp:261
 msgid "Historical Currency Options"
-msgstr "Historische Wechselkurse"
+msgstr "Historische Währungsoptionen"
 
 #: dialog/CurrencyChoiceDialog.cpp:279 dialog/StockDialog.cpp:240
 #: dialog/StockDialog.cpp:263 dialog/StockDialog.cpp:728
@@ -2728,7 +2728,7 @@ msgstr "Werte dem Wechselkursverlauf hinzufügen"
 
 #: dialog/CurrencyChoiceDialog.cpp:326
 msgid "Delete selected Currency Values"
-msgstr "Ausgewählte(n) Kurs(e) löschen"
+msgstr "Ausgewählte Währung löschen"
 
 #: dialog/CurrencyChoiceDialog.cpp:330
 msgid "Delete Historical Currency Values for unused currencies and days"
@@ -2752,7 +2752,7 @@ msgstr "Historische Wechselkurse für %1$s gefunden, aber \"historische Währung
 #: dialog/CurrencyChoiceDialog.cpp:479
 #, c-format
 msgid "Currency History Options: %s"
-msgstr "Wechselkurse für: %s"
+msgstr "Wechselkurs Optionen: %s"
 
 #: dialog/CurrencyChoiceDialog.cpp:537
 msgid "Unable to update historical currency rates. Please update them manually!"
@@ -2765,11 +2765,11 @@ msgstr "Fehler im Wechselkursverlauf"
 
 #: dialog/CurrencyChoiceDialog.cpp:570
 msgid "Set as Base Currency"
-msgstr "Als Basiswährung setzen"
+msgstr "Basiswährung setzen"
 
 #: dialog/CurrencyChoiceDialog.cpp:571
 msgid "Online Update Currency Rate"
-msgstr "Wechselkurs aktualisieren"
+msgstr "Wechselkurse aktualisieren"
 
 #: dialog/CurrencyChoiceDialog.cpp:670 dialog/ReconcileDialog.cpp:183
 #: dialog/SchedDialog.cpp:388 dialog/SplitDialog.cpp:95

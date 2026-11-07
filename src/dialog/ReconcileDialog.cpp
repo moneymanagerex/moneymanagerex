@@ -699,17 +699,18 @@ void ReconcileDialog::showHideColumn(bool show, int col, int cs) {
 
 void ReconcileDialog::newTransaction()
 {
+    int rc;
     TrxDialog dlg(this, JournalKey(), false, m_account_n->m_id, TrxType());
-    int i = wxID_CANCEL;
     do {
-        i = dlg.ShowModal();
-        if (i != wxID_CANCEL) {
+        dlg.SetReturnCode(0);  // necessary for wxWidgets >= 3.3.4 to show dialog again
+        rc = dlg.ShowModal();
+        if (rc != wxID_CANCEL) {
             w_journal->refreshList();
             int64 transid = dlg.trx_id();
             const TrxData* trx = TrxModel::instance().get_idN_data_n(transid);
             addTransaction2List(trx);
         }
-    } while (i == wxID_NEW);
+    } while (rc == wxID_NEW);
 }
 
 void ReconcileDialog::addTransaction2List(const TrxData* trx_n)
@@ -807,16 +808,14 @@ void ReconcileDialog::setListItemData(const TrxData* trx_n, wxListCtrl* list, lo
     wxString prefix = trx_n->is_transfer()
         ? (trx_n->m_to_account_id_n == m_account_n->m_id ? "< " : "> ")
         : "";
+    bool isReceived = trx_n->is_transfer() && trx_n->m_to_account_id_n == m_account_n->m_id;
     wxString payeeName = (trx_n->is_transfer())
-        ? AccountModel::instance().get_id_name(trx_n->m_to_account_id_n == m_account_n->m_id
-            ? trx_n->m_account_id
-            : trx_n->m_to_account_id_n
-        )
+        ? AccountModel::instance().get_id_name(isReceived ? trx_n->m_account_id : trx_n->m_to_account_id_n)
         : PayeeModel::instance().get_id_name(trx_n->m_payee_id_n);
     list->SetItem(item, 1, mmGetDateTimeForDisplay(trx_n->m_isoDateTime()));
     list->SetItem(item, 2, trx_n->m_number);
     list->SetItem(item, 3, prefix + payeeName);
-    list->SetItem(item, 4, CurrencyModel::instance().toString(trx_n->m_amount,m_currency_n));
+    list->SetItem(item, 4, CurrencyModel::instance().toString(isReceived ? trx_n->m_to_amount : trx_n->m_amount, m_currency_n));
     list->SetItem(item, 5, trx_n->m_status.key());
     list->SetItemImage(item, (trx_n->m_status.id() == TrxStatus::e_followup) ? 1 : 0);
 }
