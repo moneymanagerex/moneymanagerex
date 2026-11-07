@@ -85,4 +85,8 @@ private:
         ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS,
         ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE,
     };
+
+    #ifdef __linux__
+        void onSoundChoice(wxCommandEvent& event);
+    #endif
 };
