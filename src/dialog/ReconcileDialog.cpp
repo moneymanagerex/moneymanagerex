@@ -699,17 +699,18 @@ void ReconcileDialog::showHideColumn(bool show, int col, int cs) {
 
 void ReconcileDialog::newTransaction()
 {
+    int rc;
     TrxDialog dlg(this, JournalKey(), false, m_account_n->m_id, TrxType());
-    int i = wxID_CANCEL;
     do {
-        i = dlg.ShowModal();
-        if (i != wxID_CANCEL) {
+        dlg.SetReturnCode(0);  // necessary for wxWidgets >= 3.3.4 to show dialog again
+        rc = dlg.ShowModal();
+        if (rc != wxID_CANCEL) {
             w_journal->refreshList();
             int64 transid = dlg.trx_id();
             const TrxData* trx = TrxModel::instance().get_idN_data_n(transid);
             addTransaction2List(trx);
         }
-    } while (i == wxID_NEW);
+    } while (rc == wxID_NEW);
 }
 
 void ReconcileDialog::addTransaction2List(const TrxData* trx_n)

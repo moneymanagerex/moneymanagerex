@@ -1890,7 +1890,7 @@ void mmSetSize(wxWindow* w)
     }
 
     static const std::unordered_map<wxString, DialogSizeInfo> dialogs = {
-        { "Split Transaction Dialog",     { "SPLITTRANSACTION_DIALOG_SIZE", true  } },
+        { "Split Transaction Dialog",     { "SPLITTRANSACTION_DIALOG_SIZE", false } },
         { "Organize Categories",          { "CATEGORIES_DIALOG_SIZE",       false } },
         { "mmPayeeDialog",                { "PAYEES_DIALOG_SIZE",           false } },
         { "Organize Currencies",          { "CURRENCY_DIALOG_SIZE",         false } },
