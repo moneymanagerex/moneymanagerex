@@ -658,7 +658,7 @@ wxString %s::to_json() const
     StringBuffer json_buffer;
     PrettyWriter<StringBuffer> json_writer(json_buffer);
 
-    json_writer.StartObject();			
+    json_writer.StartObject();
     as_json(json_writer);
     json_writer.EndObject();
 
@@ -836,7 +836,7 @@ void %s::ensure_data()
                 rf3 = ', '.join([translation_for(i) for i in r if is_trans(i)])
                 if rf2.find('%s') >= 0:
                     rf3 = ', ' + rf3
-                rf1 = '"INSERT INTO %s VALUES (%s)"%s' % (dt, rf2, rf3)
+                rf1 = '"INSERT OR IGNORE INTO %s VALUES (%s)"%s' % (dt, rf2, rf3)
                 if rf2.find('%s') >= 0:
                     rf1 = 'wxString::Format(' + rf1 + ')'
                 code += '''
@@ -884,7 +884,7 @@ void %s::ensure_data()
 // This is only sample code re-used from "table/%s.h".
 //
 // The data structure can be refined by:
-// * using more user-frielndly filed name
+// * using more user-friendly file name
 // * using stronger field types
 // * adding enumerations for fields with limited choices
 // * demultiplexing composite values in database columns
