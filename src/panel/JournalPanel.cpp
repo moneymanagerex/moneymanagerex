@@ -1289,9 +1289,6 @@ void JournalPanel::updateExtraTransactionData(bool single, int repeat_id, bool f
                 _t("Days between selected transactions: %d"),
                 days
             );
-#ifdef __WXMAC__    // See issue #2914
-            msg = "";
-#endif
             w_info_text->SetLabelText(msg);
         }
         else /* selected.size() == 0 */ {
