@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012
+Copyright (C) 2026 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,6 +27,9 @@ mmCalcValidator::mmCalcValidator() :
         list.Add(c);
     }
     SetIncludes(list);
+    #ifdef __linux__
+        waylandInUse = wxGetDisplayInfo().type == wxDisplayWayland;
+    #endif
 }
 
 void mmCalcValidator::OnChar(wxKeyEvent& event)
@@ -56,12 +60,17 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
 
     bool numpad_dec_swap = false;
 
-    try {
-        numpad_dec_swap = (wxGetKeyState(WXK_NUMPAD_DECIMAL) && decChar != str);
+ #ifdef __linux__
+    numpad_dec_swap = (event.GetKeyCode() == 44 || event.GetKeyCode() == 46);
+    if (!numpad_dec_swap && !waylandInUse) {
+ #endif
+        try {
+            numpad_dec_swap = (wxGetKeyState(WXK_NUMPAD_DECIMAL) && decChar != str);
+        }
+        catch (...) {}
+ #ifdef __linux__
     }
-    catch (...) {
-
-    }
+ #endif
 
     if (numpad_dec_swap)
         str = wxString(decChar);
