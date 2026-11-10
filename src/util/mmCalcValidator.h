@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2006-2012
+Copyright (C) 2026 Klaus Wich
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,6 +28,9 @@ private:
     wxDECLARE_NO_ASSIGN_CLASS(mmCalcValidator);
     DECLARE_DYNAMIC_CLASS(mmCalcValidator)
     DECLARE_EVENT_TABLE()
+    #ifdef __linux__ 
+        bool waylandInUse;
+    #endif
 
 public:
     mmCalcValidator();
