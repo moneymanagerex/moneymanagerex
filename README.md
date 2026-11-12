@@ -167,6 +167,7 @@ MMEX is mainly written in C++17 and uses the following open-source packages:
 * Database files (both regular and encrypted) can be opened directly
   with [wxsqliteplus]
 * Download dozens of useful reports from the [general reports] repository
+* Download the [latest Linux Flatpak development build](https://github.com/moneymanagerex/moneymanagerex/releases/tag/nightly)
 * Star this repository if you feel it is helpful [![st]][stargazers]
 
 [website]: https://moneymanagerex.org "MMEX website"
