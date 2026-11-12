@@ -21,6 +21,11 @@ API_HEADERS = {
 
 
 def api_request(method, path, token, body=None, allow_not_found=False):
+    url = f"{API_ROOT}{path}"
+    scheme = urllib.parse.urlsplit(url).scheme
+    if scheme not in ("http", "https"):
+        raise RuntimeError(f"Unsupported URL scheme: {scheme}")
+
     headers = {**API_HEADERS, "Authorization": f"Bearer {token}"}
     data = json.dumps(body).encode() if body is not None else None
     if data is not None:
