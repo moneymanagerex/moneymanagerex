@@ -30,9 +30,7 @@ def api_request(method, path, token, body=None, allow_not_found=False):
     data = json.dumps(body).encode() if body is not None else None
     if data is not None:
         headers["Content-Type"] = "application/json"
-    request = urllib.request.Request(
-        f"{API_ROOT}{path}", data=data, headers=headers, method=method
-    )
+    request = urllib.request.Request(url, data=data, headers=headers, method=method)
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
             if response.status == 204:
