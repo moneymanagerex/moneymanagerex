@@ -28,6 +28,7 @@
 wxBEGIN_EVENT_TABLE(BudgetList, ListBase)
     EVT_LIST_ITEM_SELECTED(wxID_ANY,  BudgetList::onListItemSelected)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, BudgetList::onListItemActivated)
+    EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, BudgetList::onListItemRightClick)
     EVT_MOTION(                       BudgetList::onMouseMove)
 wxEND_EVENT_TABLE()
 
@@ -85,6 +86,12 @@ void BudgetList::onListItemActivated(wxListEvent& event)
 {
     m_select = event.GetIndex();
     m_panel->onListItemActivated(m_select);
+}
+
+void BudgetList::onListItemRightClick(wxListEvent& event)
+{
+    m_select = event.GetIndex();
+    m_panel->showRowContextMenu(m_select);
 }
 
 void BudgetList::onMouseMove(wxMouseEvent& event)
