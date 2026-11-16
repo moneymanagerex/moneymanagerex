@@ -36,7 +36,6 @@ jobs:
             - mmex.flatpak
   publish-linux:
     machine: true
-    serial-group: << pipeline.project.slug >>/publish-nightly
     steps:
       - checkout
       - attach_workspace:
@@ -79,6 +78,7 @@ workflows:
             branches:
               only: master
           context: github-release-publisher
+          serial-group: << pipeline.project.slug >>/publish-nightly
 #      - build-macosapp-id: org.moneymanagerex.MMEX
 runtime: org.gnome.Platform
 runtime-version: '47'
