@@ -87,9 +87,15 @@ def main():
         raise RuntimeError(f"Flatpak artifact not found: {artifact}")
 
     api_base = f"/repos/{REPOSITORY}"
-    ref_path = f"{api_base}/git/ref/tags/{RELEASE_TAG}"
-    tag_ref = api_request("GET", ref_path, token, allow_not_found=True)
+    get_ref_path = f"{api_base}/git/ref/tags/{RELEASE_TAG}"
+    update_ref_path = f"{api_base}/git/refs/tags/{RELEASE_TAG}"
+
+    tag_ref = api_request(
+        "GET", get_ref_path, token, allow_not_found=True
+    )
+
     if tag_ref is None:
+        # First publication: create the tag.
         api_request(
             "POST",
             f"{api_base}/git/refs",
@@ -97,9 +103,10 @@ def main():
             {"ref": f"refs/tags/{RELEASE_TAG}", "sha": commit_sha},
         )
     elif tag_ref["object"]["sha"] != commit_sha:
+        # Subsequent publications: update the existing tag.
         api_request(
             "PATCH",
-            ref_path,
+            update_ref_path,
             token,
             {"sha": commit_sha, "force": True},
         )
