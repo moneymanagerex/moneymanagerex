@@ -1,6 +1,24 @@
-Version 1.9.5 Beta 1
+Version 1.9.5 RC 1
 ~~~~~~~~~~~~~~~~~~~~
-Released: 2026-08-31
+Released: 2026-11-19
+
+Features:
+* #8530 v1.9.5 will only support MacOS 12 and above
+
+Bugfixes:
+* #8605 Crash when creating a new DB or opening a 2nd DB
+* #8603 Reconciliation uses source currency amount instead of destination amount in cross-currency transfers
+* #8583 Bug sql cannot use app
+* #8574 Problèmes liés à la devise de base et à la création et à l’ouverture d'une nouvelle base de données
+* #8566 Empty category in Split transaction panel
+* #8543 Future recurring transactions limited to 30 days
+* #8536 v1.9.4 crashes on open on MacOS Golden Gate (27)
+* #8535 V. 1.9.4 the bug is also in the new Version ../src/unix/utilsx11.cpp(2633): assert "Assert failure" failed in wxGetKeyStateGTK(): Unsupported key 391
+* #8522 Editing the amount on the first split line of a duplicated transaction deletes the second split line
+* #8509 [v1.9.4] Date filters break ledger balance display
+* #8210 Bug: Blank Payee List Forces Dialog Infinite Loop
+* #7750 When entering a transaction amount manually by typing digits directly in the Amount field, MMEX crashes
+* #2914 multiselecting transaction info
 
 Version 1.9.4
 ~~~~~~~~~~~~~~~~~~~~
