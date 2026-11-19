@@ -50,7 +50,7 @@ mmDatePicker::mmDatePicker(
     w_date_picker->SetRange(wxDateTime(), mmDate::max().dateTime());
     setValue(m_dateTime);
     w_date_picker->Bind(wxEVT_DATE_CHANGED, &mmDatePicker::onDateChanged, this);
-    sizer->Add(w_date_picker);
+    sizer->Add(w_date_picker, g_flagsH);
 }
 
 mmDatePicker::~mmDatePicker()
