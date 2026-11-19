@@ -38,6 +38,10 @@ public:
         HELP_REPORT,
         CHECKING,
         BUDGET,
+        // A part of a segmented budget period. The id is the segment's own id,
+        // not the period's; the period is looked up from it. Kept distinct from
+        // BUDGET so a click can open the segment rather than its parent.
+        BUDGET_SEGMENT,
         INVESTMENT,
         REPORT,
         GRM,

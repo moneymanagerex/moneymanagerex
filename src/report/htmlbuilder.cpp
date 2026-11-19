@@ -500,6 +500,14 @@ void mmHTMLBuilder::addTableRow(const wxString& label, double data)
     this->endTableRow();
 }
 
+void mmHTMLBuilder::addTableRowBold(const wxString& label, double data)
+{
+    this->startTotalTableRow();
+    this->addTableCell(label);
+    this->addMoneyCell(data);
+    this->endTableRow();
+}
+
 void mmHTMLBuilder::end(bool simple)
 {
     html_ += simple ? tags::END_SIMPLE : tags::END;

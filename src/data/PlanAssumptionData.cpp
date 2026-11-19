@@ -1,0 +1,80 @@
+/*******************************************************
+ Copyright (C) 2026
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
+
+#include "PlanAssumptionData.h"
+
+PlanAssumptionData::PlanAssumptionData() :
+    m_id(-1),
+    m_kind(PlanAssumptionKind()),
+    m_value(0.0),
+    m_active(true),
+    m_group_id(-1)
+{
+}
+
+// Convert PlanAssumptionData to PlanAssumptionRow
+PlanAssumptionRow PlanAssumptionData::to_row() const
+{
+    PlanAssumptionRow row;
+
+    row.ASSUMPTIONID   = m_id;
+    row.ASSUMPTIONNAME = m_name;
+    row.KIND           = m_kind.key();
+    row.VALUE          = m_value;
+    row.SCOPEKEY       = m_scope_key;
+    row.NOTES          = m_notes;
+    row.ASOFDATE       = m_as_of_date;
+    row.ACTIVE         = (m_active ? 1 : 0);
+    row.UNIT           = m_unit;
+    row.GROUPID        = m_group_id;
+
+    return row;
+}
+
+// Convert PlanAssumptionRow to PlanAssumptionData
+PlanAssumptionData& PlanAssumptionData::from_row(const PlanAssumptionRow& row)
+{
+    m_id         = row.ASSUMPTIONID;
+    m_name       = row.ASSUMPTIONNAME;
+    m_kind       = PlanAssumptionKind(row.KIND);
+    m_value      = row.VALUE;
+    m_scope_key  = row.SCOPEKEY;
+    m_notes      = row.NOTES;
+    m_as_of_date = row.ASOFDATE;
+    m_active     = (row.ACTIVE != 0);
+    m_unit       = row.UNIT;
+    m_group_id   = row.GROUPID;
+
+    return *this;
+}
+
+bool PlanAssumptionData::equals(const PlanAssumptionData* other) const
+{
+    if ( m_id        != other->m_id)        return false;
+    if (!m_name.IsSameAs(other->m_name))    return false;
+    if ( m_kind.id() != other->m_kind.id()) return false;
+    if ( m_value     != other->m_value)     return false;
+    if (!m_scope_key.IsSameAs(other->m_scope_key)) return false;
+    if (!m_notes.IsSameAs(other->m_notes))  return false;
+    if (!m_as_of_date.IsSameAs(other->m_as_of_date)) return false;
+    if ( m_active    != other->m_active)    return false;
+    if (!m_unit.IsSameAs(other->m_unit))    return false;
+    if ( m_group_id  != other->m_group_id)  return false;
+
+    return true;
+}
