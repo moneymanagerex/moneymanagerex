@@ -1,7 +1,6 @@
 #pragma once
 
-
-class NetworkPref;
+#include <wx/string.h>
 
 struct PocketBaseSyncResult {
     bool ok = false;
@@ -9,9 +8,7 @@ struct PocketBaseSyncResult {
 };
 
 
-// Coordinates collection synchronization independently from the preferences UI.
-// NetworkPref is passed only as the current progress/status sink for this first
-// extraction; request and record logic lives in this service.
+// PocketBase synchronization service. This interface is independent of UI.
 class PocketBaseSyncService
 {
 public:
