@@ -52,6 +52,23 @@ public:
     auto get_idN_data_n(const int64 idN) -> const Data*;
     auto get_idN_data_n(wxLongLong_t idN) -> const Data* { return get_idN_data_n(int64(idN)); }
     auto add_data_n(Data& data) -> const Data*;
+    // Import a record from a peer while preserving its shared MMEX business key.
+    auto import_data_n(Data& data, const int64 id) -> const Data*
+    {
+        if (id <= 0 || get_idN_data_n(id)) return nullptr;
+        try {
+            wxSQLite3Statement stmt = this->m_db->PrepareStatement(this->m_insert_query);
+            data.to_insert_stmt(stmt, id);
+            data.id(id);
+            stmt.ExecuteUpdate();
+            stmt.Finalize();
+            return m_cache.add(id, data);
+        }
+        catch (const wxSQLite3Exception& e) {
+            wxLogError("%s: Import failed: %s", this->m_table_name, e.GetMessage().utf8_str());
+            return nullptr;
+        }
+    }
     bool add_data_a(DataA& data);
     auto unsafe_update_data_n(Data* data) -> Data*;
     auto update_data_n(Data& data) -> const Data*;
