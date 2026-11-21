@@ -133,25 +133,36 @@ void NetworkPref::Create()
     pocketBaseGrid->Add(m_pocketbase_password, 1, wxEXPAND | wxALL, 5);
     m_pocketbase_login = new wxButton(pocketBaseBox, wxID_HIGHEST + 80,
         SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty() ? "Sign in" : "Check session");
-    pocketBaseSizer->Add(m_pocketbase_login, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
     m_pocketbase_logout = new wxButton(pocketBaseBox, wxID_HIGHEST + 82, "Sign out");
     m_pocketbase_logout->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
-    pocketBaseSizer->Add(m_pocketbase_logout, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
-    m_pocketbase_sync_currencies = new wxButton(pocketBaseBox, wxID_HIGHEST + 83, "Sync currencies");
-    m_pocketbase_sync_currencies->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
-    pocketBaseSizer->Add(m_pocketbase_sync_currencies, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
-    m_pocketbase_sync_accounts = new wxButton(pocketBaseBox, wxID_HIGHEST + 84, "Sync accounts");
-    m_pocketbase_sync_accounts->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
-    pocketBaseSizer->Add(m_pocketbase_sync_accounts, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
-    m_pocketbase_sync_categories = new wxButton(pocketBaseBox, wxID_HIGHEST + 85, "Sync categories");
-    m_pocketbase_sync_categories->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
-    pocketBaseSizer->Add(m_pocketbase_sync_categories, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
-    m_pocketbase_sync_payees = new wxButton(pocketBaseBox, wxID_HIGHEST + 86, "Sync payees");
-    m_pocketbase_sync_payees->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
-    pocketBaseSizer->Add(m_pocketbase_sync_payees, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
+    pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_STATIC, "Session"),
+        wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxTOP, 8));
+    wxBoxSizer* pocketBaseSessionActions = new wxBoxSizer(wxHORIZONTAL);
+    pocketBaseSessionActions->Add(m_pocketbase_login, wxSizerFlags(1).Expand().Border(wxRIGHT, 8));
+    pocketBaseSessionActions->Add(m_pocketbase_logout, wxSizerFlags(1).Expand());
+    pocketBaseSizer->Add(pocketBaseSessionActions,
+        wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
     m_pocketbase_status = new wxStaticText(pocketBaseBox, wxID_ANY,
         SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty() ? "Not signed in" : "Saved session available");
     pocketBaseSizer->Add(m_pocketbase_status, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
+
+    pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_STATIC, "Basic data"),
+        wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxTOP, 8));
+    m_pocketbase_sync_currencies = new wxButton(pocketBaseBox, wxID_HIGHEST + 83, "Sync currencies");
+    m_pocketbase_sync_currencies->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+    m_pocketbase_sync_accounts = new wxButton(pocketBaseBox, wxID_HIGHEST + 84, "Sync accounts");
+    m_pocketbase_sync_accounts->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+    m_pocketbase_sync_categories = new wxButton(pocketBaseBox, wxID_HIGHEST + 85, "Sync categories");
+    m_pocketbase_sync_categories->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+    m_pocketbase_sync_payees = new wxButton(pocketBaseBox, wxID_HIGHEST + 86, "Sync payees");
+    m_pocketbase_sync_payees->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+    wxGridSizer* pocketBaseSyncActions = new wxGridSizer(2, 8, 8);
+    pocketBaseSyncActions->Add(m_pocketbase_sync_currencies, wxSizerFlags(1).Expand());
+    pocketBaseSyncActions->Add(m_pocketbase_sync_accounts, wxSizerFlags(1).Expand());
+    pocketBaseSyncActions->Add(m_pocketbase_sync_categories, wxSizerFlags(1).Expand());
+    pocketBaseSyncActions->Add(m_pocketbase_sync_payees, wxSizerFlags(1).Expand());
+    pocketBaseSizer->Add(pocketBaseSyncActions,
+        wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
     pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_ANY,
         "Use HTTPS for remote instances. PocketBase sync is configured separately from the local database."),
         wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
