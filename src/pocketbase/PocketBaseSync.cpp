@@ -4,6 +4,8 @@
 #include "model/AccountModel.h"
 #include "model/CategoryModel.h"
 #include "data/CategoryData.h"
+#include "model/PayeeModel.h"
+#include "data/PayeeData.h"
 #include "data/AccountData.h"
 #include <curl/curl.h>
 #include <rapidjson/document.h>
@@ -32,6 +34,17 @@ size_t PocketBaseWrite(char* data, size_t size, size_t count, void* context) {
     static_cast<std::string*>(context)->append(data, size * count);
     return size * count;
 }
+
+void configurePocketBaseTransfer(CURL* curl, curl_slist* headers, std::string& response, long timeoutSeconds)
+{
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, PocketBaseWrite);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, timeoutSeconds);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+}
 }
 
 PocketBaseSyncResult PocketBaseSyncService::syncCurrencies(const wxString& base, const wxString& token)
@@ -58,13 +71,7 @@ PocketBaseSyncResult PocketBaseSyncService::syncCurrencies(const wxString& base,
             failed = true;
         } else {
             curl_easy_setopt(curl, CURLOPT_URL, url.data());
-            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, PocketBaseWrite);
-            curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-            curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);
-            curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30L);
-            curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
-            curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+            configurePocketBaseTransfer(curl, headers, response, 30L);
             const CURLcode rc = curl_easy_perform(curl);
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
             if (rc != CURLE_OK || status < 200 || status >= 300) {
@@ -147,13 +154,7 @@ PocketBaseSyncResult PocketBaseSyncService::syncCurrencies(const wxString& base,
         headers = curl_slist_append(headers, auth.c_str());
         std::string response;
         long status = 0;
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, PocketBaseWrite);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);
-        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 20L);
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+        configurePocketBaseTransfer(curl, headers, response, 20L);
         const wxString method = recordId.empty() ? "POST" : "PATCH";
         wxString writeUrl = base + "/api/collections/CURRENCYFORMATS_V1/records";
         if (!recordId.empty()) writeUrl += "/" + recordId;
@@ -205,13 +206,7 @@ PocketBaseSyncResult PocketBaseSyncService::syncAccounts(const wxString& base, c
             failed = true;
         } else {
             curl_easy_setopt(curl, CURLOPT_URL, url.data());
-            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, PocketBaseWrite);
-            curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-            curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);
-            curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30L);
-            curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
-            curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+            configurePocketBaseTransfer(curl, headers, response, 30L);
             const CURLcode rc = curl_easy_perform(curl);
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
             if (rc != CURLE_OK || status < 200 || status >= 300) {
@@ -313,13 +308,7 @@ PocketBaseSyncResult PocketBaseSyncService::syncAccounts(const wxString& base, c
         headers = curl_slist_append(headers, auth.c_str());
         std::string response;
         long status = 0;
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, PocketBaseWrite);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);
-        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 20L);
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+        configurePocketBaseTransfer(curl, headers, response, 20L);
         const wxString method = recordId.empty() ? "POST" : "PATCH";
         wxString writeUrl = base + "/api/collections/ACCOUNTLIST_V1/records";
         if (!recordId.empty()) writeUrl += "/" + recordId;
@@ -371,13 +360,7 @@ PocketBaseSyncResult PocketBaseSyncService::syncCategories(const wxString& base,
             failed = true;
         } else {
             curl_easy_setopt(curl, CURLOPT_URL, url.data());
-            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, PocketBaseWrite);
-            curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-            curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);
-            curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30L);
-            curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
-            curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+            configurePocketBaseTransfer(curl, headers, response, 30L);
             const CURLcode rc = curl_easy_perform(curl);
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
             if (rc != CURLE_OK || status < 200 || status >= 300) {
@@ -453,13 +436,7 @@ PocketBaseSyncResult PocketBaseSyncService::syncCategories(const wxString& base,
         headers = curl_slist_append(headers, auth.c_str());
         std::string response;
         long status = 0;
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, PocketBaseWrite);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);
-        curl_easy_setopt(curl, CURLOPT_TIMEOUT, 20L);
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+        configurePocketBaseTransfer(curl, headers, response, 20L);
         const wxString method = recordId.empty() ? "POST" : "PATCH";
         wxString writeUrl = base + "/api/collections/CATEGORY_V1/records";
         if (!recordId.empty()) writeUrl += "/" + recordId;
@@ -482,6 +459,137 @@ PocketBaseSyncResult PocketBaseSyncService::syncCategories(const wxString& base,
         curl_slist_free_all(headers); curl_easy_cleanup(curl);
     }
     if (!failed) result.message = wxString::Format("Category sync complete: %zu downloaded, %zu created, %zu updated, %zu unchanged, %zu conflicts.", imported, created, updated, skipped, conflicts);
+    result.ok = !failed;
+    return result;
+}
+
+
+PocketBaseSyncResult PocketBaseSyncService::syncPayees(const wxString& base, const wxString& token)
+{
+    PocketBaseSyncResult result;
+    if (token.empty()) {
+        result.message = "Sign in before uploading payees.";
+        return result;
+    }
+    auto payees = PayeeModel::instance().find_data_a();
+    size_t created = 0, updated = 0, skipped = 0, conflicts = 0, imported = 0;
+    bool failed = false;
+    std::map<long long, std::pair<wxString, std::string>> remoteRecords;
+    {
+        CURL* curl = curl_easy_init();
+        std::string response;
+        long status = 0;
+        struct curl_slist* headers = nullptr;
+        const auto auth = std::string("Authorization: ") + token.utf8_string().data();
+        headers = curl_slist_append(headers, auth.c_str());
+        const auto url = (base + "/api/collections/PAYEE_V1/records?perPage=500&page=1").utf8_string();
+        if (!curl) {
+            result.message = "Could not initialize HTTP client.";
+            failed = true;
+        } else {
+            curl_easy_setopt(curl, CURLOPT_URL, url.data());
+            configurePocketBaseTransfer(curl, headers, response, 30L);
+            const CURLcode rc = curl_easy_perform(curl);
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+            if (rc != CURLE_OK || status < 200 || status >= 300) {
+                result.message = rc != CURLE_OK
+                    ? "Payee list request failed: " + wxString::FromUTF8(curl_easy_strerror(rc))
+                    : wxString::Format("Payee list request failed (%ld): %s", status, response);
+                failed = true;
+            } else {
+                rapidjson::Document list; list.Parse(response.c_str());
+                if (list.HasParseError() || !list.IsObject() || !list.HasMember("items") || !list["items"].IsArray()) {
+                    result.message = "PocketBase returned an invalid payee list.";
+                    failed = true;
+                } else {
+                    for (const auto& item : list["items"].GetArray()) {
+                        if (item.IsObject() && item.HasMember("PAYEEID") && item["PAYEEID"].IsInt64()
+                            && item.HasMember("id") && item["id"].IsString()) {
+                            rapidjson::StringBuffer copy;
+                            rapidjson::Writer<rapidjson::StringBuffer> writer(copy);
+                            item.Accept(writer);
+                            remoteRecords[item["PAYEEID"].GetInt64()] = {
+                                wxString::FromUTF8(item["id"].GetString()),
+                                std::string(copy.GetString(), copy.GetSize())
+                            };
+                        }
+                    }
+                }
+            }
+            curl_slist_free_all(headers);
+            curl_easy_cleanup(curl);
+        }
+    }
+    std::set<long long> localIds;
+    for (const auto& payee : payees) localIds.insert(payee.id().GetValue());
+    for (const auto& [businessId, remote] : remoteRecords) {
+        if (localIds.count(businessId)) continue;
+        rapidjson::Document record;
+        record.Parse(remote.second.c_str());
+        if (record.HasParseError() || !record.IsObject()) { ++conflicts; continue; }
+        PayeeData payee;
+        payee.id(businessId);
+        payee.m_name = record.HasMember("PAYEENAME") && record["PAYEENAME"].IsString() ? wxString::FromUTF8(record["PAYEENAME"].GetString()) : wxString();
+        payee.m_number = record.HasMember("NUMBER") && record["NUMBER"].IsString() ? wxString::FromUTF8(record["NUMBER"].GetString()) : wxString();
+        payee.m_website = record.HasMember("WEBSITE") && record["WEBSITE"].IsString() ? wxString::FromUTF8(record["WEBSITE"].GetString()) : wxString();
+        payee.m_notes = record.HasMember("NOTES") && record["NOTES"].IsString() ? wxString::FromUTF8(record["NOTES"].GetString()) : wxString();
+        payee.m_pattern = record.HasMember("PATTERN") && record["PATTERN"].IsString() ? wxString::FromUTF8(record["PATTERN"].GetString()) : wxString();
+        payee.m_active = !record.HasMember("ACTIVE") || !record["ACTIVE"].IsNumber() || record["ACTIVE"].GetInt() != 0;
+        payee.m_category_id_n = record.HasMember("CATEGID") && record["CATEGID"].IsInt64() ? int64(record["CATEGID"].GetInt64()) : int64(-1);
+        if (payee.m_category_id_n > 0 && !CategoryModel::instance().get_idN_data_n(payee.m_category_id_n)) { ++conflicts; continue; }
+        if (PayeeModel::instance().import_data_n(payee, businessId)) ++imported;
+        else ++conflicts;
+    }
+    for (const auto& payee : payees) {
+        if (failed) break;
+        const wxString payload = payee.to_json();
+        rapidjson::Document localRecord;
+        const auto payloadUtf8 = payload.utf8_string();
+        localRecord.Parse(payloadUtf8.data());
+        const auto foundRecord = remoteRecords.find(payee.id().GetValue());
+        const bool exists = foundRecord != remoteRecords.end();
+        wxString recordId = exists ? foundRecord->second.first : "";
+        if (exists) {
+            rapidjson::Document remoteRecord;
+            remoteRecord.Parse(foundRecord->second.second.c_str());
+            if (!localRecord.HasParseError() && !remoteRecord.HasParseError()) {
+                if (PocketBaseRecordEqual(localRecord, remoteRecord)) ++skipped;
+                else ++conflicts;
+                continue;
+            }
+        }
+
+        CURL* curl = curl_easy_init();
+        if (!curl) { result.message = "Could not initialize HTTP client."; failed = true; break; }
+        const auto auth = std::string("Authorization: ") + token.utf8_string().data();
+        struct curl_slist* headers = nullptr;
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        headers = curl_slist_append(headers, auth.c_str());
+        std::string response;
+        long status = 0;
+        configurePocketBaseTransfer(curl, headers, response, 20L);
+        const wxString method = recordId.empty() ? "POST" : "PATCH";
+        wxString writeUrl = base + "/api/collections/PAYEE_V1/records";
+        if (!recordId.empty()) writeUrl += "/" + recordId;
+        const auto url = writeUrl.utf8_string();
+        const auto body = payload.utf8_string();
+        curl_easy_setopt(curl, CURLOPT_URL, url.data());
+        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method.utf8_string().data());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, body.data());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, static_cast<long>(body.length()));
+        CURLcode rc = curl_easy_perform(curl);
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+        if (rc != CURLE_OK || status < 200 || status >= 300) {
+            result.message = rc != CURLE_OK
+                ? "Payee upload transport error: " + wxString::FromUTF8(curl_easy_strerror(rc)) + " (" + wxString::FromUTF8(url.data()) + ")"
+                : wxString::Format("Payee upload failed (%ld): %s", status, response);
+            failed = true;
+            curl_slist_free_all(headers); curl_easy_cleanup(curl); break;
+        }
+        if (recordId.empty()) ++created; else ++updated;
+        curl_slist_free_all(headers); curl_easy_cleanup(curl);
+    }
+    if (!failed) result.message = wxString::Format("Payee sync complete: %zu downloaded, %zu created, %zu updated, %zu unchanged, %zu conflicts.", imported, created, updated, skipped, conflicts);
     result.ok = !failed;
     return result;
 }

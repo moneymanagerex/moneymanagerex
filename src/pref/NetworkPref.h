@@ -70,6 +70,7 @@ private:
     wxButton* m_pocketbase_sync_currencies = nullptr;
     wxButton* m_pocketbase_sync_accounts = nullptr;
     wxButton* m_pocketbase_sync_categories = nullptr;
+    wxButton* m_pocketbase_sync_payees = nullptr;
     bool m_pocketbase_auth_check = false;
 
     void OnPocketBaseLogin(wxCommandEvent& event);
@@ -77,6 +78,7 @@ private:
     void OnPocketBaseSyncCurrencies(wxCommandEvent& event);
     void OnPocketBaseSyncAccounts(wxCommandEvent& event);
     void OnPocketBaseSyncCategories(wxCommandEvent& event);
+    void OnPocketBaseSyncPayees(wxCommandEvent& event);
 
     enum
     {

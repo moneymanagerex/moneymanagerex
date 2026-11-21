@@ -51,6 +51,7 @@ wxBEGIN_EVENT_TABLE(NetworkPref, wxPanel)
     EVT_BUTTON(wxID_HIGHEST + 83, NetworkPref::OnPocketBaseSyncCurrencies)
     EVT_BUTTON(wxID_HIGHEST + 84, NetworkPref::OnPocketBaseSyncAccounts)
     EVT_BUTTON(wxID_HIGHEST + 85, NetworkPref::OnPocketBaseSyncCategories)
+    EVT_BUTTON(wxID_HIGHEST + 86, NetworkPref::OnPocketBaseSyncPayees)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -145,6 +146,9 @@ void NetworkPref::Create()
     m_pocketbase_sync_categories = new wxButton(pocketBaseBox, wxID_HIGHEST + 85, "Sync categories");
     m_pocketbase_sync_categories->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
     pocketBaseSizer->Add(m_pocketbase_sync_categories, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
+    m_pocketbase_sync_payees = new wxButton(pocketBaseBox, wxID_HIGHEST + 86, "Sync payees");
+    m_pocketbase_sync_payees->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+    pocketBaseSizer->Add(m_pocketbase_sync_payees, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
     m_pocketbase_status = new wxStaticText(pocketBaseBox, wxID_ANY,
         SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty() ? "Not signed in" : "Saved session available");
     pocketBaseSizer->Add(m_pocketbase_status, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
@@ -387,6 +391,7 @@ void NetworkPref::OnPocketBaseLogin(wxCommandEvent&)
     m_pocketbase_sync_currencies->Enable();
     m_pocketbase_sync_accounts->Enable();
     m_pocketbase_sync_categories->Enable();
+    m_pocketbase_sync_payees->Enable();
     m_pocketbase_auth_check = false;
 }
 
@@ -398,6 +403,7 @@ void NetworkPref::OnPocketBaseLogout(wxCommandEvent&)
     m_pocketbase_sync_currencies->Disable();
     m_pocketbase_sync_accounts->Disable();
     m_pocketbase_sync_categories->Disable();
+    m_pocketbase_sync_payees->Disable();
     m_pocketbase_status->SetLabel("Signed out.");
 }
 
@@ -423,5 +429,13 @@ void NetworkPref::OnPocketBaseSyncCategories(wxCommandEvent&)
     auto result = PocketBaseSyncService::syncCategories(m_pocketbase_url->GetValue().Trim(false).Trim(), SettingModel::instance().getString("POCKETBASE_TOKEN", ""));
     m_pocketbase_status->SetLabel(result.message);
     m_pocketbase_sync_categories->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+}
+
+void NetworkPref::OnPocketBaseSyncPayees(wxCommandEvent&)
+{
+    m_pocketbase_sync_payees->Disable();
+    auto result = PocketBaseSyncService::syncPayees(m_pocketbase_url->GetValue().Trim(false).Trim(), SettingModel::instance().getString("POCKETBASE_TOKEN", ""));
+    m_pocketbase_status->SetLabel(result.message);
+    m_pocketbase_sync_payees->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
 }
 
