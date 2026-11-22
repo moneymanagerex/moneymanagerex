@@ -16,4 +16,5 @@ public:
     static PocketBaseSyncResult syncAccounts(const wxString& base, const wxString& token);
     static PocketBaseSyncResult syncCategories(const wxString& base, const wxString& token);
     static PocketBaseSyncResult syncPayees(const wxString& base, const wxString& token);
+    static PocketBaseSyncResult syncTransactions(const wxString& base, const wxString& token);
 };

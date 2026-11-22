@@ -7,6 +7,10 @@
 #include "model/PayeeModel.h"
 #include "data/PayeeData.h"
 #include "data/AccountData.h"
+#include "model/TrxModel.h"
+#include "model/TrxSplitModel.h"
+#include "model/TrxLinkModel.h"
+#include "model/TrxShareModel.h"
 #include <curl/curl.h>
 #include <rapidjson/document.h>
 #include <rapidjson/stringbuffer.h>
@@ -14,6 +18,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include <vector>
 
 namespace {
 bool PocketBaseValuesEqual(const rapidjson::Value& lhs, const rapidjson::Value& rhs) {
@@ -44,6 +49,121 @@ void configurePocketBaseTransfer(CURL* curl, curl_slist* headers, std::string& r
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, timeoutSeconds);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+}
+
+bool fetchPocketBaseCollection(const wxString& base, const wxString& token,
+    const char* collection, std::vector<std::string>& records, wxString& error)
+{
+    const auto auth = std::string("Authorization: ") + token.utf8_string().data();
+    for (int page = 1; ; ++page) {
+        CURL* curl = curl_easy_init();
+        if (!curl) {
+            error = "Could not initialize HTTP client.";
+            return false;
+        }
+        struct curl_slist* headers = nullptr;
+        headers = curl_slist_append(headers, auth.c_str());
+        std::string response;
+        long status = 0;
+        const auto url = (base + wxString::Format("/api/collections/%s/records?perPage=500&page=%d", collection, page)).utf8_string();
+        curl_easy_setopt(curl, CURLOPT_URL, url.data());
+        configurePocketBaseTransfer(curl, headers, response, 60L);
+        const CURLcode rc = curl_easy_perform(curl);
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+        curl_slist_free_all(headers);
+        curl_easy_cleanup(curl);
+        if (rc != CURLE_OK || status < 200 || status >= 300) {
+            error = rc != CURLE_OK
+                ? wxString::Format("%s list request failed: %s", collection, curl_easy_strerror(rc))
+                : wxString::Format("%s list request failed (%ld): %s", collection, status, response);
+            return false;
+        }
+        rapidjson::Document list;
+        list.Parse(response.c_str());
+        if (list.HasParseError() || !list.IsObject() || !list.HasMember("items") || !list["items"].IsArray()
+            || !list.HasMember("totalPages") || !list["totalPages"].IsInt()) {
+            error = wxString::Format("PocketBase returned an invalid %s list.", collection);
+            return false;
+        }
+        for (const auto& item : list["items"].GetArray()) {
+            if (!item.IsObject()) continue;
+            rapidjson::StringBuffer copy;
+            rapidjson::Writer<rapidjson::StringBuffer> writer(copy);
+            item.Accept(writer);
+            records.emplace_back(copy.GetString(), copy.GetSize());
+        }
+        if (page >= list["totalPages"].GetInt()) break;
+    }
+    return true;
+}
+
+int64 pocketBaseInteger(const rapidjson::Value& record, const char* field, int64 fallback = -1)
+{
+    if (!record.IsObject() || !record.HasMember(field) || !record[field].IsNumber()) return fallback;
+    const auto& value = record[field];
+    return value.IsInt64() ? value.GetInt64() : static_cast<int64>(value.GetDouble());
+}
+
+wxString pocketBaseString(const rapidjson::Value& record, const char* field)
+{
+    return record.IsObject() && record.HasMember(field) && record[field].IsString()
+        ? wxString::FromUTF8(record[field].GetString()) : wxString();
+}
+
+void normalizeTransactionRecord(rapidjson::Value& record, rapidjson::Document::AllocatorType& allocator,
+    bool compareDateOnly = true)
+{
+    const auto setNull = [&record, &allocator](const char* field) {
+        if (record.HasMember(field)) record[field].SetNull();
+    };
+    const auto nullWhenUnset = [&record, &setNull](const char* field) {
+        if (!record.HasMember(field) || record[field].IsNull()
+            || (record[field].IsNumber() && record[field].GetDouble() <= 0)) setNull(field);
+    };
+    nullWhenUnset("TOACCOUNTID");
+    nullWhenUnset("CATEGID");
+    nullWhenUnset("FOLLOWUPID");
+    if (record.HasMember("COLOR") && record["COLOR"].IsNumber() && record["COLOR"].GetDouble() == -1)
+        setNull("COLOR");
+    if (record.HasMember("TRANSCODE") && record["TRANSCODE"].IsString()
+        && std::string(record["TRANSCODE"].GetString()) != "Transfer") setNull("TOTRANSAMOUNT");
+
+    for (const char* field : {"STATUS", "TRANSACTIONNUMBER", "NOTES", "LASTUPDATEDTIME", "DELETEDTIME"}) {
+        if (record.HasMember(field) && record[field].IsNull())
+            record[field].SetString("", allocator);
+    }
+    for (const char* field : {"LASTUPDATEDTIME", "DELETEDTIME"}) {
+        if (!record.HasMember(field) || !record[field].IsString()) continue;
+        std::string timestamp(record[field].GetString());
+        if (timestamp.size() > 10 && timestamp[10] == ' ') {
+            timestamp[10] = 'T';
+            record[field].SetString(timestamp.c_str(), static_cast<rapidjson::SizeType>(timestamp.size()), allocator);
+        }
+    }
+    if (compareDateOnly && record.HasMember("TRANSDATE") && record["TRANSDATE"].IsString()) {
+        std::string date(record["TRANSDATE"].GetString());
+        if (date.size() > 10) {
+            date.resize(10);
+            record["TRANSDATE"].SetString(date.c_str(), static_cast<rapidjson::SizeType>(date.size()), allocator);
+        }
+    }
+}
+
+bool supportedTransaction(const TrxData& transaction)
+{
+    return (transaction.m_type == TrxType(TrxType::e_withdrawal)
+        || transaction.m_type == TrxType(TrxType::e_deposit)
+        || transaction.m_type == TrxType(TrxType::e_transfer))
+        && transaction.m_status.id() >= TrxStatus::e_unreconciled
+        && transaction.m_status.id() < TrxStatus::size;
+}
+
+bool supportedTransaction(const rapidjson::Value& record)
+{
+    const auto type = pocketBaseString(record, "TRANSCODE");
+    const auto status = pocketBaseString(record, "STATUS");
+    return (type == "Withdrawal" || type == "Deposit" || type == "Transfer")
+        && (status.empty() || status == "R" || status == "V" || status == "F" || status == "D");
 }
 }
 
@@ -590,6 +710,210 @@ PocketBaseSyncResult PocketBaseSyncService::syncPayees(const wxString& base, con
         curl_slist_free_all(headers); curl_easy_cleanup(curl);
     }
     if (!failed) result.message = wxString::Format("Payee sync complete: %zu downloaded, %zu created, %zu updated, %zu unchanged, %zu conflicts.", imported, created, updated, skipped, conflicts);
+    result.ok = !failed;
+    return result;
+}
+
+PocketBaseSyncResult PocketBaseSyncService::syncTransactions(const wxString& base, const wxString& token)
+{
+    PocketBaseSyncResult result;
+    if (token.empty()) {
+        result.message = "Sign in before syncing transactions.";
+        return result;
+    }
+
+    auto transactions = TrxModel::instance().find_data_a();
+    std::set<int64> localIds, localAccounts, localCategories, localPayees;
+    std::set<int64> localUnsupported;
+    for (const auto& transaction : transactions) localIds.insert(transaction.m_id);
+    for (const auto& account : AccountModel::instance().find_data_a()) localAccounts.insert(account.m_id);
+    for (const auto& category : CategoryModel::instance().find_data_a()) localCategories.insert(category.m_id);
+    for (const auto& payee : PayeeModel::instance().find_data_a()) localPayees.insert(payee.m_id);
+    for (const auto& split : TrxSplitModel::instance().find_data_a()) localUnsupported.insert(split.m_trx_id);
+    for (const auto& link : TrxLinkModel::instance().find_data_a()) localUnsupported.insert(link.m_trx_id);
+    for (const auto& share : TrxShareModel::instance().find_data_a()) localUnsupported.insert(share.m_trx_id);
+
+    std::vector<std::string> transactionRecords, splitRecords, linkRecords, shareRecords;
+    wxString error;
+    for (const auto& [collection, records] : std::vector<std::pair<const char*, std::vector<std::string>*>>{
+        {"CHECKINGACCOUNT_V1", &transactionRecords}, {"SPLITTRANSACTIONS_V1", &splitRecords},
+        {"TRANSLINK_V1", &linkRecords}, {"SHAREINFO_V1", &shareRecords}}) {
+        if (!fetchPocketBaseCollection(base, token, collection, *records, error)) {
+            result.message = error;
+            return result;
+        }
+    }
+
+    std::set<int64> remoteUnsupported;
+    for (const auto& [records, field] : std::vector<std::pair<const std::vector<std::string>*, const char*>>{
+        {&splitRecords, "TRANSID"}, {&linkRecords, "CHECKINGACCOUNTID"}, {&shareRecords, "CHECKINGACCOUNTID"}}) {
+        for (const auto& json : *records) {
+            rapidjson::Document record;
+            record.Parse(json.c_str());
+            const int64 id = pocketBaseInteger(record, field);
+            if (id > 0) remoteUnsupported.insert(id);
+        }
+    }
+
+    std::map<int64, std::pair<wxString, std::string>> remoteByBusinessId;
+    size_t conflicts = 0, skipped = 0, imported = 0, created = 0, unchanged = 0;
+    for (const auto& json : transactionRecords) {
+        rapidjson::Document record;
+        record.Parse(json.c_str());
+        if (record.HasParseError() || !record.IsObject()
+            || !record.HasMember("id") || !record["id"].IsString()) {
+            ++conflicts;
+            continue;
+        }
+        const int64 businessId = pocketBaseInteger(record, "TRANSID");
+        if (businessId <= 0) {
+            ++conflicts;
+            continue;
+        }
+        rapidjson::StringBuffer copy;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(copy);
+        record.Accept(writer);
+        remoteByBusinessId[businessId] = {wxString::FromUTF8(record["id"].GetString()), std::string(copy.GetString(), copy.GetSize())};
+    }
+
+    for (const auto& [businessId, remote] : remoteByBusinessId) {
+        if (localIds.count(businessId)) continue;
+        rapidjson::Document record;
+        record.Parse(remote.second.c_str());
+        if (remoteUnsupported.count(businessId) || !supportedTransaction(record)) {
+            ++skipped;
+            continue;
+        }
+        TrxData transaction;
+        transaction.m_id = businessId;
+        transaction.m_account_id = pocketBaseInteger(record, "ACCOUNTID");
+        transaction.m_to_account_id_n = pocketBaseInteger(record, "TOACCOUNTID");
+        transaction.m_payee_id_n = pocketBaseInteger(record, "PAYEEID");
+        transaction.m_category_id_n = pocketBaseInteger(record, "CATEGID");
+        transaction.m_type = TrxType(pocketBaseString(record, "TRANSCODE"));
+        transaction.m_status = TrxStatus(pocketBaseString(record, "STATUS"));
+        transaction.m_amount = record.HasMember("TRANSAMOUNT") && record["TRANSAMOUNT"].IsNumber()
+            ? record["TRANSAMOUNT"].GetDouble() : 0.0;
+        transaction.m_to_amount = record.HasMember("TOTRANSAMOUNT") && record["TOTRANSAMOUNT"].IsNumber()
+            ? record["TOTRANSAMOUNT"].GetDouble() : 0.0;
+        transaction.m_number = pocketBaseString(record, "TRANSACTIONNUMBER");
+        transaction.m_notes = pocketBaseString(record, "NOTES");
+        const wxString transactionDate = pocketBaseString(record, "TRANSDATE");
+        wxDateTime parsedDate;
+        const bool validDate = parsedDate.ParseISODate(transactionDate.BeforeFirst('T'));
+        transaction.m_datetime = mmDateTime(transactionDate);
+        wxString updatedTime = pocketBaseString(record, "LASTUPDATEDTIME");
+        wxString deletedTime = pocketBaseString(record, "DELETEDTIME");
+        if (updatedTime.length() > 10 && updatedTime[10] == ' ') updatedTime[10] = 'T';
+        if (deletedTime.length() > 10 && deletedTime[10] == ' ') deletedTime[10] = 'T';
+        transaction.m_updated_utc_n = mmDateTimeN(updatedTime);
+        transaction.m_deleted_utc_n = mmDateTimeN(deletedTime);
+        transaction.m_followup_id = pocketBaseInteger(record, "FOLLOWUPID");
+        transaction.m_color = pocketBaseInteger(record, "COLOR");
+
+        const bool validAccounts = transaction.m_account_id > 0 && localAccounts.count(transaction.m_account_id)
+            && (transaction.m_type != TrxType(TrxType::e_transfer)
+                || (transaction.m_to_account_id_n > 0 && transaction.m_to_account_id_n != transaction.m_account_id
+                    && localAccounts.count(transaction.m_to_account_id_n)));
+        const bool validPayee = transaction.m_payee_id_n <= 0 || localPayees.count(transaction.m_payee_id_n);
+        const bool validCategory = transaction.m_category_id_n <= 0 || localCategories.count(transaction.m_category_id_n);
+        if (!validAccounts || !validPayee || !validCategory || !validDate) {
+            ++conflicts;
+            continue;
+        }
+        if (TrxModel::instance().import_data_n(transaction, businessId)) ++imported;
+        else ++conflicts;
+    }
+
+    bool failed = false;
+    for (const auto& transaction : transactions) {
+        if (localUnsupported.count(transaction.m_id) || !supportedTransaction(transaction)) {
+            ++skipped;
+            continue;
+        }
+        const bool validAccounts = transaction.m_account_id > 0 && localAccounts.count(transaction.m_account_id)
+            && (transaction.m_type != TrxType(TrxType::e_transfer)
+                || (transaction.m_to_account_id_n > 0 && transaction.m_to_account_id_n != transaction.m_account_id
+                    && localAccounts.count(transaction.m_to_account_id_n)));
+        const bool validPayee = transaction.m_payee_id_n <= 0 || localPayees.count(transaction.m_payee_id_n);
+        const bool validCategory = transaction.m_category_id_n <= 0 || localCategories.count(transaction.m_category_id_n);
+        if (!validAccounts || !validPayee || !validCategory) {
+            ++conflicts;
+            continue;
+        }
+
+        const auto found = remoteByBusinessId.find(transaction.m_id);
+        const bool exists = found != remoteByBusinessId.end();
+        if (exists && remoteUnsupported.count(transaction.m_id)) {
+            ++skipped;
+            continue;
+        }
+        wxString payload = transaction.to_json();
+        rapidjson::Document localRecord;
+        const auto payloadUtf8 = payload.utf8_string();
+        localRecord.Parse(payloadUtf8.data());
+        if (localRecord.HasParseError() || !localRecord.IsObject()) {
+            ++conflicts;
+            continue;
+        }
+        normalizeTransactionRecord(localRecord, localRecord.GetAllocator());
+        if (exists) {
+            rapidjson::Document remoteRecord;
+            remoteRecord.Parse(found->second.second.c_str());
+            if (remoteRecord.HasParseError() || !remoteRecord.IsObject()) {
+                ++conflicts;
+                continue;
+            }
+            normalizeTransactionRecord(remoteRecord, remoteRecord.GetAllocator());
+            if (PocketBaseRecordEqual(localRecord, remoteRecord)) ++unchanged;
+            else ++conflicts;
+            continue;
+        }
+
+        rapidjson::Document uploadRecord;
+        uploadRecord.Parse(payloadUtf8.data());
+        normalizeTransactionRecord(uploadRecord, uploadRecord.GetAllocator(), false);
+        rapidjson::StringBuffer bodyBuffer;
+        rapidjson::Writer<rapidjson::StringBuffer> bodyWriter(bodyBuffer);
+        uploadRecord.Accept(bodyWriter);
+        const wxString url = base + "/api/collections/CHECKINGACCOUNT_V1/records";
+        const auto urlUtf8 = url.utf8_string();
+        const auto auth = std::string("Authorization: ") + token.utf8_string().data();
+        struct curl_slist* headers = nullptr;
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        headers = curl_slist_append(headers, auth.c_str());
+        CURL* curl = curl_easy_init();
+        if (!curl) {
+            curl_slist_free_all(headers);
+            result.message = "Could not initialize HTTP client.";
+            failed = true;
+            break;
+        }
+        std::string response;
+        long status = 0;
+        configurePocketBaseTransfer(curl, headers, response, 30L);
+        curl_easy_setopt(curl, CURLOPT_URL, urlUtf8.data());
+        curl_easy_setopt(curl, CURLOPT_POST, 1L);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, bodyBuffer.GetString());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, static_cast<long>(bodyBuffer.GetSize()));
+        const CURLcode rc = curl_easy_perform(curl);
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+        curl_slist_free_all(headers);
+        curl_easy_cleanup(curl);
+        if (rc != CURLE_OK || status < 200 || status >= 300) {
+            result.message = rc != CURLE_OK
+                ? "Transaction upload transport error: " + wxString::FromUTF8(curl_easy_strerror(rc)) + " (" + url + ")"
+                : wxString::Format("Transaction upload failed (%ld): %s", status, response);
+            failed = true;
+            break;
+        }
+        ++created;
+    }
+
+    if (!failed) {
+        result.message = wxString::Format("Transaction sync complete: %zu downloaded, %zu created, %zu unchanged, %zu skipped (unsupported or linked), %zu conflicts.",
+            imported, created, unchanged, skipped, conflicts);
+    }
     result.ok = !failed;
     return result;
 }

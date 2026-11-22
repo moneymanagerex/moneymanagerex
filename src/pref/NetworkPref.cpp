@@ -52,6 +52,7 @@ wxBEGIN_EVENT_TABLE(NetworkPref, wxPanel)
     EVT_BUTTON(wxID_HIGHEST + 84, NetworkPref::OnPocketBaseSyncAccounts)
     EVT_BUTTON(wxID_HIGHEST + 85, NetworkPref::OnPocketBaseSyncCategories)
     EVT_BUTTON(wxID_HIGHEST + 86, NetworkPref::OnPocketBaseSyncPayees)
+    EVT_BUTTON(wxID_HIGHEST + 87, NetworkPref::OnPocketBaseSyncTransactions)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -156,6 +157,8 @@ void NetworkPref::Create()
     m_pocketbase_sync_categories->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
     m_pocketbase_sync_payees = new wxButton(pocketBaseBox, wxID_HIGHEST + 86, "Sync payees");
     m_pocketbase_sync_payees->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+    m_pocketbase_sync_transactions = new wxButton(pocketBaseBox, wxID_HIGHEST + 87, "Sync transactions");
+    m_pocketbase_sync_transactions->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
     wxGridSizer* pocketBaseSyncActions = new wxGridSizer(2, 8, 8);
     pocketBaseSyncActions->Add(m_pocketbase_sync_currencies, wxSizerFlags(1).Expand());
     pocketBaseSyncActions->Add(m_pocketbase_sync_accounts, wxSizerFlags(1).Expand());
@@ -163,6 +166,13 @@ void NetworkPref::Create()
     pocketBaseSyncActions->Add(m_pocketbase_sync_payees, wxSizerFlags(1).Expand());
     pocketBaseSizer->Add(pocketBaseSyncActions,
         wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
+    pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_STATIC, "Transactions"),
+        wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxTOP, 8));
+    pocketBaseSizer->Add(m_pocketbase_sync_transactions,
+        wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
+    pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_ANY,
+        "Only regular withdrawals, deposits and transfers are synced. Split and asset/stock-linked transactions are skipped."),
+        wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
     pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_ANY,
         "Use HTTPS for remote instances. PocketBase sync is configured separately from the local database."),
         wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
@@ -403,6 +413,7 @@ void NetworkPref::OnPocketBaseLogin(wxCommandEvent&)
     m_pocketbase_sync_accounts->Enable();
     m_pocketbase_sync_categories->Enable();
     m_pocketbase_sync_payees->Enable();
+    m_pocketbase_sync_transactions->Enable();
     m_pocketbase_auth_check = false;
 }
 
@@ -415,6 +426,7 @@ void NetworkPref::OnPocketBaseLogout(wxCommandEvent&)
     m_pocketbase_sync_accounts->Disable();
     m_pocketbase_sync_categories->Disable();
     m_pocketbase_sync_payees->Disable();
+    m_pocketbase_sync_transactions->Disable();
     m_pocketbase_status->SetLabel("Signed out.");
 }
 
@@ -448,5 +460,13 @@ void NetworkPref::OnPocketBaseSyncPayees(wxCommandEvent&)
     auto result = PocketBaseSyncService::syncPayees(m_pocketbase_url->GetValue().Trim(false).Trim(), SettingModel::instance().getString("POCKETBASE_TOKEN", ""));
     m_pocketbase_status->SetLabel(result.message);
     m_pocketbase_sync_payees->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+}
+
+void NetworkPref::OnPocketBaseSyncTransactions(wxCommandEvent&)
+{
+    m_pocketbase_sync_transactions->Disable();
+    auto result = PocketBaseSyncService::syncTransactions(m_pocketbase_url->GetValue().Trim(false).Trim(), SettingModel::instance().getString("POCKETBASE_TOKEN", ""));
+    m_pocketbase_status->SetLabel(result.message);
+    m_pocketbase_sync_transactions->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
 }
 
