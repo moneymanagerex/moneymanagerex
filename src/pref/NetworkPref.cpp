@@ -145,6 +145,8 @@ void NetworkPref::Create()
         wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
     m_pocketbase_status = new wxStaticText(pocketBaseBox, wxID_ANY,
         SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty() ? "Not signed in" : "Saved session available");
+    m_pocketbase_status->SetForegroundColour(wxSystemSettings::GetColour(
+        SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty() ? wxSYS_COLOUR_GRAYTEXT : wxSYS_COLOUR_WINDOWTEXT));
     pocketBaseSizer->Add(m_pocketbase_status, wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
 
     pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_STATIC, "Basic data"),
@@ -350,6 +352,7 @@ void NetworkPref::OnPocketBaseLogin(wxCommandEvent&)
     }
     m_pocketbase_password->Clear();
     m_pocketbase_status->SetLabel("Connecting…");
+    m_pocketbase_status->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
     m_pocketbase_login->Disable();
     CURL* curl = curl_easy_init();
     std::string responseBody;
@@ -406,6 +409,7 @@ void NetworkPref::OnPocketBaseLogin(wxCommandEvent&)
     }
     SettingModel::instance().saveString("POCKETBASE_TOKEN", wxString::FromUTF8(result["token"].GetString()));
     m_pocketbase_status->SetLabel("Signed in. Session saved in this MMEX database.");
+    m_pocketbase_status->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
     m_pocketbase_login->SetLabel("Check session");
     m_pocketbase_login->Enable();
     m_pocketbase_logout->Enable();
@@ -428,6 +432,7 @@ void NetworkPref::OnPocketBaseLogout(wxCommandEvent&)
     m_pocketbase_sync_payees->Disable();
     m_pocketbase_sync_transactions->Disable();
     m_pocketbase_status->SetLabel("Signed out.");
+    m_pocketbase_status->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT));
 }
 
 void NetworkPref::OnPocketBaseSyncCurrencies(wxCommandEvent&)
