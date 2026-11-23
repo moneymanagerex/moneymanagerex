@@ -53,6 +53,7 @@ wxBEGIN_EVENT_TABLE(NetworkPref, wxPanel)
     EVT_BUTTON(wxID_HIGHEST + 85, NetworkPref::OnPocketBaseSyncCategories)
     EVT_BUTTON(wxID_HIGHEST + 86, NetworkPref::OnPocketBaseSyncPayees)
     EVT_BUTTON(wxID_HIGHEST + 87, NetworkPref::OnPocketBaseSyncTransactions)
+    EVT_BUTTON(wxID_HIGHEST + 88, NetworkPref::OnPocketBaseSyncInvestments)
 wxEND_EVENT_TABLE()
 /*******************************************************/
 
@@ -161,6 +162,8 @@ void NetworkPref::Create()
     m_pocketbase_sync_payees->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
     m_pocketbase_sync_transactions = new wxButton(pocketBaseBox, wxID_HIGHEST + 87, "Sync transactions");
     m_pocketbase_sync_transactions->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+    m_pocketbase_sync_investments = new wxButton(pocketBaseBox, wxID_HIGHEST + 88, "Sync investments");
+    m_pocketbase_sync_investments->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
     wxGridSizer* pocketBaseSyncActions = new wxGridSizer(2, 8, 8);
     pocketBaseSyncActions->Add(m_pocketbase_sync_currencies, wxSizerFlags(1).Expand());
     pocketBaseSyncActions->Add(m_pocketbase_sync_accounts, wxSizerFlags(1).Expand());
@@ -171,9 +174,13 @@ void NetworkPref::Create()
     pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_STATIC, "Transactions"),
         wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxTOP, 8));
     pocketBaseSizer->Add(m_pocketbase_sync_transactions,
-        wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
+        wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
+    pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_STATIC, "Investments"),
+        wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxTOP, 8));
+    pocketBaseSizer->Add(m_pocketbase_sync_investments,
+        wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
     pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_ANY,
-        "Only regular withdrawals, deposits and transfers are synced. Split and asset/stock-linked transactions are skipped."),
+        "Syncs assets, stocks, price history, and their linked transactions and share lot details."),
         wxSizerFlags(g_flagsV).Border(wxLEFT | wxRIGHT | wxBOTTOM, 8));
     pocketBaseSizer->Add(new wxStaticText(pocketBaseBox, wxID_ANY,
         "Use HTTPS for remote instances. PocketBase sync is configured separately from the local database."),
@@ -418,6 +425,7 @@ void NetworkPref::OnPocketBaseLogin(wxCommandEvent&)
     m_pocketbase_sync_categories->Enable();
     m_pocketbase_sync_payees->Enable();
     m_pocketbase_sync_transactions->Enable();
+    m_pocketbase_sync_investments->Enable();
     m_pocketbase_auth_check = false;
 }
 
@@ -431,6 +439,7 @@ void NetworkPref::OnPocketBaseLogout(wxCommandEvent&)
     m_pocketbase_sync_categories->Disable();
     m_pocketbase_sync_payees->Disable();
     m_pocketbase_sync_transactions->Disable();
+    m_pocketbase_sync_investments->Disable();
     m_pocketbase_status->SetLabel("Signed out.");
     m_pocketbase_status->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT));
 }
@@ -473,5 +482,13 @@ void NetworkPref::OnPocketBaseSyncTransactions(wxCommandEvent&)
     auto result = PocketBaseSyncService::syncTransactions(m_pocketbase_url->GetValue().Trim(false).Trim(), SettingModel::instance().getString("POCKETBASE_TOKEN", ""));
     m_pocketbase_status->SetLabel(result.message);
     m_pocketbase_sync_transactions->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
+}
+
+void NetworkPref::OnPocketBaseSyncInvestments(wxCommandEvent&)
+{
+    m_pocketbase_sync_investments->Disable();
+    auto result = PocketBaseSyncService::syncInvestments(m_pocketbase_url->GetValue().Trim(false).Trim(), SettingModel::instance().getString("POCKETBASE_TOKEN", ""));
+    m_pocketbase_status->SetLabel(result.message);
+    m_pocketbase_sync_investments->Enable(!SettingModel::instance().getString("POCKETBASE_TOKEN", "").empty());
 }
 

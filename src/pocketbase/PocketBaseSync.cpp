@@ -5,6 +5,12 @@
 #include "model/CategoryModel.h"
 #include "data/CategoryData.h"
 #include "model/PayeeModel.h"
+#include "model/AssetModel.h"
+#include "data/AssetData.h"
+#include "model/StockModel.h"
+#include "model/StockHistoryModel.h"
+#include "data/StockData.h"
+#include "data/StockHistoryData.h"
 #include "data/PayeeData.h"
 #include "data/AccountData.h"
 #include "model/TrxModel.h"
@@ -19,6 +25,7 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <functional>
 
 namespace {
 bool PocketBaseValuesEqual(const rapidjson::Value& lhs, const rapidjson::Value& rhs) {
@@ -113,7 +120,7 @@ wxString pocketBaseString(const rapidjson::Value& record, const char* field)
 void normalizeTransactionRecord(rapidjson::Value& record, rapidjson::Document::AllocatorType& allocator,
     bool compareDateOnly = true)
 {
-    const auto setNull = [&record, &allocator](const char* field) {
+    const auto setNull = [&record](const char* field) {
         if (record.HasMember(field)) record[field].SetNull();
     };
     const auto nullWhenUnset = [&record, &setNull](const char* field) {
@@ -164,6 +171,96 @@ bool supportedTransaction(const rapidjson::Value& record)
     const auto status = pocketBaseString(record, "STATUS");
     return (type == "Withdrawal" || type == "Deposit" || type == "Transfer")
         && (status.empty() || status == "R" || status == "V" || status == "F" || status == "D");
+}
+
+bool postPocketBaseRecord(const wxString& base, const wxString& token,
+    const char* collection, const wxString& payload, wxString& error)
+{
+    CURL* curl = curl_easy_init();
+    if (!curl) {
+        error = "Could not initialize HTTP client.";
+        return false;
+    }
+    const auto auth = std::string("Authorization: ") + token.utf8_string().data();
+    struct curl_slist* headers = nullptr;
+    headers = curl_slist_append(headers, "Content-Type: application/json");
+    headers = curl_slist_append(headers, auth.c_str());
+    std::string response;
+    long status = 0;
+    const wxString url = base + wxString::Format("/api/collections/%s/records", collection);
+    const auto urlUtf8 = url.utf8_string();
+    const auto body = payload.utf8_string();
+    configurePocketBaseTransfer(curl, headers, response, 30L);
+    curl_easy_setopt(curl, CURLOPT_URL, urlUtf8.data());
+    curl_easy_setopt(curl, CURLOPT_POST, 1L);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, body.data());
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, static_cast<long>(body.length()));
+    const CURLcode rc = curl_easy_perform(curl);
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+    curl_slist_free_all(headers);
+    curl_easy_cleanup(curl);
+    if (rc == CURLE_OK && status >= 200 && status < 300)
+        return true;
+    error = rc != CURLE_OK
+        ? wxString::Format("%s upload transport error: %s", collection, curl_easy_strerror(rc))
+        : wxString::Format("%s upload failed (%ld): %s", collection, status, response);
+    return false;
+}
+
+template<typename Data, typename Model, typename Decode>
+bool syncPortfolioCollection(const wxString& base, const wxString& token,
+    const char* collection, const char* keyField, const std::vector<Data>& local,
+    Model& model, Decode decode, PocketBaseSyncResult& result, wxString& error)
+{
+    std::vector<std::string> records;
+    if (!fetchPocketBaseCollection(base, token, collection, records, error))
+        return false;
+    std::map<int64, std::string> remote;
+    for (const auto& json : records) {
+        rapidjson::Document record;
+        record.Parse(json.c_str());
+        const int64 id = pocketBaseInteger(record, keyField);
+        if (record.HasParseError() || !record.IsObject() || id <= 0) {
+            ++result.conflicts;
+            continue;
+        }
+        remote[id] = json;
+    }
+    std::set<int64> localIds;
+    for (const auto& row : local) localIds.insert(row.id());
+    for (const auto& [id, json] : remote) {
+        if (localIds.count(id)) continue;
+        rapidjson::Document record;
+        record.Parse(json.c_str());
+        Data row;
+        if (!decode(record, id, row)) {
+            ++result.conflicts;
+            continue;
+        }
+        if (model.import_data_n(row, id)) ++result.imported;
+        else ++result.conflicts;
+    }
+    for (const auto& row : local) {
+        const auto payload = row.to_json().utf8_string();
+        rapidjson::Document localRecord;
+        localRecord.Parse(payload.data());
+        if (localRecord.HasParseError() || !localRecord.IsObject()) {
+            ++result.conflicts;
+            continue;
+        }
+        const auto found = remote.find(row.id());
+        if (found != remote.end()) {
+            rapidjson::Document remoteRecord;
+            remoteRecord.Parse(found->second.c_str());
+            if (!remoteRecord.HasParseError() && PocketBaseRecordEqual(localRecord, remoteRecord)) ++result.unchanged;
+            else ++result.conflicts;
+            continue;
+        }
+        if (!postPocketBaseRecord(base, token, collection, wxString::FromUTF8(payload.data()), error))
+            return false;
+        ++result.created;
+    }
+    return true;
 }
 }
 
@@ -714,7 +811,278 @@ PocketBaseSyncResult PocketBaseSyncService::syncPayees(const wxString& base, con
     return result;
 }
 
-PocketBaseSyncResult PocketBaseSyncService::syncTransactions(const wxString& base, const wxString& token)
+PocketBaseSyncResult PocketBaseSyncService::syncAssets(const wxString& base, const wxString& token)
+{
+    PocketBaseSyncResult result;
+    if (token.empty()) {
+        result.message = "Sign in before syncing assets.";
+        return result;
+    }
+    const auto local = AssetModel::instance().find_data_a();
+    std::map<int64, std::pair<wxString, std::string>> remote;
+    std::vector<std::string> records;
+    wxString error;
+    if (!fetchPocketBaseCollection(base, token, "ASSETS_V1", records, error)) {
+        result.message = error;
+        return result;
+    }
+    for (const auto& json : records) {
+        rapidjson::Document record;
+        record.Parse(json.c_str());
+        if (record.HasParseError() || !record.IsObject() || !record.HasMember("id")
+            || !record["id"].IsString() || pocketBaseInteger(record, "ASSETID") <= 0) {
+            ++result.conflicts;
+            continue;
+        }
+        rapidjson::StringBuffer copy;
+        rapidjson::Writer<rapidjson::StringBuffer> writer(copy);
+        record.Accept(writer);
+        remote[pocketBaseInteger(record, "ASSETID")] = {
+            wxString::FromUTF8(record["id"].GetString()), std::string(copy.GetString(), copy.GetSize())};
+    }
+    std::set<int64> localIds, currencies;
+    for (const auto& item : local) localIds.insert(item.m_id);
+    for (const auto& currency : CurrencyModel::instance().find_data_a()) currencies.insert(currency.m_id);
+    for (const auto& [id, value] : remote) {
+        if (localIds.count(id)) continue;
+        rapidjson::Document record;
+        record.Parse(value.second.c_str());
+        AssetData asset;
+        asset.m_id = id;
+        asset.m_name = pocketBaseString(record, "ASSETNAME");
+        asset.m_type = AssetType(pocketBaseString(record, "ASSETTYPE"));
+        asset.m_status = AssetStatus(pocketBaseString(record, "ASSETSTATUS"));
+        asset.m_change = AssetChange(pocketBaseString(record, "VALUECHANGE"));
+        asset.m_change_mode = AssetChangeMode(pocketBaseString(record, "VALUECHANGEMODE"));
+        asset.m_notes = pocketBaseString(record, "NOTES");
+        const auto startDate = pocketBaseString(record, "STARTDATE");
+        wxDateTime parsedDate;
+        if (asset.m_name.empty() || !parsedDate.ParseISODate(startDate.BeforeFirst('T'))) {
+            ++result.conflicts;
+            continue;
+        }
+        asset.m_start_date = mmDate(startDate);
+        const int64 currencyId = pocketBaseInteger(record, "CURRENCYID", -1);
+        asset.m_currency_id_n = currencyId > 0 ? currencyId : -1;
+        if (asset.m_currency_id_n > 0 && !currencies.count(asset.m_currency_id_n)) {
+            ++result.conflicts;
+            continue;
+        }
+        asset.m_value = record.HasMember("VALUE") && record["VALUE"].IsNumber() ? record["VALUE"].GetDouble() : 0.0;
+        asset.m_change_rate = record.HasMember("VALUECHANGERATE") && record["VALUECHANGERATE"].IsNumber() ? record["VALUECHANGERATE"].GetDouble() : 0.0;
+        if (AssetModel::instance().import_data_n(asset, id)) ++result.imported;
+        else ++result.conflicts;
+    }
+    bool failed = false;
+    for (const auto& asset : local) {
+        const auto found = remote.find(asset.m_id);
+        const wxString payload = asset.to_json();
+        const auto body = payload.utf8_string();
+        rapidjson::Document localRecord;
+        localRecord.Parse(body.data());
+        if (localRecord.HasParseError() || !localRecord.IsObject()) { ++result.conflicts; continue; }
+        if (found != remote.end()) {
+            rapidjson::Document remoteRecord;
+            remoteRecord.Parse(found->second.second.c_str());
+            if (!remoteRecord.HasParseError() && PocketBaseRecordEqual(localRecord, remoteRecord)) ++result.unchanged;
+            else ++result.conflicts;
+            continue;
+        }
+        CURL* curl = curl_easy_init();
+        if (!curl) { result.message = "Could not initialize HTTP client."; failed = true; break; }
+        const auto auth = std::string("Authorization: ") + token.utf8_string().data();
+        struct curl_slist* headers = nullptr;
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        headers = curl_slist_append(headers, auth.c_str());
+        std::string response;
+        long status = 0;
+        const wxString url = base + "/api/collections/ASSETS_V1/records";
+        const auto urlUtf8 = url.utf8_string();
+        configurePocketBaseTransfer(curl, headers, response, 30L);
+        curl_easy_setopt(curl, CURLOPT_URL, urlUtf8.data());
+        curl_easy_setopt(curl, CURLOPT_POST, 1L);
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, body.data());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, static_cast<long>(body.length()));
+        const CURLcode rc = curl_easy_perform(curl);
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+        curl_slist_free_all(headers);
+        curl_easy_cleanup(curl);
+        if (rc != CURLE_OK || status < 200 || status >= 300) {
+            result.message = rc != CURLE_OK
+                ? "Asset upload transport error: " + wxString::FromUTF8(curl_easy_strerror(rc))
+                : wxString::Format("Asset upload failed (%ld): %s", status, response);
+            failed = true;
+            break;
+        }
+        ++result.created;
+    }
+    if (!failed) result.message = wxString::Format("Asset sync complete: %zu downloaded, %zu created, %zu unchanged, %zu conflicts.",
+        result.imported, result.created, result.unchanged, result.conflicts);
+    result.ok = !failed;
+    return result;
+}
+
+PocketBaseSyncResult PocketBaseSyncService::syncStocks(const wxString& base, const wxString& token)
+{
+    PocketBaseSyncResult result;
+    if (token.empty()) { result.message = "Sign in before syncing stocks."; return result; }
+    wxString error;
+    std::set<int64> accountIds;
+    for (const auto& account : AccountModel::instance().find_data_a()) accountIds.insert(account.m_id);
+    auto local = StockModel::instance().find_data_a();
+    const bool ok = syncPortfolioCollection(base, token, "STOCK_V1", "STOCKID", local,
+        StockModel::instance(), [&accountIds](const rapidjson::Value& record, int64 id, StockData& stock) {
+            stock.m_id = id;
+            stock.m_account_id_n = pocketBaseInteger(record, "HELDAT", -1);
+            if (stock.m_account_id_n > 0 && !accountIds.count(stock.m_account_id_n)) return false;
+            stock.m_name = pocketBaseString(record, "STOCKNAME");
+            stock.m_symbol = pocketBaseString(record, "SYMBOL");
+            stock.m_notes = pocketBaseString(record, "NOTES");
+            const auto date = pocketBaseString(record, "PURCHASEDATE");
+            wxDateTime parsed;
+            if (stock.m_name.empty() || !parsed.ParseISODate(date.BeforeFirst('T'))) return false;
+            stock.m_purchase_date = mmDate(date);
+            stock.m_num_shares = record.HasMember("NUMSHARES") && record["NUMSHARES"].IsNumber() ? record["NUMSHARES"].GetDouble() : 0.0;
+            stock.m_purchase_price = record.HasMember("PURCHASEPRICE") && record["PURCHASEPRICE"].IsNumber() ? record["PURCHASEPRICE"].GetDouble() : 0.0;
+            stock.m_current_price = record.HasMember("CURRENTPRICE") && record["CURRENTPRICE"].IsNumber() ? record["CURRENTPRICE"].GetDouble() : 0.0;
+            stock.m_purchase_value = record.HasMember("VALUE") && record["VALUE"].IsNumber() ? record["VALUE"].GetDouble() : 0.0;
+            stock.m_commission = record.HasMember("COMMISSION") && record["COMMISSION"].IsNumber() ? record["COMMISSION"].GetDouble() : 0.0;
+            return true;
+        }, result, error);
+    result.ok = ok;
+    if (ok) result.message = wxString::Format("Stock sync complete: %zu downloaded, %zu created, %zu unchanged, %zu conflicts.", result.imported, result.created, result.unchanged, result.conflicts);
+    else result.message = error;
+    return result;
+}
+
+PocketBaseSyncResult PocketBaseSyncService::syncStockHistory(const wxString& base, const wxString& token)
+{
+    PocketBaseSyncResult result;
+    if (token.empty()) { result.message = "Sign in before syncing stock price history."; return result; }
+    wxString error;
+    auto local = StockHistoryModel::instance().find_data_a();
+    const bool ok = syncPortfolioCollection(base, token, "STOCKHISTORY_V1", "HISTID", local,
+        StockHistoryModel::instance(), [](const rapidjson::Value& record, int64 id, StockHistoryData& history) {
+            history.m_id = id;
+            history.m_symbol = pocketBaseString(record, "SYMBOL");
+            const auto date = pocketBaseString(record, "DATE");
+            wxDateTime parsed;
+            if (history.m_symbol.empty() || !parsed.ParseISODate(date.BeforeFirst('T'))
+                || !record.HasMember("VALUE") || !record["VALUE"].IsNumber()) return false;
+            history.m_date = mmDate(date);
+            history.m_price = record["VALUE"].GetDouble();
+            history.m_update_type = UpdateType::from_code(
+                static_cast<int>(pocketBaseInteger(record, "UPDTYPE", 0).GetValue()));
+            return true;
+        }, result, error);
+    result.ok = ok;
+    if (ok) result.message = wxString::Format("Stock price history sync complete: %zu downloaded, %zu created, %zu unchanged, %zu conflicts.", result.imported, result.created, result.unchanged, result.conflicts);
+    else result.message = error;
+    return result;
+}
+
+namespace {
+PocketBaseSyncResult syncTransactionsImpl(const wxString& base, const wxString& token,
+    bool includeInvestmentTransactions);
+
+PocketBaseSyncResult syncInvestmentTransactionLinks(const wxString& base, const wxString& token)
+{
+    PocketBaseSyncResult result;
+    wxString error;
+    std::set<int64> transactionIds, assetIds, stockIds;
+    for (const auto& row : TrxModel::instance().find_data_a()) transactionIds.insert(row.m_id);
+    for (const auto& row : AssetModel::instance().find_data_a()) assetIds.insert(row.m_id);
+    for (const auto& row : StockModel::instance().find_data_a()) stockIds.insert(row.m_id);
+    const auto local = TrxLinkModel::instance().find_data_a();
+    const bool ok = syncPortfolioCollection(base, token, "TRANSLINK_V1", "TRANSLINKID", local,
+        TrxLinkModel::instance(), [&transactionIds, &assetIds, &stockIds](const rapidjson::Value& record, int64 id, TrxLinkData& link) {
+            link.m_id = id;
+            link.m_trx_id = pocketBaseInteger(record, "CHECKINGACCOUNTID");
+            link.m_ref_type = RefTypeN(pocketBaseString(record, "LINKTYPE"));
+            link.m_ref_id = pocketBaseInteger(record, "LINKRECORDID");
+            const bool validRef = (link.m_ref_type.id_n() == RefTypeN::e_asset && assetIds.count(link.m_ref_id))
+                || (link.m_ref_type.id_n() == RefTypeN::e_stock && stockIds.count(link.m_ref_id));
+            return transactionIds.count(link.m_trx_id) && validRef;
+        }, result, error);
+    result.ok = ok;
+    if (ok) result.message = wxString::Format("Investment transaction links synced: %zu downloaded, %zu created, %zu unchanged, %zu conflicts.", result.imported, result.created, result.unchanged, result.conflicts);
+    else result.message = error;
+    return result;
+}
+
+PocketBaseSyncResult syncInvestmentShareDetails(const wxString& base, const wxString& token)
+{
+    PocketBaseSyncResult result;
+    wxString error;
+    std::set<int64> transactionIds;
+    for (const auto& row : TrxModel::instance().find_data_a()) transactionIds.insert(row.m_id);
+    const auto local = TrxShareModel::instance().find_data_a();
+    const bool ok = syncPortfolioCollection(base, token, "SHAREINFO_V1", "SHAREINFOID", local,
+        TrxShareModel::instance(), [&transactionIds](const rapidjson::Value& record, int64 id, TrxShareData& share) {
+            share.m_id = id;
+            share.m_trx_id = pocketBaseInteger(record, "CHECKINGACCOUNTID");
+            if (!transactionIds.count(share.m_trx_id)) return false;
+            share.m_number = record.HasMember("SHARENUMBER") && record["SHARENUMBER"].IsNumber() ? record["SHARENUMBER"].GetDouble() : 0.0;
+            share.m_price = record.HasMember("SHAREPRICE") && record["SHAREPRICE"].IsNumber() ? record["SHAREPRICE"].GetDouble() : 0.0;
+            share.m_commission = record.HasMember("SHARECOMMISSION") && record["SHARECOMMISSION"].IsNumber() ? record["SHARECOMMISSION"].GetDouble() : 0.0;
+            share.m_lot = pocketBaseString(record, "SHARELOT");
+            return true;
+        }, result, error);
+    result.ok = ok;
+    if (ok) result.message = wxString::Format("Investment share details synced: %zu downloaded, %zu created, %zu unchanged, %zu conflicts.", result.imported, result.created, result.unchanged, result.conflicts);
+    else result.message = error;
+    return result;
+}
+}
+
+PocketBaseSyncResult PocketBaseSyncService::syncInvestments(const wxString& base, const wxString& token)
+{
+    PocketBaseSyncResult total;
+    if (token.empty()) { total.message = "Sign in before syncing investments."; return total; }
+    const std::vector<std::pair<const char*, PocketBaseSyncResult(*)(const wxString&, const wxString&)>> steps{
+        {"currencies", &PocketBaseSyncService::syncCurrencies},
+        {"accounts", &PocketBaseSyncService::syncAccounts},
+        {"categories", &PocketBaseSyncService::syncCategories},
+        {"payees", &PocketBaseSyncService::syncPayees},
+        {"assets", &PocketBaseSyncService::syncAssets},
+        {"stocks", &PocketBaseSyncService::syncStocks},
+        {"stock price history", &PocketBaseSyncService::syncStockHistory}
+    };
+    for (const auto& [name, sync] : steps) {
+        auto result = sync(base, token);
+        total.imported += result.imported;
+        total.created += result.created;
+        total.unchanged += result.unchanged;
+        total.skipped += result.skipped;
+        total.conflicts += result.conflicts;
+        if (!result.ok) {
+            total.message = wxString::Format("Investment sync stopped at %s: %s", name, result.message);
+            return total;
+        }
+    }
+    for (const auto& [name, sync] : std::vector<std::pair<const char*, PocketBaseSyncResult(*)(const wxString&, const wxString&)>>{
+        {"investment transactions", [](const wxString& instance, const wxString& auth) { return syncTransactionsImpl(instance, auth, true); }},
+        {"investment transaction links", &syncInvestmentTransactionLinks},
+        {"investment share details", &syncInvestmentShareDetails}}) {
+        auto result = sync(base, token);
+        total.imported += result.imported;
+        total.created += result.created;
+        total.unchanged += result.unchanged;
+        total.skipped += result.skipped;
+        total.conflicts += result.conflicts;
+        if (!result.ok) {
+            total.message = wxString::Format("Investment sync stopped at %s: %s", name, result.message);
+            return total;
+        }
+    }
+    total.ok = true;
+    total.message = wxString::Format("Investment sync complete: %zu downloaded, %zu created, %zu unchanged, %zu skipped, %zu conflicts.", total.imported, total.created, total.unchanged, total.skipped, total.conflicts);
+    return total;
+}
+
+namespace {
+PocketBaseSyncResult syncTransactionsImpl(const wxString& base, const wxString& token,
+    bool includeInvestmentTransactions)
 {
     PocketBaseSyncResult result;
     if (token.empty()) {
@@ -724,14 +1092,32 @@ PocketBaseSyncResult PocketBaseSyncService::syncTransactions(const wxString& bas
 
     auto transactions = TrxModel::instance().find_data_a();
     std::set<int64> localIds, localAccounts, localCategories, localPayees;
-    std::set<int64> localUnsupported;
+    std::set<int64> localUnsupported, localLinked, localEligibleInvestment, localInvalidLinks;
+    std::set<int64> localStocksLinked, localShares;
     for (const auto& transaction : transactions) localIds.insert(transaction.m_id);
     for (const auto& account : AccountModel::instance().find_data_a()) localAccounts.insert(account.m_id);
     for (const auto& category : CategoryModel::instance().find_data_a()) localCategories.insert(category.m_id);
     for (const auto& payee : PayeeModel::instance().find_data_a()) localPayees.insert(payee.m_id);
     for (const auto& split : TrxSplitModel::instance().find_data_a()) localUnsupported.insert(split.m_trx_id);
-    for (const auto& link : TrxLinkModel::instance().find_data_a()) localUnsupported.insert(link.m_trx_id);
-    for (const auto& share : TrxShareModel::instance().find_data_a()) localUnsupported.insert(share.m_trx_id);
+    std::set<int64> localAssetIds, localStockIds;
+    for (const auto& asset : AssetModel::instance().find_data_a()) localAssetIds.insert(asset.m_id);
+    for (const auto& stock : StockModel::instance().find_data_a()) localStockIds.insert(stock.m_id);
+    for (const auto& link : TrxLinkModel::instance().find_data_a()) {
+        localLinked.insert(link.m_trx_id);
+        if ((link.m_ref_type.id_n() == RefTypeN::e_asset && localAssetIds.count(link.m_ref_id))
+            || (link.m_ref_type.id_n() == RefTypeN::e_stock && localStockIds.count(link.m_ref_id))) {
+            localEligibleInvestment.insert(link.m_trx_id);
+            if (link.m_ref_type.id_n() == RefTypeN::e_stock) localStocksLinked.insert(link.m_trx_id);
+        } else localInvalidLinks.insert(link.m_trx_id);
+    }
+    for (const auto& share : TrxShareModel::instance().find_data_a()) localShares.insert(share.m_trx_id);
+    for (const auto& id : localLinked) {
+        if (!includeInvestmentTransactions || localInvalidLinks.count(id) || !localEligibleInvestment.count(id)
+            || (localStocksLinked.count(id) && !localShares.count(id))) localUnsupported.insert(id);
+    }
+    for (const auto& id : localShares) {
+        if (!includeInvestmentTransactions || !localEligibleInvestment.count(id)) localUnsupported.insert(id);
+    }
 
     std::vector<std::string> transactionRecords, splitRecords, linkRecords, shareRecords;
     wxString error;
@@ -744,15 +1130,38 @@ PocketBaseSyncResult PocketBaseSyncService::syncTransactions(const wxString& bas
         }
     }
 
-    std::set<int64> remoteUnsupported;
-    for (const auto& [records, field] : std::vector<std::pair<const std::vector<std::string>*, const char*>>{
-        {&splitRecords, "TRANSID"}, {&linkRecords, "CHECKINGACCOUNTID"}, {&shareRecords, "CHECKINGACCOUNTID"}}) {
-        for (const auto& json : *records) {
-            rapidjson::Document record;
-            record.Parse(json.c_str());
-            const int64 id = pocketBaseInteger(record, field);
-            if (id > 0) remoteUnsupported.insert(id);
-        }
+    std::set<int64> remoteUnsupported, remoteLinked, remoteEligibleInvestment, remoteInvalidLinks;
+    std::set<int64> remoteStocksLinked, remoteShares, assetIds, stockIds;
+    for (const auto& asset : AssetModel::instance().find_data_a()) assetIds.insert(asset.m_id);
+    for (const auto& stock : StockModel::instance().find_data_a()) stockIds.insert(stock.m_id);
+    for (const auto& json : splitRecords) {
+        rapidjson::Document record; record.Parse(json.c_str());
+        const int64 id = pocketBaseInteger(record, "TRANSID");
+        if (id > 0) remoteUnsupported.insert(id);
+    }
+    for (const auto& json : linkRecords) {
+        rapidjson::Document record; record.Parse(json.c_str());
+        const int64 trxId = pocketBaseInteger(record, "CHECKINGACCOUNTID");
+        const auto type = pocketBaseString(record, "LINKTYPE");
+        const int64 refId = pocketBaseInteger(record, "LINKRECORDID");
+        if (trxId <= 0) continue;
+        remoteLinked.insert(trxId);
+        if ((type == "Asset" && assetIds.count(refId)) || (type == "Stock" && stockIds.count(refId))) {
+            remoteEligibleInvestment.insert(trxId);
+            if (type == "Stock") remoteStocksLinked.insert(trxId);
+        } else remoteInvalidLinks.insert(trxId);
+    }
+    for (const auto& json : shareRecords) {
+        rapidjson::Document record; record.Parse(json.c_str());
+        const int64 id = pocketBaseInteger(record, "CHECKINGACCOUNTID");
+        if (id > 0) remoteShares.insert(id);
+    }
+    for (const auto& id : remoteLinked) {
+        if (!includeInvestmentTransactions || remoteInvalidLinks.count(id) || !remoteEligibleInvestment.count(id)
+            || (remoteStocksLinked.count(id) && !remoteShares.count(id))) remoteUnsupported.insert(id);
+    }
+    for (const auto& id : remoteShares) {
+        if (!includeInvestmentTransactions || !remoteEligibleInvestment.count(id)) remoteUnsupported.insert(id);
     }
 
     std::map<int64, std::pair<wxString, std::string>> remoteByBusinessId;
@@ -904,6 +1313,10 @@ PocketBaseSyncResult PocketBaseSyncService::syncTransactions(const wxString& bas
             result.message = rc != CURLE_OK
                 ? "Transaction upload transport error: " + wxString::FromUTF8(curl_easy_strerror(rc)) + " (" + url + ")"
                 : wxString::Format("Transaction upload failed (%ld): %s", status, response);
+            if (rc == CURLE_OK && transaction.m_amount == 0.0
+                && response.find("TRANSAMOUNT") != std::string::npos) {
+                result.message = "PocketBase rejected a zero-value transaction: CHECKINGACCOUNT_V1.TRANSAMOUNT is marked Required, which rejects zero. Make this Number field optional in PocketBase and retry. The schema import files have been corrected.";
+            }
             failed = true;
             break;
         }
@@ -911,9 +1324,20 @@ PocketBaseSyncResult PocketBaseSyncService::syncTransactions(const wxString& bas
     }
 
     if (!failed) {
-        result.message = wxString::Format("Transaction sync complete: %zu downloaded, %zu created, %zu unchanged, %zu skipped (unsupported or linked), %zu conflicts.",
+        result.message = wxString::Format("Transaction sync complete: %zu downloaded, %zu created, %zu unchanged, %zu skipped (unsupported or investment-linked), %zu conflicts.",
             imported, created, unchanged, skipped, conflicts);
     }
+    result.imported = imported;
+    result.created = created;
+    result.unchanged = unchanged;
+    result.skipped = skipped;
+    result.conflicts = conflicts;
     result.ok = !failed;
     return result;
+}
+}
+
+PocketBaseSyncResult PocketBaseSyncService::syncTransactions(const wxString& base, const wxString& token)
+{
+    return syncTransactionsImpl(base, token, false);
 }
