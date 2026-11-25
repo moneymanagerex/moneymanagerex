@@ -177,7 +177,7 @@ CMake_ option installed.
        "variables": [
          {
            "name": "CMAKE_PREFIX_PATH",
-           "value": "c:\libcurl"
+           "value": "c:\\libcurl"
          }
 
    See detailed instructions for [configuring CMake projects] from Microsoft _Visual C++ Team Blog_.
@@ -218,8 +218,8 @@ Current stable version that has been tested with MMEX is v3.3.4
 
 1. Download Sources
 
-        /bin/bash -c "$(curl -fsSL -O https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.4/wxWidgets-3.3.4.tar.bz2)"
-        tar xzf wxWidgets-*.tar.bz2
+        curl -fsSLO https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.4/wxWidgets-3.3.4.tar.bz2
+        tar xjf wxWidgets-3.3.4.tar.bz2
 
 2. Build from source
 
@@ -289,7 +289,7 @@ This allows install or update required dependencies to the latest versions.
 List of required packages for each distribution is available in *dockerfiles*
 in [dockers] subdirectory. Look for file
 `dockers/<distribution>.<codename>/Dockerfile` - i.e. [Dockerfile for Ubuntu
-zesty].
+22.04 jammy].
 
 Sometimes additional steps / workarounds are needed for specific distribution
 or version - they are included in above mentioned dockerfiles. Please run them
@@ -328,7 +328,7 @@ If you want the latest (possibly unstable) version of the trunk:
 
 #### 4. Compile and Create Package
 
-Got to the directory, where you downloaded the sources from github.
+Go to the directory, where you downloaded the sources from github.
 
     cd moneymanagerex/
     mkdir build
@@ -403,11 +403,11 @@ If the build was ok the last message should be something like:
 [Windows]: #microsoft-windows
 [Visual Studio CLI]: #visual-studio-command-line
 [Visual Studio project]: #visual-studio-gui-with-project-file
-[Visual Studio CMake]: #visual-studio-2017-gui-with-native-cmake-support
+[Visual Studio CMake]: #visual-studio-2022-gui-with-native-cmake-support
 [Linux]: #linux
 [macOS]: #macos-with-homebrew
 [dockers]: dockers/
-[Dockerfile for Ubuntu zesty]: dockers/ubuntu.zesty/Dockerfile
+[Dockerfile for Ubuntu 22.04 jammy]: dockers/ubuntu.jammy/Dockerfile
 [Microsoft Visual Studio]:
     https://www.visualstudio.com/downloads/
 [Git for Windows]:
