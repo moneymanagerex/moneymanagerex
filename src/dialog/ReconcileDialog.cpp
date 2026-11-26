@@ -702,7 +702,7 @@ void ReconcileDialog::newTransaction()
     int rc;
     TrxDialog dlg(this, JournalKey(), false, m_account_n->m_id, TrxType());
     do {
-        dlg.SetReturnCode(0);  // necessary for wxWidgets >= 3.3.4 to show dialog again
+        dlg.reInit(false);
         rc = dlg.ShowModal();
         if (rc != wxID_CANCEL) {
             w_journal->refreshList();

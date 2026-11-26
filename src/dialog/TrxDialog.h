@@ -187,6 +187,7 @@ private:
 
 public:
     void setDialogTitle(const wxString& title);
+    void reInit(bool duplicate);
 
 private:
     bool validateData();
