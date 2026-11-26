@@ -1214,7 +1214,7 @@ void JournalList::showTrxDialog(JournalKey journal_key, bool duplicate, TrxType 
     int rc;
     TrxDialog dlg(this, journal_key, duplicate, w_panel->m_account_id, type);
     do {
-        dlg.SetReturnCode(0);  // necessary for wxWidgets >= 3.3.4 to show dialog again
+        dlg.reInit(duplicate);
         rc = dlg.ShowModal();
         if (rc != wxID_CANCEL) {
             m_select_key_a.clear();

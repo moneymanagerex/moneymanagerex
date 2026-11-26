@@ -588,7 +588,6 @@ void TrxDialog::dataToControls()
             w_to_amount_text->SetCurrency(U.get_idN_data_n(to_acc_n->m_currency_id));
         }
 
-        m_skip_account_init = true;
         // Force amount format update in case account currencies change
         m_skip_amount_init = false;
     }
@@ -777,6 +776,32 @@ void TrxDialog::dataToControls()
 void TrxDialog::setDialogTitle(const wxString& title)
 {
     this->SetTitle(title);
+}
+
+void TrxDialog::reInit(bool duplicate)
+{
+    if (GetReturnCode() != 0) {
+        SetReturnCode(0);  // necessary for wxWidgets >= 3.3.4 to show dialog again
+        if (!duplicate) {
+            m_mode = MODE_ADD;
+            TrxType type = m_journal_d.m_type;
+            TrxModel::instance().setEmptyData(m_journal_d, m_journal_d.m_account_id);
+            m_journal_d.m_type = type;
+
+            w_amount_text->ChangeValue("");
+            w_payee_text->ChangeValue("");
+
+            m_skip_account_init  = false;
+            m_skip_amount_init   = false;
+            m_skip_payee_init    = false;
+            m_skip_status_init   = false;
+            m_skip_notes_init    = false;
+            m_skip_category_init = false;
+            m_skip_tag_init      = false;
+
+            dataToControls();
+        }
+    }
 }
 
 bool TrxDialog::validateData()
