@@ -3277,31 +3277,29 @@ void mmFrame::OnOrgTags(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-void mmFrame::OnNewTransaction(wxCommandEvent& event)
+void mmFrame::OnNewTransaction(wxCommandEvent& WXUNUSED(event))
 {
     if (!m_db)
         return;
 
     if (AccountModel::instance().find_all_name_a().empty())
         return;
+
+    int rc;
     TrxDialog dlg(this, JournalKey(), false, gotoAccountID_);
-
-    int i = dlg.ShowModal();
-    if (i == wxID_CANCEL)
-        return;
-
-    gotoAccountID_ = dlg.trx_account_id();
-    gotoTransID_ = JournalKey(-1, dlg.trx_id());
-    const AccountData * account_n = AccountModel::instance().get_idN_data_n(
-        gotoAccountID_
-    );
-    if (account_n) {
-        createCheckingPage(gotoAccountID_);
-        selectNavTreeItem(account_n->m_name);
-    }
-
-    if (i == wxID_NEW)
-        OnNewTransaction(event);
+    do {
+        dlg.reInit(false);
+        rc = dlg.ShowModal();
+        if (rc != wxID_CANCEL) {
+            gotoAccountID_ = dlg.trx_account_id();
+            gotoTransID_ = JournalKey(-1, dlg.trx_id());
+            const AccountData * account_n = AccountModel::instance().get_idN_data_n(gotoAccountID_);
+            if (account_n) {
+                createCheckingPage(gotoAccountID_);
+                selectNavTreeItem(account_n->m_name);
+            }
+        }
+    } while (rc == wxID_NEW);
 }
 //----------------------------------------------------------------------------
 
