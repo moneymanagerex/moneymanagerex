@@ -26,6 +26,7 @@
 #include "ForecastReport.h"
 #include "InExReport.h"
 #include "PayeeReport.h"
+#include "PlanReport.h"
 #include "StocksReport.h"
 #include "TrxReport.h"
 #include "UsageReport.h"

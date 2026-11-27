@@ -154,6 +154,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     table/AttachmentTable.h
     table/BudgetPeriodTable.cpp
     table/BudgetPeriodTable.h
+    table/BudgetSegmentTable.cpp
+    table/BudgetSegmentTable.h
     table/BudgetTable.cpp
     table/BudgetTable.h
     table/CategoryTable.cpp
@@ -170,6 +172,14 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     table/InfoTable.h
     table/PayeeTable.cpp
     table/PayeeTable.h
+    table/PlanAssumptionTable.cpp
+    table/PlanAssumptionTable.h
+    table/PlanAssumptionGroupTable.cpp
+    table/PlanAssumptionGroupTable.h
+    table/PlanGroupTable.cpp
+    table/PlanGroupTable.h
+    table/PlanItemTable.cpp
+    table/PlanItemTable.h
     table/ReportTable.cpp
     table/ReportTable.h
     table/SchedSplitTable.cpp
@@ -214,6 +224,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     data/BudgetData.h
     data/BudgetPeriodData.cpp
     data/BudgetPeriodData.h
+    data/BudgetSegmentData.cpp
+    data/BudgetSegmentData.h
     data/CategoryData.cpp
     data/CategoryData.h
     data/CurrencyData.cpp
@@ -228,6 +240,14 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     data/InfoData.h
     data/PayeeData.cpp
     data/PayeeData.h
+    data/PlanAssumptionData.cpp
+    data/PlanAssumptionData.h
+    data/PlanAssumptionGroupData.cpp
+    data/PlanAssumptionGroupData.h
+    data/PlanGroupData.cpp
+    data/PlanGroupData.h
+    data/PlanItemData.cpp
+    data/PlanItemData.h
     data/ReportData.cpp
     data/ReportData.h
     data/SchedData.cpp
@@ -269,6 +289,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/BudgetModel.h
     model/BudgetPeriodModel.cpp
     model/BudgetPeriodModel.h
+    model/BudgetSegmentModel.cpp
+    model/BudgetSegmentModel.h
     model/CategoryModel.cpp
     model/CategoryModel.h
     model/CurrencyHistoryModel.cpp
@@ -285,6 +307,16 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     model/Journal.h
     model/PayeeModel.cpp
     model/PayeeModel.h
+    model/PlanAssumptionModel.cpp
+    model/PlanAssumptionModel.h
+    model/PlanAssumptionGroupModel.cpp
+    model/PlanAssumptionGroupModel.h
+    model/PlanEngine.cpp
+    model/PlanEngine.h
+    model/PlanGroupModel.cpp
+    model/PlanGroupModel.h
+    model/PlanItemModel.cpp
+    model/PlanItemModel.h
     model/PrefModel.cpp
     model/PrefModel.h
     model/ReportModel.cpp
@@ -381,6 +413,10 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     dialog/AttachmentDialog.h
     dialog/BudgetEntryDialog.cpp
     dialog/BudgetEntryDialog.h
+    dialog/BudgetFromTrxDialog.cpp
+    dialog/BudgetFromTrxDialog.h
+    dialog/BudgetSegmentDialog.cpp
+    dialog/BudgetSegmentDialog.h
     dialog/BudgetYearDialog.cpp
     dialog/BudgetYearDialog.h
     dialog/BudgetYearEntryDialog.cpp
@@ -407,6 +443,12 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     dialog/NavigatorDialog.h
     dialog/NavigatorEditDialog.cpp
     dialog/NavigatorEditDialog.h
+    dialog/PlanAccountsDialog.cpp
+    dialog/PlanAccountsDialog.h
+    dialog/PlanAssumptionDialog.cpp
+    dialog/PlanAssumptionDialog.h
+    dialog/PlanManagerDialog.cpp
+    dialog/PlanManagerDialog.h
     dialog/ReconcileDialog.cpp
     dialog/ReconcileDialog.h
     dialog/SchedDialog.cpp
@@ -463,6 +505,8 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     report/InExReport.h
     report/PayeeReport.cpp
     report/PayeeReport.h
+    report/PlanReport.cpp
+    report/PlanReport.h
     report/StocksReport.cpp
     report/StocksReport.h
     report/TrxReport.cpp

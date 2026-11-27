@@ -1,0 +1,56 @@
+/*******************************************************
+ Copyright (C) 2026
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
+
+#pragma once
+
+#include "_ReportBase.h"
+
+// The long-term plan: what is owned, what is expected, what is already spoken
+// for, and what is left. It also states the assumptions the plan rests on and
+// how much the outcome moves if those assumptions are wrong.
+class PlanLongTermReport : public ReportBase
+{
+public:
+    PlanLongTermReport();
+    virtual ~PlanLongTermReport();
+
+    virtual wxString getHTMLText();
+};
+
+// Projected cash flow across budget segments, so a month planned in
+// paycheck-aligned halves shows a running balance for each half.
+class PlanCashFlowReport : public ReportBase
+{
+public:
+    PlanCashFlowReport();
+    virtual ~PlanCashFlowReport();
+
+    virtual wxString getHTMLText();
+};
+
+// The same information seen rather than read: where the balance is heading,
+// how income compares with what is already owed, what the money is going on,
+// and how far the answer moves if the assumptions are wrong.
+class PlanChartsReport : public ReportBase
+{
+public:
+    PlanChartsReport();
+    virtual ~PlanChartsReport();
+
+    virtual wxString getHTMLText();
+};
