@@ -37,4 +37,7 @@ struct mmPlatform
     static auto resourceDir() -> const wxFileName;
 
     static bool isDarkMode();
+
+    // Call after wxLocale initialization, before initializing the GUI.
+    static void initNumericLocale();
 };

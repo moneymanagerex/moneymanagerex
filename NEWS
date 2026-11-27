@@ -20,6 +20,9 @@ Bugfixes:
 * #7750 When entering a transaction amount manually by typing digits directly in the Amount field, MMEX crashes
 * #2914 multiselecting transaction info
 
+Bugfixes:
+* #8536 Work around native-alert crashes with comma-decimal locales on macOS 27.0/27.1
+
 Version 1.9.4
 ~~~~~~~~~~~~~~~~~~~~
 Released: 2026-08-31
