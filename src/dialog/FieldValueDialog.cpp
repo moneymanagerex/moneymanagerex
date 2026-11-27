@@ -420,7 +420,7 @@ void FieldValueDialog::SetWidgetData(wxWindowID win_id, const wxString& value)
     if (class_name == "wxDatePickerCtrl") {
         mmDatePicker* d = static_cast<mmDatePicker*>(w);
         wxDateTime date;
-        date.ParseDate(value);
+        mmParseISODate(value, date);
         d->setValue(date);
         wxDateEvent evt(d, date, wxEVT_DATE_CHANGED);
         d->GetEventHandler()->AddPendingEvent(evt);

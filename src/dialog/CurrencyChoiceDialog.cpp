@@ -1024,7 +1024,7 @@ bool CurrencyChoiceDialog::GetOnlineHistory(
         else {
             wxLogDebug("%s %s",
                 date.isoDate(),
-                wxDateTime::GetWeekDayName(date.dateTime().GetWeekDay())
+                wxDateTime::GetEnglishWeekDayName(date.dateTime().GetWeekDay())
             );
         }
     }

@@ -298,7 +298,7 @@ wxString FlowReport::getHTMLText_DayOrMonth(bool monthly)
                 double lastBalance = runningBalance;
                 for (const auto& entry : dateMap)
                 {
-                    dt.ParseDate(entry.first);
+                    dt.ParseISODate(entry.first);
                     if (monthly)
                         rowDate = dt.GetYear();
                     else
