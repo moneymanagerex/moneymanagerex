@@ -88,7 +88,14 @@ const wxString g_short_days_of_week[7] =
 
 bool mmParseISODate(const wxString& in, wxDateTime& out)
 {
-    if (in.IsEmpty() || !(out.ParseDateTime(in) || out.ParseDate(in))) {
+    // Avoid wxDateTime::ParseDateTime / ParseDate on ISO 8601 strings: they probe
+    // localized weekday/month names via wxUILocaleImplCF::GetWeekDayName/GetMonthName,
+    // which over-releases non-ASCII CFStrings in wxWidgets 3.3.x on macOS.
+    if (in.IsEmpty() || !(
+        out.ParseISOCombined(in) ||
+        out.ParseISOCombined(in, ' ') ||
+        out.ParseISODate(in)
+    )) {
         out = wxDateTime::Today();
         return false;
     }
