@@ -18,6 +18,42 @@
 #pragma once
 
 #include "model/PrefModel.h"
+#include <map>
+#include <mutex>
+#include <vector>
+
+struct DatabaseRowChange
+{
+    wxString table;
+    wxLongLong rowid;
+    wxSQLite3Hook::wxUpdateType type;
+};
+
+// Generic SQLite change journal input. It performs no SQL or network work from
+// inside SQLite callbacks; consumers drain the collected row keys later.
+class DatabaseChangeCollector
+{
+public:
+    void record(wxSQLite3Hook::wxUpdateType type, const wxString& table, wxLongLong rowid)
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        m_changes[{table, rowid.GetValue()}] = {table, rowid, type};
+    }
+
+    std::vector<DatabaseRowChange> drain()
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        std::vector<DatabaseRowChange> result;
+        result.reserve(m_changes.size());
+        for (auto& [key, change] : m_changes) result.push_back(change);
+        m_changes.clear();
+        return result;
+    }
+
+private:
+    std::mutex m_mutex;
+    std::map<std::pair<wxString, wxLongLong_t>, DatabaseRowChange> m_changes;
+};
 
 class CommitCallbackHook : public wxSQLite3Hook
 {
@@ -32,25 +68,13 @@ public:
 class UpdateCallbackHook : public wxSQLite3Hook
 {
 public:
-    virtual void UpdateCallback (wxUpdateType type, [[maybe_unused]] const wxString& database, [[maybe_unused]] const wxString& table, [[maybe_unused]] wxLongLong rowid)
-    {
-        switch (type)
-        {
-        case SQLITE_DELETE:
-            wxLogDebug("SQLITE_DELETE");
-            break;
-        case SQLITE_INSERT:
-            wxLogDebug("SQLITE_INSERT");
-            break;
-        case SQLITE_UPDATE:
-            wxLogDebug("SQLITE_UPDATE");
-            break;
-        default:
-            wxLogDebug("UNKNOWN type");
-            break;
-        }
-        wxLogDebug("database: %s, table: %s, rowid: %lld", database, table, rowid);
+    explicit UpdateCallbackHook(DatabaseChangeCollector* collector = nullptr) : m_collector(collector) {}
 
-        // TODO sync search index from full text search
+    virtual void UpdateCallback(wxSQLite3Hook::wxUpdateType type, [[maybe_unused]] const wxString& database, const wxString& table, wxLongLong rowid)
+    {
+        if (m_collector) m_collector->record(type, table, rowid);
     }
+
+private:
+    DatabaseChangeCollector* m_collector;
 };

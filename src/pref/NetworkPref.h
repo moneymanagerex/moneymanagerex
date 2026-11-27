@@ -19,11 +19,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 
 #include "_PrefBase.h"
+#include <vector>
 
 class wxSpinCtrl;
+class PocketBaseSyncService;
 
 class NetworkPref : public PrefBase
 {
+    friend class PocketBaseSyncService;
     wxDECLARE_EVENT_TABLE();
 
 public:
@@ -58,6 +61,28 @@ private:
     wxCheckBox* m_check_update = nullptr;
     wxCheckBox* m_check_news = nullptr;
     wxChoice* m_update_source = nullptr;
+    wxTextCtrl* m_pocketbase_url = nullptr;
+    wxTextCtrl* m_pocketbase_email = nullptr;
+    wxTextCtrl* m_pocketbase_password = nullptr;
+    wxStaticText* m_pocketbase_status = nullptr;
+    wxButton* m_pocketbase_login = nullptr;
+    wxButton* m_pocketbase_logout = nullptr;
+    wxButton* m_pocketbase_sync_currencies = nullptr;
+    wxButton* m_pocketbase_sync_accounts = nullptr;
+    wxButton* m_pocketbase_sync_categories = nullptr;
+    wxButton* m_pocketbase_sync_payees = nullptr;
+    wxButton* m_pocketbase_sync_transactions = nullptr;
+    wxButton* m_pocketbase_sync_investments = nullptr;
+    bool m_pocketbase_auth_check = false;
+
+    void OnPocketBaseLogin(wxCommandEvent& event);
+    void OnPocketBaseLogout(wxCommandEvent& event);
+    void OnPocketBaseSyncCurrencies(wxCommandEvent& event);
+    void OnPocketBaseSyncAccounts(wxCommandEvent& event);
+    void OnPocketBaseSyncCategories(wxCommandEvent& event);
+    void OnPocketBaseSyncPayees(wxCommandEvent& event);
+    void OnPocketBaseSyncTransactions(wxCommandEvent& event);
+    void OnPocketBaseSyncInvestments(wxCommandEvent& event);
 
     enum
     {

@@ -439,6 +439,7 @@ add_executable(${MMEX_EXE} WIN32 MACOSX_BUNDLE
     pref/GeneralPref.cpp
     pref/GeneralPref.h
     pref/NetworkPref.cpp
+    pocketbase/PocketBaseSync.cpp
     pref/NetworkPref.h
     pref/OtherPref.cpp
     pref/OtherPref.h
